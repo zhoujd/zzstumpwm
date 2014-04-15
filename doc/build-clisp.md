@@ -19,7 +19,7 @@ Build clisp
 
     on ubuntu
 
-        sudo apt-get install libffi-dev
+        sudo apt-get install libffcall1-dev
         sudo apt-get install libreadline-dev
 
 
