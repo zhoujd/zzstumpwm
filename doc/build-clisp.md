@@ -22,4 +22,11 @@ Build clisp
         sudo apt-get install libffcall1-dev
         sudo apt-get install libreadline-dev
 
+3. Help url
+
+    <http://www.gnu.org/software/libffcall/>
+    <http://talk.maemo.org/showthread.php?t=42339>
+
+
+
 
