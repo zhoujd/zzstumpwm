@@ -1,0 +1,23 @@
+
+;; -*-lisp-*-
+
+(in-package :stumpwm)
+
+;;; Loading additional rc files
+
+(defvar *utl-load-directory*
+  (directory-namestring
+   (truename (merge-pathnames (user-homedir-pathname)
+                              ".stumpwmrc")))
+  "A directory with initially loaded files.")
+
+(defun utl-load (filename)
+  "Load a file FILENAME (without extension) from `*utl-load-directory*'."
+  (let ((file (merge-pathnames (concat "configure/" filename ".lisp")
+                               *utl-load-directory*)))
+    (if (probe-file file)
+        (load file)
+        (format *error-output* "File '~a' doesn't exist." file))))
+
+
+(utl-load "common-setting")

@@ -1,3 +1,5 @@
 #!/bin/sh
 
-exec sbcl --eval '(ql:quickload :stumpwm)' --eval '(stumpwm:stumpwm)'
+exec sbcl --eval '(ql:quickload :stumpwm)' \
+          --eval '(ql:quickload :swank)'   \
+          --eval '(stumpwm:stumpwm)'
