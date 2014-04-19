@@ -6,5 +6,5 @@
 (swank:create-server)
 
 ;; change the prefix key to something else
-(set-prefix-key (kbd "s-t"))
+(set-prefix-key (kbd "s-`"))
 
