@@ -4,6 +4,12 @@ Build clisp
 1. Get source form <http://ftp.gnu.org/pub/gnu/clisp/>
 2. Install follow package
 
+    The default stack size on your platform is insufficient
+    and must be increased to at least 16384.  You must do either
+    'ulimit -s 16384' (for Bourne shell derivatives, e.g., bash and zsh)
+    or 'limit stacksize 16384' (for C shell derivarives, e.g., tcsh)
+
+
         mkdir tools; cd tools; prefix=`pwd`/x86_64-unknown-linux-gnu
         wget http://ftp.gnu.org/pub/gnu/libsigsegv/libsigsegv-2.8.tar.gz
         tar xfz libsigsegv-2.8.tar.gz
@@ -21,6 +27,7 @@ Build clisp
 
         sudo apt-get install libffcall1-dev
         sudo apt-get install libreadline-dev
+        sudo apt-get install libsvm-dev
 
 3. Help url
 
