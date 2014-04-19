@@ -1,15 +1,16 @@
+Ubuntu Display Manager
+======================
 
-
-sudo dpkg-reconfigure kdm
-
-or
-
-sudo dpkg-reconfigure gdm
+    sudo dpkg-reconfigure kdm
 
 or
 
-sudo dpkg-reconfigure kde4-kdm
+    sudo dpkg-reconfigure gdm
 
 or
 
-sudo vi /etc/X11/default-display-manager
+    sudo dpkg-reconfigure kde4-kdm
+
+or
+
+    sudo vi /etc/X11/default-display-manager
