@@ -22,14 +22,3 @@
   (let ((ks (mapcar #'(lambda (k) (cons 'defkey-root k)) keys)))  
     `(progn ,@ks)))
 
-
-
-;;multi key setting
-(defun apply-keys-to-map (map key-pairs)
-  "apply multi key defines"
-  (dotimes (i (length key-pairs))
-    (let ((key (nth i key-pairs))
-          (fn (nth (1+ i) key-pairs)))
-      (when fn
-        (define-key map key fn)))
-      (setq i (+ i 1))))
