@@ -44,7 +44,7 @@
       *mode-line-pad-y*            0
       *mode-line-timeout*          60
       *mode-line-screen-position*  :top
-      *screen-mode-line-format*    (list "[^B%n^b]%W" "^>%m | " "^>%d"))
+      *screen-mode-line-format*    (list "[^B%n^b]%W" "^> | " "^>%d"))
 
 ;; turn on/off the mode line for the current screen only.
 ;(if (not (head-mode-line (current-head)))
