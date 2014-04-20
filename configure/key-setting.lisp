@@ -18,37 +18,34 @@
 ;; self define keymap
 (defvar *zz-exec-map*
   (let ((map (make-sparse-keymap)))
-
+    (define-key map (kbd "f") "exec firefox")
     map)
   "Keymap for executing shell commands or switching to running applications.")
 
 (defvar *zz-x-map*
   (let ((map (make-sparse-keymap)))
-    
+    (define-key map (kbd "1") "only")
+    (define-key map (kbd "0") "remove")
     map)
   "Keymap simallar emacs C-x.")
 
 (defvar *zz-window-map*
   (let ((map (make-sparse-keymap)))
-    
     map)
   "Keymap window")
 
 (defvar *zz-menu-map*
   (let ((map (make-sparse-keymap)))
-    
     map)
   "Keymap menu")
 
 (defvar *zz-view-map*
   (let ((map (make-sparse-keymap)))
-    
     map)
   "Keymap view")
 
 (defvar *zz-help-map*
   (let ((map (make-sparse-keymap)))
-    
     map)
   "Keymap help")
 
