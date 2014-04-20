@@ -32,3 +32,8 @@ used for matching windows with run-or-raise or window placement
   
 (defcommand reinit () ()  
     (run-commands "reload" "loadrc"))
+
+(defparameter +browser-name+ "firefox")  
+(defparameter +browser-class+ "Firefox")  
+(defcommand browse () ()  
+    (run-or-raise +browser-name+ `(:class ,+browser-class+))) 
