@@ -2,7 +2,7 @@
 
 (in-package :stumpwm)
 
-;;multi key setting
+;; multi key setting
 (defun apply-keys-to-map (map key-pairs)
   "apply multi key defines"
   (do ((i 0 (+ i 2)))
@@ -15,20 +15,44 @@
 ;; change the prefix key to something else
 (set-prefix-key (kbd "s-t"))
 
-(defvar *zz-exec-map* (make-sparse-keymap)
+;; self define keymap
+(defvar *zz-exec-map*
+  (let ((map (make-sparse-keymap)))
+
+    map)
   "Keymap for executing shell commands or switching to running applications.")
-(defvar *zz-x-map* (make-sparse-keymap)
+
+(defvar *zz-x-map*
+  (let ((map (make-sparse-keymap)))
+    
+    map)
   "Keymap simallar emacs C-x.")
 
-(defvar *zz-window-map* (make-sparse-keymap)
+(defvar *zz-window-map*
+  (let ((map (make-sparse-keymap)))
+    
+    map)
   "Keymap window")
-(defvar *zz-menu-map* (make-sparse-keymap)
+
+(defvar *zz-menu-map*
+  (let ((map (make-sparse-keymap)))
+    
+    map)
   "Keymap menu")
-(defvar *zz-view-map* (make-sparse-keymap)
+
+(defvar *zz-view-map*
+  (let ((map (make-sparse-keymap)))
+    
+    map)
   "Keymap view")
-(defvar *zz-help-map* (make-sparse-keymap)
+
+(defvar *zz-help-map*
+  (let ((map (make-sparse-keymap)))
+    
+    map)
   "Keymap help")
 
+;; top map
 (apply-keys-to-map
  *top-map*
  (list
@@ -67,6 +91,7 @@
   (kbd "s-S-Down")  "next-in-frame"    
   ))
 
+;; root map
 (apply-keys-to-map
  *root-map*
  (list
