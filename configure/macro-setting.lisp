@@ -23,7 +23,13 @@
     `(progn ,@ks)))
 
 
-(defmacro defkeys-map (map &rest key)
-  (let ((ks (mapcar #'(lambda (k)
-                        (list 'define-key map (list 'kbd (car k)) (cadr k))) keys)))
-    `(progn ,@ks)))
+
+;;multi key setting
+(defun apply-keys-to-map (map key-pairs)
+  "apply multi key defines"
+  (dotimes (i (length key-pairs))
+    (let ((key (nth i key-pairs))
+          (fn (nth (1+ i) key-pairs)))
+      (when fn
+        (define-key map key fn)))
+      (setq i (+ i 1))))

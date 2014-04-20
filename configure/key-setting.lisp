@@ -7,8 +7,30 @@
 
 (defvar *zz-exec-map* (make-sparse-keymap)
   "Keymap for executing shell commands or switching to running applications.")
+(defvar *zz-x-map* (make-sparse-keymap)
+  "Keymap simallar emacs C-x.")
+
+(defvar *zz-window-map* (make-sparse-keymap)
+  "Keymap window")
+(defvar *zz-menu-map* (make-sparse-keymap)
+  "Keymap menu")
+(defvar *zz-view-map* (make-sparse-keymap)
+  "Keymap view")
+(defvar *zz-help-map* (make-sparse-keymap)
+  "Keymap help")
+
+(apply-keys-to-map
+ *top-map*
+ (list
+  (kbd "s-e")    *zz-exec-map*
+  (kbd "s-x")    *zz-x-map*
+  (kbd "s-w")    *zz-window-map*
+  (kbd "s-v")    *zz-view-map*
+  (kbd "s-h")    *zz-help-map*
+  ))
 
 (defkeys-top
+    ("s-x"       *zz-x-map*)
     ("s-e"       *zz-exec-map*))
 
 (defkeys-top  
