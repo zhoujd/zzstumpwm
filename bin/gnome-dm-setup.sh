@@ -2,6 +2,7 @@
 
 ##ubuntu12.04 can work
 ##suse11 sp3 can work
+##centos6.5 can work
 
 # run as root:
 # $ sudo bash ./gnome-dm-setup
