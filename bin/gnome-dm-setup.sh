@@ -1,5 +1,8 @@
 #!/bin/bash
 
+##ubuntu12.04 can work
+##suse11 sp3 can work
+
 # run as root:
 # $ sudo bash ./gnome-dm-setup
 
@@ -11,9 +14,9 @@ if [ $EUID -ne 0 ]; then
 fi
 
 echo "[Desktop Entry]
-Name=GNOME with Stumpwm
-Comment=Gnome with the Stumpwm window manager
+Name=Stumpwm
+Comment=Stumpwm window manager
 TryExec=/usr/bin/gnome-session
 Exec=$CURRENT_DIR/startx.sh
 Type=XSession
-" > /usr/share/xsessions/gnome-stumpwm.desktop
+" > /usr/share/xsessions/stumpwm.desktop
