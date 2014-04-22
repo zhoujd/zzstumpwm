@@ -3,7 +3,8 @@
 (in-package :stumpwm)
 
 (require 'swank)
-(swank:create-server :dont-close t)
+(defvar swant-server-flag (swank:create-server :dont-close t)
+  "swant server flag")
 
 (set-fg-color "green")
 (set-bg-color "black")
