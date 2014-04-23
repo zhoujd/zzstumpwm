@@ -6,11 +6,12 @@
 (apply-keys-to-map
  *zz-exec-map*
  (list
+  (kbd "c")         "exec gnome-control-center"
+  (kbd "e")         "emacs"
+  (kbd "C-e")       "exec evince"
   (kbd "f")         "browse"
   (kbd "C-f")       "exec firefox"
   (kbd "m")         "exec gnome-system-monitor"
-  (kbd "s")         "exec gnome-control-center"
-  (kbd "e")         "exec evince"
   (kbd "n")         "exec nautilus --no-desktop"
   ))
 
