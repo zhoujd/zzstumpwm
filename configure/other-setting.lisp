@@ -12,8 +12,6 @@ used for matching windows with run-or-raise or window placement
   (let ((w (current-window))
         (*suppress-echo-timeout* t)
         (nl (string #\NewLine)))
-
-    ;; (message-no-timeout "class: ~a~%instance~a~%..." (window-class w) (window-res w) ...)
     (echo-string (current-screen)
                  (concat "class:    " (window-class w) nl
                          "instance: " (window-res w) nl
@@ -24,15 +22,16 @@ used for matching windows with run-or-raise or window placement
                          "height    " (format nil "~a" (window-height w))))))
 
 
-(defcommand reboot () ()
-    (run-shell-command "sudo /sbin/shutdown -r now"))
+;; sudo command
+(define-sudo-command reboot "reboot")
+(define-sudo-command shutdown "shutdown -h now")
+(define-sudo-command gnome-control-center "gnome-control-center")
 
-(defcommand halt () ()
-    (run-shell-command "sudo /sbin/shutdown -P now"))
-
+;; shell command
 (defcommand reinit () ()
     (run-commands "reload" "loadrc"))
 
+;; firefox
 (defparameter +browser-name+ "firefox")
 (defparameter +browser-class+ "Firefox")
 (defcommand browse () ()

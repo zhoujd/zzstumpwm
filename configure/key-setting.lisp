@@ -6,7 +6,7 @@
 (apply-keys-to-map
  *zz-exec-map*
  (list
-  (kbd "c")         "exec gnome-control-center"
+  (kbd "c")         "gnome-control-center"
   (kbd "e")         "emacs"
   (kbd "C-e")       "exec evince"
   (kbd "f")         "browse"
@@ -48,7 +48,7 @@
   (kbd "s-F2")      "exec"  
   (kbd "s-F4")      "kill"  
   (kbd "s-F11")     "reboot"  
-  (kbd "s-F12")     "halt" 
+  (kbd "s-F12")     "shutdown" 
   
   (kbd "s-Right")   "move-focus right"  
   (kbd "s-Left")    "move-focus left"  
@@ -71,4 +71,15 @@
  *root-map*
  (list
   (kbd "s-i")       "display-current-window-info"
+  ))
+
+;; input map
+(apply-keys-to-map
+ *input-map*
+ (list
+  (kbd "C-m") 'input-submit
+  (kbd "C-h") 'input-delete-backward-char
+  (kbd "M-p") 'input-history-back
+  (kbd "M-n") 'input-history-forward
+  (kbd "C-i") 'input-complete-forward
   ))

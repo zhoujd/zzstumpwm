@@ -1,10 +1,9 @@
 
-;; -*-lisp-*-
+;;;; stumpwm configure -*-lisp-*-
 
 (in-package :stumpwm)
 
-;;; Loading additional rc files
-
+;; loading additional rc files
 (defvar *zz-load-directory*
   (directory-namestring
    (truename (merge-pathnames (user-homedir-pathname)
@@ -18,7 +17,6 @@
     (if (probe-file file)
         (load file)
         (format *error-output* "File '~a' doesn't exist." file))))
-
 
 (zz-load "macro-setting")
 (zz-load "common-setting")

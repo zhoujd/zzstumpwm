@@ -2,6 +2,7 @@
 
 (in-package :stumpwm)
 
+;; auto start swank server
 (require 'swank)
 (defvar swant-server-flag nil "swant server flag")
 
@@ -9,9 +10,9 @@
   (swank:create-server :dont-close t)
   (setq swant-server-flag t))
 
+;; color select
 (set-fg-color "green")
 (set-bg-color "black")
-
 (set-float-focus-color   "black")
 (set-float-unfocus-color "black")
 
@@ -24,7 +25,7 @@
       *message-window-gravity*      :center
       *input-window-gravity*        :center)
 
-;;; Window Appearance
+;; window appearance
 (setf *normal-border-width*         1
       *maxsize-border-width*        1
       *transient-border-width*      1
@@ -37,7 +38,7 @@
       *window-format*               "^B^8*%n%s%m%15t | ^7*"
       *group-format*                "%t")
 
- ;;;; The Mode Line
+;; mode line
 (setf *mode-line-background-color*  "black"
       *mode-line-foreground-color*  "lightgreen"
       *mode-line-border-color*      "black"
@@ -48,7 +49,7 @@
       *mode-line-screen-position*   :top
       *screen-mode-line-format*     (list "[^B%n^b]%W" "^> | " "^>%d"))
 
-(setq *startup-mode-line* t)
+(setq *startup-mode-line* nil)
 (when (and *startup-mode-line*
            (not (head-mode-line (current-head))))
   (mode-line))
