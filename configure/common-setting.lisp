@@ -3,8 +3,11 @@
 (in-package :stumpwm)
 
 (require 'swank)
-(defvar swant-server-flag (swank:create-server :dont-close t)
-  "swant server flag")
+(defvar swant-server-flag nil "swant server flag")
+
+(unless swant-server-flag
+  (swank:create-server :dont-close t)
+  (setq swant-server-flag t))
 
 (set-fg-color "green")
 (set-bg-color "black")
@@ -12,16 +15,14 @@
 (set-float-focus-color   "black")
 (set-float-unfocus-color "black")
 
-(setf *mode-line-border-width* 3)
-
 ;; suppress the message StumpWM displays when it starts. Set it to NIL
-(setf *startup-message*          nil
-      *suppress-frame-indicator* t
-      *suppress-abort-messages*  t
-      *timeout-wait*             3
-      *mouse-focus-policy*      :click
-      *message-window-gravity*  :center
-      *input-window-gravity*    :center)
+(setf *startup-message*             nil
+      *suppress-frame-indicator*    t
+      *suppress-abort-messages*     t
+      *timeout-wait*                3
+      *mouse-focus-policy*          :click
+      *message-window-gravity*      :center
+      *input-window-gravity*        :center)
 
 ;;; Window Appearance
 (setf *normal-border-width*         1
@@ -31,22 +32,24 @@
       *float-window-title-height*   0
       *window-border-style*         :thin)
 
-(setf *time-modeline-string* "%Y-%m-%d %a ^B%l:%M^b"
-      *window-name-source*   :title
-      *window-format*        "^B^8*%n%s%m%15t | ^7*"
-      *group-format*         "%t")
+(setf *time-modeline-string*        "%Y-%m-%d %a ^B%l:%M^b"
+      *window-name-source*          :title
+      *window-format*               "^B^8*%n%s%m%15t | ^7*"
+      *group-format*                "%t")
 
  ;;;; The Mode Line
-(setf *mode-line-background-color* "black"
-      *mode-line-foreground-color* "lightgreen"
-      *mode-line-border-color*     "black"
-      *mode-line-border-width*     0
-      *mode-line-pad-x*            0
-      *mode-line-pad-y*            0
-      *mode-line-timeout*          60
-      *mode-line-screen-position*  :top
-      *screen-mode-line-format*    (list "[^B%n^b]%W" "^> | " "^>%d"))
+(setf *mode-line-background-color*  "black"
+      *mode-line-foreground-color*  "lightgreen"
+      *mode-line-border-color*      "black"
+      *mode-line-border-width*      0
+      *mode-line-pad-x*             0
+      *mode-line-pad-y*             0
+      *mode-line-timeout*           60
+      *mode-line-screen-position*   :top
+      *screen-mode-line-format*     (list "[^B%n^b]%W" "^> | " "^>%d"))
 
 ;; turn on/off the mode line for the current screen only.
-;(if (not (head-mode-line (current-head)))
-;     (toggle-mode-line (current-screen) (current-head)))
+(defun open/close-mode-line ()
+  "turn on/off mode line"
+  (if (not (head-mode-line (current-head)))
+      (toggle-mode-line (current-screen) (current-head))))
