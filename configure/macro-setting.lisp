@@ -22,3 +22,9 @@
   (let ((ks (mapcar #'(lambda (k) (cons 'defkey-root k)) keys)))  
     `(progn ,@ks)))
 
+(defmacro defkey-map (map key cmd)  
+  `(define-key map (kbd ,key) ,cmd))  
+
+(defmacro defkeys-map (map &rest keys)
+  (let ((ks (mapcar #'(lambda (k) (cons 'defkey-map map k)) keys)))  
+    `(progn ,@ks)))
