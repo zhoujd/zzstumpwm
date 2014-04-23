@@ -48,8 +48,7 @@
       *mode-line-screen-position*   :top
       *screen-mode-line-format*     (list "[^B%n^b]%W" "^> | " "^>%d"))
 
-;; turn on/off the mode line for the current screen only.
-(defun open/close-mode-line ()
-  "turn on/off mode line"
-  (if (not (head-mode-line (current-head)))
-      (toggle-mode-line (current-screen) (current-head))))
+(setq *startup-mode-line* t)
+(when (and *startup-mode-line*
+           (not (head-mode-line (current-head))))
+  (mode-line))
