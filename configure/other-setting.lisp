@@ -75,4 +75,3 @@ used for matching windows with run-or-raise or window placement
 (start-command-ps "gnome-power-manager")
 (start-command-ps "gnome-valume-manager")
 (nm-applet)
-(emacs)
