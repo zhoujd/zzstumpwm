@@ -9,7 +9,7 @@
   (kbd "c")         "gnome-control-center"
   (kbd "e")         "emacs"
   (kbd "C-e")       "exec evince"
-  (kbd "f")         "browse"
+  (kbd "f")         "firefox"
   (kbd "C-f")       "exec firefox"
   (kbd "m")         "exec gnome-system-monitor"
   (kbd "n")         "exec nautilus --no-desktop"
@@ -46,7 +46,8 @@
   (kbd "s-C-r")     "reinit"
   
   (kbd "s-F2")      "exec"  
-  (kbd "s-F4")      "kill"  
+  (kbd "s-F4")      "kill"
+  (kbd "s-F10")     "gnome-panel"
   (kbd "s-F11")     "reboot"  
   (kbd "s-F12")     "shutdown" 
   

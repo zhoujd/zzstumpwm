@@ -57,3 +57,8 @@
                         `(run-prog-collect-output *shell-program* "-c" ,cmd)
                         `(run-prog *shell-program* :args (list "-c" ,cmd) :wait nil))))))
 
+
+(defmacro def-run-or-raise-command (cmd prop)
+  (let ((cmd-str (string-downcase (symbol-name cmd))))
+    `(defcommand ,cmd () ()
+       (run-or-raise ,cmd-str ,prop))))
