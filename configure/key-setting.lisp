@@ -47,7 +47,7 @@
   
   (kbd "s-F2")      "exec"  
   (kbd "s-F4")      "kill"
-  (kbd "s-F10")     "gnome-panel"
+  (kbd "s-F10")     "exec gnome-panel --replace"
   (kbd "s-F11")     "reboot"  
   (kbd "s-F12")     "shutdown" 
   

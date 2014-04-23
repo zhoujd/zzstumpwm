@@ -59,15 +59,15 @@ used for matching windows with run-or-raise or window placement
 (defcommand uptime () ()
   (echo-string (current-screen) (run-shell-command "uptime" t)))
 
-(defcommand gnome-panel () ()
-  (if (ps-exists "gnome-panel")
-      (progn (kill-ps "gnome-panel")
-             (sleep 0.3)
-             (when *startup-mode-line*
-               (run-shell-command "stumpish mode-line")))
-      (progn (when (head-mode-line (current-head))
-               (mode-line))
-             (run-shell-command "gnome-panel"))))
+;(defcommand gnome-panel () ()
+;  (if (ps-exists "gnome-panel")
+;      (progn (kill-ps "gnome-panel")
+;             (sleep 0.3)
+;             (when *startup-mode-line*
+;               (run-shell-command "stumpish mode-line")))
+;      (progn (when (head-mode-line (current-head))
+;               (mode-line))
+;             (run-shell-command "gnome-panel"))))
 
 ;; startup run commands
 (run-shell-command "xsetroot -solid black")
