@@ -55,9 +55,14 @@ used for matching windows with run-or-raise or window placement
 
 
 ;; startup run commands
-(start-command-ps "xsetroot" :options "-solid black")
-(start-command-ps "gnome-settings-daemon")
-(start-command-ps "gnome-power-manager")
-(start-command-ps "gnome-valume-manager")
-(start-command-ps "nm-applet" :options "--sm-disable")
+(mapc
+ #'(lambda (cmd)
+     (apply #'start-command-ps cmd))
+ (list
+  (list "xsetroot" :options "-solid black")
+  (list "gnome-settings-daemon")
+  (list "gnome-power-manager")
+  (list "gnome-valume-manager")
+  (list "nm-applet" :options "--sm-disable")
+  ))
 
