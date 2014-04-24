@@ -1,4 +1,5 @@
-;;;; macro setting
+;;;; macro setting -*-lisp-*-
+;;
 
 (in-package :stumpwm)
 

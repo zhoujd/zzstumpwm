@@ -1,5 +1,6 @@
 
 ;;;; stumpwm configure -*-lisp-*-
+;;
 
 (in-package :stumpwm)
 

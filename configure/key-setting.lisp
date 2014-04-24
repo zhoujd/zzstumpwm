@@ -1,4 +1,5 @@
-;;;; key setting
+;;;; key setting -*-lisp-*-
+;;
 
 (in-package :stumpwm)
 

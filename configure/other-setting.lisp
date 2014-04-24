@@ -1,4 +1,5 @@
-;;;; other setting
+;;;; other setting -*-lisp-*-
+;;
 
 (in-package :stumpwm)
 
