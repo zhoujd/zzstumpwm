@@ -70,7 +70,7 @@
 (apply-keys-to-map
  *root-map*
  (list
-  (kbd "s-i")       "display-current-window-info"
+  (kbd "s-i")       "current-window-info"
   ))
 
 ;; input map

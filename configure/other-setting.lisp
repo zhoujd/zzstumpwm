@@ -2,9 +2,6 @@
 
 (in-package :stumpwm)
 
-(defun cat (&rest strings)
-    (apply 'concatenate 'string strings))
-
 ;; process management
 (defun ps-exists (ps)
   (let ((f "ps -ef | grep ~S | grep -v -e grep -e stumpish | wc -l"))
@@ -31,7 +28,7 @@
 (def-run-or-raise-command firefox '(:class "Firefox"))
 
 ;; shell command
-(defcommand display-current-window-info () ()
+(defcommand current-window-info () ()
   "Shows the properties of the current window. These properties can be
 used for matching windows with run-or-raise or window placement
 -merules."
