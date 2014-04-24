@@ -48,10 +48,7 @@ used for matching windows with run-or-raise or window placement
                          "height    " (format nil "~a" (window-height w))))))
 
 (defcommand reinit () ()
-    (run-commands "reload" "loadrc"))
-
-(defcommand nm-applet () ()
-  (start-command-ps "nm-applet" :options "--sm-disable"))
+  (run-commands "reload" "loadrc"))
 
 (defcommand show-battery () ()
   (echo-string (current-screen) (run-shell-command "acpi" t)))
@@ -61,8 +58,9 @@ used for matching windows with run-or-raise or window placement
 
 
 ;; startup run commands
-(run-shell-command "xsetroot -solid black")
+(start-command-ps "xsetroot" :options "-solid black")
 (start-command-ps "gnome-settings-daemon")
 (start-command-ps "gnome-power-manager")
 (start-command-ps "gnome-valume-manager")
-(nm-applet)
+(start-command-ps "nm-applet" :options "--sm-disable")
+

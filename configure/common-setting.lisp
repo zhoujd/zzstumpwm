@@ -2,6 +2,9 @@
 
 (in-package :stumpwm)
 
+(setq *startup-message*   nil)
+(setq *startup-mode-line* nil)
+
 ;; auto start swank server
 (require 'swank)
 (defvar swant-server-flag nil "swant server flag")
@@ -17,8 +20,7 @@
 (set-float-unfocus-color "black")
 
 ;; suppress the message StumpWM displays when it starts. Set it to NIL
-(setf *startup-message*             nil
-      *suppress-frame-indicator*    t
+(setf *suppress-frame-indicator*    t
       *suppress-abort-messages*     t
       *timeout-wait*                3
       *mouse-focus-policy*          :click
@@ -49,7 +51,6 @@
       *mode-line-screen-position*   :top
       *screen-mode-line-format*     (list "[^B%n^b]%W" "^> | " "^>%d"))
 
-(setq *startup-mode-line* nil)
 (when (and *startup-mode-line*
            (not (head-mode-line (current-head))))
   (mode-line))
