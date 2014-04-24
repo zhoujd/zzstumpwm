@@ -7,6 +7,7 @@
  *zz-exec-map*
  (list
   (kbd "c")         "gnome-control-center"
+  (kbd "C-c")       "exec gnome-control-center"
   (kbd "e")         "emacs"
   (kbd "C-e")       "exec evince"
   (kbd "f")         "firefox"
