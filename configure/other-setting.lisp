@@ -20,6 +20,14 @@
 (defun kill-ps (command)
   (run-shell-command (kill-ps-command command)))
 
+(defun gnome-term-command (name)
+  "Start a gnome-terminal with an command session"
+  (format nil "exec gnome-terminal --name=~a -t ~a -x ~a" name name name))
+
+(defun xterm-command (name)
+  "Start a gnome-terminal with an command session"
+  (format nil "exec xterm -e ~a" name))
+
 ;; sudo command
 (define-sudo-command reboot "reboot")
 (define-sudo-command shutdown "shutdown -h now")
@@ -61,11 +69,12 @@ used for matching windows with run-or-raise or window placement
      (apply #'start-command-ps cmd))
  (list
   (list "xsetroot" :options "-solid black")
+  (list "xscreensaver" :options "-no-splash")
   (list "gnome-settings-daemon")
   (list "gnome-power-manager")
   (list "gnome-valume-manager")
-  (list "nm-applet" :options "--sm-disable")
-  (list "xscreensaver" :options "-no-splash")
   (list "gnome-keyring-daemon" :options "--start --components=gpg,pkcs11,secrets,ssh")
+  (list "bluetooth-applet" :options "--sm-disable")
+  (list "nm-applet" :options "--sm-disable")
   ))
 
