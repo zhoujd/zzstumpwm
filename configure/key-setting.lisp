@@ -33,7 +33,9 @@
 (apply-keys-to-map
  *zz-help-map*
  (list
-  (kbd "m")         "exec firefox http://stumpwm.org/manual/stumpwm.html"
+  (kbd "m")         (format nil "exec xterm -e info ~a"
+                            (merge-pathnames "doc/stumpwm.info" *zz-load-directory*))
+  (kbd "C-m")       "exec firefox http://stumpwm.org/manual/stumpwm.html"
   ))
 
 ;; top map
