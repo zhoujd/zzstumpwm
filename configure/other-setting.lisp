@@ -66,5 +66,6 @@ used for matching windows with run-or-raise or window placement
   (list "gnome-valume-manager")
   (list "nm-applet" :options "--sm-disable")
   (list "xscreensaver" :options "-no-splash")
+  (list "gnome-keyring-daemon" :options "--start --components=gpg,pkcs11,secrets,ssh")
   ))
 
