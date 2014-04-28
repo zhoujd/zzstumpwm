@@ -2,10 +2,11 @@
 
 CURRENT_DIR=`pwd`
 
-
 echo "install stumpwm start ..."
 
+## Set configure file and qucklisp
 rm -f ~/.stumpwmrc
+rm -f ~/quicklisp
 ln -s $CURRENT_DIR/.stumpwmrc ~/.stumpwmrc
 ln -s $CURRENT_DIR/quicklisp ~/quicklisp
 
@@ -18,6 +19,5 @@ cat > ~/.sbclrc <<EOF
   (when (probe-file quicklisp-init)
     (load quicklisp-init)))
 EOF
-
 
 echo "install stumpwm end ..."
