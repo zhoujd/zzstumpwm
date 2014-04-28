@@ -15,6 +15,7 @@
   (kbd "C-f")       "exec firefox"
   (kbd "m")         "exec gnome-system-monitor"
   (kbd "n")         "exec nautilus --no-desktop"
+  (kbd "t")         "exec gnome-terminal"
   ))
 
 ;; *zz-x-map*
