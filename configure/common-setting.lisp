@@ -38,7 +38,9 @@
 
 (setf *time-modeline-string*        "%Y-%m-%d %a ^B%l:%M^b"
       *window-name-source*          :title
-      *window-format*               "^B^8*%n%s%m%15t | ^7*"
+      ;;*window-format*               "^B^8*%n%s%m%15t | ^7*"
+      *window-format*               "%m%n%s nm=%50t cl=%c id=%i"
+      *frame-number-map*            "abcdefghijklmnopqrst"
       *group-format*                "%t")
 
 ;; mode line
