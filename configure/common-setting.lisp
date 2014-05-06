@@ -11,7 +11,7 @@
 (defvar swant-server-flag nil "swant server flag")
 
 (unless swant-server-flag
-  (swank:create-server :dont-close t :port 4405)
+  (swank:create-server :dont-close t :port 4405 :coding-system "utf-8-unix")
   (setq swant-server-flag t))
 
 ;; color select
