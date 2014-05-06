@@ -13,8 +13,7 @@ set encoding=utf-8
 set fileencodings=utf-8,ucs-bom,sjis,cp936,big5,latin1,gbk
 
 " coding for term
-set termencoding=utf-8
-set ambiwidth=double
+let &termencoding=&encoding
 
 " Font setting
 set guifont=Microsoft\ YaHei\ Mono:h11:cANSI
