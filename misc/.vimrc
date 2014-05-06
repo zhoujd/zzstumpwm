@@ -9,9 +9,12 @@ if has("win32")
 endif
 
 " coding system
-let &termencoding=&encoding
 set encoding=utf-8
-set fileencodings=ucs-bom,utf-8,sjis,cp936,big5,latin1,gbk
+set fileencodings=utf-8,ucs-bom,sjis,cp936,big5,latin1,gbk
+
+" coding for term
+set termencoding=utf-8
+set ambiwidth=double
 
 " Font setting
 set guifont=Microsoft\ YaHei\ Mono:h11:cANSI
