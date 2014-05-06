@@ -1,31 +1,20 @@
 !For Zachary Zhou on Linux
 !~/.Xresources
-!xrdb ~/.Xresources
-!english using default font, chinese using WenQuanYi Zen Hei resolution 1280x800
+!xrdb -load ~/.Xresources
 
-!look and feel
-xterm.termName: xterm-256color
+XTerm*font: -misc-fixed-medium-r-normal--20-200-75-75-c-100-iso8859-1
+XTerm*wideFont: -misc-fixed-medium-r-normal-*-18-120-100-100-c-180-iso10646-1
+XTerm*saveLines: 4096
+XTerm*scrollbar: yes
+
 xterm.geometry: 80x36
 xterm*scrollBar: false
 xterm*rightScrollBar: true
 xterm*loginshell: true
 xterm*cursorBlink: true
-xterm*background:   black
-xterm*foreground:   gray
+xterm*background: black
+xterm*foreground: gray
 xterm.borderLess: true
 xterm.cursorBlink: true
 xterm*colorUL: yellow
 xterm*colorBD: white
-
-!font and locale
-xterm*locale: true
-xterm.utf8:     true
-xterm*utf8Title: true
-xterm*fontMenu*fontdefault*Label: Default
-xterm*faceName:Monospace:antialias=True:pixelsize=14
-xterm*boldFont:Sans:style=Bold:pixelsize=13
-xterm*faceNameDoublesize:WenQuanYi Zen Hei:antialias=True:pixelsize=13
-xterm*xftAntialias: true
-xterm.cjkWidth:true
-XTerm*preeditType: Root
-
