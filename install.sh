@@ -19,6 +19,10 @@ ln -s $CURRENT_DIR/misc/.sbclrc ~/.sbclrc
 rm -f ~/.eclrc
 ln -s $CURRENT_DIR/misc/.eclrc ~/.eclrc
 
+## Set Vim configure
+rm -f ~/.vimrc
+ln -s $CURRENT_DIR/misc/.vimrc ~/.vimrc
+
 ## Install xterm config
 rm -f ~/.Xresources
 ln -s $CURRENT_DIR/misc/.Xresources ~/.Xresources
