@@ -1,0 +1,11 @@
+## filter with glob
+syntax: glob
+.git/
+*.elc
+*.pyc
+*~
+*.o
+
+## filter with regexp
+syntax: regexp
+
