@@ -5,6 +5,7 @@ syntax: glob
 *.pyc
 *~
 *.o
+quicklisp/cache/asdf-fasls/
 
 ## filter with regexp
 syntax: regexp
