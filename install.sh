@@ -19,6 +19,10 @@ ln -s $CURRENT_DIR/misc/.sbclrc ~/.sbclrc
 rm -f ~/.eclrc
 ln -s $CURRENT_DIR/misc/.eclrc ~/.eclrc
 
+## Install .xinitrc
+rm -f ~/.xinitrc
+ln -s $CURRENT_DIR/misc/.xinitrc ~/.xinitrc
+
 ## Set Vim configure
 rm -f ~/.vimrc
 ln -s $CURRENT_DIR/misc/.vimrc ~/.vimrc
@@ -27,5 +31,6 @@ ln -s $CURRENT_DIR/misc/.vimrc ~/.vimrc
 rm -f ~/.Xresources
 ln -s $CURRENT_DIR/misc/.Xresources ~/.Xresources
 xrdb ~/.Xresources
+
 
 echo "install stumpwm end ..."
