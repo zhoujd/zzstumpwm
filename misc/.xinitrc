@@ -1,8 +1,8 @@
 #!/bin/sh
 
 
-case $1 in
-    sawfish)
+case "$1" in
+    "sawfish")
         exec sawfish
         ;;
     *)
