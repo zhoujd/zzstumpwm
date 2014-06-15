@@ -638,11 +638,12 @@ If @var{gcontext} has background color, text line bounding box will be filled wi
 (defun trgrey (i)
   "Visualize alpha mask using graphic characters"
   (cond
-    ;;;by zhoujd for freebsd
-    ;;((> i 200) "██")
-    ;;((> i 150) "▓▓")
-    ;;((> i 100) "▒▒")
-    ;;((> i 50)  "░░")
+    #| Marked by zhoujd for freebsd
+    ((> i 200) "██")
+    ((> i 150) "▓▓")
+    ((> i 100) "▒▒")
+    ((> i 50)  "░░")
+    |# 
     (t "  ")))
 
 (defun print-pixarray (array)
