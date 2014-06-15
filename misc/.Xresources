@@ -2,8 +2,8 @@
 !~/.Xresources
 !xrdb -load ~/.Xresources
 
-XTerm*font: -misc-fixed-medium-r-normal--20-200-75-75-c-100-iso8859-1
-XTerm*wideFont: -misc-fixed-medium-r-normal-*-18-120-100-100-c-180-iso10646-1
+!XTerm*font: -misc-fixed-medium-r-normal--20-200-75-75-c-100-iso8859-1
+!XTerm*wideFont: -misc-fixed-medium-r-normal-*-18-120-100-100-c-180-iso10646-1
 XTerm*saveLines: 4096
 XTerm*scrollbar: yes
 
