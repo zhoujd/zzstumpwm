@@ -71,6 +71,7 @@ used for matching windows with run-or-raise or window placement
   (list "xset" :options "b off")   ;; turn off bell
   (list "xsetroot" :options "-solid black")
   (list "xscreensaver" :options "-no-splash")
+  (list "xrdb" :options (concat "-load " *zz-load-directory* "misc/.Xresources"))
   (list "gnome-settings-daemon")
   (list "gnome-power-manager")
   (list "gnome-valume-manager")

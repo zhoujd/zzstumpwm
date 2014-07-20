@@ -27,10 +27,5 @@ ln -s $CURRENT_DIR/misc/.xinitrc ~/.xinitrc
 rm -f ~/.vimrc
 ln -s $CURRENT_DIR/misc/.vimrc ~/.vimrc
 
-## Install xterm config
-rm -f ~/.Xresources
-ln -s $CURRENT_DIR/misc/.Xresources ~/.Xresources
-xrdb ~/.Xresources
-
 
 echo "install stumpwm end ..."
