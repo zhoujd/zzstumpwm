@@ -68,6 +68,7 @@ used for matching windows with run-or-raise or window placement
  #'(lambda (cmd)
      (apply #'start-command-ps cmd))
  (list
+  (list "xset" :options "b off")   ;; turn off bell
   (list "xsetroot" :options "-solid black")
   (list "xscreensaver" :options "-no-splash")
   (list "gnome-settings-daemon")
