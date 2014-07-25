@@ -2,19 +2,24 @@
 !~/.Xresources
 !xrdb -load ~/.Xresources
 
-!XTerm*font: -misc-fixed-medium-r-normal--20-200-75-75-c-100-iso8859-1
-!XTerm*wideFont: -misc-fixed-medium-r-normal-*-18-120-100-100-c-180-iso10646-1
-XTerm*saveLines: 4096
-XTerm*scrollbar: yes
-
-xterm.geometry: 80x36
-xterm*scrollBar: false
-xterm*rightScrollBar: true
-xterm*loginshell: true
-xterm*cursorBlink: true
-xterm*background: black
-xterm*foreground: gray
-xterm.borderLess: true
-xterm.cursorBlink: true
-xterm*colorUL: yellow
-xterm*colorBD: white
+Xft.dpi: 96
+xpdf.title: PDF
+XTerm*locale: true
+XTerm*utf8Title: true
+XTerm*fontMenu*fontdefault*Label: Default
+XTerm*faceName: Lucida Console
+XTerm*faceNameDoublesize: LiHei Pro
+XTerm*faceSize: 10
+XTerm*faceSize1: 10
+XTerm*faceSize2: 10
+XTerm*faceSize3: 10
+XTerm*faceSize4: 10
+XTerm*faceSize5: 10
+XTerm*faceSize6: 10
+XTerm.cjkWidth: true
+XTerm*background: black
+XTerm*foreground: white
+XTerm*scrollBar: false
+XTerm*rightScrollBar: true
+XTerm*jumpScroll: true
+XTerm*SaveLines: 1000
