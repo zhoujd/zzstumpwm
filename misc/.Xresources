@@ -1,9 +1,7 @@
 !For Zachary Zhou on Linux
 !~/.Xresources
-!xrdb -load ~/.Xresources
+!xrdb -load .Xresources
 
-Xft.dpi: 96
-xpdf.title: PDF
 XTerm*locale: true
 XTerm*utf8Title: true
 XTerm*fontMenu*fontdefault*Label: Default
