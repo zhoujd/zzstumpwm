@@ -46,7 +46,7 @@
  *top-map*
  (list
   (kbd "s-`")       "windowlist"
-  (kbd "s-l")       "exec xlock -mode blank -fg white -bg black"
+  (kbd "s-l")       "exec xlock -fg white -bg black"
   (kbd "s-Tab")     "pull-hidden-next"
   (kbd "Print")     "exec scrot -q 10"
   (kbd "M-Print")   "exec scrot -q 10 -s"
