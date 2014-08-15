@@ -76,7 +76,7 @@
   (kbd "s-C-Up")    "prev-in-frame"
   (kbd "s-C-Down")  "next-in-frame"
 
-  (kbd "s-l")       "exec xlock"
+  (kbd "s-l")       "exec xlock -fg white -bg black"
   ))
 
 ;; root map
