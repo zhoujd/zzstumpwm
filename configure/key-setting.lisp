@@ -46,6 +46,7 @@
  *top-map*
  (list
   (kbd "s-`")       "windowlist"
+  (kbd "s-l")       "exec xlock -mode blank -fg white -bg black"
   (kbd "s-Tab")     "pull-hidden-next"
   (kbd "Print")     "exec scrot -q 10"
   (kbd "M-Print")   "exec scrot -q 10 -s"
@@ -75,8 +76,6 @@
   (kbd "s-C-Left")  "gprev"
   (kbd "s-C-Up")    "prev-in-frame"
   (kbd "s-C-Down")  "next-in-frame"
-
-  (kbd "s-l")       "exec xlock -fg white -bg black"
   ))
 
 ;; root map
