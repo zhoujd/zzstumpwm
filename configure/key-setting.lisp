@@ -46,35 +46,36 @@
  *top-map*
  (list
   (kbd "s-`")       "windowlist"
-  (kbd "s-Tab")     "pull-hidden-next"  
-  (kbd "Print")     "exec scrot -q 10"  
+  (kbd "s-l")       "exec xlock -fg white -bg black"
+  (kbd "s-Tab")     "pull-hidden-next"
+  (kbd "Print")     "exec scrot -q 10"
   (kbd "M-Print")   "exec scrot -q 10 -s"
-  
+
   (kbd "s-C-b")     "mode-line"
-  (kbd "s-C-q")     "quit" 
+  (kbd "s-C-q")     "quit"
   (kbd "s-C-r")     "reinit"
-  
-  (kbd "s-F2")      "exec"  
+
+  (kbd "s-F2")      "exec"
   (kbd "s-F4")      "kill"
   (kbd "s-F11")     "reboot"
   (kbd "s-F12")     "shutdown"
   (kbd "s-C-F11")   (gnome-term-command "sudo reboot")
   (kbd "s-C-F12")   (gnome-term-command "sudo shutdown -h now")
-  
-  (kbd "s-Right")   "move-focus right"  
-  (kbd "s-Left")    "move-focus left"  
-  (kbd "s-Up")      "move-focus up"  
-  (kbd "s-Down")    "move-focus down" 
-  
-  (kbd "s-M-Right") "move-window right"  
-  (kbd "s-M-Left")  "move-window left"  
-  (kbd "s-M-Up")    "move-window up"  
-  (kbd "s-M-Down")  "move-window down"  
-  
+
+  (kbd "s-Right")   "move-focus right"
+  (kbd "s-Left")    "move-focus left"
+  (kbd "s-Up")      "move-focus up"
+  (kbd "s-Down")    "move-focus down"
+
+  (kbd "s-M-Right") "move-window right"
+  (kbd "s-M-Left")  "move-window left"
+  (kbd "s-M-Up")    "move-window up"
+  (kbd "s-M-Down")  "move-window down"
+
   (kbd "s-C-Right") "gnext"
-  (kbd "s-C-Left")  "gprev"  
-  (kbd "s-C-Up")    "prev-in-frame"  
-  (kbd "s-C-Down")  "next-in-frame"    
+  (kbd "s-C-Left")  "gprev"
+  (kbd "s-C-Up")    "prev-in-frame"
+  (kbd "s-C-Down")  "next-in-frame"
   ))
 
 ;; root map

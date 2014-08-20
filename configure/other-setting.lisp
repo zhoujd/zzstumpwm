@@ -79,4 +79,3 @@ used for matching windows with run-or-raise or window placement
   (list "gnome-valume-manager")
   (list "gnome-keyring-daemon" :options "--start --components=gpg,pkcs11,secrets,ssh")
   ))
-
