@@ -3,16 +3,16 @@
 # run `sudo fdisk -l` show disk info
 
 echo "umount file system ..."
-sudo umount /media/win7
-sudo umount /media/work
-sudo umount /media/study
-sudo umount /media/backup
+sudo umount /media/winC
+sudo umount /media/winD
+sudo umount /media/winE
+sudo umount /media/winF
 
 echo "mkdir on /media"
-sudo mkdir -p /media/{win7,work,study,backup}
+sudo mkdir -p /media/{winC,winD,winE,winF}
 
 echo "mount local file system ..."
-sudo mount -r  -t ntfs /dev/sda1  /media/win7
-sudo mount -rw -t ntfs /dev/sda5  /media/work
-sudo mount -rw -t ntfs /dev/sda6  /media/study
-sudo mount -rw -t ntfs /dev/sda7  /media/backup
+sudo mount -r  -t ntfs-3g /dev/sda1  /media/winC
+sudo mount -rw -t ntfs-3g /dev/sda5  /media/winD
+sudo mount -rw -t ntfs-3g /dev/sda6  /media/winE
+sudo mount -rw -t ntfs-3g /dev/sda7  /media/winF
