@@ -11,7 +11,8 @@
   (kbd "C-c")       "exec gnome-control-center"
   (kbd "s-c")       (gnome-term-command "sudo gnome-control-center")
   (kbd "e")         "emacs"
-  (kbd "C-e")       "exec evince"
+  (kbd "C-e")       "exec emacs"
+  (kbd "s-e")       "exec evince"
   (kbd "f")         "firefox"
   (kbd "C-f")       "exec firefox"
   (kbd "m")         "exec gnome-system-monitor"
