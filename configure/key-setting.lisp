@@ -12,13 +12,13 @@
   (kbd "s-c")       (gnome-term-command "sudo gnome-control-center")
   (kbd "e")         "emacs"
   (kbd "C-e")       "exec emacs"
-  (kbd "s-e")       "exec evince"
   (kbd "f")         "firefox"
   (kbd "C-f")       "exec firefox"
   (kbd "m")         "exec gnome-system-monitor"
   (kbd "n")         "exec nautilus --no-desktop"
   (kbd "t")         "exec gnome-terminal"
   (kbd "v")         (gnome-term-command "vim")
+  (kbd "C-v")       "exec evince"
   ))
 
 ;; *zz-x-map*
