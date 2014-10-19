@@ -9,7 +9,7 @@
  (list
   (kbd "c")         "gnome-control-center"
   (kbd "C-c")       "exec gnome-control-center"
-  (kbd "s-c")       (gnome-term-command "sudo gnome-control-center")
+  (kbd "M-c")       (gnome-term-command "sudo gnome-control-center")
   (kbd "e")         "emacs"
   (kbd "C-e")       "exec emacs"
   (kbd "f")         "firefox"
@@ -29,17 +29,22 @@
   (kbd "1")         "only"
   (kbd "2")         "vsplit"
   (kbd "3")         "hsplit"
-
-  (kbd "l")         "exec xscreensaver-command -lock"
   ))
 
 ;; *zz-help-map*
 (apply-keys-to-map
  *zz-help-map*
  (list
-  (kbd "m")         (format nil "exec xterm -e info ~a"
+  (kbd "M-m")       (format nil "exec xterm -e info ~a"
                             (merge-pathnames "doc/stumpwm.info" *zz-load-directory*))
   (kbd "C-m")       "exec firefox http://stumpwm.org/manual/stumpwm.html"
+
+  (kbd "m")         "man"
+  (kbd "i")         "info"
+  (kbd "v")         "describe-variable"
+  (kbd "f")         "describe-function"
+  (kbd "k")         "describe-key"
+  (kbd "w")         "where-is"
   ))
 
 ;; top map
@@ -47,7 +52,7 @@
  *top-map*
  (list
   (kbd "s-`")       "windowlist"
-  (kbd "s-l")       "exec xlock -fg white -bg black"
+  (kbd "s-l")       "exec xtrlock"
   (kbd "s-Tab")     "pull-hidden-next"
   (kbd "Print")     "exec scrot -q 10"
   (kbd "M-Print")   "exec scrot -q 10 -s"
