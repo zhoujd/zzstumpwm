@@ -29,7 +29,7 @@
  *top-map*
  (list
   (kbd "s-x")       *zz-x-map*
-  (kbd "s-c")       *zz-x-map*
+  (kbd "s-c")       *zz-c-map*
   (kbd "s-e")       *zz-exec-map*
   (kbd "s-w")       *zz-window-map*
   (kbd "s-v")       *zz-view-map*
