@@ -8,6 +8,8 @@ zzstumpwm
     * <https://github.com/alezost/stumpwmrc>
     * <https://github.com/stumpwm/stumpwm/wiki>
     * <http://stumpwm.org/manual/stumpwm.html>
+    * <http://www.mygooglest.com/fni/stumpwm.html>
+    * <http://www.xsteve.at/prg/stumpwm/>
 
 ## Git Repo
 
