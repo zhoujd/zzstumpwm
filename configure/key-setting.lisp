@@ -35,12 +35,10 @@
 (apply-keys-to-map
  *zz-help-map*
  (list
-  (kbd "M-m")       (format nil "exec xterm -e info ~a"
+  (kbd "m")         (format nil "exec xterm -e info ~a"
                             (merge-pathnames "doc/stumpwm.info" *zz-load-directory*))
   (kbd "C-m")       "exec firefox http://stumpwm.org/manual/stumpwm.html"
 
-  (kbd "m")         "man"
-  (kbd "i")         "info"
   (kbd "v")         "describe-variable"
   (kbd "f")         "describe-function"
   (kbd "k")         "describe-key"
