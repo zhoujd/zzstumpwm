@@ -93,9 +93,9 @@
 (apply-keys-to-map
  *input-map*
  (list
-  (kbd "C-m") 'input-submit
-  (kbd "C-h") 'input-delete-backward-char
-  (kbd "M-p") 'input-history-back
-  (kbd "M-n") 'input-history-forward
-  (kbd "C-i") 'input-complete-forward
+  (kbd "C-m")       'input-submit
+  (kbd "C-h")       'input-delete-backward-char
+  (kbd "M-p")       'input-history-back
+  (kbd "M-n")       'input-history-forward
+  (kbd "C-i")       'input-complete-forward
   ))
