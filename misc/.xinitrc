@@ -7,7 +7,6 @@ case "$1" in
         ;;
     *)
         exec sbcl --eval '(ql:quickload :stumpwm)' \
-                  --eval '(ql:quickload :swank)'   \
                   --eval '(stumpwm:stumpwm)'
         ;;
 esac
