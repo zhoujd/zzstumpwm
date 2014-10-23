@@ -7,7 +7,8 @@
      (let ((full-path (merge-pathnames path (user-homedir-pathname))))
        (pushnew full-path asdf:*central-registry* :test #'equal)))
  '(
-   "lisp/system/"
+   "lisp"
+   "lisp/system"
    ))
 
 ;;; The following lines added by ql:add-to-init-file:
