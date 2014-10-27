@@ -99,7 +99,8 @@ int main(int argc, char **argv){
             program_version);
     exit(1);
   }
-  
+
+#ifndef ZZPASSWD
   errno=0;  pw= getpwuid(getuid());
   if (!pw) { perror("password entry for uid not found"); exit(1); }
 #ifdef SHADOW_PWD
@@ -116,8 +117,7 @@ int main(int argc, char **argv){
   /* we can be installed setuid root to support shadow passwords,
      and we don't need root privileges any longer.  --marekm */
   if (setuid(getuid())) { perror("setuid"); exit(1); }
-
-#ifndef ZZPASSWD  
+ 
   if (strlen(pw->pw_passwd) < 13) {
     fputs("password entry has no pwd\n",stderr); exit(1);
   }
