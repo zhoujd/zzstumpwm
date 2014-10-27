@@ -15,7 +15,7 @@
 
 LDLIBS=-lX11
 CC=gcc
-CFLAGS=-Wall
+CFLAGS=-Wall -DZZPASSWD
 INSTALL=install
 
 xtrlock:	xtrlock.o

