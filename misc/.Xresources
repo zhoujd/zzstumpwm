@@ -3,6 +3,12 @@
 !!xrdb -load .Xresources
 !!xrdb -merge .Xresources
 
+!! Xft set
+Xft.antialias: 1
+Xft.hinting: 1
+Xft.hintstyple: hintfull
+Xft.rgba: rgb
+
 !! xterm set
 XTerm*locale: true
 XTerm*utf8Title: true
@@ -26,22 +32,22 @@ XTerm*SaveLines: 1000
 
 !! rxvt-unicode configuration
 ! urxvt color set
-URxvt.multichar_encoding:utf-8
-URxvt.background:black
-URxvt.foreground:gray75
+URxvt.multichar_encoding: utf-8
+URxvt.background: black
+URxvt.foreground: gray75
 
 ! scroll set
 URxvt.scrollBar:True
-URxvt.scrollBar_right:True
-URxvt.scrollBar_floating:True
-URxvt.scrollstyle:plain
-URxvt.scrollWithBuffer:false
-URxvt.saveLines:5000
+URxvt.scrollBar_right: True
+URxvt.scrollBar_floating: True
+URxvt.scrollstyle: plain
+URxvt.scrollWithBuffer: false
+URxvt.saveLines: 5000
 
 ! window geometry set
-URxvt.geometry:80x24
-URxvt.visualBell:False
-URxvt.title:Rxvt
+URxvt.geometry: 80x24
+URxvt.visualBell: False
+URxvt.title: Rxvt
 
 ! bg transparent set
 URxvt.inheritPixmap: true
@@ -52,9 +58,8 @@ URxvt.shading: 80
 !URxvt.perl-ext-common: default,tabbed
 
 ! font set
-URxvt.font:9x15
-URxvt.boldFont:9x15bold
+URxvt.font: 9x15
+URxvt.boldFont: 9x15bold
 
 !urxvt.font:-misc-fixed-medium-r-normal--15-140-75-75-c-90-iso10646-1
 !urxvt.boldFont:-misc-fixed-bold-r-normal--15-140-75-75-c-90-iso10646-1
-
