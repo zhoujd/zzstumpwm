@@ -52,5 +52,5 @@ URxvt.shading: 80
 !URxvt.perl-ext-common: default,tabbed
 
 ! font set
-URxvt.font:8x16
-URxvt.boldFont:8x16
+URxvt.font:9x15
+URxvt.boldFont:9x15
