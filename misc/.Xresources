@@ -1,7 +1,9 @@
-!For Zachary Zhou on Linux
-!~/.Xresources
-!xrdb -load .Xresources
+!!!For Zachary Zhou on Linux
+!!~/.Xresources
+!!xrdb -load .Xresources
+!!xrdb -merge .Xresources
 
+!! xterm set
 XTerm*locale: true
 XTerm*utf8Title: true
 XTerm*fontMenu*fontdefault*Label: Default
@@ -21,3 +23,34 @@ XTerm*scrollBar: false
 XTerm*rightScrollBar: true
 XTerm*jumpScroll: true
 XTerm*SaveLines: 1000
+
+!! rxvt-unicode configuration
+! urxvt color set
+URxvt.multichar_encoding:utf-8
+URxvt.background:black
+URxvt.foreground:gray75
+
+! scroll set
+URxvt.scrollBar:True
+URxvt.scrollBar_right:True
+URxvt.scrollBar_floating:True
+URxvt.scrollstyle:plain
+URxvt.scrollWithBuffer:false
+URxvt.saveLines:5000
+
+! window geometry set
+URxvt.geometry:80x24
+URxvt.visualBell:False
+URxvt.title:Rxvt
+
+! bg transparent set
+URxvt.inheritPixmap: true
+URxvt.tintCddolor: white
+URxvt.shading: 80
+
+! Tab set
+!URxvt.perl-ext-common: default,tabbed
+
+! font set
+URxvt.font:8x16
+URxvt.boldFont:8x16
