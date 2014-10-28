@@ -1,5 +1,8 @@
 #!/bin/sh
 
+#sudo yum install libXinerama-devel
+
+
 make
 sudo make install
 
