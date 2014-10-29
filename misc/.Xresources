@@ -29,6 +29,10 @@ XTerm*scrollBar: false
 XTerm*rightScrollBar: true
 XTerm*jumpScroll: true
 XTerm*SaveLines: 1000
+! For Alt keypress
+xterm*eightBitInput: false
+xterm*altSendsEscape: true
+
 
 !! rxvt-unicode configuration
 ! urxvt color set
