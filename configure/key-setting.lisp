@@ -39,7 +39,8 @@
   (kbd "m")         (format nil "exec xterm -e info ~a"
                             (merge-pathnames "doc/stumpwm.info" *zz-load-directory*))
   (kbd "C-m")       "exec firefox http://stumpwm.org/manual/stumpwm.html"
-
+  (kbd "s")         "exec firefox http://lxr.free-electrons.com/"
+  (kbd "C-s")       "exec firefox http://svnweb.freebsd.org/"
   (kbd "v")         "describe-variable"
   (kbd "f")         "describe-function"
   (kbd "k")         "describe-key"
