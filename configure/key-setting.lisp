@@ -61,7 +61,7 @@
   (kbd "s-C-r")     "reinit"
 
   (kbd "s-F2")      "exec"
-  (kbd "s-C-F2")    "exec dmenu_run"
+  (kbd "s-C-F2")    "exec dmenu_run -fn 8x16"
   (kbd "s-F4")      "kill"
   (kbd "s-F11")     "reboot"
   (kbd "s-F12")     "shutdown"
