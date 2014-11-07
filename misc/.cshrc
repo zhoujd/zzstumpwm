@@ -37,35 +37,20 @@ set noclobber
 alias mv 'mv -i'
 alias cp 'cp -i'
 
-# add path
-set zznix_root = c:/zznix
-set path = ($zznix_root/bin $zznix_root/cmd $path)
-
-alias ..    'cd ..'       # up directory
-alias -	    'cd -'        # last directory
-alias q	    'exit'        # exit
-alias rm    'rm -i'       # remove protect
-alias del   'rm -r'       # remove dirctory
-alias mv    'mv -i'       # rename protect
-alias cp    'cp -i'       # copy protect
-alias ls    'ls --show-control-chars --color=always' 
-alias la    'ls -a'       # show all files
-alias ll    'ls -h -l'    # show file size limited
-alias lr    'ls -R'       # rescuse
-alias dh    'df -h -a -T' # disk remainin show
-alias ds    'du -sh'      # file/dirs size
-alias pwd   'dirs'        # current directory
-
-alias dir   'ls -C'
-alias gitk  'wish $zznix_root/bin/gitk'
-alias hgk   'hg view'
-
-# git something
-alias git-pull        'git fetch && git merge'
-alias git-pull-master 'git fetch && git merge origin/master'
-
-# switch shell
-alias 2sh    'bash --login -i'
+alias ..    'cd ..'            # up directory
+alias -	    'cd -'             # last directory
+alias q	    'exit'             # exit
+alias rm    'rm -i'            # remove protect
+alias del   'rm -r'            # remove dirctory
+alias mv    'mv -i'            # rename protect
+alias cp    'cp -i'            # copy protect
+alias ls    'ls --color=auto'  # ls color
+alias la    'ls -a'            # show all files
+alias ll    'ls -h -l'         # show file size limited
+alias lr    'ls -R'            # rescuse
+alias dh    'df -h -a -T'      # disk remainin show
+alias ds    'du -sh'           # file/dirs size
+alias 2sh   'bash --login -i'  # switch to sh
 
 alias find-c	'find . -name "*.h" -o -name "*.c"'
 alias find-x	'find . -name "*.h" -o -name "*.hpp" -o -name "*.cpp" -o -name "*.cxx"'

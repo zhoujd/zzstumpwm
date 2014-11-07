@@ -31,5 +31,9 @@ ln -s $CURRENT_DIR/misc/.xinitrc ~/.xinitrc
 rm -f ~/.vimrc
 ln -s $CURRENT_DIR/misc/.vimrc ~/.vimrc
 
+## Set csh configure
+rm -f ~/.cshrc
+ln -s $CURRENT_DIR/misc/.cshrc ~/.cshrc
+
 
 echo "install stumpwm end ..."
