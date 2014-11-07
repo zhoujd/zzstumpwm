@@ -1,4 +1,8 @@
 ### tcsh configure create by zhoujd at 2014/10/4
+#
+# System-wide .cshrc file for csh(1).
+#!/bin/csh
+
 
 bindkey '\e[1~' beginning-of-line      # Home
 bindkey '\e[3~' delete-char            # Delete
@@ -34,23 +38,24 @@ set savehist = 10
 
 set noclobber
 
-alias mv 'mv -i'
-alias cp 'cp -i'
+alias mv    'mv -i'
+alias cp    'cp -i'
 
-alias ..    'cd ..'            # up directory
-alias -	    'cd -'             # last directory
-alias q	    'exit'             # exit
-alias rm    'rm -i'            # remove protect
-alias del   'rm -r'            # remove dirctory
-alias mv    'mv -i'            # rename protect
-alias cp    'cp -i'            # copy protect
-alias ls    'ls --color=auto'  # ls color
-alias la    'ls -a'            # show all files
-alias ll    'ls -h -l'         # show file size limited
-alias lr    'ls -R'            # rescuse
-alias dh    'df -h -a -T'      # disk remainin show
-alias ds    'du -sh'           # file/dirs size
-alias lsh   'bash --login -i'  # switch to sh
+alias ..    'cd ..'                       # up directory
+alias -	    'cd -'                        # last directory
+alias q	    'exit'                        # exit
+alias rm    'rm -i'                       # remove protect
+alias del   'rm -r'                       # remove dirctory
+alias mv    'mv -i'                       # rename protect
+alias cp    'cp -i'                       # copy protect
+alias ls    'ls --color=auto'             # ls color
+alias la    'ls -a'                       # show all files
+alias ll    'ls -h -l'                    # show file size limited
+alias lr    'ls -R'                       # rescuse
+alias dh    'df -h -a -T'                 # disk remainin show
+alias ds    'du -sh'                      # file/dirs size
+alias lsh   'bash --login -i'             # switch to sh
+alias pg    'ps aux | grep --color=auto'  # ps && grep
 
 alias find-c	'find . -name "*.h" -o -name "*.c"'
 alias find-x	'find . -name "*.h" -o -name "*.hpp" -o -name "*.cpp" -o -name "*.cxx"'
