@@ -50,7 +50,7 @@ alias ll    'ls -h -l'         # show file size limited
 alias lr    'ls -R'            # rescuse
 alias dh    'df -h -a -T'      # disk remainin show
 alias ds    'du -sh'           # file/dirs size
-alias 2sh   'bash --login -i'  # switch to sh
+alias lsh   'bash --login -i'  # switch to sh
 
 alias find-c	'find . -name "*.h" -o -name "*.c"'
 alias find-x	'find . -name "*.h" -o -name "*.hpp" -o -name "*.cpp" -o -name "*.cxx"'
