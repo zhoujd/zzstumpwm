@@ -11,6 +11,10 @@ zzstumpwm
     * <http://www.mygooglest.com/fni/stumpwm.html>
     * <http://www.xsteve.at/prg/stumpwm/>
 
+## Firefox mouseless
+
+    * <https://addons.mozilla.org/en-US/firefox/addon/mouseless-browsing/>
+
 ## Git Repo
 
     * git clone git://git.savannah.nongnu.org/stumpwm.git
