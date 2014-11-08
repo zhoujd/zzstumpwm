@@ -60,7 +60,6 @@ alias pg    'ps aux | grep --color=auto'  # ps && grep
 alias find-c	'find . -name "*.h" -o -name "*.c"'
 alias find-x	'find . -name "*.h" -o -name "*.hpp" -o -name "*.cpp" -o -name "*.cxx"'
 alias find-py	'find . -name ".py"'
-
-alias wc-c	'find . -name "*.h" -o -name "*.c" | xargs wc | sort -k 4'
-alias wc-x	'find . -name "*.h" -o -name "*.hpp" -o -name "*.cpp" -o -name "*.cxx" | xargs wc | sort -k 4'
-alias wc-py	'find . -name ".py" | xargs wc | sort -k 4'
+alias wc-c	    'find . -name "*.h" -o -name "*.c" | xargs wc | sort -k 4'
+alias wc-x	    'find . -name "*.h" -o -name "*.hpp" -o -name "*.cpp" -o -name "*.cxx" | xargs wc | sort -k 4'
+alias wc-py	    'find . -name ".py" | xargs wc | sort -k 4'
