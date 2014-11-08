@@ -8,7 +8,7 @@ With Quicklisp (recommended)
 Warning: Only use root to install SBCL and, if you want to, run "make install".
 
 1. Install SBCL
-     - pacman -S sbcl
+     - sudo apt-get install sbcl
 2. Get Quicklisp at the Quicklisp website
      - curl -O http://beta.quicklisp.org/quicklisp.lisp
 3. Load Quicklisp with SBCL
@@ -46,7 +46,7 @@ Optional: Install slime/swank for nonstop real-time hacking:
      - (load (expand-file-name "/path/to/slime-helper.el"))
      - (setq inferior-lisp-program "sbcl")
 4. Now put the following into your .stumpwmrc or just eval during your stumpwm-session
-     - (require 'swank)
+     - (require :swank)
      - (swank:create-server)
 5. Connect Emacs/Slime to your stumpwm-session using
      - M-x slime-connect
