@@ -11,6 +11,7 @@
   (kbd "C-c")       "exec gnome-control-center"
   (kbd "M-c")       (gnome-term-command "sudo gnome-control-center")
   (kbd "e")         "emacs"
+  (kbd "s-e")       "emacs"
   (kbd "C-e")       "exec emacs"
   (kbd "f")         "firefox"
   (kbd "C-f")       "exec firefox"
