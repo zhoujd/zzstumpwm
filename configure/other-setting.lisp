@@ -70,7 +70,6 @@ used for matching windows with run-or-raise or window placement
  (list
   (list "xset" :options "b off")   ;; turn off bell
   (list "xsetroot" :options "-solid black")
-  (list "xscreensaver" :options "-no-splash")
   (list "xrdb" :options (concat "-load " *zz-load-directory* "misc/.Xresources"))
   (list "bluetooth-applet" :options "--sm-disable")
   (list "nm-applet" :options "--sm-disable")
