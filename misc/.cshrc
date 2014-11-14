@@ -27,6 +27,7 @@ endif
 # ls colors
 # http://geoff.greer.fm/lscolors/
 setenv LSCOLORS ExGxFxdxCxegedabagExEx
+setenv LS_COLORS 'di=01;35:ln=04'
 setenv CLICOLOR yes
 
 # grep colors
