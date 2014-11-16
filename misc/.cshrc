@@ -43,7 +43,8 @@ set noclobber
 alias mv    'mv -i'
 alias cp    'cp -i'
 
-alias ..    'cd ..'                       # up directory
+alias ..    'cd ..'                       # up one level directory
+alias ...   'cd ../..'                    # up two level directory
 alias -	    'cd -'                        # last directory
 alias q	    'exit'                        # exit
 alias rm    'rm -i'                       # remove protect
