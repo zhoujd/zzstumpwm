@@ -24,8 +24,8 @@ rm -f ~/.eclrc
 ln -s $CURRENT_DIR/misc/.eclrc ~/.eclrc
 
 ## Install .xinitrc
-rm -f ~/.xinitrc
-ln -s $CURRENT_DIR/misc/.xinitrc ~/.xinitrc
+#rm -f ~/.xinitrc
+#ln -s $CURRENT_DIR/misc/.xinitrc ~/.xinitrc
 
 ## Set Vim configure
 rm -f ~/.vimrc
