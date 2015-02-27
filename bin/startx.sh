@@ -9,6 +9,7 @@ case "$wm_select" in
                   --eval '(stumpwm:stumpwm)'
         ;;
     "clfswm" )
+	# https://trac.common-lisp.net/clfswm/wiki
         exec sbcl --eval '(ql:quickload :clfswm)' \
                   --eval '(clfswm:main)'
         ;;
