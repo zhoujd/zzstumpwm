@@ -8,6 +8,9 @@ echo "install stumpwm start ..."
 rm -f ~/.stumpwmrc
 ln -s $CURRENT_DIR/.stumpwmrc ~/.stumpwmrc
 
+rm -f ~/.clfswmrc
+ln -s $CURRENT_DIR/.clfswmrc ~/.clfswmrc
+
 rm -f ~/quicklisp
 ln -s $CURRENT_DIR/quicklisp ~/quicklisp
 
