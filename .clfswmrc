@@ -1,25 +1,20 @@
-;;;; stumpwm configure -*-lisp-*-
-;;
+;;;; clfswm config file
 
-(in-package :stumpwm)
+(in-package :clfswm)
 
 ;; loading additional rc files
 (defvar *zz-load-directory*
   (directory-namestring
    (truename (merge-pathnames (user-homedir-pathname)
-                              ".stumpwmrc")))
+                              ".clfswmrc")))
   "A directory with initially loaded files.")
 
 (defun zz-load (filename)
   "Load a file FILENAME (without extension) from `*zz-load-directory*'."
-  (let ((file (merge-pathnames (concat "stumpwmrc.d/" filename ".lisp")
+  (let ((file (merge-pathnames (concatenate 'string "clfswmrc.d/" filename ".lisp")
                                *zz-load-directory*)))
     (if (probe-file file)
         (load file)
         (format *error-output* "File '~a' doesn't exist." file))))
 
-(zz-load "macro-setting")
 (zz-load "common-setting")
-(zz-load "other-setting")
-(zz-load "keymap-setting")
-(zz-load "key-setting")
