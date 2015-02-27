@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# http://incise.org/tinywm.html
+
 echo "compile tinywm ..."
 gcc -o tinywm  tinywm.c -lX11
 chmod +x tinywm
