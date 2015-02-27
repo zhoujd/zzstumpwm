@@ -1,15 +1,16 @@
 #!/bin/sh
 
-# select wm to run
-wm_select="stumpwm"
+# Select window manager to run
+# 1:stumpwm 2:clfswm
+WM_SELECT="2"
 
-case "$wm_select" in
-    "stumpwm" )
+case "$WM_SELECT" in
+    "1" )
         exec sbcl --eval '(ql:quickload :stumpwm)' \
                   --eval '(stumpwm:stumpwm)'
         ;;
-    "clfswm" )
-	# https://trac.common-lisp.net/clfswm/wiki
+    "2" )
+	    # https://trac.common-lisp.net/clfswm/wiki
         exec sbcl --eval '(ql:quickload :clfswm)' \
                   --eval '(clfswm:main)'
         ;;
