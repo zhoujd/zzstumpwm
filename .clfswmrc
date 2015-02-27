@@ -17,4 +17,8 @@
         (load file)
         (format *error-output* "File '~a' doesn't exist." file))))
 
+(zz-load "macro-setting")
 (zz-load "common-setting")
+(zz-load "other-setting")
+(zz-load "keymap-setting")
+(zz-load "key-setting")
