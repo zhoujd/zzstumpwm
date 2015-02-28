@@ -3,5 +3,6 @@
 
 (in-package :clfswm)
 
-;; xmodmap: super key for modifier
-(setf *default-modifiers* '(:mod-4))
+;; xmodmap: caps key for modifier
+(with-capslock)
+
