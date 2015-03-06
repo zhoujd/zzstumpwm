@@ -51,7 +51,7 @@ URxvt.saveLines: 5000
 ! window geometry set
 URxvt.geometry: 80x24
 URxvt.visualBell: False
-URxvt.title: Rxvt
+URxvt.title: Rxvt-unicode
 
 ! bg transparent set
 URxvt.inheritPixmap: true
