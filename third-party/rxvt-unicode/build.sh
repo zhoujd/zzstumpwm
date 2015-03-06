@@ -1,6 +1,6 @@
 #!/bin/sh
 
-./configure
+./configure --prefix=/usr --disable-perl
 make
 
 sudo make install
