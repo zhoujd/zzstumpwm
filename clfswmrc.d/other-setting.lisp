@@ -6,9 +6,15 @@
 ;; startup run commands
 (mapc
  #'(lambda (cmd)
-     (do-execute (car cmd) (cdr cmd)))
+     (do-shell (car cmd) (cdr cmd)))
  (list
-  (list "/usr/bin/xset" "b off")
-  (list "/usr/bin/xsetroot" "-solid black")
-  (list "/usr/bin/xrdb" "-load" *zz-load-directory* "misc/.Xresources")
+  (list "xset" "b off")
+  (list "xsetroot" "-solid black")
+  (list "xrdb" "-load" *zz-load-directory* "misc/.Xresources")
+  (list "bluetooth-applet" "--sm-disable")
+  (list "nm-applet" "--sm-disable")
+  (list "gnome-settings-daemon")
+  (list "gnome-power-manager")
+  (list "gnome-valume-manager")
+  (list "gnome-keyring-daemon" "--start --components=gpg,pkcs11,secrets,ssh")
   ))
