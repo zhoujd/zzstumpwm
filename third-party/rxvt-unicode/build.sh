@@ -4,3 +4,4 @@
 make
 
 sudo make install
+make distclean
