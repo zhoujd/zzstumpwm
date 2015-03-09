@@ -2,7 +2,7 @@
 
 # Select window manager to run
 # 1:stumpwm 2:clfswm
-WM_SELECT="1"
+WM_SELECT="2"
 
 case "$WM_SELECT" in
     "1" )
