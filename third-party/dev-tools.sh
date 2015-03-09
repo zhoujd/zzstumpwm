@@ -2,13 +2,13 @@
 
 case "$1" in
     "ubuntu" )
-        sudo apt-get install libXinerama-dev libX11-dev g++
+        sudo apt-get install -y libXinerama-dev libX11-dev g++
         ;;
     "suse" )
-        sudo zypper install libXinerama-devel libX11-devel xorg-x11-server-devel
+        sudo zypper install -y libXinerama-devel libX11-devel xorg-x11-server-devel
         ;;
     "centos")
-        sudo yum install libXinerama-devel libX11-devel xorg-x11-server-devel
+        sudo yum install -y libXinerama-devel libX11-devel xorg-x11-server-devel
         ;;
     * )
         echo "Use $0 [ubuntu|suse|centos]"
