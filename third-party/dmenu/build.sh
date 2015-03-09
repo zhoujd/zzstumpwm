@@ -4,5 +4,6 @@
 
 make
 sudo make install
+make clean
 
 echo "install dmenu finished ..."
