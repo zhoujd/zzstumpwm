@@ -5,3 +5,4 @@
 
 (defmacro concat (&rest body)
   `(concatenate 'string ,@body))
+
