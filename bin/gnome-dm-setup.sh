@@ -1,5 +1,8 @@
 #!/bin/bash
 
+##ubuntu12.04 can work
+##suse11 sp3 can work
+
 # run as root:
 # $ sudo bash ./gnome-dm-setup
 
