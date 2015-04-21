@@ -11,9 +11,9 @@ if [ $EUID -ne 0 ]; then
 fi
 
 echo "[Desktop Entry]
-Name=GNOME with Stumpwm
-Comment=Gnome with the Stumpwm window manager
+Name=Stumpwm
+Comment=Stumpwm window manager
 TryExec=/usr/bin/gnome-session
 Exec=$CURRENT_DIR/startx.sh
 Type=XSession
-" > /usr/share/xsessions/gnome-stumpwm.desktop
+" > /usr/share/xsessions/stumpwm.desktop
