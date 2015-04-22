@@ -2,63 +2,25 @@
 
 (in-package :stumpwm)
 
-;; multi key setting
-(defun apply-keys-to-map (map key-pairs)
-  "apply multi key defines"
-  (do ((i 0 (+ i 2)))
-      ((= i (length key-pairs)))
-    (let ((key (nth i key-pairs))
-          (fn (nth (1+ i) key-pairs)))
-      (when fn
-        (define-key map key fn)))))
+;; *zz-exec-map*
+(apply-keys-to-map
+ *zz-exec-map*
+ (list
+  (kbd "f") "exec firefox"
+  ))
 
-;; change the prefix key to something else
-(set-prefix-key (kbd "s-t"))
-
-;; self define keymap
-(defvar *zz-exec-map*
-  (let ((map (make-sparse-keymap)))
-    (define-key map (kbd "f") "exec firefox")
-    map)
-  "Keymap for executing shell commands or switching to running applications.")
-
-(defvar *zz-x-map*
-  (let ((map (make-sparse-keymap)))
-    (define-key map (kbd "1") "only")
-    (define-key map (kbd "0") "remove")
-    map)
-  "Keymap simallar emacs C-x.")
-
-(defvar *zz-window-map*
-  (let ((map (make-sparse-keymap)))
-    map)
-  "Keymap window")
-
-(defvar *zz-menu-map*
-  (let ((map (make-sparse-keymap)))
-    map)
-  "Keymap menu")
-
-(defvar *zz-view-map*
-  (let ((map (make-sparse-keymap)))
-    map)
-  "Keymap view")
-
-(defvar *zz-help-map*
-  (let ((map (make-sparse-keymap)))
-    map)
-  "Keymap help")
+;; *zz-x-map*
+(apply-keys-to-map
+ *zz-x-map*
+ (list
+  (kbd "1") "only"
+  (kbd "0") "remove"
+  ))
 
 ;; top map
 (apply-keys-to-map
  *top-map*
  (list
-  (kbd "s-e")       *zz-exec-map*
-  (kbd "s-x")       *zz-x-map*
-  (kbd "s-w")       *zz-window-map*
-  (kbd "s-v")       *zz-view-map*
-  (kbd "s-h")       *zz-help-map*
-
   (kbd "s-W")       "browse"
   (kbd "s-B")       "mode-line"
   (kbd "s-Tab")     "pull-hidden-next"  
