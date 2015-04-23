@@ -23,6 +23,13 @@
   (kbd "3") "hsplit"
   ))
 
+;; *zz-help-map*
+(apply-keys-to-map
+ *zz-help-map*
+ (list
+  (kbd "m") "exec firefox http://stumpwm.org/manual/stumpwm.html"
+  ))
+
 ;; top map
 (apply-keys-to-map
  *top-map*
