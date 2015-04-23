@@ -17,8 +17,10 @@
 (apply-keys-to-map
  *zz-x-map*
  (list
-  (kbd "1") "only"
   (kbd "0") "remove"
+  (kbd "1") "only"
+  (kbd "2") "vsplit"
+  (kbd "3") "hsplit"
   ))
 
 ;; top map
