@@ -6,7 +6,13 @@
 (apply-keys-to-map
  *zz-exec-map*
  (list
+  (kbd "`") "exec gmrun"
   (kbd "f") "exec firefox"
+  (kbd "m") "exec gnome-system-monitor"
+  (kbd "s") "exec gnome-control-center"
+  (kbd "e") "exec evince"
+  (kbd "n") "exec nautilus --no-desktop"
+  (kbd "r") "exec remmina"
   ))
 
 ;; *zz-x-map*
@@ -54,6 +60,5 @@
 (apply-keys-to-map
  *root-map*
  (list
-  (kbd "s-`")       "windowlist"
   (kbd "s-I")       "display-current-window-info"
   ))
