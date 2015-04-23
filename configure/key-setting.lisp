@@ -62,5 +62,5 @@
 (apply-keys-to-map
  *root-map*
  (list
-  (kbd "s-I")       "display-current-window-info"
+  (kbd "s-i")       "display-current-window-info"
   ))
