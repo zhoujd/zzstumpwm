@@ -6,43 +6,43 @@
 (apply-keys-to-map
  *zz-exec-map*
  (list
-  (kbd "f") "exec firefox"
-  (kbd "m") "exec gnome-system-monitor"
-  (kbd "s") "exec gnome-control-center"
-  (kbd "e") "exec evince"
-  (kbd "n") "exec nautilus --no-desktop"
+  (kbd "f")         "browse"
+  (kbd "C-f")       "exec firefox"
+  (kbd "m")         "exec gnome-system-monitor"
+  (kbd "s")         "exec gnome-control-center"
+  (kbd "e")         "exec evince"
+  (kbd "n")         "exec nautilus --no-desktop"
   ))
 
 ;; *zz-x-map*
 (apply-keys-to-map
  *zz-x-map*
  (list
-  (kbd "0") "remove"
-  (kbd "1") "only"
-  (kbd "2") "vsplit"
-  (kbd "3") "hsplit"
+  (kbd "0")         "remove"
+  (kbd "1")         "only"
+  (kbd "2")         "vsplit"
+  (kbd "3")         "hsplit"
   ))
 
 ;; *zz-help-map*
 (apply-keys-to-map
  *zz-help-map*
  (list
-  (kbd "m") "exec firefox http://stumpwm.org/manual/stumpwm.html"
+  (kbd "m")         "exec firefox http://stumpwm.org/manual/stumpwm.html"
   ))
 
 ;; top map
 (apply-keys-to-map
  *top-map*
  (list
+  (kbd "s-`")       "windowlist"
   (kbd "s-Tab")     "pull-hidden-next"  
   (kbd "Print")     "exec scrot -q 10"  
   (kbd "M-Print")   "exec scrot -q 10 -s"  
-
-  (kbd "s-`")       "windowlist"
-  (kbd "s-B")       "mode-line"
-  (kbd "s-R")       "reinit"
-  (kbd "s-Q")       "quit" 
-  (kbd "s-W")       "browse"
+  
+  (kbd "s-C-b")     "mode-line"
+  (kbd "s-C-q")     "quit" 
+  (kbd "s-C-r")     "reinit"
   
   (kbd "s-F2")      "exec"  
   (kbd "s-F4")      "kill"  
