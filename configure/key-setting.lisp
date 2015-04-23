@@ -29,6 +29,7 @@
   (kbd "Print")     "exec scrot -q 10"  
   (kbd "M-Print")   "exec scrot -q 10 -s"  
 
+  (kbd "s-`")       "windowlist"
   (kbd "s-B")       "mode-line"
   (kbd "s-R")       "reinit"
   (kbd "s-Q")       "quit" 
