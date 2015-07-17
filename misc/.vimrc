@@ -2,7 +2,7 @@
 set nocompatible
 
 " OS(unix/win32) setting 
-if has("win32")
+if has("win32") && has("gui_running")
   source $VIMRUNTIME/vimrc_example.vim
   source $VIMRUNTIME/mswin.vim
   behave mswin
@@ -35,7 +35,9 @@ set listchars=tab:\^\ ,trail:.,extends:>,precedes:<,eol:$
 "set guioptions-=T
 
 " Color scheme setting
-colo desert
+if has("gui_running")
+  colo desert
+endif
 
 " Other setting"
 set novisualbell
@@ -48,8 +50,11 @@ set cindent
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
-set noexpandtab
+set expandtab
 set smarttab
+" no sound
+set vb t_vb=
+set noeb
 
 if has("gui_running")
   set number
