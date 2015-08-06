@@ -24,6 +24,9 @@ set shortmess=atI
 set gcr=n:block-blinkon0
 set listchars=tab:\^\ ,trail:.,extends:>,precedes:<,eol:$
 
+" Allow backspacing over everything in insert mode
+set bs=indent,eol,start
+
 " No scrollbar
 "set guioptions-=l
 "set guioptions-=L
@@ -52,9 +55,12 @@ set softtabstop=4
 set shiftwidth=4
 set expandtab
 set smarttab
+
 " no sound
-set vb t_vb=
-set noeb
+if !has("gui_running")
+    set vb t_vb=
+    set noeb
+endif
 
 if has("gui_running")
   set number
