@@ -1,0 +1,1 @@
+stumpwm/stumpwm.asd
