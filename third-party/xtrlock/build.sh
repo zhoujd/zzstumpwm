@@ -1,6 +1,7 @@
 #!/bin/sh
 
 #sudo yum install libX11-devel xorg-x11-server-devel
+#sudo apt-get install libx11-dev 
 
 # compile
 make -f Makefile.noimake
