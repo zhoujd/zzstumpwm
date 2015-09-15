@@ -1,4 +1,6 @@
-#!/bin/sh
+#!/bin/bash
+
+# sudo apt-get install g++
 
 echo "init build environment ..."
 rm -rf build
