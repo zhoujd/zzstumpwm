@@ -65,5 +65,6 @@ used for matching windows with run-or-raise or window placement
   (list "gnome-power-manager")
   (list "gnome-valume-manager")
   (list "nm-applet" :options "--sm-disable")
+  (list "xscreensaver" :options "-no-splash")
   ))
 

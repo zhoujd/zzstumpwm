@@ -41,7 +41,8 @@
   (kbd "s-`")       "windowlist"
   (kbd "s-Tab")     "pull-hidden-next"  
   (kbd "Print")     "exec scrot -q 10"  
-  (kbd "M-Print")   "exec scrot -q 10 -s"  
+  (kbd "M-Print")   "exec scrot -q 10 -s"
+  (kbd "s-l")       "exec xscreensaver-command -lock &"
   
   (kbd "s-C-b")     "mode-line"
   (kbd "s-C-q")     "quit" 
