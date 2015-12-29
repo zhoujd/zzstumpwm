@@ -12,6 +12,18 @@ ln -s $CURRENT_DIR/quicklisp ~/quicklisp
 
 ## Set SBCL script
 cat > ~/.sbclrc <<EOF
+;;;; -*- Lisp -*-
+;;; ASDF configure
+(require :asdf)
+(mapc
+ #'(lambda (path)
+     (let ((full-path (merge-pathnames path (user-homedir-pathname))))
+       (when (probe-file full-path)
+         (pushnew full-path asdf:*central-registry* :test #'equal))))
+ '(
+   "lisp/system/"
+   ))
+
 ;;; The following lines added by ql:add-to-init-file:
 #-quicklisp
 (let ((quicklisp-init (merge-pathnames "quicklisp/setup.lisp"
