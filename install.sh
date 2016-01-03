@@ -18,8 +18,7 @@ cat > ~/.sbclrc <<EOF
 (mapc
  #'(lambda (path)
      (let ((full-path (merge-pathnames path (user-homedir-pathname))))
-       (when (probe-file full-path)
-         (pushnew full-path asdf:*central-registry* :test #'equal))))
+       (pushnew full-path asdf:*central-registry* :test #'equal)))
  '(
    "lisp/system/"
    ))
