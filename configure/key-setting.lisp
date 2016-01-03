@@ -57,8 +57,8 @@
   (kbd "s-F2")      "exec"  
   (kbd "s-F4")      "kill"
   (kbd "s-F11")     "reboot"
-  (kbd "s-C-F11")   (gnome-term-command "sudo reboot")
   (kbd "s-F12")     "shutdown"
+  (kbd "s-C-F11")   (gnome-term-command "sudo reboot")
   (kbd "s-C-F12")   (gnome-term-command "sudo shutdown -h now")
   
   (kbd "s-Right")   "move-focus right"  
