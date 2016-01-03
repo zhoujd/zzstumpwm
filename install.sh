@@ -6,9 +6,10 @@ echo "install stumpwm start ..."
 
 ## Set configure file and qucklisp
 rm -f ~/.stumpwmrc
+ln -s $CURRENT_DIR/.stumpwmrc ~/.stumpwmrc
+
 rm -f ~/quicklisp
-ln -s $CURRENT_DIR/.stumpwmrc ~/
-ln -s $CURRENT_DIR/quicklisp ~/
+ln -s $CURRENT_DIR/quicklisp ~/quicklisp
 
 ## Set SBCL script
 cat > ~/.sbclrc <<EOF
@@ -33,6 +34,7 @@ EOF
 
 ## Install xterm config
 rm -f ~/.Xresources
-ln -s $CURRENT_DIR/misc/.Xresources ~/
+ln -s $CURRENT_DIR/misc/.Xresources ~/.Xresources
+xrdb ~/.Xresources
 
 echo "install stumpwm end ..."
