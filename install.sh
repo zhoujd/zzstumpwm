@@ -11,26 +11,13 @@ ln -s $CURRENT_DIR/.stumpwmrc ~/.stumpwmrc
 rm -f ~/quicklisp
 ln -s $CURRENT_DIR/quicklisp ~/quicklisp
 
-## Set SBCL script
-cat > ~/.sbclrc <<EOF
-;;;; -*- Lisp -*-
-;;; ASDF configure
-(require :asdf)
-(mapc
- #'(lambda (path)
-     (let ((full-path (merge-pathnames path (user-homedir-pathname))))
-       (pushnew full-path asdf:*central-registry* :test #'equal)))
- '(
-   "lisp/system/"
-   ))
+## Set SBCL configre
+rm -f ~/.sbclrc
+ln -s $CURRENT_DIR/misc/.sbclrc ~/.sbclrc
 
-;;; The following lines added by ql:add-to-init-file:
-#-quicklisp
-(let ((quicklisp-init (merge-pathnames "quicklisp/setup.lisp"
-                                       (user-homedir-pathname))))
-  (when (probe-file quicklisp-init)
-    (load quicklisp-init)))
-EOF
+## Set ECL configure
+rm -f ~/.eclrc
+ln -s $CURRENT_DIR/misc/.eclrc ~/.eclrc
 
 ## Install xterm config
 rm -f ~/.Xresources

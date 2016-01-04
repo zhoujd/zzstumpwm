@@ -1,0 +1,18 @@
+;;;; -*- Lisp -*-
+;;; ASDF configure
+#-asdf
+(require :asdf)
+(mapc
+ #'(lambda (path)
+     (let ((full-path (merge-pathnames path (user-homedir-pathname))))
+       (pushnew full-path asdf:*central-registry* :test #'equal)))
+ '(
+   "lisp/system/"
+   ))
+
+;;; The following lines added by ql:add-to-init-file:
+#-quicklisp
+(let ((quicklisp-init (merge-pathnames "quicklisp/setup.lisp"
+                                       (user-homedir-pathname))))
+  (when (probe-file quicklisp-init)
+    (load quicklisp-init)))
