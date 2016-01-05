@@ -36,11 +36,6 @@
       *float-window-title-height*   0
       *window-border-style*         :thin)
 
-;(setf *time-modeline-string*        "%Y-%m-%d %a ^B%l:%M^b"
-;      *window-name-source*          :title
-;      *window-format*               "^B^8*%n%s%m%15t | ^7*"
-;      *group-format*                "%t")
-
 ;; mode line
 (setf *mode-line-background-color*  "black"
       *mode-line-foreground-color*  "lightgreen"
