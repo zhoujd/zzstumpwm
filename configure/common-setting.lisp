@@ -11,7 +11,7 @@
 (defvar swant-server-flag nil "swant server flag")
 
 (unless swant-server-flag
-  (swank:create-server :dont-close t :port 4405 :coding-system "utf-8-unix")
+  (swank:create-server :dont-close t :port 4405)
   (setq swant-server-flag t))
 
 ;; color select
@@ -36,12 +36,10 @@
       *float-window-title-height*   0
       *window-border-style*         :thin)
 
-(setf *time-modeline-string*        "%Y-%m-%d %a ^B%l:%M^b"
-      *window-name-source*          :title
-      ;;*window-format*               "^B^8*%n%s%m%15t | ^7*"
-      *window-format*               "%m%n%s nm=%50t cl=%c id=%i"
-      *frame-number-map*            "abcdefghijklmnopqrst"
-      *group-format*                "%t")
+;(setf *time-modeline-string*        "%Y-%m-%d %a ^B%l:%M^b"
+;      *window-name-source*          :title
+;      *window-format*               "^B^8*%n%s%m%15t | ^7*"
+;      *group-format*                "%t")
 
 ;; mode line
 (setf *mode-line-background-color*  "black"
@@ -52,7 +50,8 @@
       *mode-line-pad-y*             0
       *mode-line-timeout*           60
       *mode-line-screen-position*   :top
-      *screen-mode-line-format*     (list "[^B%n^b]%W" "^> | " "^>%d"))
+      *screen-mode-line-format*     (list "[^B%n^b]%W" "^> [" "^>%d]")
+      )
 
 (when (and *startup-mode-line*
            (not (head-mode-line (current-head))))
