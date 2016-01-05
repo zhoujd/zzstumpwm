@@ -8,11 +8,11 @@
 
 ;; auto start swank server
 (require 'swank)
-(defvar swant-server-flag nil "swant server flag")
+(defvar *swank-server-p* nil "swant server flag")
 
-(unless swant-server-flag
+(unless *swank-server-p*
   (swank:create-server :dont-close t :port 4405)
-  (setq swant-server-flag t))
+  (setq *swank-server-p* t))
 
 ;; color select
 (set-fg-color "green")
