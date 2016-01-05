@@ -12,7 +12,8 @@
 
 (unless *swank-server-p*
   (swank:create-server :dont-close t :port 4405)
-  (setq *swank-server-p* t))
+  (setf swank:*use-dedicated-output-stream* nil)
+  (setf *swank-server-p* t))
 
 ;; color select
 (set-fg-color "green")
