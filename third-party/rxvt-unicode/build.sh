@@ -11,7 +11,7 @@ tar xf rxvt-unicode.tar.bz2 -C build
 
 pushd build/rxvt-unicode*
 
-./configure --prefix=/usr --disable-perl
+./configure --prefix=/usr --disable-perl --enable-xft
 make
 sudo make install
 

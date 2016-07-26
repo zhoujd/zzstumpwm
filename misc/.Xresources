@@ -65,5 +65,11 @@ URxvt.shading: 80
 !URxvt.font: 9x15
 !URxvt.boldFont: 9x15bold
 
-urxvt.font:-misc-fixed-medium-r-normal--15-140-75-75-c-90-iso10646-1
-urxvt.boldFont:-misc-fixed-bold-r-normal--15-140-75-75-c-90-iso10646-1
+!urxvt.font:-misc-fixed-medium-r-normal--15-140-75-75-c-90-iso10646-1
+!urxvt.boldFont:-misc-fixed-bold-r-normal--15-140-75-75-c-90-iso10646-1
+
+Xft.dpi:96
+
+! alias zrxvt='urxvt -fn "xft:Consolas:size=12:stype=Regular:antialias=true"'
+URxvt.font:xft:Monospace:size=12:stype=Regular:antialias=true
+URxvt.boldfont:xft:Monospace:size=12:stype=Bold:antialias=true
