@@ -13,15 +13,14 @@ Xft.rgba: rgb
 XTerm*locale: true
 XTerm*utf8Title: true
 XTerm*fontMenu*fontdefault*Label: Default
-XTerm*faceName: Lucida Console
-XTerm*faceNameDoublesize: LiHei Pro
-XTerm*faceSize: 10
-XTerm*faceSize1: 10
-XTerm*faceSize2: 10
-XTerm*faceSize3: 10
-XTerm*faceSize4: 10
-XTerm*faceSize5: 10
-XTerm*faceSize6: 10
+XTerm*faceName: Monospace:antialias=True:pixelsize=15
+XTerm*faceSize: 12
+XTerm*faceSize1: 12
+XTerm*faceSize2: 12
+XTerm*faceSize3: 12
+XTerm*faceSize4: 12
+XTerm*faceSize5: 12
+XTerm*faceSize6: 12
 XTerm.cjkWidth: true
 XTerm*background: black
 XTerm*foreground: white
@@ -33,43 +32,5 @@ XTerm*SaveLines: 1000
 xterm*eightBitInput: false
 xterm*altSendsEscape: true
 
-
-!! rxvt-unicode configuration
-! urxvt color set
-URxvt.multichar_encoding: utf-8
-URxvt.background: black
-URxvt.foreground: gray75
-
-! scroll set
-URxvt.scrollBar:False
-URxvt.scrollBar_right: True
-URxvt.scrollBar_floating: True
-URxvt.scrollstyle: plain
-URxvt.scrollWithBuffer: False
-URxvt.saveLines: 5000
-
-! window geometry set
-URxvt.geometry: 80x24
-URxvt.visualBell: False
-URxvt.title: Rxvt-unicode
-
-! bg transparent set
-URxvt.inheritPixmap: True
-URxvt.tintCddolor: white
-URxvt.shading: 80
-
-! Tab set
-!URxvt.perl-ext-common: default,tabbed
-
-! font set
-!URxvt.font: 9x15
-!URxvt.boldFont: 9x15bold
-
-!urxvt.font:-misc-fixed-medium-r-normal--15-140-75-75-c-90-iso10646-1
-!urxvt.boldFont:-misc-fixed-bold-r-normal--15-140-75-75-c-90-iso10646-1
-
-Xft.dpi:96
-
-! alias zrxvt='urxvt -fn "xft:Consolas:size=12:stype=Regular:antialias=true"'
-URxvt.font:xft:Monospace:size=12:stype=Regular:antialias=true
-URxvt.boldfont:xft:Monospace:size=12:stype=Bold:antialias=true
+!! Chinese support
+XTerm*faceNameDoublesize: Microsoft YaHei Mono:antialias=True:pixelsize=16
