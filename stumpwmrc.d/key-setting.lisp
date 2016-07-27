@@ -17,8 +17,9 @@
   (kbd "C-f")       "exec firefox"
   (kbd "m")         "exec gnome-system-monitor"
   (kbd "n")         "exec nautilus --no-desktop"
-  (kbd "t")         "exec gnome-terminal"
-  (kbd "C-t")       (xterm-command "tmux")
+  (kbd "t")         "exec xterm"
+  (kbd "C-t")       "exec gnome-terminal"
+  (kbd "M-t")       (xterm-command "tmux")
   (kbd "v")         (xterm-command "vim")
   (kbd "C-v")       "exec evince"
   ))
