@@ -22,6 +22,15 @@ case "$1" in
         ;;
 esac
 
+echo -n "Do you want to install dependence ? [yN]"
+read answer
+case "$answer" in
+    "Y" | "y" )
+        ./depends.sh
+        ;;
+esac
+
+
 echo "Install xtrock ..."
 cd $INSTALL_ROOT/xtrlock
 ./build.sh $INSTALL_OS
