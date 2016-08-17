@@ -1,20 +1,14 @@
-#!/bin/sh
+#!/bin/bash
 
-INSTALL_ROOT=`pwd`
-INSTALL_OS="unknown"
+target="unknow"
 
+echo "Install third-party start ..."
+
+## parameter check
 case "$1" in
-    "ubuntu" )
-        INSTALL_OS=$1
-        echo "Install on $INSTALL_OS"
-        ;;
-    "suse" )
-        INSTALL_OS=$1
-        echo "Install on $INSTALL_OS"
-        ;;
-    "centos" )
-        INSTALL_OS=$1
-        echo "Install on $INSTALL_OS"
+    "ubuntu"|"suse"|"centos" )
+        target=$1
+        echo "Install on $os"
         ;;
     * )
         echo "Use $0 [ubuntu|suse|centos]"
@@ -22,26 +16,21 @@ case "$1" in
         ;;
 esac
 
+## install dependence
 echo -n "Do you want to install dependence ? [yN]"
 read answer
 case "$answer" in
     "Y" | "y" )
-        ./depends.sh
+        ./depends.sh $target;
         ;;
 esac
 
+## install tool
+for tool in xtrlock tmux dmenu ; do
+    echo "Install $tool ..."
+    pushd $tool
+    ./install.sh $target
+    popd
+done
 
-echo "Install xtrock ..."
-cd $INSTALL_ROOT/xtrlock
-./build.sh $INSTALL_OS
-cd $INSTALL_ROOT
-
-echo "Install tmux ..."
-cd $INSTALL_ROOT/tmux
-./build.sh $INSTALL_OS
-cd $INSTALL_ROOT
-
-echo "Install dmemu ..."
-cd $INSTALL_ROOT/dmenu
-./build.sh $INSTALL_OS
-cd $INSTALL_ROOT
+echo "Install third-party end ..."
