@@ -1,1 +1,1 @@
-dists/quicklisp/software/quicklisp-slime-helper-20110418-git/
+dists/quicklisp/software/quicklisp-slime-helper-20150709-git/
