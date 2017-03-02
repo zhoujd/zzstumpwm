@@ -1,1 +1,1 @@
-dists/quicklisp/software/hunchentoot-1.2.26/
+dists/quicklisp/software/hunchentoot-1.2.35/

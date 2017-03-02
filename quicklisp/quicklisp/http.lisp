@@ -322,12 +322,13 @@
 
 (defun full-proxy-path (host port path)
   (format nil "~:[http~;https~]://~A~:[:~D~;~*~]~A"
-                       (= port 443)
-                       host
-                       (or (= port 80)
-                           (= port 443))
-                       port
-                       path))
+          (eql port 443)
+          host
+          (or (null port)
+              (eql port 80)
+              (eql port 443))
+          port
+          path))
 
 (defun user-agent-string ()
   "Return a string suitable for using as the User-Agent value in HTTP
@@ -365,8 +366,9 @@ information."
              (apply #'add-strings sink strings)
              (add-newline sink)))
       (add-line method " " path " HTTP/1.1")
-      (add-line "Host: " host (if (= port 80) ""
-                                  (format nil ":~D" port)))
+      (add-line "Host: " host (if (integerp port)
+                                  (format nil ":~D" port)
+                                  ""))
       (add-line "Connection: close")
       (add-line "User-Agent: " (user-agent-string))
       (add-newline sink)
@@ -589,14 +591,18 @@ the indexes in the header accordingly."
 ;;; HTTP URL parsing
 
 (defclass url ()
-  ((hostname
+  ((scheme
+    :initarg :scheme
+    :accessor scheme
+    :initform nil)
+   (hostname
     :initarg :hostname
     :accessor hostname
     :initform nil)
    (port
     :initarg :port
     :accessor port
-    :initform 80)
+    :initform nil)
    (path
     :initarg :path
     :accessor path
@@ -604,9 +610,12 @@ the indexes in the header accordingly."
 
 (defun parse-urlstring (urlstring)
   (setf urlstring (string-trim " " urlstring))
-  (let* ((pos (mismatch urlstring "http://" :test 'char-equal))
+  (let* ((pos (position #\: urlstring))
+         (scheme (or (and pos (subseq  urlstring 0 pos)) "http"))
+         (pos (mismatch urlstring "://" :test 'char-equal :start1 pos))
          (mark pos)
          (url (make-instance 'url)))
+    (setf (scheme url) scheme)
     (labels ((save ()
                (subseq urlstring mark pos))
              (mark ()
@@ -673,13 +682,14 @@ the indexes in the header accordingly."
 (defgeneric request-buffer (method url)
   (:method (method url)
     (setf url (url url))
-    (make-request-buffer (hostname url) (port url) (path url)
+    (make-request-buffer (hostname url) (or (port url) 80) (path url)
                          :method method)))
 
 (defun urlstring (url)
-  (format nil "~@[http://~A~]~@[:~D~]~A"
+  (format nil "~@[~A://~]~@[~A~]~@[:~D~]~A"
+          (and (hostname url) (scheme url))
           (hostname url)
-          (and (/= 80 (port url)) (port url))
+          (port url)
           (path url)))
 
 (defmethod print-object ((url url) stream)
@@ -690,6 +700,8 @@ the indexes in the header accordingly."
   (setf url1 (url url1))
   (setf url2 (url url2))
   (make-instance 'url
+                 :scheme (or (scheme url1)
+                             (scheme url2))
                  :hostname (or (hostname url1)
                                (hostname url2))
                  :port (or (port url1)
@@ -780,10 +792,22 @@ the indexes in the header accordingly."
              (too-many-redirects-count condition)
              (too-many-redirects-url condition)))))
 
-(defun fetch (url file &key (follow-redirects t) quietly
+(defvar *fetch-scheme-functions*
+  '(("http" . http-fetch))
+  "assoc list to decide which scheme-function are called by FETCH function.")
+
+(defun fetch (url file &rest rest)
+  "Request URL and write the body of the response to FILE."
+  (let* ((url (merge-urls url *default-url-defaults*))
+         (call (cdr (assoc (scheme url) *fetch-scheme-functions* :test 'equal))))
+    (if call
+        (apply call (urlstring url) file rest)
+        (error "Unknown scheme ~S" url))))
+
+(defun http-fetch (url file &key (follow-redirects t) quietly
               (if-exists :rename-and-delete)
               (maximum-redirects *maximum-redirects*))
-  "Request URL and write the body of the response to FILE."
+  "default scheme-function for http protocol."
   (setf url (merge-urls url *default-url-defaults*))
   (setf file (merge-pathnames file))
   (let ((redirect-count 0)
@@ -797,7 +821,7 @@ the indexes in the header accordingly."
        (error 'too-many-redirects
               :url original-url
               :redirect-count redirect-count))
-     (with-connection (connection (hostname connect-url) (port connect-url))
+     (with-connection (connection (hostname connect-url) (or (port connect-url) 80))
        (let ((cbuf (make-instance 'cbuf :connection connection))
              (request (request-buffer "GET" url)))
          (write-octets request connection)

@@ -45,6 +45,7 @@
            #:abcl
            #:allegro
            #:ccl
+           #:clasp
            #:clisp
            #:cmucl
            #:cormanlisp
@@ -95,6 +96,9 @@
   (:use #:cl #:ql-network #:ql-progress #:ql-config)
   (:export #:*proxy-url*
            #:fetch
+           #:http-fetch
+           #:*fetch-scheme-functions*
+           #:scheme
            #:hostname
            #:port
            #:path
@@ -214,16 +218,18 @@
   (:export #:release
            #:project-name
            #:system-files
-           #:archive-url-suffix
+           #:archive-url
            #:archive-size
            #:ensure-archive-file
            #:archive-content-sha1
-           #:archive-file-md5
+           #:archive-md5
            #:prefix
            #:local-archive-file
            #:ensure-local-archive-file
            #:check-local-archive-file
            #:invalid-local-archive
+           #:invalid-local-archive-file
+           #:invalid-local-archive-release
            #:missing-local-archive
            #:badly-sized-local-archive
            #:delete-and-retry)
@@ -239,6 +245,7 @@
            #:find-asdf-system-file
            #:system-definition-searcher
            #:system-apropos
+           #:system-apropos-list
            #:dependency-tree
            #:clean
            #:unknown-dist))
@@ -249,6 +256,24 @@
    clobbering any QL-DIST internals.")
   (:use #:cl
         #:ql-dist))
+
+(defpackage #:ql-bundle
+  (:documentation
+   "A package for supporting the QL:BUNDLE-SYSTEMS function.")
+  (:use #:cl #:ql-dist #:ql-impl-util)
+  (:shadow #:find-system
+           #:find-release)
+  (:export #:bundle
+           #:ensure-system
+           #:ensure-release
+           #:write-bundle
+           #:add-systems-recursively
+           #:object-not-found
+           #:system-not-found
+           #:system-not-found-system
+           #:release-not-found
+           #:bundle-directory-exists
+           #:bundle-directory-exists-directory))
 
 (defpackage #:quicklisp-client
   (:documentation
@@ -286,6 +311,7 @@
            #:setup
            #:provided-systems
            #:system-apropos
+           #:system-apropos-list
            #:system-list
            #:client-version
            #:client-url
@@ -305,7 +331,7 @@
            #:*local-project-directories*
            #:list-local-projects
            #:list-local-systems
-           #:who-depends-on))
+           #:who-depends-on
+           #:bundle-systems))
 
 (in-package #:quicklisp-client)
-

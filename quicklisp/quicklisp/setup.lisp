@@ -75,8 +75,10 @@
                         (dolist (subname (required-systems quicklisp-system))
                           (recurse subname)))
                        (t
-                        (error 'system-not-found
-                               :name name))))))
+                        (cerror "Try again"
+                                'system-not-found
+                                :name name)
+                        (recurse name))))))
       (with-consistent-dists
         (recurse name)))
     (make-instance 'load-strategy
@@ -130,7 +132,7 @@
         (when (and (consp form)
                    (eq (first form) 'cl:defpackage)
                    (ignore-errors (string (second form))))
-	  (show-package (second form)))
+          (show-package (second form)))
         (incf seen-so-far)
         (when (<= forms-per-char seen-so-far)
           (setf seen-so-far 0)
@@ -156,7 +158,7 @@
   (call-with-macroexpand-progress
    (lambda ()
      (format t "~&; Loading ~S~%" (name strategy))
-     (asdf:oos 'asdf:load-op (name strategy) :verbose nil))))
+     (asdf:load-system (name strategy) :verbose nil))))
 
 (defun autoload-system-and-dependencies (name &key prompt)
   "Try to load the system named by NAME, automatically loading any
@@ -171,25 +173,27 @@ dependencies too if possible."
                 (press-enter-to-continue))
         (tagbody
          retry
-         (handler-bind
-             ((asdf:missing-dependency-of-version
-               (lambda (c)
-                 ;; Nothing Quicklisp can do to recover from this, so
-                 ;; just resignal
-                 (error c)))
-              (asdf:missing-dependency
-               (lambda (c)
-                 (let ((parent (asdf::missing-required-by c))
-                       (missing (asdf::missing-requires c)))
-                   (when (typep parent 'asdf:system)
-                     (if (gethash missing tried-so-far)
-                         (error "Dependency looping -- already tried to load ~
+         (handler-case (apply-load-strategy strategy)
+           (asdf:missing-dependency-of-version (c)
+             ;; Nothing Quicklisp can do to recover from this, so just
+             ;; resignal
+             (error c))
+           (asdf:missing-dependency (c)
+             (let ((parent (asdf::missing-required-by c))
+                   (missing (asdf::missing-requires c)))
+               (typecase parent
+                 (asdf:system
+                  (if (gethash missing tried-so-far)
+                     (error "Dependency looping -- already tried to load ~
                                  ~A" missing)
-                         (setf (gethash missing tried-so-far) missing))
-                     (autoload-system-and-dependencies missing
-                                                       :prompt prompt)
-                     (go retry))))))
-           (apply-load-strategy strategy)))))
+                     (setf (gethash missing tried-so-far) missing))
+                  (autoload-system-and-dependencies missing
+                                                   :prompt prompt)
+                  (go retry))
+                 (t
+                  ;; Error isn't from a system dependency, so there's
+                  ;; nothing to autoload
+                  (error c)))))))))
     name))
 
 (defvar *initial-dist-url*
