@@ -10,7 +10,10 @@ case "$1" in
     "centos")
         sudo yum install -y ncurses-devel
         ;;
+    "fedora")
+        sudo dnf install -y ncurses-devel
+        ;;
     * )
-        echo "Use $0 [ubuntu|suse|centos]"
+        echo "Use $0 [ubuntu|suse|centos|fedora]"
         ;;
 esac

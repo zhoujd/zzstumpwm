@@ -6,7 +6,7 @@ target=$1
 
 ## parameter check
 case "$target" in
-    "ubuntu"|"suse"|"centos" )
+    "ubuntu"|"suse"|"centos"|"fedora" )
         echo "Install on $target"
 
         for tool in xtrlock tmux dmenu ; do
@@ -17,7 +17,7 @@ case "$target" in
         done
         ;;
     * )
-        echo "Use $0 [ubuntu|suse|centos]"
+        echo "Use $0 [ubuntu|suse|centos|fedora]"
         exit 1;
         ;;
 esac
