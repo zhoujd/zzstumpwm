@@ -5,7 +5,7 @@
 ;;; Documentation: General tools
 ;;; --------------------------------------------------------------------------
 ;;;
-;;; (C) 2011 Philippe Brochard <hocwp@free.fr>
+;;; (C) 2012 Philippe Brochard <pbrochard@common-lisp.net>
 ;;;
 ;;; This program is free software; you can redistribute it and/or modify
 ;;; it under the terms of the GNU General Public License as published by
@@ -35,11 +35,12 @@
            :config-all-groups
            :config-group->string
 	   :find-in-hash
+           :search-in-hash
            :view-hash-table
            :copy-hash-table
 	   :nfuncall
 	   :pfuncall
-	   :symbol-search
+           :symbol-search
 	   :create-symbol :create-symbol-in-package
 	   :call-hook
            :add-new-hook
@@ -55,20 +56,29 @@
 	   :dbg
 	   :dbgnl
 	   :dbgc
+           :make-rectangle
+           :rectangle-x :rectangle-y :rectangle-width :rectangle-height
+           :in-rectangle
            :distance
+           :collect-all-symbols
 	   :with-all-internal-symbols
 	   :export-all-functions :export-all-variables
 	   :export-all-functions-and-variables
 	   :ensure-function
 	   :empty-string-p
 	   :find-common-string
+           :command-in-path
 	   :setf/=
 	   :number->char
            :number->string
+           :number->letter
 	   :simple-type-of
 	   :repeat-chars
 	   :nth-insert
 	   :split-string
+           :substring-equal
+           :string-match
+           :extented-alphanumericp
 	   :append-newline-space
 	   :expand-newline
 	   :ensure-list
@@ -83,8 +93,9 @@
 	   :first-position
 	   :find-free-number
 	   :date-string
+           :write-backtrace
 	   :do-execute
-	   :do-shell
+	   :do-shell :fdo-shell :do-shell-output
 	   :getenv
 	   :uquit
 	   :urun-prog
@@ -112,12 +123,20 @@
 	   :find-string
 	   :find-all-strings
 	   :subst-strings
-	   :test-find-string))
+	   :test-find-string
+           :memory-usage
+           :cpu-usage
+           :battery-usage
+           :battery-alert-string
+           :start-system-poll
+           :stop-system-poll
+           :system-usage-poll))
 
 
 (in-package :tools)
 
 
+(defstruct rectangle x y width height)
 
 (setq *random-state* (make-random-state t))
 
@@ -174,6 +193,14 @@
 		 (return-from find-in-hash (values k v))))
 	   hashtable))
 
+(defun search-in-hash (val hashtable)
+  "Return the key who match the val in the hashtable"
+  (let ((val (symbol-name val)))
+    (maphash #'(lambda (k v)
+                 (when (and (consp v) (substring-equal (symbol-name (first v)) val))
+                   (return-from search-in-hash (values k v))))
+             hashtable)))
+
 
 (defun view-hash-table (title hashtable)
   (maphash (lambda (k v)
@@ -199,6 +226,7 @@
     (apply function args)))
 
 
+
 (defun symbol-search (search symbol)
   "Search the string 'search' in the symbol name of 'symbol'"
   (search search (symbol-name symbol) :test #'string-equal))
@@ -219,7 +247,7 @@
 ;;;,-----
 ;;;| Minimal hook
 ;;;`-----
-(defun call-hook (hook &optional args)
+(defun call-hook (hook &rest args)
   "Call a hook (a function, a symbol or a list of functions)
 Return the result of the last hook"
   (let ((result nil))
@@ -228,7 +256,9 @@ Return the result of the last hook"
 		 (typecase hook
 		   (cons (dolist (h hook)
 			   (rec h)))
-		   (t (setf result (apply hook args)))))))
+                   (function (setf result (apply hook args)))
+		   (symbol (when (fboundp hook)
+                             (setf result (apply hook args))))))))
       (rec hook)
       result)))
 
@@ -236,14 +266,14 @@ Return the result of the last hook"
 (defmacro add-new-hook (hook &rest value)
   "Add a hook. Duplicate it if needed"
   `(setf ,hook (append (typecase ,hook
-			 (list ,hook)
-			 (t (list ,hook)))
-		       (list ,@value))))
+                         (list ,hook)
+                         (t (list ,hook)))
+                       (list ,@value))))
 
 (defmacro add-hook (hook &rest value)
   "Add a hook only if not duplicated"
   (let ((i (gensym)))
-    `(dolist (,i (list ,@value) ,hook)
+    `(dolist (,i (list ,@value))
        (unless (member ,i (typecase ,hook
                             (list ,hook)
                             (t (list ,hook))))
@@ -276,8 +306,8 @@ Return the result of the last hook"
   "Start the function fun at delay seconds."
   (push (list id
 	      (let ((time (+ (get-internal-real-time) (s->realtime delay))))
-		(lambda ()
-		  (when (>= (get-internal-real-time) time)
+		(lambda (current-time)
+		  (when (>= current-time time)
 		    (funcall fun)
 		    t))))
 	*timer-list*)
@@ -297,34 +327,31 @@ Return the result of the last hook"
 
 (defun process-timers ()
   "Call each timers in *timer-list* if needed"
-  (dolist (timer *timer-list*)
-    (when (funcall (second timer))
-      (setf *timer-list* (remove timer *timer-list* :test #'equal)))))
+  (let ((current-time (get-internal-real-time)))
+    (dolist (timer *timer-list*)
+      (when (funcall (second timer) current-time)
+        (setf *timer-list* (remove timer *timer-list* :test #'equal))))))
 
 (defun erase-timer (id)
   "Erase the timer identified by its id"
-  (dolist (timer *timer-list*)
-    (when (equal id (first timer))
-      (setf *timer-list* (remove timer *timer-list* :test #'equal)))))
+  (setf *timer-list* (remove id *timer-list* :test (lambda (x y)
+                                                     (equal x (first y))))))
 
 (defun timer-test-loop ()
-  (loop
-     (princ ".") (force-output)
-     (process-timers)
-     (sleep 0.5)))
-
-;;(defun plop ()
-;;  (princ 'plop)
-;;  (erase-timer :toto))
-;;
-;;(defun toto ()
-;;  (princ 'toto)
-;;  (add-timer 5 #'toto :toto))
-;;
-;;(add-timer 5 #'toto :toto)
-;;(add-timer 30 #'plop)
-;;
-;;(timer-test-loop)
+  (let ((count 0))
+    (labels ((plop ()
+               (format t "Plop-~A" count)
+               (erase-timer :toto))
+             (toto ()
+               (format t "Toto-~A" count)
+               (add-timer 3 #'toto :toto)))
+      (add-timer 3 #'toto :toto)
+      (add-timer 13 #'plop)
+      (loop
+         (princ ".") (force-output)
+         (process-timers)
+         (sleep 0.5)
+         (incf count)))))
 
 
 
@@ -376,11 +403,31 @@ Return the result of the last hook"
   (force-output))
 
 
+(defun in-rectangle (x y rectangle)
+  (and rectangle
+       (<= (rectangle-x rectangle) x (+ (rectangle-x rectangle) (rectangle-width rectangle)))
+       (<= (rectangle-y rectangle) y (+ (rectangle-y rectangle) (rectangle-height rectangle)))))
+
+
+
 (defun distance (x1 y1 x2 y2)
   (+ (abs (- x2 x1)) (abs (- y2 y1))))
 
 
 ;;; Symbols tools
+(defun collect-all-symbols (&optional package)
+  (format t "Collecting all symbols for Lisp REPL completion...")
+  (let (all-symbols)
+    (do-symbols (symbol (or package *package*))
+      (pushnew (string-downcase (symbol-name symbol)) all-symbols :test #'string=))
+    (do-symbols (symbol :keyword)
+      (pushnew (concatenate 'string ":" (string-downcase (symbol-name symbol)))
+               all-symbols :test #'string=))
+    (format t " Done.~%")
+    all-symbols))
+
+
+
 (defmacro with-all-internal-symbols ((var package) &body body)
   "Bind symbol to all internal symbols in package"
   `(do-symbols (,var ,package)
@@ -441,6 +488,24 @@ Return the result of the last hook"
       string))
 
 
+(defun command-in-path (&optional (tmpfile "/tmp/clfswm-cmd.tmp"))
+  (format t "Updating command list for Shell completion...~%")
+  (labels ((delete-tmp ()
+             (when (probe-file tmpfile)
+               (delete-file tmpfile))))
+    (delete-tmp)
+    (dolist (dir (split-string (getenv "PATH") #\:))
+      (ushell (format nil "ls ~A/* >> ~A" dir tmpfile)))
+    (let ((commands nil))
+      (with-open-file (stream tmpfile :direction :input)
+        (loop for line = (read-line stream nil nil)
+           while line
+           do (pushnew (subseq line (1+ (or (position #\/ line :from-end t) -1))) commands
+                       :test #'string=)))
+      (delete-tmp)
+      (format t "Done. Found ~A commands in shell PATH.~%" (length commands))
+      commands)))
+
 
 ;;; Tools
 (defmacro setf/= (var val)
@@ -460,6 +525,14 @@ Return the result of the last hook"
 (defun number->string (number)
   (string (number->char number)))
 
+(defun  number->letter (n &optional (base 26))
+  (nreverse
+   (with-output-to-string (str)
+     (labels ((rec (n)
+                (princ (code-char (+ (char-code #\a) (mod n base))) str)
+                (when (>= n base)
+                  (rec (- (truncate (/ n base)) 1)))))
+       (rec n)))))
 
 
 (defun simple-type-of (object)
@@ -490,6 +563,29 @@ Return the result of the last hook"
      as sub = (subseq string i j)
      unless (string= sub "") collect sub
      while j))
+
+(defun substring-equal (substring string)
+  (string-equal substring (subseq string 0 (min (length substring) (length string)))))
+
+(defun string-match (match list)
+  "Return the string in list witch match the match string"
+  (let ((len (length match)))
+    (remove-duplicates (remove-if-not (lambda (x)
+                                        (string-equal match (subseq x 0 (min len (length x)))))
+                                      list)
+                       :test #'string-equal)))
+
+
+(defun extented-alphanumericp (char)
+  (or (alphanumericp char)
+      (eq char #\-)
+      (eq char #\_)
+      (eq char #\.)
+      (eq char #\+)
+      (eq char #\=)
+      (eq char #\*)
+      (eq char #\:)
+      (eq char #\%)))
 
 
 (defun append-newline-space (string)
@@ -631,8 +727,14 @@ of the program to return.
 (defun do-shell (program &optional args (wait nil) (io :stream))
   (do-execute "/bin/sh" `("-c" ,program ,@args) wait io))
 
+(defun fdo-shell (formatter &rest args)
+  (do-shell (apply #'format nil formatter args)))
 
-
+(defun do-shell-output (formatter &rest args)
+  (let ((output (do-shell (apply #'format nil formatter args) nil t)))
+    (loop for line = (read-line output nil nil)
+       while line
+       collect line)))
 
 
 
@@ -681,7 +783,7 @@ of the program to return.
 
 (defun uquit ()
   #+(or clisp cmu) (ext:quit)
-  #+sbcl (sb-ext:quit)
+  #+sbcl (sb-ext:exit)
   #+ecl (si:quit)
   #+gcl (lisp:quit)
   #+lispworks (lw:quit)
@@ -726,7 +828,7 @@ Useful for re-using the &REST arg after removing some options."
   #+lucid (apply #'lcl:run-program prog :wait wait :arguments args opts)
   #+sbcl (apply #'sb-ext:run-program prog args :wait wait :output *standard-output* opts)
   #+ecl (apply #'ext:run-program prog args opts)
-  #+ccl (apply #'ccl:run-program prog args opts :wait wait)
+  #+ccl (ccl:run-program prog args :wait wait)
   #-(or allegro clisp cmu gcl liquid lispworks lucid sbcl ecl ccl)
   (error 'not-implemented :proc (list 'run-prog prog opts)))
 
@@ -880,10 +982,11 @@ Useful for re-using the &REST arg after removing some options."
   (when list
     (append (last list) (butlast list))))
 
-(defun n-rotate-list (list n)
-  (if (> n 0)
-      (n-rotate-list (rotate-list list) (1- n))
-      list))
+(defun n-rotate-list (list steps)
+  (when list
+    (let* ((len (length list))
+           (nsteps (mod steps len)))
+      (append (nthcdr nsteps list) (butlast list (- len nsteps))))))
 
 
 (defun append-formated-list (base-str
@@ -955,5 +1058,172 @@ Useful for re-using the &REST arg after removing some options."
 	  (format nil "   ~2,'0D:~2,'0D:~2,'0D    ~A ~A ~2,'0D ~A "
 		  hour minute second
 		  (nth day days) (nth (1- month) months) date year)))))
+
+;;;
+;;; Backtrace function
+;;;
+(defun write-backtrace (filename &optional other-info clear)
+  (when (and clear (probe-file filename))
+    (delete-file filename))
+  (with-open-file (stream filename :direction :output :if-exists :append
+                          :if-does-not-exist :create)
+    (let ((*standard-output* stream)
+          (*debug-io* stream))
+      (format t "================== New backtrace ==================~%")
+      (format t "--- ~A ---~%" (date-string))
+      (format t "Lisp: ~A ; Version: ~A~2%" (lisp-implementation-type)
+              (lisp-implementation-version))
+      #+clisp (system::print-backtrace)
+      #+(or cmucl scl) (debug:backtrace)
+      #+sbcl (sb-debug:backtrace)
+      #+(or mcl ccl) (ccl:print-call-history :detailed-p nil)
+      #-(or clisp cmucl scl sbcl mcl ccl) (format t "Backtrace not defined~%")
+      (when other-info
+        (format t "~A~%" other-info))
+      (format t "--- log end ---~%")))
+  (format t "Backtrace logged in file: ~A~%" filename))
+
+
+
+;;;
+;;; System information functions
+;;;
+(defparameter *bat-cmd* "acpi -b")
+(defparameter *cpu-cmd* "top -b -n 2 -d 1 -p 0")
+(defparameter *cpu-cmd-fast* "top -b -n 2 -d 0.1 -p 0")
+(defparameter *mem-cmd* "free")
+
+(defmacro with-search-line ((word line) &body body)
+  `(let ((pos (search ,word ,line :test #'string-equal)))
+    (when (>= (or pos -1) 0)
+      ,@body)))
+
+(defun extract-battery-usage (line)
+  (with-search-line ("Battery" line)
+    (let ((pos (position #\% line)))
+      (when pos
+        (parse-integer (subseq line (- pos 3) pos) :junk-allowed t)))))
+
+(defun extract-cpu-usage (line)
+  (with-search-line ("%Cpu(s):" line)
+    (let ((pos1 (search "id" line)))
+      (when pos1
+        (let ((pos2 (position #\, line :from-end t :end pos1)))
+          (when pos2
+            (- 100 (parse-integer (subseq line (1+ pos2) pos1) :junk-allowed t))))))))
+
+(defun extract-mem-used (line)
+  (with-search-line ("cache:" line)
+    (parse-integer (subseq line (+ pos 6)) :junk-allowed t)))
+
+(defun extract-mem-total (line)
+  (with-search-line ("mem:" line)
+    (parse-integer (subseq line (+ pos 4)) :junk-allowed t)))
+
+(let ((total -1))
+  (defun memory-usage ()
+    (let ((output (do-shell *mem-cmd*))
+          (used -1))
+      (loop for line = (read-line output nil nil)
+         while line
+         do (awhen (extract-mem-used line)
+              (setf used it))
+           (awhen (and (= total -1) (extract-mem-total line))
+             (setf total it)))
+      (values used total))))
+
+
+(defun cpu-usage ()
+  (let ((output (do-shell *cpu-cmd-fast*))
+        (cpu -1))
+    (loop for line = (read-line output nil nil)
+       while line
+       do (awhen (extract-cpu-usage line)
+            (setf cpu it)))
+    cpu))
+
+(defun battery-usage ()
+  (let ((output (do-shell *bat-cmd*))
+        (bat -1))
+    (loop for line = (read-line output nil nil)
+       while line
+       do (awhen (extract-battery-usage line)
+            (setf bat it)))
+    bat))
+
+(defun battery-alert-string (bat)
+  (if (numberp bat)
+      (cond ((<= bat 5) "/!\\")
+            ((<= bat 10) "!!")
+            ((<= bat 25) "!")
+            (t ""))
+      ""))
+
+;;;
+;;; System usage with a poll system - Memory, CPU and battery all in one
+;;;
+(let ((poll-log "/tmp/.clfswm-system.log")
+      (poll-exec "/tmp/.clfswm-system.sh")
+      (poll-lock "/tmp/.clfswm-system.lock"))
+  (defun create-system-poll (delay)
+    (with-open-file (stream poll-exec :direction :output :if-exists :supersede)
+      (format stream "#! /bin/sh
+
+while true; do
+ (~A; ~A ; ~A) > ~A.tmp;
+  mv ~A.tmp ~A;
+  sleep ~A;
+done~%" *bat-cmd* *cpu-cmd* *mem-cmd* poll-log poll-log poll-log delay)))
+
+  (defun system-poll-pid ()
+    (let ((pid nil))
+      (let ((output (do-shell "ps x")))
+        (loop for line = (read-line output nil nil)
+           while line
+           do (when (search poll-exec line)
+                (push (parse-integer line :junk-allowed t) pid))))
+      pid))
+
+  (defun stop-system-poll ()
+    (dolist (pid (system-poll-pid))
+      (fdo-shell "kill ~A" pid))
+    (when (probe-file poll-log)
+      (delete-file poll-log))
+    (when (probe-file poll-exec)
+      (delete-file poll-exec))
+    (when (probe-file poll-lock)
+      (delete-file poll-lock)))
+
+  (defun start-system-poll (delay)
+    (unless (probe-file poll-lock)
+      (stop-system-poll)
+      (create-system-poll delay)
+      (fdo-shell "exec sh ~A" poll-exec)
+      (with-open-file (stream poll-lock :direction :output :if-exists :supersede)
+        (format stream "CLFSWM system poll started~%"))))
+
+  (defun system-usage-poll (&optional (delay 10))
+    (let ((bat -1)
+          (cpu -1)
+          (used -1)
+          (total -1))
+      (start-system-poll delay)
+      (when (probe-file poll-log)
+        (with-open-file (stream poll-log :direction :input)
+          (loop for line = (read-line stream nil nil)
+             while line
+             do (awhen (extract-battery-usage line)
+                  (setf bat it))
+               (awhen (extract-cpu-usage line)
+                 (setf cpu it))
+               (awhen (extract-mem-used line)
+                 (setf used it))
+               (awhen (and (= total -1) (extract-mem-total line))
+                 (setf total it)))))
+      (values cpu used total bat))))
+
+
+
+
 
 

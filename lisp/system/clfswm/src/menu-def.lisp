@@ -7,7 +7,7 @@
 ;;; Note: Mod-1 is the Alt or Meta key, Mod-2 is the Numlock key.
 ;;; --------------------------------------------------------------------------
 ;;;
-;;; (C) 2011 Philippe Brochard <hocwp@free.fr>
+;;; (C) 2012 Philippe Brochard <pbrochard@common-lisp.net>
 ;;;
 ;;; This program is free software; you can redistribute it and/or modify
 ;;; it under the terms of the GNU General Public License as published by
@@ -26,6 +26,9 @@
 ;;; --------------------------------------------------------------------------
 
 (in-package :clfswm)
+
+(format t "Updating menus...")
+(force-output)
 
 (init-menu)
 
@@ -79,6 +82,7 @@
 
 (add-menu-key 'child-menu "r" 'rename-current-child)
 (add-menu-key 'child-menu "t" 'set-current-child-transparency)
+(add-menu-key 'child-menu "b" 'set-current-child-border-size)
 (add-menu-key 'child-menu "e" 'ensure-unique-name)
 (add-menu-key 'child-menu "n" 'ensure-unique-number)
 (add-menu-key 'child-menu "Delete" 'delete-current-child)
@@ -117,31 +121,31 @@
 (add-sub-menu 'frame-movement-menu "f" 'frame-fill-menu "Frame fill menu")
 (add-sub-menu 'frame-movement-menu "r" 'frame-resize-menu "Frame resize menu")
 (add-menu-key 'frame-movement-menu "c" 'center-current-frame)
-(add-menu-key 'frame-movement-menu "Right" 'with-movement-select-next-brother)
-(add-menu-key 'frame-movement-menu "Left" 'with-movement-select-previous-brother)
-(add-menu-key 'frame-movement-menu "Up" 'with-movement-select-next-level)
-(add-menu-key 'frame-movement-menu "Down" 'with-movement-select-previous-level)
-(add-menu-key 'frame-movement-menu "Tab" 'with-movement-select-next-child)
+(add-menu-key 'frame-movement-menu "R" 'with-movement-select-next-brother)
+(add-menu-key 'frame-movement-menu "L" 'with-movement-select-previous-brother)
+(add-menu-key 'frame-movement-menu "U" 'with-movement-select-next-level)
+(add-menu-key 'frame-movement-menu "D" 'with-movement-select-previous-level)
+(add-menu-key 'frame-movement-menu "T" 'with-movement-select-next-child)
 
 
-(add-menu-key 'frame-pack-menu "Up" 'current-frame-pack-up)
-(add-menu-key 'frame-pack-menu "Down" 'current-frame-pack-down)
-(add-menu-key 'frame-pack-menu "Left" 'current-frame-pack-left)
-(add-menu-key 'frame-pack-menu "Right" 'current-frame-pack-right)
+(add-menu-key 'frame-pack-menu "u" 'current-frame-pack-up)
+(add-menu-key 'frame-pack-menu "d" 'current-frame-pack-down)
+(add-menu-key 'frame-pack-menu "l" 'current-frame-pack-left)
+(add-menu-key 'frame-pack-menu "r" 'current-frame-pack-right)
 
 
-(add-menu-key 'frame-fill-menu "Up" 'current-frame-fill-up)
-(add-menu-key 'frame-fill-menu "Down" 'current-frame-fill-down)
-(add-menu-key 'frame-fill-menu "Left" 'current-frame-fill-left)
-(add-menu-key 'frame-fill-menu "Right" 'current-frame-fill-right)
+(add-menu-key 'frame-fill-menu "u" 'current-frame-fill-up)
+(add-menu-key 'frame-fill-menu "d" 'current-frame-fill-down)
+(add-menu-key 'frame-fill-menu "l" 'current-frame-fill-left)
+(add-menu-key 'frame-fill-menu "r" 'current-frame-fill-right)
 (add-menu-key 'frame-fill-menu "a" 'current-frame-fill-all-dir)
 (add-menu-key 'frame-fill-menu "v" 'current-frame-fill-vertical)
 (add-menu-key 'frame-fill-menu "h" 'current-frame-fill-horizontal)
 
-(add-menu-key 'frame-resize-menu "Up" 'current-frame-resize-up)
-(add-menu-key 'frame-resize-menu "Down" 'current-frame-resize-down)
-(add-menu-key 'frame-resize-menu "Left" 'current-frame-resize-left)
-(add-menu-key 'frame-resize-menu "Right" 'current-frame-resize-right)
+(add-menu-key 'frame-resize-menu "u" 'current-frame-resize-up)
+(add-menu-key 'frame-resize-menu "d" 'current-frame-resize-down)
+(add-menu-key 'frame-resize-menu "l" 'current-frame-resize-left)
+(add-menu-key 'frame-resize-menu "r" 'current-frame-resize-right)
 (add-menu-key 'frame-resize-menu "a" 'current-frame-resize-all-dir)
 (add-menu-key 'frame-resize-menu "m" 'current-frame-resize-all-dir-minimal)
 
@@ -235,3 +239,5 @@
 (add-menu-key 'clfswm-menu "l" 'reload-clfswm)
 (add-menu-key 'clfswm-menu "x" 'exit-clfswm)
 
+(format t " Done.~%")
+(force-output)

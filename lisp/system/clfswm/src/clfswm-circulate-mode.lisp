@@ -5,7 +5,7 @@
 ;;; Documentation: Main functions
 ;;; --------------------------------------------------------------------------
 ;;;
-;;; (C) 2011 Philippe Brochard <hocwp@free.fr>
+;;; (C) 2012 Philippe Brochard <pbrochard@common-lisp.net>
 ;;;
 ;;; This program is free software; you can redistribute it and/or modify
 ;;; it under the terms of the GNU General Public License as published by
@@ -227,23 +227,12 @@
       (reorder-brother brother-direction))
     (when subchild-direction
       (reorder-subchild subchild-direction))
-    (let ((grab-keyboard-p (xgrab-keyboard-p))
-	  (grab-pointer-p (xgrab-pointer-p)))
-      (xgrab-pointer *root* 92 93)
-      (unless grab-keyboard-p
-	(ungrab-main-keys)
-	(xgrab-keyboard *root*))
+    (with-grab-keyboard-and-pointer (92 93 66 67 t)
       (generic-mode 'circulate-mode 'exit-circulate-loop
-		    :loop-function #'circulate-loop-function
-		    :leave-function #'circulate-leave-function
-		    :original-mode '(main-mode))
-      (circulate-leave-function)
-      (unless grab-keyboard-p
-	(xungrab-keyboard)
-	(grab-main-keys))
-      (if grab-pointer-p
-	  (xgrab-pointer *root* 66 67)
-	  (xungrab-pointer)))))
+                    :loop-function #'circulate-loop-function
+                    :leave-function #'circulate-leave-function
+                    :original-mode '(main-mode))
+      (circulate-leave-function))))
 
 
 (defun select-next-child ()
@@ -291,6 +280,12 @@
       (setf child (rotate-list child)))
     (show-all-children)))
 
+(defun select-previous-child-simple ()
+  "Select the previous child (do not enter circulate mode)"
+  (when (frame-p (current-child))
+    (with-slots (child) (current-child)
+      (setf child (anti-rotate-list child)))
+    (show-all-children)))
 
 
 (defun reorder-brother-simple (reorder-fun)

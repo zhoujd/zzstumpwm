@@ -5,7 +5,7 @@
 ;;; Documentation: Package definition
 ;;; --------------------------------------------------------------------------
 ;;;
-;;; (C) 2011 Philippe Brochard <hocwp@free.fr>
+;;; (C) 2012 Philippe Brochard <pbrochard@common-lisp.net>
 ;;;
 ;;; This program is free software; you can redistribute it and/or modify
 ;;; it under the terms of the GNU General Public License as published by
@@ -34,29 +34,34 @@
 	   :exit-clfswm))
 
 
+;;;;; Uncomment the line below if you want to see all ignored X errors
+;;(pushnew :xlib-debug *features*)
+
+;;;;; Uncomment the line below if you want to see all event debug messages
+;;(pushnew :event-debug *features*)
 
 (in-package :clfswm)
 
 ;;; CONFIG - Compress motion notify ?
 ;; This variable may be useful to speed up some slow version of CLX.
 ;; It is particulary useful with CLISP/MIT-CLX (and others).
-(defconfig *have-to-compress-notify* t nil
-           "Compress event notify?
+(defconfig *have-to-compress-notify* t
+  nil "Compress event notify?
 This variable may be useful to speed up some slow version of CLX.
 It is particulary useful with CLISP/MIT-CLX.")
 
-(defconfig *transparent-background* t nil
-           "Enable transparent background: one of nil, :pseudo, t (xcompmgr must be started)")
+(defconfig *transparent-background* t
+  nil "Enable transparent background: one of nil, :pseudo, t (xcompmgr must be started)")
 
-(defconfig *default-transparency* 0.6 nil
-           "Default transparency for all windows when in xcompmgr transparency mode")
+(defconfig *default-transparency* 0.8
+  nil "Default transparency for all windows when in xcompmgr transparency mode")
 
-(defconfig *show-root-frame-p* nil nil
-           "Show the root frame information or not")
+(defconfig *show-root-frame-p* nil
+  nil "Show the root frame information or not")
 
 
-(defconfig *border-size* 1 nil
-           "Windows and frames border size")
+(defconfig *border-size* 1
+  nil "Windows and frames border size")
 
 
 
@@ -76,12 +81,12 @@ It is particulary useful with CLISP/MIT-CLX.")
 (defparameter *background-image* nil)
 (defparameter *background-gc* nil)
 
-(defconfig *loop-timeout* 0.1 nil
+(defconfig *loop-timeout* 1 nil
            "Maximum time (in seconds) to wait before calling *loop-hook*")
 
 (defparameter *pixmap-buffer* nil)
 
-(defparameter *contrib-dir* "")
+(defparameter *contrib-dir* "contrib/")
 
 (defparameter *default-font* nil)
 ;;(defparameter *default-font-string* "9x15")
@@ -115,6 +120,12 @@ It is particulary useful with CLISP/MIT-CLX.")
 ;;; CONFIG - Default focus policy
 (defconfig *default-focus-policy* :click nil
            "Default mouse focus policy. One of :click, :sloppy, :sloppy-strict or :sloppy-select.")
+
+
+(defconfig *show-hide-policy* #'<=
+  nil "'NIL': always display all children (better with transparency support).
+'<': Hide only children less than children above.
+'<=': Hide children less or equal to children above (better for performance on slow machine).")
 
 (defstruct child-rect child parent selected-p x y w h)
 
@@ -169,11 +180,6 @@ It is particulary useful with CLISP/MIT-CLX.")
 
 (defparameter *root-frame* nil
   "Root of the root - ie the root frame")
-(defparameter *current-root* nil    ;;; PHIL: TO REMOVE
-  "The current fullscreen maximized child")
-;;(defparameter (current-child) nil  ;;; PHIL: TO REMOVE
-;;  "The current child with the focus")
-
 
 (defparameter *main-keys* nil)
 (defparameter *main-mouse* nil)
@@ -210,6 +216,9 @@ It is particulary useful with CLISP/MIT-CLX.")
            "Hook executed on the main function entrance after
 loading configuration file and before opening the display.")
 
+(defconfig *root-size-change-hook* nil 'Hook
+           "Hook executed when the root size has changed for example when adding/removing a monitor")
+
 
 (defparameter *in-second-mode* nil)
 
@@ -234,8 +243,10 @@ loading configuration file and before opening the display.")
   'Placement "Query mode window placement")
 (defconfig *circulate-mode-placement* 'bottom-middle-root-placement
   'Placement "Circulate mode window placement")
-(defconfig *expose-mode-placement* 'top-left-root-placement
+(defconfig *expose-mode-placement* 'top-left-child-placement
   'Placement "Expose mode window placement (Selection keys position)")
+(defconfig *expose-query-placement* 'bottom-left-root-placement
+  'Placement "Expose mode query window placement")
 (defconfig *notify-window-placement* 'bottom-right-root-placement
   'Placement "Notify window placement")
 (defconfig *ask-close/kill-placement* 'top-right-root-placement

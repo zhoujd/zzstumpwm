@@ -5,7 +5,7 @@
 ;;; Documentation: Menu functions
 ;;; --------------------------------------------------------------------------
 ;;;
-;;; (C) 2011 Philippe Brochard <hocwp@free.fr>
+;;; (C) 2012 Philippe Brochard <pbrochard@common-lisp.net>
 ;;;
 ;;; This program is free software; you can redistribute it and/or modify
 ;;; it under the terms of the GNU General Public License as published by
@@ -137,34 +137,52 @@
 	 (funcall action)))))
 
 
-(defun open-menu (&optional (menu *menu*) (parent nil))
-  "Open the main menu"
-  (when menu
-    (let ((action nil)
-          (old-info-keys (copy-hash-table *info-keys*)))
-      (labels ((populate-menu ()
-                 (let ((info-list nil))
-                   (dolist (item (menu-item menu))
-                     (let ((value (menu-item-value item)))
-                       (push (typecase value
-                               (menu (list (list (format nil "~A" (menu-item-key item)) *menu-color-menu-key*)
-                                           (list (format nil ": < ~A >" (menu-doc value)) *menu-color-submenu*)))
-                               (string (list (list (format nil "~A" (menu-item-value item)) *menu-color-comment*)))
-                               (t (list (list (format nil "~A" (menu-item-key item)) *menu-color-key*)
-                                        (format nil ": ~A" (documentation value 'function)))))
-                             info-list)
-                       (when (menu-item-key item)
-                         (define-info-key-fun (list (menu-item-key item))
-                             (lambda (&optional args)
-                               (declare (ignore args))
-                               (setf action value)
-                               (leave-info-mode nil))))))
-                   (nreverse info-list))))
-        (let ((selected-item (info-mode (populate-menu))))
-          (setf *info-keys* old-info-keys)
-          (when selected-item
-            (awhen (nth selected-item (menu-item menu))
-              (setf action (menu-item-value it)))))
-        (open-menu-do-action action menu parent)))))
+(let ((menu-oppened nil))
+  (defun reset-open-menu ()
+    (setf menu-oppened nil))
+
+  (defun open-menu (&optional (menu *menu*) (parent nil))
+    "Open the main menu"
+    (unless menu-oppened
+      (setf menu-oppened t)
+      (when menu
+        (let ((action nil)
+              (old-info-keys (copy-hash-table *info-keys*)))
+          (labels ((menu-entry (item value)
+                     (list (list (format nil "~A" (menu-item-key item)) *menu-color-menu-key*)
+                           (list (format nil ": < ~A >" (menu-doc value)) *menu-color-submenu*)
+                           (list (format nil " ~A" (find-associated-key-bindings
+                                                    (create-symbol 'open- (menu-name value))))
+                                 *menu-key-bound-color*)))
+                   (menu-comment (item)
+                     (list (list (format nil "~A" (menu-item-value item)) *menu-color-comment*)))
+                   (menu-line (item value)
+                     (list (list (format nil "~A" (menu-item-key item)) *menu-color-key*)
+                           (format nil ": ~A" (documentation value 'function))
+                           (list (format nil " ~A" (find-associated-key-bindings value))
+                                 *menu-key-bound-color*)))
+                   (populate-menu ()
+                     (let ((info-list nil))
+                       (dolist (item (menu-item menu))
+                         (let ((value (menu-item-value item)))
+                           (push (typecase value
+                                   (menu (menu-entry item value))
+                                   (string (menu-comment item))
+                                   (t (menu-line item value)))
+                                 info-list)
+                           (when (menu-item-key item)
+                             (define-info-key-fun (list (menu-item-key item))
+                                 (lambda (&optional args)
+                                   (declare (ignore args))
+                                   (setf action value)
+                                   (leave-info-mode nil))))))
+                       (nreverse info-list))))
+            (let ((selected-item (info-mode (populate-menu))))
+              (setf *info-keys* old-info-keys)
+              (when (and selected-item (>= selected-item 0))
+                (awhen (nth selected-item (menu-item menu))
+                  (setf action (menu-item-value it)))))
+            (setf menu-oppened nil)
+            (open-menu-do-action action menu parent)))))))
 
 

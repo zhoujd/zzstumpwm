@@ -10,7 +10,7 @@
 ;;; (you can do a 'grep CONFIG *.lisp' to see what you can configure)
 ;;; --------------------------------------------------------------------------
 ;;;
-;;; (C) 2011 Philippe Brochard <hocwp@free.fr>
+;;; (C) 2012 Philippe Brochard <pbrochard@common-lisp.net>
 ;;;
 ;;; This program is free software; you can redistribute it and/or modify
 ;;; it under the terms of the GNU General Public License as published by
@@ -63,8 +63,8 @@ A list of (list match-function handle-function)")
 (defconfig *hide-unmanaged-window* t nil
            "Hide or not unmanaged windows when a child is deselected.")
 
-(defconfig *snap-size* 20 nil
-           "Snap size (in pixels) when move or resize frame is constrained")
+(defconfig *snap-size* 5 nil
+           "Snap size (in % of parent size) when move or resize frame is constrained")
 
 (defconfig *spatial-move-delay-before* 0.2 nil
            "Delay to display the current child before doing a spatial move")
@@ -159,9 +159,7 @@ This command must set the window title to *clfswm-terminal-name*")
 ;;;
 ;;; See clfswm.lisp for hooks examples.
 
-(defconfig *init-hook* '(default-init-hook
-                         place-frames-from-xinerama-infos
-                         display-hello-window)
+(defconfig *init-hook* '(default-init-hook display-hello-window)
   'Hook "Init hook. This hook is run just after the first root frame is created")
 
 (defconfig *close-hook* '(close-notify-window close-clfswm-terminal close-virtual-keyboard)
@@ -170,14 +168,24 @@ This command must set the window title to *clfswm-terminal-name*")
 (defconfig *default-nw-hook* 'default-frame-nw-hook
   'Hook "Default action to do on newly created windows")
 
+(defconfig *query-key-press-hook* nil
+  'Hook "Query hook. Hook called on each key press event in query loop")
+(defconfig *query-button-press-hook* nil
+  'Hook "Query hook. Hook called on each button press event in query loop")
 
-
-
-;;; CONFIG
+;;; CONFIG: Root
 (defconfig *create-frame-on-root* nil
-  nil "Create frame on root.
+  'Root "Create frame on root.
 Set this variable to true if you want to allow to create a new frame
 on the root window in the main mode with the mouse")
+(defconfig *have-to-show-current-root* t
+  'Root "Show the current root if true")
+(defconfig *show-current-root-delay* 1
+  'Root "Delay to show the current root")
+(defconfig *show-current-root-placement* 'middle-middle-root-placement
+  'Root "Current root notify window placement")
+(defconfig *show-current-root-message* "Current root"
+  'Root "Current root notify window message")
 
 
 ;;; CONFIG: Main mode colors
@@ -198,7 +206,7 @@ on the root window in the main mode with the mouse")
   'Frame-colors "Frame foreground when the frame is the root frame")
 (defconfig *frame-foreground-hidden* "Darkgreen"
   'Frame-colors "Frame foreground for hidden windows")
-(defconfig *frame-transparency* *default-transparency*
+(defconfig *frame-transparency* 0.6
   'Frame-colors "Frame background transparency")
 
 ;;; CONFIG: Default window size
@@ -257,6 +265,10 @@ on the root window in the main mode with the mouse")
   'Query-string "Query string window border color")
 (defconfig *query-transparency* *default-transparency*
   'Query-string "Query string window background transparency")
+(defconfig *query-max-complet-length* 100
+  'Query-string "Query maximum length of completion list")
+(defconfig *query-min-complet-char* 2
+  'Query-string "Query minimum input length for completion")
 
 
 ;;; CONFIG - Info mode
@@ -302,19 +314,26 @@ on the root window in the main mode with the mouse")
 ;;; CONFIG - Expose string colors
 (defconfig *expose-font-string* *default-font-string*
   'Expose-mode "Expose string window font string")
-(defconfig *expose-background* "black"
+(defconfig *expose-background* "grey10"
   'Expose-mode "Expose string window background color")
-(defconfig *expose-foreground* "green"
+(defconfig *expose-foreground* "grey50"
   'Expose-mode "Expose string window foreground color")
-(defconfig *expose-border* "red"
+(defconfig *expose-foreground-letter* "red"
+  'Expose-mode "Expose string window foreground color for letters")
+(defconfig *expose-foreground-letter-nok* "grey30"
+  'Expose-mode "Expose string window foreground color for letter not selected")
+(defconfig *expose-background-letter-match* "green"
+  'Expose-mode "Expose string window background color for matching letters")
+(defconfig *expose-border* "grey20"
   'Expose-mode "Expose string window border color")
 (defconfig *expose-valid-on-key* t
   'Expose-mode "Valid expose mode when an accel key is pressed")
 (defconfig *expose-show-window-title* t
   'Expose-mode "Show the window title on accel window")
-(defconfig *expose-transparency* *default-transparency*
+(defconfig *expose-transparency* 0.9
   'Expose-mode "Expose string window background transparency")
-
+(defconfig *expose-direct-select* t
+  'Expose-mode "Immediately select child if they can be directly accessed")
 
 
 ;;; CONFIG - Show key binding colors
@@ -338,6 +357,8 @@ on the root window in the main mode with the mouse")
   'Menu "Key color in menu")
 (defconfig *menu-color-menu-key* (->color #xFF9AFF)
   'Menu "Menu key color in menu")
+(defconfig *menu-key-bound-color* "gray50"
+  'Menu "Key bound min menu color")
 
 
 ;;; CONFIG - Notify window string colors

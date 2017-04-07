@@ -1,3 +1,246 @@
+2012-11-16  Philippe Brochard  <pbrochard@common-lisp.net>
+
+	* ChangeLog are now reported in git history.
+
+2012-10-08 Michael Raitza <spacefrogg-clfswm@meterriblecrew.net>
+
+	* src/tools.lisp (n-rotate-list): Implementation ehancements (1/2 GC,
+	2x speed).
+
+2012-10-07  Philippe Brochard  <pbrochard@common-lisp.net>
+
+	* contrib/wallpaper.lisp (wallpaper): Handle no xinerama support
+	case.
+
+	* src/clfswm-internal.lisp (place-frames-from-xinerama-infos):
+	Handle better no xinerama support case.
+
+2012-10-04  Philippe Brochard  <pbrochard@common-lisp.net>
+
+	* contrib/wallpaper.lisp (generate-wallpaper): Force waiting the
+	end of convert.
+	(wallpaper): Open a notify window to wait wallpaper creation.
+
+	* src/clfswm.lisp (main-mode: configuer request): Call
+	*root-size-change* hook on each root size change. This let CLFSWM
+	refresh background wallpaper on root size changes.
+
+	* src/clfswm-internal.lisp (place-frames-from-xinerama-infos):
+	Handle root screen resize on the fly when adding or removing a
+	monitor.
+
+	* src/clfswm-menu.lisp (open-menu): Show key bindings also for
+	menu entry.
+
+2012-10-03  Philippe Brochard  <pbrochard@common-lisp.net>
+
+	* src/clfswm-menu.lisp (open-menu): Show key bindings
+	correspondence in menu for main and second mode.
+
+	* src/clfswm.lisp (main-loop): Reset X error count only once for
+	all loops.
+
+2012-10-02  Philippe Brochard  <pbrochard@common-lisp.net>
+
+	* src/xlib-util.lisp (handle-event): Ignore synchronous xlib
+	window-error and drawable-error in event handler.
+
+	* contrib/clfswm: Dump different image from different installation
+	path.
+
+2012-09-30  Philippe Brochard  <pbrochard@common-lisp.net>
+
+	* src/clfswm.lisp (configure-request handler): Send a
+	configuration notify event in a more precise way.
+
+2012-09-29  Philippe Brochard  <pbrochard@common-lisp.net>
+
+	* src/xlib-util.lisp (with-xlib-protect): Limit X errors ignored
+	to prevent freezes and add a backtrace system.
+
+2012-09-23  Philippe Brochard  <pbrochard@common-lisp.net>
+
+	* src/clfswm.lisp (configure-request handler): To be ICCCM
+	compliant, send a fake configuration notify event only when the
+	window has moved and not when it has been resized.
+
+2012-09-21  Philippe Brochard  <pbrochard@common-lisp.net>
+
+	* Relase 1209
+
+2012-09-09  Philippe Brochard  <pbrochard@common-lisp.net>
+
+	* src/clfswm-internal.lisp
+	(delete-child-and-children-in-all-frames): Remove all children in
+	frames and only close windows.
+
+	* src/*.lisp: Remove uneeded with-xlib-protect.
+
+2012-09-06  Philippe Brochard  <pbrochard@common-lisp.net>
+
+	* contrib/wallpaper.lisp (wallpaper): create/use-background
+	simplification function.
+
+2012-09-05  Philippe Brochard  <pbrochard@common-lisp.net>
+
+	* contrib/wallpaper.lisp: New functionality to handle backgrounds
+	on differents screen heads.
+
+	* contrib/toolbar.lisp (toolbar-adjust-root-size): Takes care of
+	multiple toolbar on the same root edge.
+
+2012-09-04  Philippe Brochard  <pbrochard@common-lisp.net>
+
+	* src/clfswm-internal.lisp (show-all-children): Hide only children
+	hidden by normal windows or frames (but not :dialog,
+	:transient...).
+	(process-new-window): Remove borders for maxsize windows.
+	(show-all-children): Let the choice to always display children or
+	to optimize by hidding children not seen . The first option is
+	better with transparency support (frames behind orther frames are
+	seen). The second one is faster with many children in the same
+	frame (not seen children are not displayed).
+
+2012-08-31  Philippe Brochard  <pbrochard@common-lisp.net>
+
+	* src/xlib-util.lisp (with-xlib-protect): Handle all Xlib errors
+	for better code protection.
+
+2012-08-28  Philippe Brochard  <pbrochard@common-lisp.net>
+
+	* src/clfswm-expose-mode.lisp (expose-query-key-press-hook): Add
+	an option to immediately select child if they can be directly
+	accessed.
+
+2012-08-25  Philippe Brochard  <pbrochard@common-lisp.net>
+
+	* contrib/volume-mode.lisp: Add mouse buttons actions in volume
+	mode. Add a volume button toolbar module.
+
+2012-08-24  Philippe Brochard  <pbrochard@common-lisp.net>
+
+	* contrib/mpd.lisp: New toolbar modules (available only if
+	toolbar.lisp is loaded).
+	Add a small parameter for toolbar modules useful with vertical
+	toolbars.
+
+2012-08-21  Philippe Brochard  <pbrochard@common-lisp.net>
+
+	* contrib/reboot-halt.lisp: Add configuration command for system
+	actions.
+
+	* contrib/toolbar.lisp (toggle-toolbar-hide-state): New function.
+
+2012-08-20  Philippe Brochard  <pbrochard@common-lisp.net>
+
+	* src/clfswm-internal.lisp (add-in-never-managed-window-list): New
+	function.
+
+2012-08-20  Philipp Kroos  <philipp.kroos@t-online.de>
+
+	* src/clfswm-placement.lisp (here-placement): Evaluates to current
+	position of pointer.
+
+2012-08-20  Philipp Kroos  <philipp.kroos@t-online.de>
+
+	* contrib/toolbar.lisp: Add an expose-mode-button-module.
+
+2012-08-19  Philippe Brochard  <pbrochard@common-lisp.net>
+
+	* contrib/toolbar.lisp (remove-toolbar): New function.
+
+2012-08-18  Philippe Brochard  <pbrochard@common-lisp.net>
+
+	* contrib/toolbar.lisp: Add configurable colors in toolbar
+	modules.
+
+2012-08-16  Philippe Brochard  <pbrochard@common-lisp.net>
+
+	* src/tools.lisp: Factorize system usage information collection.
+	(start-system-poll): Use a lock file instead of a local variable.
+
+	* contrib/toolbar.lisp: Add memory, cpu and battery usage module
+	with a poll methode. More responsive but up to date every 10s by
+	default.
+
+2012-08-15  Philippe Brochard  <pbrochard@common-lisp.net>
+
+	* contrib/toolbar.lisp: Add a clickable label module for toolbar.
+	Add a clickable entry to open the CLFSWM main menu.
+	Add memory, cpu and battery usage module.
+
+	* src/clfswm-menu.lisp (open-menu): Prevent to reopen an opened
+	menu. Fixe a but with negative selected-item.
+
+2012-08-14  Philippe Brochard  <pbrochard@common-lisp.net>
+
+	* src/clfswm-util.lisp (eval-from-query-string): Show a notify
+	window when updating symobls list for REPL completion.
+	(show-current-root): New function and configuration menu to
+	display a message on the current root.
+
+	* contrib/toolbar.lisp: Add arguments in toolbar modules.
+
+	* src/xlib-util.lisp (event-hook-name): Intern hook name symbol
+	in :clfswm package.
+
+2012-08-13  Philippe Brochard  <pbrochard@common-lisp.net>
+
+	* contrib/toolbar.lisp (toolbar-module-text): Print a formatted
+	text at module position centered in toolbar.
+
+	* src/xlib-util.lisp (optimize-event-hook): Remove unused event
+	hooks.
+
+2012-08-12  Philippe Brochard  <pbrochard@common-lisp.net>
+
+	* contrib/toolbar.lisp: End of toolbar framework.
+	(list-toolbar-modules): Add a list toolbar modules function.
+
+2012-08-03  Philippe Brochard  <pbrochard@common-lisp.net>
+
+	* src/clfswm-internal.lisp (show-child): Show unmanaged windows
+	on (maybe) current child in all roots.
+
+	* src/clfswm-util.lisp (find-child-under-mouse-in-child-tree):
+	Handle children from all roots instead of from  *root-frame*.
+
+2012-07-23  Philippe Brochard  <pbrochard@common-lisp.net>
+
+	* src/clfswm-expose-mode.lisp: New expose mode based on standard
+	query input.
+
+2012-06-27  Philippe Brochard  <pbrochard@common-lisp.net>
+
+	* src/clfswm-util.lisp (eval-from-query-string): Add completion
+	for eval for query string.
+
+2012-06-26  Philippe Brochard  <pbrochard@common-lisp.net>
+
+	* src/clfswm-query.lisp: Add completion for shell commands.
+
+2012-06-18  Philippe Brochard  <pbrochard@common-lisp.net>
+
+	* src/clfswm-placement.lisp: Each child can have its own border
+	size. New binding to change the child border size on the fly.
+
+2012-06-08  Philippe Brochard  <pbrochard@common-lisp.net>
+
+	* src/tools.lisp (process-timers): Call get-internal-real-time
+	only once for all times.
+
+2012-06-07  Philippe Brochard  <pbrochard@common-lisp.net>
+
+	* contrib/toolbar.lisp (define-toolbar-hooks): Add auto-hide
+	clickable toolbar.
+	(define-toolbar-hooks): Add auto-hide toolbar (show/hide on mouse
+	motion event).
+
+2012-06-06  Philippe Brochard  <pbrochard@common-lisp.net>
+
+	* src/xlib-util.lisp (handle-event): Add an additional hook event
+	system to handle events in contrib code.
+
 2012-06-03  Philippe Brochard  <pbrochard@common-lisp.net>
 
 	* src/clfswm-placement.lisp: Add an optional border size in all

@@ -5,7 +5,7 @@
 ;;; Documentation: Main functions
 ;;; --------------------------------------------------------------------------
 ;;;
-;;; (C) 2011 Philippe Brochard <hocwp@free.fr>
+;;; (C) 2012 Philippe Brochard <pbrochard@common-lisp.net>
 ;;;
 ;;; This program is free software; you can redistribute it and/or modify
 ;;; it under the terms of the GNU General Public License as published by
@@ -43,72 +43,90 @@
 			      (modifiers->state *default-modifiers*)
 			      window root-x root-y *fun-press*)))
 
+
 (define-handler main-mode :configure-request (stack-mode window x y width height border-width value-mask)
-  (labels ((has-x (mask) (= 1 (logand mask 1)))
-	   (has-y (mask) (= 2 (logand mask 2)))
-	   (has-w (mask) (= 4 (logand mask 4)))
-	   (has-h (mask) (= 8 (logand mask 8)))
-	   (has-bw (mask) (= 16 (logand mask 16)))
-	   (has-stackmode (mask) (= 64 (logand mask 64)))
-	   (adjust-from-request ()
-	     (when (has-x value-mask) (setf (x-drawable-x window) x))
-	     (when (has-y value-mask) (setf (x-drawable-y window) y))
-	     (when (has-h value-mask) (setf (x-drawable-height window) height))
-	     (when (has-w value-mask) (setf (x-drawable-width window) width))))
-    (xlib:with-state (window)
-      (when (has-bw value-mask)
-	(setf (x-drawable-border-width window) border-width))
-      (let ((current-root (find-current-root)))
-        (if (find-child window current-root)
-            (let ((parent (find-parent-frame window current-root)))
-              (if (and parent (managed-window-p window parent))
-                  (adapt-child-to-parent window parent)
-                  (adjust-from-request)))
-            (adjust-from-request)))
-      (send-configuration-notify window (x-drawable-x window) (x-drawable-y window)
-				 (x-drawable-width window) (x-drawable-height window)
-				 (x-drawable-border-width window))
-      (when (has-stackmode value-mask)
-	(case stack-mode
-	  (:above
-	   (unless (null-size-window-p window)
-	     (when (or (child-equal-p window (current-child))
-		       (is-in-current-child-p window))
-	       (raise-window window)
-	       (focus-window window)
-	       (focus-all-children window (find-parent-frame window (find-current-root)))))))))))
+  (let ((change nil))
+    (labels ((has-x (mask) (= 1 (logand mask 1)))
+             (has-y (mask) (= 2 (logand mask 2)))
+             (has-w (mask) (= 4 (logand mask 4)))
+             (has-h (mask) (= 8 (logand mask 8)))
+             (has-bw (mask) (= 16 (logand mask 16)))
+             (has-stackmode (mask) (= 64 (logand mask 64)))
+             (adjust-from-request ()
+               (when (has-x value-mask) (setf (x-drawable-x window) x
+                                              change :moved))
+               (when (has-y value-mask) (setf (x-drawable-y window) y
+                                              change :moved))
+               (when (has-h value-mask) (setf (x-drawable-height window) height
+                                              change :resized))
+               (when (has-w value-mask) (setf (x-drawable-width window) width
+                                              change :resized))))
+      (when window
+        (xlib:with-state (window)
+          (let ((current-root (find-current-root)))
+            (if (find-child window current-root)
+                (let ((parent (find-parent-frame window current-root)))
+                  (if (and parent (managed-window-p window parent))
+                      (setf change (adapt-child-to-parent window parent))
+                      (adjust-from-request)))
+                (adjust-from-request)))
+          (when (has-bw value-mask)
+            (setf (x-drawable-border-width window) border-width
+                  change :resized))
+          (when (has-stackmode value-mask)
+            (case stack-mode
+              (:above
+               (unless (null-size-window-p window)
+                 (when (or (child-equal-p window (current-child))
+                           (is-in-current-child-p window))
+                   (setf change (or change :moved))
+                   (raise-window window)
+                   (focus-window window)
+                   (focus-all-children window (find-parent-frame window (find-current-root)))))))))
+        (unless (eq change :resized)
+          ;; To be ICCCM compliant, send a fake configuration notify event only when
+          ;; the window has moved and not when it has been resized or the border width has changed.
+          (send-configuration-notify window (x-drawable-x window) (x-drawable-y window)
+                                     (x-drawable-width window) (x-drawable-height window)
+                                     (x-drawable-border-width window)))))))
 
 
 (define-handler main-mode :map-request (window send-event-p)
   (unless send-event-p
-    (unhide-window window)
-    (process-new-window window)
-    (map-window window)
-    (unless (null-size-window-p window)
-      (multiple-value-bind (never-managed raise)
-	  (never-managed-window-p window)
-	(unless (and never-managed raise)
-	  (show-all-children))))))
+    (unless (find-child window *root-frame*)
+      (unhide-window window)
+      (process-new-window window)
+      (map-window window)
+      (unless (null-size-window-p window)
+        (multiple-value-bind (never-managed raise)
+            (never-managed-window-p window)
+          (unless (and never-managed raise)
+            (show-all-children)))))))
+
 
 
 (define-handler main-mode :unmap-notify (send-event-p event-window window)
   (unless (and (not send-event-p)
 	       (not (xlib:window-equal window event-window)))
     (when (find-child window *root-frame*)
-      (clean-windows-in-all-frames)
-      (show-all-children)
-      (delete-child-in-all-frames window)
-      (show-all-children))))
+      (setf (window-state window) +withdrawn-state+)
+      (xlib:unmap-window window)
+      (remove-child-in-all-frames window)
+      (unless (null-size-window-in-frame *root-frame*)
+        (show-all-children)))))
+
+
+
 
 
 (define-handler main-mode :destroy-notify (send-event-p event-window window)
   (unless (or send-event-p
 	      (xlib:window-equal window event-window))
     (when (find-child window *root-frame*)
-      (clean-windows-in-all-frames)
-      (show-all-children)
       (delete-child-in-all-frames window)
-      (show-all-children))))
+      (unless (null-size-window-in-frame *root-frame*)
+        (show-all-children))
+      (xlib:destroy-window window))))
 
 (define-handler main-mode :enter-notify  (window root-x root-y)
   (unless (and (> root-x (- (xlib:screen-width *screen*) 3))
@@ -134,8 +152,14 @@
   (awhen (find-frame-window window)
     (display-frame-info it)))
 
-(define-handler main-mode :resize-request (window)
-  (dbg :resize-request window))
+
+(define-handler main-mode :configure-notify (window)
+  (when (child-equal-p window *root*)
+    (unless (null-size-window-in-frame *root-frame*)
+      (unless (eql (place-frames-from-xinerama-infos) :update)
+        (finish-configuring-root))
+      (show-all-children)
+      (call-hook *root-size-change-hook*))))
 
 
 (defun error-handler (display error-key &rest key-vals &key asynchronous &allow-other-keys)
@@ -144,25 +168,29 @@
     ;; ignore asynchronous window errors
     ((and asynchronous
           (find error-key '(xlib:window-error xlib:drawable-error xlib:match-error)))
-     (format t "Ignoring XLib asynchronous error: ~s~%" error-key))
+     #+:xlib-debug (format t "~&Ignoring XLib asynchronous error: ~s~%" error-key))
     ((eq error-key 'xlib:access-error)
-     (write-line "Another window manager is running.")
+     (write-line "~&Another window manager is running.")
      (throw 'exit-clfswm nil))
-     ;; all other asynchronous errors are printed.
-     (asynchronous
-      (format t "Caught Asynchronous X Error: ~s ~s" error-key key-vals))
-     (t
-      (apply 'error error-key :display display :error-key error-key key-vals))))
+    ;; all other asynchronous errors are printed.
+    (asynchronous
+     #+:xlib-debug (format t "~&Caught Asynchronous X Error: ~s ~s" error-key key-vals))
+    ;;((find error-key '(xlib:window-error xlib:drawable-error xlib:match-error))
+    ;; (format t "~&Ignoring Xlib error: ~S ~S~%" error-key key-vals))
+    (t
+     (apply 'error error-key :display display :error-key error-key key-vals))))
 
 
 (defun main-loop ()
   (loop
-     (call-hook *loop-hook*)
-     (process-timers)
-     (with-xlib-protect ()
+     (with-xlib-protect (:main-loop nil)
+       (call-hook *loop-hook*)
+       (process-timers)
        (when (xlib:event-listen *display* *loop-timeout*)
-	 (xlib:process-event *display* :handler #'handle-event))
-       (xlib:display-finish-output *display*))))
+         (xlib:process-event *display* :handler #'handle-event))
+       (xlib:display-finish-output *display*)
+       (setf *x-error-count* 0))))
+
 
 
 
@@ -175,15 +203,15 @@
 
 
 (defun default-init-hook ()
-  (let ((frame (add-frame (create-frame :name "Default"
-                                        :layout nil :x 0.05 :y 0.05
-                                        :w 0.9 :h 0.9)
-                          *root-frame*)))
-    (setf (current-child) frame)))
+  (place-frames-from-xinerama-infos)
+  (finish-configuring-root))
 
 
 (defun init-display ()
   (reset-root-list)
+  (reset-last-head-size)
+  (reset-bind-or-jump-slots)
+  (reset-open-menu)
   (fill-handle-event-fun-symbols)
   (assoc-keyword-handle-event 'main-mode)
   (setf *screen* (first (xlib:display-roots *display*))
@@ -194,7 +222,8 @@
 					    :height (xlib:screen-height *screen*)
 					    :depth (xlib:screen-root-depth *screen*)
 					    :drawable *root*)
-	*in-second-mode* nil)
+	*in-second-mode* nil
+        *x-error-count* 0)
   (store-root-background)
   (init-modifier-list)
   (xgrab-init-pointer)
@@ -206,25 +235,26 @@
   (dbg *display*)
   (setf (xlib:window-event-mask *root*) (xlib:make-event-mask :substructure-redirect
 							      :substructure-notify
+                                                              :structure-notify
 							      :property-change
-                                                              :resize-redirect
+                                                              ;;:resize-redirect
 							      :exposure
 							      :button-press
 							      :button-release
 							      :pointer-motion))
+  (xlib:display-finish-output *display*)
   ;;(intern-atoms *display*)
   (netwm-set-properties)
   (xlib:display-force-output *display*)
   (setf *child-selection* nil)
   (setf *root-frame* (create-frame :name "Root" :number 0)
-        *current-root* *root-frame*  ;;; PHIL: TO REMOVE
 	(current-child) *root-frame*)
   (call-hook *init-hook*)
-  (unsure-at-least-one-root)
   (process-existing-windows *screen*)
   (show-all-children)
   (grab-main-keys)
-  (xlib:display-finish-output *display*))
+  (xlib:display-finish-output *display*)
+  (optimize-event-hook))
 
 
 
@@ -258,10 +288,8 @@
 
 
 (defun main-unprotected (&key (display (or (getenv "DISPLAY") ":0")) protocol
-			 (base-dir (asdf:system-source-directory :clfswm))
 			 (read-conf-file-p t) (alternate-conf nil)
 			 error-msg)
-  (setf *contrib-dir* (merge-pathnames "contrib/" base-dir))
   (conf-file-name alternate-conf)
   (when read-conf-file-p
     (read-conf-file))
@@ -287,19 +315,20 @@
   (catch 'exit-main-loop
       (unwind-protect
 	   (main-loop)
-	(ungrab-main-keys)
-	(xlib:destroy-window *no-focus-window*)
-	(xlib:free-pixmap *pixmap-buffer*)
-        (destroy-all-frames-window)
-	(call-hook *close-hook*)
-	(xlib:close-display *display*)
-	#+:event-debug
-	(format t "~2&Unhandled events: ~A~%" *unhandled-events*))))
+        (progn
+          (ungrab-main-keys)
+          (xlib:destroy-window *no-focus-window*)
+          (xlib:free-pixmap *pixmap-buffer*)
+          (destroy-all-frames-window)
+          (call-hook *close-hook*)
+          (clear-event-hooks)
+          (xlib:close-display *display*)
+          #+:event-debug
+          (format t "~2&Unhandled events: ~A~%" *unhandled-events*)))))
 
 
 
 (defun main (&key (display (or (getenv "DISPLAY") ":0")) protocol
-	     (base-dir (asdf:system-source-directory :clfswm))
 	     (read-conf-file-p t)
 	     (alternate-conf nil))
   (let (error-msg)
@@ -308,7 +337,7 @@
 	 (handler-case
 	     (if *other-window-manager*
 		 (run-other-window-manager)
-		 (main-unprotected :display display :protocol protocol :base-dir base-dir
+		 (main-unprotected :display display :protocol protocol
 				   :read-conf-file-p read-conf-file-p
 				   :alternate-conf alternate-conf
 				   :error-msg error-msg))

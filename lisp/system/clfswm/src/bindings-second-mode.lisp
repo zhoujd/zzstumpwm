@@ -7,7 +7,7 @@
 ;;; Note: Mod-1 is the Alt or Meta key, Mod-2 is the Numlock key.
 ;;; --------------------------------------------------------------------------
 ;;;
-;;; (C) 2011 Philippe Brochard <hocwp@free.fr>
+;;; (C) 2012 Philippe Brochard <pbrochard@common-lisp.net>
 ;;;
 ;;; This program is free software; you can redistribute it and/or modify
 ;;; it under the terms of the GNU General Public License as published by
@@ -51,8 +51,8 @@
   "Open the action by number menu"
   (open-menu (find-menu 'action-by-number-menu)))
 
-(defun open-frame-pack-menu ()
-  "Open the frame pack/fill/resize menu"
+(defun open-frame-movement-menu ()
+  "Open the frame movement menu (pack/fill/resize)"
   (open-menu (find-menu 'frame-movement-menu)))
 
 (defun open-root-menu ()
@@ -96,7 +96,7 @@
   (define-second-key ("w") 'open-window-menu)
   (define-second-key ("n") 'open-action-by-name-menu)
   (define-second-key ("u") 'open-action-by-number-menu)
-  (define-second-key ("p") 'open-frame-pack-menu)
+  (define-second-key ("p") 'open-frame-movement-menu)
   (define-second-key ("r") 'open-root-menu)
   (define-second-key ("c") 'open-child-menu)
   (define-second-key ("x") 'update-layout-managed-children-position)
@@ -174,9 +174,8 @@
     "exec xterm -e emacsremote")
   (define-second-key ("F10" :mod-1) 'fast-layout-switch)
   (define-second-key ("F10" :shift :control) 'toggle-show-root-frame)
-  (define-second-key ("F10") 'expose-windows-current-child-mode)
-  (define-second-key ("F10" :control) 'expose-windows-mode)
-  (define-second-key ("F10" :control :shift) 'expose-all-windows-mode)
+  (define-second-key ("F10") 'expose-windows-mode)
+  (define-second-key ("F10" :control) 'expose-all-windows-mode)
   (define-second-key ("L2" :shift) 'show-all-frames-info-key)
   (define-second-key ("L2" :shift :mod-1) 'show-all-frames-info)
   ;; Bind or jump functions
