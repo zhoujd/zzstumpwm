@@ -5,7 +5,7 @@
 ;;; Documentation: Volume mode
 ;;; --------------------------------------------------------------------------
 ;;;
-;;; (C) 2011 Desmond O. Chang <dochang@gmail.com>
+;;; (C) 2012 Desmond O. Chang <dochang@gmail.com>
 ;;;
 ;;; This program is free software; you can redistribute it and/or modify
 ;;; it under the terms of the GNU General Public License as published by
@@ -63,6 +63,8 @@
 (format t "Loading Volume mode code... ")
 
 (defparameter *volume-keys* nil)
+(defparameter *volume-mouse* nil)
+
 (defconfig *volume-mode-placement* 'bottom-middle-root-placement
   'Placement "Volume mode window placement")
 
@@ -104,7 +106,10 @@
   'Volume-mode "Command to start an external mixer program")
 
 (define-init-hash-table-key *volume-keys* "Volume mode keys")
+(define-init-hash-table-key *volume-mouse* "Volume mode mouse button")
+
 (define-define-key "volume" *volume-keys*)
+(define-define-mouse "volume-mouse" *volume-mouse*)
 
 (add-hook *binding-hook* 'init-*volume-keys*)
 
@@ -128,6 +133,11 @@
   (define-volume-key ("Escape") 'leave-volume-mode)
   (define-volume-key ("g" :control) 'leave-volume-mode)
   (define-volume-key ("e") 'run-external-volume-mixer)
+  (define-volume-mouse (1) 'leave-volume-mode)
+  (define-volume-mouse (2) 'run-external-volume-mixer)
+  (define-volume-mouse (3) 'volume-mute)
+  (define-volume-mouse (4) 'volume-raise)
+  (define-volume-mouse (5) 'volume-lower)
   ;;; Main mode
   (define-main-key ("XF86AudioMute") 'volume-mute)
   (define-main-key ("XF86AudioLowerVolume") 'volume-lower)
@@ -159,9 +169,11 @@
                       text))
   (copy-pixmap-buffer *volume-window* *volume-gc*))
 
-(defun leave-volume-mode ()
+(defun leave-volume-mode (&optional window root-x root-y)
   "Leave the volume mode"
-  (throw 'exit-volume-loop nil))
+  (declare (ignore window root-x root-y))
+  (when *in-volume-mode*
+    (throw 'exit-volume-loop nil)))
 
 (defun update-volume-mode ()
   (draw-volume-mode-window)
@@ -188,7 +200,7 @@
                                               :border (when (plusp *volume-border-size*)
                                                         (get-color *volume-border*))
                                               :colormap (xlib:screen-default-colormap *screen*)
-                                              :event-mask '(:exposure :key-press))
+                                              :event-mask '(:exposure :key-press :button-press))
           *volume-gc* (xlib:create-gcontext :drawable *volume-window*
                                             :foreground (get-color *volume-foreground*)
                                             :background (get-color *volume-background*)
@@ -204,6 +216,8 @@
     (leave-volume-mode)))
 
 (defun volume-leave-function ()
+  (setf *in-volume-mode* nil
+        *leave-volume-mode* nil)
   (when *volume-gc*
     (xlib:free-gcontext *volume-gc*))
   (when *volume-window*
@@ -214,31 +228,23 @@
   (erase-timer :volume-mode-timer)
   (setf *volume-window* nil
         *volume-gc* nil
-        *volume-font* nil
-        *in-volume-mode* nil
-        *leave-volume-mode* nil))
+        *volume-font* nil))
 
 (define-handler volume-mode :key-press (code state)
   (funcall-key-from-code *volume-keys* code state))
 
+(define-handler volume-mode :button-press (code state window root-x root-y)
+  (funcall-button-from-code *volume-mouse* code state window root-x root-y *fun-press*))
+
+
 (defun volume-mode ()
-  (let ((grab-keyboard-p (xgrab-keyboard-p))
-        (grab-pointer-p (xgrab-pointer-p)))
-    (xgrab-pointer *root* 92 93)
-    (unless grab-keyboard-p
-      (ungrab-main-keys)
-      (xgrab-keyboard *root*))
+  (with-grab-keyboard-and-pointer (92 93 66 67 t)
     (generic-mode 'volume-mode 'exit-volume-loop
                   :enter-function 'volume-enter-function
                   :loop-function 'volume-loop-function
                   :leave-function 'volume-leave-function
-                  :original-mode '(main-mode))
-    (unless grab-keyboard-p
-      (xungrab-keyboard)
-      (grab-main-keys))
-    (if grab-pointer-p
-        (xgrab-pointer *root* 66 67)
-        (xungrab-pointer))))
+                  :original-mode '(main-mode))))
+
 
 (defun volume-set (fn)
   (when fn
@@ -251,20 +257,45 @@
 (defvar *volume-lower-function* nil)
 (defvar *volume-raise-function* nil)
 
-(defun volume-mute ()
+(defun volume-mute (&optional window root-x root-y)
   "Toggle mute."
+  (declare (ignore window root-x root-y))
   (volume-set *volume-mute-function*))
 
-(defun volume-lower ()
+(defun volume-lower (&optional window root-x root-y)
   "Lower volume."
+  (declare (ignore window root-x root-y))
   (volume-set *volume-lower-function*))
 
-(defun volume-raise ()
+(defun volume-raise (&optional window root-x root-y)
   "Raise volume."
+  (declare (ignore window root-x root-y))
   (volume-set *volume-raise-function*))
 
-(defun run-external-volume-mixer ()
+(defun run-external-volume-mixer (&optional window root-x root-y)
   "Start an external volume mixer"
+  (declare (ignore window root-x root-y))
   (do-shell *volume-external-mixer-cmd*))
+
+
+#+:clfswm-toolbar
+(progn
+  (define-toolbar-color volume-mode-button "Volume mode color")
+
+  (define-toolbar-module (volume-mode-button (text "Vol"))
+    "Volume mode button"
+    (with-set-toolbar-module-rectangle (module)
+      (toolbar-module-text toolbar module (tb-color volume-mode-button) text)))
+
+  (define-toolbar-module-click (volume-mode-button text)
+    "Volume mode"
+    (declare (ignore text module))
+
+    (if *in-volume-mode*
+        (funcall-button-from-code *volume-mouse* code state (toolbar-window toolbar)
+                                  root-x root-y *fun-press*)
+        (volume-mode))))
+
+
 
 (format t "done~%")

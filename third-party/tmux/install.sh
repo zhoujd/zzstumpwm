@@ -47,4 +47,6 @@ sudo make install
 
 popd
 
+rm -rf build
+
 echo "build tmux end ..."

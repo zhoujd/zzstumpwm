@@ -7,7 +7,7 @@
 ;;; Note: Mod-1 is the Alt or Meta key, Mod-2 is the Numlock key.
 ;;; --------------------------------------------------------------------------
 ;;;
-;;; (C) 2011 Philippe Brochard <hocwp@free.fr>
+;;; (C) 2012 Philippe Brochard <pbrochard@common-lisp.net>
 ;;;
 ;;; This program is free software; you can redistribute it and/or modify
 ;;; it under the terms of the GNU General Public License as published by
@@ -66,9 +66,8 @@
   (define-main-key ("Home" :mod-1 :shift) 'switch-and-select-root-frame)
   (define-main-key ("F10" :mod-1) 'fast-layout-switch)
   (define-main-key ("F10" :shift :control) 'toggle-show-root-frame)
-  (define-main-key ("F10") 'expose-windows-current-child-mode)
-  (define-main-key ("F10" :control) 'expose-windows-mode)
-  (define-main-key ("F10" :control :shift) 'expose-all-windows-mode)
+  (define-main-key ("F10") 'expose-windows-mode)
+  (define-main-key ("F10" :control) 'expose-all-windows-mode)
   (define-main-key ("L2" :control) 'present-clfswm-terminal)
   (define-main-key ("L2" :shift) 'show-all-frames-info-key)
   (define-main-key ("L2" :shift :mod-1) 'show-all-frames-info)

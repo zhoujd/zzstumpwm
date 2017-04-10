@@ -5,7 +5,7 @@
 ;;; Documentation: Query utility
 ;;; --------------------------------------------------------------------------
 ;;;
-;;; (C) 2011 Philippe Brochard <hocwp@free.fr>
+;;; (C) 2012 Philippe Brochard <pbrochard@common-lisp.net>
 ;;;
 ;;; This program is free software; you can redistribute it and/or modify
 ;;; it under the terms of the GNU General Public License as published by
@@ -32,12 +32,22 @@
 
 (defparameter *query-history* (list ""))
 (defparameter *query-complet-list* nil)
+(defparameter *query-completion-state* nil)
 
 (defparameter *query-message* nil)
 (defparameter *query-string* nil)
 (defparameter *query-pos* nil)
 (defparameter *query-return* nil)
 
+
+(defun add-char-in-query-string (char)
+  (setf *query-string* (concatenate 'string
+                                    (when (<= *query-pos* (length *query-string*))
+                                      (subseq *query-string* 0 *query-pos*))
+                                    (string char)
+                                    (when (< *query-pos* (length *query-string*))
+                                      (subseq *query-string* *query-pos*))))
+  (incf *query-pos*))
 
 
 (defun query-show-paren (orig-string pos dec)
@@ -95,20 +105,29 @@
 (add-hook *binding-hook* 'init-*query-keys*)
 
 
+
 (defun query-find-complet-list ()
-  (remove-if-not (lambda (x)
-		   (zerop (or (search *query-string* x :test #'string-equal) -1)))
-		 *query-complet-list*))
+  (let* ((pos (1+ (or (position-if-not #'extented-alphanumericp *query-string*
+                                       :end *query-pos* :from-end t)
+                      -1)))
+         (str (subseq *query-string* pos *query-pos*)))
+    (when (or (> (length str) (1- *query-min-complet-char*))
+              (< (length *query-complet-list*) *query-max-complet-length*))
+      (values (string-match str *query-complet-list*) pos))))
 
 
 (defun query-print-string ()
   (let ((dec (min 0 (- (- (x-drawable-width *query-window*) 10)
-		       (+ 10 (* *query-pos* (xlib:max-char-width *query-font*)))))))
+		       (+ 10 (* *query-pos* (xlib:max-char-width *query-font*))))))
+        (complet (if *query-completion-state*
+                     (first *query-completion-state*)
+                     (query-find-complet-list))))
     (clear-pixmap-buffer *query-window* *query-gc*)
     (setf (xlib:gcontext-foreground *query-gc*) (get-color *query-message-color*))
     (xlib:draw-glyphs *pixmap-buffer* *query-gc* 5 (+ (xlib:max-char-ascent *query-font*) 5)
 		      (format nil "~A ~{~A~^, ~}" *query-message*
-			      (query-find-complet-list)))
+			      (if (< (length complet) *query-max-complet-length*)
+                                  complet nil)))
     (when (< *query-pos* 0)
       (setf *query-pos* 0))
     (when (> *query-pos* (length *query-string*))
@@ -177,8 +196,11 @@
 
   (defun query-backspace-word ()
     "Delete a word backward"
-    (generic-backspace (or (position #\Space *query-string* :from-end t :end *query-pos*) 0))))
+    (generic-backspace (or (position #\Space *query-string* :from-end t :end *query-pos*) 0)))
 
+  (defun query-backspace-clear ()
+    "Delete backwards until beginning"
+    (generic-backspace 0)))
 
 (labels ((generic-delete (del-pos)
 	   (when (<= del-pos (length *query-string*))
@@ -251,13 +273,54 @@
 
 
 (defun query-mode-complet ()
-  (setf *query-string* (find-common-string *query-string* (query-find-complet-list)))
-  (let ((complet (query-find-complet-list)))
-    (when (= (length complet) 1)
-      (setf *query-string* (first complet))))
-  (query-end))
+  (multiple-value-bind (complet pos)
+      (query-find-complet-list)
+    (when complet
+      (if (= (length complet) 1)
+          (setf *query-string* (concatenate 'string
+                                            (subseq *query-string* 0 pos)
+                                            (first complet) " "
+                                            (subseq *query-string* *query-pos*))
+                *query-pos* (+ pos (length (first complet)) 1))
+          (let ((common (find-common-string (subseq *query-string* pos *query-pos*) complet)))
+            (when common
+              (setf *query-string* (concatenate 'string
+                                                (subseq *query-string* 0 pos)
+                                                common
+                                                (subseq *query-string* *query-pos*))
+                    *query-pos* (+ pos (length common)))))))))
 
+(defun query-mode-complete-suggest ()
+  (flet ((complete (completions completion-pos pos initial-pos)
+	   (when completions
+	     (let ((completion (if (equal completion-pos (list-length completions))
+				   (subseq *query-string* pos initial-pos)
+				   (nth completion-pos completions))))
+	       (setf *query-string* (concatenate 'string
+						 (subseq *query-string* 0 pos)
+						 completion
+						 (subseq *query-string* *query-pos*))
+		     *query-pos* (+ pos (length completion))))
+	     (setf *query-completion-state*
+		   (list completions completion-pos pos initial-pos)))))
+    (if *query-completion-state*
+	(complete (first *query-completion-state*)
+		  (mod (1+ (second *query-completion-state*))
+		       (1+ (list-length (first *query-completion-state*))))
+		  (third *query-completion-state*)
+		  (fourth *query-completion-state*))
+	(multiple-value-bind (comps pos) (query-find-complet-list)
+	  (complete comps 0 pos *query-pos*)))))
 
+(add-hook *query-key-press-hook* 'query-mode-complete-suggest-reset)
+
+(defun query-mode-complete-suggest-reset (code state)
+  "Reset the query-completion-state if another key was pressed than a key
+that calls query-mode-complete-suggest."
+  (unless (equal 'query-mode-complete-suggest
+		 (first (find-key-from-code *query-keys* code state)))
+    (setf *query-completion-state* nil)
+    (query-print-string)))
 
 (add-hook *binding-hook* 'set-default-query-keys)
 
@@ -268,17 +331,37 @@
   (define-query-key ("Tab") 'query-mode-complet)
   (define-query-key ("BackSpace") 'query-backspace)
   (define-query-key ("BackSpace" :control) 'query-backspace-word)
+  (define-query-key ("BackSpace" :control :shift) 'query-backspace-clear)
+  (define-query-key ("u" :control) 'query-backspace-clear)
   (define-query-key ("Delete") 'query-delete)
   (define-query-key ("Delete" :control) 'query-delete-word)
   (define-query-key ("Home") 'query-home)
+  (define-query-key ("a" :control) 'query-home)
   (define-query-key ("End") 'query-end)
+  (define-query-key ("e" :control) 'query-end)
   (define-query-key ("Left") 'query-left)
   (define-query-key ("Left" :control) 'query-left-word)
   (define-query-key ("Right") 'query-right)
   (define-query-key ("Right" :control) 'query-right-word)
   (define-query-key ("Up") 'query-previous-history)
   (define-query-key ("Down") 'query-next-history)
-  (define-query-key ("k" :control) 'query-delete-eof))
+  (define-query-key ("k" :control) 'query-delete-eof)
+  (define-query-key ("KP_Insert" :mod-2) 'add-char-in-query-string "0")
+  (define-query-key ("KP_End" :mod-2) 'add-char-in-query-string "1")
+  (define-query-key ("KP_Down" :mod-2) 'add-char-in-query-string "2")
+  (define-query-key ("KP_Page_Down" :mod-2) 'add-char-in-query-string "3")
+  (define-query-key ("KP_Left" :mod-2) 'add-char-in-query-string "4")
+  (define-query-key ("KP_Begin" :mod-2) 'add-char-in-query-string "5")
+  (define-query-key ("KP_Right" :mod-2) 'add-char-in-query-string "6")
+  (define-query-key ("KP_Home" :mod-2) 'add-char-in-query-string "7")
+  (define-query-key ("KP_Up" :mod-2) 'add-char-in-query-string "8")
+  (define-query-key ("KP_Page_Up" :mod-2) 'add-char-in-query-string "9")
+  (define-query-key ("KP_Delete" :mod-2) 'add-char-in-query-string ".")
+  (define-query-key ("KP_Add" :mod-2) 'add-char-in-query-string "+")
+  (define-query-key ("KP_Subtract" :mod-2) 'add-char-in-query-string "-")
+  (define-query-key ("KP_Multiply" :mod-2) 'add-char-in-query-string "*")
+  (define-query-key ("KP_Divide" :mod-2) 'add-char-in-query-string "/")
+  (define-query-key ("KP_Enter" :mod-2) 'leave-query-mode-valid))
 
 
 
@@ -287,46 +370,34 @@
 	 (keysym (keycode->keysym code modifiers))
 	 (char (xlib:keysym->character *display* keysym state)))
     (when (and char (characterp char))
-      (setf *query-string* (concatenate 'string
-					(when (<= *query-pos* (length *query-string*))
-					  (subseq *query-string* 0 *query-pos*))
-					(string char)
-					(when (< *query-pos* (length *query-string*))
-					  (subseq *query-string* *query-pos*))))
-      (incf *query-pos*))))
+      (add-char-in-query-string char))))
 
 
 
 (define-handler query-mode :key-press (code state)
   (unless (funcall-key-from-code *query-keys* code state)
     (add-in-query-string code state))
-  (query-print-string))
+  (query-print-string)
+  (call-hook *query-key-press-hook* code state))
+
+(define-handler query-mode :button-press (code state x y)
+  (call-hook *query-button-press-hook* code state x y))
 
 
 
 (defun  query-string (message &optional (default "") complet-list)
   "Query a string from the keyboard. Display msg as prompt"
-  (let ((grab-keyboard-p (xgrab-keyboard-p))
-	(grab-pointer-p (xgrab-pointer-p)))
-    (setf *query-message* message
-	  *query-string* default
-	  *query-pos* (length default)
-	  *query-complet-list* complet-list)
-    (xgrab-pointer *root* 92 93)
-    (unless grab-keyboard-p
-      (ungrab-main-keys)
-      (xgrab-keyboard *root*))
+  (setf *query-message* message
+        *query-string* default
+        *query-pos* (length default)
+        *query-complet-list* complet-list
+	*query-completion-state* nil)
+  (with-grab-keyboard-and-pointer (92 93 66 67 t)
     (generic-mode 'query-mode 'exit-query-loop
 		  :enter-function #'query-enter-function
 		  :loop-function #'query-loop-function
 		  :leave-function #'query-leave-function
-		  :original-mode '(main-mode))
-    (unless grab-keyboard-p
-      (xungrab-keyboard)
-      (grab-main-keys))
-    (if grab-pointer-p
-	(xgrab-pointer *root* 66 67)
-	(xungrab-pointer)))
+		  :original-mode '(main-mode)))
   (when (equal *query-return* :Return)
     (pushnew default *query-history* :test #'equal)
     (push *query-string* *query-history*))
@@ -339,6 +410,7 @@
   "Query a number from the query input"
   (multiple-value-bind (string return)
       (query-string msg (format nil "~A" default))
-    (if (equal return :Return)
-        (or (parse-integer (or string "") :junk-allowed t) default)
-        default)))
+    (values (if (equal return :Return)
+                (or (parse-integer (or string "") :junk-allowed t) default)
+                default)
+            return)))

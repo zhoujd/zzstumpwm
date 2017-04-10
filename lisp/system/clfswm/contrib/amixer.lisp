@@ -5,7 +5,7 @@
 ;;; Documentation: Volume mode
 ;;; --------------------------------------------------------------------------
 ;;;
-;;; (C) 2011 Desmond O. Chang <dochang@gmail.com>
+;;; (C) 2012 Desmond O. Chang <dochang@gmail.com>
 ;;;
 ;;; This program is free software; you can redistribute it and/or modify
 ;;; it under the terms of the GNU General Public License as published by
@@ -69,8 +69,8 @@
   (let* ((sed "sed 's/^.*\\[\\([[:digit:]]\\+\\)%\\].*\\[\\(on\\|off\\)\\].*$/\\1%\\2/'")
          (fmt "amixer ~A ~A~{ ~A~} 2>/dev/null | tail -1 | ~A")
          (shell (format nil fmt cmd scontrol parameters sed))
-         (line (read-line (do-shell shell) nil nil)))
-    (when line
+         (line (read-line (do-shell shell) nil t)))
+    (when (stringp line)
       (let* ((ratio (parse-integer line :junk-allowed t))
              (%-pos (position #\% line)))
         (values (and ratio (/ ratio 100))

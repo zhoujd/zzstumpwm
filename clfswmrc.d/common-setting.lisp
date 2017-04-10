@@ -8,7 +8,7 @@
 (defvar *swank-server-p* nil "swant server flag")
 
 (unless *swank-server-p*
-  (swank:create-server :dont-close t :port 4405)
+  (swank:create-server :dont-close t :port 4408)
   (setf *swank-server-p* t))
 
 ;; remove hello window

@@ -5,7 +5,7 @@
 ;;; Documentation: Utility functions
 ;;; --------------------------------------------------------------------------
 ;;;
-;;; (C) 2011 Philippe Brochard <hocwp@free.fr>
+;;; (C) 2012 Philippe Brochard <pbrochard@common-lisp.net>
 ;;;
 ;;; This program is free software; you can redistribute it and/or modify
 ;;; it under the terms of the GNU General Public License as published by
@@ -23,7 +23,9 @@
 ;;;
 ;;; --------------------------------------------------------------------------
 
+
 (in-package :clfswm)
+
 
 ;; Window states
 (defconstant +withdrawn-state+ 0)
@@ -36,6 +38,8 @@
 				:colormap-change
 				:focus-change
 				:enter-window
+                                :leave-window
+                                :pointer-motion
 				:exposure)
   "The events to listen for on managed windows.")
 
@@ -63,17 +67,42 @@ Window types are in +WINDOW-TYPES+.")
   "Alist mapping NETWM window types to keywords.")
 
 
-(defmacro with-xlib-protect (() &body body)
-  "Prevent Xlib errors"
+
+
+(defparameter *x-error-count* 0)
+(defparameter *max-x-error-count* 10000)
+(defparameter *clfswm-x-error-filename* "/tmp/clfswm-backtrace.error")
+
+
+(defmacro with-xlib-protect ((&optional name tag) &body body)
+  "Ignore Xlib errors in body."
   `(handler-case
        (with-simple-restart (top-level "Return to clfswm's top level")
-	 ,@body)
-     ((or xlib:match-error xlib:window-error xlib:drawable-error xlib:lookup-error) (c)
+         ,@body)
+     (xlib::x-error (c)
+       (incf *x-error-count*)
+       (when (> *x-error-count* *max-x-error-count*)
+         (format t "Xlib error: ~A ~A: ~A~%" ,name (if ,tag ,tag ',body) c)
+         (force-output)
+         (write-backtrace *clfswm-x-error-filename*
+                          (format nil "~%------- Additional information ---------
+Xlib error: ~A ~A: ~A
+Body: ~A
+
+Features: ~A"
+                                  ,name ,tag c ',body
+                                  *features*))
+         (error "Too many X errors: ~A (logged in ~A)" c *clfswm-x-error-filename*))
+       #+:xlib-debug
        (progn
-         (format t "Ignoring XLib error: ~S~%" c)
-	 (unassoc-keyword-handle-event)
-	 (assoc-keyword-handle-event 'main-mode)
-	 (setf *in-second-mode* nil)))))
+         (format t "Xlib error: ~A ~A: ~A~%" ,name (if ,tag ,tag ',body) c)
+         (force-output)))))
+
+
+;;(defmacro with-xlib-protect ((&optional name tag) &body body)
+;;  `(progn
+;;     ,@body))
+
 
 
 (defmacro with-x-pointer (&body body)
@@ -109,8 +138,9 @@ Window types are in +WINDOW-TYPES+.")
     (when (and pos (zerop pos))
       (let ((pos-mod (search "mode" name)))
 	(when pos-mod
-	  (values (intern (string-upcase (subseq name (+ pos-mod 5))) :keyword)
-		  (subseq name (length "handle-event-fun-") (1- pos-mod))))))))
+          (intern (string-upcase (subseq name (+ pos-mod 5))) :keyword))))))
+;;	  (values (intern (string-upcase (subseq name (+ pos-mod 5))) :keyword)
+;;		  (subseq name (length "handle-event-fun-") (1- pos-mod))))))))
 
 (defparameter *handle-event-fun-symbols* nil)
 
@@ -170,36 +200,100 @@ Expand in handle-event-fun-main-mode-key-press"
      ,@body))
 
 
+(defun event-hook-name (event-keyword)
+  (create-symbol-in-package :clfswm '*event- event-keyword '-hook*))
 
-;;; Workaround for pixmap error taken from STUMPWM - thanks:
-;; XXX: In both the clisp and sbcl clx libraries, sometimes what
-;; should be a window will be a pixmap instead. In this case, we
-;; need to manually translate it to a window to avoid breakage
-;; in stumpwm. So far the only slot that seems to be affected is
-;; the :window slot for configure-request and reparent-notify
-;; events. It appears as though the hash table of XIDs and clx
-;; structures gets out of sync with X or perhaps X assigns a
-;; duplicate ID for a pixmap and a window.
-(defun make-xlib-window (xobject)
-  "For some reason the clx xid cache screws up returns pixmaps when
-they should be windows. So use this function to make a window out of them."
-  #+clisp (make-instance 'xlib:window :id (slot-value xobject 'xlib::id) :display *display*)
-  #+(or sbcl ecl openmcl) (xlib::make-window :id (slot-value xobject 'xlib::id) :display *display*)
-  #-(or sbcl clisp ecl openmcl)
-  (error 'not-implemented))
+(let ((event-hook-list nil))
+  (defun get-event-hook-list ()
+    event-hook-list)
+
+  (defmacro use-event-hook (event-keyword)
+    (let ((symb (event-hook-name event-keyword)))
+      (pushnew symb event-hook-list)
+      `(defvar ,symb nil)))
+
+  (defun unuse-event-hook (event-keyword)
+    (let ((symb (event-hook-name event-keyword)))
+      (setf event-hook-list (remove symb event-hook-list))
+      (makunbound symb)))
+
+  (defmacro add-event-hook (name &rest value)
+    (let ((symb (event-hook-name name)))
+      `(add-hook ,symb ,@value)))
+
+  (defmacro remove-event-hook (name &rest value)
+    (let ((symb (event-hook-name name)))
+      `(remove-hook ,symb ,@value)))
+
+  (defun clear-event-hooks ()
+    (dolist (symb event-hook-list)
+      (makunbound symb)))
+
+
+  (defun optimize-event-hook ()
+    "Remove unused event hooks"
+    (dolist (symb event-hook-list)
+      (when (and (boundp symb)
+                 (null (symbol-value symb)))
+        (makunbound symb)
+        (setf event-hook-list (remove symb event-hook-list))))))
+
+
+
+(defmacro define-event-hook (event-keyword args &body body)
+  (let ((event-fun (gensym)))
+    `(let ((,event-fun (lambda (&rest event-slots &key #+:event-debug event-key ,@args &allow-other-keys)
+                         (declare (ignorable event-slots))
+                         #+:event-debug (print (list ,event-keyword event-key))
+                         ,@body)))
+       (add-event-hook ,event-keyword ,event-fun)
+       ,event-fun)))
+
+
+(defmacro event-defun (name args &body body)
+  `(defun ,name (&rest event-slots &key #+:event-debug event-key ,@args &allow-other-keys)
+     (declare (ignorable event-slots))
+     #+:event-debug (print (list ,event-keyword event-key))
+     ,@body))
+
+(defun exit-handle-event ()
+  (throw 'exit-handle-event nil))
 
 
 (defun handle-event (&rest event-slots &key event-key &allow-other-keys)
-  (with-xlib-protect ()
-    (let ((win (getf event-slots :window)))
-      (when (and win (not (xlib:window-p win)))
-        (dbg "Pixmap Workaround! Should be a window: " win)
-        (setf (getf event-slots :window) (make-xlib-window win))))
-    (if (fboundp event-key)
-	(apply event-key event-slots)
-	#+:event-debug (pushnew (list *current-event-mode* event-key) *unhandled-events* :test #'equal))
-    (xlib:display-finish-output *display*))
-  t)
+  (labels ((make-xlib-window (xobject)
+             "For some reason the clx xid cache screws up returns pixmaps when
+they should be windows. So use this function to make a window out of them."
+             ;; Workaround for pixmap error taken from STUMPWM - thanks:
+             ;; XXX: In both the clisp and sbcl clx libraries, sometimes what
+             ;; should be a window will be a pixmap instead. In this case, we
+             ;; need to manually translate it to a window to avoid breakage
+             ;; in stumpwm. So far the only slot that seems to be affected is
+             ;; the :window slot for configure-request and reparent-notify
+             ;; events. It appears as though the hash table of XIDs and clx
+             ;; structures gets out of sync with X or perhaps X assigns a
+             ;; duplicate ID for a pixmap and a window.
+             #+clisp (make-instance 'xlib:window :id (slot-value xobject 'xlib::id) :display *display*)
+             #+(or sbcl ecl openmcl) (xlib::make-window :id (slot-value xobject 'xlib::id) :display *display*)
+             #-(or sbcl clisp ecl openmcl)
+             (error 'not-implemented)))
+    (handler-case
+        (catch 'exit-handle-event
+          (let ((win (getf event-slots :window)))
+            (when (and win (not (xlib:window-p win)))
+              (dbg "Pixmap Workaround! Should be a window: " win)
+              (setf (getf event-slots :window) (make-xlib-window win))))
+          (let ((hook-symbol (event-hook-name event-key)))
+            (when (boundp hook-symbol)
+              (apply #'call-hook (symbol-value hook-symbol) event-slots)))
+          (if (fboundp event-key)
+              (apply event-key event-slots)
+              #+:event-debug (pushnew (list *current-event-mode* event-key) *unhandled-events* :test #'equal))
+          (xlib:display-finish-output *display*))
+      ((or xlib:window-error xlib:drawable-error) (c)
+        #-xlib-debug (declare (ignore c))
+        #+xlib-debug (format t "Ignore Xlib synchronous error: ~a~%" c)))
+    t))
 
 
 
@@ -283,7 +377,7 @@ they should be windows. So use this function to make a window out of them."
 
 (defun delete-window (window)
   (send-client-message window :WM_PROTOCOLS
-		       (xlib:intern-atom *display* "WM_DELETE_WINDOW")))
+		       (xlib:intern-atom *display* :WM_DELETE_WINDOW)))
 
 (defun destroy-window (window)
   (xlib:kill-client *display* (xlib:window-id window)))
@@ -548,6 +642,42 @@ they should be windows. So use this function to make a window out of them."
   (xlib:ungrab-key window :any :modifiers :any))
 
 
+
+(defmacro with-grab-keyboard-and-pointer ((cursor mask old-cursor old-mask &optional ungrab-main) &body body)
+  `(let ((pointer-grabbed (xgrab-pointer-p))
+	 (keyboard-grabbed (xgrab-keyboard-p)))
+     (xgrab-pointer *root* ,cursor ,mask)
+     (unless keyboard-grabbed
+       (when ,ungrab-main
+         (ungrab-main-keys))
+       (xgrab-keyboard *root*))
+     (unwind-protect
+	  (progn
+	    ,@body)
+       (progn
+         (if pointer-grabbed
+             (xgrab-pointer *root* ,old-cursor ,old-mask)
+             (xungrab-pointer))
+         (unless keyboard-grabbed
+           (when ,ungrab-main
+             (grab-main-keys))
+           (xungrab-keyboard))))))
+
+
+(defmacro with-grab-pointer ((&optional cursor-char cursor-mask-char) &body body)
+  `(let ((pointer-grabbed-p (xgrab-pointer-p)))
+     (unless pointer-grabbed-p
+       (xgrab-pointer *root* ,cursor-char ,cursor-mask-char))
+     (unwind-protect
+          (progn
+            ,@body)
+       (unless pointer-grabbed-p
+         (xungrab-pointer)))))
+
+
+
+
+
 (defun stop-button-event ()
   (xlib:allow-events *display* :sync-pointer))
 
@@ -590,15 +720,11 @@ they should be windows. So use this function to make a window out of them."
 	  dy (- (x-drawable-y window) orig-y)
 	  (xlib:window-border window) (get-color *color-move-window*))
     (raise-window window)
-    (let ((pointer-grabbed-p (xgrab-pointer-p)))
-      (unless pointer-grabbed-p
-	(xgrab-pointer *root* nil nil))
+    (with-grab-pointer ()
       (when additional-fn
-	(apply additional-fn additional-arg))
+        (apply additional-fn additional-arg))
       (generic-mode 'move-window-mode 'exit-move-window-mode
-		    :original-mode '(main-mode))
-      (unless pointer-grabbed-p
-	(xungrab-pointer)))))
+                    :original-mode '(main-mode)))))
 
 
 (let (add-fn add-arg window
@@ -625,8 +751,7 @@ they should be windows. So use this function to make a window out of them."
     (throw 'exit-resize-window-mode nil))
 
   (defun resize-window (orig-window orig-x orig-y &optional additional-fn additional-arg)
-    (let* ((pointer-grabbed-p (xgrab-pointer-p))
-	   (hints (xlib:wm-normal-hints orig-window)))
+    (let* ((hints (xlib:wm-normal-hints orig-window)))
       (setf window orig-window
 	    add-fn additional-fn
 	    add-arg additional-arg
@@ -640,26 +765,21 @@ they should be windows. So use this function to make a window out of them."
 	    max-height (or (and hints (xlib:wm-size-hints-max-height hints)) most-positive-fixnum)
 	    (xlib:window-border window) (get-color *color-move-window*))
       (raise-window window)
-      (unless pointer-grabbed-p
-	(xgrab-pointer *root* nil nil))
-      (when additional-fn
-	(apply additional-fn additional-arg))
-      (generic-mode 'resize-window-mode 'exit-resize-window-mode
-		    :original-mode '(main-mode))
-      (unless pointer-grabbed-p
-	(xungrab-pointer)))))
+      (with-grab-pointer ()
+        (when additional-fn
+          (apply additional-fn additional-arg))
+        (generic-mode 'resize-window-mode 'exit-resize-window-mode
+                      :original-mode '(main-mode))))))
+
 
 
 (define-handler wait-mouse-button-release-mode :button-release ()
   (throw 'exit-wait-mouse-button-release-mode nil))
 
 (defun wait-mouse-button-release (&optional cursor-char cursor-mask-char)
-  (let ((pointer-grabbed-p (xgrab-pointer-p)))
-    (unless pointer-grabbed-p
-      (xgrab-pointer *root* cursor-char cursor-mask-char))
-    (generic-mode 'wait-mouse-button-release 'exit-wait-mouse-button-release-mode)
-    (unless pointer-grabbed-p
-      (xungrab-pointer))))
+  (with-grab-pointer (cursor-char cursor-mask-char)
+    (generic-mode 'wait-mouse-button-release 'exit-wait-mouse-button-release-mode)))
+
 
 
 
@@ -764,23 +884,6 @@ they should be windows. So use this function to make a window out of them."
   (xlib:keycode->keysym *display* code (cond ((member :shift modifiers) 1)
 					     ((member :mod-5 modifiers) 4)
 					     (t 0))))
-
-
-(defmacro with-grab-keyboard-and-pointer ((cursor mask old-cursor old-mask) &body body)
-  `(let ((pointer-grabbed (xgrab-pointer-p))
-	 (keyboard-grabbed (xgrab-keyboard-p)))
-     (xgrab-pointer *root* ,cursor ,mask)
-     (unless keyboard-grabbed
-       (xgrab-keyboard *root*))
-     (unwind-protect
-	  (progn
-	    ,@body)
-       (if pointer-grabbed
-	   (xgrab-pointer *root* ,old-cursor ,old-mask)
-	   (xungrab-pointer))
-       (unless keyboard-grabbed
-	 (xungrab-keyboard)))))
-
 
 
 
