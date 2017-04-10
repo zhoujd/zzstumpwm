@@ -69,7 +69,7 @@ used for matching windows with run-or-raise or window placement
      (apply #'start-command-ps cmd))
  (list
   (list "xset" :options "b off")   ;; turn off bell
-  (list "xsetroot" :options "-solid black")
+  (list "xsetroot" :options "-cursor_name left_ptr -solid black -name root_window")
   (list "xrdb" :options (concat "-load " *zz-load-directory* "misc/.Xresources"))
   (list "bluetooth-applet" :options "--sm-disable")
   (list "nm-applet" :options "--sm-disable")

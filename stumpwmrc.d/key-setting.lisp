@@ -56,7 +56,7 @@
   (kbd "s-`")       "windowlist"
   (kbd "s-l")       "exec xtrlock"
   (kbd "s-C-l")     "exec slock"
-  (kbd "s-M-l")     "exec xset dpms force off"       ;; turn screen off
+  (kbd "s-M-l")     "exec xset dpms force off"
   (kbd "s-Tab")     "pull-hidden-next"
   (kbd "Print")     "exec scrot -q 10"
   (kbd "M-Print")   "exec scrot -q 10 -s"
