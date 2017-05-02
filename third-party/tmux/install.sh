@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "build tmux end ..."
+echo "build tmux start ..."
 
 case "$1" in
     "ubuntu" )
@@ -20,6 +20,9 @@ case "$1" in
         exit 1;
         ;;
 esac
+
+echo "install dependence ..."
+./depends.sh $1
 
 rm -rf build
 mkdir build
