@@ -4,7 +4,7 @@ CURRENT_DIR=`pwd`
 
 echo "install stumpwm start ..."
 
-## Set configure file and qucklisp
+## Set configure file and quicklisp
 rm -f ~/.stumpwmrc
 ln -s $CURRENT_DIR/.stumpwmrc ~/.stumpwmrc
 
