@@ -42,13 +42,16 @@ if has("gui_running")
   colo desert
 endif
 
-" no temp files
+" No temp files
 set noundofile
 set nobackup
 set noswapfile
 
-" mv temp files to united folder
-"set undodir=~/.undodir
+" Persistent undo
+"set undodir=~/.vim/undodir
+"set undofile
+"set undolevels=1000  "maximum number of changes that can be undone
+"set undoreload=10000 "maximum number lines to save for undo on a buffer reload
 
 syntax on
 
