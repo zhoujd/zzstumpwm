@@ -42,11 +42,18 @@ if has("gui_running")
   colo desert
 endif
 
-" Other setting"
-set novisualbell
+" no temp files
+set noundofile
 set nobackup
 set noswapfile
+
+" mv temp files to united folder
+"set undodir=~/.undodir
+
 syntax on
+
+" Other setting"
+set novisualbell
 set confirm
 set autoindent
 set cindent
