@@ -1,2 +1,4 @@
-quicklisp/cache/asdf-fasls
 .hg/
+quicklisp/cache
+quicklisp/retired
+quicklisp/tmp
