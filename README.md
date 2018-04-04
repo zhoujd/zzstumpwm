@@ -19,3 +19,7 @@ zzstumpwm
 
     * git clone git://git.savannah.nongnu.org/stumpwm.git
 
+
+## Software version
+    * SBCL  1.4.6
+    * Slime 2.2
