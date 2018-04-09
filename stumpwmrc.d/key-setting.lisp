@@ -32,6 +32,13 @@
   (kbd "1")         "only"
   (kbd "2")         "vsplit"
   (kbd "3")         "hsplit"
+
+  ;; exchange-direction bound to C-t x by defalut
+  ;; https://stumpwm.github.io/git/stumpwm-git_6.html#Frames
+  (kbd "Right")     "exchange-direction right"
+  (kbd "Left")      "exchange-direction left"
+  (kbd "Up")        "exchange-direction up"
+  (kbd "Down")      "exchange-direction down"
   ))
 
 ;; *zz-help-map*
@@ -57,6 +64,7 @@
   (kbd "s-l")       "exec xtrlock"
   (kbd "s-C-l")     "exec slock"
   (kbd "s-M-l")     "exec xset dpms force off"
+
   (kbd "s-Tab")     "pull-hidden-next"
   (kbd "Print")     "exec scrot -q 10"
   (kbd "M-Print")   "exec scrot -q 10 -s"
@@ -67,6 +75,9 @@
 
   (kbd "s-F2")      "exec"
   (kbd "s-C-F2")    "exec dmenu_run -fn 8x16"
+  (kbd "s-F3")      "dump-desktop-to-file ~/.stumpwm-desktop"
+  (kbd "s-C-F3")    "restore-from-file ~/.stumpwm-desktop"
+  
   (kbd "s-F4")      "kill"
   (kbd "s-F11")     "reboot"
   (kbd "s-F12")     "shutdown"
@@ -86,7 +97,7 @@
   (kbd "s-C-Right") "gnext"
   (kbd "s-C-Left")  "gprev"
   (kbd "s-C-Up")    "prev-in-frame"
-  (kbd "s-C-Down")  "next-in-frame"
+  (kbd "s-C-Down")  "next-in-frame"  
   ))
 
 ;; root map
