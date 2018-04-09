@@ -1,3 +1,4 @@
+
 (in-package :stumpwm)
 
 
@@ -15,8 +16,7 @@
   "Save screen layout (ie: screen frame tree, frames numbers and windows numbers
    in each frames and current frame)"
   (let ((saved (make-save-screen :frame-tree
-                                 (copy-screen-frame-tree (screen-frame-tree 
-screen))
+                                 (copy-screen-frame-tree (screen-frame-tree screen))
                                  :frame-hash (make-hash-table)
                                  :current-frame
                                  (frame-number (screen-current-frame screen)))))
@@ -28,8 +28,7 @@ screen))
       (dolist (w (frame-windows screen f))
         (push (window-number w)
               (save-frame-window-list (gethash (frame-number f)
-                                               (save-screen-frame-hash 
-saved))))))
+                                               (save-screen-frame-hash saved))))))
     (setf (gethash name *saved-screen*) saved)))
 
 
@@ -54,8 +53,7 @@ saved))))))
         ;; Restore windows by numbers in frames
         (maphash (lambda (frame-number save-frame)
                    (let ((frame (find-frame frame-number)))
-                     (unless (member (frame-window frame) 
-(screen-mapped-windows screen))
+                     (unless (member (frame-window frame) (screen-mapped-windows screen))
                        (setf (frame-window frame) nil))
                      (dolist (w (save-frame-window-list save-frame))
                        (let ((win (find-window w)))
@@ -69,16 +67,14 @@ saved))))))
                      (sync-frame-windows screen frame)))
                  (save-screen-frame-hash saved))
         (when (save-screen-current-frame saved)
-          (focus-frame screen (find-frame (save-screen-current-frame 
-saved))))))))
+          (focus-frame screen (find-frame (save-screen-current-frame saved))))))))
     
 
 (define-stumpwm-command "save-layout" (screen (name :string "Save layout in: "))
   (save-screen-layout screen name))
 
-(define-stumpwm-command "restore-layout" (screen (name :string "Restore layout 
-from: "))
+(define-stumpwm-command "restore-layout" (screen (name :string "Restore layout from: "))
   (restore-screen-layout screen name))
 
-(define-key *root-map* (kbd "i") "restore-layout")
-(define-key *root-map* (kbd "C-i") "save-layout")
+;;(define-key *root-map* (kbd "i")   "restore-layout")
+;;(define-key *root-map* (kbd "C-i") "save-layout")
