@@ -1,8 +1,9 @@
 #!/bin/bash
 
-SCRIPT_ROOT=`pwd`
 SBCL_VERSION="1.4.6"
 SBCL_PKG="sbcl-$SBCL_VERSION-x86-64-linux-binary.tar.bz2"
+
+echo "Download SBCL $SBCL_VERSION ...."
 
 pushd ~/Downloads/
 
@@ -19,3 +20,5 @@ sudo sh install.sh
 popd
 
 popd
+
+echo "Install SBCL Done ..."
