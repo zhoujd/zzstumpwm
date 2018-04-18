@@ -28,6 +28,12 @@
   "Start a gnome-terminal with an command session"
   (format nil "exec xterm -e ~a" name))
 
+;; prompt the user for an interactive command.
+(defcommand colon1 (&optional (initial "")) (:rest)
+  (let ((cmd (read-one-line (current-screen) ": " :initial-input initial)))
+    (when cmd
+      (eval-command cmd t))))
+
 ;; sudo command
 (define-sudo-command reboot "reboot")
 (define-sudo-command shutdown "shutdown -h now")

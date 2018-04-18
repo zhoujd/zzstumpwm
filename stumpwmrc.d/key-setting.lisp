@@ -22,6 +22,8 @@
   (kbd "M-t")       (xterm-command "tmux")
   (kbd "v")         (xterm-command "vim")
   (kbd "C-v")       "exec evince"
+  (kbd "b")         "colon1 exec firefox http://www."
+  (kbd "s")         "colon1 exec xterm -e ssh "
   ))
 
 ;; *zz-x-map*
