@@ -5,7 +5,9 @@ SBCL_PKG="sbcl-$SBCL_VERSION-x86-64-linux-binary.tar.bz2"
 
 echo "Download SBCL $SBCL_VERSION ...."
 
-pushd ~/Downloads/
+mkdir -p ~/Downloads
+
+pushd ~/Downloads
 
 ## wget sbcl package
 rm -f $SBCL_PKG
