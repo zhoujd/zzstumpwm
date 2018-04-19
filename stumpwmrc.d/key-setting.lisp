@@ -76,7 +76,7 @@
   (kbd "s-C-r")     "reinit"
 
   (kbd "s-F2")      "exec"
-  (kbd "s-C-F2")    "exec dmenu_run -fn 8x16"
+  (kbd "s-C-F2")    "exec dmenu_run"
   (kbd "s-F3")      "dump-desktop-to-file ~/.stumpwm-desktop"
   (kbd "s-C-F3")    "restore-from-file ~/.stumpwm-desktop"
   
