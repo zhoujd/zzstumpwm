@@ -39,7 +39,7 @@
   (kbd "7")         "refresh"
   (kbd "8")         "kill-window"
   (kbd "9")         "iresize"
-  (kbd "0")         "remove"
+  (kbd "0")         "remove-split"
 
   ;; exchange-direction bound to C-t x by defalut
   ;; https://stumpwm.github.io/git/stumpwm-git_6.html#Frames
