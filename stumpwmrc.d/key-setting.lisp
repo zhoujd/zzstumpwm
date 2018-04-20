@@ -43,8 +43,8 @@
 
   ;; exchange-direction bound to C-t x by defalut
   ;; https://stumpwm.github.io/git/stumpwm-git_6.html#Frames
-  (kbd "Right")     "exchange-direction right"
   (kbd "Left")      "exchange-direction left"
+  (kbd "Right")     "exchange-direction right"
   (kbd "Up")        "exchange-direction up"
   (kbd "Down")      "exchange-direction down"
   ))
@@ -69,6 +69,8 @@
  *top-map*
  (list
   (kbd "s-`")       "windowlist"
+  (kbd "s-C-`")     "grouplist"
+
   (kbd "s-l")       "exec xtrlock"
   (kbd "s-C-l")     "exec slock"
   (kbd "s-M-l")     "exec xset dpms force off"
@@ -85,8 +87,14 @@
   (kbd "s-C-F2")    "exec dmenu_run -fn consola-13"
   (kbd "s-F3")      "dump-desktop-to-file ~/.stumpwm-desktop"
   (kbd "s-C-F3")    "restore-from-file ~/.stumpwm-desktop"
-
   (kbd "s-F4")      "kill"
+  (kbd "s-C-F4")    "gkill"
+
+  (kbd "s-F5")      "gnew f5-a"
+  (kbd "s-F6")      "gnew f6-s"
+  (kbd "s-F7")      "gnew f7-d"
+  (kbd "s-F8")      "gnew f8-f"
+
   (kbd "s-F11")     "reboot"
   (kbd "s-C-F11")   (gnome-term-command "sudo reboot")
   (kbd "s-F12")     "shutdown"
