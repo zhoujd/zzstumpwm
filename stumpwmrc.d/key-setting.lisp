@@ -33,11 +33,11 @@
   (kbd "1")         "only"
   (kbd "2")         "vsplit"
   (kbd "3")         "hsplit"
-  (kbd "4")         "fclear"
+  (kbd "4")         "kill-window"
   (kbd "5")         "fselect"
   (kbd "6")         "balance-frames"
   (kbd "7")         "refresh"
-  (kbd "8")         "kill-window"
+  (kbd "8")         "fclear"
   (kbd "9")         "iresize"
   (kbd "0")         "remove-split"
 
