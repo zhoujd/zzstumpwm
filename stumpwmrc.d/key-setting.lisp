@@ -36,8 +36,8 @@
   (kbd "4")         "fclear"
   (kbd "5")         "fselect"
   (kbd "6")         "balance-frames"
-  (kbd "7")         "echo-frame-windows"
-  (kbd "8")         "refresh"
+  (kbd "7")         "refresh"
+  (kbd "8")         "kill-window"
   (kbd "9")         "iresize"
   (kbd "0")         "remove"
 
