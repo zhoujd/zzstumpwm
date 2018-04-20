@@ -3,11 +3,11 @@
 dmenu \- dynamic menu
 .SH SYNOPSIS
 .B dmenu
-.RB [ \-b ]
-.RB [ \-f ]
-.RB [ \-i ]
+.RB [ \-bfiv ]
 .RB [ \-l
 .IR lines ]
+.RB [ \-m
+.IR monitor ]
 .RB [ \-p
 .IR prompt ]
 .RB [ \-fn
@@ -20,7 +20,8 @@ dmenu \- dynamic menu
 .IR color ]
 .RB [ \-sf
 .IR color ]
-.RB [ \-v ]
+.RB [ \-w
+.IR windowid ]
 .P
 .BR dmenu_run " ..."
 .SH DESCRIPTION
@@ -49,6 +50,10 @@ dmenu matches menu items case insensitively.
 .BI \-l " lines"
 dmenu lists items vertically, with the given number of lines.
 .TP
+.BI \-m " monitor"
+dmenu is displayed on the monitor number supplied. Monitor numbers are starting
+from 0.
+.TP
 .BI \-p " prompt"
 defines the prompt to be displayed to the left of the input field.
 .TP
@@ -72,6 +77,9 @@ defines the selected foreground color.
 .TP
 .B \-v
 prints version information to stdout, then exits.
+.TP
+.BI \-w " windowid"
+embed into windowid.
 .SH USAGE
 dmenu is completely controlled by the keyboard.  Items are selected using the
 arrow keys, page up, page down, home, and end.
@@ -83,11 +91,20 @@ Copy the selected item to the input field.
 Confirm selection.  Prints the selected item to stdout and exits, returning
 success.
 .TP
+.B Ctrl-Return
+Confirm selection.  Prints the selected item to stdout and continues.
+.TP
 .B Shift\-Return
 Confirm input.  Prints the input text to stdout and exits, returning success.
 .TP
 .B Escape
 Exit without selecting an item, returning failure.
+.TP
+.B Ctrl-Left
+Move cursor to the start of the current word
+.TP
+.B Ctrl-Right
+Move cursor to the end of the current word
 .TP
 C\-a
 Home
@@ -107,6 +124,9 @@ End
 C\-f
 Right
 .TP
+C\-g
+Escape
+.TP
 C\-h
 Backspace
 .TP
@@ -125,6 +145,9 @@ Delete line right
 C\-m
 Return
 .TP
+C\-M
+Shift-Return
+.TP
 C\-n
 Down
 .TP
@@ -142,6 +165,12 @@ Paste from primary X selection
 .TP
 C\-Y
 Paste from X clipboard
+.TP
+M\-b
+Move cursor to the start of the current word
+.TP
+M\-f
+Move cursor to the end of the current word
 .TP
 M\-g
 Home
