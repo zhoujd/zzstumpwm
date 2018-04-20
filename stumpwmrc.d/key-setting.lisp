@@ -30,10 +30,16 @@
 (apply-keys-to-map
  *zz-x-map*
  (list
-  (kbd "0")         "remove"
   (kbd "1")         "only"
   (kbd "2")         "vsplit"
   (kbd "3")         "hsplit"
+  (kbd "4")         "fclear"
+  (kbd "5")         "fselect"
+  (kbd "6")         "balance-frames"
+  (kbd "7")         "echo-frame-windows"
+  (kbd "8")         "refresh"
+  (kbd "9")         "iresize"
+  (kbd "0")         "remove"
 
   ;; exchange-direction bound to C-t x by defalut
   ;; https://stumpwm.github.io/git/stumpwm-git_6.html#Frames
@@ -79,7 +85,7 @@
   (kbd "s-C-F2")    "exec dmenu_run -fn consola-13"
   (kbd "s-F3")      "dump-desktop-to-file ~/.stumpwm-desktop"
   (kbd "s-C-F3")    "restore-from-file ~/.stumpwm-desktop"
-  
+
   (kbd "s-F4")      "kill"
   (kbd "s-F11")     "reboot"
   (kbd "s-C-F11")   (gnome-term-command "sudo reboot")
@@ -99,7 +105,7 @@
   (kbd "s-C-Right") "gnext"
   (kbd "s-C-Left")  "gprev"
   (kbd "s-C-Up")    "prev-in-frame"
-  (kbd "s-C-Down")  "next-in-frame"  
+  (kbd "s-C-Down")  "next-in-frame"
   ))
 
 ;; root map
