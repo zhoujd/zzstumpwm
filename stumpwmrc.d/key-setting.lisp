@@ -100,13 +100,13 @@
   (kbd "s-F12")     "shutdown"
   (kbd "s-C-F12")   (gnome-term-command "sudo shutdown -h now")
 
-  (kbd "s-Right")   "move-focus right"
   (kbd "s-Left")    "move-focus left"
+  (kbd "s-Right")   "move-focus right"
   (kbd "s-Up")      "move-focus up"
   (kbd "s-Down")    "move-focus down"
 
-  (kbd "s-M-Right") "move-window right"
   (kbd "s-M-Left")  "move-window left"
+  (kbd "s-M-Right") "move-window right"
   (kbd "s-M-Up")    "move-window up"
   (kbd "s-M-Down")  "move-window down"
 
