@@ -45,11 +45,10 @@
 ;; shell command
 (defcommand current-window-info () ()
   "Shows the properties of the current window. These properties can be
-used for matching windows with run-or-raise or window placement
--merules."
+used for matching windows with run-or-raise or window placement-merules."
   (let ((w (current-window))
-        (*suppress-echo-timeout* t)
-        (nl (string #\NewLine)))
+        (nl (string #\NewLine))
+        (*suppress-echo-timeout* t))
     (echo-string (current-screen)
                  (concat "class:    " (window-class w) nl
                          "instance: " (window-res w) nl

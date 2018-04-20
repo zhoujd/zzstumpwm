@@ -102,10 +102,10 @@
   (kbd "s-M-Up")    "move-window up"
   (kbd "s-M-Down")  "move-window down"
 
-  (kbd "s-C-Right") "gnext"
-  (kbd "s-C-Left")  "gprev"
-  (kbd "s-C-Up")    "prev-in-frame"
-  (kbd "s-C-Down")  "next-in-frame"
+  (kbd "s-C-Left")  "prev-in-frame"
+  (kbd "s-C-Right") "next-in-frame"
+  (kbd "s-C-Up")    "gprev"
+  (kbd "s-C-Down")  "gnext"
   ))
 
 ;; root map
