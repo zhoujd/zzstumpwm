@@ -37,7 +37,7 @@
   (kbd "5")         "fselect"
   (kbd "6")         "balance-frames"
   (kbd "7")         "refresh"
-  (kbd "8")         "fclear"
+  (kbd "8")         "delete-window"
   (kbd "9")         "iresize"
   (kbd "0")         "remove-split"
 
@@ -83,6 +83,8 @@
   (kbd "s-C-q")     "quit"
   (kbd "s-C-r")     "reinit"
 
+  (kbd "s-F1")      "lastmsg"
+  (kbd "s-C-F1")    "version"
   (kbd "s-F2")      "exec"
   (kbd "s-C-F2")    "exec dmenu_run -fn consola-13"
   (kbd "s-F3")      "dump-desktop-to-file ~/.stumpwm-desktop"
@@ -90,15 +92,23 @@
   (kbd "s-F4")      "kill"
   (kbd "s-C-F4")    "gkill"
 
-  (kbd "s-F5")      "gnew f5-a"
-  (kbd "s-F6")      "gnew f6-s"
-  (kbd "s-F7")      "gnew f7-d"
-  (kbd "s-F8")      "gnew f8-f"
-
-  (kbd "s-F11")     "reboot"
-  (kbd "s-C-F11")   (gnome-term-command "sudo reboot")
-  (kbd "s-F12")     "shutdown"
-  (kbd "s-C-F12")   (gnome-term-command "sudo shutdown -h now")
+  (kbd "s-F5")      "gnew f5"
+  (kbd "s-C-F5")    "gnew-float f5-float"
+  (kbd "s-F6")      "gnew f6"
+  (kbd "s-C-F6")    "gnew-float f6-float"
+  (kbd "s-F7")      "gnew f7"
+  (kbd "s-C-F7")    "gnew-float f7-float"
+  (kbd "s-F8")      "gnew f8"
+  (kbd "s-C-F8")    "gnew-float f8-float"
+  
+  (kbd "s-F9")      "gother"
+  (kbd "s-C-F9")    "gselect"
+  (kbd "s-F10")     "fclear"
+  (kbd "s-C-F10")   "fullscreen"  
+  (kbd "s-F11")     "colon"
+  (kbd "s-C-F11")   "eval"
+  (kbd "s-F12")     "abort"
+  (kbd "s-C-F12")   "banish"
 
   (kbd "s-Left")    "move-focus left"
   (kbd "s-Right")   "move-focus right"
@@ -114,13 +124,6 @@
   (kbd "s-C-Right") "next-in-frame"
   (kbd "s-C-Up")    "gprev"
   (kbd "s-C-Down")  "gnext"
-  ))
-
-;; root map
-(apply-keys-to-map
- *root-map*
- (list
-  (kbd "s-i")       "current-window-info"
   ))
 
 ;; input map
