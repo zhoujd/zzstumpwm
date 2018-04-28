@@ -101,11 +101,11 @@
   (kbd "s-C-F7")    "gnew-float f7-float"
   (kbd "s-F8")      "gnew f8"
   (kbd "s-C-F8")    "gnew-float f8-float"
-  
+
   (kbd "s-F9")      "gother"
   (kbd "s-C-F9")    "gselect"
   (kbd "s-F10")     "fclear"
-  (kbd "s-C-F10")   "fullscreen"  
+  (kbd "s-C-F10")   "fullscreen"
   (kbd "s-F11")     "colon"
   (kbd "s-C-F11")   "eval"
   (kbd "s-F12")     "abort"
@@ -125,6 +125,9 @@
   (kbd "s-C-Right") "next-in-frame"
   (kbd "s-C-Up")    "gprev"
   (kbd "s-C-Down")  "gnext"
+
+  (kbd "s-[")       "amixer-Master-1-"
+  (kbd "s-]")       "amixer-Master-1+"
   ))
 
 ;; input map

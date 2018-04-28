@@ -23,6 +23,7 @@
  (list
   "macro-setting"
   "common-setting"
+  "tool-setting"
   "font-setting"
   "other-setting"
   "keymap-setting"

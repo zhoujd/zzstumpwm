@@ -6,17 +6,6 @@
 (setq *startup-message*   nil)
 (setq *startup-mode-line* nil)
 
-;; auto start swank server
-(require 'swank)
-(defvar *swank-server-p* nil "swant server flag")
-
-(unless *swank-server-p*
-  (swank:create-server :dont-close t :port 4405)
-  (setf *swank-server-p* t))
-
-;; screen shot
-(require 'screenshot)
-
 ;; color select
 (set-fg-color "green")
 (set-bg-color "black")
