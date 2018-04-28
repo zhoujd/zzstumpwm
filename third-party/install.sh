@@ -4,7 +4,7 @@ echo "Install third-party start ..."
 
 target=$1
 
-tool_list = (
+tool_list=(
     xtrlock
     tmux
     dmenu
