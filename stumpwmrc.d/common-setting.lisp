@@ -14,6 +14,9 @@
   (swank:create-server :dont-close t :port 4405)
   (setf *swank-server-p* t))
 
+;; screen shot
+(require 'screenshot)
+
 ;; color select
 (set-fg-color "green")
 (set-bg-color "black")

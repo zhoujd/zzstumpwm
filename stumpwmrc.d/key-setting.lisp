@@ -76,8 +76,9 @@
   (kbd "s-M-l")     "exec xset dpms force off"
 
   (kbd "s-Tab")     "pull-hidden-next"
-  (kbd "Print")     "exec scrot -q 10"
-  (kbd "M-Print")   "exec scrot -q 10 -s"
+
+  (kbd "Print")     "screenshot"
+  (kbd "M-Print")   "screenshot-window"
 
   (kbd "s-C-b")     "mode-line"
   (kbd "s-C-q")     "quit"
