@@ -9,7 +9,7 @@ case "$target" in
     "ubuntu"|"suse"|"centos"|"fedora" )
         echo "Install on $target"
 
-        for tool in xtrlock tmux dmenu ; do
+        for tool in xtrlock tmux dmenu slock ; do
             echo "Install $tool ..."
             pushd $tool
             ./install.sh $target
