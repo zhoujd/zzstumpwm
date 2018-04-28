@@ -4,12 +4,18 @@ echo "Install third-party start ..."
 
 target=$1
 
+tool_list = (
+    xtrlock
+    tmux
+    dmenu
+    slock
+)
+
 ## parameter check
 case "$target" in
     "ubuntu"|"suse"|"centos"|"fedora" )
         echo "Install on $target"
-
-        for tool in xtrlock tmux dmenu slock ; do
+        for tool in ${tool_list[@]} ; do
             echo "Install $tool ..."
             pushd $tool
             ./install.sh $target
