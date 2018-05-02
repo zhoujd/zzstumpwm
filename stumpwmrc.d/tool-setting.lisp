@@ -8,7 +8,8 @@
 (defvar *swank-server-p* nil "swant server flag")
 
 (unless *swank-server-p*
-  (swank:create-server :dont-close nil :port 4405)
+  (swank:create-server :port 4405
+                       :dont-close nil)
   (setf *swank-server-p* t))
 
 ;; screen shot
