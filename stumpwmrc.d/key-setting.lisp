@@ -104,10 +104,10 @@
 
   (kbd "s-F9")      "gother"
   (kbd "s-C-F9")    "gselect"
-  (kbd "s-F10")     "fclear"
-  (kbd "s-C-F10")   "fullscreen"
-  (kbd "s-F11")     "colon"
-  (kbd "s-C-F11")   "eval"
+  (kbd "s-F10")     "colon"
+  (kbd "s-C-F10")   "eval"
+  (kbd "s-F11")     "fullscreen"
+  (kbd "s-C-F11")   "echo-date"
   (kbd "s-F12")     "abort"
   (kbd "s-C-F12")   "banish"
 
