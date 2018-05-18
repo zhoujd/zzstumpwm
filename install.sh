@@ -26,9 +26,9 @@ ln -s $CURRENT_DIR/misc/.sbclrc ~/.sbclrc
 rm -f ~/.eclrc
 ln -s $CURRENT_DIR/misc/.eclrc ~/.eclrc
 
-## Install .xinitrc
-#rm -f ~/.xinitrc
-#ln -s $CURRENT_DIR/misc/.xinitrc ~/.xinitrc
+## Set CLISP configure
+rm -f ~/.clisprc
+ln -s $CURRENT_DIR/misc/.clisprc ~/.clisprc
 
 ## Set Vim configure
 rm -f ~/.vimrc
@@ -38,5 +38,8 @@ ln -s $CURRENT_DIR/misc/.vimrc ~/.vimrc
 rm -f ~/.cshrc
 ln -s $CURRENT_DIR/misc/.cshrc ~/.cshrc
 
+## Install .xinitrc
+#rm -f ~/.xinitrc
+#ln -s $CURRENT_DIR/misc/.xinitrc ~/.xinitrc
 
 echo "install stumpwm end ..."

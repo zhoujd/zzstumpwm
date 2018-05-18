@@ -1,16 +1,22 @@
 ;;;; .clisprc
 
-;;; The following lines added by ql:add-to-init-file:
+;; The following lines added by ql:add-to-init-file:
 #-quicklisp
 (let ((quicklisp-init (merge-pathnames "quicklisp/setup.lisp"
                                        (user-homedir-pathname))))
   (when (probe-file quicklisp-init)
     (load quicklisp-init)))
 
+;; ASDF load
+(mapc
+ #'(lambda (path)
+     (let ((full-path (merge-pathnames path (user-homedir-pathname))))
+       (load full-path)))
+ '(
+   "quicklisp/asdf.lisp"
+   ))
 
-;;; ASDF configure
-#-asdf
-(require :asdf)
+;; ASF configure
 (mapc
  #'(lambda (path)
      (let ((full-path (merge-pathnames path (user-homedir-pathname))))
