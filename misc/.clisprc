@@ -7,16 +7,7 @@
   (when (probe-file quicklisp-init)
     (load quicklisp-init)))
 
-;; ASDF load
-(mapc
- #'(lambda (path)
-     (let ((full-path (merge-pathnames path (user-homedir-pathname))))
-       (load full-path)))
- '(
-   "quicklisp/asdf.lisp"
-   ))
-
-;; ASF configure
+;; Setup asdf
 (mapc
  #'(lambda (path)
      (let ((full-path (merge-pathnames path (user-homedir-pathname))))
