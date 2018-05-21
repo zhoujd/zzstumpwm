@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/bin/bash
 
 eval `gnome-keyring-daemon --start --components=gpg,pkcs11,secrets,ssh`
 export GNOME_KEYRING_CONTROL
@@ -11,4 +11,3 @@ exec xsetroot -cursor_name left_ptr
 exec xset s off
 exec xset b off
 exec ssh-agent /usr/local/bin/stumpwm
-
