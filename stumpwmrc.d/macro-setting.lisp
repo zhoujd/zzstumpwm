@@ -30,6 +30,8 @@
   (let ((ks (mapcar #'(lambda (k) (cons 'defkey-map map k)) keys)))
     `(progn ,@ks)))
 
+(defmacro lookup-top-key (key)
+  `(lookup-key *top-map* ,key))
 
 ;; sudo command definitions
 (define-stumpwm-type :password (input prompt)
