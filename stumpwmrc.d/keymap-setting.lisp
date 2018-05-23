@@ -17,12 +17,11 @@
 (set-prefix-key (kbd "s-t"))
 
 ;; self define keymap
-(defvar *zz-x-map*      (make-sparse-keymap) "Keymap simallar emacs C-x.")
-(defvar *zz-c-map*      (make-sparse-keymap) "Keymap simallar emacs C-c.")
-(defvar *zz-exec-map*   (make-sparse-keymap) "Keymap execute commands.")
+(defvar *zz-x-map*      (make-sparse-keymap) "Keymap simallar emacs C-x")
+(defvar *zz-c-map*      (make-sparse-keymap) "Keymap simallar emacs C-c")
+(defvar *zz-z-map*      (make-sparse-keymap) "Keymap simallar emacs C-z")
+(defvar *zz-exec-map*   (make-sparse-keymap) "Keymap execute commands")
 (defvar *zz-help-map*   (make-sparse-keymap) "Keymap help")
-(defvar *zz-window-map* (make-sparse-keymap) "Keymap window")
-(defvar *zz-view-map*   (make-sparse-keymap) "Keymap view")
 (defvar *zz-menu-map*   (make-sparse-keymap) "Keymap menu")
 
 (apply-keys-to-map
@@ -30,9 +29,8 @@
  (list
   (kbd "s-x")       *zz-x-map*
   (kbd "s-c")       *zz-c-map*
+  (kbd "s-z")       *zz-z-map*
   (kbd "s-e")       *zz-exec-map*
   (kbd "s-h")       *zz-help-map*
-  (kbd "s-w")       *zz-window-map*
-  (kbd "s-v")       *zz-view-map*
   (kbd "s-m")       *zz-menu-map*
   ))

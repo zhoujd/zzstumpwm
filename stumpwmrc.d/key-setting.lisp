@@ -64,6 +64,17 @@
   (kbd "w")         "where-is"
   ))
 
+;; input map
+(apply-keys-to-map
+ *input-map*
+ (list
+  (kbd "C-m")       'input-submit
+  (kbd "C-h")       'input-delete-backward-char
+  (kbd "M-p")       'input-history-back
+  (kbd "M-n")       'input-history-forward
+  (kbd "C-i")       'input-complete-forward
+  ))
+
 ;; top map
 (apply-keys-to-map
  *top-map*
@@ -84,33 +95,6 @@
   (kbd "s-C-q")     "quit"
   (kbd "s-C-r")     "reinit"
 
-  (kbd "s-F1")      "lastmsg"
-  (kbd "s-C-F1")    "version"
-  (kbd "s-F2")      "exec"
-  (kbd "s-C-F2")    "exec dmenu_run -fn consola-13"
-  (kbd "s-F3")      "dump-desktop-to-file ~/.stumpwm-desktop"
-  (kbd "s-C-F3")    "restore-from-file ~/.stumpwm-desktop"
-  (kbd "s-F4")      "kill"
-  (kbd "s-C-F4")    "gkill"
-
-  (kbd "s-F5")      "gnew f5"
-  (kbd "s-C-F5")    "gnew-float f5-float"
-  (kbd "s-F6")      "gnew f6"
-  (kbd "s-C-F6")    "gnew-float f6-float"
-  (kbd "s-F7")      "gnew f7"
-  (kbd "s-C-F7")    "gnew-float f7-float"
-  (kbd "s-F8")      "gnew f8"
-  (kbd "s-C-F8")    "gnew-float f8-float"
-
-  (kbd "s-F9")      "gother"
-  (kbd "s-C-F9")    "gselect"
-  (kbd "s-F10")     "colon"
-  (kbd "s-C-F10")   "eval"
-  (kbd "s-F11")     "fullscreen"
-  (kbd "s-C-F11")   "echo-date"
-  (kbd "s-F12")     "abort"
-  (kbd "s-C-F12")   "banish"
-
   (kbd "s-Left")    "move-focus left"
   (kbd "s-Right")   "move-focus right"
   (kbd "s-Up")      "move-focus up"
@@ -126,17 +110,6 @@
   (kbd "s-C-Up")    "gprev"
   (kbd "s-C-Down")  "gnext"
 
-  (kbd "s-[")       "amixer-Master-1-"
-  (kbd "s-]")       "amixer-Master-1+"
-  ))
-
-;; input map
-(apply-keys-to-map
- *input-map*
- (list
-  (kbd "C-m")       'input-submit
-  (kbd "C-h")       'input-delete-backward-char
-  (kbd "M-p")       'input-history-back
-  (kbd "M-n")       'input-history-forward
-  (kbd "C-i")       'input-complete-forward
+  (kbd "s-,")       "amixer-Master-1-"
+  (kbd "s-.")       "amixer-Master-1+"
   ))

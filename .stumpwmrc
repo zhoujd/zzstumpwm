@@ -27,5 +27,6 @@
   "font-setting"
   "other-setting"
   "keymap-setting"
+  "fn-setting"
   "key-setting"
   ))
