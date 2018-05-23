@@ -1,6 +1,8 @@
 ;;;; F1 - F12 setting -*-lisp-*-
 ;;
 
+(in-package :stumpwm)
+
 ;; top map
 (apply-keys-to-map
  *top-map*
