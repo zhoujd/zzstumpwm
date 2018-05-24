@@ -40,6 +40,8 @@
   (kbd "8")         "delete-window"
   (kbd "9")         "iresize"
   (kbd "0")         "remove-split"
+  (kbd "-")         "dump-desktop-to-file ~/.stumpwm-desktop"
+  (kbd "=")         "restore-from-file ~/.stumpwm-desktop"
 
   ;; exchange-direction bound to C-t x by defalut
   ;; https://stumpwm.github.io/git/stumpwm-git_6.html#Frames

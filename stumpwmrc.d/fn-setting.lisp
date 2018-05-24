@@ -11,8 +11,8 @@
   (kbd "s-C-F1")    "version"
   (kbd "s-F2")      "exec"
   (kbd "s-C-F2")    "exec dmenu_run -fn consola-13"
-  (kbd "s-F3")      "dump-desktop-to-file ~/.stumpwm-desktop"
-  (kbd "s-C-F3")    "restore-from-file ~/.stumpwm-desktop"
+  (kbd "s-F3")      "pull-hidden-other"
+  (kbd "s-C-F3")    "gother"
   (kbd "s-F4")      "kill"
   (kbd "s-C-F4")    "gkill"
 
@@ -25,7 +25,7 @@
   (kbd "s-F8")      "gnew f8"
   (kbd "s-C-F8")    "gnew-float f8-float"
 
-  (kbd "s-F9")      "gother"
+  (kbd "s-F9")      "gselect Default"
   (kbd "s-C-F9")    "gselect"
   (kbd "s-F10")     "colon"
   (kbd "s-C-F10")   "eval"
