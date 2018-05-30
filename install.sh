@@ -39,7 +39,7 @@ rm -f ~/.cshrc
 ln -s $CURRENT_DIR/misc/.cshrc ~/.cshrc
 
 ## Install .xinitrc
-#rm -f ~/.xinitrc
-#ln -s $CURRENT_DIR/misc/.xinitrc ~/.xinitrc
+rm -f ~/.xinitrc
+ln -s $CURRENT_DIR/misc/.xinitrc ~/.xinitrc
 
 echo "install stumpwm end ..."

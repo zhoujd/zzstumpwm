@@ -1,4 +1,4 @@
-;;;; common setting -*-lisp-*-
+;;;; font setting -*-lisp-*-
 ;;
 
 (in-package :stumpwm)
