@@ -67,11 +67,8 @@ used for matching windows with run-or-raise or window placement-merules."
 (defcommand uptime () ()
   (echo-string (current-screen) (run-shell-command "uptime" t)))
 
-;; emacs run-or-raise
-(defcommand cycle-emacs () ()
-  (run-or-raise "emacs" '(:class "Emacs")))
-
-(defcommand select-emacs () ()
+;; emacs in current group
+(defcommand runemacs () ()
   (run-or-raise "emacs" '(:class "Emacs") nil nil))
 
 ;; startup run commands

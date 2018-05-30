@@ -10,11 +10,9 @@
   (kbd "c")         "gnome-control-center"
   (kbd "C-c")       "exec gnome-control-center"
   (kbd "M-c")       (gnome-term-command "sudo gnome-control-center")
-  (kbd "e")         "emacs"
+  (kbd "e")         "runemacs"
   (kbd "s-e")       "emacs"
-  (kbd "E")         "cycle-emacs"
   (kbd "C-e")       "exec emacs"
-  (kbd "M-e")       "select-emacs"
   (kbd "f")         "firefox"
   (kbd "C-f")       "exec firefox"
   (kbd "m")         "exec gnome-system-monitor"
