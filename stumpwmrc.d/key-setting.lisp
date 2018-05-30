@@ -117,4 +117,6 @@
 
   (kbd "s-,")       "amixer-Master-1-"
   (kbd "s-.")       "amixer-Master-1+"
+
+  (kbd "s-Escape")  "send-escape"
   ))

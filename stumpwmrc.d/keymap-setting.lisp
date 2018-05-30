@@ -14,7 +14,7 @@
         (define-key map key fn)))))
 
 ;; change the prefix key to something else
-(set-prefix-key (kbd "s-t"))
+(set-prefix-key (kbd "Menu"))
 
 ;; self define keymap
 (defvar *zz-x-map*      (make-sparse-keymap) "Keymap simallar emacs C-x")
