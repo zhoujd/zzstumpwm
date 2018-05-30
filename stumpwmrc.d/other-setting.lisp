@@ -68,10 +68,10 @@ used for matching windows with run-or-raise or window placement-merules."
   (echo-string (current-screen) (run-shell-command "uptime" t)))
 
 ;; emacs run-or-raise
-(defcommand emacs-cycle () ()
+(defcommand cycle-emacs () ()
   (run-or-raise "emacs" '(:class "Emacs")))
 
-(defcommand emacs-select () ()
+(defcommand select-emacs () ()
   (run-or-raise "emacs" '(:class "Emacs") nil nil))
 
 ;; startup run commands
