@@ -12,11 +12,19 @@ if [ ! "" = "$1" ]; then
     WM_SELECT=$1
 fi
 
+kill_wm()
+{
+    wm_pid=`ps -ef | grep $1 | grep -v grep | awk '{print $2}'`
+    if [ ! "" = "$wm_pid" ]; then
+        kill -TERM $wm_pid
+    fi 
+}
+
 case "$WM_SELECT" in
     "1" )
-        kill -TERM `ps -ef | grep stumpwm | grep -v grep | awk '{print $2}'`
+        kill_wm stumpwm
         ;;
     "2" )
-        kill -TERM `ps -ef | grep clfswm | grep -v grep | awk '{print $2}'`
+        kill_wm clfswm
         ;;
 esac
