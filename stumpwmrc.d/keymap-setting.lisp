@@ -17,9 +17,9 @@
 (set-prefix-key (kbd "Menu"))
 
 ;; self define keymap
-(defvar *zz-x-map*      (make-sparse-keymap) "Keymap simallar emacs C-x")
-(defvar *zz-c-map*      (make-sparse-keymap) "Keymap simallar emacs C-c")
-(defvar *zz-z-map*      (make-sparse-keymap) "Keymap simallar emacs C-z")
+(defvar *zz-x-map*      (make-sparse-keymap) "Keymap like emacs C-x")
+(defvar *zz-c-map*      (make-sparse-keymap) "Keymap like emacs C-c")
+(defvar *zz-z-map*      (make-sparse-keymap) "Keymap like emacs C-z")
 (defvar *zz-exec-map*   (make-sparse-keymap) "Keymap execute commands")
 (defvar *zz-help-map*   (make-sparse-keymap) "Keymap help")
 (defvar *zz-menu-map*   (make-sparse-keymap) "Keymap menu")
