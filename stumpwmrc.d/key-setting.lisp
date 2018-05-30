@@ -45,6 +45,9 @@
   (kbd "-")         "dump-desktop-to-file ~/.stumpwm-desktop"
   (kbd "=")         "restore-from-file ~/.stumpwm-desktop"
 
+  ;; show window info 
+  (kbd "i")         "current-window-info"
+  
   ;; exchange-direction bound to C-t x by defalut
   ;; https://stumpwm.github.io/git/stumpwm-git_6.html#Frames
   (kbd "Left")      "exchange-direction left"
