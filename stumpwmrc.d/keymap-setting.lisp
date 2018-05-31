@@ -15,8 +15,6 @@
 
 ;; change the prefix key to something else
 (set-prefix-key (kbd "Menu"))
-(setf *escape-key* (kbd "Menu"))
-(setf *escape-fake-key* (kbd "Menu"))
 
 ;; self define keymap
 (defvar *zz-x-map*      (make-sparse-keymap) "Keymap like emacs C-x")
