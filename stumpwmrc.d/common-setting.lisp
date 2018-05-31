@@ -9,7 +9,7 @@
 ;; color select
 (set-fg-color "green")
 (set-bg-color "black")
-(set-float-focus-color   "black")
+(set-float-focus-color   "green")
 (set-float-unfocus-color "black")
 
 ;; suppress the message StumpWM displays when it starts. Set it to NIL
@@ -26,7 +26,7 @@
       *transient-border-width*      1
       +default-frame-outline-width+ 1
       *float-window-title-height*   0
-      *window-border-style*         :thin)
+      *window-border-style*         :tight)
 
 ;; mode line
 (setf *mode-line-background-color*  "black"
