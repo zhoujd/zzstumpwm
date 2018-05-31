@@ -25,7 +25,7 @@
       *maxsize-border-width*        1
       *transient-border-width*      1
       +default-frame-outline-width+ 1
-      *float-window-title-height*   0
+      *float-window-title-height*   1
       *window-border-style*         :tight)
 
 ;; mode line
