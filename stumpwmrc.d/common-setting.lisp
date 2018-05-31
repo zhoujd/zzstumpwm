@@ -25,7 +25,8 @@
       *maxsize-border-width*        1
       *transient-border-width*      1
       +default-frame-outline-width+ 1
-      *float-window-title-height*   1
+      *float-window-border*         1
+      *float-window-title-height*   10
       *window-border-style*         :tight)
 
 ;; mode line
@@ -37,8 +38,7 @@
       *mode-line-pad-y*             0
       *mode-line-timeout*           60
       *mode-line-screen-position*   :top
-      *screen-mode-line-format*     (list "[^B%n^b]%W" "^> [" "^>%d]")
-      )
+      *screen-mode-line-format*     (list "[^B%n^b]%W" "^> [" "^>%d]"))
 
 (when (and *startup-mode-line*
            (not (head-mode-line (current-head))))
