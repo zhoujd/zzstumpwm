@@ -16,6 +16,8 @@
   (kbd "s-F4")      "kill"
   (kbd "s-C-F4")    "gkill"
 
+  ;; Floating Group Basics
+  ;; Left click/drag=>move, Right click/drag=>resize
   (kbd "s-F5")      "gnew f5"
   (kbd "s-C-F5")    "gnew-float f5-float"
   (kbd "s-F6")      "gnew f6"
