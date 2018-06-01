@@ -27,7 +27,7 @@
       +default-frame-outline-width+ 1
       *float-window-border*         1
       *float-window-title-height*   10
-      *window-border-style*         :tight)
+      *window-border-style*         :thin)
 
 ;; mode line
 (setf *mode-line-background-color*  "black"
