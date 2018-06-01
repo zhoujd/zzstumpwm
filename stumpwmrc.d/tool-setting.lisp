@@ -5,14 +5,12 @@
 
 ;; auto start swank server
 (require 'swank)
-(swank-loader:init)
 (defvar *swank-server-running* nil "swank server flag")
 (defvar *swank-server-port* 4405 "swank server port")
 
 (defun swank-start-server ()
   (and (not *swank-server-running*)
        (swank:create-server :port *swank-server-port*
-                            :style swank:*communication-style*
                             :dont-close t)
        (setf *swank-server-running* t)))
 
