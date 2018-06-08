@@ -31,9 +31,9 @@ asdf configure
 
     (asdf:initialize-source-registry
         `(:source-registry
-        (:directory ,appdir)
-        (:tree ,librootdir)
-        :inherit-configuration))
+            (:directory ,appdir)
+            (:tree ,librootdir)
+            :inherit-configuration))
 
 6. Old Style central registry
 
