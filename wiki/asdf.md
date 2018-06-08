@@ -1,5 +1,5 @@
-ASDF
-====
+asdf configure
+==============
 
 1. Default Installation Paths
 
@@ -37,8 +37,7 @@ ASDF
 
 6. Old Style central registry
 
-    > (pushnew #p"/myapp/src/" asdf:*central-registry*
-        :test 'equal)
+    > (pushnew #p"/myapp/src/" asdf:*central-registry* :test 'equal)
     > Catch: ASDF 1 was unforgiving if you forgot the trailing /
     > Magic: argument actually evaluated.
     > ASDF 2 has asdf::getenv, now uiop:getenv
@@ -47,4 +46,3 @@ ASDF
     > source-registry can be configured in a decentralized way
         > Each can specify what he knows,
         > none need specify what he doesn't
-
