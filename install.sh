@@ -4,9 +4,6 @@ CURRENT_DIR=`pwd`
 
 echo "install stumpwm start ..."
 
-## Set asdf load directory
-mkdir -p ~/common-lisp/
-
 ## Set configure file and quicklisp
 rm -f ~/.stumpwmrc
 ln -s $CURRENT_DIR/.stumpwmrc ~/.stumpwmrc
