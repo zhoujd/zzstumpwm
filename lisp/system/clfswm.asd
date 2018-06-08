@@ -1,1 +1,0 @@
-clfswm/clfswm.asd

@@ -1,15 +1,13 @@
-;;;; -*- Lisp -*-
-;;; ASDF configure
+;;;; .sbclrc
+
+;;; Setup asdf
 #-asdf
 (require :asdf)
-(mapc
- #'(lambda (path)
-     (let ((full-path (merge-pathnames path (user-homedir-pathname))))
-       (pushnew full-path asdf:*central-registry* :test #'equal)))
- '(
-   "lisp/"                  ;; must end of /
-   "lisp/system/"           ;; must end of /
-   ))
+(asdf:initialize-source-registry
+ `(:source-registry
+   (:tree (:home "common-lisp"))
+   (:tree (:home "lisp"))
+   :inherit-configuration))
 
 ;;; The following lines added by ql:add-to-init-file:
 #-quicklisp

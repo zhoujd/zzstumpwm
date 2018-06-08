@@ -1,1 +1,0 @@
-amixer/amixer.asd
