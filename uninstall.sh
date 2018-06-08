@@ -8,6 +8,7 @@ echo "uninstall stumpwm start ..."
 rm -f ~/.stumpwmrc
 rm -f ~/.clfswmrc
 rm -f ~/quicklisp
+rm -f ~/lisp
 
 ## Set SBCL configre
 rm -f ~/.sbclrc
