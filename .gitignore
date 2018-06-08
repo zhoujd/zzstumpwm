@@ -1,4 +1,5 @@
 .hg/
+lisp/*.asd
 quicklisp/cache
 quicklisp/retired
 quicklisp/tmp
