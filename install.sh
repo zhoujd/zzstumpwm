@@ -14,10 +14,6 @@ ln -s $CURRENT_DIR/.clfswmrc ~/.clfswmrc
 rm -f ~/quicklisp
 ln -s $CURRENT_DIR/quicklisp ~/quicklisp
 
-## Set asdf configure
-rm -f ~/lisp
-ln -s $CURRENT_DIR/lisp ~/lisp
-
 ## Set SBCL configre
 rm -f ~/.sbclrc
 ln -s $CURRENT_DIR/misc/.sbclrc ~/.sbclrc
