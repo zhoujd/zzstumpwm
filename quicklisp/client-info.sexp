@@ -1,17 +1,17 @@
-(:version "2016-02-22"
+(:version "2017-03-06"
  :client-info-format "1"
 
  :subscription-url
  "http://beta.quicklisp.org/client/quicklisp.sexp"
  :canonical-client-info-url
- "http://beta.quicklisp.org/client/2016-02-22/client-info.sexp"
+ "http://beta.quicklisp.org/client/2017-03-06/client-info.sexp"
 
  :client-tar
- (:url "http://beta.quicklisp.org/client/2016-02-22/quicklisp.tar"
-  :size 245760
-  :md5 "92ddb01b545a98e0260674be995c209b"
+ (:url "http://beta.quicklisp.org/client/2017-03-06/quicklisp.tar"
+  :size 256000
+  :md5 "31c6d582d7ddf64f87620367051aa03d"
   :sha256
-  "98e93a792b3e1153e487a02d96839cecc5e34bafd8305b5914df39a2da12f6fa")
+  "1483a38ab90d93d39178c3d2a447abb8665d50963da6eccafae5078cba1e7414")
 
  :setup
  (:url "http://beta.quicklisp.org/client/2015-09-24/setup.lisp"

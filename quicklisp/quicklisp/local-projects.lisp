@@ -39,12 +39,23 @@
   "Return the system index file for the directory PATHNAME."
   (merge-pathnames "system-index.txt" pathname))
 
+(defun matching-directory-files (directory fun)
+  (let ((result '()))
+    (map-directory-tree directory
+                        (lambda (file)
+                          (when (funcall fun file)
+                            (push file result))))
+    result))
+
 (defun local-project-system-files (pathname)
   "Return a list of system files under PATHNAME."
-  (let* ((wild (merge-pathnames "**/*.asd" pathname))
-         (files (sort (directory wild)
+  (let* ((files (matching-directory-files pathname
+                                          (lambda (file)
+                                            (equalp (pathname-type file)
+                                                    "asd")))))
+    (setf files (sort files
                       #'string<
-                      :key #'namestring)))
+                      :key #'namestring))
     (stable-sort files
                  #'<
                  :key (lambda (file)
@@ -53,6 +64,7 @@
 (defun make-system-index (pathname)
   "Create a system index file for all system files under
 PATHNAME. Current format is one native namestring per line."
+  (setf pathname (truename pathname))
   (with-open-file (stream (system-index-file pathname)
                           :direction :output
                           :if-exists :rename-and-delete)

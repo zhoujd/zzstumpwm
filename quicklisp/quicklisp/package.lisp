@@ -68,6 +68,7 @@
            #:probe-directory
            #:directory-entries
            #:delete-directory-tree
+           #:map-directory-tree
            #:native-namestring
            #:directory-write-date))
 
@@ -165,6 +166,7 @@
            #:forget-preference)
   ;; Generic
   (:export #:all-dists
+           #:canonical-distinfo-url
            #:enabled-dists
            #:find-dist
            #:find-dist-or-lose
@@ -264,6 +266,7 @@
   (:shadow #:find-system
            #:find-release)
   (:export #:bundle
+           #:requested-systems
            #:ensure-system
            #:ensure-release
            #:write-bundle
