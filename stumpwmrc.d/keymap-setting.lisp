@@ -35,13 +35,18 @@
   (kbd "s-m")       *zz-menu-map*
   ))
 
-(mapc (lambda (map)
-        (defkey-map map "C-g" "abort"))
+(mapc
+ #'(lambda (map)
+     (apply-keys-to-map
+      map
       (list
-       *zz-x-map*   
-       *zz-c-map*   
-       *zz-z-map*   
-       *zz-exec-map*
-       *zz-help-map*
-       *zz-menu-map*
-       ))
+       (kbd "C-g") "abort")
+      ))
+ (list
+  *zz-x-map*   
+  *zz-c-map*   
+  *zz-z-map*   
+  *zz-exec-map*
+  *zz-help-map*
+  *zz-menu-map*
+  ))
