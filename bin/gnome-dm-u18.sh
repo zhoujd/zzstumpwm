@@ -17,7 +17,9 @@ fi
 echo "[Desktop Entry]
 Name=Stumpwm
 Comment=Stumpwm window manager
-TryExec=/usr/bin/gnome-session
+TryExec=gnome-shell
 Exec=$CURRENT_DIR/startx.sh
-Type=XSession
+Type=Application
+DesktopNames=ubuntu:STUMPWM
+X-Ubuntu-Gettext-Domain=gnome-session-3.0
 " > /usr/share/xsessions/stumpwm.desktop
