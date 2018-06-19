@@ -3,8 +3,6 @@
 ECL_VERSION="16.1.3"
 ECL_PKG="ecl-$ECL_VERSION.tgz"
 
-https://common-lisp.net/project/ecl/static/files/release/ecl-16.1.3.tgz
-
 echo "Download ECL $ECL_VERSION ...."
 
 mkdir -p ~/Downloads
