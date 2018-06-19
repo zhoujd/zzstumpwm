@@ -16,7 +16,7 @@ wget https://common-lisp.net/project/ecl/static/files/release/$ECL_PKG
 ## untar package
 tar xf $ECL_PKG
 
-## install sbcl to default folder (/usr/local)
+## install sbcl to default folder /usr/local
 pushd ecl-$ECL_VERSION
 ./configure --prefix=/usr
 make 
