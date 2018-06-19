@@ -17,13 +17,3 @@ TryExec=/usr/bin/gnome-session
 Exec=$CURRENT_DIR/startx.sh
 Type=XSession
 " > /usr/share/xsessions/stumpwm-1.desktop
-
-echo "[Desktop Entry]
-Name=Stumpwm
-Comment=Stumpwm window manager
-TryExec=gnome-shell
-Exec=$CURRENT_DIR/startx.sh
-Type=Application
-DesktopNames=ubuntu:STUMPWM
-X-Ubuntu-Gettext-Domain=gnome-session-3.0
-" > /usr/share/xsessions/stumpwm-2.desktop
