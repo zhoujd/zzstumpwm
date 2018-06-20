@@ -36,6 +36,9 @@ XTerm*SaveLines: 4096
 xterm*eightBitInput: false
 xterm*altSendsEscape: true
 
+!! Copy and paste
+XTerm*selectToClipboard: true
+
 !! Chinese support
 XTerm.cjkWidth: true
 XTerm*faceNameDoublesize: Microsoft YaHei Mono:antialias=True:pixelsize=18
