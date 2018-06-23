@@ -1,7 +1,7 @@
 zzstumpwm
 =========
 
-## Help url
+## Help URL
 
     * <http://stumpwm.org>
     * <http://www.clisp.org>
