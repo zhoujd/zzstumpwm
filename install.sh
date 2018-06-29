@@ -44,4 +44,8 @@ ln -s $CURRENT_DIR/misc/.cshrc ~/.cshrc
 rm -f ~/.xinitrc
 ln -s $CURRENT_DIR/misc/.xinitrc ~/.xinitrc
 
+## Install .Xresources
+rm -f ~/.Xresources
+ln -s $CURRENT_DIR/misc/.Xresources ~/.Xresources
+
 echo "install stumpwm end ..."
