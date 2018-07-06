@@ -18,3 +18,8 @@ stumpwm install
 
         $ sudo apt install firefox
         
+5. Install sound
+
+        $ sudo apt install alsa-base pulseaudio
+        $ sudo alsa force-reload
+
