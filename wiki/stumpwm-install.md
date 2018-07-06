@@ -14,3 +14,7 @@ stumpwm install
         $ sudo apt install sbcl emacs python texinfo
         $ sudo apt install gcc g++ make cmake autoconf libtool yasm
         
+4. Install firefox
+
+        $ sudo apt install firefox
+        
