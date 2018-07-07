@@ -124,3 +124,10 @@
  (list
   (kbd "Menu")      "send-escape"
   ))
+
+(apply-keys-to-map
+ *zz-screen-map*
+ (list
+  (kbd "p")         "sprev"
+  (kbd "n")         "snext"
+  ))

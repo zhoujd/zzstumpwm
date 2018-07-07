@@ -23,6 +23,7 @@
 (defvar *zz-exec-map*   (make-sparse-keymap) "Keymap execute commands")
 (defvar *zz-help-map*   (make-sparse-keymap) "Keymap help")
 (defvar *zz-menu-map*   (make-sparse-keymap) "Keymap menu")
+(defvar *zz-screen-map* (make-sparse-keymap) "Keymap screen")
 
 (apply-keys-to-map
  *top-map*
@@ -33,6 +34,7 @@
   (kbd "s-e")       *zz-exec-map*
   (kbd "s-h")       *zz-help-map*
   (kbd "s-m")       *zz-menu-map*
+  (kbd "s-s")       *zz-screen-map*
   ))
 
 (mapc
@@ -49,4 +51,5 @@
   *zz-exec-map*
   *zz-help-map*
   *zz-menu-map*
+  *zz-screen-map*
   ))

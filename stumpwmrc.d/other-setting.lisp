@@ -71,6 +71,21 @@ used for matching windows with run-or-raise or window placement-merules."
 (defcommand runemacs () ()
   (run-or-raise "emacs" '(:class "Emacs") nil nil))
 
+;; safe quit
+(defcommand safe-quit () ()
+  (dolist (screen *screen-list*)
+    (dolist (group (stumpwm::screen-groups screen))
+      (if (/= 0 (length (stumpwm::group-windows group)))
+          (throw 'stumpwm::error "You must close all windows first"))))
+  (run-commands "quit"))
+
+;; close all windows
+(defcommand delete-all () ()
+  (dolist (screen *screen-list*)
+    (dolist (group (stumpwm::screen-groups screen))
+      (dolist (window (stumpwm::group-windows group))
+        (stumpwm::delete-window window)))))
+
 ;; startup run commands
 (mapc
  #'(lambda (cmd)
