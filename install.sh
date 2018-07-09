@@ -40,10 +40,6 @@ ln -s $CURRENT_DIR/misc/.vimrc ~/.vimrc
 rm -f ~/.cshrc
 ln -s $CURRENT_DIR/misc/.cshrc ~/.cshrc
 
-## Install .xinitrc
-rm -f ~/.xinitrc
-ln -s $CURRENT_DIR/misc/.xinitrc ~/.xinitrc
-
 ## Install .Xresources
 rm -f ~/.Xresources
 ln -s $CURRENT_DIR/misc/.Xresources ~/.Xresources
