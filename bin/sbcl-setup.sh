@@ -17,6 +17,9 @@ fi
 ## untar package
 tar xf $SBCL_PKG
 
+## remove old sbcl
+#find /usr -name "sbcl*" | xargs sudo rm -rf
+
 ## install sbcl to default folder (/usr/local)
 pushd sbcl-$SBCL_VERSION-x86-64-linux
 sudo INSTALL_ROOT=/usr sh install.sh
