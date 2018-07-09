@@ -3,7 +3,7 @@ stumpwm install
 
 1. Install Ubuntu 18.04 server
 
-        $ sudo apt install git vim
+        $ sudo apt install git vim xterm
 
 2. Install xorg
     
@@ -26,9 +26,5 @@ stumpwm install
 6. Build emacs
 
         $ sudo apt install libgtk2.0-dev
-        
-7. Install DM
 
-        $ sudo apt install lightdm
-        
         

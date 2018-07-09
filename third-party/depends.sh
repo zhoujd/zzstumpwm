@@ -2,7 +2,7 @@
 
 case "$1" in
     "ubuntu" )
-        sudo apt-get install -y libxinerama-dev libx11-dev g++
+        sudo apt-get install -y libxinerama-dev libx11-dev g++ libxft-dev
         ;;
     "suse" )
         sudo zypper install -y libXinerama-devel libX11-devel xorg-x11-server-devel
