@@ -2,11 +2,11 @@
 #set -x -v
 
 SCRIPT_ROOT=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
-STUMPWM_HOME=$(cd $SCRIPT_ROOT/.. && pwd)
+MISC_HOME=$(cd $SCRIPT_ROOT/../misc && pwd)
 
 ## setup .xinitrc
 rm -f ~/.xinitrc
-cp $STUMPWM_HOME/misc/.xinitrc.in ~/.xinitrc 
+cp $MISC_HOME/.xinitrc.in ~/.xinitrc 
 
 ## setup .profile
 cat >> ~/.profile <<EOF
