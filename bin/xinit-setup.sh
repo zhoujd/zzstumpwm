@@ -11,7 +11,7 @@ cp $MISC_HOME/.xinitrc.in ~/.xinitrc
 ## setup .profile
 cat >> ~/.profile <<EOF
 
-## auto startx on tty1
+# auto startx on tty1
 WM_NAME=stumpwm
 if [ "\$tty" = "/dev/tty1" ]; then
     WM_PID=\`ps -ef | grep \$WM_NAME | grep -v grep | awk '{print \$2}'\`
