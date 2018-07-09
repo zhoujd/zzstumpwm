@@ -23,3 +23,12 @@ stumpwm install
         $ sudo apt install alsa-base pulseaudio
         $ sudo alsa force-reload
 
+6. Build emacs
+
+        $ sudo apt install libgtk2.0-dev
+        
+7. Install DM
+
+        $ sudo apt install lightdm
+        
+        
