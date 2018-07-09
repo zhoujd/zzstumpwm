@@ -2,15 +2,12 @@
 
 # Select window manager to run
 # 1:stumpwm 2:clfswm
-WM_SELECT="1"
-
 echo "You can also run : $0 [1|2]"
 echo "1:stumpwm"
 echo "2:clfswm"
 
-if [ ! "" = "$1" ]; then
-    WM_SELECT=$1
-fi
+# Here stumpwm is kept as default
+WM_SELECT=${1:-1}
 
 case "$WM_SELECT" in
     "1" )
