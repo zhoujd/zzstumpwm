@@ -10,15 +10,16 @@ mkdir -p ~/Downloads
 pushd ~/Downloads
 
 ## wget sbcl package
-rm -f $SBCL_PKG
-wget http://prdownloads.sourceforge.net/sbcl/$SBCL_PKG
+if [ ! -f $SBCL_PKG ]; then
+    wget http://prdownloads.sourceforge.net/sbcl/$SBCL_PKG
+fi
 
 ## untar package
 tar xf $SBCL_PKG
 
 ## install sbcl to default folder (/usr/local)
 pushd sbcl-$SBCL_VERSION-x86-64-linux
-sudo sh install.sh
+sudo INSTALL_ROOT=/usr sh install.sh
 popd
 
 popd
