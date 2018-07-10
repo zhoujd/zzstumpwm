@@ -14,7 +14,7 @@ tool_list=(
 
 ## parameter check
 case "$target" in
-    "ubuntu"|"suse"|"centos"|"fedora" )
+    "ubuntu"|"suse"|"centos"|"fedora"|"arch" )
         echo "Install on $target"
         for tool in ${tool_list[@]} ; do
             echo "Install $tool ..."
@@ -24,7 +24,7 @@ case "$target" in
         done
         ;;
     * )
-        echo "Use $0 [ubuntu|suse|centos|fedora]"
+        echo "Use $0 [ubuntu|suse|centos|fedora|arch]"
         exit 1;
         ;;
 esac

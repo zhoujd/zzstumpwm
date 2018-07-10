@@ -13,7 +13,9 @@ case "$1" in
     "fedora")
         sudo dnf install -y libXinerama-devel libX11-devel xorg-x11-server-devel
         ;;
+    "arch")
+        ;;
     * )
-        echo "Use $0 [ubuntu|suse|centos|fedora]"
+        echo "Use $0 [ubuntu|suse|centos|fedora|arch]"
         ;;
 esac

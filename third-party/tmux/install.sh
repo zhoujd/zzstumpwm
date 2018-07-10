@@ -15,8 +15,11 @@ case "$1" in
     "fedora")
         CONFIG_PARAM="--libdir=/usr/lib64"
         ;;
+    "arch" )
+        CONFIG_PARAM="--prefix=/usr"
+        ;;
     * )
-        echo "Use $0 [ubuntu|suse|centos|fedora]"
+        echo "Use $0 [ubuntu|suse|centos|fedora|arch]"
         exit 1;
         ;;
 esac

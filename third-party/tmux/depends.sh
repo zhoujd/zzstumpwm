@@ -13,6 +13,8 @@ case "$1" in
     "fedora")
         sudo dnf install -y ncurses-devel
         ;;
+    "arch" )
+        ;;
     * )
         echo "Use $0 [ubuntu|suse|centos|fedora]"
         ;;
