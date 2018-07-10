@@ -58,6 +58,7 @@ Arch Linux install
         # grub-mkconfig -o /boot/grub/grub.cfg
 
         # pacman -S openssh linux-headers linux-lts linux-lts-headers
+        # pacman -S vim wget lsb-release bash-completion
 
         # echo arch-cl > /etc/hostname
         # nano /etc/hosts
@@ -87,6 +88,7 @@ Arch Linux install
           Defaults env_keep += "http_proxy https_proxy ftp_proxy"
 
         $ sudo pacman -S xorg xorg-xinit
+        $ sudo pacman -S git net-tools
 
 4. Setup zzstumpwm
 
