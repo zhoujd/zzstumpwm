@@ -7,8 +7,8 @@ MISC_HOME=$(cd $SCRIPT_ROOT/../misc && pwd)
 ## setup .xinitrc
 cp $MISC_HOME/.xinitrc ~/.xinitrc 
 
-## setup .profile
-cat >> ~/.profile <<EOF
+## setup .profile or .bash_profile
+cat >> ~/.bash_profile <<EOF
 
 # auto startx on tty1
 WM_NAME="stumpwm"
