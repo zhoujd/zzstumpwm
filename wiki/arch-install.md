@@ -13,15 +13,15 @@ Arch Linux install
 
         # fdisk -l
         # fdisk /dev/sda
-            > g
+            > g  ## o for legacy grub
             > n
             > p
             > t  # 1
             > w
 
-        300M      EFI    /dev/sda1
-        15G       swap   /dev/sda2
-        100%FREE  /      /dev/sda3   
+          300M      EFI    /dev/sda1
+          15G       swap   /dev/sda2
+          100%FREE  /      /dev/sda3
 
         # mkfs.fat -F32 /dev/sda1
         # mkfs.ext4 /dev/sda3
@@ -47,11 +47,22 @@ Arch Linux install
         # pacman -S dosfstools grub efibootmgr os-probe mtools
         # mkdir /boot/EFI
         # mount /dev/sda1 /boot/EFI
+        
+        ## For legacy
+        # grub-install /dev/sda
+        
+        ## For EFI
         # grub-install --target=x86_64-efi --bootloader-id=grub_uefi --recheck
+        
         # cp /usr/share/locale/en\@quot/LC_MESSAGES/grub.mo /boot/grub/locale/en.mo
         # grub-mkconfig -o /boot/grub/grub.cfg
 
         # pacman -S openssh linux-headers linux-lts linux-lts-headers
+
+        # echo arch-cl > /etc/hostname
+        # nano /etc/hosts
+          127.0.0.1  localhost
+          127.0.1.1  arch-cl.localdomain  arch-cl
 
         # systemctl start  sshd
         # systemctl enable sshd
@@ -71,14 +82,14 @@ Arch Linux install
         $ passwd zhoujd
 
         ### add zhoujd to sudousers
-        # EDITOR=nano visudo 
+        # EDITOR=nano visudo
           %wheel ALL=(ALL) ALL
           Defaults env_keep += "http_proxy https_proxy ftp_proxy"
 
         $ sudo pacman -S xorg xorg-xinit
 
 4. Setup zzstumpwm
- 
+
         $ git clone https://github.com/zhoujd/zzstumpwm.git
 
         $ cd zzstumpwm
@@ -99,4 +110,3 @@ Arch Linux install
         $ git clone https://github.com/zhoujd/zzemacs.git
         $ cd zzemacs
         $ ./install.sh
-
