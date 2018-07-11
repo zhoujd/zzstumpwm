@@ -3,5 +3,5 @@
 
 (in-package :stumpwm)
 
-(xft:cache-fonts)
-(set-font "10x20")
+(require 'ttf-fonts)
+(set-font (make-instance 'xft:font :family "Anonymous Pro" :subfamily "Regular" :size 13))
