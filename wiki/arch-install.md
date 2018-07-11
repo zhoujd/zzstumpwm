@@ -77,7 +77,11 @@ Arch Linux install
 
         # reboot
 
-3. Setup Desktop
+5. Setup sounds
+
+        $ sudo pacman -S alsa-utils alsa-tools alsa-firmware alsa-oss alsa-lib alsa-plugins
+
+6. Setup Desktop
 
         $ useradd -m -g users -G wheel -s /bin/bash zhoujd
         $ passwd zhoujd
@@ -90,7 +94,7 @@ Arch Linux install
         $ sudo pacman -S xorg xorg-xinit
         $ sudo pacman -S git net-tools
 
-4. Setup zzstumpwm
+7. Setup zzstumpwm
 
         $ git clone https://github.com/zhoujd/zzstumpwm.git
 
@@ -103,7 +107,7 @@ Arch Linux install
         $ ./depends.sh arch
         $ ./install.sh arch
 
-5. Setup zzemacs
+8. Setup zzemacs
 
         $ mkdir -p ~/work/build-emacs
         $ cp ~/work/build-emacs
@@ -112,8 +116,4 @@ Arch Linux install
         $ git clone https://github.com/zhoujd/zzemacs.git
         $ cd zzemacs
         $ ./install.sh
-
-6. Setup sounds
-
-        $ sudo pacman -S alsa-utils alsa-tools alsa-firmware alsa-oss alsa-lib alsa-plugins
 
