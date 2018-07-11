@@ -16,7 +16,7 @@ kill_wm()
 {
     wm_pid=`ps -ef | grep $1 | grep -v grep | awk '{print $2}'`
     if [ ! "" = "$wm_pid" ]; then
-        kill -TERM $wm_pid
+        kill -9 $wm_pid
     fi 
 }
 
