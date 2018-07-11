@@ -112,3 +112,8 @@ Arch Linux install
         $ git clone https://github.com/zhoujd/zzemacs.git
         $ cd zzemacs
         $ ./install.sh
+
+6. Setup sounds
+
+        $ sudo pacman -S alsa-utils alsa-tools alsa-firmware alsa-oss alsa-lib alsa-plugins
+
