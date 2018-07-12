@@ -7,7 +7,6 @@ target=$1
 ## tool list
 tool_list=(
     xtrlock
-    tmux
     dmenu
     slock
 )
