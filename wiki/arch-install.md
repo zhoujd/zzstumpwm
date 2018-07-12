@@ -117,3 +117,10 @@ Arch Linux install
         $ cd zzemacs
         $ ./install.sh
 
+9. AUR install
+
+        $ cd package_name
+        $ less PKGBUILD
+        $ less package_name.install
+        $ makepkg -si
+
