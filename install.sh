@@ -36,6 +36,10 @@ ln -s $CURRENT_DIR/misc/.clisprc ~/.clisprc
 rm -f ~/.vimrc
 ln -s $CURRENT_DIR/misc/.vimrc ~/.vimrc
 
+## Set tmux configure
+rm -f ~/.tmux.conf
+ln -s $CURRENT_DIR/misc/.tmux.conf ~/.tmux.conf
+
 ## Set csh configure
 rm -f ~/.cshrc
 ln -s $CURRENT_DIR/misc/.cshrc ~/.cshrc
