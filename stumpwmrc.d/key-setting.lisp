@@ -18,7 +18,7 @@
   (kbd "m")         "exec gnome-system-monitor"
   (kbd "n")         "exec nautilus --no-desktop"
   (kbd "t")         "exec xterm"
-  (kbd "C-t")       "exec terminator"
+  (kbd "C-t")       "exec urxvt"
   (kbd "M-t")       (xterm-command "tmux")
   (kbd "v")         (xterm-command "vim")
   (kbd "C-v")       "exec evince"
