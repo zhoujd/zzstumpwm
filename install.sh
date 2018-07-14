@@ -48,4 +48,8 @@ ln -s $CURRENT_DIR/misc/.cshrc ~/.cshrc
 rm -f ~/.Xresources
 ln -s $CURRENT_DIR/misc/.Xresources ~/.Xresources
 
+# Install .Xdefaults
+rm -f ~/.Xdefaults
+ln -s $CURRENT_DIR/misc/.Xdefaults ~/.Xdefaults
+
 echo "install stumpwm end ..."
