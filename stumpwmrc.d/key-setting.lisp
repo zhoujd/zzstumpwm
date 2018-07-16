@@ -97,6 +97,7 @@
 
   (kbd "s-C-b")     "mode-line"
   (kbd "s-C-q")     "safe-quit"
+  (kbd "s-C-k")     "delete-all"
   (kbd "s-C-r")     "reinit"
 
   (kbd "s-Left")    "move-focus left"
