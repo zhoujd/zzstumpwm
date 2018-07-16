@@ -2,6 +2,7 @@
 
 ## lightdm install
 #sudo pacman -S lightdm lightdm-gtk-greeter
+#sudo systemctl enable lightdm
 #rm ~/.Xauthority
 
 CURRENT_DIR=`pwd`
