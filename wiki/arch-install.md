@@ -82,7 +82,7 @@ Arch Linux install
 
         $ sudo pacman -S alsa-utils alsa-tools alsa-firmware alsa-oss alsa-lib alsa-plugins
 
-6. Setup Desktop
+6. Setup desktop
 
         $ useradd -m -g users -G wheel -s /bin/bash zhoujd
         $ passwd zhoujd
