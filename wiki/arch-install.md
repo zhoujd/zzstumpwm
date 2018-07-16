@@ -44,7 +44,7 @@ Arch Linux install
         # ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
         # hwclock --systohc --utc
 
-        # pacman -S dosfstools grub efibootmgr os-probe mtools
+        # pacman -S dosfstools grub efibootmgr os-prober mtools
         # mkdir /boot/EFI
         # mount /dev/sda1 /boot/EFI
         
@@ -59,7 +59,7 @@ Arch Linux install
 
         # pacman -S openssh linux-headers linux-lts linux-lts-headers
         # pacman -S vim wget lsb-release bash-completion
-        # pacman -S urxvt urxvt-perls
+        # pacman -S rxvt-unicode urxvt-perls
 
         # echo arch-cl > /etc/hostname
         # nano /etc/hosts
@@ -93,6 +93,10 @@ Arch Linux install
           Defaults env_keep += "http_proxy https_proxy ftp_proxy"
 
         $ sudo pacman -S xorg xorg-xinit
+        
+        $ sudo pacman -Ss xf86-video
+        $ sudo pacman -S xf86-video-intel
+
         $ sudo pacman -S git net-tools
 
 7. Setup zzstumpwm
@@ -127,7 +131,7 @@ Arch Linux install
 
 10. URxvt install
 
-        $ sudo  pacman -S urxvt urxvt-perls
+        $ sudo  pacman -S rxvt-unicode urxvt-perls
         $ git clone https://aur.archlinux.org/urxvt-resize-font-git.git
         $ cd urxvt-resize-font-git
         $ makepkg -si
