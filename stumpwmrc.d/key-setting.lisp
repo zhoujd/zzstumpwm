@@ -17,10 +17,9 @@
   (kbd "C-f")       "exec firefox"
   (kbd "m")         "exec gnome-system-monitor"
   (kbd "n")         "exec nautilus --no-desktop"
-  (kbd "t")         "exec xterm"
-  (kbd "C-t")       "exec urxvt"
-  (kbd "M-t")       (xterm-command "tmux")
-  (kbd "v")         (xterm-command "vim")
+  (kbd "t")         "exec urxvt"
+  (kbd "C-t")       (urxvt-command "tmux")
+  (kbd "v")         (urxvt-command "vim")
   (kbd "C-v")       "exec evince"
   (kbd "b")         "colon1 exec firefox http://www."
   (kbd "s")         "colon1 exec xterm -e ssh "
@@ -97,7 +96,7 @@
   (kbd "M-Print")   "screenshot-window"
 
   (kbd "s-C-b")     "mode-line"
-  (kbd "s-C-q")     "quit"
+  (kbd "s-C-q")     "safe-quit"
   (kbd "s-C-r")     "reinit"
 
   (kbd "s-Left")    "move-focus left"

@@ -25,8 +25,12 @@
   (format nil "exec gnome-terminal --name=~a -t ~a -x ~a" name name name))
 
 (defun xterm-command (name)
-  "Start a gnome-terminal with an command session"
+  "Start a xterm with an command session"
   (format nil "exec xterm -e ~a" name))
+
+(defun urxvt-command (name)
+  "Start a urxvt with an command session"
+  (format nil "exec urxvt -e ~a" name))
 
 ;; prompt the user for an interactive command.
 (defcommand colon1 (&optional (initial "")) (:rest)
