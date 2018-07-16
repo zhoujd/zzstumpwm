@@ -131,7 +131,7 @@ Arch Linux install
 
 10. URxvt install
 
-        $ sudo  pacman -S rxvt-unicode urxvt-perls
+        $ sudo pacman -S rxvt-unicode urxvt-perls
         $ git clone https://aur.archlinux.org/urxvt-resize-font-git.git
         $ cd urxvt-resize-font-git
         $ makepkg -si
