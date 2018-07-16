@@ -3,7 +3,9 @@
 ## lightdm install
 #sudo pacman -S lightdm lightdm-gtk-greeter
 #sudo systemctl enable lightdm
-#rm ~/.Xauthority
+## login failed
+#chown $USER:$USER .Xauthority
+#mv .Xauthority .Xauthority.bak
 
 CURRENT_DIR=`pwd`
 
