@@ -75,6 +75,10 @@ used for matching windows with run-or-raise or window placement-merules."
 (defcommand runemacs () ()
   (run-or-raise "emacs" '(:class "Emacs") nil nil))
 
+;; urxvt in current group
+(defcommand urxvt () ()
+  (run-or-raise "urxvt" '(:class "URxvt") nil nil))
+
 ;; safe quit
 (defcommand safe-quit () ()
   (dolist (screen *screen-list*)

@@ -131,3 +131,10 @@
   (kbd "p")         "sprev"
   (kbd "n")         "snext"
   ))
+
+(apply-keys-to-map
+ *root-map*
+ (list
+  (kbd "c")         "urxvt"
+  (kbd "C-c")       "exec urxvt"
+  ))
