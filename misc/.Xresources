@@ -8,7 +8,6 @@ Xft.antialias: 1
 Xft.hinting: 1
 Xft.hintstyple: hintfull
 Xft.rgba: rgb
-!Xft.dpi: 96
 
 !! xterm set
 XTerm*locale: true
