@@ -7,9 +7,8 @@
 (apply-keys-to-map
  *zz-exec-map*
  (list
-  (kbd "c")         "gnome-control-center"
-  (kbd "C-c")       "exec gnome-control-center"
-  (kbd "M-c")       (gnome-term-command "sudo gnome-control-center")
+  (kbd "c")         "urxvt"
+  (kbd "C-c")       "exec urxvt"
   (kbd "e")         "runemacs"
   (kbd "s-e")       "emacs"
   (kbd "C-e")       "exec emacs"
@@ -17,12 +16,11 @@
   (kbd "C-f")       "exec firefox"
   (kbd "m")         "exec gnome-system-monitor"
   (kbd "n")         "exec nautilus --no-desktop"
-  (kbd "t")         "exec urxvt"
-  (kbd "C-t")       (urxvt-command "tmux")
+  (kbd "t")         (urxvt-command "tmux")
   (kbd "v")         (urxvt-command "vim")
   (kbd "C-v")       "exec evince"
   (kbd "b")         "colon1 exec firefox http://www."
-  (kbd "s")         "colon1 exec xterm -e ssh "
+  (kbd "s")         "colon1 exec urxvt -e ssh "
   ))
 
 ;; *zz-x-map*
@@ -57,7 +55,7 @@
 (apply-keys-to-map
  *zz-help-map*
  (list
-  (kbd "m")         (format nil "exec xterm -e info ~a"
+  (kbd "m")         (format nil "exec urxvt -e info ~a"
                             (merge-pathnames "doc/stumpwm.info" *zz-load-directory*))
   (kbd "C-m")       "exec firefox http://stumpwm.org/manual/stumpwm.html"
   (kbd "s")         "exec firefox http://lxr.free-electrons.com/"
