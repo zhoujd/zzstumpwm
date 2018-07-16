@@ -49,7 +49,7 @@ Arch Linux install
         # mount /dev/sda1 /boot/EFI
         
         ## For legacy
-        # grub-install /dev/sda
+        # grub-install /dev/sda --recheck
         
         ## For EFI
         # grub-install --target=x86_64-efi --bootloader-id=grub_uefi --recheck
