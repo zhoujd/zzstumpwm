@@ -59,6 +59,7 @@ Arch Linux install
 
         # pacman -S openssh linux-headers linux-lts linux-lts-headers
         # pacman -S vim wget lsb-release bash-completion
+        # pacman -S urxvt urxvt-perls
 
         # echo arch-cl > /etc/hostname
         # nano /etc/hosts
@@ -124,3 +125,9 @@ Arch Linux install
         $ less package_name.install
         $ makepkg -si
 
+10. URxvt install
+
+        $ sudo  pacman -S urxvt urxvt-perls
+        $ git clone https://aur.archlinux.org/urxvt-resize-font-git.git
+        $ cd urxvt-resize-font-git
+        $ makepkg -si
