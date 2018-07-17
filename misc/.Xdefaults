@@ -32,9 +32,12 @@
 URxvt.intensityStyles:	false
 URxvt.background:       [70]#000000
 URxvt.depth:		32
-URxvt.font: 		xft:consolas:size=14
 URxvt.scrollBar:	false
 URxvt.cursorColor:	white
+
+!! urxvt fonts
+URxvt*font: xft:Monospace:size=13
+URxvt*boldFont: xft:Monospace:bold:size=13
 
 !! Extensions
 URxvt.perl-ext-common:	default,matcher,resize-font,url-select,keyboard-select
