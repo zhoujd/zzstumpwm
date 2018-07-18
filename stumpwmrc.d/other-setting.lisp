@@ -99,9 +99,8 @@ used for matching windows with run-or-raise or window placement-merules."
  #'(lambda (cmd)
      (apply #'start-command-ps cmd))
  (list
-  (list "xset" :options "b off")   ;; turn off bell
+  (list "xset" :options "b off")
   (list "xsetroot" :options "-cursor_name left_ptr -solid black -name root_window")
-  (list "xrdb" :options (concat "-load " *zz-load-directory* "misc/.Xresources"))
   (list "bluetooth-applet" :options "--sm-disable")
   (list "nm-applet" :options "--sm-disable")
   (list "gnome-settings-daemon")
