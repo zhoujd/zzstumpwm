@@ -36,8 +36,8 @@ URxvt.scrollBar:	false
 URxvt.cursorColor:	white
 
 !! urxvt fonts
-URxvt*font: xft:Monospace:size=13
-URxvt*boldFont: xft:Monospace:bold:size=13
+URxvt*font: xft:Monospace:size=16
+URxvt*boldFont: xft:Monospace:bold:size=16
 
 !! Extensions
 URxvt.perl-ext-common:	default,matcher,resize-font,url-select,keyboard-select
