@@ -16,4 +16,4 @@ Comment=Stumpwm window manager
 TryExec=/usr/bin/gnome-session
 Exec=$CURRENT_DIR/start-wm.sh
 Type=XSession
-" > /usr/share/xgreeters/stumpwm-1.desktop
+" > /usr/share/xsessions/stumpwm.desktop
