@@ -101,10 +101,4 @@ used for matching windows with run-or-raise or window placement-merules."
  (list
   (list "xset" :options "b off")
   (list "xsetroot" :options "-cursor_name left_ptr -solid black -name root_window")
-  (list "bluetooth-applet" :options "--sm-disable")
-  (list "nm-applet" :options "--sm-disable")
-  (list "gnome-settings-daemon")
-  (list "gnome-power-manager")
-  (list "gnome-valume-manager")
-  (list "gnome-keyring-daemon" :options "--start --components=gpg,pkcs11,secrets,ssh")
   ))
