@@ -97,7 +97,7 @@ Arch Linux install
         $ sudo pacman -Ss xf86-video
         $ sudo pacman -S xf86-video-intel
 
-        $ sudo pacman -S git net-tools
+        $ sudo pacman -S git net-tools xfce4
 
 7. Setup zzstumpwm
 
