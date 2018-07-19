@@ -52,4 +52,8 @@ ln -s $CURRENT_DIR/misc/.Xresources ~/.Xresources
 rm -f ~/.Xdefaults
 ln -s $CURRENT_DIR/misc/.Xdefaults ~/.Xdefaults
 
+## Install .urxvt
+rm -f ~/.urxvt
+ln -s $CURRENT_DIR/misc/.urxvt ~/.urxvt
+
 echo "install stumpwm end ..."
