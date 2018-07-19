@@ -101,4 +101,5 @@ used for matching windows with run-or-raise or window placement-merules."
  (list
   (list "xset" :options "b off")
   (list "xsetroot" :options "-cursor_name left_ptr -solid black -name root_window")
+  (list "VBoxClient-all")
   ))
