@@ -40,7 +40,7 @@ URxvt*font: xft:Consolas:size=14
 URxvt*boldFont: xft:Consolas:bold:size=14
 
 !! Extensions
-URxvt.perl-ext-common:	default,matcher,resize-font,url-select,keyboard-select
+URxvt.perl-ext-common: default,matcher,resize-font,url-select,keyboard-select,tabbed,selection-to-clipboard
 URxvt.colorUL:		#4682B4
 !! url-select
 URxvt.keysym.M-u:	perl:url-select:select_next
