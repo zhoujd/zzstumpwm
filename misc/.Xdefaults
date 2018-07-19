@@ -40,7 +40,7 @@ URxvt*font: xft:Consolas:size=14
 URxvt*boldFont: xft:Consolas:bold:size=14
 
 !! Extensions
-URxvt.perl-ext-common: default,matcher,resize-font,url-select,keyboard-select,tabbed,selection-to-clipboard
+URxvt.perl-ext-common: default,matcher,resize-font,url-select,keyboard-select,tabbedex,selection-to-clipboard
 URxvt.colorUL:		#4682B4
 !! url-select
 URxvt.keysym.M-u:	perl:url-select:select_next
@@ -55,3 +55,12 @@ URxvt.resize-font.bigger:	C-Up
 !! matcher
 URxvt.url-launcher:	/usr/bin/firefox
 URxvt.matcher.button:	1
+!! tabbedex
+URxvt.tabbed.tabbar-fg: 2
+URxvt.tabbed.tabbar-bg: 0
+URxvt.tabbed.tab-fg: 3
+URxvt.tabbed.tab-bg: 0
+URxvt.tabbed.autohide:  yes
+URxvt.tabbed.new-button:  no
+URxvt.tabbed.title: yes
+
