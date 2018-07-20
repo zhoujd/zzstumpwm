@@ -79,13 +79,12 @@ used for matching windows with run-or-raise or window placement-merules."
 (defcommand urxvt () ()
   (run-or-raise "urxvt" '(:class "URxvt") nil nil))
 
-;; safe quit
-(defcommand safe-quit () ()
-  (dolist (screen *screen-list*)
-    (dolist (group (stumpwm::screen-groups screen))
-      (if (/= 0 (length (stumpwm::group-windows group)))
-          (throw 'stumpwm::error "You must close all windows first"))))
-  (run-commands "quit"))
+(defun yes-no-diag (query-string)
+  "Presents a yes-no dialog to the user asking query-string.
+Returns true when yes is selected"
+  (equal :yes (cadr (select-from-menu (current-screen)
+                            '(("No" :no) ("Yes" :yes))
+                            query-string))))
 
 ;; close all windows
 (defcommand delete-all () ()
@@ -93,6 +92,15 @@ used for matching windows with run-or-raise or window placement-merules."
     (dolist (group (stumpwm::screen-groups screen))
       (dolist (window (stumpwm::group-windows group))
         (stumpwm::delete-window window)))))
+
+;; safe quit
+(defcommand safe-quit () ()
+  (let ((choice (yes-no-diag "Close all programs and quit stumpwm?")))
+    (when choice
+      (echo-string (current-screen) "Ending Session...")
+      (delete-all)
+      (run-hook *quit-hook*)
+      (quit))))
 
 ;; startup run commands
 (mapc
