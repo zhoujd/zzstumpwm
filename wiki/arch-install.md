@@ -135,3 +135,8 @@ Arch Linux install
         $ git clone https://aur.archlinux.org/urxvt-resize-font-git.git
         $ cd urxvt-resize-font-git
         $ makepkg -si
+
+11. Useful tools
+
+        ## pdf
+        $ sudo pacman -S llpp xclip 
