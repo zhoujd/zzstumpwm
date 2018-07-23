@@ -58,6 +58,8 @@ Arch Linux install
         # grub-mkconfig -o /boot/grub/grub.cfg
 
         # pacman -S openssh linux-headers linux-lts linux-lts-headers
+        # grub-mkconfig -o /boot/grub/grub.cfg
+
         # pacman -S vim wget lsb-release bash-completion
         # pacman -S rxvt-unicode urxvt-perls
 
