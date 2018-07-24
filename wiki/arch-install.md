@@ -92,7 +92,7 @@ Arch Linux install
         ### add zhoujd to sudousers
         # EDITOR=nano visudo
           %wheel ALL=(ALL) ALL
-          Defaults env_keep += "http_proxy https_proxy ftp_proxy"
+          Defaults env_keep+="http_proxy https_proxy ftp_proxy no_proxy"
 
         $ sudo pacman -S xorg xorg-xinit
         
@@ -141,4 +141,12 @@ Arch Linux install
 11. Useful tools
 
         ## pdf
-        $ sudo pacman -S llpp xclip 
+        $ sudo pacman -S llpp xclip
+
+12. Swap file
+
+        # fallocate -l 8G /swapfile
+        # chmod 600 /swapfile
+        # mkswap /swapfile
+        # echo '/swapfile none swap sw 0 0' | tee -a /etc/fstab
+        # cat /etc/fstab
