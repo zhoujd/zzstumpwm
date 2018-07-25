@@ -46,12 +46,12 @@ URxvt.colorUL:		#4682B4
 URxvt.keysym.M-u:	perl:url-select:select_next
 URxvt.url-select.launcher: /usr/bin/firefox
 URxvt.url-select.underline: true
-!! keyboard-select:
-URxvt.keysym.M-Escape: perl:keyboard-select:activate
+!! keyboard-select: ctrl+alt+[c|v]
+URxvt.keysym.M-a: perl:keyboard-select:activate
 URxvt.keysym.M-s: perl:keyboard-select:search
 !! resize-font
-URxvt.resize-font.smaller:	C-Down
-URxvt.resize-font.bigger:	C-Up
+URxvt.resize-font.smaller:	M-Down
+URxvt.resize-font.bigger:	M-Up
 !! matcher
 URxvt.url-launcher:	/usr/bin/firefox
 URxvt.matcher.button:	1
