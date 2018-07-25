@@ -83,4 +83,3 @@ URxvt.keysym.C-Prior:   \033[5;5~
 URxvt.keysym.C-Next:    \033[6;5~
 URxvt.keysym.C-End:     \033[1;5F
 URxvt.keysym.C-Home:    \033[1;5H
-
