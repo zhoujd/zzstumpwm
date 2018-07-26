@@ -55,9 +55,9 @@ URxvt*iconFile: /usr/share/pixmaps/urxvt_48x48.xpm
 
 !! Extensions
 URxvt.perl-ext-common: default,matcher,resize-font,url-select,keyboard-select,tabbedex,selection-to-clipboard
-URxvt.colorUL:		#4682B4
+URxvt.colorUL: #4682B4
 !! url-select
-URxvt.keysym.M-u:	perl:url-select:select_next
+URxvt.keysym.M-u: perl:url-select:select_next
 URxvt.url-select.launcher: /usr/bin/firefox
 URxvt.url-select.underline: true
 !! keyboard-select: ctrl+alt+[c|v]
@@ -65,14 +65,14 @@ URxvt.keysym.M-Escape: perl:keyboard-select:activate
 URxvt.keysym.M-s: perl:keyboard-select:search
 !! matcher
 URxvt.url-launcher:	/usr/bin/firefox
-URxvt.matcher.button:	1
+URxvt.matcher.button: 1
 !! tabbedex
 URxvt.tabbed.tabbar-fg: 2
 URxvt.tabbed.tabbar-bg: 0
 URxvt.tabbed.tab-fg: 3
 URxvt.tabbed.tab-bg: 0
-URxvt.tabbed.autohide:  yes
-URxvt.tabbed.new-button:  no
+URxvt.tabbed.autohide: yes
+URxvt.tabbed.new-button: no
 URxvt.tabbed.title: yes
 
 !! ctrl/alt + arrow
