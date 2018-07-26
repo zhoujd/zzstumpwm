@@ -29,18 +29,25 @@
 *color7: #a8a19f
 *color15: #f1efee
 
-URxvt.termName: rxvt-256color
+!! general
 URxvt.intensityStyles: false
 URxvt.background: [70]#000000
 URxvt.depth: 32
 URxvt.scrollBar: false
 URxvt.cursorColor: white
+
+URxvt.termName: rxvt-256color
 URxvt.geometry: 100x25
 URxvt.loginShell: true
+URxvt.saveLines: 3000
+
+!! border
+URxvt.externalBorder: 0
 URxvt.internalBorder: 1
+URxvt*borderLess: false
+
 URxvt.lineSpace: 0
 URxvt.letterSpace: -1
-URxvt.saveLines: 3000
 URxvt.fading: 40
 
 !! disable iso 14755 mode
