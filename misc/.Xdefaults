@@ -29,11 +29,15 @@
 *color7: #a8a19f
 *color15: #f1efee
 
-URxvt.intensityStyles:	false
-URxvt.background:       [70]#000000
-URxvt.depth:		32
-URxvt.scrollBar:	false
-URxvt.cursorColor:	white
+URxvt.intensityStyles: false
+URxvt.background: [70]#000000
+URxvt.depth: 32
+URxvt.scrollBar: false
+URxvt.cursorColor: white
+URxvt.geometry: 100x25
+URxvt.loginShell: true
+URxvt.internalBorder: 3
+URxvt.lineSpace: 0
 
 !! disable iso 14755 mode
 URxvt.iso14755: false
