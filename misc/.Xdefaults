@@ -36,7 +36,7 @@ URxvt.scrollBar: false
 URxvt.cursorColor: white
 URxvt.geometry: 100x25
 URxvt.loginShell: true
-URxvt.internalBorder: 3
+URxvt.internalBorder: 1
 URxvt.lineSpace: 0
 URxvt.saveLines: 3000
 URxvt.fading: 40

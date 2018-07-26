@@ -26,5 +26,5 @@ Ubunut 18.04 Server
 
 5. Install tools
 
-        $ sudo apt install rxvt-unicode rxvt-unicode-256color tmux vim
+        $ sudo apt install rxvt-unicode rxvt-unicode-256color tmux vim ncurses-term
 
