@@ -29,6 +29,7 @@
 *color7: #a8a19f
 *color15: #f1efee
 
+URxvt.termName: rxvt-256color
 URxvt.intensityStyles: false
 URxvt.background: [70]#000000
 URxvt.depth: 32
