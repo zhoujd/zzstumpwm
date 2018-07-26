@@ -38,20 +38,22 @@ URxvt.geometry: 100x25
 URxvt.loginShell: true
 URxvt.internalBorder: 3
 URxvt.lineSpace: 0
+URxvt.saveLines: 3000
+URxvt.fading: 40
 
 !! disable iso 14755 mode
 URxvt.iso14755: false
 URxvt.iso14755_52: false
 
 !! urxvt fonts
-URxvt*font: xft:Consolas:size=14
-URxvt*boldFont: xft:Consolas:bold:size=14
-URxvt*italicFont: xft:Consolas:italic:size=14
-URxvt*boldItalicFont: xft:Consolas:bold:italic:size=14
-URxvt*letterSpace: -1
+URxvt.font: xft:Consolas:size=14
+URxvt.boldFont: xft:Consolas:bold:size=14
+URxvt.italicFont: xft:Consolas:italic:size=14
+URxvt.boldItalicFont: xft:Consolas:bold:italic:size=14
+URxvt.letterSpace: -1
 
 !! urxvt icon
-URxvt*iconFile: /usr/share/pixmaps/urxvt_48x48.xpm
+URxvt.iconFile: /usr/share/pixmaps/urxvt_48x48.xpm
 
 !! Extensions
 URxvt.perl-ext-common: default,matcher,resize-font,url-select,keyboard-select,tabbedex,selection-to-clipboard
