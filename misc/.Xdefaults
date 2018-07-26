@@ -85,6 +85,7 @@ URxvt.tabbed.autohide: yes
 URxvt.tabbed.new-button: no
 URxvt.tabbed.title: yes
 URxvt.tabbed.no-tabbedex-keys: yes
+URxvt.keysym.Meta-t: perl:tabbedex:new_tab
 URxvt.keysym.Shift-Left: perl:tabbedex:prev_tab
 URxvt.keysym.Shift-Right: perl:tabbedex:next_tab
 URxvt.keysym.Shift-Down: perl:tabbedex:new_tab
