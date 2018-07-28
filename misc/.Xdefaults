@@ -42,9 +42,9 @@ URxvt.loginShell: true
 URxvt.saveLines: 3000
 
 !! border
-URxvt.externalBorder: 0
+URxvt.externalBorder: 1
 URxvt.internalBorder: 0
-URxvt*borderLess: false
+!URxvt*borderLess: false
 
 URxvt.lineSpace: 0
 URxvt.letterSpace: -1
