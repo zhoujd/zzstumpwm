@@ -44,7 +44,6 @@ URxvt.saveLines: 3000
 !! border
 URxvt.externalBorder: 1
 URxvt.internalBorder: 0
-!URxvt*borderLess: false
 
 URxvt.lineSpace: 0
 URxvt.letterSpace: -1
