@@ -1,4 +1,4 @@
-" Vim Setting for Zachary Zhou
+"" .vimrc
 set nocompatible
 
 " OS(unix/win32) setting 
