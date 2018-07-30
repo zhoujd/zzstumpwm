@@ -12,8 +12,7 @@ if [ ! "" = "$1" ]; then
     WM_SELECT=$1
 fi
 
-kill_wm()
-{
+kill_wm() {
     wm_pid=`ps -ef | grep $1 | grep -v grep | awk '{print $2}'`
     if [ ! "" = "$wm_pid" ]; then
         kill -9 $wm_pid
