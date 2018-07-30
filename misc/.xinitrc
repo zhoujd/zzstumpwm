@@ -15,6 +15,9 @@ case $session in
     sawfish )
         exec sawfish
         ;;
+    xfce )
+        exec startxfce4
+        ;;
     * )
         exec $1
         ;;
