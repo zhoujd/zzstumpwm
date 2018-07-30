@@ -20,7 +20,16 @@ rm -f ~/.clisprc
 rm -f ~/.vimrc
 ## Set csh configure
 rm -f ~/.cshrc
-## Install .xinitrc
+## Remove .xinitrc
 rm -f ~/.xinitrc
+## Remove .tmux.conf
+rm -f ~/.tmux.conf
+## Remove .Xdefaults
+rm -f ~/.Xdefaults
+## Remove .Xresource
+rm -f ~/.Xresource
+
+## Remove urxvt
+rm -rf ~/.urxvt
 
 echo "uninstall stumpwm end ..."
