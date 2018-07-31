@@ -17,8 +17,8 @@ let &termencoding=&encoding
 
 " Font setting
 if has("gui_running")
-    set guifont=Consolas:h12:cANSI
-    set guifontset=-*-Consolas-medium-r-normal--12-*-*-*-*-*-iso8859-1,fixed
+  set guifont=Consolas:h12:cANSI
+  set guifontset=-*-Consolas-medium-r-normal--12-*-*-*-*-*-iso8859-1,fixed
 endif
 
 " UI setting
