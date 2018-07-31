@@ -24,12 +24,15 @@ rm -f ~/.cshrc
 rm -f ~/.xinitrc
 ## Remove .tmux.conf
 rm -f ~/.tmux.conf
-## Remove .Xdefaults
-rm -f ~/.Xdefaults
 ## Remove .Xresource
 rm -f ~/.Xresource
+## Remove .Xdefaults
+rm -f ~/.Xdefaults
+## Remove .inputrc
+rm -f ~/.inputrc
 
 ## Remove urxvt
 rm -rf ~/.urxvt
+
 
 echo "uninstall stumpwm end ..."
