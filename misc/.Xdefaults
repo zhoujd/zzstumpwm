@@ -54,6 +54,10 @@ URxvt.fading: 30
 URxvt.iso14755: false
 URxvt.iso14755_52: false
 
+!! disable bell
+URxvt.urgentOnBell: false
+URxvt.visualBell: true
+
 !! urxvt fonts
 URxvt.font: xft:Consolas:size=14
 URxvt.boldFont: xft:Consolas:bold:size=14
