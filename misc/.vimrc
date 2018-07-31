@@ -16,8 +16,10 @@ set fileencodings=utf-8-bom,ucs-bom,utf-8,cp936,gb18030,ucs,big5
 let &termencoding=&encoding
 
 " Font setting
-set guifont=Microsoft\ YaHei\ Mono:h11:cANSI
-set guifontset=-*-Microsoft\ YaHei\ Mono-medium-r-normal--11-*-*-*-*-*-iso8859-1,fixed
+if has("gui_running")
+    set guifont=Consolas:h12:cANSI
+    set guifontset=-*-Consolas-medium-r-normal--12-*-*-*-*-*-iso8859-1,fixed
+endif
 
 " UI setting
 set shortmess=atI
