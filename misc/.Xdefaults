@@ -55,10 +55,10 @@ URxvt.iso14755: false
 URxvt.iso14755_52: false
 
 !! urxvt fonts
-URxvt.font: xft:Consolas:size=15
-URxvt.boldFont: xft:Consolas:bold:size=15
-URxvt.italicFont: xft:Consolas:italic:size=15
-URxvt.boldItalicFont: xft:Consolas:bold:italic:size=15
+URxvt.font: xft:Consolas:size=14
+URxvt.boldFont: xft:Consolas:bold:size=14
+URxvt.italicFont: xft:Consolas:italic:size=14
+URxvt.boldItalicFont: xft:Consolas:bold:italic:size=14
 
 !! urxvt icon
 URxvt.iconFile: /usr/share/pixmaps/urxvt_48x48.xpm
