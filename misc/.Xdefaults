@@ -40,7 +40,7 @@ URxvt.cursorColor: white
 URxvt.termName: rxvt-256color
 URxvt.geometry: 100x25
 URxvt.loginShell: true
-URxvt.saveLines: 3000
+URxvt.saveLines: 4096
 
 !! border
 URxvt.externalBorder: 1
