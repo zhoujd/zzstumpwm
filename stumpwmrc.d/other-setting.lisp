@@ -34,6 +34,7 @@
 
 ;; prompt the user for an interactive command.
 (defcommand colon1 (&optional (initial "")) (:rest)
+  "interactive command"
   (let ((cmd (read-one-line (current-screen) ": " :initial-input initial)))
     (when cmd
       (eval-command cmd t))))

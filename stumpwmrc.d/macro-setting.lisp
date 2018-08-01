@@ -54,13 +54,14 @@
 (defmacro define-sudo-command (name command &key output)
   (let ((cmd (gensym)))
     `(defcommand ,name (password) ((:password "sudo password: "))
-                 (let ((,cmd (concat "echo '" password "' | sudo -S " ,command)))
-                   ,(if output
-                        `(run-prog-collect-output *shell-program* "-c" ,cmd)
-                        `(run-prog *shell-program* :args (list "-c" ,cmd) :wait nil))))))
-
+       "sudo command"
+       (let ((,cmd (concat "echo '" password "' | sudo -S " ,command)))
+         ,(if output
+              `(run-prog-collect-output *shell-program* "-c" ,cmd)
+              `(run-prog *shell-program* :args (list "-c" ,cmd) :wait nil))))))
 
 (defmacro def-run-or-raise-command (cmd prop)
   (let ((cmd-str (string-downcase (symbol-name cmd))))
     `(defcommand ,cmd () ()
+       "run or raise command"
        (run-or-raise ,cmd-str ,prop))))
