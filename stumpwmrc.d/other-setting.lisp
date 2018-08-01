@@ -63,20 +63,25 @@ used for matching windows with run-or-raise or window placement-merules."
                          "height    " (format nil "~a" (window-height w))))))
 
 (defcommand reinit () ()
+  "reload stumpwm configure"
   (run-commands "reload" "loadrc"))
 
 (defcommand show-battery () ()
+  "show battery usage"
   (echo-string (current-screen) (run-shell-command "acpi" t)))
 
 (defcommand uptime () ()
+  "show uptime"
   (echo-string (current-screen) (run-shell-command "uptime" t)))
 
 ;; emacs in current group
 (defcommand runemacs () ()
+  "run emacs"
   (run-or-raise "emacs" '(:class "Emacs") nil nil))
 
 ;; urxvt in current group
 (defcommand urxvt () ()
+  "run urxvt"
   (run-or-raise "urxvt" '(:class "URxvt") nil nil))
 
 (defun yes-no-diag (query-string)
@@ -88,6 +93,7 @@ Returns true when yes is selected"
 
 ;; close all windows
 (defcommand delete-all () ()
+  "close all windows"
   (dolist (screen *screen-list*)
     (dolist (group (stumpwm::screen-groups screen))
       (dolist (window (stumpwm::group-windows group))
@@ -95,6 +101,7 @@ Returns true when yes is selected"
 
 ;; safe quit
 (defcommand safe-quit () ()
+  "safe quit"
   (let ((choice (yes-no-diag "Close all programs and quit stumpwm?")))
     (when choice
       (echo-string (current-screen) "Ending Session...")
@@ -109,5 +116,4 @@ Returns true when yes is selected"
  (list
   (list "xset" :options "b off")
   (list "xsetroot" :options "-cursor_name left_ptr -solid black -name root_window")
-  (list "VBoxClient-all")
   ))
