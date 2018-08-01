@@ -1,5 +1,4 @@
-!!!For Zachary Zhou on Linux
-!!~/.Xresources
+!!!! .Xresources
 !!xrdb -load .Xresources
 !!xrdb -merge .Xresources
 
