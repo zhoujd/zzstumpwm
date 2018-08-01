@@ -30,9 +30,10 @@ rm -f ~/.Xresource
 rm -f ~/.Xdefaults
 ## Remove .inputrc
 rm -f ~/.inputrc
-
-## Remove urxvt
-rm -rf ~/.urxvt
+## Remove .urxvt
+rm -f ~/.urxvt
+## Remove .xrdb
+rm -f ~/.xrdb
 
 
 echo "uninstall stumpwm end ..."

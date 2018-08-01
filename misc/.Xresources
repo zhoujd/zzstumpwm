@@ -3,41 +3,6 @@
 !!xrdb -load .Xresources
 !!xrdb -merge .Xresources
 
-!! Xft set
-Xft.antialias: 1
-Xft.hinting: 1
-Xft.hintstyple: hintfull
-Xft.rgba: rgb
-
-!! xterm set
-XTerm*locale: true
-XTerm*utf8Title: true
-
-XTerm*fontMenu*fontdefault*Label: Default
-XTerm*faceName: Consolas:antialias=True:pixelsize=18
-XTerm*faceSize: 12
-XTerm*faceSize1: 12
-XTerm*faceSize2: 12
-XTerm*faceSize3: 12
-XTerm*faceSize4: 12
-XTerm*faceSize5: 12
-XTerm*faceSize6: 12
-
-XTerm*background: black
-XTerm*foreground: white
-
-XTerm*scrollBar: false
-XTerm*rightScrollBar: true
-XTerm*jumpScroll: true
-XTerm*SaveLines: 4096
-
-!! For Alt keypress
-xterm*eightBitInput: false
-xterm*altSendsEscape: true
-
-!! Copy and paste
-XTerm*selectToClipboard: true
-
-!! Chinese support
-XTerm.cjkWidth: true
-XTerm*faceNameDoublesize: Microsoft YaHei Mono:antialias=True:pixelsize=18
+#include ".xrdb/common.xrdb"
+#include ".xrdb/urxvt.xrdb"
+#include ".xrdb/xterm.xrdb"

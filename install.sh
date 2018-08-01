@@ -60,5 +60,9 @@ ln -s $CURRENT_DIR/misc/.inputrc ~/.inputrc
 rm -f ~/.urxvt
 ln -s $CURRENT_DIR/misc/.urxvt ~/.urxvt
 
+## Install .xrdb
+rm -f ~/.xrdb
+ln -s $CURRENT_DIR/misc/.xrdb ~/.xrdb
+
 
 echo "install stumpwm end ..."

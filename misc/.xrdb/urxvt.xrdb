@@ -1,0 +1,98 @@
+!!!! urxvt.xrdb
+!! urxvt --help 2>&1| sed -n '/:  /s/^ */! URxvt*/gp'
+
+!! general
+URxvt.intensityStyles: false
+URxvt.background: [70]#000000
+URxvt.depth: 32
+URxvt.scrollBar: false
+URxvt.cursorColor: white
+
+URxvt.termName: rxvt-256color
+URxvt.geometry: 102x28
+URxvt.loginShell: true
+URxvt.saveLines: 4096
+
+!! border
+URxvt.externalBorder: 1
+URxvt.internalBorder: 0
+
+URxvt.lineSpace: 0
+URxvt.letterSpace: -1
+URxvt.fading: 30
+
+!! disable iso 14755 mode
+URxvt.iso14755: false
+URxvt.iso14755_52: false
+
+!! disable bell
+URxvt.urgentOnBell: false
+URxvt.visualBell: true
+
+!! urxvt fonts
+URxvt.font: xft:Consolas:size=14
+URxvt.boldFont: xft:Consolas:bold:size=14
+URxvt.italicFont: xft:Consolas:italic:size=14
+URxvt.boldItalicFont: xft:Consolas:bold:italic:size=14
+
+!! urxvt icon
+URxvt.iconFile: /usr/share/pixmaps/urxvt_48x48.xpm
+
+!! Extensions
+URxvt.perl-ext-common: default,matcher,resize-font,url-select,keyboard-select,tabbedex,selection-to-clipboard
+URxvt.colorUL: #4682B4
+!! url-select
+URxvt.keysym.M-u: perl:url-select:select_next
+URxvt.url-select.launcher: /usr/bin/firefox
+URxvt.url-select.underline: true
+!! keyboard-select: ctrl+alt+[c|v]
+URxvt.keysym.M-m: perl:keyboard-select:activate
+URxvt.keysym.M-s: perl:keyboard-select:search
+!! matcher
+URxvt.url-launcher:	/usr/bin/firefox
+URxvt.matcher.button: 1
+!! tabbedex
+URxvt.tabbed.tabbar-fg: 2
+URxvt.tabbed.tabbar-bg: 0
+URxvt.tabbed.tab-fg: 3
+URxvt.tabbed.tab-bg: 0
+URxvt.tabbed.autohide: yes
+URxvt.tabbed.new-button: no
+URxvt.tabbed.title: yes
+URxvt.tabbed.no-tabbedex-keys: yes
+URxvt.keysym.Control-t: perl:tabbedex:new_tab
+URxvt.keysym.Shift-Left: perl:tabbedex:prev_tab
+URxvt.keysym.Shift-Right: perl:tabbedex:next_tab
+URxvt.keysym.Shift-Down: perl:tabbedex:new_tab
+URxvt.keysym.Shift-Up: perl:tabbedex:rename_tab
+URxvt.keysym.Control-Left: perl:tabbedex:move_tab_left
+URxvt.keysym.Control-Right: perl:tabbedex:move_tab_right
+URxvt.keysym.Control-1: perl:tabbedex:goto_tab_1
+URxvt.keysym.Control-2: perl:tabbedex:goto_tab_2
+URxvt.keysym.Control-3: perl:tabbedex:goto_tab_3
+URxvt.keysym.Control-4: perl:tabbedex:goto_tab_4
+URxvt.keysym.Control-5: perl:tabbedex:goto_tab_5
+URxvt.keysym.Control-6: perl:tabbedex:goto_tab_6
+URxvt.keysym.Control-7: perl:tabbedex:goto_tab_7
+URxvt.keysym.Control-8: perl:tabbedex:goto_tab_8
+URxvt.keysym.Control-9: perl:tabbedex:goto_tab_9
+URxvt.keysym.Control-0: perl:tabbedex:goto_tab_10
+
+!! ctrl/alt + arrow
+URxvt.keysym.M-Up:      \033[1;3A
+URxvt.keysym.M-Down:    \033[1;3B
+URxvt.keysym.M-Right:   \033[1;3C
+URxvt.keysym.M-Left:    \033[1;3D
+URxvt.keysym.M-Prior:   \033[5;3~
+URxvt.keysym.M-Next:    \033[6;3~
+URxvt.keysym.M-End:     \033[1;3F
+URxvt.keysym.M-Home:    \033[1;3H
+
+URxvt.keysym.C-Up:      \033[1;5A
+URxvt.keysym.C-Down:    \033[1;5B
+URxvt.keysym.C-Right:   \033[1;5C
+URxvt.keysym.C-Left:    \033[1;5D
+URxvt.keysym.C-Prior:   \033[5;5~
+URxvt.keysym.C-Next:    \033[6;5~
+URxvt.keysym.C-End:     \033[1;5F
+URxvt.keysym.C-Home:    \033[1;5H
