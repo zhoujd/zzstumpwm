@@ -1,5 +1,5 @@
 !!!! .Xdefaults
 
-#include ".xrdb/common.xrdb"
-#include ".xrdb/urxvt.xrdb"
-#include ".xrdb/xterm.xrdb"
+#include ".xrdb/common.ad"
+#include ".xrdb/urxvt.ad"
+#include ".xrdb/xterm.ad"
