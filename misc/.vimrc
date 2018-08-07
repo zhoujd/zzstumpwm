@@ -70,8 +70,8 @@ set smarttab
 
 " no sound
 if !has("gui_running")
-    set vb t_vb=
-    set noeb
+  set vb t_vb=
+  set noeb
 endif
 
 if has("gui_running")
