@@ -13,8 +13,8 @@ SSH forward
         
 2. Restart the sshd daemon:
 
-        service sshd restart
-        yum -y update xauth
-        apt-get -y update xauth
-        yum -y install xauth
-        apt-get -y install xauth
+        $ sudo service sshd restart
+        $ sudo yum -y update xauth
+        $ sudo apt-get -y update xauth
+        $ sudo yum -y install xauth
+        $ sudo apt-get -y install xauth
