@@ -101,49 +101,26 @@ Arch Linux install
 
         $ sudo pacman -S git net-tools xfce4
 
-7. Setup zzstumpwm
-
-        $ git clone https://github.com/zhoujd/zzstumpwm.git
-
-        $ cd zzstumpwm
-        $ ./install.sh
-        $ ./bin/sbcl-setup.sh
-        $ ./bin/xinit-setup.sh
-
-        $ cd third-party
-        $ ./depends.sh arch
-        $ ./install.sh arch
-
-8. Setup zzemacs
-
-        $ mkdir -p ~/work/build-emacs
-        $ cp ~/work/build-emacs
-        $ ~/zzemacs/bin/build-emacs.sh
-
-        $ git clone https://github.com/zhoujd/zzemacs.git
-        $ cd zzemacs
-        $ ./install.sh
-
-9. AUR install
+7. AUR install
 
         $ cd package_name
         $ less PKGBUILD
         $ less package_name.install
         $ makepkg -si
 
-10. URxvt install
+8. URxvt install
 
         $ sudo pacman -S rxvt-unicode urxvt-perls
         $ git clone https://aur.archlinux.org/urxvt-resize-font-git.git
         $ cd urxvt-resize-font-git
         $ makepkg -si
 
-11. Useful tools
+9. Useful tools
 
         ## pdf
         $ sudo pacman -S llpp xclip
 
-12. Swap file
+10. Swap file
 
         # fallocate -l 8G /swapfile
         # chmod 600 /swapfile
