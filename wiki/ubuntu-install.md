@@ -24,6 +24,10 @@ Ubunut 18.04 Server
         $ sudo rm /var/lib/ubuntu-release-upgrader/release-upgrade-available
         $ sudo /usr/lib/ubuntu-release-upgrader/release-upgrade-motd
 
+        or
+        $ sudo /etc/update-motd.d/91-release-upgrade
+        $ sudo chmod -x /usr/lib/ubuntu-release-upgrader/release-upgrade-motd
+
 5. Install tools
 
         $ sudo apt install rxvt-unicode rxvt-unicode-256color tmux vim ncurses-term
