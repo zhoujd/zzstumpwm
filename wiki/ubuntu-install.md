@@ -19,6 +19,15 @@ Ubunut 18.04 Server
         $ sudo apt install lightdm lightdm-gtk-greeter
         $ sudo apt install xfce4
 
+        $ sudo date -s YYYY/MM/DD
+        $ sudo date -s hh:mm:ss
+
+        $ sudo vim /etc/locale.gen
+          en_US.UTF-8 UTF-8
+        $ sudo locale-gen
+        $ sudo ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+        $ sudo hwclock --systohc --utc
+
 4. Remove MOTD messages
 
         $ sudo rm /var/lib/ubuntu-release-upgrader/release-upgrade-available
