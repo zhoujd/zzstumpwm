@@ -28,6 +28,7 @@
 (apply-keys-to-map
  *top-map*
  (list
+  (kbd "s-t")       *root-map*
   (kbd "s-x")       *zz-x-map*
   (kbd "s-c")       *zz-c-map*
   (kbd "s-z")       *zz-z-map*
