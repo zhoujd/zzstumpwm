@@ -13,10 +13,8 @@ Stumpwm Misc Setting
 
         (ignore-errors
             (or (and (xft:cache-fonts)
-                (stumpwm:set-font (make-instance 'xft:font
-                                                 :family    "Consolas"
-                                                 :subfamily "Regular"
-                                                 :size 12)))
-        (set-font "-Consolas-normal-normal-normal-*-17-*-*-*-m-0-fontset-auto1")))
-
-
+                     (stumpwm:set-font (make-instance 'xft:font
+                                                      :family    "Consolas"
+                                                      :subfamily "Regular"
+                                                      :size 14)))
+                (set-font "10x20")))

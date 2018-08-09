@@ -15,8 +15,8 @@ xorg monitor
 
 2. Permanently adding undetected resolutions
 
-/usr/share/X11/xorg.conf.d/10-monitor.conf
-/etc/X11/xorg.conf.d/10-monitor.conf
+Ubuntu: /usr/share/X11/xorg.conf.d/10-monitor.conf
+Arch: /etc/X11/xorg.conf.d/10-monitor.conf
 """
 Section "Monitor"
     Identifier "DP-1"
