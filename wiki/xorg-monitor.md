@@ -1,5 +1,5 @@
-xorg misc
-=========
+xorg monitor
+============
 
 1. Monitor Setting add to ~/.xinitrc
 
