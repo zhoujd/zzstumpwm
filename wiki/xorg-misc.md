@@ -15,20 +15,21 @@ xorg misc
 
 2. Permanently adding undetected resolutions
 
-"""
+/usr/share/X11/xorg.conf.d/10-monitor.conf
 /etc/X11/xorg.conf.d/10-monitor.conf
+"""
 Section "Monitor"
-    Identifier "VGA1"
-    Modeline "1280x1024_60.00"  109.00  1280 1368 1496 1712  1024 1027 1034 1063 -hsync +vsync
-    Option "PreferredMode" "1280x1024_60.00"
+    Identifier "DP-1"
+    Modeline "1680x1050_60.00"  146.25  1680 1784 1960 2240  1050 1053 1059 1089 -hsync +vsync
+    Option "PreferredMode" "1680x1050_60.00"
 EndSection
 
 Section "Screen"
     Identifier "Screen0"
-    Monitor "VGA1"
+    Monitor "DP-1"
     DefaultDepth 24
     SubSection "Display"
-        Modes "1280x1024_60.00"
+        Modes "1680x1050_60.00"
     EndSubSection
 EndSection
 
