@@ -115,6 +115,8 @@
 
   (kbd "s-,")       "amixer-Master-1-"
   (kbd "s-.")       "amixer-Master-1+"
+
+  (kbd "s-t")       *root-map*
   ))
 
 (apply-keys-to-map
