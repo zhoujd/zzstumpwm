@@ -1,5 +1,5 @@
 !!!! urxvt.ad
-!! urxvt --help 2>&1| sed -n '/:  /s/^ */! URxvt*/gp'
+!! urxvt --help 2>&1 | sed -n '/:  /s/^ */! URxvt*/gp'
 
 !! general
 URxvt.intensityStyles: false
