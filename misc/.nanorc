@@ -23,3 +23,6 @@ set casesensitive
 
 ##spell checker
 set speller "aspell -x -c"
+
+##enable read in another buffer
+set multibuffer
