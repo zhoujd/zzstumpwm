@@ -17,8 +17,7 @@
   (kbd "m")         "exec gnome-system-monitor"
   (kbd "n")         "exec nautilus --no-desktop"
   (kbd "t")         (urxvt-command "tmux")
-  (kbd "v")         (urxvt-command "vim")
-  (kbd "C-v")       "exec evince"
+  (kbd "v")         "exec evince"
   (kbd "b")         "colon1 exec firefox http://www."
   (kbd "s")         "colon1 exec urxvt -e ssh "
   ))
