@@ -9,7 +9,8 @@ set autoindent
 set nowrap
 
 ##remove the blank line below the title bar
-set morespace
+#set morespace
+#set nohelp
 
 ##enable mouse
 set mouse
