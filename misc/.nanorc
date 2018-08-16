@@ -17,8 +17,5 @@ set mouse
 ##scroll smooth
 set smooth
 
-##hide help bar
-set nohelp
-
 ##case sensitive search
 set casesensitive
