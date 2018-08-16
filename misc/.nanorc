@@ -1,4 +1,24 @@
-# This is nano configure file for zachary zhou
+### .nanorc
 
+##tab set
 set tabsize 4
 set tabstospaces
+set autoindent
+
+##don't wrap at end of line
+set nowrap
+
+##remove the blank line below the title bar
+set morespace
+
+##enable mouse
+set mouse
+
+##scroll smooth
+set smooth
+
+##hide help bar
+set nohelp
+
+##case sensitive search
+set casesensitive

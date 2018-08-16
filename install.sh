@@ -36,6 +36,10 @@ ln -s $CURRENT_DIR/misc/.clisprc ~/.clisprc
 rm -f ~/.vimrc
 ln -s $CURRENT_DIR/misc/.vimrc ~/.vimrc
 
+## Set Nano configure
+rm -f ~/.nanorc
+ln -s $CURRENT_DIR/misc/.nanorc ~/.nanorc
+
 ## Set tmux configure
 rm -f ~/.tmux.conf
 ln -s $CURRENT_DIR/misc/.tmux.conf ~/.tmux.conf
