@@ -19,3 +19,6 @@ set smooth
 
 ##case sensitive search
 set casesensitive
+
+##spell checker
+set speller "aspell -x -c"
