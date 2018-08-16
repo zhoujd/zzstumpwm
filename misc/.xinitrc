@@ -1,4 +1,4 @@
-#!/bin/sh
+### .xinitrc
 
 # Here stumpwm is kept as default
 session=${1:-stumpwm}
