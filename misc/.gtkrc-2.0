@@ -1,0 +1,5 @@
+### gnome or Tango
+## apt search icon-theme
+## pacman -Ss icon-theme
+
+gtk-icon-theme-name="Tango"

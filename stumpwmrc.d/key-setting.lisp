@@ -15,7 +15,7 @@
   (kbd "f")         "firefox"
   (kbd "C-f")       "exec firefox"
   (kbd "m")         "exec gnome-system-monitor"
-  (kbd "n")         "exec nautilus --no-desktop"
+  (kbd "h")         "exec thunar"
   (kbd "t")         (urxvt-command "tmux")
   (kbd "v")         "exec evince"
   (kbd "b")         "colon1 exec firefox http://www."
