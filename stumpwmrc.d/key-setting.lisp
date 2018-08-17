@@ -14,7 +14,7 @@
   (kbd "C-e")       "exec emacs"
   (kbd "f")         "firefox"
   (kbd "C-f")       "exec firefox"
-  (kbd "m")         "exec gnome-system-monitor"
+  (kbd "m")         "exec xfce4-taskmanager"
   (kbd "h")         "exec thunar"
   (kbd "t")         (urxvt-command "tmux")
   (kbd "v")         "exec evince"
