@@ -92,7 +92,7 @@ set cmdheight=1
 set ruler
 
 " Default the statusline when entering Vim
-hi statusline guifg=green ctermfg=green guibg=black ctermbg=black
+hi statusline ctermfg=15 guibg=DarkSlateGray
 
 " Diff setting
 set diffexpr=MyDiff()
