@@ -7,7 +7,7 @@
 #chown $USER:$USER .Xauthority
 #mv .Xauthority .Xauthority.bak
 
-CURRENT_DIR=`pwd`
+SETUP_ROOT=`pwd`
 
 if [ $EUID -ne 0 ]; then
     echo "You must be a root user" 2>&1
@@ -18,7 +18,7 @@ echo "[Desktop Entry]
 Version=1.0
 Name=Stumpwm Session
 Comment=Stumpwm window manager
-Exec=/home/zhoujd/zzstumpwm/bin/start-wm.sh
+Exec=$SETUP_ROOT/start-wm.sh
 Icon=
 Type=Application
 DesktopNames=STUMPWM

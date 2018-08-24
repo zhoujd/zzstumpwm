@@ -3,7 +3,7 @@
 ## run as root:
 #sudo ./gnome-dm-setup.sh
 
-CURRENT_DIR=`pwd`
+SETUP_ROOT=`pwd`
 
 if [ $EUID -ne 0 ]; then
     echo "You must be a root user" 2>&1
@@ -14,6 +14,6 @@ echo "[Desktop Entry]
 Name=Stumpwm
 Comment=Stumpwm window manager
 TryExec=/usr/bin/gnome-session
-Exec=$CURRENT_DIR/start-wm.sh
+Exec=$SETUP_ROOT/start-wm.sh
 Type=XSession
 " > /usr/share/xsessions/stumpwm.desktop
