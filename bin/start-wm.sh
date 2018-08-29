@@ -9,6 +9,11 @@ echo "2:clfswm"
 # Here stumpwm is kept as default
 WM_SELECT=${1:-1}
 
+# Set multiple monitors
+if [ -e $HOME/.xprofile ]; then
+    $HOME/.xprofile
+fi
+
 case "$WM_SELECT" in
     "1" )
         exec sbcl --eval '(ql:quickload :stumpwm)' \

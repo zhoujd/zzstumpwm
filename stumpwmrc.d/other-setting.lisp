@@ -117,5 +117,4 @@ Returns true when yes is selected"
  (list
   (list "xset" :options "b off")
   (list "xsetroot" :options "-cursor_name left_ptr -solid black -name root_window")
-  (list "xrandr" :options "--output DP-1 --same-as eDP-1 --mode 1920x1080")
   ))
