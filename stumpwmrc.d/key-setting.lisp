@@ -18,6 +18,7 @@
   (kbd "h")         "exec thunar"
   (kbd "t")         (urxvt-command "tmux")
   (kbd "v")         "exec evince"
+  (kbd "r")         "exec remmina"
   (kbd "b")         "colon1 exec firefox http://www."
   (kbd "s")         "colon1 exec urxvt -e ssh "
   ))
