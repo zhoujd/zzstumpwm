@@ -80,6 +80,11 @@ used for matching windows with run-or-raise or window placement-merules."
   "run emacs"
   (run-or-raise "emacs" '(:class "Emacs") nil nil))
 
+;; print current group name
+(defcommand gprint () ()
+  "print current group name"
+  (message "Current Group: ~A" (group-name (current-group))))
+
 ;; urxvt in current group
 (defcommand urxvt () ()
   "run urxvt"

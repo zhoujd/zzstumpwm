@@ -8,7 +8,7 @@
  *top-map*
  (list
   (kbd "s-F1")      "lastmsg"
-  (kbd "s-C-F1")    "version"
+  (kbd "s-C-F1")    "gprint"
   (kbd "s-F2")      "exec"
   (kbd "s-C-F2")    "exec dmenu_run -fn consola-15"
   (kbd "s-F3")      "pull-hidden-other"
