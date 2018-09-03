@@ -26,6 +26,8 @@ rm -f ~/.cshrc
 rm -f ~/.xinitrc
 ## Remove .tmux.conf
 rm -f ~/.tmux.conf
+## Remove .byobu
+rm -f ~/.byobu
 ## Remove .Xresource
 rm -f ~/.Xresource
 ## Remove .Xdefaults

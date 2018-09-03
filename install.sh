@@ -44,6 +44,10 @@ ln -s $CURRENT_DIR/misc/.nanorc ~/.nanorc
 rm -f ~/.tmux.conf
 ln -s $CURRENT_DIR/misc/.tmux.conf ~/.tmux.conf
 
+## Set byobu configure
+rm -f ~/.byobu
+ln -s $CURRENT_DIR/misc/.byobu ~/.byobu
+
 ## Set csh configure
 rm -f ~/.cshrc
 ln -s $CURRENT_DIR/misc/.cshrc ~/.cshrc
