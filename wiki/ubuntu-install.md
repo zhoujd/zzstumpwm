@@ -50,3 +50,14 @@ Ubunut 18.04 Server
         $ sudo apt install alsa-base pulseaudio
         $ sudo alsa force-reload
 
+
+7. Disable apt daily
+
+        $ sudo systemctl stop apt-daily.service
+        $ sudo systemctl kill --kill-who=all apt-daily.service
+
+        $ sudo systemctl disable apt-daily.timer
+        $ sudo systemctl disable apt-daily.service
+        $ sudo systemctl mask apt-daily.service
+        $ sudo systemctl mask apt-daily.timer
+        $ systemctl list-unit-files apt* --all
