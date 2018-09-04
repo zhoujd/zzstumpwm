@@ -90,7 +90,7 @@
   (kbd "s-M-l")       "exec xset dpms force suspend"
 
   (kbd "s-Tab")       "pull-hidden-next"
-
+  (kbd "s-C-Tab")     "gnext"
 
   (kbd "Print")       "screenshot"
   (kbd "M-Print")     "screenshot-window"
