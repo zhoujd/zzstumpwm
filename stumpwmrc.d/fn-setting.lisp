@@ -7,8 +7,8 @@
 (apply-keys-to-map
  *top-map*
  (list
-  (kbd "s-F1")      "gselect Default"
-  (kbd "s-C-F1")    "gprint"
+  (kbd "s-F1")      "gprint"
+  (kbd "s-C-F1")    "gmove"
   (kbd "s-F2")      "exec"
   (kbd "s-C-F2")    "exec dmenu_run -fn consola-15"
   (kbd "s-F3")      "pull-hidden-other"
@@ -27,7 +27,7 @@
   (kbd "s-F8")      "gnew f8"
   (kbd "s-C-F8")    "gnew-float f8-float"
 
-  (kbd "s-F9")      "gmove"
+  (kbd "s-F9")      "gselect Default"
   (kbd "s-C-F9")    "gselect"
   (kbd "s-F10")     "colon"
   (kbd "s-C-F10")   "eval"
