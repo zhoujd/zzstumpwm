@@ -7,7 +7,7 @@
 (apply-keys-to-map
  *top-map*
  (list
-  (kbd "s-F1")      "lastmsg"
+  (kbd "s-F1")      "gselect Default"
   (kbd "s-C-F1")    "gprint"
   (kbd "s-F2")      "exec"
   (kbd "s-C-F2")    "exec dmenu_run -fn consola-15"
@@ -27,14 +27,14 @@
   (kbd "s-F8")      "gnew f8"
   (kbd "s-C-F8")    "gnew-float f8-float"
 
-  (kbd "s-F9")      "gselect Default"
+  (kbd "s-F9")      "gmove"
   (kbd "s-C-F9")    "gselect"
   (kbd "s-F10")     "colon"
   (kbd "s-C-F10")   "eval"
-  (kbd "s-F11")     "fullscreen"
-  (kbd "s-C-F11")   "echo-date"
-  (kbd "s-F12")     "abort"
-  (kbd "s-C-F12")   "banish"
+  (kbd "s-F11")     "gnew"
+  (kbd "s-C-F11")   "gnew-float"
+  (kbd "s-F12")     "lastmsg"
+  (kbd "s-C-F12")   "echo-date"
   ))
 
 ;; zz-z-map

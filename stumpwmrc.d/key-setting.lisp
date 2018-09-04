@@ -80,60 +80,63 @@
 (apply-keys-to-map
  *top-map*
  (list
-  (kbd "s-`")       "windowlist"
-  (kbd "s-C-`")     "grouplist"
+  (kbd "s-`")         "windowlist"
+  (kbd "s-C-`")       "grouplist"
+  (kbd "s-Escape")    "abort"
+  (kbd "s-C-Escape")  "banish"
+  
+  (kbd "s-l")         "exec xtrlock"
+  (kbd "s-C-l")       "exec slock"
+  (kbd "s-M-l")       "exec xset dpms force suspend"
 
-  (kbd "s-l")       "exec xtrlock"
-  (kbd "s-C-l")     "exec slock"
-  (kbd "s-M-l")     "exec xset dpms force suspend"
+  (kbd "s-Tab")       "pull-hidden-next"
 
-  (kbd "s-Tab")     "pull-hidden-next"
 
-  (kbd "Print")     "screenshot"
-  (kbd "M-Print")   "screenshot-window"
+  (kbd "Print")       "screenshot"
+  (kbd "M-Print")     "screenshot-window"
 
-  (kbd "s-C-b")     "mode-line"
-  (kbd "s-C-q")     "safe-quit"
-  (kbd "s-C-d")     "delete-all"
-  (kbd "s-C-r")     "reinit"
+  (kbd "s-C-b")       "mode-line"
+  (kbd "s-C-q")       "safe-quit"
+  (kbd "s-C-d")       "delete-all"
+  (kbd "s-C-r")       "reinit"
 
-  (kbd "s-Left")    "move-focus left"
-  (kbd "s-Right")   "move-focus right"
-  (kbd "s-Up")      "move-focus up"
-  (kbd "s-Down")    "move-focus down"
+  (kbd "s-Left")      "move-focus left"
+  (kbd "s-Right")     "move-focus right"
+  (kbd "s-Up")        "move-focus up"
+  (kbd "s-Down")      "move-focus down"
 
-  (kbd "s-M-Left")  "move-window left"
-  (kbd "s-M-Right") "move-window right"
-  (kbd "s-M-Up")    "move-window up"
-  (kbd "s-M-Down")  "move-window down"
+  (kbd "s-M-Left")    "move-window left"
+  (kbd "s-M-Right")   "move-window right"
+  (kbd "s-M-Up")      "move-window up"
+  (kbd "s-M-Down")    "move-window down"
 
-  (kbd "s-C-Left")  "prev-in-frame"
-  (kbd "s-C-Right") "next-in-frame"
-  (kbd "s-C-Up")    "gprev"
-  (kbd "s-C-Down")  "gnext"
+  (kbd "s-C-Left")    "prev-in-frame"
+  (kbd "s-C-Right")   "next-in-frame"
+  (kbd "s-C-Up")      "gprev"
+  (kbd "s-C-Down")    "gnext"
 
-  (kbd "s-,")       "amixer-Master-1-"
-  (kbd "s-.")       "amixer-Master-1+"
+  (kbd "s-,")         "amixer-Master-1-"
+  (kbd "s-.")         "amixer-Master-1+"
 
-  (kbd "s-t")       *root-map*
+  (kbd "s-t")         *root-map*
   ))
 
 (apply-keys-to-map
  *root-map*
  (list
-  (kbd "Menu")      "send-escape"
+  (kbd "Menu")        "send-escape"
   ))
 
 (apply-keys-to-map
  *zz-screen-map*
  (list
-  (kbd "p")         "sprev"
-  (kbd "n")         "snext"
+  (kbd "p")           "sprev"
+  (kbd "n")           "snext"
   ))
 
 (apply-keys-to-map
  *root-map*
  (list
-  (kbd "c")         "urxvt"
-  (kbd "C-c")       "exec urxvt"
+  (kbd "c")           "urxvt"
+  (kbd "C-c")         "exec urxvt"
   ))
