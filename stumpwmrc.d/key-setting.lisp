@@ -85,7 +85,7 @@
 
   (kbd "s-l")       "exec xtrlock"
   (kbd "s-C-l")     "exec slock"
-  (kbd "s-M-l")     "exec xset dpms force off"
+  (kbd "s-M-l")     "exec xset dpms force suspend"
 
   (kbd "s-Tab")     "pull-hidden-next"
 
