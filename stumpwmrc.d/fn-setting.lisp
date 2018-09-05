@@ -9,8 +9,8 @@
  (list
   (kbd "s-F1")      "gprint"
   (kbd "s-C-F1")    "gmove"
-  (kbd "s-F2")      "exec"
-  (kbd "s-C-F2")    "exec dmenu_run -fn consola-15"
+  (kbd "s-F2")      "exec dmenu_run -fn consola-15"
+  (kbd "s-C-F2")    "exec"
   (kbd "s-F3")      "pull-hidden-other"
   (kbd "s-C-F3")    "gother"
   (kbd "s-F4")      "kill"
