@@ -96,8 +96,8 @@
   (kbd "M-Print")     "screenshot-window"
 
   (kbd "s-C-b")       "mode-line"
+  (kbd "s-C-d")       "safe-delete"
   (kbd "s-C-q")       "safe-quit"
-  (kbd "s-C-d")       "delete-all"
   (kbd "s-C-r")       "reinit"
 
   (kbd "s-Left")      "move-focus left"

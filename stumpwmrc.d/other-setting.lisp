@@ -100,6 +100,14 @@ Returns true when yes is selected"
 ;; close all windows
 (defcommand delete-all () ()
   "close all windows"
+  (dolist (screen *screen-list*)
+    (dolist (group (stumpwm::screen-groups screen))
+      (dolist (window (stumpwm::group-windows group))
+        (stumpwm::delete-window window)))))
+
+;; safe delete
+(defcommand safe-delete () ()
+  "safe delete all windows"
   (let ((choice (yes-no-diag "Close all programs?")))
     (when choice
       (dolist (screen *screen-list*)
