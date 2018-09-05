@@ -49,7 +49,10 @@ Ubunut 18.04 Server
 
         $ sudo apt install alsa-base pulseaudio
         $ sudo alsa force-reload
-
+        
+        $ amixer set Master unmute
+        $ amixer set Master mute
+        $ amixer set Master toggle
 
 7. Disable apt daily
 
