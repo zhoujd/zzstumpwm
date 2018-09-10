@@ -39,7 +39,7 @@
 
 ;; zz-z-map
 (apply-keys-to-map
- *zz-z-map*
+ *zz-f-map*
  (list
   (kbd "1")         (getkey-top (kbd "s-F1"))
   (kbd "C-1")       (getkey-top (kbd "s-C-F1"))
