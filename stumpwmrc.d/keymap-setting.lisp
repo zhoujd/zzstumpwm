@@ -34,6 +34,7 @@
 
   (kbd "s-t")       *root-map*
   (kbd "s-g")       *groups-map*
+  (kbd "s-w")       *group-root-map*
   ))
 
 (mapc
