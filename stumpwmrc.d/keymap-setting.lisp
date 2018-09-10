@@ -32,8 +32,8 @@
   (kbd "s-h")       *zz-help-map*
   (kbd "s-s")       *zz-screen-map*
 
+  ;; build-in map
   (kbd "s-t")       *root-map*
-  (kbd "s-g")       *groups-map*
   (kbd "s-w")       *group-root-map*
   ))
 
