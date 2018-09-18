@@ -1,15 +1,17 @@
 #!/bin/sh
 
-# Select window manager to run
-# 1:stumpwm 2:clfswm
+## Select window manager to run
+## 1:stumpwm 2:clfswm
 echo "You can also run : $0 [1|2]"
 echo "1:stumpwm"
 echo "2:clfswm"
 
-# Here stumpwm is kept as default
+## Here stumpwm is kept as default
 WM_SELECT=${1:-1}
 
-# Set multiple monitors
+## Set multiple monitors
+# xrandr --output VGA-1 --mode "1280x720"
+# VBoxClient-all
 if [ -e $HOME/.xprofile ]; then
     $HOME/.xprofile
 fi
