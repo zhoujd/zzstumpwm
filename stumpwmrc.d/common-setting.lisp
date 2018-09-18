@@ -4,7 +4,6 @@
 (in-package :stumpwm)
 
 (setq *startup-message*   nil)
-(setq *startup-mode-line* nil)
 
 ;; color select
 (set-fg-color "green")
@@ -37,9 +36,4 @@
       *mode-line-pad-x*             0
       *mode-line-pad-y*             0
       *mode-line-timeout*           60
-      *mode-line-screen-position*   :top
       *screen-mode-line-format*     (list "[^B%n^b]%W" "^> [" "^>%d]"))
-
-(when (and *startup-mode-line*
-           (not (head-mode-line (current-head))))
-  (mode-line))
