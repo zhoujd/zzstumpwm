@@ -12,7 +12,7 @@ fi
 
 echo "[Desktop Entry]
 Version=1.0
-Name=Stumpwm
+Name=Stumpwm Session
 Comment=Stumpwm window manager
 Exec=$SETUP_ROOT/start-wm.sh
 Icon=

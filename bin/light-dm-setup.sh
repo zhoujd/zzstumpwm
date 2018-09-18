@@ -1,5 +1,8 @@
 #!/bin/bash
 
+## run as root:
+#sudo ./light-dm-setup.sh
+
 ## lightdm install
 #sudo pacman -S lightdm lightdm-gtk-greeter
 #sudo systemctl enable lightdm
