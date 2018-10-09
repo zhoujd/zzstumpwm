@@ -40,7 +40,7 @@ Ubunut 18.04 Server
 5. Install tools
 
         $ sudo apt install rxvt-unicode rxvt-unicode-256color
-        $ sudo apt install git tmux vim byobu ncurses-term
+        $ sudo apt install git tmux vim byobu ncurses-term rofi
         $ sudo apt install firefox w3m
         $ sudo apt install sbcl python texinfo meld
         $ sudo apt install gcc g++ make cmake autoconf libtool yasm
