@@ -58,10 +58,10 @@ configuration {
 /*	max-history-size: 25;*/
 /*	combi-hide-mode-prefix: false;*/
 /*	pid: "/run/user/1000/rofi.pid";*/
-/*	display-window: ;*/
+	display-window: "window: ";
 /*	display-windowcd: ;*/
-/*	display-run: ;*/
-/*	display-ssh: ;*/
+	display-run: "run: ";
+	display-ssh: "ssh: ";
 /*	display-drun: ;*/
 /*	display-combi: ;*/
 /*	display-keys: ;*/
