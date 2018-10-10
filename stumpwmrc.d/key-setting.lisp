@@ -82,7 +82,6 @@
  (list
   (kbd "s-`")         "windowlist"
   (kbd "s-C-`")       "grouplist"
-  (kbd "s-M-`")       "exec rofi -show window"
   (kbd "s-Escape")    "abort"
   (kbd "s-C-Escape")  "banish"
 
@@ -96,6 +95,10 @@
   (kbd "Print")       "screenshot"
   (kbd "M-Print")     "screenshot-window"
 
+  (kbd "s-M-r")       "exec rofi -show run"
+  (kbd "s-M-s")       "exec rofi -show ssh"
+  (kbd "s-M-w")       "exec rofi -show window"
+  
   (kbd "s-C-b")       "mode-line"
   (kbd "s-C-d")       "safe-delete"
   (kbd "s-C-q")       "safe-quit"
