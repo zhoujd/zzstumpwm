@@ -140,6 +140,7 @@
  (list
   (kbd "p")           "sprev"
   (kbd "n")           "snext"
+  (kbd "r")           "resolution"
   ))
 
 (apply-keys-to-map
