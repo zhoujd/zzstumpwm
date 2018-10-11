@@ -32,6 +32,13 @@
   "Start a urxvt with an command session"
   (format nil "exec urxvt -e ~a" name))
 
+(defun yes-no-diag (query-string)
+  "Presents a yes-no dialog to the user asking query-string.
+Returns true when yes is selected"
+  (equal :yes (cadr (select-from-menu (current-screen)
+                            '(("No" :no) ("Yes" :yes))
+                            query-string))))
+
 ;; startup run commands
 (mapc
  #'(lambda (cmd)

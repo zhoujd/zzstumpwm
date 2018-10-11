@@ -13,7 +13,6 @@
 ;; sudo command
 (define-sudo-command reboot "reboot")
 (define-sudo-command shutdown "shutdown -h now")
-(define-sudo-command gnome-control-center "gnome-control-center")
 
 ;; run-or-raise
 (def-run-or-raise-command firefox '(:class "Firefox"))
@@ -60,13 +59,6 @@ used for matching windows with run-or-raise or window placement-merules."
 (defcommand urxvt () ()
   "run urxvt"
   (run-or-raise "urxvt" '(:class "URxvt") nil nil))
-
-(defun yes-no-diag (query-string)
-  "Presents a yes-no dialog to the user asking query-string.
-Returns true when yes is selected"
-  (equal :yes (cadr (select-from-menu (current-screen)
-                            '(("No" :no) ("Yes" :yes))
-                            query-string))))
 
 ;; close all windows
 (defcommand delete-all () ()
