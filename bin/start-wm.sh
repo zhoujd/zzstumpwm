@@ -10,8 +10,7 @@ echo "2:clfswm"
 WM_SELECT=${1:-1}
 
 ## Set multiple monitors
-# xrandr --output VGA-1 --mode "1280x720"
-# VBoxClient-all
+# ln -sf ~/zzstumpwm/misc/.xprofile ~
 if [ -e $HOME/.xprofile ]; then
     $HOME/.xprofile
 fi
