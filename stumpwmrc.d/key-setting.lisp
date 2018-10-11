@@ -59,11 +59,14 @@
   (kbd "C-m")         "exec firefox http://stumpwm.org/manual/stumpwm.html"
   (kbd "s")           "exec firefox http://lxr.free-electrons.com/"
   (kbd "C-s")         "exec firefox http://svnweb.freebsd.org/"
+  
   (kbd "v")           "describe-variable"
   (kbd "f")           "describe-function"
   (kbd "k")           "describe-key"
+  (kbd "c")           "describe-command"
   (kbd "w")           "where-is"
-  (kbd "c")           "commands"
+  
+  (kbd "C-c")         "commands"
   ))
 
 ;; input map
