@@ -94,7 +94,7 @@ used for matching windows with run-or-raise or window placement-merules."
   (let ((choice (cadr (select-from-menu
                        (current-screen)
                        '(("1920x1080" :1920x1080)
-                         ("1280x720" :1280x720))
+                         ("1280x720"  :1280x720))
                        "Select resolution"))))
     (cond
       ((equal choice :1920x1080)
