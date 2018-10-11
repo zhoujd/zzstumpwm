@@ -1,7 +1,9 @@
 #!/bin/bash
 
+## set resolution
 if [ ! "$(xrandr | grep 'primary 1920x1080')" ]; then
     xrandr --output VGA-1 --mode "1280x720"
 fi
 
+## set virtualbox client
 VBoxClient-all
