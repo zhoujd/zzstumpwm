@@ -63,6 +63,7 @@
   (kbd "f")           "describe-function"
   (kbd "k")           "describe-key"
   (kbd "w")           "where-is"
+  (kbd "c")           "commands"
   ))
 
 ;; input map
