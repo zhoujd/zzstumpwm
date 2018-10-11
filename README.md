@@ -5,11 +5,11 @@ zzstumpwm
 
     * <http://stumpwm.org>
     * <http://www.clisp.org>
+    * <http://www.xsteve.at/prg/stumpwm/>
+    
     * <https://github.com/alezost/stumpwmrc>
     * <https://github.com/stumpwm/stumpwm/wiki>
-    * <http://stumpwm.org/manual/stumpwm.html>
-    * <http://www.mygooglest.com/fni/stumpwm.html>
-    * <http://www.xsteve.at/prg/stumpwm/>
+    * <https://github.com/stumpwm/stumpwm/wiki/TipsAndTricks>
 
 ## Firefox mouseless
 
@@ -17,8 +17,8 @@ zzstumpwm
 
 ## Git Repo
 
-    * git clone git://git.savannah.nongnu.org/stumpwm.git
     * git clone https://github.com/stumpwm/stumpwm
+    * git clone git://git.savannah.nongnu.org/stumpwm.git
 
 ## Software version
     

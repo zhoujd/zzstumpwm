@@ -23,9 +23,10 @@
  (list
   "macro-setting"
   "common-setting"
-  "tool-setting"
   "font-setting"
+  "tool-setting"
   "other-setting"
+  "command-setting"
   "keymap-setting"
   "fn-setting"
   "key-setting"
