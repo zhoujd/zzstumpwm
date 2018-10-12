@@ -148,7 +148,7 @@ configuration {
 }
 
 #element selected active {
-    background-color: @lightblue;
+    background-color: @green;
     foreground:       @dark;
 }
 
