@@ -3,58 +3,59 @@
  */
 
 configuration {
-    display-ssh:       "ssh:";
-    display-run:       "run:";
-    display-drun:      "drun:";
-    display-window:    "window:";
-    display-combi:     "combi:";
-    show-icons:        false;
+    display-ssh:      "ssh:";
+    display-run:      "run:";
+    display-drun:     "drun:";
+    display-window:   "window:";
+    display-combi:    "combi:";
+    show-icons:       false;
 }
 
 * {
-    foreground:        #ffeedd;
-    backlight:         #ccffeedd;
-    background-color:  transparent;
-    dark: #1c1c1c;
+    foreground:       #ffeedd;
+    backlight:        #ccffeedd;
+    background-color: transparent;
+
+    dark:             #1c1c1c;
     // Black
-    black:             #3d352a;
-    lightblack:        #554444;
-    tlightblack:       #554444cc;
+    black:            #3d352a;
+    lightblack:       #554444;
+    tlightblack:      #554444cc;
 
     // Red
-    red:               #cd5c5c;
-    lightred:          #cc5533;
+    red:              #cd5c5c;
+    lightred:         #cc5533;
 
     // Green
-    green:             #86af80;
-    lightgreen:        #88cc22;
+    green:            #86af80;
+    lightgreen:       #88cc22;
 
     // Yellow
-    yellow:            #e8ae5b;
-    lightyellow:       #ffa75d;
+    yellow:           #e8ae5b;
+    lightyellow:      #ffa75d;
 
     // Blue
-    blue:              #6495ed;
-    lightblue:         #87ceeb;
+    blue:             #6495ed;
+    lightblue:        #87ceeb;
 
     // Magenta
-    magenta:           #deb887;
-    lightmagenta:      #996600;
+    magenta:          #deb887;
+    lightmagenta:     #996600;
 
     // Cyan
-    cyan:              #b0c4de;
-    tcyan:             #ccb0c4de;
-    lightcyan:         #b0c4de;
+    cyan:             #b0c4de;
+    tcyan:            #ccb0c4de;
+    lightcyan:        #b0c4de;
 
     // White
-    white:             #bbaa99;
-    lightwhite:        #ddccbb;
+    white:            #bbaa99;
+    lightwhite:       #ddccbb;
 
     // Bold, Italic, Underline
-    highlight:         underline bold #ffffff;
+    highlight:        underline bold #ffffff;
 
-    transparent:       rgba(0,0,0,0);
-    font:              "Anonymous Pro 14";
+    transparent:      rgba(0,0,0,0);
+    font:             "Anonymous Pro 14";
 }
 #window {
     location:         center;
