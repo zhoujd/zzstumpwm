@@ -57,6 +57,7 @@ configuration {
     transparent:      rgba(0,0,0,0);
     font:             "Anonymous Pro 14";
 }
+
 #window {
     location:         center;
     anchor:           center;
@@ -83,6 +84,7 @@ configuration {
     padding:          5;
     background-color: @tcyan;
 }
+
 #message {
     font:             inherit;
     color:            @black;
@@ -97,10 +99,12 @@ configuration {
     border-color:     @foreground;
     font:             inherit;
 }
+
 #entry,prompt,case-indicator {
     text-font:        inherit;
     text-color:       inherit;
 }
+
 #listview {
     padding:          8px;
     border-radius:    0px 0px 0px 0px;
@@ -110,6 +114,7 @@ configuration {
     dynamic:          false;
     lines:            10;
 }
+
 #element {
     padding:          3px;
     vertical-align:   0.5;
@@ -118,31 +123,40 @@ configuration {
     color:            @foreground;
     font:             inherit;
 }
+
 #element selected.normal {
     background-color: @blue;
 }
+
 #element normal active {
     foreground:       @lightblue;
 }
+
 #element normal urgent {
     foreground:       @lightred;
 }
+
 #element alternate normal {
 }
+
 #element alternate active {
     foreground:       @lightblue;
 }
+
 #element alternate urgent {
     foreground:       @lightred;
 }
+
 #element selected active {
     background-color: @lightblue;
     foreground:       @dark;
 }
+
 #element selected urgent {
     background-color: @lightred;
     foreground:       @dark;
 }
+
 #element normal normal {
 
 }
@@ -151,6 +165,7 @@ configuration {
     expand:           false;
     children:         [dummy0, sidebar, dummy1];
 }
+
 #dummy0,  dummy1 {
     expand:           true;
 }
@@ -161,6 +176,7 @@ configuration {
     spacing:          0px;
     border:           0px 0px 0px 0px;
 }
+
 #button {
     font:             inherit;
     padding:          6px;
@@ -171,6 +187,7 @@ configuration {
     color:            @foreground;
     horizontal-align: 0.5;
 }
+
 #button selected normal {
     color:            @dark;
     border:           1px 0px 1px 1px;
