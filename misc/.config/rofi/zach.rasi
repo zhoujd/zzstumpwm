@@ -91,7 +91,7 @@ configuration {
     color:            @lightgreen;
     padding:          11px;
     background-color: @tlightblack;
-    border:           2px 2px 2px 2px;
+    border:           1px 1px 1px 1px;
     border-radius:    15px 15px 0px 0px;
     border-color:     @foreground;
     font:             inherit;
@@ -104,7 +104,7 @@ configuration {
     padding: 8px;
     border-radius:    0px 0px 15px 15px;
     border-color:     @foreground;
-    border:           0px 2px 2px 2px;
+    border:           0px 1px 1px 1px;
     background-color: #1c1c1ccc;
     dynamic:          false;
     lines:            10;
