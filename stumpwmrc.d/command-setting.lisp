@@ -97,4 +97,4 @@ used for matching windows with run-or-raise or window placement-merules."
                          ("1280x720"  "--mode 1280x720"))
                        "Select resolution")))
         (output "xrandr | grep primary | awk '{print $1}'"))
-     (run-shell-command (format nil "xrandr --output `~a` ~a" output choice))))
+    (run-shell-command (format nil "xrandr --output `~a` ~a" output choice))))
