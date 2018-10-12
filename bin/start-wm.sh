@@ -11,7 +11,7 @@ WM_SELECT=${1:-1}
 
 ## Set multiple monitors
 # ln -sf ~/zzstumpwm/misc/.xprofile ~
-if [ -e ~/.xprofile ]; then
+if [ -x ~/.xprofile ]; then
     ~/.xprofile
 fi
 
