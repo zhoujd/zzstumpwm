@@ -93,15 +93,8 @@ used for matching windows with run-or-raise or window placement-merules."
   "select resolution for stumpwm on vm"
   (let ((choice (cadr (select-from-menu
                        (current-screen)
-                       '(("1920x1080" :1920x1080)
-                         ("1280x720"  :1280x720))
+                       '(("1920x1080" "--mode 1920x1080")
+                         ("1280x720"  "--mode 1280x720"))
                        "Select resolution")))
         (output "xrandr | grep primary | awk '{print $1}'"))
-    (cond
-      ((equal choice :1920x1080)
-       (run-shell-command
-        (format nil "xrandr --output `~a` --mode 1920x1080" output)))
-      ((equal choice :1280x720)
-       (run-shell-command
-        (format nil "xrandr --output `~a` --mode 1280x720" output)))
-      )))
+     (run-shell-command (format nil "xrandr --output `~a` ~a" output choice))))
