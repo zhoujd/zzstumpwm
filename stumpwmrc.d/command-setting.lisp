@@ -95,12 +95,13 @@ used for matching windows with run-or-raise or window placement-merules."
                        (current-screen)
                        '(("1920x1080" :1920x1080)
                          ("1280x720"  :1280x720))
-                       "Select resolution"))))
+                       "Select resolution")))
+        (output "xrandr | grep primary | awk '{print $1}'"))
     (cond
       ((equal choice :1920x1080)
        (run-shell-command
-        "xrandr --output `xrandr | grep primary | awk '{print $1}'` --mode 1920x1080"))
+        (format nil "xrandr --output `~a` --mode 1920x1080" output)))
       ((equal choice :1280x720)
        (run-shell-command
-        "xrandr --output `xrandr | grep primary | awk '{print $1}'` --mode 1280x720"))
+        (format nil "xrandr --output `~a` --mode 1280x720" output)))
       )))
