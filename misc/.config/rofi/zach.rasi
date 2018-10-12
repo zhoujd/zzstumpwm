@@ -61,9 +61,9 @@ configuration {
     location:         center;
     anchor:           center;
     transparency:     "screenshot";
-    padding:          10px;
+    padding:          8px;
     border:           0px;
-    border-radius:    10px;
+    border-radius:    0px;
     color:            @magenta;
     background-color: @transparent;
     spacing:          0;
@@ -79,7 +79,7 @@ configuration {
 #message {
     border-color:     @foreground;
     border:           0px 1px 1px 1px;
-    border-radius:    10px;
+    border-radius:    0px;
     padding:          5;
     background-color: @tcyan;
 }
@@ -90,10 +90,10 @@ configuration {
 
 #inputbar {
     color:            @lightgreen;
-    padding:          11px;
+    padding:          8px;
     background-color: @tlightblack;
     border:           1px 1px 1px 1px;
-    border-radius:    10px 10px 0px 0px;
+    border-radius:    0px 0px 0px 0px;
     border-color:     @foreground;
     font:             inherit;
 }
@@ -102,8 +102,8 @@ configuration {
     text-color:       inherit;
 }
 #listview {
-    padding: 8px;
-    border-radius:    0px 0px 10px 10px;
+    padding:          8px;
+    border-radius:    0px 0px 0px 0px;
     border-color:     @foreground;
     border:           0px 1px 1px 1px;
     background-color: #1c1c1ccc;
@@ -113,7 +113,7 @@ configuration {
 #element {
     padding:          3px;
     vertical-align:   0.5;
-    border-radius:    4px;
+    border-radius:    0px;
     background-color: transparent;
     color:            @foreground;
     font:             inherit;
@@ -165,7 +165,7 @@ configuration {
     font:             inherit;
     padding:          6px;
     border:           1px 0px 1px 1px;
-    border-radius:    4px 0px 0px 4px;
+    border-radius:    0px 0px 0px 0px;
     background-color: @tlightblack;
     border-color:     @foreground;
     color:            @foreground;
