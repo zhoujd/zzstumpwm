@@ -93,7 +93,7 @@ configuration {
     padding:          11px;
     background-color: @tlightblack;
     border:           1px 1px 1px 1px;
-    border-radius:    15px 15px 0px 0px;
+    border-radius:    10px 10px 0px 0px;
     border-color:     @foreground;
     font:             inherit;
 }
@@ -103,7 +103,7 @@ configuration {
 }
 #listview {
     padding: 8px;
-    border-radius:    0px 0px 15px 15px;
+    border-radius:    0px 0px 10px 10px;
     border-color:     @foreground;
     border:           0px 1px 1px 1px;
     background-color: #1c1c1ccc;
