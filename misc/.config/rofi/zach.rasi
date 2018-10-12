@@ -77,7 +77,7 @@ configuration {
 
 #message {
     border-color:     @foreground;
-    border:           0px 2px 2px 2px;
+    border:           0px 1px 1px 1px;
     border-radius:    10px;
     padding:          5;
     background-color: @tcyan;
@@ -163,7 +163,7 @@ configuration {
 #button {
     font:             inherit;
     padding:          6px;
-    border:           2px 0px 2px 2px;
+    border:           1px 0px 1px 1px;
     border-radius:    4px 0px 0px 4px;
     background-color: @tlightblack;
     border-color:     @foreground;
@@ -172,7 +172,7 @@ configuration {
 }
 #button selected normal {
     color:            @dark;
-    border:           2px 0px 2px 2px;
+    border:           1px 0px 1px 1px;
     background-color: @backlight;
     border-color:     @foreground;
 }
