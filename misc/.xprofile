@@ -14,4 +14,14 @@ vbox_vm() {
     VBoxClient-all
 }
 
+## multible screen
+multible_screen() {
+    local big=eDP-1
+    local small=DP-1
+    local size="1920x1080"
+    
+    xrandr --output $big --primary
+    xrandr --output $small --same-as $big --mode "$size"
+}
+
 vbox_vm
