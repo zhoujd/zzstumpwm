@@ -64,3 +64,8 @@ Ubunut 18.04 Server
         $ sudo systemctl mask apt-daily.service
         $ sudo systemctl mask apt-daily.timer
         $ systemctl list-unit-files apt* --all
+
+8. Change from GDM to LightDM
+
+        $ sudo apt-get install lightdm
+        $ sudo dpkg-reconfigure lightdm
