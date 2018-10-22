@@ -14,11 +14,11 @@
   (kbd "C-e")         "exec emacs"
   (kbd "f")           "firefox"
   (kbd "C-f")         "exec firefox"
-  (kbd "m")           "exec xfce4-taskmanager"
-  (kbd "h")           "exec thunar"
+  (kbd "v")           (urxvt-command "vim")
+  (kbd "C-v")         "exec evince"
+  (kbd "r")           (urxvt-command "ranger")
+  (kbd "C-r")         "exec remmina"
   (kbd "t")           (urxvt-command "tmux")
-  (kbd "v")           "exec evince"
-  (kbd "r")           "exec remmina"
   (kbd "b")           "colon1 exec firefox http://www."
   (kbd "s")           "colon1 exec urxvt -e ssh "
   ))
