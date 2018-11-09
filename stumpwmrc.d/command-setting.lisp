@@ -94,6 +94,7 @@ used for matching windows with run-or-raise or window placement-merules."
   (let ((choice (cadr (select-from-menu
                        (current-screen)
                        '(("1920x1080" "--mode 1920x1080")
+                         ("1600x900"  "--mode 1600x900")
                          ("1280x720"  "--mode 1280x720"))
                        "Select resolution")))
         (output "xrandr | grep primary | awk '{print $1}'"))
