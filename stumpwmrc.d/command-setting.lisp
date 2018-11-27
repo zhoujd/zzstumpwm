@@ -90,7 +90,7 @@ used for matching windows with run-or-raise or window placement-merules."
 
 ;; resolution select
 (defcommand resolution () ()
-  "select resolution for stumpwm on vm"
+  "select resolution for stumpwm"
   (let ((choice (cadr (select-from-menu
                        (current-screen)
                        '(("1920x1080" "--mode 1920x1080")
