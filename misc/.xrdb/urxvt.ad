@@ -47,6 +47,7 @@ URxvt.url-select.launcher: /usr/bin/firefox
 URxvt.url-select.underline: true
 !! keyboard-select: ctrl+alt+[c|v]
 URxvt.keysym.M-Escape: perl:keyboard-select:activate
+URxvt.keysym.M-m: perl:keyboard-select:activate
 URxvt.keysym.M-s: perl:keyboard-select:search
 !! matcher
 URxvt.url-launcher:	/usr/bin/firefox
