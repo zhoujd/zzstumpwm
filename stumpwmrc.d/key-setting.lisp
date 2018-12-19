@@ -85,17 +85,17 @@
  *top-map*
  (list
   (kbd "s-`")         "windowlist"
-  (kbd "s-C-`")       "grouplist"
+  (kbd "s-M-`")       "grouplist"
 
   (kbd "s-Escape")    "abort"
-  (kbd "s-C-Escape")  "banish"
+  (kbd "s-M-Escape")  "banish"
 
   (kbd "s-l")         "exec xtrlock"
-  (kbd "s-C-l")       "exec slock"
-  (kbd "s-M-l")       "exec xset dpms force suspend"
+  (kbd "s-M-l")       "exec slock"
+  (kbd "s-C-l")       "exec xset dpms force suspend"
 
   (kbd "s-Tab")       "pull-hidden-next"
-  (kbd "s-C-Tab")     "gnext"
+  (kbd "s-M-Tab")     "gnext"
 
   (kbd "Print")       "screenshot"
   (kbd "M-Print")     "screenshot-window"
