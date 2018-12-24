@@ -14,9 +14,27 @@ Arch Linux install
         # fdisk -l
         # fdisk /dev/sda
             > g  ## o for legacy grub
-            > n
             > p
-            > t  # 1
+            > n
+            > 1
+            > enter
+            > +300M
+            > t
+            > 1   ## linux EFI
+            > w
+            
+            > n
+            > 2
+            > enter
+            > +15G
+            > t 
+            > 19  ## linux swap
+            > w
+            
+            > n
+            > 3
+            > enter
+            > enter
             > w
 
           300M      EFI    /dev/sda1
