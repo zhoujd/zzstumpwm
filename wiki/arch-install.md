@@ -119,6 +119,10 @@ Arch Linux install
 
         $ sudo pacman -S git net-tools xfce4
 
+        $ sudo pacman -S lightdm lightdm-gtk-greeter
+        $ sudo systemctl start lightdm.service
+        $ sudo systemctl enable lightdm.service
+
 7. AUR install
 
         $ cd package_name
