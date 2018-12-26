@@ -153,3 +153,12 @@ Arch Linux install
 11. How to fix "unable to lock database" error in Arch linux
 
         $ sudo rm /var/lib/pacman/db.lck
+
+12. X11 forwarding
+        
+        $ sudo vim /etc/ssh/sshd_config
+        AllowTcpForwarding yes
+        X11Forwarding yes
+        X11DisplayOffset 10
+        X11UseLocalhost yes
+        
