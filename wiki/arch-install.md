@@ -26,7 +26,7 @@ Arch Linux install
             > n
             > 2
             > enter
-            > +15G
+            > +16G
             > t 
             > 19  ## linux swap
             > w
@@ -38,10 +38,11 @@ Arch Linux install
             > w
 
           300M      EFI    /dev/sda1
-          15G       swap   /dev/sda2
+          16G       swap   /dev/sda2
           100%FREE  /      /dev/sda3
 
         # mkfs.fat -F32 /dev/sda1
+        # mkswap /dev/sda2
         # mkfs.ext4 /dev/sda3
 
 3. Install ARCH
@@ -60,6 +61,8 @@ Arch Linux install
           en_US.UTF-8 UTF-8
         # locale-gen
         # ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+        # date -s mm/dd/YYYY
+        # date -s hh:mm:ss
         # hwclock --systohc --utc
 
         # pacman -S dosfstools grub efibootmgr os-prober mtools
