@@ -55,8 +55,7 @@ Arch Linux install
         # cat /mnt/etc/fstab
 
 4. Setup NewOS 
-
-4.1 EFI
+    4.1 EFI
 
         # arch-chroot /mnt /bin/bash
         # nano /etc/locale.gen
@@ -99,7 +98,7 @@ Arch Linux install
 
         # reboot
 
-4.1 Legacy
+    4.2 Legacy
 
         # grub-install /dev/sda --recheck
  
