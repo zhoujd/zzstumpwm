@@ -107,7 +107,6 @@ Arch Linux install
         $ useradd -m -g users -G wheel -s /bin/bash zhoujd
         $ passwd zhoujd
 
-        ### add zhoujd to sudousers
         # EDITOR=nano visudo
           %wheel ALL=(ALL) ALL
           Defaults env_keep+="http_proxy https_proxy ftp_proxy no_proxy"
@@ -150,7 +149,7 @@ Arch Linux install
 10. X11 forwarding
 
         $ sudo vim /etc/ssh/sshd_config
-        AllowTcpForwarding yes
-        X11Forwarding yes
-        X11DisplayOffset 10
-        X11UseLocalhost yes
+          AllowTcpForwarding yes
+          X11Forwarding yes
+          X11DisplayOffset 10
+          X11UseLocalhost yes
