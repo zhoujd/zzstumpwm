@@ -135,7 +135,7 @@ Arch Linux install
         $ less package_name.install
         $ makepkg -si
 
-10. Swap file
+8. Swap file
 
         # fallocate -l 8G /swapfile
         # chmod 600 /swapfile
@@ -143,11 +143,11 @@ Arch Linux install
         # echo '/swapfile none swap sw 0 0' | tee -a /etc/fstab
         # cat /etc/fstab
 
-11. How to fix "unable to lock database" error
+9. How to fix "unable to lock database" error
 
         $ sudo rm /var/lib/pacman/db.lck
 
-12. X11 forwarding
+10. X11 forwarding
 
         $ sudo vim /etc/ssh/sshd_config
         AllowTcpForwarding yes
