@@ -22,15 +22,15 @@ Arch Linux install
             > t
             > 1   ## linux EFI
             > w
-            
+
             > n
             > 2
             > enter
             > +16G
-            > t 
+            > t
             > 19  ## linux swap
             > w
-            
+
             > n
             > 3
             > enter
@@ -54,7 +54,9 @@ Arch Linux install
         # genfstab -U -p /mnt >> /mnt/etc/fstab
         # cat /mnt/etc/fstab
 
-4. Setup NewOS
+4. Setup NewOS 
+
+4.1 EFI
 
         # arch-chroot /mnt /bin/bash
         # nano /etc/locale.gen
@@ -68,13 +70,7 @@ Arch Linux install
         # pacman -S dosfstools grub efibootmgr os-prober mtools
         # mkdir /boot/EFI
         # mount /dev/sda1 /boot/EFI
-        
-        ## For legacy
-        # grub-install /dev/sda --recheck
-        
-        ## For EFI
         # grub-install --target=x86_64-efi --bootloader-id=grub_uefi --recheck
-        
         # cp /usr/share/locale/en\@quot/LC_MESSAGES/grub.mo /boot/grub/locale/en.mo
         # grub-mkconfig -o /boot/grub/grub.cfg
 
@@ -101,11 +97,11 @@ Arch Linux install
 
         # reboot
 
-5. Setup sounds
+4.1 Legacy
 
-        $ sudo pacman -S alsa-utils alsa-tools alsa-firmware alsa-oss alsa-lib alsa-plugins
-
-6. Setup desktop
+        # grub-install /dev/sda --recheck
+ 
+5. Setup desktop
 
         $ useradd -m -g users -G wheel -s /bin/bash zhoujd
         $ passwd zhoujd
@@ -116,15 +112,20 @@ Arch Linux install
           Defaults env_keep+="http_proxy https_proxy ftp_proxy no_proxy"
 
         $ sudo pacman -S xorg xorg-xinit
-        
+
         $ sudo pacman -Ss xf86-video
         $ sudo pacman -S xf86-video-intel
 
         $ sudo pacman -S git net-tools xfce4
+        $ sudo pacman -S mercurial python python2
 
         $ sudo pacman -S lightdm lightdm-gtk-greeter
         $ sudo systemctl start lightdm.service
         $ sudo systemctl enable lightdm.service
+
+6. Setup sound
+
+        $ sudo pacman -S alsa-utils alsa-tools alsa-firmware alsa-oss alsa-lib alsa-plugins
 
 7. AUR install
 
@@ -132,18 +133,6 @@ Arch Linux install
         $ less PKGBUILD
         $ less package_name.install
         $ makepkg -si
-
-8. URxvt install
-
-        $ sudo pacman -S rxvt-unicode urxvt-perls
-        $ git clone https://aur.archlinux.org/urxvt-resize-font-git.git
-        $ cd urxvt-resize-font-git
-        $ makepkg -si
-
-9. Useful tools
-
-        $ sudo pacman -S llpp xclip
-        $ sudo pacman -S mercurial python python2
 
 10. Swap file
 
@@ -158,10 +147,9 @@ Arch Linux install
         $ sudo rm /var/lib/pacman/db.lck
 
 12. X11 forwarding
-        
+
         $ sudo vim /etc/ssh/sshd_config
         AllowTcpForwarding yes
         X11Forwarding yes
         X11DisplayOffset 10
         X11UseLocalhost yes
-        
