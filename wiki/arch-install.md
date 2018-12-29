@@ -142,8 +142,8 @@ Arch Linux install
 
 9. Useful tools
 
-        ## pdf
         $ sudo pacman -S llpp xclip
+        $ sudo pacman -S mercurial python python2
 
 10. Swap file
 
