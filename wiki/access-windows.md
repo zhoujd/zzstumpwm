@@ -7,15 +7,14 @@ Remote access windows
         HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Terminal Server\Wds\rdpwd\Tds\tcp
         PortNumber:<1234>
 
-
 2. Install package for linux
    
-        $yum install rdesktop
-        $yum install tsclient
+        $ yum install rdesktop
+        $ yum install tsclient
 
-        $rdesktop -f -a 16 119.0.0.100:1234
-        $rdesktop -u yournape -p password -g 1024*720 192.168.0.2
-        $man rdesktop
+        $ rdesktop -f -a 16 119.0.0.100:1234
+        $ rdesktop -u yournape -p password -g 1024*720 192.168.0.2
+        $ man rdesktop
 
 3. Build source http://www.rdesktop.org/#download
 
