@@ -153,7 +153,7 @@ Arch Linux install
         # echo '/swapfile none swap sw 0 0' | tee -a /etc/fstab
         # cat /etc/fstab
 
-11. How to fix "unable to lock database" error in Arch linux
+11. How to fix "unable to lock database" error
 
         $ sudo rm /var/lib/pacman/db.lck
 
