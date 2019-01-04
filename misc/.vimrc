@@ -86,7 +86,8 @@ set incsearch
 set gdefault
 
 " Status line setting
-set statusline=%f%m%r
+set statusline=
+set statusline+=%f%m%r
 set statusline+=\ %y
 set statusline+=\ (%{&fileformat})
 set statusline+=\ (ascii=\%b,hex=\%B)
