@@ -29,8 +29,6 @@
   (kbd "s-e")       *zz-exec-map*
   (kbd "s-h")       *zz-help-map*
   (kbd "s-s")       *zz-screen-map*
-
-  ;; build-in map
   (kbd "s-t")       *root-map*
   (kbd "s-w")       *group-root-map*
   ))
