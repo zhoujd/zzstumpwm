@@ -26,3 +26,7 @@ Manjaro install
         
         $ sudo pacman-mirrors -g
         $ sudo pacman -Syyu
+
+3. Use xsetroot to set background when login
+
+        $ sudo pacman -S xorg-xsetroot
