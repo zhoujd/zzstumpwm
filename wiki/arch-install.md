@@ -118,7 +118,8 @@ Arch Linux install
 
         $ sudo pacman -S git net-tools xfce4
         $ sudo pacman -S mercurial python python2
-
+        $ sudo pacman -S the_silver_searcher
+        
         $ sudo pacman -S lightdm lightdm-gtk-greeter
         $ sudo systemctl start lightdm.service
         $ sudo systemctl enable lightdm.service
