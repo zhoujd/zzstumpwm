@@ -3,7 +3,7 @@ Manjaro install
 
 1. Proxy setting
 
-        $ cat > ~/.bashrc <<EOF
+        $ cat >> ~/.bashrc <<EOF
           export http_proxy=http://proxy-prc.*****.com:911/
           export https_proxy=$http_proxy
           export ftp_proxy=$http_proxy
