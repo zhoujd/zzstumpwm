@@ -43,11 +43,11 @@
   (kbd "i")           "current-window-info"
   (kbd "v")           "version"
 
-  ;; exchange-direction bound to C-t x by defalut
-  (kbd "Left")        "exchange-direction left"
-  (kbd "Right")       "exchange-direction right"
-  (kbd "Up")          "exchange-direction up"
-  (kbd "Down")        "exchange-direction down"
+  ;; C-t x by defalut
+  (kbd "b")           "exchange-direction left"
+  (kbd "f")           "exchange-direction right"
+  (kbd "p")           "exchange-direction up"
+  (kbd "n")           "exchange-direction down"
   ))
 
 ;; *zz-help-map*
@@ -59,13 +59,13 @@
   (kbd "C-m")         "exec firefox http://stumpwm.org/manual/stumpwm.html"
   (kbd "s")           "exec firefox http://lxr.free-electrons.com/"
   (kbd "C-s")         "exec firefox http://svnweb.freebsd.org/"
-  
+
   (kbd "v")           "describe-variable"
   (kbd "f")           "describe-function"
   (kbd "k")           "describe-key"
   (kbd "c")           "describe-command"
   (kbd "w")           "where-is"
-  
+
   (kbd "C-c")         "commands"
   ))
 
@@ -90,25 +90,11 @@
   (kbd "s-Escape")    "abort"
   (kbd "s-M-Escape")  "banish"
 
-  (kbd "s-l")         "exec xtrlock"
-  (kbd "s-M-l")       "exec slock"
-  (kbd "s-C-l")       "exec xset dpms force suspend"
-
   (kbd "s-Tab")       "pull-hidden-next"
   (kbd "s-M-Tab")     "gnext"
 
   (kbd "Print")       "screenshot"
   (kbd "M-Print")     "screenshot-window"
-
-  (kbd "s-M-r")       "exec rofi -show run"
-  (kbd "s-M-s")       "exec rofi -show ssh"
-  (kbd "s-M-w")       "exec rofi -show window"
-  (kbd "s-M-d")       "exec rofi -show drun"
-  
-  (kbd "s-C-b")       "mode-line"
-  (kbd "s-C-d")       "safe-delete"
-  (kbd "s-C-q")       "safe-quit"
-  (kbd "s-C-r")       "reinit"
 
   (kbd "s-Left")      "move-focus left"
   (kbd "s-Right")     "move-focus right"
@@ -125,6 +111,20 @@
   (kbd "s-C-Up")      "gprev"
   (kbd "s-C-Down")    "gnext"
 
+  (kbd "s-M-r")       "exec rofi -show run"
+  (kbd "s-M-s")       "exec rofi -show ssh"
+  (kbd "s-M-w")       "exec rofi -show window"
+  (kbd "s-M-d")       "exec rofi -show drun"
+
+  (kbd "s-C-b")       "mode-line"
+  (kbd "s-C-d")       "safe-delete"
+  (kbd "s-C-q")       "safe-quit"
+  (kbd "s-C-r")       "reinit"
+
+  (kbd "s-l")         "exec xtrlock"
+  (kbd "s-M-l")       "exec slock"
+  (kbd "s-C-l")       "exec xset dpms force suspend"
+
   (kbd "s-,")         "amixer-Master-1-"
   (kbd "s-.")         "amixer-Master-1+"
   ))
@@ -133,6 +133,9 @@
  *root-map*
  (list
   (kbd "Menu")        "send-escape"
+
+  (kbd "c")           "urxvt"
+  (kbd "C-c")         "exec urxvt"
   ))
 
 (apply-keys-to-map
@@ -144,8 +147,20 @@
   ))
 
 (apply-keys-to-map
- *root-map*
+ *top-map*
  (list
-  (kbd "c")           "urxvt"
-  (kbd "C-c")         "exec urxvt"
-  ))
+  (kbd "s-b")         (getkey-top (kbd "s-Left"))
+  (kbd "s-f")         (getkey-top (kbd "s-Right"))
+  (kbd "s-p")         (getkey-top (kbd "s-Up"))
+  (kbd "s-n")         (getkey-top (kbd "s-Down"))
+
+  (kbd "s-M-b")       (getkey-top (kbd "s-M-Left"))
+  (kbd "s-M-f")       (getkey-top (kbd "s-M-Right"))
+  (kbd "s-M-p")       (getkey-top (kbd "s-M-Up"))
+  (kbd "s-M-n")       (getkey-top (kbd "s-M-Down"))
+
+  (kbd "s-C-b")       (getkey-top (kbd "s-C-Left"))
+  (kbd "s-C-f")       (getkey-top (kbd "s-C-Right"))
+  (kbd "s-C-p")       (getkey-top (kbd "s-C-Up"))
+  (kbd "s-C-n")       (getkey-top (kbd "s-C-Down"))
+))
