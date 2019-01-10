@@ -134,8 +134,6 @@
 (apply-keys-to-map
  *root-map*
  (list
-  (kbd "Menu")        "send-escape"
-
   (kbd "c")           "urxvt"
   (kbd "C-c")         "exec urxvt"
   ))
