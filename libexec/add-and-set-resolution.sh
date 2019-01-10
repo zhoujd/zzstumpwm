@@ -1,5 +1,8 @@
 #!/bin/bash
-#set -x
+
+#$ sudo vim /etc/lightdm/lightdm.conf.d/50-display-setup-script.conf:
+#  [Seat:*]
+#  display-setup-script=add-and-set-resolution.sh eDP-1 1600 900 60
 
 output="$1"
 x="$2"
