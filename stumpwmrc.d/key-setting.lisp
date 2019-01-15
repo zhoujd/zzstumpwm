@@ -44,10 +44,10 @@
   (kbd "v")           "version"
 
   ;; C-t x by defalut
-  (kbd "b")           "exchange-direction left"
-  (kbd "f")           "exchange-direction right"
-  (kbd "p")           "exchange-direction up"
-  (kbd "n")           "exchange-direction down"
+  (kbd ";")           "exchange-direction left"
+  (kbd "'")           "exchange-direction right"
+  (kbd "[")           "exchange-direction up"
+  (kbd "/")           "exchange-direction down"
   ))
 
 ;; *zz-help-map*
@@ -149,18 +149,18 @@
 (apply-keys-to-map
  *top-map*
  (list
-  (kbd "s-b")         (getkey-top (kbd "s-Left"))
-  (kbd "s-f")         (getkey-top (kbd "s-Right"))
-  (kbd "s-p")         (getkey-top (kbd "s-Up"))
-  (kbd "s-n")         (getkey-top (kbd "s-Down"))
+  (kbd "s-;")         (getkey-top (kbd "s-Left"))
+  (kbd "s-'")         (getkey-top (kbd "s-Right"))
+  (kbd "s-[")         (getkey-top (kbd "s-Up"))
+  (kbd "s-/")         (getkey-top (kbd "s-Down"))
 
-  (kbd "s-M-b")       (getkey-top (kbd "s-M-Left"))
-  (kbd "s-M-f")       (getkey-top (kbd "s-M-Right"))
-  (kbd "s-M-p")       (getkey-top (kbd "s-M-Up"))
-  (kbd "s-M-n")       (getkey-top (kbd "s-M-Down"))
+  (kbd "s-M-;")       (getkey-top (kbd "s-M-Left"))
+  (kbd "s-M-'")       (getkey-top (kbd "s-M-Right"))
+  (kbd "s-M-[")       (getkey-top (kbd "s-M-Up"))
+  (kbd "s-M-/")       (getkey-top (kbd "s-M-Down"))
 
-  (kbd "s-C-b")       (getkey-top (kbd "s-C-Left"))
-  (kbd "s-C-f")       (getkey-top (kbd "s-C-Right"))
-  (kbd "s-C-p")       (getkey-top (kbd "s-C-Up"))
-  (kbd "s-C-n")       (getkey-top (kbd "s-C-Down"))
+  (kbd "s-C-;")       (getkey-top (kbd "s-C-Left"))
+  (kbd "s-C-'")       (getkey-top (kbd "s-C-Right"))
+  (kbd "s-C-[")       (getkey-top (kbd "s-C-Up"))
+  (kbd "s-C-/")       (getkey-top (kbd "s-C-Down"))
 ))
