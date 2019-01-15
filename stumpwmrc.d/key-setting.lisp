@@ -44,6 +44,11 @@
   (kbd "v")           "version"
 
   ;; C-t x by defalut
+  (kbd "Left")        "exchange-direction left"
+  (kbd "Right")       "exchange-direction right"
+  (kbd "Up")          "exchange-direction up"
+  (kbd "Down")        "exchange-direction down"
+  
   (kbd ";")           "exchange-direction left"
   (kbd "'")           "exchange-direction right"
   (kbd "[")           "exchange-direction up"
