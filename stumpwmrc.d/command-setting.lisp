@@ -10,7 +10,7 @@
     (when cmd
       (eval-command cmd t))))
 
-;; webjumps
+;; webjumps q=query+goes+here
 (make-web-jump "google" "firefox https://www.google.com/search?q=")
 (make-web-jump "bing" "firefox https://www.bing.com/search?q=")
 (make-web-jump "wikipedia" "firefox https://en.wikipedia.org/w/index.php?search=")
