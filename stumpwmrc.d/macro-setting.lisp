@@ -42,3 +42,9 @@
     `(defcommand ,cmd () ()
        "run or raise command"
        (run-or-raise ,cmd-str ,prop))))
+
+;; web jump (works for Google and Imdb)
+(defmacro make-web-jump (name prefix)
+  `(defcommand ,(intern name) (search) ((:rest ,(concatenate 'string name " search: ")))
+     (substitute #\+ #\Space search)
+     (run-shell-command (concatenate 'string ,prefix search))))

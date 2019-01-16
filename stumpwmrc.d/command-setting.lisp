@@ -10,6 +10,10 @@
     (when cmd
       (eval-command cmd t))))
 
+;; webjumps
+(make-web-jump "google" "firefox https://www.google.com/search?q=")
+(make-web-jump "bing" "firefox https://www.bing.com/search?q=")
+
 ;; sudo command
 (define-sudo-command reboot "reboot")
 (define-sudo-command shutdown "shutdown -h now")

@@ -20,7 +20,8 @@
   (kbd "C-r")         "exec remmina"
   (kbd "t")           (urxvt-command "tmux")
   (kbd "b")           "colon1 exec firefox http://www."
-  (kbd "C-b")         "firefox http://www.google.com"
+  (kbd "C-b")         "google"
+  (kbd "s-b")         "bing"
   (kbd "s")           "colon1 exec urxvt -e ssh "
   (kbd "C-s")         (urxvt-command "speedpad")
   ))
