@@ -19,6 +19,7 @@
   (kbd "r")           (urxvt-command "ranger")
   (kbd "C-r")         "exec remmina"
   (kbd "t")           (urxvt-command "tmux")
+  (kbd "C-t")         (urxvt-command "byobu")
   (kbd "b")           "colon1 exec firefox http://www."
   (kbd "C-b")         "google"
   (kbd "M-b")         "wikipedia"
