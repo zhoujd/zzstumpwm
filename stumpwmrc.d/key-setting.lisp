@@ -21,6 +21,7 @@
   (kbd "t")           (urxvt-command "tmux")
   (kbd "b")           "colon1 exec firefox http://www."
   (kbd "C-b")         "google"
+  (kbd "M-b")         "wikipedia"
   (kbd "s-b")         "bing"
   (kbd "s")           "colon1 exec urxvt -e ssh "
   (kbd "C-s")         (urxvt-command "speedpad")

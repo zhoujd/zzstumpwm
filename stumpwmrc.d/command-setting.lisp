@@ -13,6 +13,7 @@
 ;; webjumps
 (make-web-jump "google" "firefox https://www.google.com/search?q=")
 (make-web-jump "bing" "firefox https://www.bing.com/search?q=")
+(make-web-jump "wikipedia" "firefox https://en.wikipedia.org/w/index.php?search=")
 
 ;; sudo command
 (define-sudo-command reboot "reboot")
