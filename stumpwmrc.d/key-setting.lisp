@@ -53,10 +53,10 @@
   (kbd "Up")          "exchange-direction up"
   (kbd "Down")        "exchange-direction down"
   
-  (kbd ";")           "exchange-direction left"
-  (kbd "'")           "exchange-direction right"
-  (kbd "[")           "exchange-direction up"
-  (kbd "/")           "exchange-direction down"
+  (kbd "h")           "exchange-direction left"
+  (kbd "l")           "exchange-direction right"
+  (kbd "k")           "exchange-direction up"
+  (kbd "j")           "exchange-direction down"
   ))
 
 ;; *zz-help-map*
@@ -130,10 +130,6 @@
   (kbd "s-C-q")       "safe-quit"
   (kbd "s-C-r")       "reinit"
 
-  (kbd "s-l")         "exec xtrlock"
-  (kbd "s-M-l")       "exec slock"
-  (kbd "s-C-l")       "exec xset dpms force suspend"
-
   (kbd "s-,")         "amixer-Master-1-"
   (kbd "s-.")         "amixer-Master-1+"
 
@@ -153,23 +149,27 @@
   (kbd "p")           "sprev"
   (kbd "n")           "snext"
   (kbd "r")           "resolution"
+
+  (kbd "l")           "exec xtrlock"
+  (kbd "M-l")         "exec slock"
+  (kbd "C-l")         "exec xset dpms force suspend"
   ))
 
 (apply-keys-to-map
  *top-map*
  (list
-  (kbd "s-;")         (getkey-top (kbd "s-Left"))
-  (kbd "s-'")         (getkey-top (kbd "s-Right"))
-  (kbd "s-[")         (getkey-top (kbd "s-Up"))
-  (kbd "s-/")         (getkey-top (kbd "s-Down"))
+  (kbd "s-h")         (getkey-top (kbd "s-Left"))
+  (kbd "s-l")         (getkey-top (kbd "s-Right"))
+  (kbd "s-k")         (getkey-top (kbd "s-Up"))
+  (kbd "s-j")         (getkey-top (kbd "s-Down"))
 
-  (kbd "s-M-;")       (getkey-top (kbd "s-M-Left"))
-  (kbd "s-M-'")       (getkey-top (kbd "s-M-Right"))
-  (kbd "s-M-[")       (getkey-top (kbd "s-M-Up"))
-  (kbd "s-M-/")       (getkey-top (kbd "s-M-Down"))
+  (kbd "s-M-h")       (getkey-top (kbd "s-M-Left"))
+  (kbd "s-M-l")       (getkey-top (kbd "s-M-Right"))
+  (kbd "s-M-k")       (getkey-top (kbd "s-M-Up"))
+  (kbd "s-M-j")       (getkey-top (kbd "s-M-Down"))
 
-  (kbd "s-C-;")       (getkey-top (kbd "s-C-Left"))
-  (kbd "s-C-'")       (getkey-top (kbd "s-C-Right"))
-  (kbd "s-C-[")       (getkey-top (kbd "s-C-Up"))
-  (kbd "s-C-/")       (getkey-top (kbd "s-C-Down"))
+  (kbd "s-C-h")       (getkey-top (kbd "s-C-Left"))
+  (kbd "s-C-l")       (getkey-top (kbd "s-C-Right"))
+  (kbd "s-C-k")       (getkey-top (kbd "s-C-Up"))
+  (kbd "s-C-j")       (getkey-top (kbd "s-C-Down"))
 ))

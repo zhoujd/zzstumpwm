@@ -27,8 +27,8 @@
  (list
   (kbd "s-x")       *zz-x-map*
   (kbd "s-e")       *zz-exec-map*
-  (kbd "s-h")       *zz-help-map*
   (kbd "s-s")       *zz-screen-map*
+  (kbd "s-?")       *zz-help-map*
   ))
 
 (mapc
