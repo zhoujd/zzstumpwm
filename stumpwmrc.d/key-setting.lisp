@@ -47,17 +47,6 @@
 
   (kbd "i")           "current-window-info"
   (kbd "v")           "version"
-
-  ;; C-t x by defalut
-  (kbd "Left")        "exchange-direction left"
-  (kbd "Right")       "exchange-direction right"
-  (kbd "Up")          "exchange-direction up"
-  (kbd "Down")        "exchange-direction down"
-  
-  (kbd "h")           "exchange-direction left"
-  (kbd "l")           "exchange-direction right"
-  (kbd "k")           "exchange-direction up"
-  (kbd "j")           "exchange-direction down"
   ))
 
 ;; *zz-help-map*
@@ -116,10 +105,10 @@
   (kbd "s-M-Up")      "move-window up"
   (kbd "s-M-Down")    "move-window down"
 
-  (kbd "s-C-Left")    "prev-in-frame"
-  (kbd "s-C-Right")   "next-in-frame"
-  (kbd "s-C-Up")      "gprev"
-  (kbd "s-C-Down")    "gnext"
+  (kbd "s-C-Left")    "exchange-direction left"
+  (kbd "s-C-Right")   "exchange-direction right"
+  (kbd "s-C-Up")      "exchange-direction up"
+  (kbd "s-C-Down")    "exchange-direction down"
 
   (kbd "s-M-r")       "exec rofi -show run"
   (kbd "s-M-s")       "exec rofi -show ssh"
@@ -134,8 +123,8 @@
   (kbd "s-,")         "amixer-Master-1-"
   (kbd "s-.")         "amixer-Master-1+"
 
-  (kbd "s-[")         "fprev"
-  (kbd "s-]")         "fnext"
+  (kbd "s-[")         "prev-in-frame"
+  (kbd "s-]")         "next-in-frame"
   (kbd "s-M-[")       "gprev"
   (kbd "s-M-]")       "gnext"
   ))
