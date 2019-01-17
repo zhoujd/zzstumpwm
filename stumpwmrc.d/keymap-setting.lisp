@@ -14,7 +14,7 @@
         (define-key map key fn)))))
 
 ;; change the prefix key to something else
-(set-prefix-key (kbd "s-z"))
+(set-prefix-key (kbd "s-/"))
 
 ;; self define keymap
 (defvar *zz-x-map*      (make-sparse-keymap) "Keymap like emacs C-x")
@@ -29,6 +29,9 @@
   (kbd "s-e")       *zz-exec-map*
   (kbd "s-s")       *zz-screen-map*
   (kbd "s-?")       *zz-help-map*
+
+  (kbd "s-z")       *root-map*
+  (kbd "s-g")       *group-root-map*
   ))
 
 (mapc
