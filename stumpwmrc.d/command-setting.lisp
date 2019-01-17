@@ -23,7 +23,7 @@
 (def-run-or-raise-command firefox '(:class "Firefox"))
 
 ;; shell command
-(defcommand current-window-info () ()
+(defcommand window-info () ()
   "Shows the properties of the current window. These properties can be
 used for matching windows with run-or-raise or window placement-merules."
   (let ((w (current-window))

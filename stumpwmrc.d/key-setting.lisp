@@ -45,8 +45,7 @@
   (kbd "-")           "dump-desktop-to-file ~/.stumpwm-desktop"
   (kbd "=")           "restore-from-file ~/.stumpwm-desktop"
 
-  (kbd "i")           "current-window-info"
-  (kbd "v")           "version"
+  (kbd "i")           "window-info"
   ))
 
 ;; *zz-help-map*
@@ -64,8 +63,9 @@
   (kbd "k")           "describe-key"
   (kbd "c")           "describe-command"
   (kbd "w")           "where-is"
-
+  
   (kbd "C-c")         "commands"
+  (kbd "C-v")         "version"
   ))
 
 ;; input map
