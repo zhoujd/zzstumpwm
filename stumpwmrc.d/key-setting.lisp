@@ -35,17 +35,15 @@
   (kbd "1")           "only"
   (kbd "2")           "vsplit"
   (kbd "3")           "hsplit"
-  (kbd "4")           "kill-window"
+  (kbd "4")           "kill"
   (kbd "5")           "fselect"
-  (kbd "6")           "balance-frames"
-  (kbd "7")           "refresh"
-  (kbd "8")           "delete-window"
-  (kbd "9")           "iresize"
-  (kbd "0")           "remove-split"
+  (kbd "6")           "fnext"
+  (kbd "7")           "fother"
+  (kbd "8")           "delete"
+  (kbd "9")           "fclear"
+  (kbd "0")           "remove"
   (kbd "-")           "dump-desktop-to-file ~/.stumpwm-desktop"
   (kbd "=")           "restore-from-file ~/.stumpwm-desktop"
-
-  (kbd "i")           "window-info"
   ))
 
 ;; *zz-help-map*
@@ -64,6 +62,7 @@
   (kbd "c")           "describe-command"
   (kbd "w")           "where-is"
   
+  (kbd "i")           "window-info"
   (kbd "C-c")         "commands"
   (kbd "C-v")         "version"
   ))
@@ -127,6 +126,9 @@
   (kbd "s-]")         "next-in-frame"
   (kbd "s-M-[")       "gprev"
   (kbd "s-M-]")       "gnext"
+
+  (kbd "s-\\")        "iresize"
+  (kbd "s-|")         "balance-frames"
   ))
 
 (apply-keys-to-map
