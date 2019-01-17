@@ -134,7 +134,10 @@
   (kbd "s-,")         "amixer-Master-1-"
   (kbd "s-.")         "amixer-Master-1+"
 
-  (kbd "s-o")         "fnext"
+  (kbd "s-[")         "fprev"
+  (kbd "s-]")         "fnext"
+  (kbd "s-M-[")       "gprev"
+  (kbd "s-M-]")       "gnext"
   ))
 
 (apply-keys-to-map
