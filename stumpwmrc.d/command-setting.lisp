@@ -105,7 +105,7 @@ used for matching windows with run-or-raise or window placement-merules."
         (output "xrandr | grep primary | awk '{print $1}'"))
     (run-shell-command (format nil "xrandr --output `~a` ~a" output choice))))
 
-;; key layout select
+;; key layout select, make sure CapsLock is off
 (defcommand key-layout () ()
   "select key layout for stumpwm"
   (let* ((choice (cadr (select-from-menu
