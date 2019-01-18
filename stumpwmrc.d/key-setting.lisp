@@ -143,6 +143,8 @@
  (list
   (kbd "p")           "sprev"
   (kbd "n")           "snext"
+
+  (kbd "k")           "layout-select"
   (kbd "r")           "resolution"
 
   (kbd "l")           "exec xtrlock"

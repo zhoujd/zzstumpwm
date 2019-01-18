@@ -104,3 +104,15 @@ used for matching windows with run-or-raise or window placement-merules."
                        "Select resolution")))
         (output "xrandr | grep primary | awk '{print $1}'"))
     (run-shell-command (format nil "xrandr --output `~a` ~a" output choice))))
+
+;; key layout select
+(defcommand layout-select () ()
+  "select key layout for stumpwm"
+  (let* ((choice (cadr (select-from-menu
+                       (current-screen)
+                       '(("default" "default.xmodmap")
+                         ("hyper"   "hyper.xmodmap"))
+                       "Select key layout")))
+         (config (merge-pathnames
+                  (concat "misc/.xmodmap/" choice) *zz-load-directory*)))
+    (run-shell-command (format nil "xmodmap ~a" config))))
