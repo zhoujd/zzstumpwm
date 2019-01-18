@@ -145,12 +145,13 @@
   (kbd "n")           "snext"
 
   (kbd "k")           "key-layout"
-  (kbd "r")           "resolution"
-  (kbd "SPC")         "exec setcapslock toggle"
+  (kbd "M-k")         "exec setcapslock toggle"
 
   (kbd "l")           "exec xtrlock"
   (kbd "M-l")         "exec slock"
-  (kbd "C-l")         "exec xset dpms force suspend"
+
+  (kbd "r")           "resolution"
+  (kbd "s")           "exec xset dpms force suspend"
   ))
 
 (apply-keys-to-map
