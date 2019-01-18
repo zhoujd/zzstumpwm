@@ -9,6 +9,7 @@ tool_list=(
     xtrlock
     dmenu
     slock
+    setcapslock
 )
 
 ## parameter check
