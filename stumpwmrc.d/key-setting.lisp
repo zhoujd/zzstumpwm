@@ -151,7 +151,6 @@
   (kbd "M-l")         "exec slock"
 
   (kbd "r")           "resolution"
-  (kbd "s")           "exec xset dpms force suspend"
   ))
 
 (apply-keys-to-map
