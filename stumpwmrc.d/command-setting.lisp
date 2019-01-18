@@ -94,7 +94,7 @@ used for matching windows with run-or-raise or window placement-merules."
       (quit))))
 
 ;; resolution select
-(defcommand rez () ()
+(defcommand resolution () ()
   "select resolution for stumpwm"
   (let ((choice (cadr (select-from-menu
                        (current-screen)
@@ -105,7 +105,7 @@ used for matching windows with run-or-raise or window placement-merules."
         (output "xrandr | grep primary | awk '{print $1}'"))
     (run-shell-command (format nil "xrandr --output `~a` ~a" output choice))))
 
-;; key layout select, make sure CapsLock is off
+;; key layout select
 (defcommand key-layout () ()
   "select key layout for stumpwm"
   (let* ((choice (cadr (select-from-menu
@@ -117,8 +117,3 @@ used for matching windows with run-or-raise or window placement-merules."
                   (concat "misc/.xmodmap/" choice) *zz-load-directory*)))
     (run-shell-command "setcapslock off")
     (run-shell-command (format nil "xmodmap ~a" config))))
-
-;; toggle Caps_Lock
-(defcommand capslock-toggle () ()
-  "toggle Caps_Lock"
-  (run-shell-command "setcapslock toggle"))

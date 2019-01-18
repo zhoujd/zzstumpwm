@@ -145,8 +145,8 @@
   (kbd "n")           "snext"
 
   (kbd "k")           "key-layout"
-  (kbd "r")           "rez"
-  (kbd "SPC")         "capslock-toggle"
+  (kbd "r")           "resolution"
+  (kbd "SPC")         "exec setcapslock toggle"
 
   (kbd "l")           "exec xtrlock"
   (kbd "M-l")         "exec slock"
