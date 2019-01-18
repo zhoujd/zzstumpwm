@@ -129,8 +129,6 @@
 
   (kbd "s-\\")        "iresize"
   (kbd "s-|")         "balance-frames"
-
-  (kbd "H-Tab")       "send-caps"
   ))
 
 (apply-keys-to-map
@@ -146,8 +144,8 @@
   (kbd "p")           "sprev"
   (kbd "n")           "snext"
 
-  (kbd "k")           "layout-select"
-  (kbd "r")           "resolution"
+  (kbd "k")           "key-layout"
+  (kbd "r")           "rez"
 
   (kbd "l")           "exec xtrlock"
   (kbd "M-l")         "exec slock"

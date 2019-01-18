@@ -94,7 +94,7 @@ used for matching windows with run-or-raise or window placement-merules."
       (quit))))
 
 ;; resolution select
-(defcommand resolution () ()
+(defcommand rez () ()
   "select resolution for stumpwm"
   (let ((choice (cadr (select-from-menu
                        (current-screen)
@@ -106,7 +106,7 @@ used for matching windows with run-or-raise or window placement-merules."
     (run-shell-command (format nil "xrandr --output `~a` ~a" output choice))))
 
 ;; key layout select
-(defcommand layout-select () ()
+(defcommand key-layout () ()
   "select key layout for stumpwm"
   (let* ((choice (cadr (select-from-menu
                        (current-screen)
@@ -116,13 +116,3 @@ used for matching windows with run-or-raise or window placement-merules."
          (config (merge-pathnames
                   (concat "misc/.xmodmap/" choice) *zz-load-directory*)))
     (run-shell-command (format nil "xmodmap ~a" config))))
-
-;; senk key
-;; sudo apt-get install xdotool
-;; xdotool key Caps_Lock
-;; sudo apt-get install xautomation
-;; xte "key Caps_Lock"
-(defcommand send-caps () ()
-  "send Caps_Lock"
-  (run-shell-command "xte \"key Caps_Lock\""))
-
