@@ -44,6 +44,6 @@
  (list
   *zz-x-map*   
   *zz-exec-map*
-  *zz-help-map*
   *zz-screen-map*
+  *zz-help-map*
   ))
