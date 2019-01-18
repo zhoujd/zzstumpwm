@@ -116,3 +116,13 @@ used for matching windows with run-or-raise or window placement-merules."
          (config (merge-pathnames
                   (concat "misc/.xmodmap/" choice) *zz-load-directory*)))
     (run-shell-command (format nil "xmodmap ~a" config))))
+
+;; senk key
+;; sudo apt-get install xdotool
+;; xdotool key Caps_Lock
+;; sudo apt-get install xautomation
+;; xte "key Caps_Lock"
+(defcommand send-caps () ()
+  "send Caps_Lock"
+  (run-shell-command "xte \"key Caps_Lock\""))
+

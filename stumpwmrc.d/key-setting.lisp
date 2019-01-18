@@ -129,6 +129,8 @@
 
   (kbd "s-\\")        "iresize"
   (kbd "s-|")         "balance-frames"
+
+  (kbd "H-Tab")       "send-caps"
   ))
 
 (apply-keys-to-map
