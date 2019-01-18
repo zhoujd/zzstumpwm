@@ -117,3 +117,8 @@ used for matching windows with run-or-raise or window placement-merules."
                   (concat "misc/.xmodmap/" choice) *zz-load-directory*)))
     (run-shell-command "setcapslock off")
     (run-shell-command (format nil "xmodmap ~a" config))))
+
+;; toggle Caps_Lock
+(defcommand capslock-toggle () ()
+  "toggle Caps_Lock"
+  (run-shell-command "setcapslock toggle"))
