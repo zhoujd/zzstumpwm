@@ -44,6 +44,9 @@
   (kbd "0")           "remove"
   (kbd "-")           "dump-desktop-to-file ~/.stumpwm-desktop"
   (kbd "=")           "restore-from-file ~/.stumpwm-desktop"
+
+  (kbd "k")           "key-layout"
+  (kbd "M-k")         "exec setcapslock toggle"
   ))
 
 ;; *zz-help-map*
@@ -143,9 +146,7 @@
  (list
   (kbd "p")           "sprev"
   (kbd "n")           "snext"
-
-  (kbd "k")           "key-layout"
-  (kbd "M-k")         "exec setcapslock toggle"
+  (kbd "o")           "sother"
 
   (kbd "l")           "exec xtrlock"
   (kbd "M-l")         "exec slock"
