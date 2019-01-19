@@ -1,5 +1,4 @@
 !
-! Caps_Lock into Control_L
 ! xmodmap -pk | grep -i caps
 !
 
