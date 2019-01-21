@@ -6,15 +6,16 @@ target=$1
 
 ## tool list
 tool_list=(
-    xtrlock
     dmenu
+    xtrlock
     slock
+    speedpad
     setcapslock
 )
 
 ## parameter check
 case "$target" in
-    "ubuntu"|"suse"|"centos"|"fedora"|"arch" )
+    "ubuntu"|"suse"|"centos"|"fedora"|"arch"|"manjaro" )
         echo "Install on $target"
         for tool in ${tool_list[@]} ; do
             echo "Install $tool ..."
@@ -24,7 +25,7 @@ case "$target" in
         done
         ;;
     * )
-        echo "Use $0 [ubuntu|suse|centos|fedora|arch]"
+        echo "Use $0 [ubuntu|suse|centos|fedora|arch|manjaro]"
         exit 1;
         ;;
 esac
