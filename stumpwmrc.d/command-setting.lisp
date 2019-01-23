@@ -55,9 +55,12 @@ used for matching windows with run-or-raise or window placement-merules."
   "run emacs"
   (run-or-raise "emacs" '(:class "Emacs") nil nil))
 
+;; surf browser
 (defcommand surf () ()
   "run surf"
-  (run-shell-command "tabbed -c -r 2 surf -pe x www.google.com 2>/dev/null"))
+  (let ((homepage "www.google.com")
+        (f "tabbed -c -r 2 surf -pe x ~a 2>/dev/null"))
+    (run-shell-command (format nil f homepage))))
 
 ;; print current group name
 (defcommand gprint () ()
