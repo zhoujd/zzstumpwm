@@ -94,6 +94,9 @@
   (kbd "s-Tab")       "pull-hidden-next"
   (kbd "s-M-Tab")     "gnext"
 
+  (kbd "s-BackSpace")   "pull-hidden-next"
+  (kbd "s-M-BackSpace") "gnext"
+  
   (kbd "Print")       "screenshot"
   (kbd "M-Print")     "screenshot-window"
 
