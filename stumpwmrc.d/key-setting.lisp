@@ -14,7 +14,7 @@
   (kbd "C-e")           "exec emacs"
   (kbd "f")             "firefox"
   (kbd "C-f")           "exec firefox"
-  (kbd "M-f")           "exec surf"
+  (kbd "M-f")           "surf"
   (kbd "v")             (urxvt-command "vim")
   (kbd "C-v")           "exec evince"
   (kbd "r")             (urxvt-command "ranger")
