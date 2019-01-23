@@ -72,7 +72,7 @@ used for matching windows with run-or-raise or window placement-merules."
                  (format nil "Close window: ~a?"
                          (window-name (current-window))))))
     (when choice
-      (kill))))
+      (kill-window))))
 
 ;; safe gkill
 (defcommand safe-gkill () ()
