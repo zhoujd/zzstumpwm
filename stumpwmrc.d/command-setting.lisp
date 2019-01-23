@@ -65,6 +65,24 @@ used for matching windows with run-or-raise or window placement-merules."
   "run urxvt"
   (run-or-raise "urxvt" '(:class "URxvt") nil nil))
 
+;; safe kill
+(defcommand safe-kill () ()
+  "safe delete current window"
+  (let ((choice (yes-no-diag
+                 (format nil "Close window: ~a?"
+                         (window-name (current-window))))))
+    (when choice
+      (kill))))
+
+;; safe gkill
+(defcommand safe-gkill () ()
+  "safe delete current group"
+  (let ((choice (yes-no-diag
+                 (format nil "Close group: ~a?"
+                         (group-name (current-group))))))
+    (when choice
+      (gkill))))
+
 ;; close all windows
 (defcommand delete-all () ()
   "close all windows"

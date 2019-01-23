@@ -13,8 +13,8 @@
   (kbd "s-M-F2")    "exec"
   (kbd "s-F3")      "pull-hidden-other"
   (kbd "s-M-F3")    "gother"
-  (kbd "s-F4")      "kill"
-  (kbd "s-M-F4")    "gkill"
+  (kbd "s-F4")      "safe-kill"
+  (kbd "s-M-F4")    "safe-gkill"
 
   ;; Floating Group Basics
   ;; Left click/drag=>move, Right click/drag=>resize
@@ -27,7 +27,7 @@
   (kbd "s-F8")      "gnew f8"
   (kbd "s-M-F8")    "gnew-float f8-float"
 
-  (kbd "s-F9")      "gselect Default"
+  (kbd "s-F9")      "gnew Default"
   (kbd "s-M-F9")    "gselect"
   (kbd "s-F10")     "colon"
   (kbd "s-M-F10")   "eval"
