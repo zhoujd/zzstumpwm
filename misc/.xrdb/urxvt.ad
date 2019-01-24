@@ -68,7 +68,7 @@ URxvt.tabbed.no-tabbedex-keys: yes
 URxvt.keysym.C-t: perl:tabbedex:new_tab
 URxvt.keysym.S-Left: perl:tabbedex:prev_tab
 URxvt.keysym.S-Right: perl:tabbedex:next_tab
-URxvt.keysym.M-p: perl:tabbedex:pre_tab
+URxvt.keysym.M-p: perl:tabbedex:prev_tab
 URxvt.keysym.M-n: perl:tabbedex:next_tab
 URxvt.keysym.M-b: perl:tabbedex:move_tab_left
 URxvt.keysym.M-f: perl:tabbedex:move_tab_right
