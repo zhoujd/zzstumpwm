@@ -46,6 +46,7 @@
   (kbd "-")             "dump-desktop-to-file ~/.stumpwm-desktop"
   (kbd "=")             "restore-from-file ~/.stumpwm-desktop"
 
+  (kbd "i")             "window-info"
   (kbd "k")             "key-layout"
   (kbd "M-k")           "exec setcapslock toggle"
   ))
@@ -66,7 +67,6 @@
   (kbd "c")             "describe-command"
   (kbd "w")             "where-is"
 
-  (kbd "i")             "window-info"
   (kbd "C-c")           "commands"
   (kbd "C-v")           "version"
   ))
