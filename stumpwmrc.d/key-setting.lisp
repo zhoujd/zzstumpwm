@@ -135,7 +135,7 @@
   (kbd "s-M-]")         "gnext"
 
   (kbd "s-\\")          "iresize"
-  (kbd "s-|")           "balance-frames"
+  (kbd "s-M-\\")        "balance-frames"
   ))
 
 (apply-keys-to-map
