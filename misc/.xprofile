@@ -1,4 +1,5 @@
 #!/bin/bash
+#set -x
 
 ## virtualbox vm
 vbox_vm() {
@@ -16,18 +17,18 @@ vbox_vm() {
 
 ## multi_screen for laptop
 multi_screen() {
-    local big=eDP-1
-    local small=DP-1
-    local big_flag=`xrandr | grep connected | grep -c $big`
-    local small_flag=`xrandr | grep connected | grep -c $small`
+    local laptop=eDP-1
+    local ext=DP-1
+    local laptop_flag=`xrandr | grep connected | grep -c $laptop`
+    local ext_flag=`xrandr | grep connected | grep -c $ext`
     local size="1920x1080"
         
-    if [ -z "$big_flag" ]; then
-        xrandr --output $big --primary
+    if [ -n "$laptop_flag" ]; then
+        xrandr --output $laptop --primary
     fi
 
-    if [ -z "$small_flag" ]; then
-        xrandr --output $small --same-as $big --mode "$size"
+    if [ -n "$ext_flag" ]; then
+        xrandr --output $ext --same-as $laptop --mode "$size"
     fi
 }
 
