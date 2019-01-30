@@ -75,7 +75,7 @@ Arch Linux install
         # cp /usr/share/locale/en\@quot/LC_MESSAGES/grub.mo /boot/grub/locale/en.mo
         # grub-mkconfig -o /boot/grub/grub.cfg
 
-        # pacman -S openssh linux-headers linux-lts linux-lts-headers
+        # pacman -S linux-headers linux-lts linux-lts-headers
         # grub-mkconfig -o /boot/grub/grub.cfg
 
         # pacman -S vim wget lsb-release bash-completion
@@ -86,6 +86,7 @@ Arch Linux install
           127.0.0.1  localhost
           127.0.1.1  arch-cl.localdomain  arch-cl
 
+        # pacman -S openssh
         # systemctl start  sshd
         # systemctl enable sshd
         # systemctl start  dhcpcd
