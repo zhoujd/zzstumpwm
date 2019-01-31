@@ -175,4 +175,23 @@
   (kbd "s-C-l")         (getkey-top (kbd "s-C-Right"))
   (kbd "s-C-k")         (getkey-top (kbd "s-C-Up"))
   (kbd "s-C-j")         (getkey-top (kbd "s-C-Down"))
-))
+  ))
+
+(apply-keys-to-map
+ *zz-c-map*
+ (list
+  (kbd "b")             (getkey-top (kbd "s-Left"))
+  (kbd "f")             (getkey-top (kbd "s-Right"))
+  (kbd "p")             (getkey-top (kbd "s-Up"))
+  (kbd "n")             (getkey-top (kbd "s-Down"))
+
+  (kbd "M-b")           (getkey-top (kbd "s-M-Left"))
+  (kbd "M-f")           (getkey-top (kbd "s-M-Right"))
+  (kbd "M-p")           (getkey-top (kbd "s-M-Up"))
+  (kbd "M-n")           (getkey-top (kbd "s-M-Down"))
+
+  (kbd "C-b")           (getkey-top (kbd "s-C-Left"))
+  (kbd "C-f")           (getkey-top (kbd "s-C-Right"))
+  (kbd "C-p")           (getkey-top (kbd "s-C-Up"))
+  (kbd "C-n")           (getkey-top (kbd "s-C-Down"))
+  ))

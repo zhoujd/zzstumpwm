@@ -18,6 +18,7 @@
 
 ;; self define keymap
 (defvar *zz-x-map*      (make-sparse-keymap) "Keymap like emacs C-x")
+(defvar *zz-c-map*      (make-sparse-keymap) "Keymap like emacs C-c")
 (defvar *zz-exec-map*   (make-sparse-keymap) "Keymap execute commands")
 (defvar *zz-help-map*   (make-sparse-keymap) "Keymap help")
 (defvar *zz-screen-map* (make-sparse-keymap) "Keymap screen")
@@ -26,6 +27,7 @@
  *top-map*
  (list
   (kbd "s-x")       *zz-x-map*
+  (kbd "s-c")       *zz-c-map*
   (kbd "s-e")       *zz-exec-map*
   (kbd "s-s")       *zz-screen-map*
   (kbd "s-?")       *zz-help-map*
@@ -42,7 +44,8 @@
        (kbd "C-g")  "abort")
       ))
  (list
-  *zz-x-map*   
+  *zz-x-map*
+  *zz-c-map*
   *zz-exec-map*
   *zz-screen-map*
   *zz-help-map*
