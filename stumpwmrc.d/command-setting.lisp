@@ -103,19 +103,21 @@ used for matching windows with run-or-raise or window placement-merules."
   "safe delete all windows"
   (let ((choice (yes-no-diag "Close all programs?")))
     (when choice
-      (dolist (screen *screen-list*)
-        (dolist (group (stumpwm::screen-groups screen))
-          (dolist (window (stumpwm::group-windows group))
-            (stumpwm::delete-window window)))))))
+      (delete-all))))
 
+;; safe end
+(defcommand safe-end () ()
+  "safe end session"
+  (echo-string (current-screen) "Ending Session...")
+  (delete-all)
+  (run-hook *quit-hook*))
+  
 ;; safe quit
 (defcommand safe-quit () ()
   "safe quit"
   (let ((choice (yes-no-diag "Close all programs and quit stumpwm?")))
     (when choice
-      (echo-string (current-screen) "Ending Session...")
-      (delete-all)
-      (run-hook *quit-hook*)
+      (safe-end)
       (quit))))
 
 ;; kill stumpwm
@@ -123,9 +125,7 @@ used for matching windows with run-or-raise or window placement-merules."
   "kill stumpwm"
   (let ((choice (yes-no-diag "Close all programs and kill stumpwm?")))
     (when choice
-      (echo-string (current-screen) "Ending Session...")
-      (delete-all)
-      (run-hook *quit-hook*)
+      (safe-end)
       (kill-ps "stumpwm"))))
 
 ;; resolution select
