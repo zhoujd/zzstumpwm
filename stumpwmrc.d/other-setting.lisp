@@ -14,7 +14,7 @@
      (concat command " " options " " (when background "&")))))
 
 (defun kill-ps-command (command)
-  (format nil "kill -TERM `ps -ef | grep ~S | grep -v grep | awk '{print $2}'`"
+  (format nil "kill -9 `ps -ef | grep ~S | grep -v grep | awk '{print $2}'`"
           command))
 
 (defun kill-ps (command)

@@ -116,9 +116,12 @@ used for matching windows with run-or-raise or window placement-merules."
       (echo-string (current-screen) "Ending Session...")
       (delete-all)
       (run-hook *quit-hook*)
-      (quit)
-      (kill-ps "stumpwm")
-      )))
+      (quit))))
+
+;; kill stumpwm
+(defcommand kill-stumpwm () ()
+  "kill stumpwm"
+  (kill-ps "stumpwm"))
 
 ;; resolution select
 (defcommand resolution () ()

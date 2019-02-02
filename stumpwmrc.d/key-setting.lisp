@@ -50,6 +50,7 @@
   (kbd "i")             "window-info"
   (kbd "k")             "key-layout"
   (kbd "M-k")           "exec setcapslock toggle"
+  (kbd "q")             "kill-stumpwm"
   ))
 
 ;; *zz-help-map*
