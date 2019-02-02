@@ -121,7 +121,12 @@ used for matching windows with run-or-raise or window placement-merules."
 ;; kill stumpwm
 (defcommand kill-stumpwm () ()
   "kill stumpwm"
-  (kill-ps "stumpwm"))
+  (let ((choice (yes-no-diag "Close all programs and kill stumpwm?")))
+    (when choice
+      (echo-string (current-screen) "Ending Session...")
+      (delete-all)
+      (run-hook *quit-hook*)
+      (kill-ps "stumpwm"))))
 
 ;; resolution select
 (defcommand resolution () ()
