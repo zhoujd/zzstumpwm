@@ -142,3 +142,15 @@ used for matching windows with run-or-raise or window placement-merules."
                   (concat "misc/.xmodmap/" choice) *zz-load-directory*)))
     (run-shell-command "setcapslock off")
     (run-shell-command (format nil "xmodmap ~a" config))))
+
+;; run stumpish
+(defcommand stumpish () ()
+  "run stumpish"
+  (run-shell-command (format nil "urxvt -e ~a"
+                             (merge-pathnames "bin/stumpish" *zz-load-directory*))))
+
+;; run info manual
+(defcommand stumpwm-manual () ()
+  "run stumpwm info manual"
+  (run-shell-command (format nil "urxvt -e info ~a"
+                             (merge-pathnames "doc/stumpwm.info" *zz-load-directory*))))

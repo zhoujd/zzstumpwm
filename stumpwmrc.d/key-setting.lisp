@@ -27,6 +27,7 @@
   (kbd "s-b")           "bing"
   (kbd "s")             "colon1 exec urxvt -e ssh "
   (kbd "C-s")           (urxvt-command "speedpad")
+  (kbd "M-s")           "stumpish"
   ))
 
 ;; *zz-x-map*
@@ -55,8 +56,7 @@
 (apply-keys-to-map
  *zz-help-map*
  (list
-  (kbd "m")             (format nil "exec urxvt -e info ~a"
-                                (merge-pathnames "doc/stumpwm.info" *zz-load-directory*))
+  (kbd "m")             "stumpwm-manual"
   (kbd "M-m")           "exec firefox http://stumpwm.org/manual/stumpwm.html"
   (kbd "s")             "exec firefox http://lxr.free-electrons.com/"
   (kbd "M-s")           "exec firefox http://svnweb.freebsd.org/"
