@@ -72,5 +72,9 @@ ln -s $CURRENT_DIR/misc/.urxvt ~/.urxvt
 rm -f ~/.xrdb
 ln -s $CURRENT_DIR/misc/.xrdb ~/.xrdb
 
+## Install .xinitrc
+rm -f ~/.xinitrc
+ln -s $CURRENT_DIR/misc/.xinitrc ~/.xinitrc
+
 
 echo "install stumpwm end ..."
