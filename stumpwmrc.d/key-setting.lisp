@@ -124,7 +124,7 @@
 
   (kbd "s-C-b")         "mode-line"
   (kbd "s-C-d")         "safe-delete"
-  (kbd "s-C-q")         "safe-quit"
+  (kbd "s-C-q")         "kill-stumpwm"
   (kbd "s-C-r")         "reinit"
 
   (kbd "s-,")           "amixer-Master-1-"
