@@ -9,8 +9,7 @@ echo "2:clfswm"
 ## Here stumpwm is kept as default
 WM_SELECT=${1:-1}
 
-## Set multiple monitors
-# ln -sf ~/zzstumpwm/misc/.xprofile ~
+# cp ~/zzstumpwm/misc/.xprofile ~
 if [ -x ~/.xprofile ]; then
     ~/.xprofile
 fi
