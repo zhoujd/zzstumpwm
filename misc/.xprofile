@@ -2,6 +2,7 @@
 #set -x
 
 ## virtualbox vm
+## sudo pacman -S virtualbox-guest-utils
 vbox_vm() {
     local full="1920x1080"
     local normal="1280x720"
