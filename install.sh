@@ -76,5 +76,8 @@ ln -s $CURRENT_DIR/misc/.xrdb ~/.xrdb
 rm -f ~/.xinitrc
 ln -s $CURRENT_DIR/misc/.xinitrc ~/.xinitrc
 
+## Install rofi
+rm -f ~/.config/rofi
+ln -s $CURRENT_DIR/misc/.config/rofi ~/.config/rofi
 
 echo "install stumpwm end ..."
