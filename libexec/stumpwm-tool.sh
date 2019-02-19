@@ -4,11 +4,11 @@ target=$1
 
 case $target in
     ubuntu )
-        sudo apt install rlwrap
+        sudo apt install rlwrap rofi
         sudo apt install sbcl
         ;;
     arch|majaro )
-        sudo pacman -S rlwrap
+        sudo pacman -S rlwrap rofi
         sudo pacman -S sbcl
         ;;
     * )
