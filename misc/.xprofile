@@ -1,5 +1,8 @@
 #!/bin/bash
-set -x
+#set -x
+
+### keep in mind this file in unix format
+### $ dos2unix .xprofile
 
 ## virtualbox vm
 vbox_vm() {
@@ -19,15 +22,15 @@ vbox_vm() {
 multi_screen() {
     local laptop="eDP-1"
     local ext="DP-1"
-    local laptop_flag=`xrandr | grep ^$laptop | grep '\sconnected'`
-    local ext_flag=`xrandr | grep ^$ext | grep '\sconnected'` 
+    local laptop_flag=`xrandr | grep "eDP-1" | awk '{print $2}'`
+    local ext_flag=`xrandr | grep "^DP-1" | awk '{print $2}'`
     local size="1920x1080"
-        
-    if [ -n "$laptop_flag" ]; then
+
+    if [ "$laptop_flag" = "connected" ]; then
         xrandr --output $laptop --primary
     fi
 
-    if [ -n "$ext_flag" ]; then
+    if [ "$ext_flag" = "connected" ]; then
         xrandr --output $ext --same-as $laptop --mode "$size"
     fi
 }
