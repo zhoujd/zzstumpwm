@@ -157,6 +157,7 @@
   (kbd "M-l")           "exec slock"
 
   (kbd "r")             "resolution"
+  (kbd "b")             "show-battery"
   ))
 
 (apply-keys-to-map
