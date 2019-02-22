@@ -42,6 +42,8 @@ used for matching windows with run-or-raise or window placement-merules."
   "reload stumpwm configure"
   (run-commands "reload" "loadrc"))
 
+;; ubuntu: sudo apt install acpi
+;; arch: sudo pacman -S acpi
 (defcommand show-battery () ()
   "show battery usage"
   (echo-string (current-screen) (run-shell-command "acpi" t)))
