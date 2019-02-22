@@ -1,8 +1,7 @@
 #!/bin/bash
-#set -x
+set -x
 
 ## virtualbox vm
-## sudo pacman -S virtualbox-guest-utils
 vbox_vm() {
     local full="1920x1080"
     local normal="1280x720"
@@ -18,10 +17,10 @@ vbox_vm() {
 
 ## multi_screen for laptop
 multi_screen() {
-    local laptop=eDP-1
-    local ext=DP-1
-    local laptop_flag=`xrandr | grep connected | grep -c $laptop`
-    local ext_flag=`xrandr | grep connected | grep -c $ext`
+    local laptop="eDP-1"
+    local ext="DP-1"
+    local laptop_flag=`xrandr | grep ^$laptop | grep '\sconnected'`
+    local ext_flag=`xrandr | grep ^$ext | grep '\sconnected'` 
     local size="1920x1080"
         
     if [ -n "$laptop_flag" ]; then
