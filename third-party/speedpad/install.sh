@@ -1,5 +1,7 @@
 #!/bin/bash
 
+## sudo pacman -S fortune-mod
+
 echo "Install speedpad to /usr"
 
 sudo install bin/speedpad /usr/bin

@@ -14,6 +14,7 @@ case "$1" in
         sudo dnf install -y libXinerama-devel libX11-devel xorg-x11-server-devel
         ;;
     "arch")
+        sudo pacman -S fortune-mod
         ;;
     * )
         echo "Use $0 [ubuntu|suse|centos|fedora|arch]"
