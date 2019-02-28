@@ -3,13 +3,6 @@
 ## run as root:
 #sudo ./light-dm-setup.sh
 
-## lightdm install
-#sudo pacman -S lightdm lightdm-gtk-greeter
-#sudo systemctl enable lightdm
-## login failed
-#chown $USER:$USER .Xauthority
-#mv .Xauthority .Xauthority.bak
-
 SETUP_ROOT=`pwd`
 
 if [ $EUID -ne 0 ]; then
