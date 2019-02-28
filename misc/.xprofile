@@ -4,7 +4,8 @@
 ### keep in mind this file in unix format
 ### $ dos2unix .xprofile
 
-## virtualbox vm
+## virtualbox guest
+## sudo pacman -S virtualbox-guest-utils
 vbox_vm() {
     local full="1920x1080"
     local normal="1280x720"
@@ -18,13 +19,13 @@ vbox_vm() {
     VBoxClient-all
 }
 
-## multi_screen for laptop
+## laptop multi-screen
 multi_screen() {
     local laptop="eDP-1"
     local ext="DP-1"
+    local size="1920x1080"
     local laptop_flag=`xrandr | grep "eDP-1" | awk '{print $2}'`
     local ext_flag=`xrandr | grep "^DP-1" | awk '{print $2}'`
-    local size="1920x1080"
 
     if [ "$laptop_flag" = "connected" ]; then
         xrandr --output $laptop --primary
