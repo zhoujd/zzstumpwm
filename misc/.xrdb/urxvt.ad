@@ -39,8 +39,13 @@ URxvt.boldItalicFont: xft:Consolas:bold:italic:size=14
 URxvt.iconFile: /usr/share/pixmaps/urxvt_48x48.xpm
 
 !! Extensions
-URxvt.perl-ext-common: default,matcher,resize-font,url-select,keyboard-select,tabbedex,selection-to-clipboard
+URxvt.perl-ext-common: default,matcher,eval,resize-font,url-select,keyboard-select,tabbedex,selection-to-clipboard
 URxvt.colorUL: #4682B4
+
+!! eval
+URxvt.keysym.M-c: eval:selection_to_clipboard
+URxvt.keysym.M-v: eval:paste_clipboard
+URxvt.keysym.M-V: eval:paste_primary
 
 !! url-select
 URxvt.keysym.M-u: perl:url-select:select_next
