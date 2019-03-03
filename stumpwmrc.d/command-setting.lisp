@@ -58,6 +58,7 @@ used for matching windows with run-or-raise or window placement-merules."
   (run-or-raise "emacs" '(:class "Emacs") nil nil))
 
 ;; surf browser
+;; arch: sudo pacman -S surf tabbed
 (defcommand surf () ()
   "run surf"
   (let ((homepage "www.google.com")
