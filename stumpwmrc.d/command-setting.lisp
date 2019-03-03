@@ -59,10 +59,11 @@ used for matching windows with run-or-raise or window placement-merules."
 
 ;; surf browser
 ;; arch: sudo pacman -S surf tabbed
-;; C-g -> open URL bar
+;; C-g -> enter new URL
 ;; C-q -> quit
-;; Ctrl+Shift+Enter -> new tab
-;; C-[0-9] or C-t -> select tab
+;; C-[0..9] -> jump nth tab
+;; C-t -> select or create a tab
+;; Ctrl+Shift+Enter -> open new tab
 (defcommand surf () ()
   "run surf"
   (let ((homepage "www.google.com")
