@@ -66,3 +66,11 @@
   (kbd "s-M--")     (getkey-top (kbd "s-M-F11"))
   (kbd "s-M-=")     (getkey-top (kbd "s-M-F12"))
   ))
+
+(apply-keys-to-map
+ *top-map*
+ (list
+  (kbd "XF86AudioLowerVolume") "amixer-Master-1-"
+  (kbd "XF86AudioRaiseVolume") "amixer-Master-1+"
+  (kbd "XF86AudioMute")        "amixer-Master-toggle pulse"
+  ))
