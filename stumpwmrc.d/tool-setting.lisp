@@ -34,6 +34,7 @@
 (require 'screenshot)
 
 ;; sound control
+;; sudo apt install alsa-utils
 (require 'amixer)
 (apply-keys-to-map
  *top-map*
