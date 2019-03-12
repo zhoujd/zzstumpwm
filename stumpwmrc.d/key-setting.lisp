@@ -138,10 +138,6 @@
   (kbd "s-,")           "amixer-Master-1-"
   (kbd "s-.")           "amixer-Master-1+"
   (kbd "s-m")           "amixer-Master-toggle pulse"
-
-  (kbd "XF86AudioLowerVolume") "amixer-Master-1-"
-  (kbd "XF86AudioRaiseVolume") "amixer-Master-1+"
-  (kbd "XF86AudioMute")        "amixer-Master-toggle pulse"
   ))
 
 (apply-keys-to-map

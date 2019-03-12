@@ -35,3 +35,10 @@
 
 ;; sound control
 (require 'amixer)
+(apply-keys-to-map
+ *top-map*
+ (list
+  (kbd "XF86AudioLowerVolume") "amixer-Master-1-"
+  (kbd "XF86AudioRaiseVolume") "amixer-Master-1+"
+  (kbd "XF86AudioMute")        "amixer-Master-toggle pulse"
+ ))
