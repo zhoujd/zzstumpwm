@@ -127,9 +127,6 @@
   (kbd "s-C-q")         "kill-stumpwm"
   (kbd "s-C-r")         "reinit"
 
-  (kbd "s-,")           "amixer-Master-1-"
-  (kbd "s-.")           "amixer-Master-1+"
-
   (kbd "s-[")           "prev-in-frame"
   (kbd "s-]")           "next-in-frame"
   (kbd "s-M-[")         "gprev"
@@ -137,6 +134,14 @@
 
   (kbd "s-\\")          "iresize"
   (kbd "s-M-\\")        "balance-frames"
+
+  (kbd "s-,")           "amixer-Master-1-"
+  (kbd "s-.")           "amixer-Master-1+"
+  (kbd "s-m")           "amixer-Master-toggle pulse"
+
+  (kbd "XF86AudioLowerVolume") "amixer-Master-1-"
+  (kbd "XF86AudioRaiseVolume") "amixer-Master-1+"
+  (kbd "XF86AudioMute")        "amixer-Master-toggle pulse"
   ))
 
 (apply-keys-to-map
