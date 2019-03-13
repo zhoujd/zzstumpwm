@@ -144,7 +144,7 @@ used for matching windows with run-or-raise or window placement-merules."
                        '(("1920x1080" "--mode 1920x1080")
                          ("1600x900"  "--mode 1600x900")
                          ("1280x720"  "--mode 1280x720"))
-                       "Select resolution")))
+                       "Select display resolution")))
         (output "xrandr | grep primary | awk '{print $1}'"))
     (run-shell-command (format nil "xrandr --output `~a` ~a" output choice))))
 
@@ -155,7 +155,7 @@ used for matching windows with run-or-raise or window placement-merules."
                        (current-screen)
                        '(("default" "default.xmodmap")
                          ("hyper"   "hyper.xmodmap"))
-                       "Select key layout")))
+                       "Select keyboard layout")))
          (config (merge-pathnames
                   (concat "misc/.xmodmap/" choice) *zz-load-directory*)))
     (run-shell-command "setcapslock off")
