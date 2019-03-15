@@ -4,9 +4,7 @@
 session=${1:-stumpwm}
 
 # cp ~/zzstumpwm/misc/.xprofile ~
-if [ -x ~/.xprofile ]; then
-    ~/.xprofile
-fi
+test -x ~/.xprofile && ~/.xprofile
 
 case $session in
     stumpwm )
