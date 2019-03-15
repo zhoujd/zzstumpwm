@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ## run as root:
-#sudo ./light-dm-setup.sh
+#sudo ./lightdm-setup.sh
 
 SETUP_ROOT=`pwd`
 
