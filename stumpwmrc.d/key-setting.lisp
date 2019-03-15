@@ -17,6 +17,7 @@
   (kbd "M-f")           "surf"
   (kbd "v")             (urxvt-command "vim")
   (kbd "C-v")           "exec evince"
+  (kbd "M-v")           "exec VCA"
   (kbd "r")             (urxvt-command "ranger")
   (kbd "C-r")           "exec remmina"
   (kbd "t")             (urxvt-command "tmux")
