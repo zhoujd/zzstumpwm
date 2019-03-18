@@ -29,7 +29,7 @@
   (kbd "s")             "colon1 exec urxvt -e ssh "
   (kbd "C-s")           (urxvt-command "speedpad")
   (kbd "M-s")           "stumpish"
-  (kbd "w")             "exec wicd-client"
+  (kbd "w")             "exec wicd-client -n"
   ))
 
 ;; *zz-x-map*
