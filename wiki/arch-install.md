@@ -155,3 +155,5 @@ Arch Linux install
           X11Forwarding yes
           X11DisplayOffset 10
           X11UseLocalhost yes
+
+        $ sudo systemctl restart sshd
