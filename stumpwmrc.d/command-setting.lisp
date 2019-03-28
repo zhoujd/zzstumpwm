@@ -21,6 +21,7 @@
 
 ;; run-or-raise
 (def-run-or-raise-command firefox '(:class "Firefox"))
+(def-run-or-raise-command google-chrome '(:class "Google-chrome"))
 
 ;; shell command
 (defcommand window-info () ()
