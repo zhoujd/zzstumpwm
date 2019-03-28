@@ -20,7 +20,9 @@
 (define-sudo-command shutdown "shutdown -h now")
 
 ;; run-or-raise
+;; firefox quit: ctrl+q
 (def-run-or-raise-command firefox '(:class "Firefox"))
+;; chrome quit: ctrl+shift+w or alt+f4
 (def-run-or-raise-command google-chrome '(:class "Google-chrome"))
 
 ;; shell command
