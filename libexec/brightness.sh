@@ -2,6 +2,7 @@
 
 # Simple script to modify screen brightness
 # USAGE:
+# sudo chmod 666 $handler"brightness"
 # brightness.sh +20 (Increase brightness by 20%)
 
 basedir="/sys/class/backlight/"
@@ -25,5 +26,4 @@ new_brightness_p=$(($old_brightness_p $1))
 new_brightness=$(( $max_brightness * $new_brightness_p / 100 ))
 
 # set the new brightness value
-sudo chmod 666 $handler"brightness"
-sudo echo $new_brightness > $handler"brightness"
+echo $new_brightness > $handler"brightness"
