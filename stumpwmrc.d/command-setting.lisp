@@ -197,4 +197,4 @@ used for matching windows with run-or-raise or window placement-merules."
                          ("shutdown"  "shutdown"))
                        "Select system action"))))
     (when choice
-      (run-commands (format nil "~a" choice)))))
+      (eval-command (format nil "~a" choice)))))
