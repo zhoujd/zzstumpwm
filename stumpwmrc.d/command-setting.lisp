@@ -186,3 +186,15 @@ used for matching windows with run-or-raise or window placement-merules."
   "brightness down"
   (run-shell-command (format nil "~a -20"
                              (merge-pathnames "libexec/brightness.sh" *zz-load-directory*))))
+
+;; system action
+(defcommand system-action () ()
+  "system actions"
+  (let ((choice (cadr (select-from-menu
+                       (current-screen)
+                       '(("logout"    "kill-stumpwm")
+                         ("reboot"    "reboot")
+                         ("shutdown"  "shutdown"))
+                       "Select system action"))))
+    (when choice
+      (run-commands (format nil "~a" choice)))))
