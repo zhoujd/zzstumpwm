@@ -21,6 +21,7 @@
   (kbd "C-v")           "exec evince"
   (kbd "M-v")           "exec VCA"
   (kbd "r")             (urxvt-command "ranger")
+  (kbd "p")             "exec pidgin"
   (kbd "C-r")           "exec remmina"
   (kbd "t")             (urxvt-command "tmux")
   (kbd "C-t")           (urxvt-command "byobu")
