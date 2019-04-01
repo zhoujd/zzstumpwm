@@ -158,7 +158,8 @@ used for matching windows with run-or-raise or window placement-merules."
   (let* ((choice (cadr (select-from-menu
                        (current-screen)
                        '(("default" "default.xmodmap")
-                         ("hyper"   "hyper.xmodmap"))
+                         ("hyper"   "hyper.xmodmap")
+                         ("laptop"  "hyper-super.xmodmap"))
                        "Select keyboard layout")))
          (config (merge-pathnames
                   (concat "misc/.xmodmap/" choice) *zz-load-directory*)))

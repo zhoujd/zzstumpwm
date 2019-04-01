@@ -6,7 +6,7 @@ ZZSTUMPWM_ROOT=$(cd $SCRIPT_ROOT/.. && pwd)
 
 case "$1" in
     "on" )
-        echo "hyper key layout"
+        echo "hyper-hyper key layout"
         setcapslock off
         xmodmap $ZZSTUMPWM_ROOT/misc/.xmodmap/hyper.xmodmap
         ;;
@@ -15,7 +15,12 @@ case "$1" in
         setcapslock off
         xmodmap $ZZSTUMPWM_ROOT/misc/.xmodmap/default.xmodmap
         ;;
+    "laptop" )
+        echo "hyper-super key layout"
+        setcapslock off
+        xmodmap $ZZSTUMPWM_ROOT/misc/.xmodmap/hyper-super.xmodmap
+        ;;
     * )
-        echo "$(basename $0) {on|off}"
+        echo "$(basename $0) {on|off|laptop}"
         ;;
 esac
