@@ -18,6 +18,7 @@
 ;; sudo command
 (define-sudo-command reboot "reboot")
 (define-sudo-command shutdown "shutdown -h now")
+(define-sudo-command bright-setup (concat *zz-load-directory* "libexec/brightness-setup.sh"))
 
 ;; run-or-raise
 ;; firefox quit: ctrl+q
