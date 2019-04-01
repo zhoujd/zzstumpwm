@@ -55,6 +55,8 @@
   (kbd "i")             "window-info"
   (kbd "k")             "key-layout"
   (kbd "l")             "exec setcapslock toggle"
+  (kbd "p")             "screenshot"
+  (kbd "M-p")           "screenshot-window"
   (kbd "q")             "system-action"
   ))
 
@@ -103,9 +105,6 @@
 
   (kbd "s-BackSpace")   "pull-hidden-next"
   (kbd "s-M-BackSpace") "gnext"
-
-  (kbd "Print")         "screenshot"
-  (kbd "M-Print")       "screenshot-window"
 
   (kbd "s-Left")        "move-focus left"
   (kbd "s-Right")       "move-focus right"
