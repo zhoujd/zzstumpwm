@@ -4,25 +4,22 @@
 SCRIPT_ROOT=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
 ZZSTUMPWM_ROOT=$(cd $SCRIPT_ROOT/.. && pwd)
 
-## turn off capslock
-if [ "$(setcapslock get)" == "on" ]; then
+switch_xmodmap() {
+    echo "switch to $1"
     setcapslock off
-    sleep 2
-fi
+    xmodmap $1
+    setcapslock off
+}
 
 case "$1" in
     "on" )
-        echo "hyper-hyper key layout"
-        xmodmap $ZZSTUMPWM_ROOT/misc/.xmodmap/hyper.xmodmap
-        sleep 2
+        switch_xmodmap $ZZSTUMPWM_ROOT/misc/.xmodmap/hyper.xmodmap
         ;;
     "off" )
-        echo "default key layout"
-        xmodmap $ZZSTUMPWM_ROOT/misc/.xmodmap/default.xmodmap
+        switch_xmodmap $ZZSTUMPWM_ROOT/misc/.xmodmap/default.xmodmap
         ;;
     "laptop" )
-        echo "hyper-super key layout"
-        xmodmap $ZZSTUMPWM_ROOT/misc/.xmodmap/hyper-super.xmodmap
+        switch_xmodmap $ZZSTUMPWM_ROOT/misc/.xmodmap/hyper-super.xmodmap
         ;;
     * )
         echo "$(basename $0) {on|off|laptop}"
