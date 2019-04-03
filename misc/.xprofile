@@ -36,5 +36,10 @@ multi_screen() {
     fi
 }
 
+laptop_keyboard() {
+    bash ~/zzstumpwm/bin/hyper.sh laptop
+}
+
 #vbox_vm
 #multi_screen
+#laptop_keyboard
