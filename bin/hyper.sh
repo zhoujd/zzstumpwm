@@ -19,7 +19,7 @@ case "$1" in
         switch_xmodmap $ZZSTUMPWM_ROOT/misc/.xmodmap/default.xmodmap
         ;;
     "laptop" )
-        switch_xmodmap $ZZSTUMPWM_ROOT/misc/.xmodmap/hyper-super.xmodmap
+        switch_xmodmap $ZZSTUMPWM_ROOT/misc/.xmodmap/laptop.xmodmap
         ;;
     * )
         echo "$(basename $0) {on|off|laptop}"
