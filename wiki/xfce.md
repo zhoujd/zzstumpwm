@@ -22,3 +22,7 @@ Xfce
         $ sudo apt autoremove -y
         $ sudo apt install --reinstall -y gdm3
         $ sudo reboot
+
+3. Default wallpaper folder
+
+        $ cd /usr/share/xfce4/backdrops
