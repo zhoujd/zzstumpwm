@@ -7,6 +7,10 @@
 (apply-keys-to-map
  *zz-exec-map*
  (list
+  (kbd "b")             "colon1 exec firefox http://www."
+  (kbd "C-b")           "google"
+  (kbd "M-b")           "wikipedia"
+  (kbd "s-b")           "bing"
   (kbd "c")             "urxvt"
   (kbd "C-c")           "exec urxvt"
   (kbd "e")             "runemacs"
@@ -17,22 +21,19 @@
   (kbd "M-f")           "surf"
   (kbd "g")             "google-chrome"
   (kbd "M-g")           "exec google-chrome"
-  (kbd "v")             (urxvt-command "vim")
-  (kbd "C-v")           "exec evince"
-  (kbd "M-v")           "exec VCA"
+  (kbd "m")             "exec thunderbird"
   (kbd "r")             (urxvt-command "ranger")
   (kbd "p")             "exec pidgin"
   (kbd "C-r")           "exec remmina"
   (kbd "t")             (urxvt-command "tmux")
   (kbd "C-t")           (urxvt-command "byobu")
-  (kbd "b")             "colon1 exec firefox http://www."
-  (kbd "C-b")           "google"
-  (kbd "M-b")           "wikipedia"
-  (kbd "s-b")           "bing"
   (kbd "s")             "colon1 exec urxvt -e ssh "
   (kbd "C-s")           (urxvt-command "speedpad")
   (kbd "M-s")           "stumpish"
   (kbd "u")             "exec intel-unite-client"
+  (kbd "v")             (urxvt-command "vim")
+  (kbd "C-v")           "exec evince"
+  (kbd "M-v")           "exec VCA"
   ))
 
 ;; *zz-x-map*
