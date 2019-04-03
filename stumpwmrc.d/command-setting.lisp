@@ -181,12 +181,12 @@ used for matching windows with run-or-raise or window placement-merules."
 ;; brightness up
 (defcommand bright-up () ()
   "brightness up"
-  (run-shell-command (format nil "~a +20"
+  (run-shell-command (format nil "~a +10"
                              (merge-pathnames "libexec/brightness.sh" *zz-load-directory*))))
 ;; brightness down
 (defcommand bright-down () ()
   "brightness down"
-  (run-shell-command (format nil "~a -20"
+  (run-shell-command (format nil "~a -10"
                              (merge-pathnames "libexec/brightness.sh" *zz-load-directory*))))
 
 ;; system action
