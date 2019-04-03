@@ -22,9 +22,9 @@
   (kbd "g")             "google-chrome"
   (kbd "M-g")           "exec google-chrome"
   (kbd "m")             "exec thunderbird"
-  (kbd "r")             (urxvt-command "ranger")
   (kbd "p")             "exec pidgin"
-  (kbd "C-r")           "exec remmina"
+  (kbd "r")             "exec remmina"
+  (kbd "C-r")           (urxvt-command "ranger")
   (kbd "t")             (urxvt-command "tmux")
   (kbd "C-t")           (urxvt-command "byobu")
   (kbd "s")             "colon1 exec urxvt -e ssh "
