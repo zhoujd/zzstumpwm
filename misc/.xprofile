@@ -37,7 +37,10 @@ multi_screen() {
 }
 
 laptop_keyboard() {
-    bash ~/zzstumpwm/bin/hyper.sh laptop
+    local hyper_bin=~/zzstumpwm/bin/hyper.sh
+    if [ -x $hyper_bin ]; then
+        $hyper_bin laptop
+    fi
 }
 
 #vbox_vm
