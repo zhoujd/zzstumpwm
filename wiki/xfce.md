@@ -26,3 +26,8 @@ Xfce
 3. Default wallpaper folder
 
         $ cd /usr/share/xfce4/backdrops
+
+4. Clock format
+         
+        Thu Apr 4, 3:24 PM
+        %a %b %e, %l:%M %p
