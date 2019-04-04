@@ -36,6 +36,7 @@ multi_screen() {
     fi
 }
 
+## laptop CapsLock->Control_R 
 laptop_keyboard() {
     local hyper_bin=~/zzstumpwm/bin/hyper.sh
     if [ -x $hyper_bin ]; then
