@@ -31,3 +31,10 @@ Xfce
          
         Thu Apr 4, 3:24 PM
         %a %b %e, %l:%M %p
+
+5. Docky & launchy
+
+        $ sudo apt install docky
+        $ gconftool-2 --type Boolean --set /apps/docky-2/Docky/Items/DockyItem/ShowDockyItem False
+        
+        $ sudo apt-get install launchy launchy-plugins
