@@ -21,6 +21,7 @@
   (kbd "M-f")           "surf"
   (kbd "g")             "google-chrome"
   (kbd "M-g")           "exec google-chrome"
+  (kbd "h")             "exec thunar"
   (kbd "m")             "exec thunderbird"
   (kbd "p")             "exec pidgin"
   (kbd "r")             "exec remmina"
