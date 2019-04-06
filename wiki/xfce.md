@@ -38,3 +38,10 @@ Xfce
         $ gconftool-2 --type Boolean --set /apps/docky-2/Docky/Items/DockyItem/ShowDockyItem False
         
         $ sudo apt-get install launchy launchy-plugins
+
+6. gtk-update-icon-cache: The generated cache was invalid
+
+        ## Icons with spaces:
+        $ find -name "* *"
+        $ find -name "gnome-control-center *svg" -exec rm {} +
+        $ gtk-update-icon-cache --force /usr/share/icons/urutau-icons
