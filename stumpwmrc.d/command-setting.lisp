@@ -204,4 +204,4 @@ used for matching windows with run-or-raise or window placement-merules."
 ;; micphone mute toggle
 (defcommand amixer-mic-toggle () ()
   "micphone toggle"
-  (run-shell-command "exec amixer set Capture toggle"))
+  (run-shell-command "amixer set Capture toggle"))
