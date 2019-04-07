@@ -200,3 +200,8 @@ used for matching windows with run-or-raise or window placement-merules."
                        "Select system action"))))
     (when choice
       (eval-command (format nil "~a" choice)))))
+
+;; micphone mute toggle
+(defcommand amixer-mic-toggle () ()
+  "micphone toggle"
+  (run-shell-command "exec amixer set Capture toggle"))
