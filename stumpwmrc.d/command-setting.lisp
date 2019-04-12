@@ -25,6 +25,8 @@
 (def-run-or-raise-command firefox '(:class "Firefox"))
 ;; chrome quit: ctrl+shift+w or alt+f4
 (def-run-or-raise-command google-chrome '(:class "Google-chrome"))
+;; pdf file viewer
+(def-run-or-raise-command atril  '(:class "Atril"))
 
 ;; shell command
 (defcommand window-info () ()

@@ -7,6 +7,7 @@
 (apply-keys-to-map
  *zz-exec-map*
  (list
+  (kbd "a")             "atril"
   (kbd "b")             "colon1 exec firefox http://www."
   (kbd "C-b")           "google"
   (kbd "M-b")           "wikipedia"
@@ -33,7 +34,6 @@
   (kbd "M-s")           "stumpish"
   (kbd "u")             "exec intel-unite-client"
   (kbd "v")             (urxvt-command "vim")
-  (kbd "C-v")           "exec evince"
   (kbd "M-v")           "exec VCA"
   ))
 
