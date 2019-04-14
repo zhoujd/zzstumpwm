@@ -20,7 +20,7 @@ vbox_vm() {
 }
 
 ## laptop multi-screen
-multi_screen() {
+laptop_screen() {
     local laptop="eDP-1"
     local laptop_flag=`xrandr | grep "^$laptop" | awk '{print $2}'`
     local ext="DP-1"
@@ -44,6 +44,13 @@ laptop_keyboard() {
     fi
 }
 
+## laptop touchpad
+laptop_touchpad() {
+    ## disable tap to click
+    synclient TapButton1=0
+}
+
 #vbox_vm
-#multi_screen
+#laptop_screen
 #laptop_keyboard
+#laptop_touchpad
