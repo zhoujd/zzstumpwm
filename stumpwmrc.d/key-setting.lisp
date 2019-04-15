@@ -57,8 +57,6 @@
   (kbd "i")             "window-info"
   (kbd "k")             "key-layout"
   (kbd "l")             "exec setcapslock toggle"
-  (kbd "p")             "screenshot"
-  (kbd "M-p")           "screenshot-window"
   (kbd "q")             "system-action"
   ))
 
@@ -156,8 +154,8 @@
 (apply-keys-to-map
  *zz-screen-map*
  (list
-  (kbd "p")             "sprev"
-  (kbd "n")             "snext"
+  (kbd "k")             "sprev"
+  (kbd "j")             "snext"
   (kbd "o")             "sother"
 
   (kbd "l")             "exec xtrlock"
@@ -169,6 +167,9 @@
   (kbd "0")             "bright-setup"
   (kbd "-")             "bright-down"
   (kbd "=")             "bright-up"
+
+  (kbd "p")             "screenshot"
+  (kbd "M-p")           "screenshot-window"
   ))
 
 (apply-keys-to-map
