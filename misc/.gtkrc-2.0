@@ -1,7 +1,7 @@
 ### gnome or Tango
 ## ln -sf `pwd`/.gtkrc-2.0 ~
 ## apt search icon-theme
-## apt install tango-icon-theme numix-icon-theme
 ## pacman -Ss icon-theme
+## apt install tango-icon-theme numix-icon-theme
 
 gtk-icon-theme-name="Numix"
