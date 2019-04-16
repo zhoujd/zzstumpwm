@@ -36,7 +36,7 @@ URxvt.italicFont: xft:Consolas:italic:size=14
 URxvt.boldItalicFont: xft:Consolas:bold:italic:size=14
 
 !! urxvt icon
-URxvt.iconFile: /usr/share/pixmaps/urxvt_48x48.xpm
+URxvt.iconFile: /home/zhoujd/zzstumpwm/misc/.urxvt/terminal-tango.svg 
 
 !! Extensions
 URxvt.perl-ext-common: default,matcher,eval,resize-font,url-select,keyboard-select,tabbedex,selection-to-clipboard
