@@ -1,12 +1,16 @@
 lightdm
 =======
 
-# lightdm install
+## lightdm install
 
-    # sudo pacman -S lightdm lightdm-gtk-greeter
-    # sudo systemctl enable lightdm
+    $ sudo pacman -S lightdm lightdm-gtk-greeter
+    $ sudo systemctl enable lightdm
     
-# login failed
+## login failed
 
-    # chown $USER:$USER .Xauthority
-    # mv .Xauthority .Xauthority.bak
+    $ sudo chown $USER:$USER .Xauthority
+    $ mv .Xauthority .Xauthority.bak
+
+## ligthdm configure
+
+    $ sudo vim /etc/lightdm/lightdm-gtk-greeter.conf
