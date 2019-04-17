@@ -45,3 +45,9 @@ Xfce
         $ find -name "* *"
         $ find -name "gnome-control-center *svg" -exec rm {} +
         $ gtk-update-icon-cache --force /usr/share/icons/urutau-icons
+
+7. switch workspace via key
+
+        $ sudo apt install wmctrl
+        $ wmctrl -s 1,0
+        $ wmctrl -s 2,0
