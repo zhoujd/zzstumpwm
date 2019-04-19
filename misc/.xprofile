@@ -2,7 +2,7 @@
 #set -x
 
 ### keep in mind this file in unix format
-### $ dos2unix .xprofile
+### dos2unix .xprofile
 
 ## virtualbox guest
 ## sudo pacman -S virtualbox-guest-utils
@@ -19,7 +19,7 @@ vbox_vm() {
     VBoxClient-all
 }
 
-## laptop multi-screen
+## laptop duplicate screen
 laptop_screen() {
     local laptop="eDP-1"
     local laptop_flag=`xrandr | grep "^$laptop" | awk '{print $2}'`
