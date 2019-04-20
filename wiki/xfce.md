@@ -51,3 +51,8 @@ Xfce
         $ sudo apt install wmctrl
         $ wmctrl -s 1,0
         $ wmctrl -s 2,0
+
+8. compton compositor
+
+        $ sudo apt install compton compton-conf
+        
