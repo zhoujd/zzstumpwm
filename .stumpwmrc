@@ -28,6 +28,6 @@
   "other-setting"
   "command-setting"
   "keymap-setting"
-  "fn-setting"
   "key-setting"
+  "fn-setting"
   ))
