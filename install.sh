@@ -77,6 +77,7 @@ rm -f ~/.xinitrc
 ln -s $CURRENT_DIR/misc/.xinitrc ~/.xinitrc
 
 ## Install rofi
+mkdir -p ~/.config
 rm -f ~/.config/rofi
 ln -s $CURRENT_DIR/misc/.config/rofi ~/.config/rofi
 
