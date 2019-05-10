@@ -102,6 +102,8 @@ used for matching windows with run-or-raise or window placement-merules."
                  (format nil "Close group: ~a?"
                          (group-name (current-group))))))
     (when choice
+      (dolist (window (stumpwm::group-windows (current-group)))
+        (stumpwm::delete-window window))
       (gkill))))
 
 ;; close all windows
