@@ -13,11 +13,11 @@ switch_xmodmap() {
 }
 
 case "$1" in
-    "default" )
-        switch_xmodmap $XMODMAP_ROOT/default.xmodmap
-        ;;
-    "hyper" )
+    "on" )
         switch_xmodmap $XMODMAP_ROOT/hyper.xmodmap
+        ;;
+    "off" )
+        switch_xmodmap $XMODMAP_ROOT/default.xmodmap
         ;;
     "laptop" )
         switch_xmodmap $XMODMAP_ROOT/laptop.xmodmap
