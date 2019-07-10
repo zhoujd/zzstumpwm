@@ -3,6 +3,7 @@
 
 SCRIPT_ROOT=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
 ZZSTUMPWM_ROOT=$(cd $SCRIPT_ROOT/.. && pwd)
+XMODMAP_ROOT=$ZZSTUMPWM_ROOT/misc/.xmodmap
 
 switch_xmodmap() {
     echo "switch to $1"
@@ -12,16 +13,16 @@ switch_xmodmap() {
 }
 
 case "$1" in
-    "on" )
-        switch_xmodmap $ZZSTUMPWM_ROOT/misc/.xmodmap/hyper.xmodmap
+    "default" )
+        switch_xmodmap $XMODMAP_ROOT/default.xmodmap
         ;;
-    "off" )
-        switch_xmodmap $ZZSTUMPWM_ROOT/misc/.xmodmap/default.xmodmap
+    "hyper" )
+        switch_xmodmap $XMODMAP_ROOT/hyper.xmodmap
         ;;
     "laptop" )
-        switch_xmodmap $ZZSTUMPWM_ROOT/misc/.xmodmap/laptop.xmodmap
+        switch_xmodmap $XMODMAP_ROOT/laptop.xmodmap
         ;;
     * )
-        echo "$(basename $0) {on|off|laptop}"
+        echo "Usage: $(basename $0) {default|hyper|laptop}"
         ;;
 esac
