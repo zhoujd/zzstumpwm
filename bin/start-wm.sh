@@ -11,7 +11,7 @@ WM_SELECT=${1:-1}
 
 ## Run .xprofile
 ## cp ~/zzstumpwm/misc/.xprofile ~
-test -x ~/.xprofile && ~/.xprofile
+test -x ~/.xprofile && ~/.xprofile || true
 
 ## Start window manager
 case "$WM_SELECT" in
