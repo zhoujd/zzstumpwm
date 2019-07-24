@@ -7,7 +7,7 @@
 (apply-keys-to-map
  *zz-exec-map*
  (list
-  (kbd "a")             "exec atril"
+  (kbd "a")             (urxvt-command "alsamixer")
   (kbd "b")             "colon1 exec firefox http://www."
   (kbd "C-b")           "google"
   (kbd "M-b")           "wikipedia"
