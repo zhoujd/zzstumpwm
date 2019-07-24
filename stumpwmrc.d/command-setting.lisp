@@ -30,6 +30,8 @@
 (def-run-or-raise-command pidgin  '(:class "Pidgin"))
 ;; thunderbird
 (def-run-or-raise-command thunderbird '(:class "Thunderbird"))
+;; thunar
+(def-run-or-raise-command thunar '(:class "Thunar"))
 
 ;; shell command
 (defcommand window-info () ()
