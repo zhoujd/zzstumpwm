@@ -7,7 +7,7 @@
 (apply-keys-to-map
  *zz-exec-map*
  (list
-  (kbd "a")             "atril"
+  (kbd "a")             "exec atril"
   (kbd "b")             "colon1 exec firefox http://www."
   (kbd "C-b")           "google"
   (kbd "M-b")           "wikipedia"
@@ -23,8 +23,8 @@
   (kbd "g")             "google-chrome"
   (kbd "M-g")           "exec google-chrome"
   (kbd "h")             "exec thunar"
-  (kbd "m")             "exec thunderbird"
-  (kbd "p")             "exec pidgin"
+  (kbd "m")             "thunderbird"
+  (kbd "p")             "pidgin"
   (kbd "r")             "exec remmina"
   (kbd "C-r")           (urxvt-command "ranger")
   (kbd "t")             (urxvt-command "tmux")
