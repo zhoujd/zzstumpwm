@@ -55,4 +55,7 @@ Xfce
 8. compton compositor
 
         $ sudo apt install compton compton-conf
-        
+
+9. window resize
+
+        It's very easy, you can use Alt + right-click + drag.
