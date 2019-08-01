@@ -8,7 +8,8 @@
  *zz-exec-map*
  (list
   (kbd "a")             (urxvt-command "alsamixer")
-  (kbd "C-a")           "exec pavucontrol"
+  (kbd "C-a")           (urxvt-command "alsamixer -c 1")
+  (kbd "M-a")           "exec pavucontrol"
   (kbd "b")             "colon1 exec firefox http://www."
   (kbd "C-b")           "google"
   (kbd "M-b")           "wikipedia"
