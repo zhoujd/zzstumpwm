@@ -99,13 +99,14 @@
  (list
   (kbd "s-`")           "windowlist"
   (kbd "s-M-`")         "grouplist"
+  (kbd "s-'")           "windowlist"
+  (kbd "s-M-'")         "grouplist"
 
   (kbd "s-Escape")      "abort"
   (kbd "s-M-Escape")    "banish"
 
   (kbd "s-Tab")         "pull-hidden-next"
   (kbd "s-M-Tab")       "gnext"
-
   (kbd "s-BackSpace")   "pull-hidden-next"
   (kbd "s-M-BackSpace") "gnext"
 
