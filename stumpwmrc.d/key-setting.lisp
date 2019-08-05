@@ -146,6 +146,9 @@
   (kbd "s-,")           "amixer-Master-1-"
   (kbd "s-.")           "amixer-Master-1+"
   (kbd "s-m")           "amixer-Master-toggle pulse"
+
+  (kbd "s-;")           "colon"
+  (kbd "s-M-;")         "eval"
   ))
 
 (apply-keys-to-map
