@@ -176,6 +176,7 @@
   (kbd "=")             "bright-up"
 
   (kbd "p")             "scrot-window"
+  (kbd "C-p")           "scrot-full"
   (kbd "M-p")           "scrot-select"
   ))
 
