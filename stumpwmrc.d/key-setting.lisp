@@ -175,8 +175,8 @@
   (kbd "-")             "bright-down"
   (kbd "=")             "bright-up"
 
-  (kbd "p")             "screenshot"
-  (kbd "M-p")           "screenshot-window"
+  (kbd "p")             "scrot-window"
+  (kbd "M-p")           "scrot-select"
   ))
 
 (apply-keys-to-map

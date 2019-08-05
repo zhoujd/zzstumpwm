@@ -214,3 +214,18 @@ used for matching windows with run-or-raise or window placement-merules."
 (defcommand amixer-mic-toggle () ()
   "micphone toggle"
   (run-shell-command "amixer set Capture toggle"))
+
+;; screenshot full
+(defcommand scrot-full () ()
+  "screenshot full"
+  (run-shell-command "scrot ~/Pictures/screenshots/%b%d::%H%M%S.png"))
+
+;; screenshot window
+(defcommand scrot-window () ()
+  "screenshot windows"
+  (run-shell-command "scrot -u ~/Pictures/screenshots/%b%d::%H%M%S.png"))
+
+;; screenshot window
+(defcommand scrot-select () ()
+  "screenshot select"
+  (run-shell-command "scrot -s ~/Pictures/screenshots/%b%d::%H%M%S.png"))
