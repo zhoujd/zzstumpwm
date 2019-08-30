@@ -27,6 +27,7 @@
   (kbd "h")             "thunar"
   (kbd "C-h")           "exec thunar"
   (kbd "m")             "thunderbird"
+  (kbd "n")             (urxvt-command "nano")
   (kbd "p")             "pidgin"
   (kbd "r")             "exec remmina"
   (kbd "C-r")           (urxvt-command "ranger")
@@ -59,7 +60,7 @@
 
   (kbd "i")             "window-info"
   (kbd "k")             "key-layout"
-  (kbd "l")             "exec setcapslock toggle"
+  (kbd "l")             "capslock-toggle"
   (kbd "q")             "system-action"
   ))
 

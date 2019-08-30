@@ -229,3 +229,8 @@ used for matching windows with run-or-raise or window placement-merules."
 (defcommand scrot-select () ()
   "screenshot select"
   (run-shell-command "scrot -s ~/Pictures/screenshots/%b%d::%H%M%S.png"))
+
+;; capslock toggle
+(defcommand capslock-toggle () ()
+  "capslock toggle"
+  (run-shell-command "setcapslock toggle"))
