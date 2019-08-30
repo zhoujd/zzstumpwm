@@ -106,9 +106,9 @@ URxvt.keysym.C-Next:    \033[6;5~
 URxvt.keysym.C-End:     \033[1;5F
 URxvt.keysym.C-Home:    \033[1;5H
 
-!! alt + 1-5
-URxvt.keysym.M-1: perl:url-select:select_next
-URxvt.keysym.M-2: perl:keyboard-select:activate
-URxvt.keysym.M-3: perl:keyboard-select:search
-URxvt.keysym.M-4: eval:paste_clipboard
-URxvt.keysym.M-5: perl:tabbedex:new_tab
+!! alt + F1-F12
+URxvt.keysym.M-F1: perl:url-select:select_next
+URxvt.keysym.M-F2: perl:keyboard-select:activate
+URxvt.keysym.M-F3: perl:keyboard-select:search
+URxvt.keysym.M-F4: eval:paste_clipboard
+URxvt.keysym.M-F5: perl:tabbedex:new_tab
