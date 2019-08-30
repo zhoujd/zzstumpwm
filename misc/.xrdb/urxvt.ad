@@ -46,7 +46,7 @@ URxvt.colorUL: #4682B4
 URxvt.keysym.M-v: eval:paste_clipboard
 
 !! url-select
-URxvt.keysym.M-u: perl:url-select:select_next
+URxvt.keysym.M-r: perl:url-select:select_next
 URxvt.url-select.launcher: /usr/bin/firefox
 URxvt.url-select.underline: true
 
@@ -106,3 +106,10 @@ URxvt.keysym.C-Prior:   \033[5;5~
 URxvt.keysym.C-Next:    \033[6;5~
 URxvt.keysym.C-End:     \033[1;5F
 URxvt.keysym.C-Home:    \033[1;5H
+
+!! alt + 1-5
+URxvt.keysym.M-1: perl:url-select:select_next
+URxvt.keysym.M-2: perl:keyboard-select:activate
+URxvt.keysym.M-3: perl:keyboard-select:search
+URxvt.keysym.M-4: eval:paste_clipboard
+URxvt.keysym.M-5: perl:tabbedex:new_tab
