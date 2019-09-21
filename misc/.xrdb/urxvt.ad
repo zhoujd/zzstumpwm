@@ -9,7 +9,7 @@ URxvt.scrollBar: false
 URxvt.cursorColor: white
 
 URxvt.termName: rxvt-256color
-URxvt.geometry: 96x26
+URxvt.geometry: 100x30
 URxvt.loginShell: true
 URxvt.saveLines: 4096
 
@@ -30,10 +30,10 @@ URxvt.urgentOnBell: false
 URxvt.visualBell: true
 
 !! urxvt fonts
-URxvt.font: xft:Consolas:size=14
-URxvt.boldFont: xft:Consolas:bold:size=14
-URxvt.italicFont: xft:Consolas:italic:size=14
-URxvt.boldItalicFont: xft:Consolas:bold:italic:size=14
+URxvt.font: xft:SF Mono:size=12
+URxvt.boldFont: xft:SF Mono:bold:size=12
+URxvt.italicFont: xft:SF Mono:italic:size=12
+URxvt.boldItalicFont: xft:SF Mono:bold:italic:size=12
 
 !! urxvt icon
 URxvt.iconFile: /usr/share/pixmaps/urxvt_48x48.svg
