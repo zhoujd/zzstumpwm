@@ -38,7 +38,7 @@
   (kbd "M-s")           "stumpish"
   (kbd "u")             "intel-unite-client"
   (kbd "v")             (urxvt-command "vim")
-  (kbd "M-v")           "exec VCA"
+  (kbd "M-v")           "exec VQAnalyzer"
   ))
 
 ;; *zz-x-map*
