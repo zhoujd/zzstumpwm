@@ -130,6 +130,7 @@
   (kbd "s-M-s")         "exec rofi -show ssh"
   (kbd "s-M-w")         "exec rofi -show window"
   (kbd "s-M-d")         "exec rofi -show drun"
+  (kbd "s-M-?")         "exec rofi -show keys"
 
   (kbd "s-C-b")         "mode-line"
   (kbd "s-C-d")         "safe-delete"

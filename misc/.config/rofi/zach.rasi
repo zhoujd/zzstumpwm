@@ -8,6 +8,7 @@ configuration {
     display-drun:     "drun:";
     display-window:   "window:";
     display-combi:    "combi:";
+    display-keys:     "keys:";
     show-icons:       false;
 }
 
