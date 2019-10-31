@@ -38,6 +38,11 @@ Xfce
         $ gconftool-2 --type Boolean --set /apps/docky-2/Docky/Items/DockyItem/ShowDockyItem False
         
         $ sudo apt-get install launchy launchy-plugins
+        
+        ## Fix the Broken Icons
+        ## Fix broken icons for Terminal and Thunar in xfce4 (Docky)
+        $ sudo cp /usr/share/applications/* ~/.local/share/applications
+
 
 6. gtk-update-icon-cache: The generated cache was invalid
 
@@ -47,6 +52,7 @@ Xfce
         $ gtk-update-icon-cache --force /usr/share/icons/urutau-icons
 
 7. switch workspace via key
+
 
         $ sudo apt install wmctrl
         $ wmctrl -s 1,0
