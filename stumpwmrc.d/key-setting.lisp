@@ -28,6 +28,7 @@
   (kbd "C-h")           "exec thunar"
   (kbd "m")             "thunderbird"
   (kbd "n")             (urxvt-command "nano")
+  (kbd "C-n")           "exec cherrytree"
   (kbd "p")             "pidgin"
   (kbd "r")             "exec remmina"
   (kbd "C-r")           (urxvt-command "ranger")
