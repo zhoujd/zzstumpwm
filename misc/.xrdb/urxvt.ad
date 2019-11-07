@@ -43,7 +43,8 @@ URxvt.perl-ext-common: default,matcher,eval,resize-font,url-select,keyboard-sele
 URxvt.colorUL: #4682B4
 
 !! eval
-URxvt.keysym.M-v: eval:paste_clipboard
+URxvt.keysym.Shift-Control-V: eval:paste_clipboard
+URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
 
 !! url-select
 URxvt.url-select.launcher: /usr/bin/firefox
