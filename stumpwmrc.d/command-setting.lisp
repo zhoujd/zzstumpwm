@@ -30,6 +30,8 @@
 (def-run-or-raise-command pidgin  '(:class "Pidgin"))
 ;; thunderbird
 (def-run-or-raise-command thunderbird '(:class "Thunderbird"))
+;; evolution
+(def-run-or-raise-command evolution '(:class "Evolution"))
 ;; thunar
 (def-run-or-raise-command thunar '(:class "Thunar"))
 
