@@ -23,6 +23,6 @@ case "$1" in
         switch_xmodmap $XMODMAP_ROOT/laptop.xmodmap
         ;;
     * )
-        echo "Usage: $(basename $0) {default|hyper|laptop}"
+        echo "Usage: $(basename $0) {on|off|laptop}"
         ;;
 esac

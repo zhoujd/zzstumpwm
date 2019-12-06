@@ -38,7 +38,7 @@ laptop_screen() {
 
 ## laptop CapsLock->Control_R
 laptop_keyboard() {
-    local hyper_bin=$HOME/zzstumpwm/bin/hyper.sh
+    local hyper_bin=$HOME/zzstumpwm/bin/hyper
     if [ -x $hyper_bin ]; then
         $hyper_bin laptop
     fi
