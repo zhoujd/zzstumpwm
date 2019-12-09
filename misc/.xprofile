@@ -32,6 +32,7 @@ laptop_screen() {
     fi
 
     if [ "$ext_flag" = "connected" ]; then
+        xrandr --addmode $ext $size
         xrandr --output $ext --same-as $laptop --mode "$size"
     fi
 }
