@@ -9,12 +9,6 @@ echo "2:clfswm"
 ## Here stumpwm is kept as default
 WM_SELECT=${1:-1}
 
-## Run .xprofile
-## cp ~/zzstumpwm/misc/.xprofile ~
-if [ -x ~/.xprofile ]; then
-    ~/.xprofile || true
-fi
-
 ## Start window manager
 case "$WM_SELECT" in
     "1" )

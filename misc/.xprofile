@@ -1,57 +1,26 @@
 #!/bin/bash
 #set -x
 
-### keep in mind this file in unix format
-### dos2unix .xprofile
-
-## virtualbox guest
-## sudo pacman -S virtualbox-guest-utils
-vbox_vm() {
-    local full="1920x1080"
-    local normal="1280x720"
-    local screen=`xrandr | grep primary | awk '{print $1}'`
-    local flag=`xrandr | grep primary | grep -c $full`
-
-    if [ -z "$flag" ]; then
-        xrandr --output $screen --mode "$normal"
-    fi
-
-    VBoxClient-all
+# get script path
+script_path() 
+{
+    SOURCE=${BASH_SOURCE[0]}
+    DIR=$(dirname "$SOURCE")
+    while [ -h "$SOURCE" ]
+    do
+        SOURCE=$(readlink "$SOURCE")
+        [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE"
+        DIR=$( cd -P "$(dirname "$SOURCE")" && pwd)
+    done
+    DIR=$(cd -P "$(dirname "$SOURCE")" && pwd)
+    echo $DIR
 }
 
-## laptop duplicate screen
-laptop_screen() {
-    local laptop="eDP-1"
-    local laptop_flag=`xrandr | grep "^$laptop" | awk '{print $2}'`
-    local ext="DP-1"
-    local ext_flag=`xrandr | grep "^$ext" | awk '{print $2}'`
-    local size="1920x1080"
-
-    if [ "$laptop_flag" = "connected" ]; then
-        xrandr --output $laptop --primary
+# run script
+for i in $(script_path)/.xprofile.d/*.sh ; do
+    if [ -x "$i" ]; then
+        $i
     fi
+done
 
-    if [ "$ext_flag" = "connected" ]; then
-        xrandr --addmode $ext $size
-        xrandr --output $ext --same-as $laptop --mode "$size"
-    fi
-}
-
-## laptop CapsLock->Control_R
-laptop_keyboard() {
-    local hyper_bin=$HOME/zzstumpwm/bin/hyper
-    if [ -x $hyper_bin ]; then
-        $hyper_bin laptop
-    fi
-}
-
-## laptop touchpad
-laptop_touchpad() {
-    ## disable tap to click
-    synclient TapButton1=0
-}
-
-#vbox_vm
-#laptop_screen
-#laptop_keyboard
-#laptop_touchpad
+unset script_path

@@ -8,4 +8,4 @@ cat <<EOF >> ~/.bash_profile
 [[ -f ~/.tprofile ]] &&  ~/.tprofile
 EOF
 
-echo "profile_setup done"
+echo "tprofile_setup done"
