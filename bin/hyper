@@ -1,9 +1,23 @@
 #!/bin/bash
 #set -x -v
 
-SCRIPT_ROOT=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
+# get script path
+script_path() {
+    SOURCE=${BASH_SOURCE[0]}
+    DIR=$(dirname "$SOURCE")
+    while [ -h "$SOURCE" ]
+    do
+        SOURCE=$(readlink "$SOURCE")
+        [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE"
+        DIR=$( cd -P "$(dirname "$SOURCE")" && pwd)
+    done
+    DIR=$(cd -P "$(dirname "$SOURCE")" && pwd)
+    echo $DIR
+}
+
+SCRIPT_ROOT=$(script_path)
 ZZSTUMPWM_ROOT=$(cd $SCRIPT_ROOT/.. && pwd)
-XMODMAP_ROOT=$ZZSTUMPWM_ROOT/misc/.xmodmap
+ZZXMODMAP_ROOT=$ZZSTUMPWM_ROOT/misc/.xmodmap
 
 switch_xmodmap() {
     echo "switch to $1"
@@ -14,13 +28,13 @@ switch_xmodmap() {
 
 case "$1" in
     "on" )
-        switch_xmodmap $XMODMAP_ROOT/hyper.xmodmap
+        switch_xmodmap $ZZXMODMAP_ROOT/hyper.xmodmap
         ;;
     "off" )
-        switch_xmodmap $XMODMAP_ROOT/default.xmodmap
+        switch_xmodmap $ZZXMODMAP_ROOT/default.xmodmap
         ;;
     "laptop" )
-        switch_xmodmap $XMODMAP_ROOT/laptop.xmodmap
+        switch_xmodmap $ZZXMODMAP_ROOT/laptop.xmodmap
         ;;
     * )
         echo "Usage: $(basename $0) {on|off|laptop}"
