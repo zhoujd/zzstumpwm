@@ -100,6 +100,8 @@
  *menu-map*
  (list
   (kbd "C-h")           'menu-backspace
+  (kbd "M-p")           'menu-scroll-up
+  (kbd "M-n")           'menu-scroll-down
   ))
 
 ;; top map
