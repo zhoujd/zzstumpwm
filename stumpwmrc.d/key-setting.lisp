@@ -95,6 +95,13 @@
   (kbd "C-i")           'input-complete-forward
   ))
 
+;; menu map
+(apply-keys-to-map
+ *menu-map*
+ (list
+  (kbd "C-h")           'menu-backspace
+  ))
+
 ;; top map
 (apply-keys-to-map
  *top-map*
