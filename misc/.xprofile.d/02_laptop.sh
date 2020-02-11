@@ -6,7 +6,7 @@ laptop_screen() {
     local laptop_flag=`xrandr | grep "^$laptop" | awk '{print $2}'`
     local ext="DP-1"
     local ext_flag=`xrandr | grep "^$ext" | awk '{print $2}'`
-    local size="1920x1080"
+    local size="1680x1050"   # 1920x1080
 
     if [ "$laptop_flag" = "connected" ]; then
         xrandr --output $laptop --primary
