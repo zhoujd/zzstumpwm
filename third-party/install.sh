@@ -11,6 +11,7 @@ tool_list=(
     slock
     speedpad
     setcapslock
+    skippy-xd
 )
 
 ## parameter check
