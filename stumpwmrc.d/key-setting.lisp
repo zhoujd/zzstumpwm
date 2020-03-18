@@ -50,18 +50,15 @@
   (kbd "2")             "vsplit"
   (kbd "3")             "hsplit"
   (kbd "4")             "kill"
-  (kbd "5")             "fselect"
-  (kbd "6")             "fnext"
-  (kbd "7")             "fother"
-  (kbd "8")             "fclear"
-  (kbd "9")             "delete"
   (kbd "0")             "remove"
   (kbd "-")             "dump-desktop-to-file ~/.stumpwm-desktop"
   (kbd "=")             "restore-from-file ~/.stumpwm-desktop"
 
+  (kbd "c")             "fclear"
+  (kbd "d")             "delete"
   (kbd "i")             "window-info"
-  (kbd "k")             "key-layout"
-  (kbd "l")             "capslock-toggle"
+  (kbd "m")             "fselect"
+  (kbd "o")             "fother"
   (kbd "q")             "system-action"
   ))
 
@@ -230,4 +227,7 @@
   (kbd "C-f")           (getkey-top (kbd "s-C-Right"))
   (kbd "C-p")           (getkey-top (kbd "s-C-Up"))
   (kbd "C-n")           (getkey-top (kbd "s-C-Down"))
+
+  (kbd "k")             "key-layout"
+  (kbd "l")             "capslock-toggle"
   ))
