@@ -110,8 +110,10 @@
  (list
   (kbd "s-`")           "windowlist"
   (kbd "s-M-`")         "grouplist"
+  (kbd "s-C-`")         "skippy"
   (kbd "s-'")           "windowlist"
   (kbd "s-M-'")         "grouplist"
+  (kbd "s-C-'")         "skippy"
 
   (kbd "s-Escape")      "abort"
   (kbd "s-M-Escape")    "banish"

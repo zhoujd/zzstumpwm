@@ -83,6 +83,11 @@ used for matching windows with run-or-raise or window placement-merules."
         (f "tabbed -c -r 2 surf -pe x ~a 2>/dev/null"))
     (run-shell-command (format nil f homepage))))
 
+;; skippy windows
+(defcommand skippy () ()
+  "run skippy-xd"
+  (run-shell-command "skippy-xd"))
+
 ;; print current group name
 (defcommand gprint () ()
   "print current group name"
