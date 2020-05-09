@@ -10,6 +10,9 @@ rm -f ~/.clfswmrc
 rm -f ~/quicklisp
 rm -f ~/lisp
 
+## Remove common-lisp
+rm -rf ~/common-lisp
+
 ## Remove SBCL configre
 rm -f ~/.sbclrc
 ## Remove ECL configure
