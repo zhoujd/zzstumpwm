@@ -28,8 +28,8 @@ rm -f ~/.xinitrc
 rm -f ~/.tmux.conf
 ## Remove .byobu
 rm -f ~/.byobu
-## Remove .Xresource
-rm -f ~/.Xresource
+## Remove .Xresources
+rm -f ~/.Xresources
 ## Remove .Xdefaults
 rm -f ~/.Xdefaults
 ## Remove .inputrc
