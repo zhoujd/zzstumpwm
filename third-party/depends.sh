@@ -3,7 +3,7 @@
 case "$1" in
     "ubuntu" )
         sudo apt install -y libxinerama-dev libx11-dev g++ libxft-dev
-        sudo apt install -y fortune-mod
+        sudo apt install -y fortune-mod make
         ;;
     "suse" )
         sudo zypper install -y libXinerama-devel libX11-devel xorg-x11-server-devel
