@@ -15,8 +15,6 @@ vbox_vm() {
         fi
 
         $vbox_util
-    else
-        echo "No $vbox_util"
     fi
 }
 
