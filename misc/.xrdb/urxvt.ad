@@ -9,7 +9,7 @@ URxvt.scrollBar: false
 URxvt.cursorColor: white
 
 URxvt.termName: rxvt-256color
-URxvt.geometry: 96x26
+URxvt.geometry: 88x24
 URxvt.loginShell: true
 URxvt.saveLines: 4096
 
