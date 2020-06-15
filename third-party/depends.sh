@@ -3,6 +3,7 @@
 case "$1" in
     "ubuntu" )
         sudo apt install -y libxinerama-dev libx11-dev g++ libxft-dev
+        sudo apt install -y libxpm-dev libpng-dev libjpeg-dev libtiff-dev libgif-dev
         sudo apt install -y fortune-mod make
         ;;
     "suse" )
