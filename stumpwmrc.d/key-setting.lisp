@@ -39,7 +39,7 @@
   (kbd "s")             "colon1 exec urxvt -e ssh "
   (kbd "C-s")           (urxvt-command "speedpad")
   (kbd "M-s")           "stumpish"
-  (kbd "u")             "intel-unite-client"
+  (kbd "u")             "exec intel-unite-client"
   (kbd "v")             (urxvt-command "vim")
   (kbd "M-v")           "exec VQAnalyzer"
   ))
