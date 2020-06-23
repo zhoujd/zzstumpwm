@@ -98,6 +98,11 @@ used for matching windows with run-or-raise or window placement-merules."
   "run urxvt"
   (run-or-raise "urxvt" '(:class "URxvt") nil nil))
 
+;; sakura in current group
+(defcommand sakura () ()
+  "run sakura"
+  (run-or-raise "sakura" '(:class "Sakura") nil nil))
+
 ;; safe kill
 (defcommand safe-kill () ()
   "safe delete current window"

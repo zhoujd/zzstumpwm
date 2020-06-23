@@ -16,6 +16,8 @@
   (kbd "s-b")           "bing"
   (kbd "c")             "urxvt"
   (kbd "C-c")           "exec urxvt"
+  (kbd "s-c")           "sakura"
+  (kbd "M-c")           "exec sakura"
   (kbd "e")             "runemacs"
   (kbd "s-e")           "emacs"
   (kbd "C-e")           "exec emacs"
