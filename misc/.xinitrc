@@ -3,8 +3,8 @@
 # Here stumpwm is kept as default
 session=${1:-stumpwm}
 
-# cp ~/zzstumpwm/misc/.xprofile ~
-test -x ~/.xprofile && ~/.xprofile
+# Run ~/zzstumpwm/xprofile-setup.sh
+test -x /usr/bin/zzxprofile && /usr/bin/zzxprofile
 
 case $session in
     stumpwm )

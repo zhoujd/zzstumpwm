@@ -20,10 +20,8 @@ laptop_screen() {
 
 ## laptop keyboard
 laptop_keyboard() {
-    local hyper_bin=$HOME/zzstumpwm/bin/hyper
-    if [ -x $hyper_bin ]; then
-        $hyper_bin laptop
-    fi
+    ## load laptop keyboad map
+    test -x /usr/bin/hyper && /usr/bin/hyper laptop
 }
 
 ## laptop touchpad
