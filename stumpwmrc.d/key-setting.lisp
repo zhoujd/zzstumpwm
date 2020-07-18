@@ -21,6 +21,7 @@
   (kbd "e")             "runemacs"
   (kbd "s-e")           "emacs"
   (kbd "C-e")           "exec emacs"
+  (kbd "M-e")           "exec emacsclient -c -a emacs"
   (kbd "f")             "firefox"
   (kbd "C-f")           "exec firefox"
   (kbd "M-f")           "surf"
