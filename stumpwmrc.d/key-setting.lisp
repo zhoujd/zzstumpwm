@@ -27,8 +27,8 @@
   (kbd "M-f")           "surf"
   (kbd "g")             "google-chrome"
   (kbd "M-g")           "exec google-chrome"
-  (kbd "h")             "thunar"
-  (kbd "C-h")           "exec thunar"
+  (kbd "h")             "spacefm"
+  (kbd "C-h")           "exec spacefm"
   (kbd "m")             "evolution"
   (kbd "n")             (urxvt-command "nano")
   (kbd "C-n")           "exec cherrytree"

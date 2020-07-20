@@ -33,6 +33,8 @@
 (def-run-or-raise-command evolution '(:class "Evolution"))
 ;; thunar
 (def-run-or-raise-command thunar '(:class "Thunar"))
+;; spacefm
+(def-run-or-raise-command spacefm '(:class "Spacefm"))
 ;; intel-unite-client
 (def-run-or-raise-command intel-unite-client '(:title "Intel Unite® App"))
 
