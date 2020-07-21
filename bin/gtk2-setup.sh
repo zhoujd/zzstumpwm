@@ -1,6 +1,6 @@
 #!/bin/bash
 
-### Setting example for numix or Tango
+### Setting example for Numix or Tango
 ## ln -sf `pwd`/.gtkrc-2.0 ~
 ## apt search icon-theme
 ## sudo pacman -Ss icon-theme
