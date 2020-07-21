@@ -37,6 +37,8 @@
 (def-run-or-raise-command teams '(:class "teams-for-linux"))
 ;; intel-unite-client
 (def-run-or-raise-command intel-unite-client '(:title "Intel Unite® App"))
+;; deadbeef
+(def-run-or-raise-command deadbeef '(:title "Deadbeef"))
 
 ;; shell command
 (defcommand window-info () ()

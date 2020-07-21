@@ -18,6 +18,7 @@
   (kbd "C-c")           "exec urxvt"
   (kbd "s-c")           "sakura"
   (kbd "M-c")           "exec sakura"
+  (kbd "d")             "deadbeef"
   (kbd "e")             "runemacs"
   (kbd "s-e")           "emacs"
   (kbd "C-e")           "exec emacs"
