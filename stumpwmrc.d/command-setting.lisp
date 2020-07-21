@@ -33,6 +33,8 @@
 (def-run-or-raise-command evolution '(:class "Evolution"))
 ;; thunar
 (def-run-or-raise-command thunar '(:class "Thunar"))
+;; teams
+(def-run-or-raise-command teams '(:class "teams-for-linux"))
 ;; intel-unite-client
 (def-run-or-raise-command intel-unite-client '(:title "Intel Unite® App"))
 

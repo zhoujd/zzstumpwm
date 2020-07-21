@@ -33,6 +33,7 @@
   (kbd "n")             (urxvt-command "nano")
   (kbd "C-n")           "exec cherrytree"
   (kbd "p")             "pidgin"
+  (kbd "C-p")           "teams"
   (kbd "r")             "exec remmina"
   (kbd "C-r")           (urxvt-command "ranger")
   (kbd "t")             (urxvt-command "tmux")
