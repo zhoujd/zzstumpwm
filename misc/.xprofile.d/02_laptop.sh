@@ -27,7 +27,7 @@ laptop_keyboard() {
 ## laptop touchpad
 laptop_touchpad() {
     ## disable tap to click
-    synclient TapButton1=0
+    synclient TapButton1=0 >/dev/null 2>&1
 }
 
 laptop_screen
