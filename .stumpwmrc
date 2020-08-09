@@ -23,6 +23,7 @@
  (list
   "macro-setting"
   "common-setting"
+  "env-setting"
   "font-setting"
   "tool-setting"
   "other-setting"
