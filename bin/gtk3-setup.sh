@@ -9,7 +9,7 @@ install_user() {
     local target=~/.config/gtk-3.0/settings.ini
     tee $target <<EOF
 [Settings]
-gtk-theme-name = zach-theme
+gtk-theme-name = zach-theme-night
 gtk-icon-theme-name = Os-Catalina
 EOF
 }
