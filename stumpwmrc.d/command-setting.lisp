@@ -220,7 +220,7 @@ used for matching windows with run-or-raise or window placement-merules."
   "system actions"
   (let ((choice (cadr (select-from-menu
                        (current-screen)
-                       '(("logout"    "kill-stumpwm")
+                       '(("logout"    "zz/kill-stumpwm")
                          ("reboot"    "zz/reboot")
                          ("shutdown"  "zz/shutdown"))
                        "Select system action"))))
