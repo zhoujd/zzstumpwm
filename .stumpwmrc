@@ -4,22 +4,22 @@
 (in-package :stumpwm)
 
 ;; loading additional rc files
-(defvar *zz-load-directory*
+(defvar *zz/load-directory*
   (directory-namestring
    (truename (merge-pathnames (user-homedir-pathname)
                               ".stumpwmrc")))
   "A directory with initially loaded files.")
 
-(defun zz-load (filename)
-  "Load a file FILENAME (without extension) from `*zz-load-directory*'."
+(defun zz/load-setting (filename)
+  "Load a file FILENAME (without extension) from `*zz/load-directory*'."
   (let ((file (merge-pathnames (concat "stumpwmrc.d/" filename ".lisp")
-                               *zz-load-directory*)))
+                               *zz/load-directory*)))
     (if (probe-file file)
         (load file)
         (format *error-output* "File '~a' doesn't exist." file))))
 
 (mapc
- #'zz-load
+ #'zz/load-setting
  (list
   "macro-setting"
   "common-setting"
