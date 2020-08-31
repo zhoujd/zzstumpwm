@@ -251,3 +251,25 @@ used for matching windows with run-or-raise or window placement-merules."
 (defcommand capslock-toggle () ()
   "capslock toggle"
   (run-shell-command "setcapslock toggle"))
+
+;; Showing and toggling the root window
+(defvar *zz/window-configuration* nil
+  "Last saved window configuration.")
+
+(defcommand zz/show-root () ()
+  "Show root window."
+  (when (cdr (group-frames (current-group)))
+    ;; Make one frame if necessary.
+    (only))
+  (fclear))
+
+(defcommand zz/toggle-root () ()
+  "Toggle between root window and last window configuration."
+  (if (current-window)
+      (progn
+        (setf *zz/window-configuration* (dump-group (current-group)))
+        (zz/show-root))
+      ;; Current window is root.
+      (if *zz/window-configuration*
+          (restore-group (current-group) *zz/window-configuration*)
+          (echo "There is no saved window configuration yet."))))
