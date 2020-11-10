@@ -15,9 +15,9 @@
        (setf *zz/swank-server-running* t)))
 
 (defun zz/swank-stop-server ()
-  (and *zz/swank-server-running*
-       (swank:stop-server *zz/swank-server-port*)
-       (setf *zz/swank-server-running* nil)))
+  (and *swank-server-running*
+       (swank:stop-server *swank-server-port*)
+       (setf *swank-server-running* nil)))
 
 (defcommand zz/start-swank-server () ()
             "Start swank server."
@@ -25,7 +25,7 @@
 
 (defcommand zz/stop-swank-server () ()
             "Stop swank server."
-            (zz/swank-stop-server))
+            (swank-stop-server))
 
 ;; start server
 (zz/swank-start-server)
