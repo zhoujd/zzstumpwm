@@ -4,44 +4,44 @@
 (in-package :stumpwm)
 
 ;; prompt the user for an interactive command.
-(defcommand zz/colon1 (&optional (initial "")) (:rest)
+(defcommand colon1 (&optional (initial "")) (:rest)
   "interactive command"
   (let ((cmd (read-one-line (current-screen) ": " :initial-input initial)))
     (when cmd
       (eval-command cmd t))))
 
 ;; webjumps q=query+goes+here
-(zz/make-web-jump "zz/google" "firefox https://www.google.com/search?q=")
-(zz/make-web-jump "zz/bing" "firefox https://www.bing.com/search?q=")
-(zz/make-web-jump "zz/wikipedia" "firefox https://en.wikipedia.org/w/index.php?search=")
+(make-web-jump "google" "firefox https://www.google.com/search?q=")
+(make-web-jump "bing" "firefox https://www.bing.com/search?q=")
+(make-web-jump "wikipedia" "firefox https://en.wikipedia.org/w/index.php?search=")
 
 ;; sudo command
-(zz/define-sudo-command zz/reboot "reboot")
-(zz/define-sudo-command zz/shutdown "shutdown -h now")
-(zz/define-sudo-command zz/bright-setup (concat *zz/load-directory* "libexec/brightness-setup.sh"))
+(define-sudo-command reboot "reboot")
+(define-sudo-command shutdown "shutdown -h now")
+(define-sudo-command bright-setup (concat *zz-load-directory* "libexec/brightness-setup.sh"))
 
 ;; run-or-raise
 ;; firefox quit: ctrl+q
-(zz/def-run-or-raise-command zz/firefox '(:class "Firefox"))
+(def-run-or-raise-command firefox '(:class "Firefox"))
 ;; chrome quit: left:ctrl+shift+w or alt+f4
-(zz/def-run-or-raise-command zz/google-chrome '(:class "Google-chrome"))
+(def-run-or-raise-command google-chrome '(:class "Google-chrome"))
 ;; pidgin
-(zz/def-run-or-raise-command zz/pidgin  '(:class "Pidgin"))
+(def-run-or-raise-command pidgin  '(:class "Pidgin"))
 ;; thunderbird
-(zz/def-run-or-raise-command zz/thunderbird '(:class "Thunderbird"))
+(def-run-or-raise-command thunderbird '(:class "Thunderbird"))
 ;; evolution
-(zz/def-run-or-raise-command zz/evolution '(:class "Evolution"))
+(def-run-or-raise-command evolution '(:class "Evolution"))
 ;; thunar
-(zz/def-run-or-raise-command zz/thunar '(:class "Thunar"))
+(def-run-or-raise-command thunar '(:class "Thunar"))
 ;; teams
-(zz/def-run-or-raise-command zz/teams '(:class "teams-for-linux"))
+(def-run-or-raise-command teams '(:class "teams-for-linux"))
 ;; intel-unite-client
-(zz/def-run-or-raise-command zz/intel-unite-client '(:title "Intel Unite® App"))
+(def-run-or-raise-command intel-unite-client '(:title "Intel Unite® App"))
 ;; deadbeef
-(zz/def-run-or-raise-command zz/deadbeef '(:title "Deadbeef"))
+(def-run-or-raise-command deadbeef '(:title "Deadbeef"))
 
 ;; shell command
-(defcommand zz/window-info () ()
+(defcommand window-info () ()
   "Shows the properties of the current window. These properties can be
 used for matching windows with run-or-raise or window placement-merules."
   (let ((w (current-window))
@@ -56,22 +56,22 @@ used for matching windows with run-or-raise or window placement-merules."
                          "width:    " (format nil "~a" (window-width w)) nl
                          "height    " (format nil "~a" (window-height w))))))
 
-(defcommand zz/reinit () ()
+(defcommand reinit () ()
   "reload stumpwm configure"
   (run-commands "reload" "loadrc"))
 
 ;; ubuntu: sudo apt install acpi
 ;; arch: sudo pacman -S acpi
-(defcommand zz/show-battery () ()
+(defcommand show-battery () ()
   "show battery usage"
   (echo-string (current-screen) (run-shell-command "acpi" t)))
 
-(defcommand zz/uptime () ()
+(defcommand uptime () ()
   "show uptime"
   (echo-string (current-screen) (run-shell-command "uptime" t)))
 
 ;; emacs in current group
-(defcommand zz/runemacs () ()
+(defcommand runemacs () ()
   "run emacs"
   (run-or-raise "emacs" '(:class "Emacs") nil nil))
 
@@ -82,45 +82,45 @@ used for matching windows with run-or-raise or window placement-merules."
 ;; C-[0..9] -> jump nth tab
 ;; C-t -> select or create a tab
 ;; Ctrl+Shift+Enter -> open new tab
-(defcommand zz/surf () ()
+(defcommand surf () ()
   "run surf"
   (let ((homepage "www.google.com")
         (f "tabbed -c -r 2 surf -pe x ~a 2>/dev/null"))
     (run-shell-command (format nil f homepage))))
 
 ;; skippy windows
-(defcommand zz/skippy () ()
+(defcommand skippy () ()
   "run skippy-xd"
   (run-shell-command "skippy-xd"))
 
 ;; print current group name
-(defcommand zz/gprint () ()
+(defcommand gprint () ()
   "print current group name"
   (message "Current Group: ~A" (group-name (current-group))))
 
 ;; urxvt in current group
-(defcommand zz/urxvt () ()
+(defcommand urxvt () ()
   "run urxvt"
   (run-or-raise "urxvt" '(:class "URxvt") nil nil))
 
 ;; sakura in current group
-(defcommand zz/sakura () ()
+(defcommand sakura () ()
   "run sakura"
   (run-or-raise "sakura" '(:class "Sakura") nil nil))
 
 ;; safe kill
-(defcommand zz/safe-kill () ()
+(defcommand safe-kill () ()
   "safe delete current window"
-  (let ((choice (zz/yes-no-diag
+  (let ((choice (yes-no-diag
                  (format nil "Close window: ~a?"
                          (window-name (current-window))))))
     (when choice
       (kill-window))))
 
 ;; safe gkill
-(defcommand zz/safe-gkill () ()
+(defcommand safe-gkill () ()
   "safe delete current group"
-  (let ((choice (zz/yes-no-diag
+  (let ((choice (yes-no-diag
                  (format nil "Close group: ~a?"
                          (group-name (current-group))))))
     (when choice
@@ -129,7 +129,7 @@ used for matching windows with run-or-raise or window placement-merules."
       (gkill))))
 
 ;; close all windows
-(defcommand zz/delete-all () ()
+(defcommand delete-all () ()
   "close all windows"
   (dolist (screen *screen-list*)
     (dolist (group (stumpwm::screen-groups screen))
@@ -137,37 +137,37 @@ used for matching windows with run-or-raise or window placement-merules."
         (stumpwm::delete-window window)))))
 
 ;; safe delete
-(defcommand zz/safe-delete () ()
+(defcommand safe-delete () ()
   "safe delete all windows"
-  (let ((choice (zz/yes-no-diag "Close all programs?")))
+  (let ((choice (yes-no-diag "Close all programs?")))
     (when choice
-      (zz/delete-all))))
+      (delete-all))))
 
 ;; safe end
-(defcommand zz/safe-end () ()
+(defcommand safe-end () ()
   "safe end session"
   (echo-string (current-screen) "Ending Session...")
-  (zz/delete-all)
+  (delete-all)
   (run-hook *quit-hook*))
   
 ;; safe quit
-(defcommand zz/safe-quit () ()
+(defcommand safe-quit () ()
   "safe quit"
-  (let ((choice (zz/yes-no-diag "Close all programs and quit stumpwm?")))
+  (let ((choice (yes-no-diag "Close all programs and quit stumpwm?")))
     (when choice
-      (zz/safe-end)
+      (safe-end)
       (quit))))
 
 ;; kill stumpwm
-(defcommand zz/kill-stumpwm () ()
+(defcommand kill-stumpwm () ()
   "kill stumpwm"
-  (let ((choice (zz/yes-no-diag "Close all programs and kill stumpwm?")))
+  (let ((choice (yes-no-diag "Close all programs and kill stumpwm?")))
     (when choice
-      (zz/safe-end)
-      (zz/kill-ps "stumpwm"))))
+      (safe-end)
+      (kill-ps "stumpwm"))))
 
 ;; resolution select
-(defcommand zz/resolution () ()
+(defcommand resolution () ()
   "select resolution for stumpwm"
   (let ((choice (cadr (select-from-menu
                        (current-screen)
@@ -179,7 +179,7 @@ used for matching windows with run-or-raise or window placement-merules."
     (run-shell-command (format nil "xrandr --output `~a` ~a" output choice))))
 
 ;; key layout select
-(defcommand zz/key-layout () ()
+(defcommand key-layout () ()
   "select key layout for stumpwm"
   (let* ((choice (cadr (select-from-menu
                        (current-screen)
@@ -188,67 +188,67 @@ used for matching windows with run-or-raise or window placement-merules."
                          ("laptop"  "laptop.xmodmap"))
                        "Select keyboard layout")))
          (config (merge-pathnames
-                  (concat "misc/.xmodmap/" choice) *zz/load-directory*)))
+                  (concat "misc/.xmodmap/" choice) *zz-load-directory*)))
     (run-shell-command "setcapslock off")
     (run-shell-command (format nil "xmodmap ~a" config))))
 
 ;; run stumpish
-(defcommand zz/stumpish () ()
+(defcommand stumpish () ()
   "run stumpish"
   (run-shell-command (format nil "urxvt -e ~a"
-                             (merge-pathnames "bin/stumpish" *zz/load-directory*))))
+                             (merge-pathnames "bin/stumpish" *zz-load-directory*))))
 
 ;; run info manual
-(defcommand zz/stumpwm-manual () ()
+(defcommand stumpwm-manual () ()
   "run stumpwm info manual"
   (run-shell-command (format nil "urxvt -e info ~a"
-                             (merge-pathnames "doc/stumpwm.info" *zz/load-directory*))))
+                             (merge-pathnames "doc/stumpwm.info" *zz-load-directory*))))
 
 ;; brightness up
-(defcommand zz/bright-up () ()
+(defcommand bright-up () ()
   "brightness up"
   (run-shell-command (format nil "~a +5"
-                             (merge-pathnames "libexec/brightness.sh" *zz/load-directory*))))
+                             (merge-pathnames "libexec/brightness.sh" *zz-load-directory*))))
 ;; brightness down
-(defcommand zz/bright-down () ()
+(defcommand bright-down () ()
   "brightness down"
   (run-shell-command (format nil "~a -5"
-                             (merge-pathnames "libexec/brightness.sh" *zz/load-directory*))))
+                             (merge-pathnames "libexec/brightness.sh" *zz-load-directory*))))
 
 ;; system action
-(defcommand zz/system-action () ()
+(defcommand system-action () ()
   "system actions"
   (let ((choice (cadr (select-from-menu
                        (current-screen)
                        '(("logout"    "kill-stumpwm")
-                         ("reboot"    "zz/reboot")
-                         ("shutdown"  "zz/shutdown"))
+                         ("reboot"    "reboot")
+                         ("shutdown"  "shutdown"))
                        "Select system action"))))
     (when choice
       (eval-command (format nil "~a" choice)))))
 
 ;; micphone mute toggle
-(defcommand zz/amixer-mic-toggle () ()
+(defcommand amixer-mic-toggle () ()
   "micphone toggle"
   (run-shell-command "amixer set Capture toggle"))
 
 ;; screenshot full
-(defcommand zz/scrot-full () ()
+(defcommand scrot-full () ()
   "screenshot full"
   (run-shell-command "scrot ~/Pictures/screenshots/%b%d::%H%M%S.png"))
 
 ;; screenshot window
-(defcommand zz/scrot-window () ()
+(defcommand scrot-window () ()
   "screenshot windows"
   (run-shell-command "scrot -u ~/Pictures/screenshots/%b%d::%H%M%S.png"))
 
 ;; screenshot window
-(defcommand zz/scrot-select () ()
+(defcommand scrot-select () ()
   "screenshot select"
   (run-shell-command "scrot -s ~/Pictures/screenshots/%b%d::%H%M%S.png"))
 
 ;; capslock toggle
-(defcommand zz/capslock-toggle () ()
+(defcommand capslock-toggle () ()
   "capslock toggle"
   (run-shell-command "setcapslock toggle"))
 
