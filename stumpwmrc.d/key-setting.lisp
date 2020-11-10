@@ -177,7 +177,7 @@
 (apply-keys-to-map
  *zz-screen-map*
  (list
-  (kbd "d")             "zz/toggle-root"
+  (kbd "d")             "toggle-root"
 
   (kbd "k")             "sprev"
   (kbd "j")             "snext"
