@@ -36,6 +36,7 @@
   (kbd "h")             "thunar"
   (kbd "C-h")           "exec thunar"
   (kbd "m")             "evolution"
+  (kbd "C-m")           "claws-mail"
   (kbd "n")             "cherrytree"
   (kbd "C-n")           "exec cherrytree"
   (kbd "p")             "pidgin"

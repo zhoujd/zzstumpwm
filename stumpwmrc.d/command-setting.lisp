@@ -41,6 +41,8 @@
 (def-run-or-raise-command deadbeef '(:title "Deadbeef"))
 ;; cherrytree
 (def-run-or-raise-command cherrytree '(:title "Cherrytree"))
+;; claws-mail
+(def-run-or-raise-command claws-mail '(:title "Claws-mail"))
 
 ;; shell command
 (defcommand window-info () ()
