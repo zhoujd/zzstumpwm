@@ -8,8 +8,8 @@
  *zz-exec-map*
  (list
   (kbd "1")             "evolution"
-  (kbd "2")             "pidgin"
-  (kbd "3")             "teams"
+  (kbd "2")             "teams"
+  (kbd "3")             "cherrytree"
   (kbd "4")             "google-chrome"
 
   (kbd "a")             (urxvt-command "alsamixer")
@@ -36,8 +36,8 @@
   (kbd "h")             "thunar"
   (kbd "C-h")           "exec thunar"
   (kbd "m")             "evolution"
-  (kbd "n")             "exec cherrytree"
-  (kbd "C-n")           (urxvt-command "nano")
+  (kbd "n")             "cherrytree"
+  (kbd "C-n")           "exec cherrytree"
   (kbd "p")             "pidgin"
   (kbd "C-p")           "teams"
   (kbd "r")             "exec remmina"

@@ -39,6 +39,8 @@
 (def-run-or-raise-command intel-unite-client '(:title "Intel Unite® App"))
 ;; deadbeef
 (def-run-or-raise-command deadbeef '(:title "Deadbeef"))
+;; cherrytree
+(def-run-or-raise-command cherrytree '(:title "Cherrytree"))
 
 ;; shell command
 (defcommand window-info () ()
