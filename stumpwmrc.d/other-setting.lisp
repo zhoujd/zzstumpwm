@@ -44,9 +44,9 @@ Returns true when yes is selected"
  #'(lambda (cmd)
      (apply #'start-command-ps cmd))
  (list
-  (list "xset" :options "b off")
-  (list "xsetroot" :options "-cursor_name left_ptr -solid black -name root_window")
-  (list "xautolock" :options "-time 15 -locker slock")
-  (list "xprofile")
+  (list "/usr/bin/xset" :options "b off")
+  (list "/usr/bin/xsetroot" :options "-cursor_name left_ptr -solid black -name root_window")
+  (list "/usr/bin/xautolock" :options "-time 15 -locker slock")
+  (list "/usr/bin/xprofile")
   (list "/usr/bin/gnome-keyring-daemon" :options "--daemonize --login")
   ))
