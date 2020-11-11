@@ -174,7 +174,7 @@
   (kbd "s-;")           "colon"
   (kbd "s-M-;")         "eval"
 
-  (kbd "s-M-e")         "exec rofi -show window"
+  (kbd "s-M-e")         "exec emacsclient -c -a emacs"
   ))
 
 (apply-keys-to-map
