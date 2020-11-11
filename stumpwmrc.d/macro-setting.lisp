@@ -44,7 +44,7 @@
        (run-or-raise ,cmd-str ,prop))))
 
 (defmacro make-web-jump (name prefix)
-  `(defcommand ,(intern name) (search) ((:rest ,(concatenate 'string name " search: ")))
+  `(defcommand ,(intern name) (search) ((:rest ,(concatenate 'string (string-capitalize name) " Search: ")))
      "web jump"
      (substitute #\+ #\Space search)
      (run-shell-command (concatenate 'string ,prefix search))))
