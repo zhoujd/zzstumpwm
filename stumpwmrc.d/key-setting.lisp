@@ -7,13 +7,18 @@
 (apply-keys-to-map
  *zz-exec-map*
  (list
+  (kbd "1")             "evolution"
+  (kbd "2")             "pidgin"
+  (kbd "3")             "teams"
+  (kbd "4")             "google-chrome"
+
   (kbd "a")             (urxvt-command "alsamixer")
   (kbd "C-a")           (urxvt-command "alsamixer -c 1")
   (kbd "M-a")           "exec pavucontrol"
-  (kbd "b")             "colon1 exec firefox http://www."
-  (kbd "C-b")           "google"
+  (kbd "b")             "google"
+  (kbd "C-b")           "bing"
   (kbd "M-b")           "wikipedia"
-  (kbd "s-b")           "bing"
+  (kbd "s-b")           "colon1 exec firefox http://www."
   (kbd "c")             "urxvt"
   (kbd "C-c")           "exec urxvt"
   (kbd "s-c")           "sakura"
@@ -31,8 +36,8 @@
   (kbd "h")             "thunar"
   (kbd "C-h")           "exec thunar"
   (kbd "m")             "evolution"
-  (kbd "n")             (urxvt-command "nano")
-  (kbd "C-n")           "exec cherrytree"
+  (kbd "n")             "exec cherrytree"
+  (kbd "C-n")           (urxvt-command "nano")
   (kbd "p")             "pidgin"
   (kbd "C-p")           "teams"
   (kbd "r")             "exec remmina"
