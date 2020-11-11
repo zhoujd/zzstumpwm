@@ -12,9 +12,9 @@
   (kbd "3")             "cherrytree"
   (kbd "4")             "libreoffice"
 
-  (kbd "a")             (urxvt-command "alsamixer")
-  (kbd "C-a")           (urxvt-command "alsamixer -c 1")
-  (kbd "M-a")           "exec pavucontrol"
+  (kbd "a")             "exec pavucontrol"
+  (kbd "C-a")           (urxvt-command "alsamixer")
+  (kbd "M-a")           (urxvt-command "alsamixer -c 1")
   (kbd "b")             "google"
   (kbd "C-b")           "bing"
   (kbd "M-b")           "wikipedia"
