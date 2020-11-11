@@ -10,7 +10,7 @@
   (kbd "1")             "evolution"
   (kbd "2")             "teams"
   (kbd "3")             "cherrytree"
-  (kbd "4")             "google-chrome"
+  (kbd "4")             "libreoffice"
 
   (kbd "a")             (urxvt-command "alsamixer")
   (kbd "C-a")           (urxvt-command "alsamixer -c 1")
@@ -35,6 +35,8 @@
   (kbd "M-g")           "exec google-chrome"
   (kbd "h")             "thunar"
   (kbd "C-h")           "exec thunar"
+  (kbd "l")             "libreoffice"
+  (kbd "C-l")           "exec libreoffice"
   (kbd "m")             "evolution"
   (kbd "C-m")           "claws-mail"
   (kbd "n")             "cherrytree"
@@ -171,6 +173,8 @@
 
   (kbd "s-;")           "colon"
   (kbd "s-M-;")         "eval"
+
+  (kbd "s-M-e")         "exec rofi -show window"
   ))
 
 (apply-keys-to-map

@@ -43,6 +43,8 @@
 (def-run-or-raise-command cherrytree '(:title "Cherrytree"))
 ;; claws-mail
 (def-run-or-raise-command claws-mail '(:title "Claws-mail"))
+;; libreoffice
+(def-run-or-raise-command libreoffice '(:title "libreoffice"))
 
 ;; shell command
 (defcommand window-info () ()
