@@ -170,6 +170,7 @@
   (kbd "s-,")           "pactl-down"
   (kbd "s-.")           "pactl-up"
   (kbd "s-m")           "pactl-toggle"
+  (kbd "s-M-m")         "pactl-mic-toggle"
 
   (kbd "s-;")           "colon"
   (kbd "s-M-;")         "eval"

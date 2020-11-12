@@ -234,16 +234,22 @@ used for matching windows with run-or-raise or window placement-merules."
 ;; pactl toggle
 (defcommand pactl-toggle () ()
   "pactl sound toggle"
-  (run-shell-command (format nil "~a 0 toggle" "pactl set-sink-mute")))
+  (run-shell-command
+   (format nil "~a"
+           "pacmd list-sinks | \
+            grep -oP 'index: \\d+' | \
+            awk '{ print $2 }' | \
+            xargs -I{} pactl set-sink-mute {} toggle")))
 
 ;; pactl mic toggle
 (defcommand pactl-mic-toggle () ()
   "pactl micphone toggle"
   (run-shell-command
-   "pacmd list-sources | \
-        grep -oP 'index: \d+' | \
-        awk '{ print $2 }' | \
-        xargs -I{} pactl set-source-mute {} toggle"))
+   (format nil "~a"
+           "pacmd list-sources | \
+            grep -oP 'index: \\d+' | \
+            awk '{ print $2 }' | \
+            xargs -I{} pactl set-source-mute {} toggle"))
 
 ;; system action
 (defcommand system-action () ()
