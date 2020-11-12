@@ -4,7 +4,7 @@
 session=${1:-stumpwm}
 
 # Run ~/zzstumpwm/xprofile-setup.sh
-test -x ~/.xprofile && ~/.xprofile
+test -f ~/.xprofile && . ~/.xprofile
 
 case $session in
     stumpwm )
