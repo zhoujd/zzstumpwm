@@ -70,10 +70,10 @@
 (apply-keys-to-map
  *top-map*
  (list
-  (kbd "XF86AudioLowerVolume")   "amixer-Master-1-"
-  (kbd "XF86AudioRaiseVolume")   "amixer-Master-1+"
-  (kbd "XF86AudioMute")          "amixer-Master-toggle pulse"
-  (kbd "XF86AudioMicMute")       "amixer-mic-toggle"
+  (kbd "XF86AudioLowerVolume")   "pactl-down"
+  (kbd "XF86AudioRaiseVolume")   "pactl-up"
+  (kbd "XF86AudioMute")          "pactl-toggle"
+  (kbd "XF86AudioMicMute")       "pactl-mic-toggle"
   (kbd "XF86MonBrightnessDown")  "bright-down"
   (kbd "XF86MonBrightnessUp")    "bright-up"
   ))
