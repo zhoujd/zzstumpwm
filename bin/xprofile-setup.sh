@@ -3,10 +3,18 @@
 
 SCRIPT_ROOT=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
 ZZSTUMPWM_ROOT=$(cd $SCRIPT_ROOT/.. && pwd)
-XPROFILE_PATH=/usr/bin/xprofile
+XPROFILE_BIN=/usr/bin/xprofile
+XPROFILE_PATH=$HOME/.xprofile
+
 
 install_xprofile() {
-    sudo ln -sfv $ZZSTUMPWM_ROOT/misc/.xprofile $XPROFILE_PATH
+    sudo ln -sfv $ZZSTUMPWM_ROOT/misc/.xprofile $XPROFILE_BIN
+    rm -f $XPROFILE_PATH
+    tee $XPROFILE_PATH <<EOF
+#!/bin/bash
+test -x $XPROFILE_BIN && $XPROFILE_BIN
+EOF
+    chmod +x $XPROFILE_PATH
 }
 
 install_xprofile
