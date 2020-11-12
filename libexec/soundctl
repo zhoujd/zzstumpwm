@@ -1,0 +1,79 @@
+#!/bin/bash
+
+usage() {
+echo "
+Usage:
+$0 vol up
+$0 vol down
+$0 vol toggle
+$0 mic toggle
+$0 info
+"
+}
+
+info() {
+    pactl info
+}
+
+vol_up() {
+    pacmd list-sinks | \
+        grep -oP 'index: \d+' | \
+        awk '{ print $2 }' | \
+        xargs -I{} pactl set-sink-volume {} +10%
+}
+
+vol_down() {
+    pacmd list-sinks | \
+        grep -oP 'index: \d+' | \
+        awk '{ print $2 }' | \
+        xargs -I{} pactl set-sink-volume {} -10%
+}
+
+vol_toggle() {
+    pacmd list-sinks | \
+        grep -oP 'index: \d+' | \
+        awk '{ print $2 }' | \
+        xargs -I{} pactl set-sink-mute {} toggle
+}
+
+mic_toggle() {
+    pacmd list-sources | \
+        grep -oP 'index: \d+' | \
+        awk '{ print $2 }' | \
+        xargs -I{} pactl set-source-mute {} toggle
+}
+
+case $1 in
+    vol )
+        case $2 in
+            up )
+                vol_up
+                ;;
+            down )
+                vol_down
+                ;;
+            toggle )
+                vol_toggle
+                ;;
+            * )
+                echo "$0 $1 {up|down|toggle}"
+                exit 1
+        esac
+        ;;
+    mic )
+        case $2 in
+            toggle )
+                mic_toggle
+                ;;
+            * )
+                echo "$0 $1 {toggle}"
+                exit 1
+        esac
+        ;;
+    info )
+        info
+        ;;
+    * )
+        usage
+        ;;
+esac
