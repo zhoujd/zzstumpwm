@@ -259,7 +259,7 @@ used for matching windows with run-or-raise or window placement-merules."
            "pacmd list-sources | \
             grep -oP 'index: \\d+' | \
             awk '{ print $2 }' | \
-            xargs -I{} pactl set-source-mute {} toggle"))
+            xargs -I{} pactl set-source-mute {} toggle")))
 
 ;; system action
 (defcommand system-action () ()
