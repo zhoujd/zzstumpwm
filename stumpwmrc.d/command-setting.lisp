@@ -224,12 +224,22 @@ used for matching windows with run-or-raise or window placement-merules."
 ;; pactl up
 (defcommand pactl-up () ()
   "pactl sound up"
-  (run-shell-command (format nil "~a 0 +10%" "pactl set-sink-volume")))
+  (run-shell-command
+   (format nil "~a +10%"
+           "pacmd list-sinks | \
+            grep -oP 'index: \\d+' | \
+            awk '{ print $2 }' | \
+            xargs -I{} pactl set-sink-volume {}")))
 
 ;; pactl down
 (defcommand pactl-down () ()
   "pactl sound down"
-  (run-shell-command (format nil "~a 0 -10%" "pactl set-sink-volume")))
+  (run-shell-command
+   (format nil "~a -10%"
+           "pacmd list-sinks | \
+            grep -oP 'index: \\d+' | \
+            awk '{ print $2 }' | \
+            xargs -I{} pactl set-sink-volume {}")))
 
 ;; pactl toggle
 (defcommand pactl-toggle () ()
