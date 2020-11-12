@@ -45,6 +45,8 @@
 (def-run-or-raise-command claws-mail '(:title "Claws-mail"))
 ;; libreoffice
 (def-run-or-raise-command libreoffice '(:title "libreoffice"))
+;; slingscold
+(def-run-or-raise-command slingscold '(:title "Slingscold"))
 
 ;; shell command
 (defcommand window-info () ()

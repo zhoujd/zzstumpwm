@@ -9,7 +9,7 @@
  (list
   (kbd "1")             "evolution"
   (kbd "2")             "teams"
-  (kbd "3")             "cherrytree"
+  (kbd "3")             "slingscold"
   (kbd "4")             "libreoffice"
 
   (kbd "a")             "exec pavucontrol"
@@ -53,6 +53,9 @@
   (kbd "u")             "intel-unite-client"
   (kbd "v")             (urxvt-command "vim")
   (kbd "M-v")           "exec VQAnalyzer"
+
+  (kbd "/")             "slingscold"
+  (kbd "C-/")           "exec slingscold"
   ))
 
 ;; *zz-x-map*
