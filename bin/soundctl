@@ -1,14 +1,13 @@
 #!/bin/bash
 
 usage() {
-echo "
-Usage:
-$0 vol up
-$0 vol down
-$0 vol toggle
-$0 mic toggle
-$0 info
-"
+    app=$(basename $0)
+echo "Usage:
+$app vol up
+$app vol down
+$app vol toggle
+$app mic toggle
+$app info"
 }
 
 info() {
