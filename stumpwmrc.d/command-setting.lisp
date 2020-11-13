@@ -126,11 +126,13 @@ used for matching windows with run-or-raise or window placement-merules."
 ;; safe kill
 (defcommand safe-kill () ()
   "safe delete current window"
-  (let ((choice (yes-no-diag
-                 (format nil "Close window: ~a?"
-                         (window-name (current-window))))))
-    (when choice
-      (kill-window))))
+  (if (current-window)
+      (let ((choice (yes-no-diag
+                     (format nil "Close window: ~a?"
+                             (window-name (current-window))))))
+        (when choice
+          (kill-window)))
+      (message "Cannot close desktop!")))
 
 ;; safe gkill
 (defcommand safe-gkill () ()
