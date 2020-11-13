@@ -252,6 +252,6 @@
   (kbd "C-p")           (getkey-top (kbd "s-C-Up"))
   (kbd "C-n")           (getkey-top (kbd "s-C-Down"))
 
-  (kbd "k")             "key-layout"
-  (kbd "l")             "capslock-toggle"
+  (kbd "'")             "key-layout"
+  (kbd "Tab")           "capslock-toggle"
   ))
