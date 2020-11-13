@@ -103,9 +103,9 @@ used for matching windows with run-or-raise or window placement-merules."
   "run skippy-xd"
   (run-shell-command "skippy-xd"))
 
-;; jiandon-mobl
-(defcommand run-jiandon-mobl () ()
-  "remote jiandon-mobl"
+;; jiandon-mobl-1
+(defcommand jiandon-mobl-1 () ()
+  "run remote jiandon-mobl"
   (run-shell-command "remmina -c ~/.jiandon-mobl.remmina"))
 
 ;; print current group name

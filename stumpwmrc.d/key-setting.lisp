@@ -43,6 +43,8 @@
   (kbd "C-n")           "exec cherrytree"
   (kbd "p")             "pidgin"
   (kbd "C-p")           "teams"
+  (kbd "q")             "slingscold"
+  (kbd "C-q")           "exec slingscold"
   (kbd "r")             "exec remmina"
   (kbd "C-r")           (urxvt-command "ranger")
   (kbd "t")             (urxvt-command "tmux")
@@ -54,7 +56,7 @@
   (kbd "v")             (urxvt-command "vim")
   (kbd "M-v")           "exec VQAnalyzer"
   (kbd "z")             "jiandon-mobl"
-  (kbd "C-z")           "run-jiandon-mobl"
+  (kbd "C-z")           "jiandon-mobl-1"
   ))
 
 ;; *zz-x-map*
