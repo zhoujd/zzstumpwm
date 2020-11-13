@@ -53,9 +53,8 @@
   (kbd "u")             "intel-unite-client"
   (kbd "v")             (urxvt-command "vim")
   (kbd "M-v")           "exec VQAnalyzer"
-
-  (kbd "/")             "slingscold"
-  (kbd "C-/")           "exec slingscold"
+  (kbd "z")             "jiandon-mobl"
+  (kbd "C-z")           "run-jiandon-mobl"
   ))
 
 ;; *zz-x-map*
@@ -179,6 +178,8 @@
   (kbd "s-M-;")         "eval"
 
   (kbd "s-M-e")         "exec emacsclient -c -a emacs"
+  (kbd "s-M-q")         "slingscold"
+  (kbd "s-M-z")         "jiandon-mobl"
   ))
 
 (apply-keys-to-map

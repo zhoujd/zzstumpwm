@@ -47,6 +47,8 @@
 (def-run-or-raise-command libreoffice '(:title "libreoffice"))
 ;; slingscold
 (def-run-or-raise-command slingscold '(:title "Slingscold"))
+;; jiandon-mobl
+(def-run-or-raise-command jiandon-mobl '(:title "jiandon-mobl"))
 
 ;; shell command
 (defcommand window-info () ()
@@ -100,6 +102,11 @@ used for matching windows with run-or-raise or window placement-merules."
 (defcommand skippy () ()
   "run skippy-xd"
   (run-shell-command "skippy-xd"))
+
+;; jiandon-mobl
+(defcommand run-jiandon-mobl () ()
+  "remote jiandon-mobl"
+  (run-shell-command "remmina -c ~/.jiandon-mobl.remmina"))
 
 ;; print current group name
 (defcommand gprint () ()
