@@ -54,7 +54,7 @@
   (kbd "M-s")           "stumpish"
   (kbd "u")             "intel-unite-client"
   (kbd "v")             (urxvt-command "vim")
-  (kbd "M-v")           "exec VQAnalyzer"
+  (kbd "C-v")           "VQA"
   (kbd "z")             "jiandon-mobl"
   (kbd "C-z")           "jiandon-mobl-1"
   ))
