@@ -36,6 +36,7 @@
   (kbd "h")             "thunar"
   (kbd "C-h")           "exec thunar"
   (kbd "k")             "klavaro"
+  (kbd "C-k")           (urxvt-command "gtypist")
   (kbd "l")             "libreoffice"
   (kbd "C-l")           "exec libreoffice"
   (kbd "m")             "evolution"
