@@ -209,11 +209,11 @@ used for matching windows with run-or-raise or window placement-merules."
     (run-shell-command "setcapslock off")
     (run-shell-command (format nil "xmodmap ~a" config))))
 
-;; run rofi wifi
-(defcommand rofi-wifi () ()
-  "run rofi wifi"
+;; wifi menu
+(defcommand wifi-menu () ()
+  "wifi menu"
   (run-shell-command (format nil "~a"
-                             (merge-pathnames "bin/nmcli-rofi" *zz-load-directory*))))
+                             (merge-pathnames "bin/wifi-menu" *zz-load-directory*))))
 
 ;; run stumpish
 (defcommand stumpish () ()

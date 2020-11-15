@@ -255,5 +255,5 @@
 
   (kbd "'")             "key-layout"
   (kbd "Tab")           "capslock-toggle"
-  (kbd "w")             "rofi-wifi"
+  (kbd "w")             "wifi-menu"
   ))
