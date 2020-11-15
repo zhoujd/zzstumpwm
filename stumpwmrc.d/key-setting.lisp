@@ -43,7 +43,7 @@
   (kbd "C-n")           "exec cherrytree"
   (kbd "p")             "pidgin"
   (kbd "C-p")           "teams"
-  (kbd "q")             "slingscold"
+  (kbd "q")             "exec albert toggle"
   (kbd "C-q")           "exec slingscold"
   (kbd "r")             "exec remmina"
   (kbd "C-r")           (urxvt-command "ranger")
@@ -180,7 +180,8 @@
   (kbd "s-M-;")         "eval"
 
   (kbd "s-M-e")         "exec emacsclient -c -a emacs"
-  (kbd "s-M-q")         "slingscold"
+  (kbd "s-q")           "exec albert toggle"
+  (kbd "s-M-q")         "exec slingscold"
   (kbd "s-M-z")         "jiandon-mobl"
   ))
 
