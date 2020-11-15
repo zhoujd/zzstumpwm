@@ -35,6 +35,7 @@
   (kbd "M-g")           "exec google-chrome"
   (kbd "h")             "thunar"
   (kbd "C-h")           "exec thunar"
+  (kbd "k")             "klavaro"
   (kbd "l")             "libreoffice"
   (kbd "C-l")           "exec libreoffice"
   (kbd "m")             "evolution"

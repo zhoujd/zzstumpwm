@@ -33,6 +33,8 @@
 (def-run-or-raise-command evolution '(:class "Evolution"))
 ;; thunar
 (def-run-or-raise-command thunar '(:class "Thunar"))
+;; klavaro
+(def-run-or-raise-command klavaro '(:class "Klavaro"))
 ;; teams
 (def-run-or-raise-command teams '(:class "Microsoft Teams - Preview"))
 ;; intel-unite-client
