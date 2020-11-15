@@ -35,8 +35,6 @@
 (def-run-or-raise-command thunar '(:class "Thunar"))
 ;; teams
 (def-run-or-raise-command teams '(:class "Microsoft Teams - Preview"))
-;; VQ Analyzer
-(def-run-or-raise-command VQA '(:class "VQ Analyzer"))
 ;; intel-unite-client
 (def-run-or-raise-command intel-unite-client '(:title "Intel Unite® App"))
 ;; deadbeef
