@@ -10,7 +10,7 @@
     (when cmd
       (eval-command cmd t))))
 
-;; urxvt prompt for an interactive command.
+;; urxvt prompt
 (defcommand urxvt-prompt (&optional (initial "")) (:rest)
   "urxvt interactive command, done to keep"
   (let ((cmd (read-one-line (current-screen) "> " :initial-input initial)))
@@ -19,7 +19,7 @@
                             cmd)
                     t))))
 
-;; urxvt prompt for an interactive command.
+;; urxvt read
 (defcommand urxvt-read (&optional (initial "")) (:rest)
   "urxvt interactive command, done to exit"
   (let ((cmd (read-one-line (current-screen) "Eval> " :initial-input initial)))
@@ -191,7 +191,7 @@ used for matching windows with run-or-raise or window placement-merules."
   (echo-string (current-screen) "Ending Session...")
   (delete-all)
   (run-hook *quit-hook*))
-  
+
 ;; safe quit
 (defcommand safe-quit () ()
   "safe quit"
