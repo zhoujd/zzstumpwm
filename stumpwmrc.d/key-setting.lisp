@@ -59,6 +59,9 @@
   (kbd "C-v")           "exec VQAnalyzer"
   (kbd "z")             "jiandon-mobl"
   (kbd "C-z")           "jiandon-mobl-1"
+
+  (kbd ":")             "urxvt-prompt"
+  (kbd ";")             "urxvt-read"
   ))
 
 ;; *zz-x-map*

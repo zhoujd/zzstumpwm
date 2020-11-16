@@ -12,10 +12,19 @@
 
 ;; urxvt prompt for an interactive command.
 (defcommand urxvt-prompt (&optional (initial "")) (:rest)
-  "urxvt interactive command"
+  "urxvt interactive command, done to keep"
   (let ((cmd (read-one-line (current-screen) "> " :initial-input initial)))
     (when cmd
       (eval-command (format nil "exec urxvt -e bash -c '~a; bash -l'"
+                            cmd)
+                    t))))
+
+;; urxvt prompt for an interactive command.
+(defcommand urxvt-read (&optional (initial "")) (:rest)
+  "urxvt interactive command, done to exit"
+  (let ((cmd (read-one-line (current-screen) "Eval> " :initial-input initial)))
+    (when cmd
+      (eval-command (format nil "exec urxvt -e bash -c '~a; read'"
                             cmd)
                     t))))
 
