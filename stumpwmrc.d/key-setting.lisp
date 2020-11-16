@@ -181,7 +181,6 @@
   (kbd "s-;")           "colon"
   (kbd "s-M-;")         "eval"
 
-  (kbd "s-M-e")         "exec emacsclient -c -a emacs"
   (kbd "s-o")           "pull-hidden-other"
   (kbd "s-M-o")         "gother"
   (kbd "s-q")           "exec ulauncher"
