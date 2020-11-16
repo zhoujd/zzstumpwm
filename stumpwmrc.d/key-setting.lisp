@@ -26,7 +26,7 @@
   (kbd "e")             "runemacs"
   (kbd "s-e")           "emacs"
   (kbd "C-e")           "exec emacs"
-  (kbd "M-e")           "exec emacsclient -c -a emacs"
+  (kbd "M-e")           "emacsclient"
   (kbd "f")             "firefox"
   (kbd "C-f")           "exec firefox"
   (kbd "M-f")           "colon1 exec firefox http://www."
@@ -44,7 +44,7 @@
   (kbd "n")             "cherrytree"
   (kbd "C-n")           "exec cherrytree"
   (kbd "p")             "pidgin"
-  (kbd "q")             "exec ulauncher"
+  (kbd "q")             "slingscold"
   (kbd "C-q")           "exec slingscold"
   (kbd "r")             "exec remmina"
   (kbd "C-r")           (urxvt-command "ranger")
@@ -183,8 +183,7 @@
 
   (kbd "s-o")           "pull-hidden-other"
   (kbd "s-M-o")         "gother"
-  (kbd "s-q")           "exec ulauncher"
-  (kbd "s-M-q")         "exec slingscold"
+  (kbd "s-M-q")         "slingscold"
   (kbd "s-M-z")         "jiandon-mobl"
   ))
 

@@ -87,6 +87,11 @@ used for matching windows with run-or-raise or window placement-merules."
   "run emacs"
   (run-or-raise "emacs" '(:class "Emacs") nil nil))
 
+;; emacsclient
+(defcommand emacsclient () ()
+  "emacsclient"
+  (run-shell-command "emacsclient -c -a emacs"))
+
 ;; surf browser
 ;; arch: sudo pacman -S surf tabbed
 ;; C-g -> enter new URL
