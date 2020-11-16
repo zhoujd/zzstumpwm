@@ -15,7 +15,7 @@
   "urxvt interactive command"
   (let ((cmd (read-one-line (current-screen) "> " :initial-input initial)))
     (when cmd
-      (eval-command (format nil "exec urxvt -e bash -c '~a; bash'"
+      (eval-command (format nil "exec urxvt -e bash -c '~a; bash -l'"
                             cmd)
                     t))))
 
