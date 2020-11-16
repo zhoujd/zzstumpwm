@@ -15,7 +15,9 @@
   "urxvt interactive command"
   (let ((cmd (read-one-line (current-screen) "> " :initial-input initial)))
     (when cmd
-      (run-shell-command cmd t))))
+      (eval-command (format nil "exec urxvt -e bash -c '~a; bash'"
+                            cmd)
+                    t))))
 
 ;; webjumps q=query+goes+here
 (make-web-jump "google" "firefox https://www.google.com/search?q=")
