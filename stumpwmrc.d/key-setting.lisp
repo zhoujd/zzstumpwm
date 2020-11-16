@@ -44,13 +44,13 @@
   (kbd "n")             "cherrytree"
   (kbd "C-n")           "exec cherrytree"
   (kbd "p")             "pidgin"
-  (kbd "C-p")           "teams"
   (kbd "q")             "exec ulauncher"
   (kbd "C-q")           "exec slingscold"
   (kbd "r")             "exec remmina"
   (kbd "C-r")           (urxvt-command "ranger")
-  (kbd "t")             (urxvt-command "tmux")
-  (kbd "C-t")           (urxvt-command "byobu")
+  (kbd "t")             "teams"
+  (kbd "C-t")           (urxvt-command "tmux")
+  (kbd "M-t")           (urxvt-command "byobu")
   (kbd "s")             "colon1 exec urxvt -e ssh "
   (kbd "C-s")           (urxvt-command "speedpad")
   (kbd "M-s")           "stumpish"
@@ -182,6 +182,8 @@
   (kbd "s-M-;")         "eval"
 
   (kbd "s-M-e")         "exec emacsclient -c -a emacs"
+  (kbd "s-o")           "pull-hidden-other"
+  (kbd "s-M-o")         "gother"
   (kbd "s-q")           "exec ulauncher"
   (kbd "s-M-q")         "exec slingscold"
   (kbd "s-M-z")         "jiandon-mobl"
