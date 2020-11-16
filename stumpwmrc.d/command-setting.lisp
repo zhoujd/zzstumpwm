@@ -10,6 +10,13 @@
     (when cmd
       (eval-command cmd t))))
 
+;; urxvt prompt for an interactive command.
+(defcommand urxvt-prompt (&optional (initial "")) (:rest)
+  "urxvt interactive command"
+  (let ((cmd (read-one-line (current-screen) "> " :initial-input initial)))
+    (when cmd
+      (run-shell-command cmd t))))
+
 ;; webjumps q=query+goes+here
 (make-web-jump "google" "firefox https://www.google.com/search?q=")
 (make-web-jump "bing" "firefox https://www.bing.com/search?q=")
