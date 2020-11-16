@@ -1,0 +1,14 @@
+#!/bin/bash
+
+if [ $# -eq 0 ]; then
+    echo "Usage: $0 [cmd] [opt1..n]"
+    exit 1;
+fi
+
+if [ $KEEP ]; then
+    bash -c "$*; bash -l"
+else
+    bash -c "$*; read"
+fi    
+
+echo "urxvt-prompt done"
