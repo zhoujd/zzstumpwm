@@ -1,6 +1,6 @@
 #!/bin/bash
 
-##Ubuntu: sudo apt install imagemagick
+##Ubuntu: apt install imagemagick i3lock
 ## xss-lock -l [path of your script]
 ## xautolock -time 15 -locker [path of your script]
 
