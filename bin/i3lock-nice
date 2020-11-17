@@ -1,7 +1,8 @@
 #!/bin/bash
 
 ##Ubuntu: sudo apt install imagemagick
-##exec --no-startup-id xss-lock -l [path of your script]
+## xss-lock -l [path of your script]
+## xautolock -time 15 -locker [path of your script]
 
 icon="$HOME/.icons/lock.png"
 # create a temp file
