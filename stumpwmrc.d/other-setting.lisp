@@ -46,7 +46,7 @@ Returns true when yes is selected"
  (list
   (list "/usr/bin/xset" :options "b off")
   (list "/usr/bin/xsetroot" :options "-cursor_name left_ptr -solid black -name root_window")
-  (list "/usr/bin/xautolock" :options "-time 15 -locker i3lock-nice")
+  (list "/usr/bin/xautolock" :options "-time 15 -locker zslock")
   (list "/usr/bin/xprofile")
   (list "/usr/bin/emacs" :options "--daemon")
   ))
