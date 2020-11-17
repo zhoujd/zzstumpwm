@@ -206,8 +206,8 @@
   (kbd "j")             "snext"
   (kbd "o")             "sother"
 
-  (kbd "l")             "exec xtrlock"
-  (kbd "M-l")           "exec slock"
+  (kbd "l")             "exec i3lock-nice"
+  (kbd "M-l")           "exec xtrlock"
 
   (kbd "r")             "resolution"
   (kbd "b")             "show-battery"
