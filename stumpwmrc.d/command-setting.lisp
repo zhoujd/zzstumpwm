@@ -364,7 +364,7 @@ used for matching windows with run-or-raise or window placement-merules."
           (restore-group (current-group) *last-saved-window*)
           (echo "There is no saved window configuration yet."))))
 
-;; Swap windows
+;; swap windows
 (defun shift-windows-forward (frames win)
   (when frames
     (let ((frame (car frames)))
