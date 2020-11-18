@@ -1,19 +1,46 @@
 #!/bin/bash
 
-##Ubuntu: apt install imagemagick i3lock
+##Ubuntu: apt install imagemagick
+##https://github.com/Raymo111/i3lock-color
+##change: mod_name = "" in i3lock.c
+## $ ./build.sh
+## $ cd build && sudo make install
+
 ## xss-lock -l [path of your script]
 ## xautolock -time 15 -locker [path of your script]
 
-icon="$HOME/.icons/lock.png"
-# create a temp file
-img=$(mktemp /tmp/XXXXXXXXXX.png)
-# Take a screenshot of current desktop
-import -window root $img
-# Pixelate the screenshot
-convert $img -scale 10% -scale 1000% $img
-# Add the lock image
-convert $img $icon -gravity center -composite $img
-# Run i3lock with custom background
-i3lock -u -i $img
-# Remove the tmp file
-rm $img
+lock_advance() {
+    icon="$HOME/.icons/lock.png"
+    # create a temp file
+    img=$(mktemp /tmp/XXXXXXXXXX.png)
+    # Take a screenshot of current desktop
+    import -window root $img
+    # Pixelate the screenshot
+    convert $img -scale 10% -scale 1000% $img
+    # Add the lock image
+    convert $img $icon -gravity center -composite $img
+    # Run i3lock with custom background
+    i3lock -u -i $img
+    # Remove the tmp file
+    rm $img
+}
+
+lock_simple() {
+    i3lock \
+        --veriftext='' \
+        --wrongtext='' \
+        --noinputtext='' \
+        -c 000000
+}
+
+case $1 in
+    advance )
+        lock_advance
+        ;;
+    simple )
+        lock_simple
+        ;;
+    * )
+        echo "$0 {advance|simple}"
+        ;;
+esac
