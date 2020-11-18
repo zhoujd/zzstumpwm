@@ -363,3 +363,19 @@ used for matching windows with run-or-raise or window placement-merules."
       (if *last-saved-window*
           (restore-group (current-group) *last-saved-window*)
           (echo "There is no saved window configuration yet."))))
+
+;;Swap windows
+(defun shift-windows-forward (frames win)
+  (when frames
+    (let ((frame (car frames)))
+      (shift-windows-forward (cdr frames)
+                             (frame-window frame))
+      (when win
+        (pull-window win frame)))))
+
+(defcommand swap-windows () ()
+  "swap 2 windows"
+  (let* ((frames (group-frames (current-group)))
+         (win (frame-window (car (last frames)))))
+    (shift-windows-forward frames win)))
+

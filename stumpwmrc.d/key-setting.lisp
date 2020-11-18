@@ -82,6 +82,7 @@
   (kbd "m")             "fselect"
   (kbd "o")             "fother"
   (kbd "q")             "system-action"
+  (kbd "s")             "swap-windows"
   ))
 
 ;; *zz-help-map*
