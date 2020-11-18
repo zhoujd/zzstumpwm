@@ -110,6 +110,12 @@ used for matching windows with run-or-raise or window placement-merules."
   "emacsclient"
   (run-shell-command "emacsclient -c -a emacs"))
 
+;; https://github.com/Raymo111/i3lock-color
+;; change: mod_name = "" in i3lock.c
+(defcommand i3lock () ()
+  "i3lock"
+  (run-shell-command "i3lock --veriftext='' --wrongtext='' --noinputtext='' -c 000000"))
+
 ;; surf browser
 ;; arch: sudo pacman -S surf tabbed
 ;; C-g -> enter new URL
