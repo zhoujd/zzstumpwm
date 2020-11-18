@@ -108,7 +108,7 @@ used for matching windows with run-or-raise or window placement-merules."
 ;; emacsclient
 (defcommand emacsclient () ()
   "emacsclient"
-  (run-shell-command "emacsclient -c -a emacs"))
+  (run-shell-command "emacsclient -c"))
 
 ;; https://github.com/Raymo111/i3lock-color
 ;; change: mod_name = "" in i3lock.c
