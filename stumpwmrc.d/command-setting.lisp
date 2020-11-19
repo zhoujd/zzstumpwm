@@ -378,3 +378,15 @@ used for matching windows with run-or-raise or window placement-merules."
   (let* ((frames (group-frames (current-group)))
          (win (frame-window (car (last frames)))))
     (shift-windows-forward frames win)))
+
+;; save & restore group
+(defvar *zz-group-file* "~/.stumpwm-group")
+(defcommand save-group () ()
+  "save group"
+  (dump-group-to-file *zz-group-file*))
+
+(defcommand restore-group () ()
+  "restore group"
+  (if (probe-file *zz-group-file*)
+      (restore-from-file *zz-group-file*)
+      (message "This no is ~a." *zz-group-file*)))
