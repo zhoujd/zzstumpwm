@@ -185,6 +185,7 @@
   (kbd "s-;")           "colon"
   (kbd "s-M-;")         "eval"
 
+  (kbd "s-M-e")         "emacsclient"
   (kbd "s-o")           "pull-hidden-other"
   (kbd "s-M-o")         "gother"
   (kbd "s-M-q")         "slingscold"
