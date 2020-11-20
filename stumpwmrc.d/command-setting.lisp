@@ -380,7 +380,8 @@ used for matching windows with run-or-raise or window placement-merules."
     (shift-windows-forward frames win)))
 
 ;; save & restore group
-(defvar *zz-group-file* "~/.stumpwm-group")
+(defvar *zz-group-file* "~/.stumpwm-group"
+  "group layout file name")
 (defcommand dump-group-file () ()
   "dump group"
   (dump-group-to-file *zz-group-file*))
