@@ -78,13 +78,13 @@ used for matching windows with run-or-raise or window placement-merules."
         (nl (string #\NewLine))
         (*suppress-echo-timeout* t))
     (echo-string (current-screen)
-                 (concat "class:    " (window-class w) nl
-                         "instance: " (window-res w) nl
-                         "type:     " (string (window-type w)) nl
-                         "role:     " (window-role w) nl
-                         "title:    " (window-title w) nl
-                         "width:    " (format nil "~a" (window-width w)) nl
-                         "height    " (format nil "~a" (window-height w))))))
+                 (concat "class:    " (stumpwm::window-class w) nl
+                         "instance: " (stumpwm::window-res w) nl
+                         "type:     " (string (stumpwm::window-type w)) nl
+                         "role:     " (stumpwm::window-role w) nl
+                         "title:    " (stumpwm::window-title w) nl
+                         "width:    " (format nil "~a" (stumpwm::window-width w)) nl
+                         "height    " (format nil "~a" (stumpwm::window-height w))))))
 
 (defcommand reinit () ()
   "reload stumpwm configure"
@@ -136,7 +136,7 @@ used for matching windows with run-or-raise or window placement-merules."
 ;; print current group name
 (defcommand gprint () ()
   "print current group name"
-  (message "Current Group: ~A" (group-name (current-group))))
+  (message "Current Group: ~A" (stumpwm::group-name (current-group))))
 
 ;; urxvt in current group
 (defcommand urxvt () ()
@@ -154,9 +154,9 @@ used for matching windows with run-or-raise or window placement-merules."
   (if (current-window)
       (let ((choice (yes-no-diag
                      (format nil "Close window: ~a?"
-                             (window-name (current-window))))))
+                             (stumpwm::window-name (current-window))))))
         (when choice
-          (kill-window)))
+          (stumpwm::kill-window)))
       (message "Cannot close desktop!")))
 
 ;; safe gkill
@@ -164,11 +164,11 @@ used for matching windows with run-or-raise or window placement-merules."
   "safe delete current group"
   (let ((choice (yes-no-diag
                  (format nil "Close group: ~a?"
-                         (group-name (current-group))))))
+                         (stumpwm::group-name (current-group))))))
     (when choice
       (dolist (window (stumpwm::group-windows (current-group)))
         (stumpwm::delete-window window))
-      (gkill))))
+      (stumpwm::gkill))))
 
 ;; close all windows
 (defcommand delete-all () ()
@@ -198,7 +198,7 @@ used for matching windows with run-or-raise or window placement-merules."
   (let ((choice (yes-no-diag "Close all programs and quit stumpwm?")))
     (when choice
       (safe-end)
-      (quit))))
+      (stumpwm::quit))))
 
 ;; kill stumpwm
 (defcommand kill-stumpwm () ()
@@ -347,36 +347,36 @@ used for matching windows with run-or-raise or window placement-merules."
 ;; show root window
 (defcommand show-root () ()
   "Show root window."
-  (when (cdr (group-frames (current-group)))
+  (when (cdr (stumpwm::group-frames (current-group)))
     ;; Make one frame if necessary.
-    (only))
-  (fclear))
+    (stumpwm::only))
+  (stumpwm::fclear))
 
 ;; toggle root window
 (defcommand toggle-root () ()
   "Toggle between root window and last window configuration."
   (if (current-window)
       (progn
-        (setf *last-saved-window* (dump-group (current-group)))
+        (setf *last-saved-window* (stumpwm::dump-group (current-group)))
         (show-root))
       ;; Current window is root.
       (if *last-saved-window*
-          (restore-group (current-group) *last-saved-window*)
-          (echo "There is no saved window configuration yet."))))
+          (stumpwm::restore-group (current-group) *last-saved-window*)
+          (stumpwm::echo "There is no saved window configuration yet."))))
 
 ;; swap windows
 (defun shift-windows-forward (frames win)
   (when frames
     (let ((frame (car frames)))
       (shift-windows-forward (cdr frames)
-                             (frame-window frame))
+                             (stumpwm::frame-window frame))
       (when win
-        (pull-window win frame)))))
+        (stumpwm::pull-window win frame)))))
 
 (defcommand swap-windows () ()
   "swap 2 windows"
-  (let* ((frames (group-frames (current-group)))
-         (win (frame-window (car (last frames)))))
+  (let* ((frames (stumpwm::group-frames (current-group)))
+         (win (stumpwm::frame-window (car (last frames)))))
     (shift-windows-forward frames win)))
 
 ;; save & restore group

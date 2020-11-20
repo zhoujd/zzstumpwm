@@ -11,21 +11,21 @@
   `(lookup-key *top-map* ,key))
 
 (define-stumpwm-type :password (input prompt)
-  (let ((history *input-history*)
+  (let ((history stumpwm::*input-history*)
         (arg (argument-pop input))
-        (fn (symbol-function 'draw-input-bucket)))
+        (fn (symbol-function 'stumpwm::draw-input-bucket)))
     (unless arg
       (unwind-protect
-           (setf (symbol-function 'draw-input-bucket)
+           (setf (symbol-function 'stumpwm::draw-input-bucket)
                  #'(lambda (screen prompt input)
                      (let ((i (copy-structure input)))
-                       (setf (input-line-string i)
-                             (make-string (length (input-line-string i))
+                       (setf (stumpwm::input-line-string i)
+                             (make-string (length (stumpwm::input-line-string i))
                                           :initial-element #\*))
                        (funcall fn screen prompt i)))
                  arg (read-one-line (current-screen) prompt))
-        (setf (symbol-function 'draw-input-bucket) fn
-              *input-history* history))
+        (setf (symbol-function 'stumpwm::draw-input-bucket) fn
+              stumpwm::*input-history* history))
       arg)))
 
 (defmacro define-sudo-command (name command &key output)
@@ -34,8 +34,8 @@
        "sudo command"
        (let ((,cmd (concat "echo '" password "' | sudo -S " ,command)))
          ,(if output
-              `(run-prog-collect-output *shell-program* "-c" ,cmd)
-              `(run-prog *shell-program* :args (list "-c" ,cmd) :wait nil))))))
+              `(stumpwm::run-prog-collect-output *shell-program* "-c" ,cmd)
+              `(stumpwm::run-prog *shell-program* :args (list "-c" ,cmd) :wait nil))))))
 
 (defmacro def-run-or-raise-command (cmd prop)
   (let ((cmd-str (string-downcase (symbol-name cmd))))
