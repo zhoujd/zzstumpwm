@@ -1,7 +1,7 @@
 ;;;; key setting -*-lisp-*-
 ;;
 
-(in-package :stumpwm)
+(in-package :zz)
 
 ;; *zz-exec-map*
 (apply-keys-to-map
@@ -73,8 +73,8 @@
   (kbd "3")             "hsplit"
   (kbd "4")             "kill"
   (kbd "0")             "remove"
-  (kbd "-")             "zz/dump-group-file"
-  (kbd "=")             "zz/restore-group-file"
+  (kbd "-")             "dump-group-file"
+  (kbd "=")             "restore-group-file"
 
   (kbd "c")             "fclear"
   (kbd "d")             "delete"
@@ -117,7 +117,7 @@
 
 ;; menu map
 (apply-keys-to-map
- *menu-map*
+ stumpwm::*menu-map*
  (list
   (kbd "C-h")           'menu-backspace
   (kbd "M-p")           'menu-scroll-up

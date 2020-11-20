@@ -1,21 +1,21 @@
 ;;;; command setting -*-lisp-*-
 ;;
 
-(in-package :stumpwm)
+(in-package :zz)
 
 ;; prompt the user for an interactive command.
 (defcommand colon1 (&optional (initial "")) (:rest)
   "interactive command"
   (let ((cmd (read-one-line (current-screen) ": " :initial-input initial)))
     (when cmd
-      (eval-command cmd t))))
+      (stumpwm::eval-command cmd t))))
 
 ;; urxvt prompt
 (defcommand urxvt-prompt (&optional (initial "")) (:rest)
   "urxvt interactive command, done to keep"
   (let ((cmd (read-one-line (current-screen) "> " :initial-input initial)))
     (when cmd
-      (eval-command (format nil "exec urxvt -e bash -c '~a; bash -l'"
+      (stumpwm::eval-command (format nil "exec urxvt -e bash -c '~a; bash -l'"
                             cmd)
                     t))))
 
@@ -24,7 +24,7 @@
   "urxvt interactive command, done to exit"
   (let ((cmd (read-one-line (current-screen) "Eval> " :initial-input initial)))
     (when cmd
-      (eval-command (format nil "exec urxvt -e bash -c '~a; read'"
+      (stumpwm::eval-command (format nil "exec urxvt -e bash -c '~a; read'"
                             cmd)
                     t))))
 
@@ -313,7 +313,7 @@ used for matching windows with run-or-raise or window placement-merules."
                          ("shutdown"  "shutdown"))
                        "Select system action"))))
     (when choice
-      (eval-command (format nil "~a" choice)))))
+      (stumpwm::eval-command (format nil "~a" choice)))))
 
 ;; micphone mute toggle
 (defcommand amixer-mic-toggle () ()
@@ -381,12 +381,12 @@ used for matching windows with run-or-raise or window placement-merules."
 
 ;; save & restore group
 (defvar *zz-group-file* "~/.stumpwm-group")
-(defcommand zz/dump-group-file () ()
+(defcommand dump-group-file () ()
   "dump group"
   (dump-group-to-file *zz-group-file*))
 
-(defcommand zz/restore-group-file () ()
+(defcommand restore-group-file () ()
   "restore group"
   (if (probe-file *zz-group-file*)
-      (restore-from-file *zz-group-file*)
+      (stumpwm::restore-from-file *zz-group-file*)
       (message "This no is ~a." *zz-group-file*)))

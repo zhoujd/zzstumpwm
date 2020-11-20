@@ -1,7 +1,7 @@
 ;;;; common setting -*-lisp-*-
 ;;
 
-(in-package :stumpwm)
+(in-package :zz)
 
 (setq *startup-message*   nil)
 

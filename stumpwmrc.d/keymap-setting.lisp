@@ -1,7 +1,7 @@
 ;;;; keymap setting -*-lisp-*-
 ;;
 
-(in-package :stumpwm)
+(in-package :zz)
 
 ;; multi key setting
 (defun apply-keys-to-map (map key-pairs)
@@ -33,7 +33,7 @@
   (kbd "s-?")       *zz-help-map*
 
   (kbd "s-z")       *root-map*
-  (kbd "s-g")       *group-root-map*
+  (kbd "s-g")       stumpwm::*group-root-map*
   ))
 
 (mapc

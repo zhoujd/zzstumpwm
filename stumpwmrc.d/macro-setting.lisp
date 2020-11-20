@@ -1,7 +1,7 @@
 ;;;; macro setting -*-lisp-*-
 ;;
 
-(in-package :stumpwm)
+(in-package :zz)
 
 (defmacro replace-hook (hook fn)
   `(remove-hook ,hook ,fn)

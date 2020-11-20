@@ -1,7 +1,7 @@
 ;;;; other setting -*-lisp-*-
 ;;
 
-(in-package :stumpwm)
+(in-package :zz)
 
 ;; process management
 (defun ps-exists (ps)
