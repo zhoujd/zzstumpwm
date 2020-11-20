@@ -73,8 +73,6 @@
   (kbd "3")             "hsplit"
   (kbd "4")             "kill"
   (kbd "0")             "remove"
-  (kbd "-")             "dump-group-file"
-  (kbd "=")             "restore-group-file"
 
   (kbd "c")             "fclear"
   (kbd "d")             "delete"
@@ -83,6 +81,8 @@
   (kbd "o")             "fother"
   (kbd "q")             "system-action"
   (kbd "s")             "swap-windows"
+  (kbd "r")             "restore-group-file"
+  (kbd "C-r")           "dump-group-file"
   ))
 
 ;; *zz-help-map*
