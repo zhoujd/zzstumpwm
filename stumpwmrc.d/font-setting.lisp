@@ -1,7 +1,7 @@
 ;;;; font setting -*-lisp-*-
 ;;
 
-(in-package :zz)
+(in-package :zzwm)
 
 (ignore-errors
   (require 'ttf-fonts)

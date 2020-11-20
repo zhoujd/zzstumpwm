@@ -1,13 +1,13 @@
 ;;;; stumpwm configure -*-lisp-*-
 ;;
 
-(defpackage :zz
+(defpackage :zzwm
   (:use
    :common-lisp
    :stumpwm
    :stumpwm-user))
 
-(in-package :zz)
+(in-package :zzwm)
 
 ;; loading additional rc files
 (defvar *zz-load-directory*

@@ -1,7 +1,7 @@
 ;;;; F1 - F12 setting -*-lisp-*-
 ;;
 
-(in-package :zz)
+(in-package :zzwm)
 
 ;; top map
 (apply-keys-to-map

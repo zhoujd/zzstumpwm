@@ -1,7 +1,7 @@
 ;;;; keymap setting -*-lisp-*-
 ;;
 
-(in-package :zz)
+(in-package :zzwm)
 
 ;; multi key setting
 (defun apply-keys-to-map (map key-pairs)

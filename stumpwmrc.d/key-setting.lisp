@@ -1,7 +1,7 @@
 ;;;; key setting -*-lisp-*-
 ;;
 
-(in-package :zz)
+(in-package :zzwm)
 
 ;; *zz-exec-map*
 (apply-keys-to-map

@@ -1,7 +1,7 @@
 ;;;; command setting -*-lisp-*-
 ;;
 
-(in-package :zz)
+(in-package :zzwm)
 
 ;; prompt the user for an interactive command.
 (defcommand colon1 (&optional (initial "")) (:rest)
