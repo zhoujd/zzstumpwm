@@ -73,8 +73,8 @@
   (kbd "3")             "hsplit"
   (kbd "4")             "kill"
   (kbd "0")             "remove"
-  (kbd "-")             "dump-desktop-to-file ~/.stumpwm-desktop"
-  (kbd "=")             "restore-from-file ~/.stumpwm-desktop"
+  (kbd "-")             "zz/dump-group-file"
+  (kbd "=")             "zz/restore-group-file"
 
   (kbd "c")             "fclear"
   (kbd "d")             "delete"

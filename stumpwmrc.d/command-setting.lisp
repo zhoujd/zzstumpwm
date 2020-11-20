@@ -381,11 +381,11 @@ used for matching windows with run-or-raise or window placement-merules."
 
 ;; save & restore group
 (defvar *zz-group-file* "~/.stumpwm-group")
-(defcommand save-group () ()
-  "save group"
+(defcommand zz/dump-group-file () ()
+  "dump group"
   (dump-group-to-file *zz-group-file*))
 
-(defcommand restore-group () ()
+(defcommand zz/restore-group-file () ()
   "restore group"
   (if (probe-file *zz-group-file*)
       (restore-from-file *zz-group-file*)
