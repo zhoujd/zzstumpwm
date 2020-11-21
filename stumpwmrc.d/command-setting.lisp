@@ -320,20 +320,28 @@ used for matching windows with run-or-raise or window placement-merules."
   "micphone toggle"
   (run-shell-command "amixer set Capture toggle"))
 
+(defvar *zz-shot-folder* "~/Pictures/screenshots/"
+  "folder for store screenshots")
+
 ;; screenshot full
 (defcommand scrot-full () ()
   "screenshot full"
-  (run-shell-command "scrot ~/Pictures/screenshots/%b%d::%H%M%S.png"))
-
+  (ensure-directories-exist *zz-shot-folder*)
+  (run-shell-command (format nil "scrot ~a/%b%d::%H%M%S.png"
+                             *zz-shot-folder*)))
 ;; screenshot window
 (defcommand scrot-window () ()
   "screenshot windows"
-  (run-shell-command "scrot -u ~/Pictures/screenshots/%b%d::%H%M%S.png"))
+  (ensure-directories-exist *zz-shot-folder*)
+  (run-shell-command (format nil "scrot -u ~a/%b%d::%H%M%S.png"
+                             *zz-shot-folder*)))
 
 ;; screenshot window
 (defcommand scrot-select () ()
   "screenshot select"
-  (run-shell-command "scrot -s ~/Pictures/screenshots/%b%d::%H%M%S.png"))
+  (ensure-directories-exist *zz-shot-folder*)
+  (run-shell-command (format nil "scrot -s ~a/%b%d::%H%M%S.png"
+                             *zz-shot-folder*)))
 
 ;; capslock toggle
 (defcommand capslock-toggle () ()
