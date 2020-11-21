@@ -20,13 +20,13 @@ laptop_screen() {
 
 ## laptop keyboard
 laptop_keyboard() {
-    ## load laptop keyboad map
+    # load laptop keyboad map
     test -x /usr/bin/hyper && /usr/bin/hyper laptop
 }
 
 ## laptop touchpad
 laptop_touchpad() {
-    ## disable tap to click
+    # disable tap to click
     synclient TapButton1=0 >/dev/null 2>&1
 }
 
