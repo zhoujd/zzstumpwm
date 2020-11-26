@@ -34,12 +34,18 @@ lock_simple() {
         -c 000000
 }
 
+off_screen() {
+    xset dpms force off
+}
+
 case ${1:-simple} in
     advance )
         lock_advance
+        off_screen
         ;;
     simple )
         lock_simple
+        off_screen
         ;;
     * )
         echo "$0 {advance|simple}"
