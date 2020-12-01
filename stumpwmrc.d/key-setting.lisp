@@ -7,11 +7,17 @@
 (apply-keys-to-map
  *zz-exec-map*
  (list
+  (kbd "`")             "slingscold"
   (kbd "1")             "evolution"
   (kbd "2")             "teams"
-  (kbd "3")             "slingscold"
-  (kbd "4")             "libreoffice"
-
+  (kbd "3")             "claws-mail"
+  (kbd "4")             "pidgin"
+  (kbd "5")             "libreoffice"
+  (kbd "6")             "exec libreoffice --writer"
+  (kbd "7")             "exec libreoffice --calc"
+  (kbd "8")             "exec libreoffice --impress"
+  (kbd "9")             "exec dia"
+  (kbd "0")             "exec shotwell"
   (kbd "a")             "exec pavucontrol"
   (kbd "C-a")           (urxvt-command "alsamixer")
   (kbd "M-a")           (urxvt-command "alsamixer -c 1")

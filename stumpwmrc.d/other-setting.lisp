@@ -39,6 +39,18 @@ Returns true when yes is selected"
                             '(("No" :no) ("Yes" :yes))
                             query-string))))
 
+(defun random-string (length)
+  "Return a random string with LENGTH characters."
+  (let ((alphabet (concat
+                   "abcdefghijklmnopqrstuvwxyz"
+                   "0123456789"
+                   "ABCDEFGHIJKLMNOPQRSTUVWXYZ"))
+        (string (make-string length)))
+    (map-into string (lambda (char)
+                       (declare (ignore char))
+                       (aref alphabet (random (length alphabet))))
+              string)))
+
 ;; startup run commands
 (mapc
  #'(lambda (cmd)
