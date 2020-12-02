@@ -155,7 +155,7 @@ function main () {
         -lines 0 -font "$FONT")
 
       # manual entry of the PASSWORD
-      MPASS=$(echo -en "" | rofi -dmenu -password -p "PASSWORD" -mesg \
+      MPASS=$(echo -en "" | rofi -dmenu -password -p "PASSWORD:" -mesg \
         "Enter the PASSWORD of the network" -lines 0 -font "$FONT")
 
       # If the user entered a manual password, then use the password nmcli command
@@ -167,7 +167,7 @@ function main () {
 
     else
         if [[ "$OPS" =~ "WPA2" ]] || [[ "$OPS" =~ "WEP" ]]; then
-          WIFIPASS=$(echo -en "" | rofi -dmenu -password -p "PASSWORD" \
+          WIFIPASS=$(echo -en "" | rofi -dmenu -password -p "PASSWORD:" \
             -mesg "Enter the PASSWORD of the network" -lines 0 -font "$FONT")
         fi
 
