@@ -1,23 +1,7 @@
 #!/bin/bash
 #set -x -v
 
-# get script path
-script_path() {
-    SOURCE=${BASH_SOURCE[0]}
-    DIR=$(dirname "$SOURCE")
-    while [ -h "$SOURCE" ]
-    do
-        SOURCE=$(readlink "$SOURCE")
-        [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE"
-        DIR=$( cd -P "$(dirname "$SOURCE")" && pwd)
-    done
-    DIR=$(cd -P "$(dirname "$SOURCE")" && pwd)
-    echo $DIR
-}
-
-SCRIPT_ROOT=$(script_path)
-ZZSTUMPWM_ROOT=$(cd $SCRIPT_ROOT/.. && pwd)
-ZZXMODMAP_ROOT=$ZZSTUMPWM_ROOT/misc/.xmodmap
+ZZXMODMAP_ROOT=~/.Xmodmap.d
 
 switch_xmodmap() {
     echo "switch to $1"
