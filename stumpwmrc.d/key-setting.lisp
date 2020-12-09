@@ -214,7 +214,7 @@
   (kbd "j")             "snext"
   (kbd "o")             "sother"
 
-  (kbd "l")             "exec zlock"
+  (kbd "l")             "exec slock"
   (kbd "M-l")           "exec xtrlock"
 
   (kbd "r")             "resolution"
