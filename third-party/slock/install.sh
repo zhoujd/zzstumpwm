@@ -1,12 +1,29 @@
 #!/bin/sh
 
-make
-chmod u+s slock
+clean() {
+    make clean
+    # clean config.h
+    rm config.h
 
-sudo make install
-make clean
+    echo "clean done"
+}
 
-# clean config.h
-rm config.h
+build() {
+    make
+    chmod u+s slock
+
+    echo "build done"
+}
+
+install() {
+    sudo make install
+
+    echo "install done"
+}
+
+clean
+build
+install
+clean
 
 echo "install slock ok ..."
