@@ -21,6 +21,7 @@ laptop_screen() {
 ## laptop keyboard
 laptop_keyboard() {
     # gnome-settings-daemon that resets layouts when attach a new keyboard
+    # sudo apt install dconf-cli
     dconf write /org/gnome/settings-daemon/plugins/keyboard/active false
     # load laptop keyboad map
     test -x /usr/bin/hyper && /usr/bin/hyper laptop
