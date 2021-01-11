@@ -1,7 +1,9 @@
 #!/bin/bash
 
 ### Ubuntu 20.04 Yaru theme, icon and sound
-## sudo apt install yaru-theme-gtk yaru-theme-icon yaru-theme-sound
+install_dep() {
+    sudo apt install yaru-theme-gtk yaru-theme-icon yaru-theme-sound
+}
 
 install_user() {
     echo "Install gtk3 config to user"
@@ -23,6 +25,9 @@ install_sys() {
 }
 
 case $1 in
+    dep )
+        install_dep
+        ;;
     user )
         install_user
         ;;
@@ -30,6 +35,6 @@ case $1 in
         install_sys
         ;;
     * )
-        echo "Usage: $0 {user|sys}"
+        echo "Usage: $0 {dep|user|sys}"
         ;;
 esac
