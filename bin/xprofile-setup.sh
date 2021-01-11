@@ -7,6 +7,8 @@ XPROFILE_BIN=/usr/bin/xprofile
 XPROFILE_PATH=$HOME/.xprofile
 
 
+## sudo apt install dconf-cli
+
 install_xprofile() {
     sudo ln -sfv $ZZSTUMPWM_ROOT/misc/.xprofile $XPROFILE_BIN
     rm -f $XPROFILE_PATH
