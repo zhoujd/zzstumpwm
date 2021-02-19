@@ -8,6 +8,6 @@
 
 rm -fv ~/.gtkrc-2.0
 tee ~/.gtkrc-2.0 <<EOF
-gtk-theme-name = "zach-theme"
-gtk-icon-theme-name = "MacBuntu-OS"
+gtk-theme-name = "Yaru-Blue-dark"
+gtk-icon-theme-name = "Os-Catalina-Night"
 EOF
