@@ -1,24 +1,26 @@
 #!/bin/bash
 #set -x -v
 
-ZZXMODMAP_ROOT=~/.Xmodmap.d
+XMODMAP_ROOT=~/.Xmodmap.d
+XMODMAP_TARGET=~/.Xmodmap
 
 switch_xmodmap() {
     echo "switch to $1"
     setcapslock off
     xmodmap $1
+    ln -sf $1 $XMODMAP_TARGET
     setcapslock off
 }
 
 case "$1" in
     "on" )
-        switch_xmodmap $ZZXMODMAP_ROOT/hyper.xmodmap
+        switch_xmodmap $XMODMAP_ROOT/hyper.xmodmap
         ;;
     "off" )
-        switch_xmodmap $ZZXMODMAP_ROOT/default.xmodmap
+        switch_xmodmap $XMODMAP_ROOT/default.xmodmap
         ;;
     "laptop" )
-        switch_xmodmap $ZZXMODMAP_ROOT/laptop.xmodmap
+        switch_xmodmap $XMODMAP_ROOT/laptop.xmodmap
         ;;
     * )
         echo "Usage: $(basename $0) {on|off|laptop}"
