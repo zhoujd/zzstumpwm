@@ -1,0 +1,27 @@
+#+title keynav - retire your mouse
+
+* URL: https://www.semicomplete.com/projects/keynav/
+* On Ubuntu
+
+#+BEGIN_SRC sh
+sudo apt install keynav
+#+END_SRC
+
+* Usage
+
+h : select the left half of the region
+j : select the bottom half of the region
+k : select the top half of the region
+l : select the right half of the region
+shift+h : move the region left
+shift+j : move the region down
+shift+k : move the region top
+shift+l : move the region right
+semicolon : Move the mouse to the center of the selected region
+spacebar : Move the mouse and left-click
+escape : Cancel the move
+
+Configuration file
+~/.keynavrc
+space warp,click 1,end
+
