@@ -9,6 +9,6 @@ Sound control
 
 2. pnmixer
    https://github.com/nicklan/pnmixer
-   
+
         $ sudo apt install pnmixer
 

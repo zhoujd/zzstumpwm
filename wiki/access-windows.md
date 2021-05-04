@@ -8,7 +8,7 @@ Remote access windows
         PortNumber:<1234>
 
 2. Install package for linux
-   
+
         $ yum install rdesktop
         $ yum install tsclient
 
@@ -18,10 +18,10 @@ Remote access windows
 
 3. Build source http://www.rdesktop.org/#download
 
-        # yum install libX11-devel libgssglue pcsc-lite 
+        # yum install libX11-devel libgssglue pcsc-lite
         # yum install libgssglue-devel pcsc-lite-devel
-        # tar zxvf rdesktop-1.8.2.tar.gz 
-        # cd rdesktop-1.8.2 
-        # ./configure 
-        # make 
+        # tar zxvf rdesktop-1.8.2.tar.gz
+        # cd rdesktop-1.8.2
+        # ./configure
+        # make
         # make install

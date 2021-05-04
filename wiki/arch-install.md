@@ -54,7 +54,7 @@ Arch Linux install
         # genfstab -U -p /mnt >> /mnt/etc/fstab
         # cat /mnt/etc/fstab
 
-4. Setup NewOS 
+4. Setup NewOS
     4.1 EFI
 
         # arch-chroot /mnt /bin/bash
@@ -102,7 +102,7 @@ Arch Linux install
     4.2 Legacy
 
         # grub-install /dev/sda --recheck
- 
+
 5. Setup desktop
 
         $ useradd -m -g users -G wheel -s /bin/bash zhoujd
@@ -120,7 +120,7 @@ Arch Linux install
         $ sudo pacman -S git net-tools xfce4
         $ sudo pacman -S mercurial python python2
         $ sudo pacman -S the_silver_searcher
-        
+
         $ sudo pacman -S lightdm lightdm-gtk-greeter
         $ sudo systemctl start lightdm.service
         $ sudo systemctl enable lightdm.service

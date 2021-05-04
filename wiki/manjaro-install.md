@@ -18,12 +18,12 @@ Manjaro install
         $ sudo pacman-mirrors -gb testing -c China
         or
         $ sudo pacman-mirrors -i -c China -m rank
-        
+
         $ sudo vim /etc/pacman.conf
           [archlinuxcn]
           SigLevel = Optional TrustedOnly
           Server = http://repo.archlinuxcn.org/$arch
-        
+
         $ sudo pacman-mirrors -g
         $ sudo pacman -Syyu
 

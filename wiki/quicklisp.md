@@ -28,6 +28,6 @@ quicklisp package system
         (ql:register-local-projects)
         (ql:dist-url "quicklisp")
         (ql:available-dist-versions "quicklisp")
-        (ql:client-url) 
+        (ql:client-url)
         (ql:available-client-versions)
 

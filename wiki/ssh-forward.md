@@ -8,7 +8,7 @@ SSH forward
           X11Forwarding yes
           X11DisplayOffset 10
           X11UseLocalhost yes
-        
+
 2. Restart the sshd daemon:
 
         $ sudo service sshd restart

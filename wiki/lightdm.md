@@ -5,7 +5,7 @@ lightdm
 
     $ sudo pacman -S lightdm lightdm-gtk-greeter
     $ sudo systemctl enable lightdm
-    
+
 ## login failed
 
     $ sudo chown $USER:$USER .Xauthority

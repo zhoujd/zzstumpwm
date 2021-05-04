@@ -14,4 +14,4 @@ Camera
         $ sudo nano /etc/modprobe.d/blacklist.conf
         ##Disable webcam.
         blacklist uvcvideo
-        
+

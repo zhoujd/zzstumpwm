@@ -34,7 +34,7 @@ Ubunut 18.04 Server
         $ sudo /usr/lib/ubuntu-release-upgrader/release-upgrade-motd
         or
         $ sudo /etc/update-motd.d/91-release-upgrade
-        
+
         $ sudo chmod -x /usr/lib/ubuntu-release-upgrader/release-upgrade-motd
 
 5. Install tools
@@ -49,7 +49,7 @@ Ubunut 18.04 Server
 
         $ sudo apt install alsa-base pulseaudio
         $ sudo alsa force-reload
-        
+
         $ amixer set Master unmute
         $ amixer set Master mute
         $ amixer set Master toggle
