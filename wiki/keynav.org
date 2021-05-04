@@ -22,6 +22,6 @@ spacebar : Move the mouse and left-click
 escape : Cancel the move
 
 Configuration file
-~/.keynavrc
+~/.keynavrc or /usr/share/doc/keynav/keynavrc
 space warp,click 1,end
 
