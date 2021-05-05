@@ -56,7 +56,7 @@
 ;; teams
 (def-run-or-raise-command teams '(:class "Microsoft Teams - Preview"))
 ;; intel-unite-client
-(def-run-or-raise-command intel-unite-client '(:title "Intel Unite® App"))
+(def-run-or-raise-command intel-unite '(:title "Intel Unite® App"))
 ;; deadbeef
 (def-run-or-raise-command deadbeef '(:title "Deadbeef"))
 ;; cherrytree

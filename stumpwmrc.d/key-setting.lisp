@@ -29,6 +29,7 @@
   (kbd "s-c")           "sakura"
   (kbd "M-c")           "exec sakura"
   (kbd "d")             "deadbeef"
+  (kbd "C-d")           "exec meld"
   (kbd "e")             "runemacs"
   (kbd "s-e")           "emacs"
   (kbd "C-e")           "exec emacs"
@@ -60,9 +61,10 @@
   (kbd "s")             "colon1 exec urxvt -e ssh "
   (kbd "C-s")           (urxvt-command "speedpad")
   (kbd "M-s")           "stumpish"
-  (kbd "u")             "intel-unite-client"
+  (kbd "u")             "intel-unite"
   (kbd "v")             (urxvt-command "vim")
-  (kbd "C-v")           "exec VQAnalyzer"
+  (kbd "C-v")           "exec virt-manager"
+  (kbd "M-v")           "exec virtualbox"
   (kbd "z")             "jiandon-mobl"
   (kbd "C-z")           "jiandon-mobl-1"
 
