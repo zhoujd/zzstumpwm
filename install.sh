@@ -76,6 +76,10 @@ ln -s $CURRENT_DIR/misc/.xrdb ~/.xrdb
 rm -f ~/.xinitrc
 ln -s $CURRENT_DIR/misc/.xinitrc ~/.xinitrc
 
+## Install .keynavrc
+rm -f ~/.keynavrc
+ln -s $CURRENT_DIR/misc/.keynavrc ~/.keynavrc
+
 ## Install rofi
 mkdir -p ~/.config
 rm -f ~/.config/rofi
