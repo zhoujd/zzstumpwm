@@ -36,11 +36,11 @@
   (kbd "f")             "firefox"
   (kbd "C-f")           "exec firefox"
   (kbd "M-f")           "colon1 exec firefox http://www."
-  (kbd "s-f")           "surf"
   (kbd "g")             "google-chrome"
   (kbd "M-g")           "exec google-chrome"
   (kbd "h")             "thunar"
   (kbd "C-h")           "exec thunar"
+  (kbd "M-h")           "exec thunar -B"
   (kbd "k")             "klavaro"
   (kbd "C-k")           (urxvt-command "gtypist")
   (kbd "l")             "libreoffice"
