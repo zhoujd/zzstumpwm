@@ -18,6 +18,8 @@
   (kbd "8")             "exec libreoffice --impress"
   (kbd "9")             "exec dia"
   (kbd "0")             "exec shotwell"
+  (kbd "-")             "urxvt-prompt"
+  (kbd "=")             "urxvt-read"
   (kbd "a")             "exec pavucontrol"
   (kbd "C-a")           (urxvt-command "alsamixer")
   (kbd "M-a")           (urxvt-command "alsamixer -c 1")
@@ -68,9 +70,6 @@
   (kbd "M-v")           "exec virtualbox"
   (kbd "z")             "jiandon-mobl"
   (kbd "C-z")           "jiandon-mobl-1"
-
-  (kbd ":")             "urxvt-prompt"
-  (kbd ";")             "urxvt-read"
   ))
 
 ;; *zz-x-map*

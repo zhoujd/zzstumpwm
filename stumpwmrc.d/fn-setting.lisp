@@ -9,12 +9,16 @@
  (list
   (kbd "s-F1")      "gprint"
   (kbd "s-M-F1")    "gmove"
+  (kbd "s-C-F1")    "emacs"
   (kbd "s-F2")      "exec dmenu_run -fn consola-15"
   (kbd "s-M-F2")    "exec"
+  (kbd "s-C-F2")    "urxvt"
   (kbd "s-F3")      "pull-hidden-other"
   (kbd "s-M-F3")    "gother"
+  (kbd "s-C-F3")    "google-chrome"
   (kbd "s-F4")      "safe-kill"
   (kbd "s-M-F4")    "safe-gkill"
+  (kbd "s-C-F4")    "firefox"
 
   ;; Floating Group Basics
   ;; Left click/drag=>move, Right click/drag=>resize
@@ -65,6 +69,19 @@
   (kbd "s-M-0")     (getkey-top (kbd "s-M-F10"))
   (kbd "s-M--")     (getkey-top (kbd "s-M-F11"))
   (kbd "s-M-=")     (getkey-top (kbd "s-M-F12"))
+
+  (kbd "s-C-1")     (getkey-top (kbd "s-C-F1"))
+  (kbd "s-C-2")     (getkey-top (kbd "s-C-F2"))
+  (kbd "s-C-3")     (getkey-top (kbd "s-C-F3"))
+  (kbd "s-C-4")     (getkey-top (kbd "s-C-F4"))
+  (kbd "s-C-5")     (getkey-top (kbd "s-C-F5"))
+  (kbd "s-C-6")     (getkey-top (kbd "s-C-F6"))
+  (kbd "s-C-7")     (getkey-top (kbd "s-C-F7"))
+  (kbd "s-C-8")     (getkey-top (kbd "s-C-F8"))
+  (kbd "s-C-9")     (getkey-top (kbd "s-C-F9"))
+  (kbd "s-C-0")     (getkey-top (kbd "s-C-F10"))
+  (kbd "s-C--")     (getkey-top (kbd "s-C-F11"))
+  (kbd "s-C-=")     (getkey-top (kbd "s-C-F12"))
   ))
 
 (apply-keys-to-map
