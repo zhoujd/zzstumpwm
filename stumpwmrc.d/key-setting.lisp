@@ -18,8 +18,8 @@
   (kbd "8")             "exec libreoffice --impress"
   (kbd "9")             "exec dia"
   (kbd "0")             "exec shotwell"
-  (kbd "-")             "urxvt-prompt"
-  (kbd "=")             "urxvt-read"
+  (kbd "-")             "urxvt-read"
+  (kbd "=")             "urxvt-prompt"
   (kbd "a")             "exec pavucontrol"
   (kbd "C-a")           (urxvt-command "alsamixer")
   (kbd "M-a")           (urxvt-command "alsamixer -c 1")
