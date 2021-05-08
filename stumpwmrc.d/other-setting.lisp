@@ -61,4 +61,6 @@ Returns true when yes is selected"
   (list "/usr/bin/xautolock" :options "-time 15 -locker slock")
   (list "/usr/bin/xprofile")
   (list "/usr/bin/keynav")
+  (list "/usr/bin/nm-applet")
+  (list "/usr/bin/blueman-applet")
   ))
