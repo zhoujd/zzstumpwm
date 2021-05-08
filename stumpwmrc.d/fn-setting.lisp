@@ -12,13 +12,13 @@
   (kbd "s-C-F1")    "emacs"
   (kbd "s-F2")      "exec dmenu_run -fn consola-15"
   (kbd "s-M-F2")    "exec"
-  (kbd "s-C-F2")    "urxvt"
+  (kbd "s-C-F2")    "google-chrome"
   (kbd "s-F3")      "pull-hidden-other"
   (kbd "s-M-F3")    "gother"
-  (kbd "s-C-F3")    "google-chrome"
+  (kbd "s-C-F3")    "teams"
   (kbd "s-F4")      "safe-kill"
   (kbd "s-M-F4")    "safe-gkill"
-  (kbd "s-C-F4")    "firefox"
+  (kbd "s-C-F4")    "evolution"
 
   ;; Floating Group Basics
   ;; Left click/drag=>move, Right click/drag=>resize
