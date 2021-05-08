@@ -20,4 +20,4 @@ MAGIC=-5
 FIELDS=SSID,SECURITY,BARS
 
 #font
-FONT="DejaVu Sans Mono Bold 12"
+FONT="Anonymous Pro 14"

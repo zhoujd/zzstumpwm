@@ -11,12 +11,12 @@ configuration {
 /*	xoffset: 0;*/
 /*	fixed-num-lines: true;*/
 /*	show-icons: false;*/
-    terminal: "urxvt";
-    ssh-client: "ssh";
+	terminal: "urxvt";
+	ssh-client: "ssh";
 	ssh-command: "{terminal} -e {ssh-client} -X {host}";
-/*	run-command: "{cmd}";*/
+	run-command: "{cmd}";
 /*	run-list-command: "";*/
-/*	run-shell-command: "{terminal} -e {cmd}";*/
+	run-shell-command: "{terminal} -e bash -c '{cmd}; read'";
 /*	window-command: "xkill -id {window}";*/
 /*	window-match-fields: "all";*/
 /*	drun-icon-theme: ;*/
