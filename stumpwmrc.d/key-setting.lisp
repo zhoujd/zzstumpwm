@@ -193,6 +193,7 @@
   (kbd "s-;")           "colon"
   (kbd "s-M-;")         "eval"
 
+  (kbd "s-a")           "app-menu"
   (kbd "s-M-e")         "emacsclient"
   (kbd "s-o")           "pull-hidden-other"
   (kbd "s-M-o")         "gother"

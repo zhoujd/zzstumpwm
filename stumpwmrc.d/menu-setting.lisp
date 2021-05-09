@@ -3,7 +3,8 @@
 
 (in-package :zzwm)
 
-(define-stumpwm-command "app-menu" ()
+(defcommand app-menu () ()
+  "app menu"
   (labels ((pick (options)
              (let ((selection (stumpwm::select-from-menu (current-screen) options "")))
                (cond
@@ -16,18 +17,19 @@
     (let ((choice (pick *app-menu*)))
       (run-shell-command choice))))
 
-(defparameter *app-menu* '(("INTERNET"
+(defparameter *app-menu* '(("+INTERNET"
                             ;; sub menu
                             ("Firefox" "firefox")
-                            ("Skype" "skype"))
-                           ("FUN"
+                            ("Chrome" "google-chrome")
+                            ("Teams" "teams"))
+                           ("+FUN"
                             ;; sub menu
-                            ("option 2" "xlogo")
+                            ("Xlogo" "xlogo")
                             ("GnuChess" "xboard"))
-                           ("WORK"
+                           ("+WORK"
                             ;;submenu
-                            ("OpenOffice.org" "openoffice"))
-                           ("GRAPHICS"
+                            ("libreoffice" "libreoffice"))
+                           ("+GRAPHICS"
                             ;;submenu
                             ("GIMP" "gimp"))
-                           ("K3B" "k3b")))
+                           ("cherrytree" "cherrytree")))

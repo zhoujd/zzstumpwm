@@ -34,6 +34,7 @@
   "tool-setting"
   "other-setting"
   "command-setting"
+  "menu-setting"
   "keymap-setting"
   "key-setting"
   "fn-setting"
