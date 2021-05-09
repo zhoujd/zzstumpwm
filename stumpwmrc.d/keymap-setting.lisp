@@ -31,9 +31,7 @@
   (kbd "s-e")       *zz-exec-map*
   (kbd "s-s")       *zz-screen-map*
   (kbd "s-?")       *zz-help-map*
-
   (kbd "s-z")       *root-map*
-  (kbd "s-g")       stumpwm::*group-root-map*
   ))
 
 (mapc
