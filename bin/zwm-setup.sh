@@ -12,7 +12,7 @@ fi
 
 echo "[Desktop Entry]
 Encoding=UTF-8
-Name=ZWM xsession
+Name=ZWM Session
 Comment=Runs the Zach Window Manager
 Exec=/etc/X11/Xsession
 Type=Application
