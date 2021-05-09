@@ -1,4 +1,5 @@
-## .xsession
+### .xsession
 
+# Source files
 test -f ~/.profile && . ~/.profile
 test -f ~/.xinitrc && . ~/.xinitrc
