@@ -76,6 +76,10 @@ ln -s $CURRENT_DIR/misc/.xrdb ~/.xrdb
 rm -f ~/.xinitrc
 ln -s $CURRENT_DIR/misc/.xinitrc ~/.xinitrc
 
+## Install .xsession
+rm -f ~/.xsession
+ln -s $CURRENT_DIR/misc/.xsession ~/.xsession
+
 ## Install .keynavrc
 rm -f ~/.keynavrc
 ln -s $CURRENT_DIR/misc/.keynavrc ~/.keynavrc
