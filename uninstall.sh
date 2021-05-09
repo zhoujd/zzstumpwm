@@ -27,6 +27,8 @@ rm -f ~/.nanorc
 rm -f ~/.cshrc
 ## Remove .xinitrc
 rm -f ~/.xinitrc
+## Remove .xsession
+rm -f ~/.xsession
 ## Remove .tmux.conf
 rm -f ~/.tmux.conf
 ## Remove .byobu
@@ -41,6 +43,8 @@ rm -f ~/.inputrc
 rm -f ~/.urxvt
 ## Remove .xrdb
 rm -f ~/.xrdb
+## Remove .keynavrc
+rm -f ~/.keynavrc
 
 
 echo "uninstall stumpwm end ..."
