@@ -14,11 +14,9 @@ install_zwm() {
     sudo tee $target <<EOF
 #!/bin/sh
 
-if [ -f ~/.zwmrc ]; then
-    . ~/.zwmrc
-else
-    echo "Cannot find ~/.zwmrc"
-fi
+for i in $HOME/.zwmrc.d/*.sh ; do
+    test -x "\$i" && "\$i"
+done
 EOF
     sudo chmod +x $target
 }

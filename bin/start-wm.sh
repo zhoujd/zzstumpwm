@@ -9,6 +9,9 @@ echo "2:clfswm"
 ## Here stumpwm is kept as default
 WM_SELECT=${1:-1}
 
+## Load ZWM
+test -x /usr/bin/zwm && /usr/bin/zwm
+
 ## Start window manager
 case "$WM_SELECT" in
     "1" )
