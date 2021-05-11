@@ -5,8 +5,8 @@ SCRIPT_ROOT=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
 ZZSTUMPWM_ROOT=$(cd $SCRIPT_ROOT/.. && pwd)
 
 install_zwmrc() {
-    ln -sfvT $ZZSTUMPWM_ROOT/misc/.zwmrc $HOME/.zwmrc
-    ln -sfvT $ZZSTUMPWM_ROOT/misc/.zwmrc.d $HOME/.zwmrc.d
+    ln -sfvT $ZZSTUMPWM_ROOT/misc/.zwmrc ~/.zwmrc
+    ln -sfvT $ZZSTUMPWM_ROOT/misc/.zwmrc.d ~/.zwmrc.d
 }
 
 install_zwm() {
@@ -14,7 +14,7 @@ install_zwm() {
     sudo tee $target <<EOF
 #!/bin/sh
 
-for i in $HOME/.zwmrc.d/*.sh ; do
+for i in ~/.zwmrc.d/*.sh ; do
     test -x "\$i" && "\$i"
 done
 EOF
@@ -24,4 +24,4 @@ EOF
 install_zwmrc
 install_zwm
 
-echo "zwmrc_setup done"
+echo "zwmrc setup done"
