@@ -43,7 +43,7 @@ EOF
         echo "Install /etc/rc.zach.d is not exist"
     fi
     
-    echo "Install zzxprofile auto done"
+    echo "Install auto done"
 
 }
 
