@@ -3,7 +3,7 @@
 SCRIPT_ROOT=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
 ZZSTUMPWM_ROOT=$(cd $SCRIPT_ROOT/.. && pwd)
 
-BIN_TARGET=/usr/bin
-sudo ln -sfv $ZZSTUMPWM_ROOT/bin/soundctl $BIN_TARGET
+BIN_TARGET=/usr/bin/sndctl
+sudo ln -sfvT $ZZSTUMPWM_ROOT/bin/sndctl $BIN_TARGET
 
-echo "setup $BIN_TARGET/soundctl done"
+echo "setup $BIN_TARGET done"
