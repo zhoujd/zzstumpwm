@@ -13,7 +13,7 @@ fi
 echo "[Desktop Entry]
 Name=Stumpwm
 Comment=Stumpwm window manager
-Exec=$SETUP_ROOT/start-wm.sh
+Exec=$SETUP_ROOT/zwm-session
 Icon=
 Type=Application
 DesktopNames=STUMPWM
