@@ -9,8 +9,8 @@ install_zwmrc() {
     ln -sfvT $ZZSTUMPWM_ROOT/misc/.zwmrc.d $HOME/.zwmrc.d
 }
 
-install_zwmrc_load() {
-    local target=/usr/bin/zwm-load
+install_zwm() {
+    local target=/usr/bin/zwm
     sudo tee $target <<EOF
 #!/bin/sh
 
@@ -24,6 +24,6 @@ EOF
 }
 
 install_zwmrc
-install_zwmrc_load
+install_zwm
 
 echo "zwmrc_setup done"
