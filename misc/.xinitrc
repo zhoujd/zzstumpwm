@@ -3,6 +3,9 @@
 # Here stumpwm is kept as default
 session=${1:-stumpwm}
 
+## Source zwmrc
+test -f ~/.zwmrc && . ~/.zwmrc
+
 case $session in
     stumpwm )
         exec sbcl --eval '(ql:quickload :stumpwm)' \
