@@ -1,0 +1,7 @@
+#!/bin/bash
+#set -x
+
+# run script
+for i in ~/.zwmrc.d/*.sh ; do
+    test -r "$i" && . "$i" >/dev/null 2>&1
+done

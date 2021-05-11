@@ -14,13 +14,13 @@ switch_xmodmap() {
 
 case "$1" in
     "on" )
-        switch_xmodmap $XMODMAP_ROOT/hyper.xmodmap
+        switch_xmodmap $XMODMAP_ROOT/hyper.Xmodmap
         ;;
     "off" )
-        switch_xmodmap $XMODMAP_ROOT/default.xmodmap
+        switch_xmodmap $XMODMAP_ROOT/default.Xmodmap
         ;;
     "laptop" )
-        switch_xmodmap $XMODMAP_ROOT/laptop.xmodmap
+        switch_xmodmap $XMODMAP_ROOT/laptop.Xmodmap
         ;;
     * )
         echo "Usage: $(basename $0) {on|off|laptop}"

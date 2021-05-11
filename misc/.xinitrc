@@ -3,9 +3,6 @@
 # Here stumpwm is kept as default
 session=${1:-stumpwm}
 
-# Run ~/zzstumpwm/xprofile-setup.sh
-test -f ~/.xprofile && . ~/.xprofile
-
 case $session in
     stumpwm )
         exec sbcl --eval '(ql:quickload :stumpwm)' \
