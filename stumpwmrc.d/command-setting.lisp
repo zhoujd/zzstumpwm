@@ -108,7 +108,10 @@ used for matching windows with run-or-raise or window placement-merules."
 ;; emacsclient
 (defcommand emacsclient () ()
   "emacsclient"
-  (run-shell-command "emacsclient -c -a emacs"))
+  (if (emacs-ds-exists)
+      (run-shell-command "emacsclient -c -a emacs")
+      (echo-string (current-screen) "No emacs daemon exist!")
+      ))
 
 ;; surf browser
 ;; arch: sudo pacman -S surf tabbed

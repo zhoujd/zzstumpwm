@@ -13,6 +13,10 @@
     (run-shell-command
      (concat command " " options " " (when background "&")))))
 
+(defun emacs-ds-exists ()
+  (let ((f "ps -e -o args | grep -E 'emacs --(fg-|)daemon' | wc -l"))
+    (< 0 (parse-integer (run-shell-command f t)))))
+
 (defun kill-ps-command (command)
   (format nil "kill -9 `ps -ef | grep ~S | grep -v grep | awk '{print $2}'`"
           command))
