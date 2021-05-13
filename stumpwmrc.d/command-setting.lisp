@@ -69,6 +69,8 @@
 (def-run-or-raise-command slingscold '(:title "Slingscold"))
 ;; jiandon-mobl
 (def-run-or-raise-command jiandon-mobl '(:title "jiandon-mobl"))
+;; ulauncher
+(def-run-or-raise-command ulauncher '(:title "Ulauncher"))
 
 ;; shell command
 (defcommand window-info () ()
