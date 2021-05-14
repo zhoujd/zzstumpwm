@@ -31,4 +31,4 @@ XTerm*selectToClipboard: true
 
 !! Chinese support
 XTerm*cjkWidth: true
-XTerm*faceNameDoublesize: WenQuanYi Zen Hei Mono Medium:antialias=True:pixelsize=18
+XTerm*faceNameDoublesize: WenQuanYi Zen Hei Mono:antialias=True:pixelsize=18
