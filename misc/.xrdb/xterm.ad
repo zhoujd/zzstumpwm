@@ -5,7 +5,7 @@ XTerm*locale: true
 XTerm*utf8Title: true
 
 XTerm*fontMenu*fontdefault*Label: Default
-XTerm*faceName: Consolas:antialias=True:pixelsize=18
+XTerm*faceName: WenQuanYi Zen Hei Mono Medium:antialias=True:pixelsize=18
 XTerm*faceSize: 12
 XTerm*faceSize1: 12
 XTerm*faceSize2: 12
@@ -31,4 +31,4 @@ XTerm*selectToClipboard: true
 
 !! Chinese support
 XTerm*cjkWidth: true
-XTerm*faceNameDoublesize: Microsoft YaHei Mono:antialias=True:pixelsize=18
+XTerm*faceNameDoublesize: WenQuanYi Zen Hei Mono Medium:antialias=True:pixelsize=18
