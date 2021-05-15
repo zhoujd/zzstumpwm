@@ -18,12 +18,12 @@
       (run-shell-command choice))))
 
 (defparameter *app-menu* '(("+INTERNET"
-                            ;; sub menu
+                            ;;sub menu
                             ("Firefox" "firefox")
                             ("Chrome" "google-chrome")
                             ("Teams" "teams"))
                            ("+FUN"
-                            ;; sub menu
+                            ;;sub menu
                             ("Xlogo" "xlogo")
                             ("GnuChess" "xboard"))
                            ("+WORK"
