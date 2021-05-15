@@ -243,7 +243,7 @@ used for matching windows with run-or-raise or window placement-merules."
 (defcommand wifi-menu () ()
   "wifi menu"
   (run-shell-command (format nil "~a"
-                             (merge-pathnames "bin/wifi-menu" *zz-load-directory*))))
+                             (merge-pathnames "libexec/rofi-wifi" *zz-load-directory*))))
 
 ;; run stumpish
 (defcommand stumpish () ()
