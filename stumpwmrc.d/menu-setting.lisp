@@ -32,4 +32,8 @@
                            ("+GRAPHICS"
                             ;;submenu
                             ("GIMP" "gimp"))
+                           ("+VPN"
+                            ;;submenu
+                            ("Connect VPN" "runvpn up")
+                            ("Disconnect VPN" "runvpn down"))
                            ("cherrytree" "cherrytree")))
