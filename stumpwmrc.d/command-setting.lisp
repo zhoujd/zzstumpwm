@@ -10,19 +10,19 @@
     (when cmd
       (stumpwm::eval-command cmd t))))
 
-;; urxvt prompt
-(defcommand urxvt-prompt (&optional (initial "")) (:rest)
-  "urxvt interactive command, done to keep"
-  (let ((cmd (read-one-line (current-screen) "> " :initial-input initial)))
+;; eval shell
+(defcommand eval-shell (&optional (initial "")) (:rest)
+  "shell interactive command, done to keep"
+  (let ((cmd (read-one-line (current-screen) "Shell> " :initial-input initial)))
     (when cmd
       (stumpwm::eval-command (format nil "exec urxvt -e bash -c '~a; bash -l'"
                             cmd)
                     t))))
 
-;; urxvt read
-(defcommand urxvt-read (&optional (initial "")) (:rest)
-  "urxvt interactive command, done to exit"
-  (let ((cmd (read-one-line (current-screen) "Eval> " :initial-input initial)))
+;; eval command
+(defcommand eval-command (&optional (initial "")) (:rest)
+  "shell interactive command, done to exit"
+  (let ((cmd (read-one-line (current-screen) "Cmd> " :initial-input initial)))
     (when cmd
       (stumpwm::eval-command (format nil "exec urxvt -e bash -c '~a; read'"
                             cmd)

@@ -18,8 +18,8 @@
   (kbd "8")             "exec libreoffice --impress"
   (kbd "9")             "intel-unite"
   (kbd "0")             "thunar"
-  (kbd "-")             "urxvt-read"
-  (kbd "=")             "urxvt-prompt"
+  (kbd "-")             "eval-command"
+  (kbd "=")             "eval-shell"
   (kbd "a")             "exec pavucontrol"
   (kbd "C-a")           (urxvt-command "alsamixer")
   (kbd "M-a")           (urxvt-command "alsamixer -c 1")
