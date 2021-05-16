@@ -116,18 +116,18 @@
 (apply-keys-to-map
  *input-map*
  (list
-  (kbd "C-m")           'input-submit
-  (kbd "C-h")           'input-delete-backward-char
-  (kbd "M-p")           'input-history-back
-  (kbd "M-n")           'input-history-forward
-  (kbd "C-i")           'input-complete-forward
+  (kbd "C-m")           'stumpwm::input-submit
+  (kbd "C-h")           'stumpwm::input-delete-backward-char
+  (kbd "M-p")           'stumpwm::input-history-back
+  (kbd "M-n")           'stumpwm::input-history-forward
+  (kbd "C-i")           'stumpwm::input-complete-forward
   ))
 
 ;; menu map
 (apply-keys-to-map
  stumpwm::*menu-map*
  (list
-  (kbd "C-h")           'menu-backspace
+  (kbd "C-h")           'stumpwm::menu-backspace
   (kbd "M-p")           'stumpwm::menu-scroll-up
   (kbd "M-n")           'stumpwm::menu-scroll-down
   ))
