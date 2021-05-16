@@ -33,7 +33,7 @@
   "shell interactive command, done to exit"
   (let ((cmd (read-one-line (current-screen) "Trans> " :initial-input initial)))
     (when cmd
-      (stumpwm::eval-command (format nil "exec urxvt -e bash -c 'trans ~a; read'"
+      (stumpwm::eval-command (format nil "exec urxvt -title 'trans' -e bash -c 'trans -no-warn ~a; read'"
                             cmd)
                     t))))
 
