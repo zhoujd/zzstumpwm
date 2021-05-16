@@ -32,6 +32,7 @@
   (kbd "s-s")       *zz-screen-map*
   (kbd "s-?")       *zz-help-map*
   (kbd "s-z")       *root-map*
+  (kbd "s-g")       *groups-map*
   ))
 
 (mapc
