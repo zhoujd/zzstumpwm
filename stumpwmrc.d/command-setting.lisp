@@ -28,6 +28,20 @@
                             cmd)
                     t))))
 
+;; trans command
+(defcommand trans-command (&optional (initial "")) (:rest)
+  "shell interactive command, done to exit"
+  (let ((cmd (read-one-line (current-screen) "Trans> " :initial-input initial)))
+    (when cmd
+      (stumpwm::eval-command (format nil "exec urxvt -e bash -c 'trans ~a; read'"
+                            cmd)
+                    t))))
+
+;; trans shell
+(defcommand trans-shell () ()
+  "run skippy-xd"
+  (run-shell-command "exec urxvt -title 'trans' -e bash -c 'trans -I'"))
+
 ;; webjumps q=query+goes+here
 (make-web-jump "google" "firefox https://www.google.com/search?q=")
 (make-web-jump "bing" "firefox https://www.bing.com/search?q=")
