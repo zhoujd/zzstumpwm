@@ -13,6 +13,8 @@ Install_hyper() {
 Install_xmodmap() {
     echo "Install .Xmodmap.d to $HOME"
     ln -sfvT $ZZSTUMPWM_ROOT/misc/.Xmodmap.d ~/.Xmodmap.d
+    echo "Install laptop as default .Xmodmap"
+    ln -sfvt ~/.Xmodmap.d/laptop.Xmodmap ~/.Xmodmap
 }
 
 Install_hyper
