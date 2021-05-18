@@ -48,3 +48,17 @@ http://lxlinux.com/uxlta.html
 ##Arandr can set-up placement, orientation and resolution for each monitor
 $ sudo apt install arandr
 ```
+
+4. Tiling Windows
+
+http://lxlinux.com/tile.html
+```
+$ wget http://lxlinux.com/winfuncs
+$ sudo chmod 755 /usr/local/bin/winfuncs
+$ sudo apt-get install wmctrl xdotool x11-utils
+$ winfuncs 'tile'
+$ winfuncs 'cascade'
+$ winfuncs 'tiletwo'
+$ winfuncs 'showdesktop'
+
+```
