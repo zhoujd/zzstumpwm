@@ -6,5 +6,5 @@
 (ignore-errors
   (require 'ttf-fonts)
   (or (and (xft:cache-fonts)
-           (set-font (make-instance 'xft:font :family "WenQuanYi Zen Hei Mono" :subfamily "Medium" :size 15)))
+           (set-font (make-instance 'xft:font :family "WenQuanYi Micro Hei Mono" :subfamily "Regular" :size 14)))
       (set-font "10x20")))
