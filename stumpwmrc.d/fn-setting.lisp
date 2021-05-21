@@ -82,6 +82,19 @@
   (kbd "s-C-0")     (getkey-top (kbd "s-C-F10"))
   (kbd "s-C--")     (getkey-top (kbd "s-C-F11"))
   (kbd "s-C-=")     (getkey-top (kbd "s-C-F12"))
+
+  (kbd "s-S-1")     (getkey-top (kbd "s-S-F1"))
+  (kbd "s-S-2")     (getkey-top (kbd "s-S-F2"))
+  (kbd "s-S-3")     (getkey-top (kbd "s-S-F3"))
+  (kbd "s-S-4")     (getkey-top (kbd "s-S-F4"))
+  (kbd "s-S-5")     (getkey-top (kbd "s-S-F5"))
+  (kbd "s-S-6")     (getkey-top (kbd "s-S-F6"))
+  (kbd "s-S-7")     (getkey-top (kbd "s-S-F7"))
+  (kbd "s-S-8")     (getkey-top (kbd "s-S-F8"))
+  (kbd "s-S-9")     (getkey-top (kbd "s-S-F9"))
+  (kbd "s-S-0")     (getkey-top (kbd "s-S-F10"))
+  (kbd "s-S--")     (getkey-top (kbd "s-S-F11"))
+  (kbd "s-S-=")     (getkey-top (kbd "s-S-F12"))
   ))
 
 (apply-keys-to-map
