@@ -31,8 +31,6 @@ rm -f ~/.xinitrc
 rm -f ~/.xsession
 ## Remove .tmux.conf
 rm -f ~/.tmux.conf
-## Remove .byobu
-rm -f ~/.byobu
 ## Remove .Xresources
 rm -f ~/.Xresources
 ## Remove .Xdefaults

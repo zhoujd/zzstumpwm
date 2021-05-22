@@ -31,9 +31,6 @@ ln -sfvT $CURRENT_DIR/misc/.nanorc ~/.nanorc
 ## Set tmux configure
 ln -sfvT $CURRENT_DIR/misc/.tmux.conf ~/.tmux.conf
 
-## Set byobu configure
-ln -sfvT $CURRENT_DIR/misc/.byobu ~/.byobu
-
 ## Set csh configure
 ln -sfvT $CURRENT_DIR/misc/.cshrc ~/.cshrc
 
