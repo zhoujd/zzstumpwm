@@ -124,8 +124,13 @@
  stumpwm::*menu-map*
  (list
   (kbd "C-h")           'stumpwm::menu-backspace
-  (kbd "M-p")           'stumpwm::menu-scroll-up
   (kbd "M-n")           'stumpwm::menu-scroll-down
+  (kbd "M-p")           'stumpwm::menu-scroll-up
+  (kbd "Tab")           'stumpwm::menu-down
+  (kbd "M-Tab")         'stumpwm::menu-up
+  (kbd "C-i")           'stumpwm::menu-down
+  (kbd "C-I")           'stumpwm::menu-up
+  (kbd "C-m")           'stumpwm::menu-finish
   ))
 
 ;; top map
