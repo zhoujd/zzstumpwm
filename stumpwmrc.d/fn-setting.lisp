@@ -3,25 +3,18 @@
 
 (in-package :zzwm)
 
-;; top map
+;; Floating Group: Left click/drag=>move, Right click/drag=>resize
 (apply-keys-to-map
  *top-map*
  (list
   (kbd "s-F1")      "gprint"
   (kbd "s-M-F1")    "gmove"
-  (kbd "s-C-F1")    "emacs"
   (kbd "s-F2")      "exec rofi -show run"
   (kbd "s-M-F2")    "exec rofi -show drun"
-  (kbd "s-C-F2")    "google-chrome"
   (kbd "s-F3")      "pull-hidden-other"
   (kbd "s-M-F3")    "gother"
-  (kbd "s-C-F3")    "teams"
   (kbd "s-F4")      "safe-kill"
   (kbd "s-M-F4")    "safe-gkill"
-  (kbd "s-C-F4")    "evolution"
-
-  ;; Floating Group Basics
-  ;; Left click/drag=>move, Right click/drag=>resize
   (kbd "s-F5")      "gnew f5"
   (kbd "s-M-F5")    "gnew-float f5-float"
   (kbd "s-F6")      "gnew f6"
@@ -30,7 +23,6 @@
   (kbd "s-M-F7")    "gnew-float f7-float"
   (kbd "s-F8")      "gnew f8"
   (kbd "s-M-F8")    "gnew-float f8-float"
-
   (kbd "s-F9")      "gnew Default"
   (kbd "s-M-F9")    "gselect"
   (kbd "s-F10")     "colon"
@@ -39,6 +31,21 @@
   (kbd "s-M-F11")   "gnew-float"
   (kbd "s-F12")     "lastmsg"
   (kbd "s-M-F12")   "echo-date"
+  ))
+
+(apply-keys-to-map
+ *top-map*
+ (list
+  (kbd "s-C-F1")    "emacs"
+  (kbd "s-C-F2")    "google-chrome"
+  (kbd "s-C-F3")    "teams"
+  (kbd "s-C-F4")    "evolution"
+  ))
+
+(apply-keys-to-map
+ *top-map*
+ (list
+  (kbd "s-S-F1")    "exec"
   ))
 
 (apply-keys-to-map
@@ -83,18 +90,18 @@
   (kbd "s-C--")     (getkey-top (kbd "s-C-F11"))
   (kbd "s-C-=")     (getkey-top (kbd "s-C-F12"))
 
-  (kbd "s-S-1")     (getkey-top (kbd "s-S-F1"))
-  (kbd "s-S-2")     (getkey-top (kbd "s-S-F2"))
-  (kbd "s-S-3")     (getkey-top (kbd "s-S-F3"))
-  (kbd "s-S-4")     (getkey-top (kbd "s-S-F4"))
-  (kbd "s-S-5")     (getkey-top (kbd "s-S-F5"))
-  (kbd "s-S-6")     (getkey-top (kbd "s-S-F6"))
-  (kbd "s-S-7")     (getkey-top (kbd "s-S-F7"))
-  (kbd "s-S-8")     (getkey-top (kbd "s-S-F8"))
-  (kbd "s-S-9")     (getkey-top (kbd "s-S-F9"))
-  (kbd "s-S-0")     (getkey-top (kbd "s-S-F10"))
-  (kbd "s-S--")     (getkey-top (kbd "s-S-F11"))
-  (kbd "s-S-=")     (getkey-top (kbd "s-S-F12"))
+  (kbd "s-!")       (getkey-top (kbd "s-S-F1"))
+  (kbd "s-@")       (getkey-top (kbd "s-S-F2"))
+  (kbd "s-#")       (getkey-top (kbd "s-S-F3"))
+  (kbd "s-$")       (getkey-top (kbd "s-S-F4"))
+  (kbd "s-%")       (getkey-top (kbd "s-S-F5"))
+  (kbd "s-^")       (getkey-top (kbd "s-S-F6"))
+  (kbd "s-&")       (getkey-top (kbd "s-S-F7"))
+  (kbd "s-*")       (getkey-top (kbd "s-S-F8"))
+  (kbd "s-(")       (getkey-top (kbd "s-S-F9"))
+  (kbd "s-)")       (getkey-top (kbd "s-S-F10"))
+  (kbd "s-_")       (getkey-top (kbd "s-S-F11"))
+  (kbd "s-+")       (getkey-top (kbd "s-S-F12"))
   ))
 
 (apply-keys-to-map
