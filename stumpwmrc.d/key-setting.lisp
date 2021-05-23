@@ -28,8 +28,6 @@
   (kbd "M-b")           "wikipedia"
   (kbd "c")             "urxvt"
   (kbd "C-c")           "exec urxvt"
-  (kbd "s-c")           "sakura"
-  (kbd "M-c")           "exec sakura"
   (kbd "d")             "deadbeef"
   (kbd "C-d")           "exec meld"
   (kbd "e")             "runemacs"
@@ -60,10 +58,9 @@
   (kbd "C-r")           (urxvt-command "ranger")
   (kbd "t")             "teams"
   (kbd "C-t")           (urxvt-command "tmux")
-  (kbd "M-t")           (urxvt-command "byobu")
-  (kbd "s")             "colon1 exec urxvt -e ssh "
-  (kbd "C-s")           (urxvt-command "speedpad")
-  (kbd "M-s")           "stumpish"
+  (kbd "s")             (urxvt-command "speedpad")
+  (kbd "C-s")           "stumpish"
+  (kbd "M-s")           "colon1 exec urxvt -e ssh "
   (kbd "u")             "intel-unite"
   (kbd "v")             (urxvt-command "vim")
   (kbd "C-v")           "exec virt-manager"

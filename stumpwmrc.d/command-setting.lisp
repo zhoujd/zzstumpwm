@@ -260,6 +260,7 @@ used for matching windows with run-or-raise or window placement-merules."
                              (merge-pathnames "libexec/rofi-wifi" *zz-load-directory*))))
 
 ;; run stumpish
+;; Ubuntu: sudo apt install rlwrap
 (defcommand stumpish () ()
   "run stumpish"
   (run-shell-command (format nil "urxvt -e ~a"
