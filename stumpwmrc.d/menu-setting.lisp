@@ -30,7 +30,7 @@
              (let ((selection (stumpwm::select-from-menu (current-screen) options "")))
                (cond
                  ((null selection)
-                  (throw 'stumpwm::error "Abort."))
+                  (throw 'stumpwm::error nil))
                  ((stringp (second selection))
                   (second selection))
                  (t
