@@ -60,7 +60,6 @@
   (kbd "C-t")           (urxvt-command "tmux")
   (kbd "s")             (urxvt-command "speedpad")
   (kbd "C-s")           "stumpish"
-  (kbd "M-s")           "colon1 exec urxvt -e ssh "
   (kbd "u")             "intel-unite"
   (kbd "v")             (urxvt-command "vim")
   (kbd "C-v")           "exec virt-manager"
