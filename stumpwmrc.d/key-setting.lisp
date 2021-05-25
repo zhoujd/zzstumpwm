@@ -194,6 +194,7 @@
   (kbd "s-M-e")         "emacsclient"
   (kbd "s-o")           "pull-hidden-other"
   (kbd "s-M-o")         "gother"
+  (kbd "s-p")           "screen-menu"
   (kbd "s-t")           "trans-shell"
   (kbd "s-M-t")         "trans-command"
   (kbd "s-q")           "ulauncher"
