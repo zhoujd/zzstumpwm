@@ -34,7 +34,7 @@ set listchars=tab:\^\ ,trail:.,extends:>,precedes:<,eol:$
 " Allow backspacing over everything in insert mode
 set bs=indent,eol,start
 
-if !has("win31")
+if !has("win32")
   " No scrollbar
   set guioptions-=l
   set guioptions-=L
