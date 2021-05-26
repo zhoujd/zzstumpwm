@@ -17,7 +17,7 @@ let &termencoding=&encoding
 
 " Font setting
 if has("gui_running")
-  if has("gui_gtk2")
+  if has("gui_gtk2") || has("gui_gtk3")
     set guifont=WenQuanYi\ Zen\ Hei\ Mono\ 15
   elseif has("gui_macvim")
     set guifont=Anonymous\ Pro\ Regular:h14
@@ -34,15 +34,17 @@ set listchars=tab:\^\ ,trail:.,extends:>,precedes:<,eol:$
 " Allow backspacing over everything in insert mode
 set bs=indent,eol,start
 
-" No scrollbar
-"set guioptions-=l
-"set guioptions-=L
-"set guioptions-=r
-"set guioptions-=R
+if !has("win31")
+  " No scrollbar
+  set guioptions-=l
+  set guioptions-=L
+  set guioptions-=r
+  set guioptions-=R
 
-" No menu toolbar
-"set guioptions-=m
-"set guioptions-=T
+  " No menu toolbar
+  set guioptions-=m
+  set guioptions-=T
+endif
 
 " Color scheme setting
 if has("gui_running")
@@ -79,7 +81,7 @@ if !has("gui_running")
   set noeb
 endif
 
-if has("gui_running")
+if has("win32") && has("gui_running")
   set number
   set lines=27 columns=108  
 endif
