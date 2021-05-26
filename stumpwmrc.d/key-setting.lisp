@@ -62,8 +62,8 @@
   (kbd "C-s")           "stumpish"
   (kbd "u")             "intel-unite"
   (kbd "v")             "gvim"
-  (kbd "C-v")           "exec virt-manager"
-  (kbd "M-v")           "exec virtualbox"
+  (kbd "C-v")           "exec gvim"
+  (kbd "M-v")           (urxvt-command "vim")
   (kbd "z")             "jiandon-mobl"
   (kbd "C-z")           "jiandon-mobl-1"
   ))
