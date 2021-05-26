@@ -61,7 +61,7 @@
   (kbd "s")             (urxvt-command "speedpad")
   (kbd "C-s")           "stumpish"
   (kbd "u")             "intel-unite"
-  (kbd "v")             (urxvt-command "vim")
+  (kbd "v")             "gvim"
   (kbd "C-v")           "exec virt-manager"
   (kbd "M-v")           "exec virtualbox"
   (kbd "z")             "jiandon-mobl"

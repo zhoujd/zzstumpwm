@@ -85,6 +85,8 @@
 (def-run-or-raise-command jiandon-mobl '(:title "jiandon-mobl"))
 ;; ulauncher
 (def-run-or-raise-command ulauncher '(:title "Ulauncher"))
+;; gvim
+(def-run-or-raise-command gvim '(:class "Gvim"))
 
 ;; shell command
 (defcommand window-info () ()
