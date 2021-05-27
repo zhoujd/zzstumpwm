@@ -18,7 +18,7 @@ let &termencoding=&encoding
 " Font setting
 if has("gui_running")
   if has("gui_gtk2") || has("gui_gtk3")
-    set guifont=WenQuanYi\ Zen\ Hei\ Mono\ 13
+    set guifont=WenQuanYi\ Zen\ Hei\ Mono\ 16
   elseif has("gui_macvim")
     set guifont=Anonymous\ Pro\ Regular:h12
   elseif has("gui_win32")
