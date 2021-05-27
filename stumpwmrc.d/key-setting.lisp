@@ -127,6 +127,8 @@
   (kbd "C-h")           'stumpwm::menu-backspace
   (kbd "M-n")           'stumpwm::menu-scroll-down
   (kbd "M-p")           'stumpwm::menu-scroll-up
+  (kbd "Tab")           'stumpwm::menu-down
+  (kbd "M-Tab")         'stumpwm::menu-up
   ))
 
 ;; top map
