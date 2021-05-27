@@ -46,7 +46,7 @@ URxvt.colorUL: #4682B4
 URxvt.keysym.Shift-Control-V: eval:paste_clipboard
 
 !! url-select
-URxvt.url-select.launcher: /usr/bin/firefox
+URxvt.url-select.launcher: firefox
 URxvt.url-select.underline: true
 
 !! keyboard-select ctrl+alt+[c|v]
@@ -55,7 +55,7 @@ URxvt.keysym.M-q: perl:keyboard-select:activate
 URxvt.keysym.M-s: perl:keyboard-select:search
 
 !! matcher
-URxvt.url-launcher:	/usr/bin/firefox
+URxvt.url-launcher: firefox
 URxvt.matcher.button: 1
 
 !! tabbedex 'ctrl+d' to close tab
