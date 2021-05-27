@@ -1,5 +1,6 @@
 !!!! urxvt.ad
 !! urxvt --help 2>&1 | sed -n '/:  /s/^ */! URxvt*/gp'
+!! urxvt -iconFile /usr/share/pixmaps/urxvt_48x48.svg
 
 !! general
 URxvt.intensityStyles: false
@@ -35,9 +36,6 @@ URxvt.boldFont: xft:WenQuanYi Zen Hei Mono:bold:size=15
 URxvt.italicFont: xft:WenQuanYi Zen Hei Mono:italic:size=15
 URxvt.boldItalicFont: xft:WenQuanYi Zen Hei Mono:bold:italic:size=15
 
-!! urxvt icon
-URxvt.iconFile: /usr/share/pixmaps/urxvt_48x48.svg
-
 !! Extensions
 URxvt.perl-ext-common: default,matcher,eval,resize-font,url-select,keyboard-select,tabbedex,selection-to-clipboard
 URxvt.colorUL: #4682B4
@@ -46,10 +44,10 @@ URxvt.colorUL: #4682B4
 URxvt.keysym.Shift-Control-V: eval:paste_clipboard
 
 !! resize-font
-!URxvt.keysym.C-minus:     resize-font:smaller
-!URxvt.keysym.C-plus:      resize-font:bigger
-!URxvt.keysym.C-equal:     resize-font:reset
-!URxvt.keysym.C-question:  resize-font:show
+URxvt.keysym.C-minus:     resize-font:smaller
+URxvt.keysym.C-plus:      resize-font:bigger
+URxvt.keysym.C-equal:     resize-font:reset
+URxvt.keysym.C-question:  resize-font:show
 
 !! url-select
 URxvt.url-select.launcher: firefox
