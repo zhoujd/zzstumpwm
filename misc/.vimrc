@@ -1,7 +1,7 @@
 "" .vimrc
 set nocompatible
 
-" OS(unix/win32) setting 
+" OS(unix/win32) setting
 if has("win32") && has("gui_running")
   source $VIMRUNTIME/vimrc_example.vim
   source $VIMRUNTIME/mswin.vim
@@ -83,7 +83,7 @@ endif
 
 if has("win32") && has("gui_running")
   set number
-  set lines=27 columns=108  
+  set lines=27 columns=108
 endif
 
 set history=1000
@@ -94,7 +94,7 @@ set gdefault
 
 " Status line setting
 set statusline=
-set statusline+=%f%m%r
+set statusline+=%F%m%r
 set statusline+=\ %y
 set statusline+=\ (%{&fileformat})
 set statusline+=\ (ascii=\%b,hex=\%B)
