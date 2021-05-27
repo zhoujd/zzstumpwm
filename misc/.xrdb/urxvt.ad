@@ -85,8 +85,8 @@ URxvt.keysym.C-8: perl:tabbedex:goto_tab_8
 URxvt.keysym.C-9: perl:tabbedex:goto_tab_9
 
 !! font-size
-URxvt.keysym.C-minus:     font-size:decglobal
-URxvt.keysym.C-equal:     font-size:incglobal
+URxvt.keysym.C-minus:     font-size:decrease
+URxvt.keysym.C-equal:     font-size:increase
 URxvt.keysym.C-0:         font-size:reset
 URxvt.keysym.C-question:  font-size:show
 
