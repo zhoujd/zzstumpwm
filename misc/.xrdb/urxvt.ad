@@ -37,17 +37,11 @@ URxvt.italicFont: xft:WenQuanYi Zen Hei Mono:italic:size=15
 URxvt.boldItalicFont: xft:WenQuanYi Zen Hei Mono:bold:italic:size=15
 
 !! Extensions
-URxvt.perl-ext-common: default,matcher,eval,resize-font,url-select,keyboard-select,tabbedex,selection-to-clipboard
+URxvt.perl-ext-common: default,matcher,eval,url-select,keyboard-select,tabbedex,selection-to-clipboard,font-size
 URxvt.colorUL: #4682B4
 
 !! eval
 URxvt.keysym.Shift-Control-V: eval:paste_clipboard
-
-!! resize-font
-URxvt.keysym.C-minus:     resize-font:smaller
-URxvt.keysym.C-plus:      resize-font:bigger
-URxvt.keysym.C-equal:     resize-font:reset
-URxvt.keysym.C-question:  resize-font:show
 
 !! url-select
 URxvt.url-select.launcher: firefox
@@ -89,7 +83,11 @@ URxvt.keysym.C-6: perl:tabbedex:goto_tab_6
 URxvt.keysym.C-7: perl:tabbedex:goto_tab_7
 URxvt.keysym.C-8: perl:tabbedex:goto_tab_8
 URxvt.keysym.C-9: perl:tabbedex:goto_tab_9
-URxvt.keysym.C-0: perl:tabbedex:goto_tab_10
+
+!! font-size
+!Ctrl++ to 'increase'
+!Ctrl+- to 'decrease'
+!Ctrl+0 to 'reset'
 
 !! ctrl/alt + arrow
 URxvt.keysym.M-Up:      \033[1;3A
