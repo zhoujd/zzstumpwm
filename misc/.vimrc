@@ -22,7 +22,7 @@ if has("gui_running")
   elseif has("gui_macvim")
     set guifont=Anonymous\ Pro\ Regular:h14
   elseif has("gui_win32")
-    set guifont=Consolas:h11:cANSI
+    set guifont=JetBrains\ Mono:h12:cANSI
   endif
 endif
 
