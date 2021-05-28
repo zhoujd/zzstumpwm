@@ -95,14 +95,18 @@ set gdefault
 
 " Status line setting
 set statusline=
-set statusline+=%F%m%r
+set statusline+=%f%m%r
 set statusline+=\ %y
 set statusline+=\ (%{&fileformat})
 set statusline+=\ (ascii=\%b,hex=\%B)
 set statusline+=\ (%l,%c)
 set statusline+=\ %p%%
 set statusline+=%=
-set statusline+=%{strftime(\"%a\ %b\ %d\ %l:%M\ %p\ %U\")}
+if has("win32")
+  set statusline+=%{strftime(\"%a\ %b\ %d\ %H:%M\ %U\")}
+else
+  set statusline+=%{strftime(\"%a\ %b\ %d\ %l:%M\ %p\ %U\")}
+endif
 
 set laststatus=2
 set cmdheight=1
