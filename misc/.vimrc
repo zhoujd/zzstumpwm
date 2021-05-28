@@ -18,11 +18,14 @@ let &termencoding=&encoding
 " Font setting
 if has("gui_running")
   if has("gui_gtk2") || has("gui_gtk3")
-    set guifont=WenQuanYi\ Zen\ Hei\ Mono\ 16
+    set guifont=JetBrains\ Mono\ 16
+    set guifontwide=Droid\ Sans\ Fallback\ 14
   elseif has("gui_macvim")
-    set guifont=Anonymous\ Pro\ Regular:h12
+    set guifont=SF\ Mono:h12
+    set guifontwide=Droid\ Sans\ Fallback:h14
   elseif has("gui_win32")
-    set guifont=JetBrains\ Mono:h12:cANSI
+    set guifont=Consolas:h12:cANSI
+    set guifontwide=Droid\ Sans\ Fallback:h14
   endif
 endif
 
