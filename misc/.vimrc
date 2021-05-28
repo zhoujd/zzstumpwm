@@ -22,10 +22,8 @@ if has("gui_running")
     set guifontwide=Droid\ Sans\ Fallback\ 14
   elseif has("gui_macvim")
     set guifont=SF\ Mono:h12
-    set guifontwide=Droid\ Sans\ Fallback:h14
   elseif has("gui_win32")
-    set guifont=Consolas:h12:cANSI
-    set guifontwide=Droid\ Sans\ Fallback:h14
+    set guifont=Microsoft\ YaHei\ Mono:h12
   endif
 endif
 
