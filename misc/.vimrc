@@ -104,7 +104,7 @@ set statusline+=\ (ascii=\%b,hex=\%B)
 set statusline+=\ (%l,%c)
 set statusline+=\ %p%%
 set statusline+=%=
-set statusline+=[%{strftime(\"%H:%M,%d/%m/%Y\")}]
+set statusline+=[%{strftime(\"%a\ %b\ %d\ %H:%M\ %p\ %U\")}]
 
 set laststatus=2
 set cmdheight=1
