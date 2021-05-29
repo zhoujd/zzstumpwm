@@ -28,6 +28,10 @@
       stumpwm::*float-window-title-height*   10
       stumpwm::*window-border-style*         :thin)
 
+;; time string
+(setf *time-modeline-string*       "%a %b %e %l:%M %P"
+      *time-format-string-default* "%a %b %e %l:%M %P")
+
 ;; mode line
 (setf *mode-line-background-color*  "black"
       *mode-line-foreground-color*  "lightgreen"
@@ -35,5 +39,5 @@
       *mode-line-border-width*      0
       *mode-line-pad-x*             0
       *mode-line-pad-y*             0
-      *mode-line-timeout*           60
+      *mode-line-timeout*           5
       *screen-mode-line-format*     (list "[^B%n^b]%W" "^> [" "^>%d]"))
