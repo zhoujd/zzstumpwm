@@ -31,10 +31,10 @@ URxvt.urgentOnBell: false
 URxvt.visualBell: true
 
 !! urxvt fonts
-URxvt.font: xft:WenQuanYi Zen Hei Mono:size=13
-URxvt.boldFont: xft:WenQuanYi Zen Hei Mono:bold:size=13
-URxvt.italicFont: xft:WenQuanYi Zen Hei Mono:italic:size=13
-URxvt.boldItalicFont: xft:WenQuanYi Zen Hei Mono:bold:italic:size=13
+URxvt.font: xft:WenQuanYi Zen Hei Mono:size=15
+URxvt.boldFont: xft:WenQuanYi Zen Hei Mono:bold:size=15
+URxvt.italicFont: xft:WenQuanYi Zen Hei Mono:italic:size=15
+URxvt.boldItalicFont: xft:WenQuanYi Zen Hei Mono:bold:italic:size=15
 
 !! Extensions
 URxvt.perl-ext-common: default,matcher,eval,url-select,keyboard-select,tabbedex,selection-to-clipboard,font-size
