@@ -32,6 +32,7 @@ URxvt.visualBell: true
 
 !! urxvt fonts
 URxvt.font: xft:WenQuanYi Zen Hei Mono:size=15
+URxvt.imFont: xft:WenQuanYi Zen Hei Mono:size=15
 URxvt.boldFont: xft:WenQuanYi Zen Hei Mono:bold:size=15
 URxvt.italicFont: xft:WenQuanYi Zen Hei Mono:italic:size=15
 URxvt.boldItalicFont: xft:WenQuanYi Zen Hei Mono:bold:italic:size=15
@@ -85,10 +86,10 @@ URxvt.keysym.C-8: perl:tabbedex:goto_tab_8
 URxvt.keysym.C-9: perl:tabbedex:goto_tab_9
 
 !! font-size
-URxvt.keysym.C-minus:     font-size:decrease
-URxvt.keysym.C-equal:     font-size:increase
-URxvt.keysym.C-0:         font-size:reset
-URxvt.keysym.C-question:  font-size:show
+URxvt.keysym.C-0:        font-size:reset
+URxvt.keysym.C-minus:    font-size:decrease
+URxvt.keysym.C-equal:    font-size:increase
+URxvt.keysym.C-question: font-size:show
 
 !! ctrl/alt + arrow
 URxvt.keysym.M-Up:      \033[1;3A
