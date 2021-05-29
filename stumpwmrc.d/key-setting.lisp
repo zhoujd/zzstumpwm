@@ -215,6 +215,7 @@
  *zz-screen-map*
  (list
   (kbd "d")             "toggle-root"
+  (kbd "f")             "fullscreen"
 
   (kbd "k")             "sprev"
   (kbd "j")             "snext"
