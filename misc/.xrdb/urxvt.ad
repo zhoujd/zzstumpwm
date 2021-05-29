@@ -32,7 +32,6 @@ URxvt.visualBell: true
 
 !! urxvt fonts
 URxvt.font: xft:WenQuanYi Zen Hei Mono:size=15
-URxvt.imFont: xft:WenQuanYi Zen Hei Mono:size=15
 URxvt.boldFont: xft:WenQuanYi Zen Hei Mono:bold:size=15
 URxvt.italicFont: xft:WenQuanYi Zen Hei Mono:italic:size=15
 URxvt.boldItalicFont: xft:WenQuanYi Zen Hei Mono:bold:italic:size=15
