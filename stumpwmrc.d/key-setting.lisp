@@ -217,6 +217,7 @@
  (list
   (kbd "d")             "toggle-root"
   (kbd "f")             "fullscreen"
+  (kbd "g")             "refresh"
 
   (kbd "k")             "sprev"
   (kbd "j")             "snext"
