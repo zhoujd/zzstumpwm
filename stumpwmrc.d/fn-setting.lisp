@@ -40,6 +40,7 @@
   (kbd "s-C-F2")    "google-chrome"
   (kbd "s-C-F3")    "teams"
   (kbd "s-C-F4")    "evolution"
+  (kbd "s-C-F9")    "urxvt"
   ))
 
 (apply-keys-to-map
