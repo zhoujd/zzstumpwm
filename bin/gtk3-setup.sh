@@ -11,8 +11,9 @@ install_user() {
     local target=~/.config/gtk-3.0/settings.ini
     tee $target <<EOF
 [Settings]
-gtk-theme-name = Yaru-Blue-dark
-gtk-icon-theme-name = Os-Catalina-Night
+gtk-theme-name=Yaru-Blue-dark
+gtk-icon-theme-name=Os-Catalina-Night
+gtk-font-name="Droid Sans Fallback 10"
 EOF
 }
 
