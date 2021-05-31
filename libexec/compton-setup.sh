@@ -8,7 +8,7 @@ Install_compton() {
     sudo apt install -y compton compton-conf
 
     echo "Install compton config"
-    ln -sfvT $ZZSTUMPWM_ROOT/misc/.config/compton.conf ~/.config/
+    ln -sfvT $ZZSTUMPWM_ROOT/misc/.config/compton.conf ~/.config/compton.conf
 }
 
 Install_compton
