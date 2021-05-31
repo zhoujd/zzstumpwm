@@ -64,7 +64,6 @@ Returns true when yes is selected"
   (list "xsetroot" :options "-cursor_name left_ptr -solid black -name root_window")
   (list "xautolock" :options "-time 15 -locker slock")
   (list "keynav")
-  (list "compton")
   (list "redshift")
   (list "nm-applet")
   (list "blueman-applet")
