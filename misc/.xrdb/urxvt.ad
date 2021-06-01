@@ -4,8 +4,11 @@
 
 !! general
 URxvt.intensityStyles: false
+
+!! transparency
 URxvt.background: [70]#000000
 URxvt.depth: 32
+
 URxvt.scrollBar: false
 URxvt.cursorColor: white
 
