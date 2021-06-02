@@ -61,10 +61,9 @@ Returns true when yes is selected"
      (apply #'start-command-ps cmd))
  (list
   (list "xset" :options "b off")
-  (list "xsetroot" :options "-cursor_name left_ptr")
+  (list "xsetroot" :options "-cursor_name left_ptr -solid black -name root_window")
   (list "xautolock" :options "-time 15 -locker slock")
   (list "keynav")
-  (list "compton")
   (list "redshift")
   (list "nm-applet")
   (list "blueman-applet")

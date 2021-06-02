@@ -22,6 +22,10 @@
                       ;;submenu
                       ("Connect VPN" "runvpn up")
                       ("Disconnect VPN" "runvpn down"))
+                     ("+Compton"
+                      ;;submenu
+                      ("ON" "compton")
+                      ("OFF" "killall compton"))
                      ("cherrytree" "cherrytree")))
 
 (defcommand app-menu () ()
