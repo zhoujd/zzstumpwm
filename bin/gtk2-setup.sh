@@ -7,12 +7,13 @@
 ## sudo apt install tango-icon-theme numix-icon-theme
 
 SCRIPT_ROOT=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
+ZZSTUMPWM_ROOT=$(cd $SCRIPT_ROOT/.. && pwd)
 
 install_gtkrc2() {
     echo "install gtkrc2"
     local target=~/.gtkrc-2.0
     rm -fv  $target
-    ln -sfvT $SCRIPT_ROOT/misc/.gtkrc-2.0 $target
+    ln -sfvT $ZZSTUMPWM_ROOT/misc/.gtkrc-2.0 $target
 }
 
 install_gtkrc2

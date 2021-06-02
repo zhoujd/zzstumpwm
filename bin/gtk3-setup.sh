@@ -1,6 +1,7 @@
 #!/bin/bash
 
 SCRIPT_ROOT=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
+ZZSTUMPWM_ROOT=$(cd $SCRIPT_ROOT/.. && pwd)
 
 ### Ubuntu 20.04 Yaru theme, icon and sound
 install_dep() {
@@ -11,7 +12,7 @@ install_dep() {
 install_user() {
     echo "Install gtk3 config to user"
     local target=~/.config/gtk-3.0/settings.ini
-    ln -sfvT $SCRIPT_ROOT/misc/.config/gtk-3.0/settings.ini $target
+    ln -sfvT $ZZSTUMPWM_ROOT/misc/.config/gtk-3.0/settings.ini $target
 }
 
 install_sys() {
