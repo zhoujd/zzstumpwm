@@ -3,30 +3,30 @@
 
 (in-package :zzwm)
 
-(defvar *app-menu* '(("+INTERNET"
-                      ;;sub menu
-                      ("Firefox" "firefox")
-                      ("Chrome" "google-chrome")
-                      ("Teams" "teams"))
-                     ("+FUN"
-                      ;;sub menu
-                      ("Xlogo" "xlogo")
-                      ("GnuChess" "xboard"))
-                     ("+WORK"
-                      ;;submenu
-                      ("libreoffice" "libreoffice"))
-                     ("+GRAPHICS"
-                      ;;submenu
-                      ("GIMP" "gimp"))
-                     ("+VPN"
-                      ;;submenu
-                      ("Connect VPN" "runvpn up")
-                      ("Disconnect VPN" "runvpn down"))
-                     ("+Compton"
-                      ;;submenu
-                      ("ON" "compton")
-                      ("OFF" "killall compton"))
-                     ("cherrytree" "cherrytree")))
+(defparameter *app-menu* '(("+INTERNET"
+                            ;;sub menu
+                            ("Firefox" "firefox")
+                            ("Chrome" "google-chrome")
+                            ("Teams" "teams"))
+                           ("+FUN"
+                            ;;sub menu
+                            ("Xlogo" "xlogo")
+                            ("GnuChess" "xboard"))
+                           ("+WORK"
+                            ;;submenu
+                            ("libreoffice" "libreoffice"))
+                           ("+GRAPHICS"
+                            ;;submenu
+                            ("GIMP" "gimp"))
+                           ("+VPN"
+                            ;;submenu
+                            ("Connect VPN" "runvpn up")
+                            ("Disconnect VPN" "runvpn down"))
+                           ("+COMPTON"
+                            ;;submenu
+                            ("On" "compton")
+                            ("Off" "killall compton"))
+                           ))
 
 (defcommand app-menu () ()
   "app menu"
