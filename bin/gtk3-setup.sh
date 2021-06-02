@@ -1,25 +1,21 @@
 #!/bin/bash
 
+SCRIPT_ROOT=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
+
 ### Ubuntu 20.04 Yaru theme, icon and sound
 install_dep() {
+    echo "Install deps"
     sudo apt install yaru-theme-gtk yaru-theme-icon yaru-theme-sound
 }
 
 install_user() {
     echo "Install gtk3 config to user"
-
     local target=~/.config/gtk-3.0/settings.ini
-    tee $target <<EOF
-[Settings]
-gtk-theme-name=Yaru-Blue-dark
-gtk-icon-theme-name=Os-Catalina-Night
-gtk-font-name="Droid Sans Fallback 10"
-EOF
+    ln -sfvT $SCRIPT_ROOT/misc/.config/gtk-3.0/settings.ini $target
 }
 
 install_sys() {
     echo "Install gtk3 config to $target"
-
     local target=/etc/gtk-3.0/settings.ini
     sudo sed -i 's/gtk-theme-name.*/gtk-theme-name = Yaru/' $target
     sudo sed -i 's/gtk-icon-theme-name.*/gtk-icon-theme-name = Yaru/' $target

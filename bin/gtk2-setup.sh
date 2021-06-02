@@ -6,14 +6,15 @@
 ## sudo pacman -Ss icon-theme
 ## sudo apt install tango-icon-theme numix-icon-theme
 
-rm -fv ~/.gtkrc-2.0
-tee ~/.gtkrc-2.0 <<EOF
-gtk-theme-name = "Yaru-Blue-dark"
-gtk-icon-theme-name = "Os-Catalina-Night"
-style "user-font"
-{
-    font_name="Droid Sans Fallback 10"
+SCRIPT_ROOT=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
+
+install_gtkrc2() {
+    echo "install gtkrc2"
+    local target=~/.gtkrc-2.0
+    rm -fv  $target
+    ln -sfvT $SCRIPT_ROOT/misc/.gtkrc-2.0 $target
 }
-widget_class "*" style "user-font"
-gtk-font-name="Droid Sans Fallback 10"
-EOF
+
+install_gtkrc2
+
+echo "gtk2 setup done"
