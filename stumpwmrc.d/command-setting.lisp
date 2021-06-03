@@ -292,42 +292,22 @@ used for matching windows with run-or-raise or window placement-merules."
 ;; pactl up
 (defcommand pactl-up () ()
   "pactl sound up"
-  (run-shell-command
-   (format nil "~a +10%"
-           "pacmd list-sinks | \
-            grep -oP 'index: \\d+' | \
-            awk '{ print $2 }' | \
-            xargs -I{} pactl set-sink-volume {}")))
+  (run-shell-command "pactl set-sink-volume @DEFAULT_SINK@ +10%"))
 
 ;; pactl down
 (defcommand pactl-down () ()
   "pactl sound down"
-  (run-shell-command
-   (format nil "~a -10%"
-           "pacmd list-sinks | \
-            grep -oP 'index: \\d+' | \
-            awk '{ print $2 }' | \
-            xargs -I{} pactl set-sink-volume {}")))
+  (run-shell-command "pactl set-sink-volume @DEFAULT_SINK@ -10%"))
 
 ;; pactl toggle
 (defcommand pactl-toggle () ()
   "pactl sound toggle"
-  (run-shell-command
-   (format nil "~a"
-           "pacmd list-sinks | \
-            grep -oP 'index: \\d+' | \
-            awk '{ print $2 }' | \
-            xargs -I{} pactl set-sink-mute {} toggle")))
+  (run-shell-command "pactl set-sink-mute @DEFAULT_SINK@ toggle"))
 
 ;; pactl mic toggle
 (defcommand pactl-mic-toggle () ()
   "pactl micphone toggle"
-  (run-shell-command
-   (format nil "~a"
-           "pacmd list-sources | \
-            grep -oP 'index: \\d+' | \
-            awk '{ print $2 }' | \
-            xargs -I{} pactl set-source-mute {} toggle")))
+  (run-shell-command "pactl set-source-mute @DEFAULT_SOURCE@ toggle"))
 
 ;; system action
 (defcommand system-action () ()
