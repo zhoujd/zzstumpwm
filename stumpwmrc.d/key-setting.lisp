@@ -229,7 +229,6 @@
   (kbd "r")             "resolution"
   (kbd "b")             "show-battery"
 
-  (kbd "0")             "bright-setup"
   (kbd "-")             "bright-down"
   (kbd "=")             "bright-up"
 

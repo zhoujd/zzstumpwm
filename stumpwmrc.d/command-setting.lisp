@@ -50,7 +50,6 @@
 ;; sudo command
 (define-sudo-command reboot "reboot")
 (define-sudo-command shutdown "shutdown -h now")
-(define-sudo-command bright-setup (concat *zz-load-directory* "libexec/brightness-setup.sh"))
 
 ;; run-or-raise
 ;; firefox quit: ctrl+q
@@ -283,13 +282,12 @@ used for matching windows with run-or-raise or window placement-merules."
 ;; brightness up
 (defcommand bright-up () ()
   "brightness up"
-  (run-shell-command (format nil "~a +5"
-                             (merge-pathnames "libexec/brightness.sh" *zz-load-directory*))))
+  (run-shell-command (format nil "ybacklight -inc 5")))
+
 ;; brightness down
 (defcommand bright-down () ()
   "brightness down"
-  (run-shell-command (format nil "~a -5"
-                             (merge-pathnames "libexec/brightness.sh" *zz-load-directory*))))
+  (run-shell-command (format nil "ybacklight -dec 5")))
 
 ;; pactl up
 (defcommand pactl-up () ()
