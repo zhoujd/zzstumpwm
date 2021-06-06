@@ -36,7 +36,7 @@
   (kbd "M-e")           "emacsclient"
   (kbd "f")             "firefox"
   (kbd "C-f")           "exec firefox"
-  (kbd "M-f")           "colon1 exec firefox http://www."
+  (kbd "M-f")           "colon exec firefox http://www."
   (kbd "g")             "google-chrome"
   (kbd "M-g")           "exec google-chrome"
   (kbd "h")             "thunar"

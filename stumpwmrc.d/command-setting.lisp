@@ -3,13 +3,6 @@
 
 (in-package :zzwm)
 
-;; prompt the user for an interactive command.
-(defcommand colon1 (&optional (initial "")) (:rest)
-  "interactive command"
-  (let ((cmd (read-one-line (current-screen) ": " :initial-input initial)))
-    (when cmd
-      (stumpwm::eval-command cmd t))))
-
 ;; eval shell
 (defcommand eval-shell (&optional (initial "")) (:rest)
   "shell interactive command, done to keep"

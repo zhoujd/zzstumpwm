@@ -47,7 +47,7 @@
  *top-map*
  (list
   (kbd "s-S-F1")    "exec"
-  (kbd "s-S-F2")    "colon1 exec urxvt -e ssh "
+  (kbd "s-S-F2")    "colon exec urxvt -e ssh "
   ))
 
 (apply-keys-to-map
