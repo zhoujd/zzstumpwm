@@ -13,17 +13,8 @@ fi
 echo "[Desktop Entry]
 Name=Stumpwm
 Comment=Stumpwm window manager
-Exec=$SETUP_ROOT/zwm-session 1
+Exec=$SETUP_ROOT/zwm-session
 Icon=
 Type=Application
 DesktopNames=STUMPWM
 " > /usr/share/xsessions/stumpwm.desktop
-
-echo "[Desktop Entry]
-Name=clfswm
-Comment=clfswm window manager
-Exec=$SETUP_ROOT/zwm-session 2
-Icon=
-Type=Application
-DesktopNames=CLFSWM
-" > /usr/share/xsessions/clfswm.desktop

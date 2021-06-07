@@ -7,7 +7,7 @@ echo "1:stumpwm"
 echo "2:clfswm"
 
 ## Here stumpwm is kept as default
-WM_SELECT=${1:-2}
+WM_SELECT=${1:-1}
 
 ## Source zwmrc
 test -f ~/.zwmrc && . ~/.zwmrc
