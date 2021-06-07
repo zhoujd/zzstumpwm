@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ## run as root:
-#sudo ./zwm-setup.sh
+#sudo ./zwm-dm-setup.sh
 
 SETUP_ROOT=`pwd`
 
