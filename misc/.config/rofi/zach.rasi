@@ -55,7 +55,7 @@ configuration {
     // Bold, Italic, Underline
     highlight:        underline bold #ffffff;
 
-    transparent:      rgba(0,0,0,0);
+    transparent:      rgba(0,0,0,0.9);
     font:             "Anonymous Pro 14";
 }
 
