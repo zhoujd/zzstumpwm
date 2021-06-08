@@ -20,4 +20,4 @@ MAGIC=-5
 FIELDS=SSID,SECURITY,BARS
 
 #font
-FONT="Anonymous Pro 14"
+FONT="WenQuanYi Zen Hei Mono 15"
