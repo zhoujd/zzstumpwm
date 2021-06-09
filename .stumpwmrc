@@ -2,10 +2,9 @@
 ;;
 
 (defpackage :zzwm
-  (:use
-   :common-lisp
-   :stumpwm
-   :stumpwm-user))
+  (:use :common-lisp
+        :stumpwm
+        :stumpwm-user))
 
 (in-package :zzwm)
 
