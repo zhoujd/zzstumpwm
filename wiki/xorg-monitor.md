@@ -1,7 +1,7 @@
 xorg monitor
 ============
 
-1. Monitor Setting add to ~/.xinitrc
+## Monitor Setting add to ~/.xinitrc
 
 ```
 $ cvt 1680 1050
@@ -14,7 +14,7 @@ $ xrandr --output DP-1 --off
 $ xrandr --output DP-1 --auto --output DP-2 --off
 ```
 
-2. Permanently adding undetected resolutions
+## Permanently adding undetected resolutions
 
 Ubuntu: /usr/share/X11/xorg.conf.d/10-monitor.conf
 Arch: /etc/X11/xorg.conf.d/10-monitor.conf
@@ -40,18 +40,18 @@ Section "Device"
 EndSection
 ```
 
-3. Dual Monitors
-
+## Dual Monitors
 http://lxlinux.com/index.html
 http://lxlinux.com/uxlta.html
+
 ```
 ##Arandr can set-up placement, orientation and resolution for each monitor
 $ sudo apt install arandr
 ```
 
-4. Tiling Windows
-
+## Tiling Windows
 http://lxlinux.com/tile.html
+
 ```
 $ wget http://lxlinux.com/winfuncs
 $ sudo chmod 755 /usr/local/bin/winfuncs

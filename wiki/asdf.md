@@ -1,7 +1,7 @@
 asdf configure
 ==============
 
-1. Default Installation Paths
+## Default Installation Paths
 
     > No need to configure if you use defaults
       ~/.local/share/common-lisp/source/
@@ -9,7 +9,7 @@ asdf configure
       /usr/share/common-lisp/source/
     > FASLs under ~/.cache/common-lisp/
 
-2. Source Registry, via config file
+## Source Registry, via config file
 
     > ~/.config/common-lisp/source-registry.conf
       (:source-registry
@@ -18,16 +18,16 @@ asdf configure
        :inherit-configuration)
     > Unlike ASDF 1, forgiving of no final /
 
-3. Source Registry, via modular config file
+## Source Registry, via modular config file
 
     > ~/.config/common-lisp/source-registry.conf.d/my.conf
       (:directory "/myapp/src")
 
-4. Source Registry, via environment
+## Source Registry, via environment
 
     export CL_SOURCE_REGISTRY=/myapp/src/:/home/tunes/cl//:
 
-5. Source Registry, via Lisp evaluation
+## Source Registry, via Lisp evaluation
 
     (asdf:initialize-source-registry
         `(:source-registry
@@ -35,7 +35,7 @@ asdf configure
             (:tree ,librootdir)
             :inherit-configuration))
 
-6. Old Style central registry
+## Old Style central registry
 
     > (pushnew #p"/myapp/src/" asdf:*central-registry* :test 'equal)
     > Catch: ASDF 1 was unforgiving if you forgot the trailing /
