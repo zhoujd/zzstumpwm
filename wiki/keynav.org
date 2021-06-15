@@ -13,6 +13,7 @@ sudo apt install keynav
 
 * Default configuration
 
+#+BEGIN_SRC
 clear
 ctrl+semicolon start
 Escape end
@@ -54,9 +55,11 @@ ctrl+y cut-left,cut-up
 ctrl+u cut-right,cut-up
 ctrl+b cut-left,cut-down
 ctrl+n cut-right,cut-down
+#+END_SRC
 
 * Usage
 
+#+BEGIN_SRC
 h : select the left half of the region
 j : select the bottom half of the region
 k : select the top half of the region
@@ -72,3 +75,4 @@ escape : Cancel the move
 Configuration file
 ~/.keynavrc or /usr/share/doc/keynav/keynavrc
 space warp,click 1,end
+#+END_SRC
