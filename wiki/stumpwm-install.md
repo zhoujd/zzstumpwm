@@ -58,7 +58,7 @@ Stumpwm
 
 ## Put the StumpWM binary path into your .xinit and have fun! :)
 
-# Optional: Install slime/swank for nonstop real-time hacking:
+# Optional: Install slime/swank for nonstop real-time hacking
 ## Install swank server
 
      - (ql:quickload "swank")
