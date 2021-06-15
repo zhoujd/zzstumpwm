@@ -1,17 +1,17 @@
 #+title keynav - retire your mouse
 
-* Project URL
+** Project URL
 
 https://www.semicomplete.com/projects/keynav/
 https://github.com/jordansissel/keynav/blob/master/keynav.pod
 
-* On Ubuntu
+** On Ubuntu
 
 #+BEGIN_SRC sh
 sudo apt install keynav
 #+END_SRC
 
-* Default configuration
+** Default configuration
 
 #+BEGIN_SRC
 clear
@@ -57,7 +57,7 @@ ctrl+b cut-left,cut-down
 ctrl+n cut-right,cut-down
 #+END_SRC
 
-* Usage
+** Usage
 
 #+BEGIN_SRC
 h : select the left half of the region
