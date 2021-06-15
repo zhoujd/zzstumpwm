@@ -2,8 +2,8 @@
 
 ** Project URL
 
-https://www.semicomplete.com/projects/keynav/
-https://github.com/jordansissel/keynav/blob/master/keynav.pod
+- https://www.semicomplete.com/projects/keynav/
+- https://github.com/jordansissel/keynav/blob/master/keynav.pod
 
 ** On Ubuntu
 
