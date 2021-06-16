@@ -62,7 +62,6 @@ Returns true when yes is selected"
  (list
   (list "xset" :options "b off")
   (list "xsetroot" :options "-cursor_name left_ptr")
-  (list "xautolock" :options "-time 15 -locker slock")
   (list "nitrogen" :options "--restore")
   (list "compton")
   (list "keynav")

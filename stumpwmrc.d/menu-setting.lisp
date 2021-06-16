@@ -22,10 +22,15 @@
                             ;;submenu
                             ("Connect VPN" "runvpn up")
                             ("Disconnect VPN" "runvpn down"))
-                           ("+COMPTON"
-                            ;;submenu
-                            ("On" "compton")
-                            ("Off" "killall compton"))
+                           ("+SYSTEM"
+                            ("+compton"
+                             ;;submenu
+                             ("On" "compton")
+                             ("Off" "killall compton"))
+                            ("+xautolock"
+                             ;;submenu
+                             ("On" "xautolock -time 15 -locker slock")
+                             ("Off" "killall xautolock")))
                            ))
 
 (defcommand app-menu () ()
