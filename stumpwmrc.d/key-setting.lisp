@@ -277,6 +277,7 @@
 
   (kbd "Tab")           "capslock-toggle"
   (kbd "'")             "keymap-menu"
+  (kbd "l")             "locate-menu"
   (kbd "t")             "tmux-menu"
   (kbd "w")             "wifi-menu"
   ))
