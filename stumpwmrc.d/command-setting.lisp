@@ -234,15 +234,15 @@ used for matching windows with run-or-raise or window placement-merules."
         (output "xrandr | grep primary | awk '{print $1}'"))
     (run-shell-command (format nil "xrandr --output `~a` ~a" output choice))))
 
-;; key layout select
-(defcommand key-layout () ()
-  "select key layout for stumpwm"
+;; keymap menu
+(defcommand keymap-menu () ()
+  "keymap menu"
   (let* ((choice (cadr (select-from-menu
-                       (current-screen)
-                       '(("default" "default.xmodmap")
-                         ("hyper"   "hyper.xmodmap")
-                         ("laptop"  "laptop.xmodmap"))
-                       "Select keyboard layout")))
+                        (current-screen)
+                        '(("default" "default.xmodmap")
+                          ("hyper"   "hyper.xmodmap")
+                          ("laptop"  "laptop.xmodmap"))
+                        "Select keyboard layout")))
          (config (merge-pathnames
                   (concat "misc/.xmodmap/" choice) *zz-load-directory*)))
     (run-shell-command "setcapslock off")
@@ -253,6 +253,12 @@ used for matching windows with run-or-raise or window placement-merules."
   "wifi menu"
   (run-shell-command (format nil "~a"
                              (merge-pathnames "libexec/rofi-wifi" *zz-load-directory*))))
+
+;; tmux menu
+(defcommand tmux-menu () ()
+  "tmux menu"
+  (run-shell-command (format nil "~a"
+                             (merge-pathnames "libexec/tmux-session" *zz-load-directory*))))
 
 ;; screen menu
 (defcommand screen-menu () ()

@@ -275,8 +275,9 @@
   (kbd "C-p")           (getkey-top (kbd "s-C-Up"))
   (kbd "C-n")           (getkey-top (kbd "s-C-Down"))
 
-  (kbd "'")             "key-layout"
   (kbd "Tab")           "capslock-toggle"
+  (kbd "'")             "keymap-menu"
+  (kbd "t")             "tmux-menu"
   (kbd "w")             "wifi-menu"
   ))
 
