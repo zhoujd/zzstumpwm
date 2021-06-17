@@ -414,3 +414,8 @@ used for matching windows with run-or-raise or window placement-merules."
   (if (probe-file *zz-group-file*)
       (stumpwm::restore-from-file *zz-group-file*)
       (message "This no is ~a." *zz-group-file*)))
+
+;; htop
+(defcommand htop () ()
+  "htop for process management"
+  (run-shell-command (urxvt-command "htop")))
