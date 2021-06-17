@@ -1,6 +1,8 @@
 #!/bin/bash
 
+##https://wiki.archlinux.org/title/Default_applications
+
 cmd=$(locate home system zach opt | rofi -threads 0  -dmenu -i -p "locate: ")
 if [ -n "$cmd" ]; then
-    xdg-open "$cmd"
+    mimeopen -n "$cmd"
 fi
