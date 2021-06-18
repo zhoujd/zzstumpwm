@@ -77,7 +77,7 @@
 ;; jiandon-mobl
 (def-run-or-raise-command jiandon-mobl '(:title "jiandon-mobl"))
 ;; ulauncher
-(def-run-or-raise-command ulauncher '(:title "Ulauncher"))
+(def-run-or-raise-command albert '(:title "Albert"))
 ;; gvim
 (def-run-or-raise-command gvim '(:class "Gvim"))
 

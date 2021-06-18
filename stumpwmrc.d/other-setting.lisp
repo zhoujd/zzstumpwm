@@ -66,6 +66,7 @@ Returns true when yes is selected"
   (list "compton")
   (list "keynav")
   (list "redshift")
+  (list "albert")
   (list "nm-applet")
   (list "blueman-applet")
   ))

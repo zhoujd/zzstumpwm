@@ -200,7 +200,7 @@
   (kbd "s-p")           "screen-menu"
   (kbd "s-t")           "trans-shell"
   (kbd "s-M-t")         "trans-command"
-  (kbd "s-q")           "ulauncher"
+  (kbd "s-q")           "albert"
   (kbd "s-M-q")         "slingscold"
   (kbd "s-M-z")         "jiandon-mobl"
   ))
