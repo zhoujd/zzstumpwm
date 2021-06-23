@@ -279,6 +279,7 @@
   (kbd "'")             "keymap-menu"
   (kbd "h")             "htop"
   (kbd "l")             "locate-menu"
+  (kbd "s")             "search-menu"
   (kbd "t")             "tmux-menu"
   (kbd "w")             "wifi-menu"
   ))

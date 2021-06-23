@@ -267,6 +267,12 @@ used for matching windows with run-or-raise or window placement-merules."
   (run-shell-command (format nil "~a"
                              (merge-pathnames "libexec/rofi-locate" *zz-load-directory*))))
 
+;; search menu
+(defcommand search-menu () ()
+  "search menu"
+  (run-shell-command (format nil "~a"
+                             (merge-pathnames "libexec/rofi-search" *zz-load-directory*))))
+
 ;; run stumpish
 ;; Ubuntu: sudo apt install rlwrap
 (defcommand stumpish () ()
