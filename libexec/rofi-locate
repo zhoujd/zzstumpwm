@@ -2,7 +2,7 @@
 
 ##https://wiki.archlinux.org/title/Default_applications
 
-cmd=$(locate home system zach opt | rofi -threads 0  -dmenu -i -p "locate: ")
+cmd=$(locate home system zach opt | rofi -threads 0  -dmenu -i -p "locate:")
 if [ -n "$cmd" ]; then
     mimeopen -n "$cmd"
 fi

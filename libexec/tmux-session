@@ -4,7 +4,7 @@ tmux_sessions() {
     tmux list-session -F '#S'
 }
 
-TMUX_SESSION=$((echo new; tmux_sessions) | rofi -dmenu -p "tmux session: ")
+TMUX_SESSION=$((echo new; tmux_sessions) | rofi -dmenu -p "Tmux Session:")
 
 if [[ x"new" = x"${TMUX_SESSION}" ]]; then
     rofi-sensible-terminal -e tmux new-session &
