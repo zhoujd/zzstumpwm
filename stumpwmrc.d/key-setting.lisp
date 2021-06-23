@@ -276,7 +276,7 @@
   (kbd "C-n")           (getkey-top (kbd "s-C-Down"))
 
   (kbd "Tab")           "capslock-toggle"
-  (kbd "'")             "keymap-menu"
+  (kbd "k")             "keymap-menu"
   (kbd "l")             "locate-menu"
   (kbd "s")             "search-menu"
   (kbd "p")             "proc-menu"
