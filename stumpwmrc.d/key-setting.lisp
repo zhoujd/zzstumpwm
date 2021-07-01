@@ -30,6 +30,7 @@
   (kbd "C-c")           "exec urxvt"
   (kbd "d")             "deadbeef"
   (kbd "C-d")           "exec meld"
+  (kbd "M-d")           "drawio"
   (kbd "e")             "runemacs"
   (kbd "s-e")           "emacs"
   (kbd "C-e")           "exec emacs"

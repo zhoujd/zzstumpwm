@@ -80,6 +80,8 @@
 (def-run-or-raise-command albert '(:title "albert"))
 ;; gvim
 (def-run-or-raise-command gvim '(:class "Gvim"))
+;; draw.io
+(def-run-or-raise-command drawio '(:class "draw.io"))
 
 ;; shell command
 (defcommand window-info () ()
