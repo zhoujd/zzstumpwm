@@ -25,7 +25,7 @@ asdf configure
 
 ## Source Registry, via environment
 
-    export CL_SOURCE_REGISTRY=/myapp/src/:/home/tunes/cl//:
+    export CL_SOURCE_REGISTRY=/myapp/src/:$HOME/common-lisp
 
 ## Source Registry, via Lisp evaluation
 
@@ -39,10 +39,10 @@ asdf configure
 
     > (pushnew #p"/myapp/src/" asdf:*central-registry* :test 'equal)
     > Catch: ASDF 1 was unforgiving if you forgot the trailing /
-    > Magic: argument actually evaluated.
+    > Magic: argument actually evaluated
     > ASDF 2 has asdf::getenv, now uiop:getenv
-    > No portable place to do it with ASDF 1.
-        > e.g. ~/.sbclrc on SBCL.
+    > No portable place to do it with ASDF 1
+        > e.g. ~/.sbclrc on SBCL
     > source-registry can be configured in a decentralized way
         > Each can specify what he knows,
         > none need specify what he doesn't

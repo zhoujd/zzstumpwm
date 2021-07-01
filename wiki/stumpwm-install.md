@@ -4,7 +4,7 @@ Stumpwm
 # Install SBCL and Quicklisp
     With SBCL (recommended, will run faster)
     With Quicklisp (recommended)
-    Warning: Only use root to install SBCL and, if you want to, run "make install".
+    Warning: Only use root to install SBCL and, if you want to, run "make install"
     - https://wiki.archlinux.org/index.php/Stumpwm
 
 ## Install SBCL

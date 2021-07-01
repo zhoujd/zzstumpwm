@@ -1,7 +1,7 @@
 Remote access windows
 =====================
 
-## Open Windows remote desktop access, and make sure "Terminal Services" started.
+## Open Windows remote desktop access, and make sure "Terminal Services" started
 
     Default port:3389
     HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Terminal Server\Wds\rdpwd\Tds\tcp

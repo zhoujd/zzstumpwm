@@ -12,5 +12,5 @@ Camera
     mc                     53248  5 videodev,snd_usb_audio,videobuf2_v4l2,uvcvideo,videobuf2_common
 
     $ sudo nano /etc/modprobe.d/blacklist.conf
-    ##Disable webcam.
+    ##Disable webcam
     blacklist uvcvideo
