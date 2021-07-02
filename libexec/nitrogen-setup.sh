@@ -9,7 +9,10 @@ Install_nitrogen() {
 }
 
 Init_nitrogen() {
-    echo "Run 'nitrogen <directory>' to init"
+    echo "
+Pleae Run 'nitrogen <directory>' to init
+$ nitrogen ~/zzstumpwm/misc/.wallpaper/
+"
 }
 
 Install_nitrogen
