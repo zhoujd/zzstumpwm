@@ -55,6 +55,9 @@ Returns true when yes is selected"
                        (aref alphabet (random (length alphabet))))
               string)))
 
+(defun rat-click (num)
+  (format nil "exec xdotool click ~a" num))
+
 ;; startup run commands
 (mapc
  #'(lambda (cmd)

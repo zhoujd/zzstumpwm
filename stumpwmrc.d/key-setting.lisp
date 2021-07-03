@@ -261,11 +261,11 @@
 (apply-keys-to-map
  *zz-c-map*
  (list
-  (kbd "1")             "exec xdotool click 1"   ;;left
-  (kbd "2")             "exec xdotool click 2"   ;;middle
-  (kbd "3")             "exec xdotool click 3"   ;;right
-  (kbd "4")             "exec xdotool click 4"   ;;wheel up
-  (kbd "5")             "exec xdotool click 5"   ;;whell down
+  (kbd "1")             (rat-click 1)   ;;left
+  (kbd "2")             (rat-click 2)   ;;middle
+  (kbd "3")             (rat-click 3)   ;;right
+  (kbd "4")             (rat-click 4)   ;;wheel up
+  (kbd "5")             (rat-click 5)   ;;whell down
 
   (kbd "b")             (getkey-top (kbd "s-Left"))
   (kbd "f")             (getkey-top (kbd "s-Right"))
