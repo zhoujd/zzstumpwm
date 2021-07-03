@@ -7,6 +7,8 @@
                             ("Firefox" "firefox")
                             ("Chrome" "google-chrome")
                             ("Teams" "teams"))
+                           ("+VIRTUAL"
+                            ("Virtualbox" "virtualbox"))
                            ("+FUN"
                             ("Xlogo" "xlogo")
                             ("GnuChess" "xboard"))
@@ -27,15 +29,27 @@
                            ))
 
 (defcommand app-menu () ()
-  "app menu"
-  (labels ((pick (options)
-             (let ((selection (stumpwm::select-from-menu (current-screen) options "")))
-               (cond
-                 ((null selection)
-                  (throw 'stumpwm::error :abort))
-                 ((stringp (second selection))
-                  (second selection))
-                 (t
-                  (pick (cdr selection)))))))
-    (let ((choice (pick *app-menu*)))
-      (run-shell-command choice))))
+  "Show the application menu"
+  (labels
+      ((pick (options)
+         (let ((selection
+                 (select-from-menu
+                  (current-screen) ; screen
+                  options          ; table
+                  nil              ; prompt
+                  0                ; initial-selection
+                  )))
+           (cond
+             ((null selection)
+              nil)
+             ((stringp (second selection))
+              (run-shell-command (second selection)))
+             ((and (symbolp (second selection))
+                  (commandp (second selection)))
+              (funcall (second selection)))
+             (t
+              (if (equalp ".." (first selection))
+                  (pick (second selection))
+                  (pick (append (list (list ".." options))
+                                (cdr selection)))))))))
+    (pick *app-menu*)))
