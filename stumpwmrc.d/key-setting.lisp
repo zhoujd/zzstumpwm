@@ -261,6 +261,10 @@
 (apply-keys-to-map
  *zz-c-map*
  (list
+  (kbd "1")             "exec xdotool click 1"
+  (kbd "2")             "exec xdotool click 2"
+  (kbd "3")             "exec xdotool click 3"
+
   (kbd "b")             (getkey-top (kbd "s-Left"))
   (kbd "f")             (getkey-top (kbd "s-Right"))
   (kbd "p")             (getkey-top (kbd "s-Up"))
