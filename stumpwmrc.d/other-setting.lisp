@@ -55,6 +55,12 @@ Returns true when yes is selected"
                        (aref alphabet (random (length alphabet))))
               string)))
 
+;; simulate mouse clicks
+;; 1 – Left click
+;; 2 – Middle click
+;; 3 – Right click
+;; 4 – Scroll wheel up
+;; 5 – Scroll wheel down
 (defun rat-click (num)
   (format nil "exec xdotool click ~a" num))
 
