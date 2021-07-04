@@ -8,7 +8,8 @@
                             ("Chrome" "google-chrome")
                             ("Teams" "teams"))
                            ("+VIRTUAL"
-                            ("Virtualbox" "virtualbox"))
+                            ("Virtualbox" "virtualbox")
+                            ("KVM" "virt-manager"))
                            ("+FUN"
                             ("Xlogo" "xlogo")
                             ("GnuChess" "xboard"))
