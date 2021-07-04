@@ -9,7 +9,7 @@
                             ("Teams" "teams"))
                            ("+VIRTUAL"
                             ("Virtualbox" "virtualbox")
-                            ("KVM" "virt-manager"))
+                            ("Virt-Manager" "virt-manager"))
                            ("+FUN"
                             ("Xlogo" "xlogo")
                             ("GnuChess" "xboard"))
