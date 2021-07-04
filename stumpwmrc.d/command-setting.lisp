@@ -419,6 +419,6 @@ used for matching windows with run-or-raise or window placement-merules."
       (message "This no is ~a." *zz-group-file*)))
 
 ;; process menu
-(defcommand proc-menu () ()
+(defcommand htop-menu () ()
   "process menu"
   (run-shell-command (urxvt-command "htop")))

@@ -286,7 +286,7 @@
   (kbd "k")             "keymap-menu"
   (kbd "l")             "locate-menu"
   (kbd "s")             "search-menu"
-  (kbd "p")             "proc-menu"
+  (kbd "h")             "htop-menu"
   (kbd "t")             "tmux-menu"
   (kbd "w")             "wifi-menu"
   ))
