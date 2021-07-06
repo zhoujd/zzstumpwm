@@ -84,6 +84,8 @@
 (def-run-or-raise-command drawio '(:class "draw.io"))
 ;; qutebrowser
 (def-run-or-raise-command qutebrowser '(:class "qutebrowser"))
+;; nyxt - emacs style browser
+(def-run-or-raise-command nyxt '(:class "Nyxt"))
 
 ;; shell command
 (defcommand window-info () ()
