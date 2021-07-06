@@ -54,6 +54,7 @@
   (kbd "p")             "pidgin"
   (kbd "q")             "slingscold"
   (kbd "C-q")           "exec slingscold"
+  (kbd "M-q")           "qutebrowser"
   (kbd "r")             "exec remmina"
   (kbd "C-r")           (urxvt-command "ranger")
   (kbd "t")             "teams"

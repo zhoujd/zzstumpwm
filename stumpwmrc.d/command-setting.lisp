@@ -82,6 +82,8 @@
 (def-run-or-raise-command gvim '(:class "Gvim"))
 ;; draw.io
 (def-run-or-raise-command drawio '(:class "draw.io"))
+;; qutebrowser
+(def-run-or-raise-command qutebrowser '(:class "qutebrowser"))
 
 ;; shell command
 (defcommand window-info () ()
