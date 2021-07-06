@@ -3,33 +3,34 @@
 
 (in-package :zzwm)
 
-(defparameter *app-menu* '(("+INTERNET"
-                            ("Firefox" firefox)
-                            ("Chrome" google-chrome)
-                            ("Teams" teams))
-                           ("+VIRTUAL"
-                            ("Virtualbox" "virtualbox")
-                            ("Virt-Manager" "virt-manager"))
-                           ("+FUN"
-                            ("Xlogo" "xlogo")
-                            ("GnuChess" "xboard"))
-                           ("+WORK"
-                            ("libreoffice" "libreoffice"))
-                           ("+GRAPHICS"
-                            ("GIMP" "gimp"))
-                           ("+VPN"
-                            ("Connect VPN" "runvpn up")
-                            ("Disconnect VPN" "runvpn down"))
-                           ("+SYSTEM"
-                            ("+COMPTON"
-                             ("On" "compton")
-                             ("Off" "killall compton"))
-                            ("+XAUTOLOCK"
-                             ("On" "xautolock -time 15 -locker slock")
-                             ("Off" "killall xautolock")))
-                           ))
+(defparameter *app-menu*
+  '(("+INTERNET"
+     ("Firefox" firefox)
+     ("Chrome" google-chrome)
+     ("Teams" teams))
+    ("+VIRTUAL"
+     ("Virtualbox" "virtualbox")
+     ("Virt-Manager" "virt-manager"))
+    ("+FUN"
+     ("Xlogo" "xlogo")
+     ("GnuChess" "xboard"))
+    ("+WORK"
+     ("libreoffice" "libreoffice"))
+    ("+GRAPHICS"
+     ("GIMP" "gimp"))
+    ("+VPN"
+     ("Connect VPN" "runvpn up")
+     ("Disconnect VPN" "runvpn down"))
+    ("+SYSTEM"
+     ("+COMPTON"
+      ("On" "compton")
+      ("Off" "killall compton"))
+     ("+XAUTOLOCK"
+      ("On" "xautolock -time 15 -locker slock")
+      ("Off" "killall xautolock"))))
+  "Where the menu structure is held")
 
-(defun load-menu-file (file-name &key (strip 0))
+(defun load-menu (file-name &key (strip 0))
   "Loads in a file containing the values for *app-menu*."
   (with-open-file (file file-name)
     (when (char= #\# (peek-char nil file)) (read-line file))
