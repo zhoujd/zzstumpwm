@@ -43,9 +43,8 @@
   (kbd "h")             "thunar"
   (kbd "C-h")           "exec thunar"
   (kbd "M-h")           "exec thunar -B"
-  (kbd "k")             "exec xkill"
+  (kbd "k")             (urxvt-command "gtypist")
   (kbd "C-k")           "klavaro"
-  (kbd "M-k")           (urxvt-command "gtypist")
   (kbd "l")             "libreoffice"
   (kbd "C-l")           "exec libreoffice"
   (kbd "m")             "evolution"
@@ -65,6 +64,7 @@
   (kbd "v")             "gvim"
   (kbd "C-v")           "exec gvim"
   (kbd "M-v")           (urxvt-command "vim")
+  (kbd "x")             "exec xkill"
   (kbd "z")             "jiandon-mobl"
   (kbd "C-z")           "jiandon-mobl-1"
   ))
