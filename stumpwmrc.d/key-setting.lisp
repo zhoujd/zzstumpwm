@@ -1,7 +1,7 @@
 ;;;; key setting -*-lisp-*-
 ;;
 
-(in-package :zzwm)
+(in-package :zwm)
 
 ;; *zz-exec-map*
 (apply-keys-to-map
@@ -51,6 +51,7 @@
   (kbd "C-m")           "claws-mail"
   (kbd "n")             "cherrytree"
   (kbd "C-n")           "exec cherrytree"
+  (kbd "M-n")           "nyxt"
   (kbd "p")             "pidgin"
   (kbd "q")             "slingscold"
   (kbd "C-q")           "exec slingscold"

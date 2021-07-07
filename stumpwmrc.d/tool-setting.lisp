@@ -1,7 +1,7 @@
 ;;;; tool setting -*-lisp-*-
 ;;
 
-(in-package :zzwm)
+(in-package :zwm)
 
 ;; auto start swank server
 (require 'swank)

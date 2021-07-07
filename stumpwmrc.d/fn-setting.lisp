@@ -1,7 +1,7 @@
 ;;;; F1 - F12 setting -*-lisp-*-
 ;;
 
-(in-package :zzwm)
+(in-package :zwm)
 
 ;; Floating Group: Left click/drag=>move, Right click/drag=>resize
 (apply-keys-to-map

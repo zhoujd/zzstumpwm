@@ -1,7 +1,7 @@
 ;;;; command setting -*-lisp-*-
 ;;
 
-(in-package :zzwm)
+(in-package :zwm)
 
 ;; eval shell
 (defcommand eval-shell (&optional (initial "")) (:rest)
@@ -127,8 +127,7 @@ used for matching windows with run-or-raise or window placement-merules."
   "emacsclient"
   (if (emacs-ds-exists)
       (run-shell-command "emacsclient -c -a emacs")
-      (echo-string (current-screen) "No emacs daemon exist!")
-      ))
+      (echo-string (current-screen) "No emacs daemon exist!")))
 
 ;; surf browser
 ;; arch: sudo pacman -S surf tabbed

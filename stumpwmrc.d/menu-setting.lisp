@@ -1,7 +1,7 @@
 ;;;; menu setting -*-lisp-*-
 ;;
 
-(in-package :zzwm)
+(in-package :zwm)
 
 (defparameter *app-menu*
   '(("+INTERNET"

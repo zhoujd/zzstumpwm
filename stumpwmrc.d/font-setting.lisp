@@ -1,7 +1,7 @@
 ;;;; font setting -*-lisp-*-
 ;;
 
-(in-package :zzwm)
+(in-package :zwm)
 
 (ignore-errors
   (ql:quickload "clx-truetype")
