@@ -3,38 +3,6 @@
 
 (in-package :zwm)
 
-;; eval shell
-(defcommand eval-shell (&optional (initial "")) (:rest)
-  "shell interactive command, done to keep"
-  (let ((cmd (read-one-line (current-screen) "Shell> " :initial-input initial)))
-    (when cmd
-      (stumpwm::eval-command (format nil "exec urxvt -e bash -c '~a; bash -l'"
-                            cmd)
-                    t))))
-
-;; eval command
-(defcommand eval-command (&optional (initial "")) (:rest)
-  "shell interactive command, done to exit"
-  (let ((cmd (read-one-line (current-screen) "Cmd> " :initial-input initial)))
-    (when cmd
-      (stumpwm::eval-command (format nil "exec urxvt -e bash -c '~a; read'"
-                            cmd)
-                    t))))
-
-;; trans command
-(defcommand trans-command (&optional (initial "")) (:rest)
-  "shell interactive command, done to exit"
-  (let ((cmd (read-one-line (current-screen) "Trans> " :initial-input initial)))
-    (when cmd
-      (stumpwm::eval-command (format nil "exec urxvt -title 'trans' -e bash -c 'trans -no-warn ~a; read'"
-                            cmd)
-                    t))))
-
-;; trans shell
-(defcommand trans-shell () ()
-  "run skippy-xd"
-  (run-shell-command "exec urxvt -title 'trans' -e bash -c 'trans -I'"))
-
 ;; webjumps q=query+goes+here
 (make-web-jump "google" "firefox https://www.google.com/search?q=")
 (make-web-jump "bing" "firefox https://www.bing.com/search?q=")
@@ -50,41 +18,23 @@
 (def-run-or-raise-command firefox '(:class "Firefox"))
 ;; chrome quit: left:ctrl+shift+w or alt+f4
 (def-run-or-raise-command google-chrome '(:class "Google-chrome"))
-;; pidgin
 (def-run-or-raise-command pidgin  '(:class "Pidgin"))
-;; thunderbird
 (def-run-or-raise-command thunderbird '(:class "Thunderbird"))
-;; evolution
 (def-run-or-raise-command evolution '(:class "Evolution"))
-;; thunar
 (def-run-or-raise-command thunar '(:class "Thunar"))
-;; klavaro
 (def-run-or-raise-command klavaro '(:class "Klavaro"))
-;; teams
 (def-run-or-raise-command teams '(:class "Microsoft Teams - Preview"))
-;; intel-unite-client
 (def-run-or-raise-command intel-unite '(:title "Intel Unite® App"))
-;; deadbeef
 (def-run-or-raise-command deadbeef '(:title "Deadbeef"))
-;; cherrytree
 (def-run-or-raise-command cherrytree '(:title "Cherrytree"))
-;; claws-mail
 (def-run-or-raise-command claws-mail '(:title "Claws-mail"))
-;; libreoffice
 (def-run-or-raise-command libreoffice '(:title "libreoffice"))
-;; slingscold
 (def-run-or-raise-command slingscold '(:title "Slingscold"))
-;; jiandon-mobl
 (def-run-or-raise-command jiandon-mobl '(:title "jiandon-mobl"))
-;; ulauncher
 (def-run-or-raise-command albert '(:title "albert"))
-;; gvim
 (def-run-or-raise-command gvim '(:class "Gvim"))
-;; draw.io
 (def-run-or-raise-command drawio '(:class "draw.io"))
-;; qutebrowser
 (def-run-or-raise-command qutebrowser '(:class "qutebrowser"))
-;; nyxt - emacs style browser
 (def-run-or-raise-command nyxt '(:class "Nyxt"))
 
 ;; shell command
@@ -425,3 +375,35 @@ used for matching windows with run-or-raise or window placement-merules."
 (defcommand htop-menu () ()
   "process menu"
   (run-shell-command (urxvt-command "htop")))
+
+;; eval shell
+(defcommand eval-shell (&optional (initial "")) (:rest)
+  "shell interactive command, done to keep"
+  (let ((cmd (read-one-line (current-screen) "Shell> " :initial-input initial)))
+    (when cmd
+      (stumpwm::eval-command (format nil "exec urxvt -e bash -c '~a; bash -l'"
+                            cmd)
+                    t))))
+
+;; eval command
+(defcommand eval-command (&optional (initial "")) (:rest)
+  "shell interactive command, done to exit"
+  (let ((cmd (read-one-line (current-screen) "Cmd> " :initial-input initial)))
+    (when cmd
+      (stumpwm::eval-command (format nil "exec urxvt -e bash -c '~a; read'"
+                            cmd)
+                    t))))
+
+;; trans command
+(defcommand trans-command (&optional (initial "")) (:rest)
+  "shell interactive command, done to exit"
+  (let ((cmd (read-one-line (current-screen) "Trans> " :initial-input initial)))
+    (when cmd
+      (stumpwm::eval-command (format nil "exec urxvt -title 'trans' -e bash -c 'trans -no-warn ~a; read'"
+                            cmd)
+                    t))))
+
+;; trans shell
+(defcommand trans-shell () ()
+  "run skippy-xd"
+  (run-shell-command "exec urxvt -title 'trans' -e bash -c 'trans -I'"))
