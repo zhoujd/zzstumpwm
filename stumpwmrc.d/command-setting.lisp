@@ -30,7 +30,7 @@
 (def-run-or-raise-command claws-mail '(:title "Claws-mail"))
 (def-run-or-raise-command libreoffice '(:title "libreoffice"))
 (def-run-or-raise-command slingscold '(:title "Slingscold"))
-(def-run-or-raise-command jiandon-mobl '(:title "jiandon-mobl"))
+(def-run-or-raise-command mobl-raise '(:title "jiandon-mobl"))
 (def-run-or-raise-command albert '(:title "albert"))
 (def-run-or-raise-command gvim '(:class "Gvim"))
 (def-run-or-raise-command drawio '(:class "draw.io"))
@@ -97,8 +97,8 @@ used for matching windows with run-or-raise or window placement-merules."
   "run skippy-xd"
   (run-shell-command "skippy-xd"))
 
-;; jiandon-mobl-1
-(defcommand jiandon-mobl-1 () ()
+;; mobl-open
+(defcommand mobl-open () ()
   "run remote jiandon-mobl"
   (run-shell-command "remmina -c ~/.jiandon-mobl.remmina"))
 

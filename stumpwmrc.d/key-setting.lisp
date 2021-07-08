@@ -66,9 +66,8 @@
   (kbd "v")             "gvim"
   (kbd "C-v")           "exec gvim"
   (kbd "M-v")           (urxvt-command "vim")
-  (kbd "x")             "exec xkill"
-  (kbd "z")             "jiandon-mobl"
-  (kbd "C-z")           "jiandon-mobl-1"
+  (kbd "z")             "mobl-raise"
+  (kbd "C-z")           "mobl-open"
   ))
 
 ;; *zz-x-map*
@@ -84,6 +83,7 @@
   (kbd "c")             "fclear"
   (kbd "d")             "delete"
   (kbd "i")             "window-info"
+  (kbd "k")             "kill"
   (kbd "m")             "fselect"
   (kbd "o")             "fother"
   (kbd "q")             "system-action"
