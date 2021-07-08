@@ -67,7 +67,7 @@
   (kbd "C-v")           "exec gvim"
   (kbd "M-v")           (urxvt-command "vim")
   (kbd "z")             "mobl-raise"
-  (kbd "C-z")           "mobl-open"
+  (kbd "C-z")           "mobl-run"
   ))
 
 ;; *zz-x-map*
@@ -205,7 +205,7 @@
   (kbd "s-M-t")         "trans-command"
   (kbd "s-q")           "albert"
   (kbd "s-M-q")         "slingscold"
-  (kbd "s-M-z")         "jiandon-mobl"
+  (kbd "s-M-z")         "mobl-raise"
   ))
 
 (apply-keys-to-map

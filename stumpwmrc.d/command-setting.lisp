@@ -97,8 +97,8 @@ used for matching windows with run-or-raise or window placement-merules."
   "run skippy-xd"
   (run-shell-command "skippy-xd"))
 
-;; mobl-open
-(defcommand mobl-open () ()
+;; mobl-run
+(defcommand mobl-run () ()
   "run remote jiandon-mobl"
   (run-shell-command "remmina -c ~/.jiandon-mobl.remmina"))
 
