@@ -256,13 +256,13 @@ used for matching windows with run-or-raise or window placement-merules."
 (defcommand pactl-up () ()
   "pactl sound up"
   (run-shell-command "pactl set-sink-mute @DEFAULT_SINK@ 0")
-  (run-shell-command "pactl set-sink-volume @DEFAULT_SINK@ +5%"))
+  (run-shell-command "pactl set-sink-volume @DEFAULT_SINK@ +2%"))
 
 ;; pactl down
 (defcommand pactl-down () ()
   "pactl sound down"
   (run-shell-command "pactl set-sink-mute @DEFAULT_SINK@ 0")
-  (run-shell-command "pactl set-sink-volume @DEFAULT_SINK@ -5%"))
+  (run-shell-command "pactl set-sink-volume @DEFAULT_SINK@ -2%"))
 
 ;; pactl toggle
 (defcommand pactl-toggle () ()
