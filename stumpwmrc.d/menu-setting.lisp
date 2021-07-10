@@ -66,8 +66,5 @@
                    (commandp (second selection)))
               (funcall (second selection)))
              (t
-              (if (equalp ".." (first selection))
-                  (pick (second selection))
-                  (pick (append (list (list ".." options))
-                                (cdr selection)))))))))
+              (pick (cdr selection)))))))
     (pick *app-menu*)))
