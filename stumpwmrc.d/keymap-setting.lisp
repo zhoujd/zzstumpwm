@@ -40,8 +40,8 @@
      (apply-keys-to-map
       map
       (list
-       (kbd "C-g")  "abort")
-      ))
+       (kbd "C-g")  "abort"
+       )))
  (list
   *zz-x-map*
   *zz-c-map*
