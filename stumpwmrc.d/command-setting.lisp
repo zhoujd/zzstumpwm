@@ -255,22 +255,22 @@ used for matching windows with run-or-raise or window placement-merules."
 ;; pactl up
 (defcommand pactl-up () ()
   "pactl sound up"
-  (pactl-volume "+2%"))
+  (pactl-volume "+10%"))
 
 ;; pactl down
 (defcommand pactl-down () ()
   "pactl sound down"
-  (pactl-volume "-2%"))
+  (pactl-volume "-10%"))
 
 ;; pactl increase
 (defcommand pactl-inc () ()
   "pactl sound increase"
-  (pactl-volume "+10%"))
+  (pactl-volume "+2%"))
 
 ;; pactl decrease
 (defcommand pactl-dec () ()
   "pactl sound decrease"
-  (pactl-volume "-10%"))
+  (pactl-volume "-2%"))
 
 ;; pactl toggle
 (defcommand pactl-toggle () ()
