@@ -190,6 +190,8 @@
 
   (kbd "s-,")           "pactl-down"
   (kbd "s-.")           "pactl-up"
+  (kbd "s-M-,")         "pactl-dec"
+  (kbd "s-M-.")         "pactl-inc"
   (kbd "s-m")           "pactl-toggle"
   (kbd "s-M-m")         "pactl-mic-toggle"
 

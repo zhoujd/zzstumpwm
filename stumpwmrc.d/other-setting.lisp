@@ -55,6 +55,12 @@ Returns true when yes is selected"
                        (aref alphabet (random (length alphabet))))
               string)))
 
+(defun pactl-volume (step)
+  "pactl volume change as step"
+  (let ((sink "@DEFAULT_SINK@"))
+    (run-shell-command (format nil "pactl set-sink-mute ~a 0" sink))
+    (run-shell-command (format nil "pactl set-sink-volume ~a ~a" sink step))))
+
 ;; simulate mouse clicks
 ;; 1 – Left click
 ;; 2 – Middle click
