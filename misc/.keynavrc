@@ -1,6 +1,6 @@
 ## ~/.keynavrc
 
-super+w start
+super+semicolon start
 ctrl+g end
 
 # Enabling double-click & right-click:

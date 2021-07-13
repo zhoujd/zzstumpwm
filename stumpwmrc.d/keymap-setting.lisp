@@ -41,6 +41,7 @@
       map
       (list
        (kbd "C-g")  "abort"
+       (kbd "ESC")  "abort"
        )))
  (list
   *zz-x-map*
