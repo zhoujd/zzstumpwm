@@ -101,10 +101,10 @@
   (kbd "s")             "exec firefox http://lxr.free-electrons.com/"
   (kbd "M-s")           "exec firefox http://svnweb.freebsd.org/"
 
-  (kbd "v")             "describe-variable"
+  (kbd "c")             "describe-command"
   (kbd "f")             "describe-function"
   (kbd "k")             "describe-key"
-  (kbd "c")             "describe-command"
+  (kbd "v")             "describe-variable"
   (kbd "w")             "where-is"
 
   (kbd "M-c")           "commands"
