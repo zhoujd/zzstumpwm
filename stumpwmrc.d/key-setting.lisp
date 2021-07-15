@@ -283,6 +283,7 @@
   (kbd "C-p")           (getkey-top (kbd "s-C-Up"))
   (kbd "C-n")           (getkey-top (kbd "s-C-Down"))
 
+  ;;b/f, p/n for arrow control
   (kbd "Tab")           "capslock-toggle"
   (kbd "k")             "keymap-menu"
   (kbd "l")             "locate-menu"
