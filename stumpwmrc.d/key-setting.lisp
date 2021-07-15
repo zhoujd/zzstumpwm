@@ -7,7 +7,6 @@
 (apply-keys-to-map
  *zz-exec-map*
  (list
-  (kbd "`")             "slingscold"
   (kbd "1")             "runemacs"
   (kbd "2")             "google-chrome"
   (kbd "3")             "teams"
@@ -17,7 +16,7 @@
   (kbd "7")             "exec libreoffice --calc"
   (kbd "8")             "exec libreoffice --impress"
   (kbd "9")             "intel-unite"
-  (kbd "0")             "thunar"
+  (kbd "0")             "trans-command"
   (kbd "-")             "eval-command"
   (kbd "=")             "eval-shell"
   (kbd "a")             "exec pavucontrol"
