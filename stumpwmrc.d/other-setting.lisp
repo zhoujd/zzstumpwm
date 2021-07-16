@@ -78,7 +78,7 @@ Returns true when yes is selected"
   (list "xset" :options "b off")
   (list "xsetroot" :options "-cursor_name left_ptr")
   (list "nitrogen" :options "--restore")
-  (list "compton")
+  (list "xcompmgr" :options "-C")
   (list "keynav")
   (list "redshift")
   (list "albert")
