@@ -22,10 +22,10 @@
      ("Connect VPN" "runvpn up")
      ("Disconnect VPN" "runvpn down"))
     ("+SYSTEM"
-     ("+COMPTON"
-      ("On" "compton")
-      ("Off" "killall compton"))
-     ("+XAUTOLOCK"
+     ("+COMPOSITE"
+      ("On" "xcompmgr -C")
+      ("Off" "killall xcompmgr"))
+     ("+AUTOLOCK"
       ("On" "xautolock -time 15 -locker slock")
       ("Off" "killall xautolock"))))
   "Where the menu structure is held")
