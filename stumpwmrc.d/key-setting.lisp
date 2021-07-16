@@ -226,7 +226,7 @@
 
   (kbd "l")             "exec slock"
   (kbd "M-l")           "exec xtrlock"
-  (kbd "t")             "exec transset"
+  (kbd "t")             "exec transset 0.9"
 
   (kbd "r")             "resolution"
   (kbd "b")             "show-battery"
