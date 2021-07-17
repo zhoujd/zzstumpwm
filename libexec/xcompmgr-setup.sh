@@ -1,6 +1,12 @@
 #!/bin/bash
 
-xcompmgr_install() {
+install_pkg() {
+    echo "install pkg"
+    sudo apt install -y xcompmgr
+}
+
+## apt install xutils-dev
+install_src() {
     mkdir -p ~/Downloads
     pushd ~/Downloads
 
@@ -19,6 +25,6 @@ xcompmgr_install() {
     popd
 }
 
-xcompmgr_install
+install_pkg
 
 echo "Install xcompmgr Done ..."
