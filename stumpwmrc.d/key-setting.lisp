@@ -198,7 +198,6 @@
   (kbd "s-M-e")         "emacsclient"
   (kbd "s-o")           "pull-hidden-other"
   (kbd "s-M-o")         "gother"
-  (kbd "s-p")           "screen-menu"
   (kbd "s-t")           "trans-shell"
   (kbd "s-M-t")         "trans-command"
   ))
@@ -282,10 +281,11 @@
 
   ;;b/f, p/n for arrow control
   (kbd "Tab")           "capslock-toggle"
+  (kbd "h")             "process-menu"
   (kbd "k")             "keymap-menu"
   (kbd "l")             "locate-menu"
+  (kbd "p")             "screen-menu"
   (kbd "s")             "search-menu"
-  (kbd "h")             "htop-menu"
   (kbd "t")             "tmux-menu"
   (kbd "w")             "wifi-menu"
   ))
