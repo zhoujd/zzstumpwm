@@ -201,7 +201,6 @@
   (kbd "s-p")           "screen-menu"
   (kbd "s-t")           "trans-shell"
   (kbd "s-M-t")         "trans-command"
-  (kbd "s-M-z")         "mobl-raise"
   ))
 
 (apply-keys-to-map
