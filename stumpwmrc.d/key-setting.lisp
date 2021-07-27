@@ -65,6 +65,7 @@
   (kbd "v")             "gvim"
   (kbd "C-v")           "exec gvim"
   (kbd "M-v")           (urxvt-command "vim")
+  (kbd "w")             "wireshark"
   (kbd "z")             "mobl-raise"
   (kbd "C-z")           "mobl-run"
   ))
