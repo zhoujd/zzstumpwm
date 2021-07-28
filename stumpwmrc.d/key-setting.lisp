@@ -59,6 +59,7 @@
   (kbd "C-r")           (urxvt-command "ranger")
   (kbd "t")             "teams"
   (kbd "C-t")           (urxvt-command "tmux")
+  (kbd "M-t")           "tmux"
   (kbd "s")             (urxvt-command "speedpad")
   (kbd "C-s")           "stumpish"
   (kbd "u")             "intel-unite"

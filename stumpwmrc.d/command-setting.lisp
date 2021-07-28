@@ -33,6 +33,7 @@
 (def-run-or-raise-command slingscold '(:title "Slingscold"))
 (def-run-or-raise-command thunderbird '(:class "Thunderbird"))
 (def-run-or-raise-command thunar '(:class "Thunar"))
+(def-run-or-raise-command tmux '(:title "tmux"))
 (def-run-or-raise-command teams '(:class "Microsoft Teams - Preview"))
 (def-run-or-raise-command wireshark '(:class "Wireshark"))
 
