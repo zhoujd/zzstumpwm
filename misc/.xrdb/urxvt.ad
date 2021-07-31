@@ -1,6 +1,8 @@
 !!!! urxvt.ad
 !! urxvt --help 2>&1 | sed -n '/:  /s/^ */! URxvt*/gp'
 !! urxvt -iconFile /usr/share/pixmaps/urxvt_48x48.svg
+!! <Ctrl><S> stops transfer towards a terminal (the "freeze")
+!! <Ctrl><Q> resumes the transfer
 
 !! general
 URxvt.intensityStyles: false
