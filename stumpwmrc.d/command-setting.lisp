@@ -177,9 +177,9 @@ used for matching windows with run-or-raise or window placement-merules."
   "select resolution for stumpwm"
   (let ((choice (cadr (select-from-menu
                        (current-screen)
-                       '(("1920x1080" "--mode 1920x1080")
-                         ("1600x900"  "--mode 1600x900")
-                         ("1280x720"  "--mode 1280x720"))
+                       '(("0-1920x1080" "--mode 1920x1080")
+                         ("1-1600x900"  "--mode 1600x900")
+                         ("2-1280x720"  "--mode 1280x720"))
                        "Select display resolution")))
         (output "xrandr | grep primary | awk '{print $1}'"))
     (run-shell-command (format nil "xrandr --output `~a` ~a" output choice))))
@@ -189,9 +189,9 @@ used for matching windows with run-or-raise or window placement-merules."
   "keymap menu"
   (let* ((choice (cadr (select-from-menu
                         (current-screen)
-                        '(("default" "default.xmodmap")
-                          ("hyper"   "hyper.xmodmap")
-                          ("laptop"  "laptop.xmodmap"))
+                        '(("0-default" "default.xmodmap")
+                          ("1-hyper"   "hyper.xmodmap")
+                          ("2-laptop"  "laptop.xmodmap"))
                         "Select keyboard layout")))
          (config (merge-pathnames
                   (concat "misc/.xmodmap/" choice) *zz-load-directory*)))
@@ -287,9 +287,9 @@ used for matching windows with run-or-raise or window placement-merules."
   "system actions"
   (let ((choice (cadr (select-from-menu
                        (current-screen)
-                       '(("logout"    "kill-stumpwm")
-                         ("reboot"    "reboot")
-                         ("shutdown"  "shutdown"))
+                       '(("0-logout"    "kill-stumpwm")
+                         ("1-reboot"    "reboot")
+                         ("2-shutdown"  "shutdown"))
                        "Select system action"))))
     (when choice
       (stumpwm::eval-command (format nil "~a" choice)))))
