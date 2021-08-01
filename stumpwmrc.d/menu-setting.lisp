@@ -56,7 +56,9 @@
                  options          ; table
                  nil              ; prompt
                  0                ; initial-selection
-                 )))
+                 ))
+               (up-flag t)
+               (up-item "0 .."))
            (cond
              ((null selection)
               nil)
@@ -66,8 +68,10 @@
                    (commandp (second selection)))
               (funcall (second selection)))
              (t
-              (if (equalp "0-.." (first selection))
-                  (pick (second selection))
-                  (pick (append (list (list "0-.." options))
-                                (cdr selection)))))))))
+              (if up-flag
+                (if (equalp up-item (first selection))
+                    (pick (second selection))
+                    (pick (append (list (list up-item options))
+                                  (cdr selection)))))
+              (pick (cdr selection)))))))
     (pick *app-menu*)))
