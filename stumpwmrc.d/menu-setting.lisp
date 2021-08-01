@@ -25,7 +25,7 @@
      ("1+COMPOSITE"
       ("1-On"  "xcompmgr -C")
       ("2-Off" "killall xcompmgr"))
-     ("1+AUTOLOCK"
+     ("2+AUTOLOCK"
       ("1-On"  "xautolock -time 15 -locker slock")
       ("2-Off" "killall xautolock"))))
   "Where the menu structure is held")
@@ -69,9 +69,9 @@
               (funcall (second selection)))
              (t
               (if up-flag
-                (if (equalp up-item (first selection))
-                    (pick (second selection))
-                    (pick (append (list (list up-item options))
-                                  (cdr selection)))))
-              (pick (cdr selection)))))))
+                  (if (equalp up-item (first selection))
+                      (pick (second selection))
+                      (pick (append (list (list up-item options))
+                                    (cdr selection))))
+                  (pick (cdr selection))))))))
     (pick *app-menu*)))
