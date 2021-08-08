@@ -5,11 +5,12 @@ tmux_sessions() {
 }
 
 TMUX_SESSION=$((echo new; tmux_sessions) | rofi -dmenu -p "Tmux Session:")
+TERM_SELECT=urxvt  ##rofi-sensible-terminal
 
 if [[ x"new" = x"${TMUX_SESSION}" ]]; then
-    rofi-sensible-terminal -e tmux new-session &
+    ${TERM_SELECT} -e tmux new-session &
 elif [[ -z "${TMUX_SESSION}" ]]; then
     echo "Cancel"
 else
-    rofi-sensible-terminal -e tmux attach -t "${TMUX_SESSION}" &
+    ${TERM_SELECT} -e tmux attach -t "${TMUX_SESSION}" &
 fi
