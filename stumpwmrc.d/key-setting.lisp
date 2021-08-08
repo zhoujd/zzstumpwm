@@ -15,7 +15,7 @@
   (kbd "6")             "exec libreoffice --writer"
   (kbd "7")             "exec libreoffice --calc"
   (kbd "8")             "exec libreoffice --impress"
-  (kbd "9")             "intel-unite"
+  (kbd "9")             "trans-shell"
   (kbd "0")             "trans-command"
   (kbd "-")             "eval-command"
   (kbd "=")             "eval-shell"
@@ -197,11 +197,8 @@
   (kbd "s-M-m")         "pactl-mic-toggle"
 
   (kbd "s-a")           "app-menu"
-  (kbd "s-M-e")         "emacsclient"
   (kbd "s-o")           "pull-hidden-other"
   (kbd "s-M-o")         "gother"
-  (kbd "s-t")           "trans-shell"
-  (kbd "s-M-t")         "trans-command"
   ))
 
 (apply-keys-to-map
