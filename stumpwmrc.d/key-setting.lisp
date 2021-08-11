@@ -197,6 +197,7 @@
   (kbd "s-M-m")         "pactl-mic-toggle"
 
   (kbd "s-a")           "app-menu"
+  (kbd "s-M-e")         "runemacs"
   (kbd "s-o")           "pull-hidden-other"
   (kbd "s-M-o")         "gother"
   ))
