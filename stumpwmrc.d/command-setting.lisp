@@ -387,7 +387,7 @@ used for matching windows with run-or-raise or window placement-merules."
 ;; eval shell
 (defcommand eval-shell (&optional (initial "")) (:rest)
   "shell interactive command, done to keep"
-  (let ((cmd (read-one-line (current-screen) "shell> " :initial-input initial)))
+  (let ((cmd (read-one-line (current-screen) "shell: " :initial-input initial)))
     (when cmd
       (stumpwm::eval-command (format nil "exec urxvt -e bash -c '~a; bash -l'"
                             cmd)
@@ -396,7 +396,7 @@ used for matching windows with run-or-raise or window placement-merules."
 ;; eval command
 (defcommand eval-command (&optional (initial "")) (:rest)
   "shell interactive command, done to exit"
-  (let ((cmd (read-one-line (current-screen) "cmd> " :initial-input initial)))
+  (let ((cmd (read-one-line (current-screen) "cmd: " :initial-input initial)))
     (when cmd
       (stumpwm::eval-command (format nil "exec urxvt -e bash -c '~a; read'"
                             cmd)
@@ -405,7 +405,7 @@ used for matching windows with run-or-raise or window placement-merules."
 ;; trans command
 (defcommand trans-command (&optional (initial "")) (:rest)
   "shell interactive command, done to exit"
-  (let ((cmd (read-one-line (current-screen) "trans> " :initial-input initial)))
+  (let ((cmd (read-one-line (current-screen) "trans: " :initial-input initial)))
     (when cmd
       (stumpwm::eval-command (format nil "exec urxvt -title 'trans' -e bash -c 'trans -no-warn ~a; read'"
                             cmd)
@@ -419,7 +419,7 @@ used for matching windows with run-or-raise or window placement-merules."
 ;; ssh shell
 (defcommand ssh-shell (&optional (initial "")) (:rest)
   "ssh shell"
-  (let ((cmd (read-one-line (current-screen) "ssh> " :initial-input initial)))
+  (let ((cmd (read-one-line (current-screen) "ssh: " :initial-input initial)))
     (when cmd
       (stumpwm::eval-command (format nil "exec urxvt -e ssh ~a"
                             cmd)
