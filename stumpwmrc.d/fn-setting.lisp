@@ -47,7 +47,10 @@
  *top-map*
  (list
   (kbd "s-S-F1")    "exec"
-  (kbd "s-S-F2")    "colon exec urxvt -e ssh "
+  (kbd "s-S-F2")    "ssh-shell"
+  (kbd "s-S-F3")    "eval-shell"
+  (kbd "s-S-F4")    "trans-shell"
+  (kbd "s-S-F5")    "colon exec google-chrome http://"
   ))
 
 (apply-keys-to-map
