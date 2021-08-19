@@ -37,15 +37,8 @@ URxvt.urgentOnBell: false
 URxvt.visualBell: true
 
 !! urxvt fonts
-!URxvt.font: xft:WenQuanYi Zen Hei Mono:size=15
-!URxvt.boldFont: xft:WenQuanYi Zen Hei Mono:bold:size=15
-!URxvt.italicFont: xft:WenQuanYi Zen Hei Mono:italic:size=15
-!URxvt.boldItalicFont: xft:WenQuanYi Zen Hei Mono:bold:italic:size=15
-URxvt.font: xft:Microsoft YaHei Mono:size=16
-URxvt.boldFont: xft:Microsoft YaHei Mono:bold:size=16
-URxvt.italicFont: xft:Microsoft YaHei Mono:italic:size=16
-URxvt.boldItalicFont: xft:Microsoft YaHei Mono:bold:italic:size=16
-
+URxvt.font: xft:JetBrains Mono:size=13, \
+            xft:WenQuanYi Zen Hei Mono:size=15
 
 !! urxvt icon
 URxvt.iconFile: /usr/share/pixmaps/urxvt_48x48.svg
