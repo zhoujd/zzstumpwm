@@ -38,7 +38,7 @@ URxvt.visualBell: true
 
 !! urxvt fonts
 URxvt.font: xft:JetBrains Mono:size=13, \
-            xft:Droid Sans Fallback:size=15
+            xft:Droid Sans Fallback:size=13
 
 !! urxvt icon
 URxvt.iconFile: /usr/share/pixmaps/urxvt_48x48.svg
