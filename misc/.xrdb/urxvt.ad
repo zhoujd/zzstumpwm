@@ -25,7 +25,7 @@ URxvt.externalBorder: 1
 URxvt.internalBorder: 0
 
 URxvt.lineSpace: 0
-URxvt.letterSpace: -2
+URxvt.letterSpace: -1
 URxvt.fading: 30
 
 !! disable iso 14755 mode
