@@ -4,9 +4,12 @@
 XTerm*locale: true
 XTerm*utf8Title: true
 
+!! Chinese support
+XTerm*cjkWidth: true
+
 XTerm*fontMenu*fontdefault*Label: Default
-XTerm*faceName: JetBrains Mono:antialias=true:pixelsize=18:minspace=true
-XTerm*faceNameDoublesize: WenQuanYi Zen Hei Mono:antialias=true:pixelsize=18:minspace=true
+XTerm*faceName: JetBrains Mono:antialias=true:size=13:minspace=true
+XTerm*faceNameDoublesize: WenQuanYi Zen Hei Mono:antialias=true:size=13:minspace=true
 XTerm*faceSize: 12
 XTerm*faceSize1: 12
 XTerm*faceSize2: 12
@@ -24,11 +27,8 @@ XTerm*jumpScroll: true
 XTerm*SaveLines: 4096
 
 !! For Alt keypress
-xterm*eightBitInput: false
-xterm*altSendsEscape: true
+Xterm*eightBitInput: false
+Xterm*altSendsEscape: true
 
 !! Copy and paste
 XTerm*selectToClipboard: true
-
-!! Chinese support
-XTerm*cjkWidth: true
