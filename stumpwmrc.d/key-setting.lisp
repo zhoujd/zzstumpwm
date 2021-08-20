@@ -50,11 +50,9 @@
   (kbd "C-m")           "claws-mail"
   (kbd "n")             "cherrytree"
   (kbd "C-n")           "exec cherrytree"
-  (kbd "M-n")           "nyxt"
   (kbd "p")             "pidgin"
   (kbd "q")             "slingscold"
   (kbd "C-q")           "exec slingscold"
-  (kbd "M-q")           "qutebrowser"
   (kbd "r")             "exec remmina"
   (kbd "C-r")           (urxvt-command "ranger")
   (kbd "t")             "teams"
@@ -62,6 +60,7 @@
   (kbd "M-t")           "tmux"
   (kbd "s")             (urxvt-command "speedpad")
   (kbd "C-s")           "stumpish"
+  (kbd "M-s")           "exec stacer"
   (kbd "u")             "intel-unite"
   (kbd "v")             "gvim"
   (kbd "C-v")           "exec gvim"
