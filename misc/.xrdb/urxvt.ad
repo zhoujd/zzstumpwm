@@ -37,7 +37,7 @@ URxvt.urgentOnBell: false
 URxvt.visualBell: true
 
 !! urxvt fonts
-URxvt.font: xft:JetBrains Mono:size=13, \
+URxvt.font: xft:JetBrains Mono NL:size=13, \
             xft:Droid Sans Fallback:size=13
 
 !! urxvt icon

@@ -8,7 +8,7 @@ XTerm*utf8Title: true
 XTerm*cjkWidth: true
 
 XTerm*fontMenu*fontdefault*Label: Default
-XTerm*faceName: JetBrains Mono:antialias=true:size=13:minspace=true
+XTerm*faceName: JetBrains Mono NL:antialias=true:size=13:minspace=true
 XTerm*faceNameDoublesize: WenQuanYi Zen Hei Mono:antialias=true:size=13:minspace=true
 XTerm*faceSize: 12
 XTerm*faceSize1: 12
