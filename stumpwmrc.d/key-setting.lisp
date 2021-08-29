@@ -197,6 +197,7 @@
 
   (kbd "s-a")           "app-menu"
   (kbd "s-M-e")         "runemacs"
+  (kbd "s-M-g")         "google-chrome"
   (kbd "s-o")           "pull-hidden-other"
   (kbd "s-M-o")         "gother"
   ))
