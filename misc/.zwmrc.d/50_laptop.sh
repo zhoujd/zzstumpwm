@@ -1,6 +1,6 @@
 #!/bin/bash
 
-laptop_screen() {
+screen() {
     local laptop="eDP-1"
     local ext="DP-1"
     local flag=`xrandr | grep "^$ext" | awk '{print $2}'`
@@ -12,20 +12,12 @@ laptop_screen() {
     fi
 }
 
-laptop_keyboard() {
-    if [ -f ~/.Xmodmap ]; then
-        echo "[laptop] load .Xmodmap for laptop"
-        xmodmap ~/.Xmodmap
-    fi
-}
-
-laptop_touchpad() {
+touchpad() {
     if [ -n "$(xinput list | grep -i touchpad)" ]; then
         echo "[laptop] disable tap to click"
         synclient TapButton1=0
     fi           
 }
 
-laptop_screen
-laptop_keyboard
-laptop_touchpad
+screen
+touchpad
