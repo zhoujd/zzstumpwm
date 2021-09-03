@@ -36,6 +36,8 @@
 (def-run-or-raise-command tmux          '(:title "tmux"))
 (def-run-or-raise-command teams         '(:class "Microsoft Teams - Preview"))
 (def-run-or-raise-command wireshark     '(:class "Wireshark"))
+(def-run-or-raise-command audacity      '(:class "Audacity"))
+(def-run-or-raise-command pavucontrol   '(:class "Pavucontrol"))
 
 ;; shell command
 (defcommand window-info () ()

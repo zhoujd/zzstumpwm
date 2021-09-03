@@ -19,9 +19,8 @@
   (kbd "0")             "trans-command"
   (kbd "-")             "eval-command"
   (kbd "=")             "eval-shell"
-  (kbd "a")             "exec pavucontrol"
-  (kbd "C-a")           (urxvt-command "alsamixer")
-  (kbd "M-a")           (urxvt-command "alsamixer -c 1")
+  (kbd "a")             "audacity"
+  (kbd "C-a")           "exec audacity"
   (kbd "b")             "google"
   (kbd "C-b")           "bing"
   (kbd "M-b")           "wikipedia"
@@ -281,6 +280,7 @@
 
   ;;b/f, p/n for arrow control
   (kbd "Tab")           "capslock-toggle"
+  (kbd "a")             "pavucontrol"
   (kbd "h")             "process-menu"
   (kbd "k")             "keymap-menu"
   (kbd "l")             "locate-menu"
