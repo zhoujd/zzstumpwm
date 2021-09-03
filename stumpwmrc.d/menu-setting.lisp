@@ -5,29 +5,30 @@
 
 (defparameter *app-menu*
   '(("0+INTERNET"
-     ("1-Firefox" firefox)
-     ("2-Chrome"  google-chrome)
-     ("3-Teams"   teams))
+     ("1-Firefox"        firefox)
+     ("2-Chrome"         google-chrome)
+     ("3-Teams"          teams))
     ("1+VIRTUAL"
-     ("1-Virtualbox"   "virtualbox")
-     ("2-Virt-Manager" "virt-manager"))
-    ("2+FUN"
-     ("1-Xlogo"    "xlogo")
-     ("2-GnuChess" "xboard"))
+     ("1-Virtualbox"     "virtualbox")
+     ("2-Virt-Manager"   "virt-manager"))
+    ("2+MEDIA"
+     ("1-Openshot"       "openshot")
+     ("2-Vidcutter"      "vidcutter")
+     ("3-Audacity"       "audacity"))
     ("3+WORK"
-     ("1-libreoffice" "libreoffice"))
+     ("1-libreoffice"    "libreoffice"))
     ("4+GRAPHICS"
-     ("1-GIMP" "gimp"))
+     ("1-GIMP"           "gimp"))
     ("5+VPN"
      ("1-Connect VPN"    "runvpn up")
      ("2-Disconnect VPN" "runvpn down"))
     ("6*SYSTEM"
      ("1+COMPOSITE"
-      ("1-On"  "xcompmgr -C")
-      ("2-Off" "killall xcompmgr"))
+      ("1-On"            "xcompmgr -C")
+      ("2-Off"           "killall xcompmgr"))
      ("2+AUTOLOCK"
-      ("1-On"  "xautolock -time 15 -locker slock")
-      ("2-Off" "killall xautolock"))))
+      ("1-On"            "xautolock -time 15 -locker slock")
+      ("2-Off"           "killall xautolock"))))
   "Where the menu structure is held")
 
 (defun load-menu (file-name &key (strip 0))
