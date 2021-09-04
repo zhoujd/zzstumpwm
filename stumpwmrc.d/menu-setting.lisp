@@ -12,9 +12,9 @@
      ("1-Virtualbox"     "virtualbox")
      ("2-Virt-Manager"   "virt-manager"))
     ("2+MEDIA"
-     ("1-Openshot"       "openshot")
-     ("2-Vidcutter"      "vidcutter")
-     ("3-Audacity"       "audacity"))
+     ("1-Audacity"       "audacity")
+     ("2-Openshot"       "openshot")
+     ("3-Vidcutter"      "vidcutter"))
     ("3+WORK"
      ("1-libreoffice"    "libreoffice"))
     ("4+GRAPHICS"
