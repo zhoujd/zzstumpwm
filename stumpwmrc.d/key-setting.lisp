@@ -195,10 +195,11 @@
   (kbd "s-M-m")         "pactl-mic-toggle"
 
   (kbd "s-a")           "app-menu"
-  (kbd "s-M-e")         "runemacs"
-  (kbd "s-M-g")         "google-chrome"
   (kbd "s-o")           "pull-hidden-other"
   (kbd "s-M-o")         "gother"
+
+  (kbd "s-M-e")         "runemacs"
+  (kbd "s-M-g")         "google-chrome"
   ))
 
 (apply-keys-to-map
