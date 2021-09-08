@@ -83,6 +83,7 @@
   (kbd "d")             "delete"
   (kbd "i")             "window-info"
   (kbd "k")             "kill"
+  (kbd "C-k")           "kill-from-windowlist"
   (kbd "m")             "fselect"
   (kbd "o")             "fother"
   (kbd "q")             "system-action"

@@ -426,3 +426,12 @@ used for matching windows with run-or-raise or window placement-merules."
       (stumpwm::eval-command (format nil "exec urxvt -e ssh ~a"
                             cmd)
                     t))))
+
+;; kill from windowlist
+(defcommand kill-from-windowlist (&optional (fmt *window-format*)) (:rest)
+  "kill from windowlist"
+  (let ((window-to-kill (stumpwm::select-window-from-menu
+                         (stumpwm::group-windows (current-group))
+                         fmt)))
+    (when window-to-kill
+      (stumpwm::kill-window window-to-kill))))
