@@ -435,3 +435,8 @@ used for matching windows with run-or-raise or window placement-merules."
                          fmt)))
     (when window-to-kill
       (stumpwm::kill-window window-to-kill))))
+
+;; manpage reader. needs filename completion, etc..
+(defcommand manpage (command) ((:rest "manpage: "))
+  "manpage reader"
+  (run-shell-command (format nil "urxvt -e man ~a" command)))

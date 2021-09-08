@@ -96,18 +96,15 @@
 (apply-keys-to-map
  *zz-help-map*
  (list
-  (kbd "m")             "stumpwm-manual"
-  (kbd "M-m")           "exec firefox http://stumpwm.org/manual/stumpwm.html"
-  (kbd "s")             "exec firefox http://lxr.free-electrons.com/"
-  (kbd "M-s")           "exec firefox http://svnweb.freebsd.org/"
-
   (kbd "c")             "describe-command"
   (kbd "f")             "describe-function"
   (kbd "k")             "describe-key"
+  (kbd "m")             "stumpwm-manual"
   (kbd "v")             "describe-variable"
   (kbd "w")             "where-is"
 
   (kbd "M-c")           "commands"
+  (kbd "M-m")           "manpage"
   (kbd "M-v")           "version"
   ))
 
