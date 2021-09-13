@@ -40,9 +40,12 @@
   (kbd "s-C-F2")    "google-chrome"
   (kbd "s-C-F3")    "teams"
   (kbd "s-C-F4")    "evolution"
-  (kbd "s-C-F5")    "urxvt"
+  (kbd "s-C-F5")    "deadbeef"
   (kbd "s-C-F6")    "mpv"
   (kbd "s-C-F7")    "vlc"
+  (kbd "s-C-F8")    "intel-unite"
+  (kbd "s-C-F9")    "urxvt"
+  (kbd "s-C-F10")   "thunar"
   ))
 
 (apply-keys-to-map
