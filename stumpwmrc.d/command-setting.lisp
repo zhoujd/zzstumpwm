@@ -15,6 +15,7 @@
 
 ;; run-or-raise
 (def-run-or-raise-command albert        '(:title "albert"))
+(def-run-or-raise-command audacity      '(:class "Audacity"))
 (def-run-or-raise-command cherrytree    '(:title "Cherrytree"))
 (def-run-or-raise-command claws-mail    '(:title "Claws-mail"))
 (def-run-or-raise-command deadbeef      '(:title "Deadbeef"))
@@ -27,6 +28,7 @@
 (def-run-or-raise-command klavaro       '(:class "Klavaro"))
 (def-run-or-raise-command libreoffice   '(:title "libreoffice"))
 (def-run-or-raise-command mobl-raise    '(:title "jiandon-mobl"))
+(def-run-or-raise-command mpv           '(:class "mpv"))
 (def-run-or-raise-command nyxt          '(:class "Nyxt"))
 (def-run-or-raise-command qutebrowser   '(:class "qutebrowser"))
 (def-run-or-raise-command pidgin        '(:class "Pidgin"))
@@ -35,8 +37,8 @@
 (def-run-or-raise-command thunar        '(:class "Thunar"))
 (def-run-or-raise-command tmux          '(:title "tmux"))
 (def-run-or-raise-command teams         '(:class "Microsoft Teams - Preview"))
+(def-run-or-raise-command vlc           '(:class "Vlc"))
 (def-run-or-raise-command wireshark     '(:class "Wireshark"))
-(def-run-or-raise-command audacity      '(:class "Audacity"))
 (def-run-or-raise-command pavucontrol   '(:class "Pavucontrol"))
 
 ;; shell command

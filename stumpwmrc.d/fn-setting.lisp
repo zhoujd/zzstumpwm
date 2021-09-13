@@ -41,6 +41,8 @@
   (kbd "s-C-F3")    "teams"
   (kbd "s-C-F4")    "evolution"
   (kbd "s-C-F5")    "urxvt"
+  (kbd "s-C-F6")    "mpv"
+  (kbd "s-C-F7")    "vlc"
   ))
 
 (apply-keys-to-map
