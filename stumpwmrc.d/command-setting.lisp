@@ -311,20 +311,24 @@ used for matching windows with run-or-raise or window placement-merules."
   "screenshot full"
   (ensure-directories-exist *zz-shot-folder*)
   (run-shell-command (format nil "scrot ~a/%b%d::%H%M%S.png"
-                             *zz-shot-folder*)))
+                             *zz-shot-folder*) t)
+  (message "screenshot full under: ~a" *zz-shot-folder*))
+
 ;; screenshot window
 (defcommand scrot-window () ()
   "screenshot windows"
   (ensure-directories-exist *zz-shot-folder*)
   (run-shell-command (format nil "scrot -u ~a/%b%d::%H%M%S.png"
-                             *zz-shot-folder*)))
+                             *zz-shot-folder*) t)
+  (message "screenshot window under: ~a" *zz-shot-folder*))
 
-;; screenshot window
+;; screenshot select
 (defcommand scrot-select () ()
   "screenshot select"
   (ensure-directories-exist *zz-shot-folder*)
   (run-shell-command (format nil "scrot -s ~a/%b%d::%H%M%S.png"
-                             *zz-shot-folder*)))
+                             *zz-shot-folder*) t)
+  (message "screenshot select under: ~a" *zz-shot-folder*))
 
 ;; capslock toggle
 (defcommand capslock-toggle () ()

@@ -147,8 +147,8 @@
 
   ;; PSc/SRq
   (kbd "SunPrint_Screen")   "scrot-full"
-  (kbd "C-SunPrint_Screen") "scrot-window"
-  (kbd "M-SunPrint_Screen") "scrot-select"
+  (kbd "M-SunPrint_Screen") "scrot-window"
+  (kbd "C-SunPrint_Screen") "scrot-select"
 
   (kbd "s-Tab")             "pull-hidden-next"
   (kbd "s-M-Tab")           "gnext"
@@ -234,9 +234,9 @@
   (kbd "-")                 "bright-down"
   (kbd "=")                 "bright-up"
 
-  (kbd "p")                 "scrot-window"
-  (kbd "C-p")               "scrot-full"
-  (kbd "M-p")               "scrot-select"
+  (kbd "p")                 "scrot-full"
+  (kbd "M-p")               "scrot-window"
+  (kbd "C-p")               "scrot-select"
   ))
 
 (apply-keys-to-map
