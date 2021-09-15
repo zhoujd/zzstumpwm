@@ -21,5 +21,5 @@ Sound control
     $ pactl set-source-mute "$DEFAULT_SOURCE" "1"
     $ pactl list sinks | grep "$DEFAULT_SINK" -A 12 | grep Mute
     $ pactl list sources | grep "$DEFAULT_SOURCE" -A 12 | grep Mute
-    $ pactl list | grep -E "Name: $DEFAULT_SINK$|Mute" | grep "Name:" -A1 | tail -1 |cut -d: -f2| tr -d " "
-    $ pactl list | grep -E "Name: $DEFAULT_SOURCE$|Mute" | grep "Name:" -A1 | tail -1 |cut -d: -f2| tr -d " "
+    $ ismute=$(pactl list | grep -E "Name: $DEFAULT_SINK$|Mute" | grep "Name:" -A1 | tail -1 |cut -d: -f2| tr -d " ")
+    $ ismute=$(pactl list | grep -E "Name: $DEFAULT_SOURCE$|Mute" | grep "Name:" -A1 | tail -1 |cut -d: -f2| tr -d " ")
