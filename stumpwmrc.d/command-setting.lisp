@@ -471,3 +471,17 @@ used for matching windows with run-or-raise or window placement-merules."
 (defcommand manpage (command) ((:rest "manpage: "))
   "manpage reader"
   (run-shell-command (format nil "urxvt -e man ~a" command)))
+
+;; wifi toggle
+(defcommand wifi-toggle () ()
+  "wifi toggle"
+  (message "~a"
+           (run-shell-command (format nil "~a"
+                                      (merge-pathnames "libexec/wifi-toggle" *zz-load-directory*)) t)))
+
+;; touchpad toggle
+(defcommand touchpad-toggle () ()
+  "touchpad toggle"
+  (message "~a"
+           (run-shell-command (format nil "~a"
+                                      (merge-pathnames "libexec/touchpad-toggle" *zz-load-directory*)) t)))

@@ -219,6 +219,8 @@
   (kbd "2")                 "pactl-down"
   (kbd "3")                 "pactl-up"
   (kbd "4")                 "pactl-mic-toggle"
+  (kbd "6")                 "touchpad-toggle"
+  (kbd "7")                 "wifi-toggle"
   (kbd "0")                 "screen-menu"
   (kbd "-")                 "bright-down"
   (kbd "=")                 "bright-up"
