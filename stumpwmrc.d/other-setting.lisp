@@ -61,6 +61,12 @@ Returns true when yes is selected"
     (run-shell-command (format nil "pactl set-sink-mute ~a 0" sink))
     (run-shell-command (format nil "pactl set-sink-volume ~a ~a" sink step))))
 
+(defun pactl-mic-volume (step)
+  "pactl mic volume change as step"
+  (let ((source "@DEFAULT_SOURCE@"))
+    (run-shell-command (format nil "pactl set-source-mute ~a 0" source))
+    (run-shell-command (format nil "pactl set-source-volume ~a ~a" source step))))
+
 ;; simulate mouse clicks
 ;; 1 – Left click
 ;; 2 – Middle click

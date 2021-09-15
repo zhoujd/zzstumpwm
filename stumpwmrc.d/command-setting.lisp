@@ -289,6 +289,16 @@ used for matching windows with run-or-raise or window placement-merules."
   (run-shell-command "pactl set-sink-mute @DEFAULT_SINK@ toggle")
   (stumpwm::eval-command "pactl-status"))
 
+;; pactl mic up
+(defcommand pactl-mic-up () ()
+  "pactl mic sound up"
+  (pactl-mic-volume "+10%"))
+
+;; pactl mic-down
+(defcommand pactl-mic-down () ()
+  "pactl mic sound down"
+  (pactl-mic-volume "-10%"))
+
 ;; pactl mic status
 (defcommand pactl-mic-status () ()
   "pactl mic status"
