@@ -259,12 +259,14 @@ used for matching windows with run-or-raise or window placement-merules."
 ;; pactl up
 (defcommand pactl-up () ()
   "pactl sound up"
-  (pactl-volume "+10%"))
+  (pactl-volume "+10%")
+  (stumpwm::eval-command "pactl-status"))
 
 ;; pactl down
 (defcommand pactl-down () ()
   "pactl sound down"
-  (pactl-volume "-10%"))
+  (pactl-volume "-10%")
+  (stumpwm::eval-command "pactl-status"))
 
 ;; pactl 100%
 (defcommand pactl-inc () ()
@@ -292,12 +294,14 @@ used for matching windows with run-or-raise or window placement-merules."
 ;; pactl mic up
 (defcommand pactl-mic-up () ()
   "pactl mic sound up"
-  (pactl-mic-volume "+10%"))
+  (pactl-mic-volume "+10%")
+  (stumpwm::eval-command "pactl-mic-status"))
 
 ;; pactl mic-down
 (defcommand pactl-mic-down () ()
   "pactl mic sound down"
-  (pactl-mic-volume "-10%"))
+  (pactl-mic-volume "-10%")
+  (stumpwm::eval-command "pactl-mic-status"))
 
 ;; pactl mic status
 (defcommand pactl-mic-status () ()
