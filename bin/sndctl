@@ -72,7 +72,7 @@ mic_down() {
     pacmd list-sources | \
         grep -oP 'index: \d+' | \
         awk '{ print $2 }' | \
-        xargs -I{} pactl set-source-volume {} +10%
+        xargs -I{} pactl set-source-volume {} -10%
 }
 
 mic_toggle() {
