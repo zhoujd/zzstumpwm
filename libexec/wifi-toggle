@@ -1,0 +1,12 @@
+#!/bin/bash
+
+declare -i STATE
+STATE=`nmcli -fields WIFI g | sed -n 2p | grep 'disabled' | wc -l`
+if [ $STATE -eq 1 ]
+then
+    nmcli radio wifi on
+    echo "WIFI enabled."
+else
+    nmcli radio wifi off
+    echo "WIFI disabled."
+fi
