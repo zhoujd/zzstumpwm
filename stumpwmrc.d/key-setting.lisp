@@ -215,6 +215,14 @@
 (apply-keys-to-map
  *zz-screen-map*
  (list
+  (kbd "1")                 "pactl-toggle"
+  (kbd "2")                 "pactl-down"
+  (kbd "3")                 "pactl-up"
+  (kbd "4")                 "pactl-mic-toggle"
+  (kbd "0")                 "screen-menu"
+  (kbd "-")                 "bright-down"
+  (kbd "=")                 "bright-up"
+
   (kbd "d")                 "toggle-root"
   (kbd "f")                 "fullscreen"
   (kbd "g")                 "refresh"
@@ -229,10 +237,6 @@
 
   (kbd "r")                 "resolution"
   (kbd "b")                 "show-battery"
-
-  (kbd "0")                 "bright-setup"
-  (kbd "-")                 "bright-down"
-  (kbd "=")                 "bright-up"
 
   (kbd "p")                 "scrot-full"
   (kbd "M-p")               "scrot-window"
