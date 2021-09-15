@@ -7,11 +7,21 @@ $app vol up
 $app vol down
 $app vol toggle
 $app mic toggle
-$app info"
+$app info
+$app status"
 }
 
 info() {
     pactl info
+}
+
+status () {
+    DEFAULT_SINK=$(pactl info | grep "Default Sink" | cut -d " " -f3)
+    DEFAULT_SOURCE=$(pactl info | grep "Default Source" | cut -d " " -f3)
+    vol_mute=$(pactl list | grep -E "Name: $DEFAULT_SINK$|Mute" | grep "Name:" -A1 | tail -1 |cut -d: -f2| tr -d " ")
+    echo "Vol Mute: $vol_mute"
+    mic_mute=$(pactl list | grep -E "Name: $DEFAULT_SOURCE$|Mute" | grep "Name:" -A1 | tail -1 |cut -d: -f2| tr -d " ")
+    echo "Mic Mute: $mic_mute"
 }
 
 vol_up() {
@@ -71,6 +81,9 @@ case $1 in
         ;;
     info )
         info
+        ;;
+    status )
+        status
         ;;
     * )
         usage
