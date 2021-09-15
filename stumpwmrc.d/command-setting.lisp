@@ -279,7 +279,7 @@ used for matching windows with run-or-raise or window placement-merules."
 ;; pactl status
 (defcommand pactl-status () ()
   "pactl status"
-  (let ((cmd (format nil "~a status"
+  (let ((cmd (format nil "~a vol status"
                      (merge-pathnames "bin/sndctl" *zz-load-directory*))))
     (message "~a" (run-shell-command cmd t))))
 
@@ -289,11 +289,18 @@ used for matching windows with run-or-raise or window placement-merules."
   (run-shell-command "pactl set-sink-mute @DEFAULT_SINK@ toggle")
   (stumpwm::eval-command "pactl-status"))
 
+;; pactl mic status
+(defcommand pactl-mic-status () ()
+  "pactl mic status"
+  (let ((cmd (format nil "~a mic status"
+                     (merge-pathnames "bin/sndctl" *zz-load-directory*))))
+    (message "~a" (run-shell-command cmd t))))
+
 ;; pactl mic toggle
 (defcommand pactl-mic-toggle () ()
   "pactl micphone toggle"
   (run-shell-command "pactl set-source-mute @DEFAULT_SOURCE@ toggle")
-  (stumpwm::eval-command "pactl-status"))
+  (stumpwm::eval-command "pactl-mic-status"))
 
 ;; system action
 (defcommand system-action () ()
