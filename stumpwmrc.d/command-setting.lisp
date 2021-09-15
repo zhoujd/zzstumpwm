@@ -314,11 +314,6 @@ used for matching windows with run-or-raise or window placement-merules."
     (when choice
       (stumpwm::eval-command (format nil "~a" choice)))))
 
-;; micphone mute toggle
-(defcommand amixer-mic-toggle () ()
-  "micphone toggle"
-  (run-shell-command "amixer set Capture toggle"))
-
 (defvar *zz-shot-folder* "~/Pictures/screenshots/"
   "folder for store screenshots")
 
