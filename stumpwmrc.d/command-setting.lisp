@@ -276,15 +276,24 @@ used for matching windows with run-or-raise or window placement-merules."
   "pactl sound 50%"
   (pactl-volume "50%"))
 
+;; pactl status
+(defcommand pactl-status () ()
+  "pactl status"
+  (let ((cmd (format nil "~a status"
+                     (merge-pathnames "bin/sndctl" *zz-load-directory*))))
+    (message "~a" (run-shell-command cmd t))))
+
 ;; pactl toggle
 (defcommand pactl-toggle () ()
   "pactl sound toggle"
-  (run-shell-command "pactl set-sink-mute @DEFAULT_SINK@ toggle"))
+  (run-shell-command "pactl set-sink-mute @DEFAULT_SINK@ toggle")
+  (stumpwm::eval-command "pactl-status"))
 
 ;; pactl mic toggle
 (defcommand pactl-mic-toggle () ()
   "pactl micphone toggle"
-  (run-shell-command "pactl set-source-mute @DEFAULT_SOURCE@ toggle"))
+  (run-shell-command "pactl set-source-mute @DEFAULT_SOURCE@ toggle")
+  (stumpwm::eval-command "pactl-status"))
 
 ;; system action
 (defcommand system-action () ()
