@@ -26,6 +26,7 @@
   (kbd "M-b")               "wikipedia"
   (kbd "c")                 "urxvt"
   (kbd "C-c")               "exec urxvt"
+  (kbd "M-c")               "cheese"
   (kbd "d")                 "deadbeef"
   (kbd "C-d")               "exec meld"
   (kbd "M-d")               "drawio"
