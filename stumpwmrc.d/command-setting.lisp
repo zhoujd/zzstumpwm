@@ -16,6 +16,7 @@
 ;; run-or-raise
 (def-run-or-raise-command albert        '(:title "albert"))
 (def-run-or-raise-command audacity      '(:class "Audacity"))
+(def-run-or-raise-command cheese        '(:class "Cheese"))
 (def-run-or-raise-command cherrytree    '(:title "Cherrytree"))
 (def-run-or-raise-command claws-mail    '(:title "Claws-mail"))
 (def-run-or-raise-command deadbeef      '(:title "Deadbeef"))
