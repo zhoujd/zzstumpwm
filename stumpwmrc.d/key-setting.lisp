@@ -239,6 +239,7 @@
 
   (kbd "l")                 "exec slock"
   (kbd "M-l")               "exec xtrlock"
+  (kbd "C-l")               "exec zlock"
   (kbd "t")                 "exec transset"
 
   (kbd "r")                 "resolution"
