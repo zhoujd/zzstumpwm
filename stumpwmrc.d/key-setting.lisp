@@ -204,6 +204,7 @@
 
   (kbd "s-M-e")             "runemacs"
   (kbd "s-M-g")             "google-chrome"
+  (kbd "s-M-t")             "teams"
   ))
 
 (apply-keys-to-map
