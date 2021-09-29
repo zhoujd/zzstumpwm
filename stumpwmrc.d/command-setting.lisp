@@ -36,7 +36,6 @@
 (def-run-or-raise-command slingscold    '(:title "Slingscold"))
 (def-run-or-raise-command thunderbird   '(:class "Thunderbird"))
 (def-run-or-raise-command thunar        '(:class "Thunar"))
-(def-run-or-raise-command tmux          '(:title "tmux"))
 (def-run-or-raise-command teams         '(:class "Microsoft Teams - Preview"))
 (def-run-or-raise-command vlc           '(:class "Vlc"))
 (def-run-or-raise-command wireshark     '(:class "Wireshark"))
@@ -417,6 +416,11 @@ used for matching windows with run-or-raise or window placement-merules."
 (defcommand htop () ()
   "Run htop."
   (run-or-raise "urxvt -name HTop -e htop" '(:instance "HTop")))
+
+;; tmux
+(defcommand tmux () ()
+  "Run htop."
+  (run-or-raise "urxvt -name Tmux -e tmux" '(:instance "Tmux")))
 
 ;; eval shell
 (defcommand eval-shell (&optional (initial "")) (:rest)
