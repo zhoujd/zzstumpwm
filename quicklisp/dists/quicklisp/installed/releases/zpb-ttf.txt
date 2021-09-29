@@ -1,1 +1,1 @@
-dists/quicklisp/software/zpb-ttf-1.0.3/
+dists/quicklisp/software/zpb-ttf-release-1.0.4/

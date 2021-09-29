@@ -1,1 +1,1 @@
-dists/quicklisp/software/trivial-gray-streams-20140826-git/
+dists/quicklisp/software/trivial-gray-streams-20210124-git/

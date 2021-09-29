@@ -24,59 +24,144 @@
 (in-package :stumpwm)
 
 (export '(*input-history-ignore-duplicates*
+          *input-completion-style*
           *input-map*
-	  completing-read
-	  input-delete-region
-	  input-goto-char
-	  input-insert-char
-	  input-insert-string
-	  input-point
-	  input-substring
-	  input-validate-region
-	  read-one-char
-	  read-one-line))
+          *numpad-map*
+          completing-read
+          input-delete-region
+          input-goto-char
+          input-insert-char
+          input-insert-string
+          input-point
+          input-substring
+          input-validate-region
+          read-one-char
+          read-one-line))
+
+
+;;; General Utilities
+
+(defun take (n list)
+  "Returns a list with the first n elements of the given list, and the
+remaining tail of the list as a second value."
+  (loop for l on list
+        repeat n
+        collect (car l) into result
+        finally (return (values result l))))
+
+;; This could use a much more efficient algorithm.
+;; But for our purposes with small lists it's likely ok.
+(defun longest-common-prefix (seqs &key (test #'eql))
+  "Returns the length of the longest common prefix of the sequences."
+  (flet ((longest-common-prefix-2 (seq1 seq2)
+           (if-let ((i (mismatch seq1 seq2 :test test)))
+             i
+             (length seq1))))
+    (apply #'min (map-product #'longest-common-prefix-2 seqs seqs))))
+
 
 (defstruct input-line
   string position history history-bk password)
 
-(defvar *input-map* nil
+
+;;; completion styles
+
+(defgeneric input-completion-reset (completion-style completions)
+  (:documentation "A completion style should implement this function
+and reset its state when called."))
+
+(defgeneric input-completion-complete (completion-style input direction)
+  (:documentation "A completion style should implement this function
+and complete the input by mutating it."))
+
+(defclass input-completion-style-cyclic ()
+  ((completions :initform nil :type list)
+   (idx :initform 0 :type fixnum)))
+
+(defmethod input-completion-reset ((cs input-completion-style-cyclic) completions)
+  (setf (slot-value cs 'completions) completions
+        (slot-value cs 'idx) 0))
+
+(defmethod input-completion-complete ((cs input-completion-style-cyclic) input direction)
+  (with-slots (completions idx) cs
+    (let ((completion-count (length completions)))
+      (if completions
+          (progn
+            (let ((elt (nth idx completions)))
+              (input-delete-region input 0 (input-point input))
+              (input-insert-string input (if (listp elt) (first elt) elt))
+              (input-insert-char input #\Space))
+            ;; Prepare the next completion
+            (setf idx (mod (+ idx (if (eq direction :forward) 1 -1)) completion-count))
+          :error)))))
+
+(defun make-input-completion-style-cyclic ()
+  (make-instance 'input-completion-style-cyclic))
+
+(defclass input-completion-style-unambiguous ()
+  ((display-limit :initarg :display-limit :initform 64 :type fixnum)
+   (completions :initform nil :type list)))
+
+(defmethod input-completion-reset ((cs input-completion-style-unambiguous) completions)
+  (setf (slot-value cs 'completions)
+        (take (slot-value cs 'display-limit) completions)))
+
+(defmethod input-completion-complete ((cs input-completion-style-unambiguous) input direction)
+  (declare (ignore direction))
+  (with-slots (completions) cs
+    (if (null completions)
+        :error
+        (let ((n (longest-common-prefix completions)))
+          (input-delete-region input 0 (input-point input))
+          (input-insert-string input (subseq (first completions) 0 n))
+          (if (null (rest completions))
+              (unmap-message-window (current-screen))
+              (echo-string-list (current-screen) completions))))))
+
+(defun make-input-completion-style-unambiguous (&key (display-limit 64))
+  (make-instance 'input-completion-style-unambiguous
+                 :display-limit display-limit))
+
+(defvar *input-map*
+  (let ((map (make-sparse-keymap)))
+    (define-key map (kbd "DEL") 'input-delete-backward-char)
+    (define-key map (kbd "M-DEL") 'input-backward-kill-word)
+    (define-key map (kbd "C-d") 'input-delete-forward-char)
+    (define-key map (kbd "M-d") 'input-forward-kill-word)
+    (define-key map (kbd "Delete") 'input-delete-forward-char)
+    (define-key map (kbd "C-f") 'input-forward-char)
+    (define-key map (kbd "Right") 'input-forward-char)
+    (define-key map (kbd "M-f") 'input-forward-word)
+    (define-key map (kbd "C-b") 'input-backward-char)
+    (define-key map (kbd "Left") 'input-backward-char)
+    (define-key map (kbd "M-b") 'input-backward-word)
+    (define-key map (kbd "C-a") 'input-move-beginning-of-line)
+    (define-key map (kbd "Home") 'input-move-beginning-of-line)
+    (define-key map (kbd "C-e") 'input-move-end-of-line)
+    (define-key map (kbd "End") 'input-move-end-of-line)
+    (define-key map (kbd "C-k") 'input-kill-line)
+    (define-key map (kbd "C-u") 'input-kill-to-beginning)
+    (define-key map (kbd "C-p") 'input-history-back)
+    (define-key map (kbd "Up") 'input-history-back)
+    (define-key map (kbd "C-n") 'input-history-forward)
+    (define-key map (kbd "Down") 'input-history-forward)
+    (define-key map (kbd "RET") 'input-submit)
+    (define-key map (kbd "C-g") 'input-abort)
+    (define-key map (kbd "ESC") 'input-abort)
+    (define-key map (kbd "C-y") 'input-yank-selection)
+    (define-key map (kbd "C-Y") 'input-yank-clipboard)
+    (define-key map (kbd "TAB") 'input-complete-forward)
+    (define-key map (kbd "ISO_Left_Tab") 'input-complete-backward)
+    (define-key map t 'input-self-insert)
+    map)
   "This is the keymap containing all input editing key bindings.")
 
-(when (null *input-map*)
-  (setf *input-map*
-        (let ((map (make-sparse-keymap)))
-          (define-key map (kbd "DEL") 'input-delete-backward-char)
-          (define-key map (kbd "M-DEL") 'input-backward-kill-word)
-          (define-key map (kbd "C-d") 'input-delete-forward-char)
-          (define-key map (kbd "M-d") 'input-forward-kill-word)
-          (define-key map (kbd "Delete") 'input-delete-forward-char)
-          (define-key map (kbd "C-f") 'input-forward-char)
-          (define-key map (kbd "Right") 'input-forward-char)
-          (define-key map (kbd "M-f") 'input-forward-word)
-          (define-key map (kbd "C-b") 'input-backward-char)
-          (define-key map (kbd "Left") 'input-backward-char)
-          (define-key map (kbd "M-b") 'input-backward-word)
-          (define-key map (kbd "C-a") 'input-move-beginning-of-line)
-          (define-key map (kbd "Home") 'input-move-beginning-of-line)
-          (define-key map (kbd "C-e") 'input-move-end-of-line)
-          (define-key map (kbd "End") 'input-move-end-of-line)
-          (define-key map (kbd "C-k") 'input-kill-line)
-          (define-key map (kbd "C-u") 'input-kill-to-beginning)
-          (define-key map (kbd "C-p") 'input-history-back)
-          (define-key map (kbd "Up") 'input-history-back)
-          (define-key map (kbd "C-n") 'input-history-forward)
-          (define-key map (kbd "Down") 'input-history-forward)
-          (define-key map (kbd "RET") 'input-submit)
-          (define-key map (kbd "C-g") 'input-abort)
-          (define-key map (kbd "ESC") 'input-abort)
-          (define-key map (kbd "C-y") 'input-yank-selection)
-          (define-key map (kbd "TAB") 'input-complete-forward)
-          (define-key map (kbd "ISO_Left_Tab") 'input-complete-backward)
-          (define-key map t 'input-self-insert)
-          map)))
 
 (defvar *input-history* nil
   "History for the input line.")
+
+(defvar *input-shell-history* nil
+  "History for shell lines.")
 
 (defvar *input-last-command* nil
   "The last input command.")
@@ -84,14 +169,23 @@
 (defvar *input-completions* nil
   "The list of completions")
 
-(defvar *input-current-completions* nil
-  "The list of matching completions.")
-
-(defvar *input-current-completions-idx* nil
-  "The current index in the current completions list.")
+(defvar *input-completion-style* (make-input-completion-style-cyclic)
+  "The completion style to use.
+A completion style has to implement input-completion-reset
+and input-completion-complete.
+Available completion styles include
+@table @asis
+@item make-input-completion-style-cyclic
+@item make-input-completion-style-unambiguous
+@end table")
 
 (defvar *input-history-ignore-duplicates* nil
   "Do not add a command to the input history if it's already the first in the list.")
+(defvar *numpad-map* '((87 10 . 16) (88  11 . 16) (89 12 . 16) (106 61 . 16)
+                       (83 13 . 16) (84  14 . 16) (85 15 . 16) (86  21 . 17)
+                       (79 16 . 16) (80  17 . 16) (81 18 . 16) (63  17 . 17)
+                       (82 20 . 16) (104 36 . 16) (91 60 . 16) (90  19 . 16))
+  "A keycode to keycode map to re-wire numpads when the numlock key is active")
 
 ;;; keysym functions
 
@@ -109,37 +203,29 @@
 
 (defun setup-input-window (screen prompt input)
   "Set the input window up to read input"
-  (let* ((height (font-height (screen-font screen)))
+  (let* ((height (+ (font-height (screen-font screen))
+                    (* *message-window-y-padding* 2)))
          (win (screen-input-window screen)))
     ;; Window dimensions
     (xlib:with-state (win)
       (setf (xlib:window-priority win) :above
             (xlib:drawable-height win) height))
     (xlib:map-window win)
-    ;; Draw the prompt
-    (draw-input-bucket screen prompt input)
-    ;; Ready to recieve input
-    
-))
+    (draw-input-bucket screen prompt input)))
 
 (defun shutdown-input-window (screen)
-  (xlib:ungrab-keyboard *display*)
   (xlib:unmap-window (screen-input-window screen)))
+
 ;; Hack to avoid clobbering input from numpads with numlock on.
-(defun input-handle-key-press-event (&rest event-slots 
-                                     &key event-key root code state 
+(defun input-handle-key-press-event (&rest event-slots
+                                     &key event-key code state
                                        &allow-other-keys)
-  (declare (ignore event-slots root))
-  (let* ((numpad-map '((87 10 . 16) (88  11 . 16) (89 12 . 16) (106 61 . 16)
-                      (83 13 . 16) (84  14 . 16) (85 15 . 16) (86  21 . 17)
-                      (79 16 . 16) (80  17 . 16) (81 18 . 16) (63  17 . 17) 
-                      (82 20 . 16) (104 36 . 16) (91 60 . 16) (90  19 . 17)))
-         (numlock-on-p (= 2 (logand 2 (nth-value 4 (xlib:keyboard-control *display*)))))
-         (numpad-key (assoc code numpad-map)))
+  (declare (ignore event-slots))
+  (let ((numlock-on-p (= 2 (logand 2 (nth-value 4 (xlib:keyboard-control *display*)))))
+         (numpad-key (assoc code *numpad-map*)))
     (when (and numlock-on-p numpad-key)
       (setf code (first (rest numpad-key))
             state (rest (rest numpad-key))))
-    ;; FIXME: don't use a cons
     (list* event-key code state)))
 
 (defun input-handle-selection-event (&key window selection property &allow-other-keys)
@@ -148,20 +234,29 @@
       (xlib:get-property window property :type :string :result-type 'string :transform #'xlib:card8->char :delete-p t)
       ""))
 
-(defun read-key-handle-event (&rest event-slots &key display event-key &allow-other-keys)
-  (declare (ignore display))
+(defun input-handle-click-event (&key root-x root-y &allow-other-keys)
+  (list :button-press root-x root-y))
+
+(defun read-key-handle-event (&rest event-slots &key event-key &allow-other-keys)
   (case event-key
     ((or :key-release :key-press)
      (apply 'input-handle-key-press-event event-slots))
     (t nil)))
 
-(defun read-key-or-selection-handle-event (&rest event-slots &key display event-key &allow-other-keys)
-  (declare (ignore display))
+(defun read-key-or-selection-handle-event (&rest event-slots &key event-key &allow-other-keys)
   (case event-key
     ((or :key-release :key-press)
      (apply 'input-handle-key-press-event event-slots))
     (:selection-notify
      (apply 'input-handle-selection-event event-slots))
+    (t nil)))
+
+(defun read-key-or-click-handle-event (&rest event-slots &key event-key &allow-other-keys)
+  (case event-key
+    ((or :key-release :key-press)
+     (apply 'input-handle-key-press-event event-slots))
+    (:button-press
+     (apply 'input-handle-click-event event-slots))
     (t nil)))
 
 (defun read-key ()
@@ -171,11 +266,29 @@
                   (eq (first ev) :key-press))
            (return (rest ev)))))
 
+(defun read-key-or-click ()
+  (loop for ev = (xlib:process-event *display* :handler #'read-key-or-click-handle-event :timeout nil)
+     do
+       (when (consp ev)
+         (when (eq (first ev) :key-press)
+           (return (values nil (rest ev) nil nil)))
+         (when (eq (first ev) :button-press)
+           (return (values t nil (second ev) (third ev)))))))
+
 (defun read-key-no-modifiers ()
   "Like read-key but never returns a modifier key."
   (loop for k = (read-key)
        while (is-modifier (car k))
        finally (return k)))
+
+(defun read-key-no-modifiers-or-click ()
+  (loop
+     (multiple-value-bind (has-click k x y)
+         (read-key-or-click)
+       (if has-click
+           (return (values t nil x y))
+           (unless (is-modifier (car k))
+             (return (values nil k nil nil)))))))
 
 (defun read-key-or-selection ()
   (loop for ev = (xlib:process-event *display* :handler #'read-key-or-selection-handle-event :timeout nil) do
@@ -191,48 +304,57 @@
 
 (defun completing-read (screen prompt completions &key (initial-input "") require-match)
   "Read a line of input through stumpwm and return it with TAB
-completion. completions can be a list, an fbound symbol, or a
-function. if its an fbound symbol or a function then that function is
+completion. Completions can be a list, an fbound symbol, or a
+function. If its an fbound symbol or a function then that function is
 passed the substring to complete on and is expected to return a list
 of matches. If require-match argument is non-nil then the input must
 match with an element of the completions."
   (check-type completions (or list function symbol))
-  (let ((*input-completions* completions)
-        (*input-current-completions* nil)
-        (*input-current-completions-idx* nil))
-    (let ((line (read-one-line screen prompt :initial-input initial-input :require-match require-match)))
-      (when line (string-trim " " line)))))
+  
+  (let ((line (read-one-line screen prompt
+                             :completions completions
+                             :initial-input initial-input
+                             :require-match require-match)))
+    (when line (string-trim " " line))))
 
-(defun read-one-line (screen prompt &key (initial-input "") require-match password)
-  "Read a line of input through stumpwm and return it. returns nil if the user aborted."
+(defun read-one-line (screen prompt &key completions (initial-input "") require-match password)
+  "Read a line of input through stumpwm and return it. Returns nil if the user aborted."
   (let ((*input-last-command* nil)
+        (*input-completions* (if (or (functionp completions)
+                                     (and (symbolp completions)
+                                          (fboundp completions)))
+                                 (funcall completions initial-input)
+                                 completions))
         (input (make-input-line :string (make-input-string initial-input)
                                 :position (length initial-input)
                                 :history -1
                                 :password password)))
     (labels ((match-input ()
                (let* ((in (string-trim " " (input-line-string input)))
-                      (compls (input-find-completions in *input-completions*)))
+                      (compls (input-find-completions in completions)))
                  (and (consp compls)
-                      (string= in (car compls)))))
+                      (string= in (if (consp (car compls))
+                                      (caar compls)
+                                      (car compls))))))
              (key-loop ()
-               (loop for key = (read-key-or-selection) do
-                     (cond ((stringp key)
-                            ;; handle selection
-                            (input-insert-string input key)
-                            (draw-input-bucket screen prompt input))
-                           ;; skip modifiers
-                           ((is-modifier (car key)))
-                           ((process-input screen prompt input (car key) (cdr key))
-                            (if (or (not require-match)
-                                    (match-input))
-                                (return (input-line-string input))
-                                (draw-input-bucket screen prompt input "[No match]" t)))))))
+               (with-focus (screen-input-window screen)
+                 (loop for key = (read-key-or-selection)
+                    do
+                      (cond ((stringp key)
+                             ;; handle selection
+                             (input-insert-string input key)
+                             (draw-input-bucket screen prompt input))
+                            ;; skip modifiers
+                            ((is-modifier (car key)))
+                            ((process-input screen prompt input (car key) (cdr key))
+                             (if (or (not require-match)
+                                     (match-input))
+                                 (return (input-line-string input))
+                                 (draw-input-bucket screen prompt input "[No match]" t))))))))
+      (draw-input-bucket screen prompt input)
       (setup-input-window screen prompt input)
       (catch :abort
-        (unwind-protect
-             (with-focus (screen-input-window screen)
-               (key-loop))
+        (unwind-protect (key-loop)
           (shutdown-input-window screen))))))
 
 (defun read-one-char (screen)
@@ -241,65 +363,150 @@ match with an element of the completions."
     (let ((k (read-key-no-modifiers)))
       (keycode->character (car k) (xlib:make-state-keys (cdr k))))))
 
+(defun read-one-char-or-click (group)
+  "Read a single character from the user or a click."
+  (with-focus (screen-key-window (group-screen group))
+    (multiple-value-bind (has-click k x y)
+        (read-key-no-modifiers-or-click)
+      (if has-click
+          (values t nil x y)
+          (values nil (keycode->character (car k) (xlib:make-state-keys (cdr k))) nil nil)))))
+
+(defun prompt-text-y (index font y-padding)
+  "Calculate the y position of text in a prompt."
+  (+ y-padding
+     (* (font-height font) index)
+     (font-ascent font)))
+
+
+(defun get-completion-preview-list (input-line all-completions)
+  (if (string= "" input-line)
+      '()
+      (multiple-value-bind (completions more)
+          (take *maximum-completions*
+                (remove-duplicates
+                  (remove-if
+                    (lambda (str)
+                      (or (string= str "")
+                          (< (length str) (length input-line))
+                          (string/= input-line
+                                    (subseq str 0 (length input-line)))))
+                    all-completions)
+                  :test #'string=))
+        (if more
+            (append (butlast completions)
+                    (list (format nil "... and ~D more" (1+ (length more)))))
+            completions))))
 
 (defun draw-input-bucket (screen prompt input &optional (tail "") errorp)
   "Draw to the screen's input window the contents of input."
   (let* ((gcontext (screen-message-gc screen))
          (win (screen-input-window screen))
-         (prompt-width (text-line-width (screen-font screen) prompt :translate #'translate-id))
+         (font (screen-font screen))
+         (prompt-lines (ppcre:split #\Newline prompt))
+         (prompt-lines-length (length prompt-lines))
+         (input-line (input-line-string input))
+         (completions (get-completion-preview-list input-line *input-completions*))
+         (completions-length (length completions))
+         (prompt-offset (text-line-width font
+                                         (first (last prompt-lines))
+                                         :translate #'translate-id))
          (line-content (input-line-string input))
          (string (if (input-line-password input)
                      (make-string (length line-content) :initial-element #\*)
                      line-content))
-         (string-width (text-line-width (screen-font screen) string :translate #'translate-id))
+         (string-width (loop for char across string
+                          summing (text-line-width (screen-font screen)
+                                                   (string char)
+                                                   :translate #'translate-id)))
          (space-width  (text-line-width (screen-font screen) " "    :translate #'translate-id))
          (tail-width   (text-line-width (screen-font screen) tail   :translate #'translate-id))
          (full-string-width (+ string-width space-width))
          (pos (input-line-position input))
-         (width (+ prompt-width
-                   (max 100 (+ full-string-width space-width tail-width)))))
+         (width (max (loop :for line :in (append prompt-lines completions)
+                        :maximize (text-line-width font line :translate #'translate-id))
+                     (+ prompt-offset
+                        (max 100 (+ full-string-width space-width tail-width))))))
+    (when errorp (rotatef (xlib:gcontext-background gcontext)
+                          (xlib:gcontext-foreground gcontext)))
     (xlib:with-state (win)
-      (xlib:clear-area win :x (+ *message-window-padding*
-                                 prompt-width
-                                 string-width))
+      (xlib:with-gcontext (gcontext :foreground (xlib:gcontext-background gcontext))
+        (xlib:draw-rectangle win gcontext 0 0
+                             (xlib:drawable-width win)
+                             (xlib:drawable-height win) t))
       (setf (xlib:drawable-width win) (+ width (* *message-window-padding* 2)))
-      (setup-win-gravity screen win *input-window-gravity*))
-    (xlib:with-state (win)
+      (setf (xlib:drawable-height win) (+ (* prompt-lines-length (font-height font))
+                                          (* *message-window-y-padding* 2)
+                                          (* completions-length (font-height font))))
+      (setup-win-gravity screen win *input-window-gravity*)
+
+      ;; Display the input window text.
+      (loop for i from 0 below (+ prompt-lines-length completions-length)
+         if (< i prompt-lines-length)
+         do (draw-image-glyphs win gcontext font
+                               *message-window-padding*
+                               (prompt-text-y i font *message-window-y-padding*)
+                               (nth i prompt-lines)
+                               :translate #'translate-id
+                               :size 16)
+         else
+         do (draw-image-glyphs win gcontext font
+                               *message-window-padding*
+                               (prompt-text-y i font *message-window-y-padding*)
+                               (nth (- i prompt-lines-length) completions)
+                               :translate #'translate-id
+                               :size 16))
+      ;; Pad the input to the left.
+      (loop with x = (+ *message-window-padding* prompt-offset)
+         for char across string
+         for i from 0 below (length string)
+         for char-width = (text-line-width (screen-font screen) (string char) :translate #'translate-id)
+         if (= pos i)
+         do (xlib:with-gcontext (gcontext :foreground (xlib:gcontext-background gcontext)
+                                          :background (xlib:gcontext-foreground gcontext))
+              (draw-image-glyphs win gcontext (screen-font screen)
+                                 x
+                                 (prompt-text-y (1- prompt-lines-length)
+                                                font
+                                                *message-window-y-padding*)
+                                 (string char)
+                                 :translate #'translate-id
+                                 :size 16))
+         else
+         do (draw-image-glyphs win gcontext (screen-font screen)
+                               x
+                               (prompt-text-y (1- prompt-lines-length)
+                                              font
+                                              *message-window-y-padding*)
+                               (string char)
+                               :translate #'translate-id
+                               :size 16)
+         end
+         do (incf x char-width)
+         finally (when (>= pos (length string))
+                   (xlib:with-gcontext (gcontext :foreground (xlib:gcontext-background gcontext)
+                                                 :background (xlib:gcontext-foreground gcontext))
+                     (draw-image-glyphs win gcontext (screen-font screen)
+                                        x
+                                        (prompt-text-y (1- prompt-lines-length)
+                                                       font
+                                                       *message-window-y-padding*)
+                                        " "
+                                        :translate #'translate-id
+                                        :size 16))))
       (draw-image-glyphs win gcontext (screen-font screen)
-                         *message-window-padding*
-                         (font-ascent (screen-font screen))
-                         prompt
-                         :translate #'translate-id
-                         :size 16)
-      (draw-image-glyphs win gcontext (screen-font screen)
-                         (+ *message-window-padding* prompt-width)
-                         (font-ascent (screen-font screen))
-                         string
-                         :translate #'translate-id
-                         :size 16)
-      (draw-image-glyphs win gcontext (screen-font screen)
-                         (+ *message-window-padding* prompt-width full-string-width space-width)
-                         (font-ascent (screen-font screen))
+                         (+ *message-window-padding* prompt-offset full-string-width space-width)
+                         (prompt-text-y (1- prompt-lines-length)
+                                        font
+                                        *message-window-y-padding*)
                          tail
                          :translate #'translate-id
-                         :size 16)
-      ;; draw a block cursor
-      (invert-rect screen win
-                   (+ *message-window-padding*
-                      prompt-width
-                      (text-line-width (screen-font screen) (subseq string 0 pos) :translate #'translate-id))
-                   0
-                   (text-line-width (screen-font screen) (if (>= pos (length string))
-                                                             " "
-                                                             (string (char string pos)))
-                                    :translate #'translate-id)
-                   (font-height (screen-font screen)))
-      ;; draw the error
-      (when errorp
-        (invert-rect screen win 0 0 (xlib:drawable-width win) (xlib:drawable-height win))
-        (xlib:display-force-output *display*)
-        (sleep 0.05)
-        (invert-rect screen win 0 0 (xlib:drawable-width win) (xlib:drawable-height win))))))
+                         :size 16))
+    (when errorp
+      (sleep 0.05)
+      (rotatef (xlib:gcontext-background gcontext)
+               (xlib:gcontext-foreground gcontext))
+      (draw-input-bucket screen prompt input tail))))
 
 (defun code-state->key (code state)
   (let* ((mods    (xlib:make-state-keys state))
@@ -342,7 +549,7 @@ position. @var{input} must be of type @var{input-line}. Input
 functions are passed this structure as their first argument."
   (check-type string string)
   (loop for c across string
-	do (input-insert-char input c)))
+        do (input-insert-char input c)))
 
 (defun input-point (input)
   "Return the position of the cursor."
@@ -404,29 +611,10 @@ functions are passed this structure as their first argument."
                      completions)))
 
 (defun input-complete (input direction)
-  ;; reset the completion list if this is the first time they're
-  ;; trying to complete.
   (unless (find *input-last-command* '(input-complete-forward
                                        input-complete-backward))
-    (setf *input-current-completions* (input-find-completions (input-substring input 0 (input-point input)) *input-completions*)
-          *input-current-completions-idx* -1))
-  (if *input-current-completions*
-      (progn
-        ;; Insert the next completion
-        (input-delete-region input 0 (input-point input))
-        (if (eq direction :forward)
-            (progn
-              (incf *input-current-completions-idx*)
-              (when (>= *input-current-completions-idx* (length *input-current-completions*))
-                (setf *input-current-completions-idx* 0)))
-            (progn
-              (decf *input-current-completions-idx*)
-              (when (< *input-current-completions-idx* 0)
-                (setf *input-current-completions-idx* (1- (length *input-current-completions*))))))
-        (let ((elt (nth *input-current-completions-idx* *input-current-completions*)))
-          (input-insert-string input (if (listp elt) (first elt) elt))
-          (input-insert-char input #\Space)))
-      :error))
+    (input-completion-reset *input-completion-style* (input-find-completions (input-substring input 0 (input-point input)) *input-completions*)))
+  (input-completion-complete *input-completion-style* input direction))
 
 (defun input-complete-forward (input key)
   (declare (ignore key))
@@ -556,9 +744,19 @@ functions are passed this structure as their first argument."
 (defun input-yank-selection (input key)
   (declare (ignore key))
   ;; if we own the selection then just insert it.
-  (if *x-selection*
-      (input-insert-string input *x-selection*)
-      (xlib:convert-selection :primary :string (screen-input-window (current-screen)) :stumpwm-selection)))
+  (if (getf *x-selection* :primary)
+      (input-insert-string input (getf *x-selection* :primary))
+      (xlib:convert-selection :primary
+                              :string (screen-input-window (current-screen))
+                              :stumpwm-selection)))
+
+(defun input-yank-clipboard (input key)
+  (declare (ignore key))
+  (if (getf *x-selection* :clipboard)
+      (input-insert-string input (getf *x-selection* :clipboard))
+      (xlib:convert-selection :clipboard
+                              :string (screen-input-window (current-screen))
+                              :stumpwm-selection)))
 
 
 ;;; Misc functions
@@ -575,7 +773,8 @@ input (pressing Return), nil otherwise."
                (if command
                    (prog1
                        (funcall command input key)
-                     (setf *input-last-command* command))
+                     (setf *input-last-command* command)
+                     (draw-input-bucket screen prompt input))
                    :error))))
     (case (process-key code state)
       (:done
@@ -595,21 +794,14 @@ input (pressing Return), nil otherwise."
        nil))))
 
 (defun all-modifier-codes ()
-  (multiple-value-bind
-        (shift-codes lock-codes control-codes mod1-codes mod2-codes mod3-codes mod4-codes mod5-codes)
-      (xlib:modifier-mapping *display*)
-    (append shift-codes
-            lock-codes
-            control-codes
-            mod1-codes
-            mod2-codes
-            mod3-codes
-            mod4-codes
-            mod5-codes)))
+  "Return all the keycodes that are associated with a modifier."
+  (flatten (multiple-value-list (xlib:modifier-mapping *display*))))
 
 (defun get-modifier-map ()
   (labels ((find-mod (mod codes)
-             (find (xlib:keysym->keycodes *display* (keysym-name->keysym mod)) codes)))
+             (let* ((keysym (keysym-name->keysym mod))
+                    (keycodes (multiple-value-list (xlib:keysym->keycodes *display* keysym))))
+               (intersection keycodes codes))))
     (let ((modifiers (make-modifiers)))
       (multiple-value-bind
             (shift-codes lock-codes control-codes mod1-codes mod2-codes mod3-codes mod4-codes mod5-codes)
@@ -660,7 +852,7 @@ input (pressing Return), nil otherwise."
 ;;     mod))
 
 (defun mod->string (state)
-  "Convert a stump modifier list to a string"
+  "Convert a stump modifier list to a string."
   (let ((alist '((:alt . "A-") (:meta . "M-") (:hyper . "H-") (:super . "S-"))))
     (apply #'concatenate 'string (mapcar (lambda (x) (cdr (assoc x alist))) state))))
 
@@ -674,8 +866,8 @@ input (pressing Return), nil otherwise."
 ;;   (values (xlib:keycode->keysym *display* code 0) (x11mod->stumpmod state)))
 
 (defun y-or-n-p (message)
-  "ask a \"y or n\" question on the current screen and return T if the
-user presses 'y'"
+  "Ask a \"y or n\" question on the current screen and return T if the
+user presses 'y'."
   (message "~a(y or n) " message)
   (char= (read-one-char (current-screen))
         #\y))
@@ -683,9 +875,13 @@ user presses 'y'"
 (defun yes-or-no-p (message)
   "ask a \"yes or no\" question on the current screen and return T if the
 user presses 'yes'"
-  (loop for line = (read-one-line (current-screen)
-                                  (format nil "~a(yes or no) " message))
+  (loop for line = (string-trim
+                    '(#\Space)
+                    (read-one-line (current-screen)
+                                   (format nil "~a(yes or no) " message)
+                                   :completions
+                                   '("yes" "no")))
         until (find line '("yes" "no") :test 'string-equal)
-        do (message "Please answer yes or no")
+        do (message "Please answer yes or no.")
            (sleep 1)
         finally (return (string-equal line "yes"))))

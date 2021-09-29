@@ -4,7 +4,6 @@
 (in-package :zwm)
 
 (ignore-errors
-  (ql:quickload "clx-truetype")
   (require 'ttf-fonts)
   (or (and (xft:cache-fonts)
            (set-font (make-instance 'xft:font

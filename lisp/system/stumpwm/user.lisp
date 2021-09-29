@@ -26,17 +26,19 @@
 
 (export '(defprogram-shortcut
           pathname-is-executable-p
-	  programs-in-path
-	  restarts-menu
-	  run-or-raise
-	  run-shell-command
+          programs-in-path
+          restarts-menu
+          run-or-raise
+          run-or-pull
+          run-shell-command
           window-send-string))
 
 (defun restarts-menu (err)
   "Display a menu with the active restarts and let the user pick
 one. Error is the error being recovered from. If the user aborts the
 menu, the error is re-signalled."
-  (let ((restart (select-from-menu (current-screen)
+  (let* ((*hooks-enabled-p* nil) ;;disable hooks to avoid deadlocks involving errors in *message-hook*
+         (restart (select-from-menu (current-screen)
                                    (mapcar (lambda (r)
                                              (list (format nil "[~a] ~a"
                                                            (restart-name r)
@@ -105,33 +107,27 @@ your X server and CLX implementation support XTEST."
     (send-fake-click (current-window) button)))
 
 (defun programs-in-path (&optional full-path (path (split-string (getenv "PATH") ":")))
-  "Return a list of programs in the path. if @var{full-path} is
+  "Return a list of programs in the path. If @var{full-path} is
 @var{t} then return the full path, otherwise just return the
 filename. @var{path} is by default the @env{PATH} evironment variable
 but can be specified. It should be a string containing each directory
 seperated by a colon."
-  (sort
-   (loop
-      for p in path
-      for dir = (probe-path p)
-      when dir
-      nconc (loop
-               for file in (union
-                            ;; SBCL doesn't match files with types if type
-                            ;; is not wild and CLISP won't match files
-                            ;; without a type when type is wild. So cover all the bases
-                            (directory-no-deref (merge-pathnames (make-pathname :name :wild) dir))
-                            (directory-no-deref (merge-pathnames (make-pathname :name :wild :type :wild) dir))
-                            :test 'equal)
-               for namestring = (file-namestring file)
-               when (pathname-is-executable-p file)
-               collect (if full-path
-                           (namestring file)
-                           namestring)))
-   #'string<))
+  (loop for p in path
+         for dir = (probe-path p)
+         when dir
+           nconc (loop for file in (directory (merge-pathnames (make-pathname :name :wild :type :wild) dir)
+                                              :resolve-symlinks nil)
+                       for namestring = (file-namestring file)
+                       when (pathname-is-executable-p file)
+                         collect (if full-path
+                                     (namestring file)
+                                     namestring))))
 
 (defstruct path-cache
   programs modification-dates paths)
+
+(defvar *path-cache-lock* (sb-thread:make-mutex)
+  "A lock for accessing the *path-cache* during calls to rehash.")
 
 (defvar *path-cache* nil
   "A cache containing the programs in the path, used for completion.")
@@ -140,25 +136,27 @@ seperated by a colon."
   "Update the cache of programs in the path stored in @var{*programs-list*} when needed."
   (let ((dates (mapcar (lambda (p)
                          (when (probe-path p)
-                           (portable-file-write-date p)))
+                           (file-write-date p)))
                        paths)))
     (finish-output)
-    (unless (and *path-cache*
-                 (equal (path-cache-paths *path-cache*) paths)
-                 (equal (path-cache-modification-dates *path-cache*) dates))
-      (setf *path-cache* (make-path-cache :programs (programs-in-path nil paths)
-                                          :modification-dates dates
-                                          :paths paths)))))
+    (sb-thread:with-mutex (*path-cache-lock*)
+      (unless (and *path-cache*
+                   (equal (path-cache-paths *path-cache*) paths)
+                   (equal (path-cache-modification-dates *path-cache*) dates))
+        (setf *path-cache* (make-path-cache :programs (programs-in-path nil paths)
+                                            :modification-dates dates
+                                            :paths paths))))))
 
 (defun complete-program (base)
   "return the list of programs in @var{*path-cache*} whose names begin
 with base. Automagically update the cache."
   (rehash)
   (remove-if-not #'(lambda (p)
-		     (when (<= (length base) (length p))
+                     (when (<= (length base) (length p))
                        (string= base p
                                 :end1 (length base)
-                                :end2 (length base)))) (path-cache-programs *path-cache*)))
+                                :end2 (length base)))) 
+                 (path-cache-programs *path-cache*)))
 
 (defcommand run-shell-command (cmd &optional collect-output-p) ((:shell "/bin/sh -c "))
   "Run the specified shell command. If @var{collect-output-p} is @code{T}
@@ -174,9 +172,11 @@ such a case, kill the shell command to resume StumpWM."
 (defcommand eval-line (cmd) ((:rest "Eval: "))
   "Evaluate the s-expression and display the result(s)."
   (handler-case
-      (message "^20~{~a~^~%~}"
+      (if cmd
+          (message "^20~{~a~^~%~}"
                (mapcar 'prin1-to-string
                        (multiple-value-list (eval (read-from-string cmd)))))
+          (throw 'error :abort))
     (error (c)
       (err "^B^1*~A" c))))
 
@@ -199,9 +199,8 @@ such a case, kill the shell command to resume StumpWM."
 
 (defcommand loadrc () ()
 "Reload the @file{~/.stumpwmrc} file."
-  (handler-case
-      (progn
-        (with-restarts-menu (load-rc-file nil)))
+  (handler-case 
+      (with-restarts-menu (load-rc-file nil))
     (error (c)
       (message "^1*^BError loading rc file: ^n~A" c))
     (:no-error (&rest args)
@@ -209,8 +208,7 @@ such a case, kill the shell command to resume StumpWM."
       (message "rc file loaded successfully."))))
 
 (defcommand keyboard-quit () ()
-    ""
-  ;; This way you can exit from command mode
+  "This way you can exit from command mode. Also aliased as abort."
   (let ((in-command-mode (eq *top-map* *root-map*)))
     (when (pop-top-map)
       (if in-command-mode
@@ -219,18 +217,27 @@ such a case, kill the shell command to resume StumpWM."
 
 (defcommand-alias abort keyboard-quit)
 
+(defcommand quit-confirm () ()
+  "Prompt the user to confirm quitting StumpWM."
+  (if (y-or-n-p (format nil "~@{~a~^~%~}"
+                          "You are about to quit the window manager to TTY."
+                          "Really ^1^Bquit^b^n ^B^2StumpWM^n^b?"
+                          "^B^6Confirm?^n "))
+      (quit)
+      (xlib:unmap-window (screen-message-window (current-screen)))))
 
 (defcommand quit () ()
 "Quit StumpWM."
   (throw :top-level :quit))
 
 (defcommand restart-soft () ()
-  "Soft Restart StumpWM. The lisp process isn't restarted. Instead,
+  "Soft restart StumpWM. The lisp process isn't restarted. Instead,
 control jumps to the very beginning of the stumpwm program. This
 differs from RESTART, which restarts the unix process.
 
 Since the process isn't restarted, existing customizations remain
 after the restart."
+  (destroy-all-mode-lines)
   (throw :top-level :restart))
 
 (defcommand restart-hard () ()
@@ -238,8 +245,9 @@ after the restart."
 made and you wish to replace the existing process with it.
 
 Any run-time customizations will be lost after the restart."
+  (destroy-all-mode-lines)
   (throw :top-level :hup-process))
-                
+
 (defun find-matching-windows (props all-groups all-screens)
   "Returns list of windows matching @var{props} (see run-or-raise
 documentation for details). @var{all-groups} will find windows on all
@@ -257,7 +265,8 @@ number, with group being more significant (think radix sort)."
     (stable-sort (sort matches #'< :key #'window-number)
                  #'< :key (lambda (w) (group-number (window-group w))))))
 
-(defun run-or-raise (cmd props &optional (all-groups *run-or-raise-all-groups*) (all-screens *run-or-raise-all-screens*))
+(defun run-or-raise (cmd props &optional (all-groups *run-or-raise-all-groups*)
+                                 (all-screens *run-or-raise-all-screens*))
   "Run the shell command, @var{cmd}, unless an existing window
 matches @var{props}. @var{props} is a property list with the following keys:
 
@@ -276,29 +285,17 @@ By default, the global @var{*run-or-raise-all-groups*} decides whether
 to search all groups or the current one for a running
 instance. @var{all-groups} overrides this default. Similarily for
 @var{*run-or-raise-all-screens*} and @var{all-screens}."
-  (labels
-      ;; Raise the window win and select its frame.  For now, it
-      ;; does not select the screen.
-      ((goto-win (win)
-         (let* ((group (window-group win))
-                (frame (window-frame win))
-                (old-frame (tile-group-current-frame group)))
-           (focus-all win)
-           (unless (eq frame old-frame)
-             (show-frame-indicator group)))))
-    (let* ((matches (find-matching-windows props all-groups all-screens))
-           ;; other-matches is list of matches "after" the current
-           ;; win, if current win matches. getting 2nd element means
-           ;; skipping over the current win, to cycle through matches
-           (other-matches (member (current-window) matches))
-           (win (if (> (length other-matches) 1)
-                    (second other-matches)
-                    (first matches))))
-      (if win
-          (if (eq (type-of (window-group win)) 'float-group)
-              (group-focus-window (window-group win) win)
-              (goto-win win))
-          (run-shell-command cmd)))))
+  (let* ((matches (find-matching-windows props all-groups all-screens))
+         ;; other-matches is list of matches "after" the current
+         ;; win, if current win matches. getting 2nd element means
+         ;; skipping over the current win, to cycle through matches
+         (other-matches (member (current-window) matches))
+         (win (if (> (length other-matches) 1)
+                  (second other-matches)
+                  (first matches))))
+    (if win
+        (focus-all win)
+        (run-shell-command cmd))))
 
 (defun run-or-pull (cmd props &optional (all-groups *run-or-raise-all-groups*)
                     (all-screens *run-or-raise-all-screens*))
@@ -321,7 +318,7 @@ current frame instead of switching to the window."
   (message "Reloading StumpWM...")
   #+asdf (with-restarts-menu
              (asdf:operate 'asdf:load-op :stumpwm))
-  #-asdf (message "^B^1*Sorry, StumpWM can only be reloaded with asdf (for now.)")
+  #-asdf (message "^B^1*Sorry, StumpWM can only be reloaded with asdf (for now).")
   #+asdf (message "Reloading StumpWM...^B^2*Done^n."))
 
 (defcommand emacs () ()
@@ -342,11 +339,11 @@ submitting the bug report."
 
 (defmacro defprogram-shortcut (name &key (command (string-downcase (string name)))
                                          (props `'(:class ,(string-capitalize command)))
-                                         (map *top-map*)
-                                         (key (kbd (concat "H-" (subseq command 0 1))))
+                                         (map '*top-map*)
+                                         (key `(kbd ,(concat "H-" (subseq command 0 1))))
                                          (pullp nil)
                                          (pull-name (intern1 (concat (string name) "-PULL")))
-                                         (pull-key (kbd (concat "H-M-" (subseq command 0 1)))))
+                                         (pull-key `(kbd ,(concat "H-M-" (subseq command 0 1)))))
   "Define a command and key binding to run or raise a program. If
 @var{pullp} is set, also define a command and key binding to run or
 pull the program."
@@ -354,22 +351,25 @@ pull the program."
      (defcommand ,name () ()
        (run-or-raise ,command ,props))
      (define-key ,map ,key ,(string-downcase (string name)))
-     (when ,pullp
-       (defcommand (,pull-name tile-group) () ()
-          (run-or-pull ,command ,props))
-       (define-key ,map ,pull-key ,(string-downcase (string pull-name))))))
+     ,(when pullp
+        `(progn
+           (defcommand (,pull-name tile-group) () ()
+             (run-or-pull ,command ,props))
+           (define-key ,map ,pull-key ,(string-downcase (string pull-name)))))))
 
 (defcommand show-window-properties () ()
   "Shows the properties of the current window. These properties can be
 used for matching windows with run-or-raise or window placement
 rules."
   (let ((w (current-window)))
-    (message-no-timeout "class: ~A~%instance: ~A~%type: :~A~%role: ~A~%title: ~A"
-                        (window-class w)
-                        (window-res w)
-                        (string (window-type w))
-                        (window-role w)
-                        (window-title w))))
+    (if (not w)
+        (message "No active window!")
+        (message-no-timeout "class: ~A~%instance: ~A~%type: :~A~%role: ~A~%title: ~A"
+                            (window-class w)
+                            (window-res w)
+                            (string (window-type w))
+                            (window-role w)
+                            (window-title w)))))
 
 (defcommand list-window-properties () ()
   "List all the properties of the current window and their values,
@@ -395,7 +395,7 @@ like xprop."
                     (:atom (format nil "~{~a~^, ~}"
                                    (mapcar (lambda (v) (xlib:atom-name *display* v)) values)))
                     (:string (format nil "~{~s~^, ~}"
-                                     (mapcar (lambda (x) (coerce (mapcar 'xlib:card8->char x) 'string))
+                                     (mapcar (lambda (x) (map 'string 'xlib:card8->char x))
                                              (split-seq values '(0)))))
                     (:utf8_string (format nil "~{~s~^, ~}"
                                           (mapcar 'utf8-to-string

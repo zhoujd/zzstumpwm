@@ -25,24 +25,9 @@
 
 (in-package :stumpwm)
 
-;; Wow, is there an easier way to do this?
-(defmacro def-thing-attr-macro (thing hash-slot)
-  (let ((attr (gensym "ATTR"))
-        (obj (gensym "METAOBJ"))
-        (val (gensym "METAVAL")))
-    `(defmacro ,(intern1 (format nil "DEF-~a-ATTR" thing)) (,attr)
-      "Create a new attribute and corresponding get/set functions."
-      (let ((,obj (gensym "OBJ"))
-            (,val (gensym "VAL")))
-        `(progn
-          (defun ,(intern1 (format nil ,(format nil "~a-~~a" thing) ,attr)) (,,obj)
-            (gethash ,,attr (,(quote ,hash-slot) ,,obj)))
-          (defun (setf ,(intern1 (format nil ,(format nil "~a-~~a" thing) ,attr))) (,,val ,,obj)
-            (setf (gethash ,,attr (,(quote ,hash-slot) ,,obj))) ,,val))))))
+(export '(grab-pointer ungrab-pointer))
 
-
 ;;; keyboard helper functions
-
 (defun key-to-keycode+state (key)
   (let ((code (xlib:keysym->keycodes *display* (key-keysym key))))
     (cond ((eq (xlib:keycode->keysym *display* code 0) (key-keysym key))
@@ -57,16 +42,34 @@
 
 (defun send-fake-key (win key)
   "Send a fake key press event to win."
-  (multiple-value-bind (code state) (key-to-keycode+state key)
-    (xlib:send-event (window-xwin win) :key-press (xlib:make-event-mask :key-press)
-                     :display *display*
-                     :root (screen-root (window-screen win))
-                     ;; Apparently we need these in here, though they
-                     ;; make no sense for a key event.
-                     :x 0 :y 0 :root-x 0 :root-y 0
-                     :window (window-xwin win) :event-window (window-xwin win)
-                     :code code
-                     :state state)))
+  (let ((xwin (window-xwin win)))
+    (multiple-value-bind (code state) (key-to-keycode+state key)
+      (dolist (event '(:key-press :key-release))
+        (xlib:send-event xwin
+                         event
+                         (xlib:make-event-mask event)
+                         :display *display*
+                         :root (screen-root (window-screen win))
+                         ;; Apparently we need these in here, though they
+                         ;; make no sense for a key event.
+                         :x 0 :y 0 :root-x 0 :root-y 0
+                         :window xwin
+                         :event-window xwin
+                         :code code
+                         :state state)))))
+(defun xlib-fake-click (root-win xwin button)
+  "Send a fake click (button press + button release) to xlib window"
+  (multiple-value-bind (x y) (xlib:query-pointer xwin)
+    (multiple-value-bind (rx ry) (xlib:query-pointer root-win)
+      (mapc (lambda (btn)
+              (xlib:send-event xwin (first btn) (xlib:make-event-mask (first btn))
+                               :display *display*
+                               :root root-win 
+                               :window xwin :event-window xwin
+                               :code button
+                               :state (second btn)
+                               :x x :y y :root-x rx :root-y ry :same-screen-p t))
+            '((:button-release 0) (:button-press #x100))))))
 
 (defun send-fake-click (win button)
   "Send a fake click (button press + button release) to win."
@@ -76,24 +79,7 @@
      (xtest:fake-button-event *display* button t)
      (xtest:fake-button-event *display* button nil))
     (t
-     (multiple-value-bind (x y) (xlib:query-pointer (window-xwin win))
-       (multiple-value-bind (rx ry) (xlib:query-pointer (screen-root (window-screen win)))
-         (xlib:send-event (window-xwin win) :button-press (xlib:make-event-mask :button-press)
-                          :display *display*
-                          :root (screen-root (window-screen win))
-                          :window (window-xwin win) :event-window (window-xwin win)
-                          :code button
-                          :state 0
-                          :x x :y y :root-x rx :root-y ry
-                          :same-screen-p t)
-         (xlib:send-event (window-xwin win) :button-release (xlib:make-event-mask :button-release)
-                          :display *display*
-                          :root (screen-root (window-screen win))
-                          :window (window-xwin win) :event-window (window-xwin win)
-                          :code button
-                          :state #x100
-                          :x x :y y :root-x rx :root-y ry
-                          :same-screen-p t))))))
+     (xlib-fake-click (screen-root (window-screen win)) (window-xwin win) button))))
 
 
 ;;; Pointer helper functions

@@ -9,7 +9,8 @@
 like xterm and emacs.")
 
 (defclass tile-window (window)
-  ((frame   :initarg :frame   :accessor window-frame)))
+  ((frame   :initarg :frame   :accessor window-frame)
+   (normal-size :initform nil :accessor window-normal-size)))
 
 (defmethod update-decoration ((window tile-window))
   ;; give it a colored border but only if there are more than 1 frames.
@@ -36,11 +37,21 @@ like xterm and emacs.")
      (maximize-window window))))
 
 (defmethod window-visible-p ((window tile-window))
-  ;; In this case, visible means the window is the top window in the
-  ;; frame. This is not entirely true when it doesn't take up the
-  ;; entire frame and there's a window below it.
-  (eq window
-      (frame-window (window-frame window))))
+  ;; A TILE-WINDOW is visible is it is the top window in the frame or when the
+  ;; focused window is a FLOAT-WINDOW and the TILE-WINDOW can be seen below.
+  (let* ((frame (window-frame window))
+         (frame-windows (frame-windows (window-group window) frame)))
+    (flet ((full-frame-p (win)
+             (not (and (window-normal-hints win)
+                       (xlib:wm-size-hints-x (window-normal-hints win))
+                       (xlib:wm-size-hints-y (window-normal-hints win))))))
+      (or (eq window (or (frame-window frame)
+                         (first frame-windows)))
+          (when (> (length frame-windows) 1)
+            (loop :for (current-window next-window) :on frame-windows
+                  :until (full-frame-p current-window)
+                  :when (eq window next-window)
+                    :do (return t)))))))
 
 (defmethod window-head ((window tile-window))
   (frame-head (window-group window) (window-frame window)))
@@ -54,7 +65,7 @@ like xterm and emacs.")
 
 ;;;;
 
-(defun really-raise-window (window)
+(defmethod really-raise-window ((window tile-window))
   (frame-raise-window (window-group window) (window-frame window) window))
 
 (defun raise-modals-of (window)
@@ -88,6 +99,8 @@ than the root window's width and height."
          (hints-max-height (and hints (xlib:wm-size-hints-max-height hints)))
          (hints-width (and hints (xlib:wm-size-hints-base-width hints)))
          (hints-height (and hints (xlib:wm-size-hints-base-height hints)))
+         (hints-spec-width (and hints (xlib:wm-size-hints-width hints)))
+         (hints-spec-height (and hints (xlib:wm-size-hints-height hints)))
          (hints-inc-x (and hints (xlib:wm-size-hints-width-inc hints)))
          (hints-inc-y (and hints (xlib:wm-size-hints-height-inc hints)))
          (hints-min-aspect (and hints (xlib:wm-size-hints-min-aspect hints)))
@@ -101,12 +114,15 @@ than the root window's width and height."
     (cond
       ;; handle specially fullscreen windows.
       ((window-fullscreen win)
-       (let ((head (frame-head (window-group win) f)))
+       (let* ((win-group (window-group win))
+              (head (frame-head win-group f)))
          (setf x (frame-x head)
                y (frame-y head)
                width (frame-width head)
                height (frame-height head)
-               (xlib:window-priority (window-parent win)) :above))
+               (xlib:window-priority (window-parent win)
+                                     (window-parent (group-raised-window win-group))) :above
+               (group-raised-window (window-group win)) win))
        (return-from geometry-hints (values x y 0 0 width height 0 t)))
       ;; Adjust the defaults if the window is a transient_for window.
       ((find (window-type win) '(:transient :dialog))
@@ -119,6 +135,12 @@ than the root window's width and height."
                               (or hints-min-height 0)
                               (window-height win))
                          height)))
+      ;; Set requested size for non-maximized windows
+      ((and (window-normal-size win)
+            hints-spec-width hints-spec-height)
+       (setf center t
+             width (min hints-spec-width width)
+             height (min hints-spec-height height)))
       ;; aspect hints are handled similar to max size hints
       ((and hints-min-aspect hints-max-aspect)
        (let ((ratio (/ width height)))
@@ -146,9 +168,9 @@ than the root window's width and height."
        (when (and (not *ignore-wm-inc-hints*) hints-inc-y (plusp hints-inc-y))
          (let ((h (or hints-height (window-height win))))
            (setf height (+ h (* hints-inc-y
-                                (+ (floor (- fheight h -1) hints-inc-y)))))))))
+                                (+ (floor (- fheight h) hints-inc-y)))))))))
     ;; adjust for gravity
-    (multiple-value-bind (wx wy) (get-gravity-coords (gravity-for-window win)
+    (multiple-value-bind (wx wy) (gravity-coords (gravity-for-window win)
                                                      width height
                                                      0 0
                                                      fwidth fheight)
@@ -188,36 +210,20 @@ than the root window's width and height."
                                                                 (* 2 (xlib:drawable-border-width (window-parent win)))))))
       ;; update the "extents"
       (xlib:change-property (window-xwin win) :_NET_FRAME_EXTENTS
-                            (list wx wy
+                            (list wx
                                   (- (xlib:drawable-width (window-parent win)) width wx)
+                                  wy
                                   (- (xlib:drawable-height (window-parent win)) height wy))
-                            :cardinal 32))))
+                            :cardinal 32))
+    (update-configuration win)))
 
 ;;;
 
-(defun focus-next-window (group)
-  (focus-forward group (sort-windows group)))
+(defun only-tile-windows (windows)
+  (remove-if-not (lambda (w) (typep w 'tile-window))
+                 windows))
 
-(defun focus-prev-window (group)
-  (focus-forward group
-                 (reverse
-                  (sort-windows group))))
-
-(defcommand (next tile-group) () ()
-  "Go to the next window in the window list."
-  (let ((group (current-group)))
-    (if (group-current-window group)
-        (focus-next-window group)
-        (other-window group))))
-
-(defcommand (prev tile-group) () ()
-  "Go to the previous window in the window list."
-  (let ((group (current-group)))
-    (if (group-current-window group)
-        (focus-prev-window group)
-        (other-window group))))
-
-(defun pull-window (win &optional (to-frame (tile-group-current-frame (window-group win))))
+(defun pull-window (win &optional (to-frame (tile-group-current-frame (window-group win))) (focus-p t))
   (let ((f (window-frame win))
         (group (window-group win)))
     (unless (eq (frame-window to-frame) win)
@@ -229,7 +235,7 @@ than the root window's width and height."
       ;; We have to restore the focus after hiding.
       (when (eq win (screen-focus (window-screen win)))
         (screen-set-focus (window-screen win) win))
-      (frame-raise-window group to-frame win)
+      (frame-raise-window group to-frame win focus-p)
       ;; if win was focused in its old frame then give the old
       ;; frame the frame's last focused window.
       (when (eq (frame-window f) win)
@@ -273,7 +279,8 @@ frame."
 
 (defun other-hidden-window (group)
   "Return the last window that was accessed and that is hidden."
-  (let ((wins (remove-if (lambda (w) (eq (frame-window (window-frame w)) w)) (group-windows group))))
+  (let ((wins (remove-if (lambda (w) (eq (frame-window (window-frame w)) w))
+                         (only-tile-windows (group-windows group)))))
     (first wins)))
 
 (defun pull-other-hidden-window (group)
@@ -297,17 +304,30 @@ current frame and raise it."
 (defcommand (pull-hidden-next tile-group) () ()
 "Pull the next hidden window into the current frame."
   (let ((group (current-group)))
-    (focus-forward group (sort-windows group) t (lambda (w) (not (eq (frame-window (window-frame w)) w))))))
+    (focus-forward group (only-tile-windows (sort-windows group)) t
+                   (lambda (w) (not (eq (frame-window (window-frame w)) w))))))
 
 (defcommand (pull-hidden-previous tile-group) () ()
 "Pull the next hidden window into the current frame."
   (let ((group (current-group)))
-    (focus-forward group (nreverse (sort-windows group)) t (lambda (w) (not (eq (frame-window (window-frame w)) w))))))
+    (focus-forward group (nreverse (only-tile-windows (sort-windows group))) t
+                   (lambda (w) (not (eq (frame-window (window-frame w)) w))))))
 
 (defcommand (pull-hidden-other tile-group) () ()
 "Pull the last focused, hidden window into the current frame."
   (let ((group (current-group)))
     (pull-other-hidden-window group)))
+
+(defcommand (pull-from-windowlist tile-group)
+    (&optional (fmt *window-format*)) (:rest)
+  "Pulls a window selected from the list of windows.
+This allows a behavior similar to Emacs' switch-to-buffer
+when selecting another window."
+  (let ((pulled-window (select-window-from-menu
+                        (group-windows (current-group))
+                        fmt)))
+    (when pulled-window
+      (pull-window pulled-window))))
 
 (defun exchange-windows (win1 win2)
   "Exchange the windows in their respective frames."
@@ -343,12 +363,6 @@ current frame and raise it."
 
 (defcommand-alias frame-windows echo-frame-windows)
 
-(defcommand (fullscreen tile-group) () ()
-  "Toggle the fullscreen mode of the current widnow. Use this for clients
-with broken (non-NETWM) fullscreen implemenations, such as any program
-using SDL."
-  (update-fullscreen (current-window) 2))
-
 (defcommand (gravity tile-group) (gravity) ((:gravity "Gravity: "))
   "Set a window's gravity within its frame. Gravity controls where the
 window will appear in a frame if it is smaller that the
@@ -382,9 +396,11 @@ frame. Possible values are:
   "Guess at a placement rule for WINDOW and add it to the current set."
   (let* ((group (window-group window))
          (group-name (group-name group))
-         (frame-number (frame-number (window-frame window)))
+         (frame-number-or-float (if (typep window 'float-window)
+                                    :float
+                                    (frame-number (window-frame window))))
          (role (window-role window)))
-    (push (list group-name frame-number t lock
+    (push (list group-name frame-number-or-float t lock
                 :class (window-class window)
                 :instance (window-res window)
                 :title (and title (window-name window))
@@ -395,7 +411,7 @@ frame. Possible values are:
                                   ((:y-or-n "Lock to group? ")
                                    (:y-or-n "Use title? "))
   "Make a generic placement rule for the current window. Might be too specific/not specific enough!"
-  (make-rule-for-window (current-window) (first lock) (first title)))
+  (make-rule-for-window (current-window) lock title))
 
 (defcommand (forget tile-group) () ()
   "Forget the window placement rule that matches the current window."
@@ -404,8 +420,8 @@ frame. Possible values are:
     (if match
         (progn
           (setf *window-placement-rules* (delete match *window-placement-rules*))
-          (message "Rule forgotten"))
-        (message "No matching rule"))))
+          (message "Rule forgotten."))
+        (message "No matching rule."))))
 
 (defcommand (dump-window-placement-rules tile-group) (file) ((:rest "Filename: "))
   "Dump *window-placement-rules* to FILE."
@@ -422,7 +438,8 @@ frame. Possible values are:
 (defcommand (redisplay tile-group) () ()
   "Refresh current window by a pair of resizes, also make it occupy entire frame."
   (let ((window (current-window)))
-    (with-slots (width height frame) window
+    (when window
+      (with-slots (width height frame) window
       (set-window-geometry window
                            :width (- width (window-width-inc window))
                            :height (- height (window-height-inc window)))
@@ -437,17 +454,30 @@ frame. Possible values are:
                                       (* (window-height-inc window)
                                          (floor (- (frame-height frame) height)
                                                 (window-height-inc window)))))
-      (maximize-window window))))
+      (maximize-window window)))))
+
+(defcommand (unmaximize tile-group) () ()
+  "Use the size the program requested for current window (if any) instead of maximizing it."
+  (let* ((window (current-window))
+         (status (not (window-normal-size window)))
+         (hints (window-normal-hints window)))
+    (if (and (xlib:wm-size-hints-width hints)
+             (xlib:wm-size-hints-height hints))
+        (progn
+          (setf (window-normal-size window) status)
+          ;; This makes the naming a bit funny.
+          (maximize-window window))
+        (message "Window has no normal size."))))
 
 (defcommand frame-windowlist (&optional (fmt *window-format*)) (:rest)
   "Allow the user to select a window from the list of windows in the current
 frame and focus the selected window.  The optional argument @var{fmt} can be
 specified to override the default window formatting."
   (let* ((group (current-group))
-	 (frame (tile-group-current-frame group)))
+         (frame (tile-group-current-frame group)))
     (if (null (frame-windows group frame))
-	(message "No Managed Windows")
-	(let ((window (select-window-from-menu (frame-sort-windows group frame) fmt)))
-	  (if window
-	      (group-focus-window group window)
-	      (throw 'error :abort))))))
+        (message "No Managed Windows.")
+        (let ((window (select-window-from-menu (frame-sort-windows group frame) fmt)))
+          (if window
+              (group-focus-window group window)
+              (throw 'error :abort))))))

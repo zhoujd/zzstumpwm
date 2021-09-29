@@ -1,1 +1,1 @@
-dists/quicklisp/software/cl-store-20160531-git/cl-store.asd
+dists/quicklisp/software/cl-store-20200925-git/cl-store.asd

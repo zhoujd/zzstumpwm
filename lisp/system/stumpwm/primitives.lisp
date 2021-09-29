@@ -25,8 +25,6 @@
 
 (in-package :stumpwm)
 
-#+ecl (require "clx")
-
 (export '(*suppress-abort-messages*
           *suppress-frame-indicator*
           *suppress-window-placement-indicator*
@@ -35,20 +33,24 @@
           *frame-indicator-text*
           *frame-indicator-timer*
           *message-window-timer*
+          *hooks-enabled-p*
           *command-mode-start-hook*
           *command-mode-end-hook*
           *urgent-window-hook*
           *new-window-hook*
+          *new-head-hook*
           *destroy-window-hook*
           *focus-window-hook*
           *place-window-hook*
           *start-hook*
+          *restart-hook*
           *quit-hook*
           *internal-loop-hook*
           *event-processing-hook*
           *focus-frame-hook*
           *new-frame-hook*
           *split-frame-hook*
+          *remove-split-hook*
           *message-hook*
           *top-level-error-hook*
           *focus-group-hook*
@@ -57,6 +59,10 @@
           *new-mode-line-hook*
           *destroy-mode-line-hook*
           *mode-line-click-hook*
+          *pre-command-hook*
+          *post-command-hook*
+          *selection-notify-hook*
+          *menu-selection-hook*
           *display*
           *shell-program*
           *maxsize-border-width*
@@ -66,7 +72,10 @@
           *window-events*
           *window-parent-events*
           *message-window-padding*
+          *message-window-y-padding*
           *message-window-gravity*
+          *message-window-real-gravity*
+          *message-window-input-gravity*
           *editor-bindings*
           *input-window-gravity*
           *normal-gravity*
@@ -124,16 +133,61 @@
           define-frame-preference
           redirect-all-output
           remove-hook
+          remove-all-hooks
           run-hook
           run-hook-with-args
           command-mode-start-message
           command-mode-end-message
           split-string
-	  with-restarts-menu
+          with-restarts-menu
           with-data-file
-	  move-to-head))
+          move-to-head
+          format-expand
+
+          ;; Frame accessors
+          frame-x
+          frame-y
+          frame-width
+          frame-height
+
+          ;; Screen accessors
+          screen-heads
+          screen-root
+          screen-focus
+          screen-float-focus-color
+          screen-float-unfocus-color
+
+          ;; Window states
+          +withdrawn-state+
+          +normal-state+
+          +iconic-state+
+
+          ;; Modifiers
+          modifiers
+          modifiers-p
+          modifiers-alt
+          modifiers-altgr
+          modifiers-super
+          modifiers-meta
+          modifiers-hyper
+          modifiers-numlock
+          ;; Conditions
+          stumpwm-condition
+          stumpwm-error
+          stumpwm-warning
+
+          ;; Completion Options
+          *maximum-completions*
+
+          ))
 
 
+;;; Completions
+(defvar *maximum-completions* 100
+  "Maximum number of completions to show in interactive prompts. Setting
+  this too high can crash the completion process due to drawing too far
+  off screen.")
+
 ;;; Message Timer
 (defvar *suppress-abort-messages* nil
   "Suppress abort message when non-nil.")
@@ -223,6 +277,9 @@ window group and frame")
 (defvar *quit-hook* '()
   "A hook called when stumpwm quits.")
 
+(defvar *restart-hook* '()
+  "A hook called when stumpwm restarts.")
+
 (defvar *internal-loop-hook* '()
   "A hook called inside stumpwm's inner loop.")
 
@@ -235,12 +292,16 @@ window group and frame")
 called with 2 arguments: the current frame and the last frame.")
 
 (defvar *new-frame-hook* '()
-  "A hook called when a new frame is created. the hook is called with
+  "A hook called when a new frame is created. The hook is called with
 the frame as an argument.")
 
 (defvar *split-frame-hook* '()
   "A hook called when a frame is split. the hook is called with
 the old frame (window is removed), and two new frames as arguments.")
+
+(defvar *remove-split-hook* '()
+  "A hook called when a split is removed. the hook is called with
+the current frame and removed frame as arguments.")
 
 (defvar *message-hook* '()
   "A hook called whenever stumpwm displays a message. The hook
@@ -265,6 +326,12 @@ sequence it is a part of, and command value bound to the key.")
 window. Called with 4 arguments, the screen containing the root
 window, the button clicked, and the x and y of the pointer.")
 
+(defvar *click-hook* '()
+  "A hook called whenever there is a mouse click.
+Called with 4 arguments, the screen containing the
+window (or nil if there isn't one), the button clicked,
+and the x and y of the pointer.")
+
 (defvar *new-mode-line-hook* '()
   "Called whenever the mode-line is created. It is called with argument,
 the mode-line")
@@ -276,6 +343,26 @@ the mode-line")
 (defvar *mode-line-click-hook* '()
   "Called whenever the mode-line is clicked. It is called with 4 arguments,
 the mode-line, the button clicked, and the x and y of the pointer.")
+
+(defvar *pre-command-hook* '()
+  "Called before a command is called. It is called with 1 argument:
+the command as a symbol.")
+
+(defvar *post-command-hook* '()
+  "Called after a command is called. It is called with 1 argument:
+the command as a symbol.")
+
+(defvar *selection-notify-hook* '()
+  "Called after a :selection-notify event is processed. It is called
+with 1 argument: the selection as a string.")
+
+(defvar *menu-selection-hook* '()
+  "Called after an item is selected in the windows menu. It is called
+with 1 argument: the menu.")
+
+(defvar *new-head-hook* '()
+  "A hook called whenever a head is added. It is called with 2 arguments: the
+ new head and the current screen.")
 
 ;; Data types and globals used by stumpwm
 
@@ -367,8 +454,11 @@ Include only those we are ready to support.")
 (defvar *message-window-padding* 5
   "The number of pixels that pad the text in the message window.")
 
+(defvar *message-window-y-padding* 0
+  "The number of pixels that pad the text in the message window vertically.")
+
 (defvar *message-window-gravity* :top-right
-  "This variable controls where the message window appears. The follow
+  "This variable controls where the message window appears. The following
 are valid values.
 @table @asis
 @item :top-left
@@ -376,6 +466,25 @@ are valid values.
 @item :bottom-left
 @item :bottom-right
 @item :center
+@item :top
+@item :left
+@item :right
+@item :bottom
+@end table")
+
+(defvar *message-window-input-gravity* :top-left
+  "This variable controls where the message window appears
+when the input window is being displayed. The following are valid values.
+@table @asis
+@item :top-left
+@item :top-right
+@item :bottom-left
+@item :bottom-right
+@item :center
+@item :top
+@item :left
+@item :right
+@item :bottom
 @end table")
 
 ;; line editor
@@ -383,7 +492,7 @@ are valid values.
   "A list of key-bindings for line editing.")
 
 (defvar *input-window-gravity* :top-right
-  "This variable controls where the input window appears. The follow
+  "This variable controls where the input window appears. The following
 are valid values.
 @table @asis
 @item :top-left
@@ -391,6 +500,10 @@ are valid values.
 @item :bottom-left
 @item :bottom-right
 @item :center
+@item :top
+@item :left
+@item :right
+@item :bottom
 @end table")
 
 ;; default values. use the set-* functions to these attributes
@@ -398,7 +511,7 @@ are valid values.
 (defparameter +default-background-color+ "Black")
 (defparameter +default-window-background-color+ "Black")
 (defparameter +default-border-color+ "White")
-(defparameter +default-font-name+ "9x15bold")
+(defparameter +default-font-name+ "9x15")
 (defparameter +default-focus-color+ "White")
 (defparameter +default-unfocus-color+ "Black")
 (defparameter +default-float-focus-color+ "Orange")
@@ -419,7 +532,7 @@ and to *standard-output*.
 Valid values are :message, :break, :abort. :break will break to the
 debugger. This can be problematic because if the user hit's a
 mapped key the ENTIRE keyboard will be frozen and you will have
-to login remotely to regain control. :abort quits stumpmwm.")
+to login remotely to regain control. :abort quits stumpwm.")
 
 (defvar *window-name-source* :title
   "This variable controls what is used for the window's name. The default is @code{:title}.
@@ -444,57 +557,49 @@ Use the window's resource name.
   window)
 
 (defstruct (head (:include frame))
-  ;; point back to the screen this head belongs to
-  screen
-  ;; a bar along the top or bottom that displays anything you want.
-  mode-line)
+  (name "" :type string))
 
 (defclass screen ()
-  ((id :initform nil :accessor screen-id)
-   (host :initform nil :accessor screen-host)
-   (number :initform nil :accessor screen-number)
-   (heads :initform nil :accessor screen-heads :documentation
-    "heads of screen")
-   (groups :initform nil :accessor screen-groups :documentation
-    "the list of groups available on this screen")
-   (current-group :initform nil :accessor screen-current-group)
+  ((id :initarg :id :reader screen-id)
+   (host :initarg :host :reader screen-host)
+   (number :initarg :number :reader screen-number)
+   (heads :initform () :accessor screen-heads)
+   (groups :initform () :accessor screen-groups)
+   (current-group :accessor screen-current-group)
    ;; various colors (as returned by alloc-color)
-   (border-color :initform nil :accessor screen-border-color)
-   (fg-color :initform nil :accessor screen-fg-color)
-   (bg-color :initform nil :accessor screen-bg-color)
-   (win-bg-color :initform nil :accessor screen-win-bg-color)
-   (focus-color :initform nil :accessor screen-focus-color)
-   (unfocus-color :initform nil :accessor screen-unfocus-color)
-   (float-focus-color :initform nil :accessor screen-float-focus-color)
-   (float-unfocus-color :initform nil :accessor screen-float-unfocus-color)
-   (msg-border-width :initform nil :accessor screen-msg-border-width)
-   (frame-outline-width :initform nil :accessor screen-frame-outline-width)
-   (font :initform nil :accessor screen-font)
-   (mapped-windows :initform nil :accessor screen-mapped-windows :documentation
+   (border-color :initarg :border-color :accessor screen-border-color)
+   (fg-color :initarg :fg-color :accessor screen-fg-color)
+   (bg-color :initarg :bg-color :accessor screen-bg-color)
+   (win-bg-color :initarg :win-bg-color :accessor screen-win-bg-color)
+   (focus-color :initarg :focus-color :accessor screen-focus-color)
+   (unfocus-color :initarg :unfocus-color :accessor screen-unfocus-color)
+   (float-focus-color :initarg :float-focus-color :accessor screen-float-focus-color)
+   (float-unfocus-color :initarg :float-unfocus-color :accessor screen-float-unfocus-color)
+   (msg-border-width :initarg :msg-border-width :accessor screen-msg-border-width)
+   (frame-outline-width :initarg :frame-outline-width :accessor screen-frame-outline-width)
+   (fonts :initarg :fonts :accessor screen-fonts)
+   (mapped-windows :initform () :accessor screen-mapped-windows :documentation
     "A list of all mapped windows. These are the raw xlib:window's. window structures are stored in groups.")
-   (withdrawn-windows :initform nil :accessor screen-withdrawn-windows :documentation
+   (withdrawn-windows :initform () :accessor screen-withdrawn-windows :documentation
     "A list of withdrawn windows. These are of type stumpwm::window
 and when they're mapped again they'll be put back in the group
 they were in when they were unmapped unless that group doesn't
 exist, in which case they go into the current group.")
-   (urgent-windows :initform nil :accessor screen-urgent-windows :documentation
+   (urgent-windows :initform () :accessor screen-urgent-windows :documentation
     "a list of windows for which (window-urgent-p) currently true.")
-   (input-window :initform nil :accessor screen-input-window)
-
-   (key-window :initform nil :accessor screen-key-window :documentation
+   (input-window :initarg :input-window :reader screen-input-window)
+   (key-window :initarg :key-window :reader screen-key-window :documentation
     "the window that accepts further keypresses after a toplevel key has been pressed.")
-   (focus-window :initform nil :accessor screen-focus-window :documentation
+   (focus-window :initarg :focus-window :reader screen-focus-window :documentation
     "The window that gets focus when no window has focus")
-   ;;
-   (frame-window :initform nil :accessor screen-frame-window)
-   (frame-outline-gc :initform nil :accessor screen-frame-outline-gc)
+   (frame-window :initarg :frame-window :reader screen-frame-window)
+   (frame-outline-gc :initarg :frame-outline-gc :reader screen-frame-outline-gc)
    ;; color contexts
-   (message-cc :initform nil :accessor screen-message-cc)
-   (mode-line-cc :initform nil :accessor screen-mode-line-cc)
+   (message-cc :initarg :message-cc :reader screen-message-cc)
    ;; color maps
    (color-map-normal :initform nil :accessor screen-color-map-normal)
    (color-map-bright :initform nil :accessor screen-color-map-bright)
-   (ignore-msg-expose :initform nil :accessor screen-ignore-msg-expose :documentation
+   (ignore-msg-expose :initform 0 :accessor screen-ignore-msg-expose :documentation
     "used to ignore the first expose even when mapping the message window.")
    ;; the window that has focus
    (focus :initform nil :accessor screen-focus)
@@ -504,21 +609,19 @@ exist, in which case they go into the current group.")
    (last-msg-highlights :initform nil :accessor screen-last-msg-highlights)))
 
 (defstruct ccontext
+  screen
   win
   px
   gc
   default-fg
   default-bright
-  default-bg)
-
-(defun screen-message-window (screen)
-  (ccontext-win (screen-message-cc screen)))
-
-(defun screen-message-pixmap (screen)
-  (ccontext-px (screen-message-cc screen)))
-
-(defun screen-message-gc (screen)
-  (ccontext-gc (screen-message-cc screen)))
+  default-bg
+  fg
+  bg
+  brightp
+  reversep
+  color-stack
+  font)
 
 (defmethod print-object ((object frame) stream)
   (format stream "#S(frame ~d ~a ~d ~d ~d ~d)"
@@ -530,7 +633,7 @@ exist, in which case they go into the current group.")
 (defvar *group-number-map* "1234567890"
   "Set this to a string to remap the group numbers to something more convenient.")
 
-(defvar *frame-number-map* "0123456789abcdefghijklmnopqrstuvxwyz"
+(defvar *frame-number-map* "0123456789abcdefghijklmnopqrstuvwxyz"
   "Set this to a string to remap the frame numbers to more convenient keys.
 For instance,
 
@@ -542,10 +645,11 @@ supported. By default, the frame labels are the 36 (lower-case)
 alphanumeric characters, starting with numbers 0-9.")
 
 (defun get-frame-number-translation (frame)
-  "Given a frame return its number translation using *frame-number-map* as a char."
+  "Given a frame return its number translation using *frame-number-map* as a
+char."
   (let ((num (frame-number frame)))
-    (or (and (< num (length *frame-number-map*))
-             (char *frame-number-map* num))
+    (if (< num (length *frame-number-map*))
+        (char *frame-number-map* num)
         ;; translate the frame number to a char. FIXME: it loops after 9
         (char (prin1-to-string num) 0))))
 
@@ -582,7 +686,7 @@ loads the rc file.")
 
 (defvar *interactivep* nil
   "True when a defcommand is executed from colon or a keybinding")
- 
+
 ;;; The restarts menu macro
 
 (defmacro with-restarts-menu (&body body)
@@ -599,30 +703,33 @@ chosen, resignal the error."
        ,@body)))
 
 ;;; Hook functionality
+(defvar *hooks-enabled-p* t
+  "Controls whether hooks will actually run or not")
 
 (defun run-hook-with-args (hook &rest args)
   "Call each function in HOOK and pass args to it."
-  (handler-case
-      (with-simple-restart (abort-hooks "Abort running the remaining hooks.")
-        (with-restarts-menu
+  (when *hooks-enabled-p*
+    (handler-case
+        (with-simple-restart (abort-hooks "Abort running the remaining hooks.")
+          (with-restarts-menu
             (dolist (fn hook)
               (with-simple-restart (continue-hooks "Continue running the remaining hooks.")
                 (apply fn args)))))
-    (t (c) (message "^B^1*Error on hook ^b~S^B!~% ^n~A" hook c) (values nil c))))
+      (t (c) (message "^B^1*Error on hook ^b~S^B!~% ^n~A" hook c) (values nil c)))))
 
 (defun run-hook (hook)
   "Call each function in HOOK."
   (run-hook-with-args hook))
 
 (defmacro add-hook (hook fn)
-  "Add @var{function} to the hook @var{hook-variable}. For example, to
+  "Add @var{function} to the @var{hook-variable}. For example, to
 display a message whenever you switch frames:
 
 @example
 \(defun my-rad-fn (to-frame from-frame)
   (stumpwm:message \"Mustard!\"))
 
-\(stumpmwm:add-hook stumpwm:*focus-frame-hook* 'my-rad-fn)
+\(stumpwm:add-hook stumpwm:*focus-frame-hook* 'my-rad-fn)
 @end example"
   `(setf ,hook (adjoin ,fn ,hook)))
 
@@ -630,24 +737,16 @@ display a message whenever you switch frames:
 "Remove the specified function from the hook."
   `(setf ,hook (remove ,fn ,hook)))
 
-;; Misc. utility functions
+(defmacro remove-all-hooks (hook)
+"Remove all functions from a hook"
+  `(setf ,hook NIL))
 
-(defun conc1 (list arg)
-  "Append arg to the end of list"
-  (nconc list (list arg)))
+;; Misc. utility functions
 
 (defun sort1 (list sort-fn &rest keys &key &allow-other-keys)
   "Return a sorted copy of list."
   (let ((copy (copy-list list)))
     (apply 'sort copy sort-fn keys)))
-
-(defun mapcar-hash (fn hash)
-  "Just like maphash except it accumulates the result in a list."
-  (let ((accum nil))
-    (labels ((mapfn (key val)
-               (push (funcall fn key val) accum)))
-      (maphash #'mapfn hash))
-    accum))
 
 (defun find-free-number (l &optional (min 0) dir)
   "Return a number that is not in the list l. If dir is :negative then
@@ -672,29 +771,11 @@ positive direction."
             (+ inc max)
             min))))
 
-(defun remove-plist (plist &rest keys)
-  "Remove the keys from the plist.
-Useful for re-using the &REST arg after removing some options."
-  (do (copy rest)
-      ((null (setq rest (nth-value 2 (get-properties plist keys))))
-       (nreconc copy plist))
-    (do () ((eq plist rest))
-      (push (pop plist) copy)
-      (push (pop plist) copy))
-    (setq plist (cddr plist))))
-
-(defun screen-display-string (screen &optional (assign t))
-  (format nil
-          (if assign "DISPLAY=~a:~d.~d" "~a:~d.~d")
-          (screen-host screen)
-          (xlib:display-display *display*)
-          (screen-id screen)))
-
 (defun split-seq (seq separators &key test default-value)
-  "split a sequence into sub sequences given the list of seperators."
+  "Split a sequence into subsequences given the list of seperators."
   (let ((seps separators))
     (labels ((sep (c)
-               (find c seps :test test)))
+               (position c seps :test test)))
       (or (loop for i = (position-if (complement #'sep) seq)
                 then (position-if (complement #'sep) seq :start j)
                 as j = (position-if #'sep seq :start (or i 0))
@@ -720,6 +801,17 @@ at the end of STRING, we don't include a null substring for that.
 Modifies the match data; use `save-match-data' if necessary."
   (split-seq string separators :test #'char= :default-value '("")))
 
+(defun match-all-regexps (regexps target-string &key (case-insensitive t))
+  "Return T if TARGET-STRING matches all regexps in REGEXPS.
+REGEXPS can be a list of strings (one regexp per element) or a single
+string which is split to obtain the individual regexps. "
+  (let* ((regexps (if (listp regexps)
+                      regexps
+                      (split-string regexps " "))))
+    (loop for pattern in regexps
+       always (let ((scanner (ppcre:create-scanner pattern
+                                                   :case-insensitive-mode case-insensitive)))
+                (ppcre:scan scanner target-string)))))
 
 (defun insert-before (list item nth)
   "Insert ITEM before the NTH element of LIST."
@@ -728,51 +820,6 @@ Modifies the match data; use `save-match-data' if necessary."
          (pre (subseq list 0 nth))
          (post (subseq list nth)))
     (nconc pre (list item) post)))
-
-(defvar *debug-level* 0
-  "Set this variable to a number > 0 to turn on debugging. The greater the number the more debugging output.")
-
-(defvar *debug-expose-events* nil
-  "Set this variable for a visual indication of expose events on internal StumpWM windows.")
-
-(defvar *debug-stream* *error-output*
-  "This is the stream debugging output is sent to. It defaults to
-*error-output*. It may be more convenient for you to pipe debugging
-output directly to a file.")
-
-(defun dformat (level fmt &rest args)
-  (when (>= *debug-level* level)
-    (multiple-value-bind (sec m h) (decode-universal-time (get-universal-time))
-      (format *debug-stream* "~2,'0d:~2,'0d:~2,'0d " h m sec))
-    ;; strip out non base-char chars quick-n-dirty like
-    (write-string (map 'string (lambda (ch)
-                                 (if (typep ch 'standard-char)
-                                     ch #\?))
-                       (apply 'format nil fmt args))
-                  *debug-stream*)
-    (force-output *debug-stream*)))
-
-(defvar *redirect-stream* nil
-  "This variable Keeps track of the stream all output is sent to when
-`redirect-all-output' is called so if it changes we can close it
-before reopening.")
-
-(defun redirect-all-output (file)
-  "Elect to redirect all output to the specified file. For instance,
-if you want everything to go to ~/stumpwm.d/debug-output.txt you would
-do:
-
-@example
-(redirect-all-output (data-dir-file \"debug-output\" \"txt\"))
-@end example
-"
-  (when (typep *redirect-stream* 'file-stream)
-    (close *redirect-stream*))
-  (setf *redirect-stream* (open file :direction :output :if-exists :append :if-does-not-exist :create)
-        *error-output*    *redirect-stream*
-        *standard-output* *redirect-stream*
-        *trace-output*    *redirect-stream*
-        *debug-stream*    *redirect-stream*))
 
 ;;; 
 ;;; formatting routines
@@ -833,7 +880,7 @@ with the following formatting options:
 
 @table @asis
 @item %n
-Substitutes the windows number translated via *window-number-map*, if there
+Substitutes the window's number translated via *window-number-map*, if there
 are more windows than *window-number-map* then will use the window-number.
 @item %s
 Substitute the window's status. * means current window, + means last
@@ -853,7 +900,12 @@ size. For instance, @samp{%20t} crops the window's title to 20
 characters.")
 
 (defvar *window-info-format* "%wx%h %n (%t)"
-  "The format used in the info command. @xref{*window-format*} for formatting details.")
+  "The format used in the info command. See
+  @var{*window-format*} for formatting details.")
+
+(defparameter *window-format-by-class* "%m%n %c %s%50t"
+  "The format used in the info winlist-by-class command. See
+ @var{*window-format*} for formatting details.")
 
 (defvar *group-formatters* '((#\n group-map-number)
                              (#\s fmt-group-status)
@@ -889,8 +941,8 @@ The group's name.
 ;;      (font-ascent font)))
 
 (defvar *x-selection* nil
-  "This holds stumpwm's current selection. It is generally set
-when killing text in the input bar.")
+  "This is a plist of stumpwm's current selections. The different properties are
+generally set when killing text in the input bar.")
 
 (defvar *last-command* nil
   "Set to the last interactive command run.")
@@ -903,10 +955,10 @@ when killing text in the input bar.")
 recommended this is assigned using LET.")
 
 (defvar *suppress-echo-timeout* nil
-  "Assign this T and messages will not time out. It is recommended this is assigned using LET.")
+  "Assign this T and messages will not time out. It is recommended to assign this using LET.")
 
 (defvar *ignore-echo-timeout* nil
-  "Assign this T and the message time out won't be touched. It is recommended this is assigned using LET.")
+  "Assign this T and the message time out won't be touched. It is recommended to assign this using LET.")
 
 (defvar *run-or-raise-all-groups* t
   "When this is @code{T} the @code{run-or-raise} function searches all groups for a
@@ -1021,14 +1073,20 @@ will have no effect.")
   "List of rules governing window placement. Use define-frame-preference to
 add rules")
 
-(defmacro define-frame-preference (target-group &rest frame-rules)
+(defmacro define-frame-preference (target-group &body frame-rules)
   "Create a rule that matches windows and automatically places them in
 a specified group and frame. Each frame rule is a lambda list:
 @example
-\(frame-number raise lock &key create restore dump-name class instance type role title)
+\(frame-number raise lock &key from-group create restore dump-name class class-not
+instance instance-not type type-not role role-not title title-not
+match-properties-and-function match-properties-or-function)
 @end example
 
 @table @var
+@item target-group
+When nil, rule applies in the current group. When non nil, @var{lock} determines
+applicability of rule
+
 @item frame-number
 The frame number to send matching windows to
 
@@ -1036,12 +1094,19 @@ The frame number to send matching windows to
 When non-nil, raise and focus the window in its frame
 
 @item lock
-When this is nil, this rule will only match when the current group
-matches @var{target-group}. When non-nil, this rule matches regardless
+When this is nil, this rule will only match when @var{target-group}
+matches the group designated by @var{from-group}.
+When non-nil, this rule matches regardless
 of the group and the window is sent to @var{target-group}. If
 @var{lock} and @var{raise} are both non-nil, then stumpwm will jump to
 the specified group and focus the matched window.
 
+@item from-group
+When @var{lock} is NIL, and this is non-NIL, this rule will only match
+when @var{target-group} matches @var{from-group}. This should be set
+to either a group name(a string), or an expression that returns a group(e.g (current-group)).
+When this is NIL, the rule matches if @var{target-group} matches
+the group the window is in, or the current group if the window has no group.
 @item create
 When non-NIL the group is created and eventually restored when the value of
 create is a group dump filename in *DATA-DIR*. Defaults to NIL.
@@ -1051,27 +1116,47 @@ When non-NIL the group is restored even if it already exists. This arg should
 be set to the dump filename to use for forced restore. Defaults to NIL
 
 @item class
-The window's class must match @var{class}.
+The windows class must match @var{class}.
+
+@item class-not
+The windows class must not match @var{class-not}
 
 @item instance
-The window's instance/resource name must match @var{instance}.
+The windows instance/resource name must match @var{instance}.
+
+@item instance-not
+The windows instance/resource name must not match @var{instance-not}.
 
 @item type
-The window's type must match @var{type}.
+The windows type must match @var{type}.
+
+@item type-not
+The windows type must not match @var{type-not}.
 
 @item role
-The window's role must match @var{role}.
+The windows role must match @var{role}.
+
+@item role-not
+The windows role must not match @var{role-not}.
 
 @item title
-The window's title must match @var{title}.
+The windows title must match @var{title}.
+
+@item title-not
+The windows title must not match @var{title-not}.
+
+@item match-properties-and-function
+A function that, if provided, must return true alongside the provided properties
+in order for the rule to match. This function takes one argument, the window.
+
+@item match-properties-or-function
+A function that, if provided and returning true, will cause the rule to match
+regardless of whether the window properties match. Takes one argument, the window.
 @end table"
   (let ((x (gensym "X")))
     `(dolist (,x ',frame-rules)
        ;; verify the correct structure
-       (destructuring-bind (frame-number raise lock
-                                         &rest keys
-                                         &key create restore class instance type role title) ,x
-         (declare (ignore create restore class instance type role title))
+       (destructuring-bind (frame-number raise lock &rest keys) ,x
          (push (list* ,target-group frame-number raise lock keys)
                *window-placement-rules*)))))
 
@@ -1088,7 +1173,7 @@ input focus is transfered to the window you click on.")
 
 (defvar *root-click-focuses-frame* t
   "Set to NIL if you don't want clicking the root window to focus the frame
-  containing the pointer when *mouse-focus-policy* is :click.")
+  containing the pointer.")
 
 (defvar *banish-pointer-to* :head
   "Where to put the pointer when no argument is given to (banish-pointer) or the banish
@@ -1158,7 +1243,7 @@ of :error."
   (declare (ignorable if-exists))
   `(progn
      (ensure-directories-exist *data-dir*)
-     (with-open-file (,s ,(merge-pathnames *data-dir* file)
+     (with-open-file (,s ,(merge-pathnames file *data-dir*)
                          ,@keys)
        ,@body)))
 
@@ -1168,8 +1253,20 @@ of :error."
     (setf ,list (remove ,elt ,list))
     (push ,elt ,list)))
 
-(define-condition stumpwm-error (error)
-  () (:documentation "Any stumpwm specific error should inherit this."))
+(define-condition stumpwm-condition (condition)
+  ((message :initarg :message :reader warning-message))
+  (:documentation "Any stumpmwm specific condition should inherit from this.")
+  (:report (lambda (condition stream)
+            (format stream "~A~%" (warning-message condition)))))
+
+(define-condition stumpwm-error (stumpwm-condition error)
+  ()
+  (:documentation "Any stumpwm specific error should inherit this."))
+
+(define-condition stumpwm-warning (warning stumpwm-condition)
+  ()
+  (:documentation "Adds a message slot to warning. Any stumpwm specific warning
+  should inherit from this."))
 
 (defun intern1 (thing &optional (package *package*) (rt *readtable*))
   "A DWIM intern."
@@ -1188,3 +1285,18 @@ of :error."
 
 (defun command-mode-end-message ()
   (message "Exited command-mode."))
+
+(defstruct (mode-line (:constructor %make-mode-line))
+  screen
+  head
+  window
+  format
+  position
+  contents
+  cc
+  height
+  factor
+  (mode :stump))
+
+(defstruct timer
+  time repeat function args)

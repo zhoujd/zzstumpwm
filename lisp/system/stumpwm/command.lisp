@@ -25,14 +25,15 @@
 (in-package #:stumpwm)
 
 (export '(argument-line-end-p
-	  argument-pop
-	  argument-pop-or-read
-	  argument-pop-rest
-	  define-stumpwm-command
+          argument-pop
+          argument-pop-or-read
+          argument-pop-rest
+          define-stumpwm-command
           defcommand
           defcommand-alias
-	  define-stumpwm-type
-	  run-commands))
+          define-stumpwm-type
+          run-commands
+          %interactivep%))
 
 (defstruct command-alias
   from to)
@@ -44,22 +45,25 @@
   "A list of interactive stumpwm commands.")
 
 (defvar *max-command-alias-depth* 10
-  "")
+  "The maximum number of times an command alias is expanded before an Error is raised.")
 
-;; XXX: I'd like to just use straight warn, but sbcl drops to the
-;; debugger when compiling so i've made a style warning instead
-;; -sabetts
 (define-condition command-docstring-warning (style-warning)
+  ;; Don't define an accessor to prevent collision with the generic command
   ((command :initarg :command))
   (:report
-   (lambda (c s)
-     (format s "command ~a doesn't have a docstring" (slot-value c 'command)))))
+   (lambda (condition stream)
+     (format stream "The command ~A doesn't have a docstring" (slot-value condition 'command)))))
 
 (defmacro defcommand (name (&rest args) (&rest interactive-args) &body body)
   "Create a command function and store its interactive hints in
 *command-hash*. The local variable %interactivep% can be used to check
 if the command was called interactively. If it is non-NIL then it was
 called from a keybinding or from the colon command.
+
+The NAME argument can be a string, or a list of two symbols. If the
+latter, the first symbol names the command, and the second indicates
+the type of group under which this command will be usable. Currently,
+tile-group and floating-group are the two possible values.
 
 INTERACTIVE-ARGS is a list of the following form: ((TYPE PROMPT) (TYPE PROMPT) ...)
 
@@ -100,7 +104,7 @@ A frame
 @item :shell
 A shell command
 @item :rest
-The rest of the input yes to be parsed.
+The rest of the input yet to be parsed.
 @item :module
 An existing stumpwm module
 @end table
@@ -116,31 +120,35 @@ when missing.
 Alternatively, instead of specifying nil for PROMPT or leaving it
 out, an element can just be the argument type."
   (check-type name (or symbol list))
-  (let ((docstring (if (stringp (first body))
-                     (first body)
-                     (warn (make-condition 'command-docstring-warning :command name))))
-        (body (if (stringp (first body))
-                  (cdr body) body))
-        (name (if (atom name)
-                  name
-                  (first name)))
-        (group (if (atom name)
-                   t
-                   (second name))))
-  `(progn
-     (defun ,name ,args
-       ,docstring
-       (let ((%interactivep% *interactivep*)
-	     (*interactivep* nil))
-	 (declare (ignorable %interactivep%))
-	 ,@body))
-     (setf (gethash ',name *command-hash*)
-           (make-command :name ',name
-                         :class ',group
-                         :args ',interactive-args)))))
+  (multiple-value-bind (body decls docstring) (parse-body body :documentation t)
+    (let ((name (if (atom name)
+                    name
+                    (first name)))
+          (group (if (atom name)
+                     t
+                     (second name))))
+      (unless docstring
+        (make-condition 'command-docstring-warning :command name))
+      `(progn
+         (defun ,name ,args
+           ,@(when docstring
+               (list docstring))
+           ,@decls
+           (let ((%interactivep% *interactivep*)
+                 (*interactivep* nil))
+             (declare (ignorable %interactivep%))
+             (run-hook-with-args *pre-command-hook* ',name)
+             (multiple-value-prog1
+                 (progn ,@body)
+               (run-hook-with-args *post-command-hook* ',name))))
+         (export ',name)
+         (setf (gethash ',name *command-hash*)
+               (make-command :name ',name
+                             :class ',group
+                             :args ',interactive-args))))))
 
 (defmacro define-stumpwm-command (name (&rest args) &body body)
-  "Deprecated. use `defcommand' instead."
+  "Deprecated. Use `defcommand' instead."
   (check-type name string)
   (setf name (intern1 name))
   `(progn
@@ -184,7 +192,7 @@ commands."
                      until (or (null c)
                                (command-p c))
                      when (> depth *max-command-alias-depth*)
-                     do (error "Maximum command alias depth exceded")
+                     do (error "Maximum command alias depth exceeded.")
                      finally (return c))))
   (when (and command
              (or (not only-active)
@@ -218,17 +226,49 @@ only return active commands."
 (defun argument-pop (input)
   "Pop the next argument off."
   (unless (argument-line-end-p input)
-    (let* ((p1 (position-if-not (lambda (ch)
-                                  (char= ch #\Space))
-                                (argument-line-string input)
-                                :start (argument-line-start input)))
-           (p2 (or (and p1 (position #\Space (argument-line-string input) :start p1))
-                   (length (argument-line-string input)))))
-      (prog1
-          ;; we wanna return nil if they're the same
-          (unless (= p1 p2)
-            (subseq (argument-line-string input) p1 p2))
-        (setf (argument-line-start input) (1+ p2))))))
+    (flet ((pop-word (input start)
+             ;; Return the first word of INPUT starting from START and
+             ;; its end position.
+             (let* ((p1 (position #\space input :start start :test #'char/=))
+                    (p2 (or (and p1 (position #\Space input :start p1))
+                            (length input))))
+               ;; we wanna return nil if they're the same
+               (unless (= p1 p2)
+                 (values (subseq input p1 p2)
+                         (1+ p2)))))
+           (pop-string (input start)
+             ;; Return a delimited string from INPUT starting from
+             ;; START (if there is one) and the end position of the
+             ;; string.
+             (let ((start
+                     (loop for i from start below (length input)
+                           for char = (char input i)
+                           do (case char
+                                (#\space)             ;Skip spaces
+                                (#\" (return (1+ i))) ;Start position found
+                                (otherwise (return-from pop-string nil))))))
+               (let ((str (make-string-output-stream)))
+                 (loop for i from start below (length input)
+                       for char = (char input i)
+                       do (case char
+                            (#\\        ;Escape next char
+                             (incf i)
+                             (if (< i (length input))
+                                 (write-char (char input i) str)
+                                 (return nil)))
+                            (#\"        ;End delimiter
+                             (return (values (get-output-stream-string str)
+                                             (1+ i))))
+                            (otherwise
+                             (write-char char str))))))))
+      (multiple-value-bind (arg end)
+          (nth-value-or 0
+            (pop-string (argument-line-string input)
+                        (argument-line-start input))
+            (pop-word (argument-line-string input)
+                      (argument-line-start input)))
+        (setf (argument-line-start input) end)
+        arg))))
 
 (defun argument-pop-or-read (input prompt &optional completions)
   (or (argument-pop input)
@@ -252,7 +292,7 @@ only return active commands."
       (throw 'error :abort)))
 
 (defmacro define-stumpwm-type (type (input prompt) &body body)
-  "Create a new type that can be used for command arguments. @var{type} can be any symbol. 
+  "Create a new type that can be used for command arguments. @var{type} can be any symbol.
 
 When @var{body} is evaluated @var{input} is bound to the
 argument-line. It is passed to @code{argument-pop},
@@ -261,25 +301,26 @@ be used when prompting the user for the argument.
 
 @example
 \(define-stumpwm-type :symbol (input prompt)
- (or (find-symbol (string-upcase
-		     (or (argument-pop input)
-                         ;; Whitespace messes up find-symbol.
-		         (string-trim \" \"
-		           (completing-read (current-screen)
-					  prompt
-					  ;; find all symbols in the
-					  ;;  stumpwm package.
-					  (let (acc)
-					    (do-symbols (s (find-package \"STUMPWM\"))
-					      (push (string-downcase (symbol-name s)) acc))
-					    acc)))
-                      (throw 'error \"Abort.\")))
-                  \"STUMPWM\")
+ (or (find-symbol
+       (string-upcase
+         (or (argument-pop input)
+             ;; Whitespace messes up find-symbol.
+             (string-trim \" \"
+                          (completing-read (current-screen)
+                                           prompt
+                                           ;; find all symbols in the
+                                           ;;  stumpwm package.
+                                           (let (acc)
+                                             (do-symbols (s (find-package \"STUMPWM\"))
+                                               (push (string-downcase (symbol-name s)) acc))
+                                             acc)))
+             (throw 'error \"Abort.\")))
+       \"STUMPWM\")
      (throw 'error \"Symbol not in STUMPWM package\")))
 
 \(defcommand \"symbol\" (sym) ((:symbol \"Pick a symbol: \"))
   (message \"~a\" (with-output-to-string (s)
-	          (describe sym s))))
+                    (describe sym s))))
 @end example
 
 This code creates a new type called @code{:symbol} which finds the
@@ -292,8 +333,7 @@ then describes the symbol."
 (define-stumpwm-type :y-or-n (input prompt)
   (let ((s (or (argument-pop input)
                (read-one-line (current-screen) (concat prompt "(y/n): ")))))
-    (when s
-      (values (list (equal s "y"))))))
+    (equal s "y")))
 
 (defun lookup-symbol (string)
   ;; FIXME: should we really use string-upcase?
@@ -316,12 +356,13 @@ then describes the symbol."
 (define-stumpwm-type :function (input prompt)
   (multiple-value-bind (sym pkg var)
       (lookup-symbol (argument-pop-or-read input prompt))
-    (if (symbol-function sym)
-        (symbol-function sym)
-        (throw 'error (format nil "the symbol ~a::~a has no function."
+    (if (fboundp sym)
+        sym
+        (throw 'error (format nil "The symbol ~A::~A is not bound to any function."
                               (package-name pkg) var)))))
 
 (define-stumpwm-type :command (input prompt)
+
   (or (argument-pop input)
       (completing-read (current-screen)
                        prompt
@@ -329,7 +370,7 @@ then describes the symbol."
 
 (define-stumpwm-type :key-seq (input prompt)
   (labels ((update (seq)
-             (message "~a: ~{~a ~}"
+             (message "~a ~{~a ~}"
                       prompt
                       (mapcar 'print-key (reverse seq)))))
     (let ((rest (argument-pop-rest input)))
@@ -341,28 +382,25 @@ then describes the symbol."
                                (read-from-keymap (top-maps) #'update)))))))))
 
 (define-stumpwm-type :window-number (input prompt)
-  (let ((n (or (argument-pop input)
+  (when-let ((n (or (argument-pop input)
                (completing-read (current-screen)
                                 prompt
                                 (mapcar 'window-map-number
                                         (group-windows (current-group)))))))
-    (when n
-      (let ((win (find n (group-windows (current-group))
-                       :test #'string=
-                       :key #'window-map-number)))
-        (if win
-            (window-number win)
-            (throw 'error "No Such Window."))))))
+    (if-let ((win (find n (group-windows (current-group))
+                     :test #'string=
+                     :key #'window-map-number)))
+      (window-number win)
+      (throw 'error "No such window."))))
 
 (define-stumpwm-type :number (input prompt)
-  (let ((n (or (argument-pop input)
-               (read-one-line (current-screen) prompt))))
-    (when n
-      (handler-case
-          (parse-integer n)
-        (parse-error (c)
-          (declare (ignore c))
-          (throw 'error "Number required."))))))
+  (when-let ((n (or (argument-pop input)
+                    (read-one-line (current-screen) prompt))))
+    (handler-case
+        (parse-integer n)
+      (parse-error (c)
+        (declare (ignore c))
+        (throw 'error "Number required.")))))
 
 
 (define-stumpwm-type :string (input prompt)
@@ -374,10 +412,9 @@ then describes the symbol."
       (read-one-line (current-screen) prompt :password t)))
 
 (define-stumpwm-type :key (input prompt)
-  (let ((s (or (argument-pop input)
+  (when-let ((s (or (argument-pop input)
                (read-one-line (current-screen) prompt))))
-    (when s
-      (kbd s))))
+    (kbd s)))
 
 (define-stumpwm-type :window-name (input prompt)
   (or (argument-pop input)
@@ -390,8 +427,8 @@ then describes the symbol."
                    ("down" :down)
                    ("left" :left)
                    ("right" :right)))
-         (dir (second (assoc (argument-pop-or-read input prompt values)
-                             values :test 'string-equal))))
+         (string (argument-pop-or-read input prompt (mapcar 'first values)))
+         (dir (second (assoc string values :test 'string-equal))))
     (or dir
         (throw 'error "No matching direction."))))
 
@@ -406,7 +443,8 @@ then describes the symbol."
                    ("top-left" :top-left)
                    ("bottom-right" :bottom-right)
                    ("bottom-left" :bottom-left)))
-         (gravity (second (assoc (argument-pop-or-read input prompt values) values :test 'string-equal))))
+         (string (argument-pop-or-read input prompt (mapcar 'first values)))
+         (gravity (second (assoc string values :test 'string-equal))))
     (or gravity
         (throw 'error "No matching gravity."))))
 
@@ -431,23 +469,27 @@ then describes the symbol."
                                                   (mapcar 'group-name
                                                           (screen-groups (current-screen))))))))
     (or match
-        (throw 'error "No Such Group."))))
+        (throw 'error "No such group."))))
 
 (define-stumpwm-type :frame (input prompt)
   (declare (ignore prompt))
-  (let ((arg (argument-pop input)))
-    (if arg
-        (or (find arg (group-frames (current-group))
-                  :key (lambda (f)
-                         (string (get-frame-number-translation f)))
-                  :test 'string=)
-            (throw 'error "Frame not found."))
-        (or (choose-frame-by-number (current-group))
-            (throw 'error :abort)))))
+  (if-let ((arg (argument-pop input)))
+    (or (find arg (group-frames (current-group))
+              :key (lambda (f)
+                     (string (get-frame-number-translation f)))
+              :test 'string=)
+        (throw 'error "Frame not found."))
+    (or (choose-frame-by-number (current-group))
+        (throw 'error :abort))))
 
 (define-stumpwm-type :shell (input prompt)
-  (or (argument-pop-rest input)
-      (completing-read (current-screen) prompt 'complete-program)))
+  (declare (ignore prompt))
+  (let ((prompt (format nil "~A -c " *shell-program*))
+        (*input-history* *input-shell-history*))
+    (unwind-protect
+         (or (argument-pop-rest input)
+             (completing-read (current-screen) prompt 'complete-program))
+      (setf *input-shell-history* *input-history*))))
 
 (define-stumpwm-type :rest (input prompt)
   (or (argument-pop-rest input)
@@ -486,9 +528,7 @@ user aborted."
                               (if (and (null prompt)
                                        (argument-line-end-p arg-line))
                                   (loop-finish)
-                                  ;; FIXME: Is it presumptuous to assume NIL means abort?
-                                  (or (funcall fn arg-line prompt)
-                                      (throw 'error :abort)))))))
+                                  (funcall fn arg-line prompt))))))
       ;; Did the whole string get parsed?
       (unless (or (argument-line-end-p arg-line)
                   (position-if 'alphanumericp (argument-line-string arg-line) :start (argument-line-start arg-line)))
@@ -506,19 +546,20 @@ user aborted."
                                                   :start 0))
                     (cmd (argument-pop arg-line)))
                (let ((*interactivep* interactivep))
-		 (call-interactively cmd arg-line)))))
+                 (call-interactively cmd arg-line)))))
     (multiple-value-bind (result error-p)
         ;; this fancy footwork lets us grab the backtrace from where the
         ;; error actually happened.
         (restart-case
-            (handler-bind 
+            (handler-bind
                 ((error (lambda (c)
                           (invoke-restart 'eval-command-error
-                                          (format nil "^B^1*Error In Command '^b~a^B': ^n~A~a" 
-                                                  cmd c (if *show-command-backtrace* 
+                                          (format nil "^B^1*Error In Command '^b~a^B': ^n~A~a"
+                                                  cmd c (if *show-command-backtrace*
                                                             (backtrace-string) ""))))))
               (parse-and-run-command cmd))
           (eval-command-error (err-text)
+            :interactive (lambda () nil)
             (values err-text t)))
       ;; interactive commands update the modeline
       (update-all-mode-lines)
@@ -546,7 +587,12 @@ know lisp very well. One might put the following in one's rc file:
 
 (defcommand colon (&optional initial-input) (:rest)
   "Read a command from the user. @var{initial-text} is optional. When
-supplied, the text will appear in the prompt."
+supplied, the text will appear in the prompt.
+
+String arguments with spaces may be passed to the command by
+delimiting them with double quotes. A backslash can be used to escape
+double quotes or backslashes inside the string. This does not apply to
+commands taking :REST or :SHELL type arguments."
   (let ((cmd (completing-read (current-screen) ": " (all-commands) :initial-input (or initial-input ""))))
     (unless cmd
       (throw 'error :abort))

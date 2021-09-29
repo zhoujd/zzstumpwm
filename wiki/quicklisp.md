@@ -8,8 +8,8 @@ quicklisp package system
 ## Install system in quickliap
 
     (setq ql:*PROXY-URL* "http://proxy-prc.*****.com:911")
-    (ql:update-all-dists)
     (ql:update-client)
+    (ql:update-all-dists)
 
 ## Proxy in config
 
