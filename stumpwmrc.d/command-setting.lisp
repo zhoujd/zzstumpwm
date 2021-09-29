@@ -413,10 +413,10 @@ used for matching windows with run-or-raise or window placement-merules."
       (stumpwm::restore-from-file *zz-group-file*)
       (message "This no is ~a." *zz-group-file*)))
 
-;; process menu
-(defcommand process-menu () ()
-  "process menu"
-  (run-shell-command (urxvt-command "htop")))
+;; htop
+(defcommand htop () ()
+  "Run htop."
+  (run-or-raise "urxvt -name HTop -e htop" '(:instance "HTop")))
 
 ;; eval shell
 (defcommand eval-shell (&optional (initial "")) (:rest)

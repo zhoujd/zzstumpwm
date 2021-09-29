@@ -297,7 +297,7 @@
   ;;b/f, p/n for arrow control
   (kbd "Tab")               "capslock-toggle"
   (kbd "a")                 "pavucontrol"
-  (kbd "h")                 "process-menu"
+  (kbd "h")                 "htop"
   (kbd "k")                 "keymap-menu"
   (kbd "l")                 "locate-menu"
   (kbd "p")                 "screen-menu"
