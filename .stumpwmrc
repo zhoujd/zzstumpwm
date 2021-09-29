@@ -27,13 +27,13 @@
  #'zz-load
  (list
   "macro-setting"
-  ;;"common-setting"
-  ;;"env-setting"
+  "common-setting"
+  "env-setting"
   ;;"font-setting"
-  ;;"tool-setting"
+  "tool-setting"
   ;;"other-setting"
   ;;"command-setting"
-  ;;"menu-setting"
+  "menu-setting"
   ;;"keymap-setting"
   ;;"key-setting"
   ;;"fn-setting"
