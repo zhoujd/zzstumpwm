@@ -50,7 +50,7 @@
   (kbd "C-m")               "claws-mail"
   (kbd "n")                 "cherrytree"
   (kbd "C-n")               "exec cherrytree"
-  (kbd "p")                 "pidgin"
+  (kbd "p")                 (urxvt-command "bpython")
   (kbd "q")                 "slingscold"
   (kbd "C-q")               "exec slingscold"
   (kbd "r")                 "exec remmina"

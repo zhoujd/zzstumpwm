@@ -486,3 +486,8 @@ used for matching windows with run-or-raise or window placement-merules."
   (message "~a"
            (run-shell-command (format nil "~a"
                                       (merge-pathnames "libexec/touchpad-toggle" *zz-load-directory*)) t)))
+
+;; bpython
+(defcommand bpython () ()
+  "bpython"
+  (run-shell-command "exec urxvt -e bpython"))
