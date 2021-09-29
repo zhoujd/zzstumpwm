@@ -35,6 +35,6 @@
   "command-setting"
   "menu-setting"
   "keymap-setting"
-  ;"key-setting"
+  "key-setting"
   "fn-setting"
   ))

@@ -305,9 +305,3 @@
   (kbd "t")                 "tmux-menu"
   (kbd "w")                 "wifi-menu"
   ))
-
-(apply-keys-to-map
- *resize-map*
- (list
-  (kbd "C-m")               "exit-iresize"
-  ))
