@@ -29,7 +29,7 @@
   "macro-setting"
   "common-setting"
   "env-setting"
-  ;;"font-setting"
+  "font-setting"
   "tool-setting"
   "other-setting"
   "command-setting"

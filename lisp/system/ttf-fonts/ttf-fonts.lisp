@@ -20,10 +20,10 @@
 (defmethod close-font ((font xft:font)))
 
 (defmethod font-ascent ((font xft:font))
-  (xft:font-ascent (stumpwm::screen-number (current-screen)) font))
+  (xft:font-ascent (screen-number (current-screen)) font))
 
 (defmethod font-descent ((font xft:font))
-  (xft:font-descent (stumpwm::screen-number (current-screen)) font))
+  (xft:font-descent (screen-number (current-screen)) font))
 
 (defmethod font-height ((font xft:font))
   (+ (font-ascent font)
@@ -31,7 +31,7 @@
 
 (defmethod text-line-width ((font xft:font) text &rest keys &key (start 0) end translate)
   (declare (ignorable start end translate))
-  (apply 'xft:text-line-width (stumpwm::screen-number (current-screen)) font text
+  (apply 'xft:text-line-width (screen-number (current-screen)) font text
          :allow-other-keys t keys))
 
 (defmethod draw-image-glyphs (drawable 
