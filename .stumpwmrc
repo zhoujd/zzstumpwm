@@ -32,7 +32,7 @@
   ;;"font-setting"
   "tool-setting"
   "other-setting"
-  ;;"command-setting"
+  "command-setting"
   "menu-setting"
   ;;"keymap-setting"
   ;;"key-setting"
