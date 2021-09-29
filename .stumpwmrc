@@ -31,7 +31,7 @@
   "env-setting"
   ;;"font-setting"
   "tool-setting"
-  ;;"other-setting"
+  "other-setting"
   ;;"command-setting"
   "menu-setting"
   ;;"keymap-setting"
