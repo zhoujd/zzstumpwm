@@ -78,18 +78,19 @@
   (kbd "3")                 "hsplit"
   (kbd "4")                 "kill"
   (kbd "0")                 "remove"
-
   (kbd "c")                 "fclear"
   (kbd "d")                 "delete"
+  (kbd "f")                 "toggle-float"
   (kbd "i")                 "window-info"
   (kbd "k")                 "kill"
   (kbd "C-k")               "kill-from-windowlist"
   (kbd "m")                 "fselect"
   (kbd "o")                 "fother"
   (kbd "q")                 "system-action"
-  (kbd "s")                 "swap-windows"
   (kbd "r")                 "restore-group-file"
   (kbd "C-r")               "dump-group-file"
+  (kbd "s")                 "swap-windows"
+  (kbd "t")                 "toggle-always-on-top"
   ))
 
 ;; *zz-help-map*

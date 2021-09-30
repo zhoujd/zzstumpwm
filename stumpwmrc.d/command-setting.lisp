@@ -495,3 +495,10 @@ used for matching windows with run-or-raise or window placement-merules."
 (defcommand bpython () ()
   "bpython"
   (run-shell-command "exec urxvt -e bpython"))
+
+;; toggle window floating
+(defcommand toggle-float () ()
+  "Toggle weather window is floating or not"
+  (if (typep (current-window) 'stumpwm::float-window)
+      (unfloat-this)
+      (float-this)))
