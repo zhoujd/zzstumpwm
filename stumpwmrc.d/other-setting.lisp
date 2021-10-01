@@ -85,6 +85,7 @@ Returns true when yes is selected"
   (list "xsetroot" :options "-cursor_name left_ptr")
   (list "nitrogen" :options "--restore")
   (list "xcompmgr" :options "-C")
+  (list "ulauncher" :options "--hide-window")
   (list "keynav")
   (list "redshift")
   (list "nm-applet")
