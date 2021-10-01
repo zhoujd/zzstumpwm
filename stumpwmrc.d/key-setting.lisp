@@ -26,7 +26,6 @@
   (kbd "M-b")               "wikipedia"
   (kbd "c")                 "urxvt"
   (kbd "C-c")               "exec urxvt"
-  (kbd "M-c")               "cheese"
   (kbd "d")                 "deadbeef"
   (kbd "C-d")               "exec meld"
   (kbd "M-d")               "drawio"
@@ -297,6 +296,7 @@
   ;;b/f, p/n for arrow control
   (kbd "Tab")               "capslock-toggle"
   (kbd "a")                 "pavucontrol"
+  (kbd "c")                 "cheese"
   (kbd "h")                 "htop"
   (kbd "k")                 "keymap-menu"
   (kbd "l")                 "locate-menu"
