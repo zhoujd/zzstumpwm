@@ -85,8 +85,7 @@
   (kbd "m")                 "fselect"
   (kbd "o")                 "fother"
   (kbd "q")                 "system-action"
-  (kbd "r")                 "restore-group-file"
-  (kbd "C-r")               "dump-group-file"
+  (kbd "r")                 "remove"
   (kbd "s")                 "swap-windows"
   (kbd "t")                 "toggle-always-on-top"
   ))
