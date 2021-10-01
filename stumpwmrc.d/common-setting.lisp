@@ -20,9 +20,9 @@
       *input-window-gravity*        :center)
 
 ;; window appearance
-(setf *normal-border-width*         1
-      *maxsize-border-width*        1
-      *transient-border-width*      1
+(setf *normal-border-width*         0
+      *maxsize-border-width*        0
+      *transient-border-width*      0
       stumpwm::+default-frame-outline-width+ 1
       stumpwm::*float-window-border*         1
       stumpwm::*float-window-title-height*   10
