@@ -14,7 +14,6 @@
 (define-sudo-command bright-setup (concat *zz-load-directory* "libexec/brightness-setup.sh"))
 
 ;; run-or-raise
-(def-run-or-raise-command albert        '(:title "albert"))
 (def-run-or-raise-command audacity      '(:class "Audacity"))
 (def-run-or-raise-command cheese        '(:class "Cheese"))
 (def-run-or-raise-command cherrytree    '(:title "Cherrytree"))
