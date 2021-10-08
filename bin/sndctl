@@ -31,7 +31,7 @@ vol_status () {
             echo "Volume: $vol"
             ;;
         * )
-            echo "Unknow status"
+            echo "Unknown status"
             ;;
     esac
 }
@@ -39,16 +39,16 @@ vol_status () {
 mic_status () {
     DEFAULT_SOURCE=$(pactl info | grep "Default Source" | cut -d " " -f3)
     mic_mute=$(pactl list | grep -E "Name: $DEFAULT_SOURCE$|Mute" | grep "Name:" -A1 | tail -1 |cut -d: -f2| tr -d " ")
-    vol=$(pactl list | grep -E "Name: $DEFAULT_SOURCE$|Volume" | grep "Name:" -A1 | tail -1 | cut -d% -f1 | cut -d/ -f2 | tr -d " ")
+    mic_vol=$(pactl list | grep -E "Name: $DEFAULT_SOURCE$|Volume" | grep "Name:" -A1 | tail -1 | cut -d% -f1 | cut -d/ -f2 | tr -d " ")
     case $mic_mute in
         yes )
             echo "Micphone Mute: $mic_mute"
             ;;
         no )
-            echo "Micphone Volume: $vol"
+            echo "Micphone Volume: $mic_vol"
             ;;
         * )
-            echo "Unknow status"
+            echo "Unknown status"
             ;;
     esac
 }
