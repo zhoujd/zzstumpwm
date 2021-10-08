@@ -88,6 +88,7 @@ Returns true when yes is selected"
   (list "ulauncher" :options "--hide-window")
   (list "keynav")
   (list "redshift")
+  (list "dunst")
   (list "nm-applet")
   (list "blueman-applet")
   ))
