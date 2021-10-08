@@ -45,7 +45,7 @@ mic_status () {
             echo "Micphone Mute: $mic_mute"
             ;;
         no )
-            echo "Volume: $vol"
+            echo "Micphone Volume: $vol"
             ;;
         * )
             echo "Unknow status"
