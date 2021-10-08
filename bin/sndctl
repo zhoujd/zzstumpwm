@@ -23,16 +23,34 @@ vol_status () {
     DEFAULT_SINK=$(pactl info | grep "Default Sink" | cut -d " " -f3)
     vol_mute=$(pactl list | grep -E "Name: $DEFAULT_SINK$|Mute" | grep "Name:" -A1 | tail -1 |cut -d: -f2| tr -d " ")
     vol=$(pactl list | grep -E "Name: $DEFAULT_SINK$|Volume" | grep "Name:" -A1 | tail -1 | cut -d% -f1 | cut -d/ -f2 | tr -d " ")
-    echo "Vol Mute: $vol_mute"
-    echo "Vol: $vol"
+    case $vol_mute in
+        yes )
+            echo "Volume Mute: $vol_mute"
+            ;;
+        no )
+            echo "Volume: $vol"
+            ;;
+        * )
+            echo "Unknow status"
+            ;;
+    esac
 }
 
 mic_status () {
     DEFAULT_SOURCE=$(pactl info | grep "Default Source" | cut -d " " -f3)
     mic_mute=$(pactl list | grep -E "Name: $DEFAULT_SOURCE$|Mute" | grep "Name:" -A1 | tail -1 |cut -d: -f2| tr -d " ")
     vol=$(pactl list | grep -E "Name: $DEFAULT_SOURCE$|Volume" | grep "Name:" -A1 | tail -1 | cut -d% -f1 | cut -d/ -f2 | tr -d " ")
-    echo "Mic Mute: $mic_mute"
-    echo "Vol: $vol"
+    case $mic_mute in
+        yes )
+            echo "Micphone Mute: $mic_mute"
+            ;;
+        no )
+            echo "Volume: $vol"
+            ;;
+        * )
+            echo "Unknow status"
+            ;;
+    esac
 }
 
 status () {
