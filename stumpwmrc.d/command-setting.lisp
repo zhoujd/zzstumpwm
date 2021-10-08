@@ -366,8 +366,7 @@ used for matching windows with run-or-raise or window placement-merules."
 ;; show root window
 (defcommand show-root () ()
   "Show root window."
-  (when (cdr (stumpwm::group-frames (current-group)))
-    ;; Make one frame if necessary.
+  (unless (stumpwm::only-one-frame-p)
     (stumpwm::only))
   (stumpwm::fclear))
 
