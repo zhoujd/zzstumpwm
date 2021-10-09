@@ -40,7 +40,6 @@
 (def-run-or-raise-command wireshark     '(:class "Wireshark"))
 (def-run-or-raise-command pavucontrol   '(:class "Pavucontrol"))
 
-;; shell command
 (defcommand window-info () ()
   "Shows the properties of the current window. These properties can be
 used for matching windows with run-or-raise or window placement-merules."
@@ -75,7 +74,6 @@ used for matching windows with run-or-raise or window placement-merules."
   "run emacs"
   (run-or-raise "emacs" '(:class "Emacs") nil nil))
 
-;; emacsclient
 (defcommand emacsclient () ()
   "emacsclient"
   (if (emacs-ds-exists)
@@ -95,27 +93,22 @@ used for matching windows with run-or-raise or window placement-merules."
         (f "tabbed -c -r 2 surf -pe x ~a 2>/dev/null"))
     (run-shell-command (format nil f homepage))))
 
-;; skippy windows
 (defcommand skippy () ()
   "run skippy-xd"
   (run-shell-command "skippy-xd"))
 
-;; mobl-run
 (defcommand mobl-run () ()
   "run remote jiandon-mobl"
   (run-shell-command "remmina -c ~/.jiandon-mobl.remmina"))
 
-;; print current group name
 (defcommand gprint () ()
   "print current group name"
   (message "Current Group: ~A" (stumpwm::group-name (current-group))))
 
-;; urxvt in current group
 (defcommand urxvt () ()
   "run urxvt"
   (run-or-raise "urxvt" '(:class "URxvt") nil nil))
 
-;; safe kill
 (defcommand safe-kill () ()
   "safe delete current window"
   (if (current-window)
@@ -126,7 +119,6 @@ used for matching windows with run-or-raise or window placement-merules."
           (stumpwm::kill-window)))
       (message "Cannot close desktop!")))
 
-;; safe gkill
 (defcommand safe-gkill () ()
   "safe delete current group"
   (let ((choice (yes-no-diag
@@ -137,7 +129,6 @@ used for matching windows with run-or-raise or window placement-merules."
         (stumpwm::delete-window window))
       (stumpwm::gkill))))
 
-;; close all windows
 (defcommand delete-all () ()
   "close all windows"
   (dolist (screen *screen-list*)
@@ -145,21 +136,18 @@ used for matching windows with run-or-raise or window placement-merules."
       (dolist (window (stumpwm::group-windows group))
         (stumpwm::delete-window window)))))
 
-;; safe delete
 (defcommand safe-delete () ()
   "safe delete all windows"
   (let ((choice (yes-no-diag "Close all programs?")))
     (when choice
       (delete-all))))
 
-;; safe end
 (defcommand safe-end () ()
   "safe end session"
   (echo-string (current-screen) "Ending Session...")
   (delete-all)
   (run-hook *quit-hook*))
 
-;; safe quit
 (defcommand safe-quit () ()
   "safe quit"
   (let ((choice (yes-no-diag "Close all programs and quit stumpwm?")))
@@ -167,7 +155,6 @@ used for matching windows with run-or-raise or window placement-merules."
       (safe-end)
       (stumpwm::quit))))
 
-;; kill stumpwm
 (defcommand kill-stumpwm () ()
   "kill stumpwm"
   (let ((choice (yes-no-diag "Close all programs and kill stumpwm?")))
@@ -175,7 +162,6 @@ used for matching windows with run-or-raise or window placement-merules."
       (safe-end)
       (kill-ps "stumpwm"))))
 
-;; resolution select
 (defcommand resolution () ()
   "select resolution for stumpwm"
   (let ((choice (cadr (select-from-menu
@@ -187,7 +173,6 @@ used for matching windows with run-or-raise or window placement-merules."
         (output "xrandr | grep primary | awk '{print $1}'"))
     (run-shell-command (format nil "xrandr --output `~a` ~a" output choice))))
 
-;; keymap menu
 (defcommand keymap-menu () ()
   "keymap menu"
   (let* ((choice (cadr (select-from-menu
@@ -201,121 +186,101 @@ used for matching windows with run-or-raise or window placement-merules."
     (run-shell-command "setcapslock off")
     (run-shell-command (format nil "xmodmap ~a" config))))
 
-;; wifi menu
 (defcommand wifi-menu () ()
   "wifi menu"
   (run-shell-command (format nil "~a"
                              (merge-pathnames "libexec/rofi-wifi" *zz-load-directory*))))
 
-;; tmux menu
 (defcommand tmux-menu () ()
   "tmux menu"
   (run-shell-command (format nil "~a"
                              (merge-pathnames "libexec/tmux-session" *zz-load-directory*))))
 
-;; screen menu
 (defcommand screen-menu () ()
   "screen menu"
   (run-shell-command (format nil "~a"
                              (merge-pathnames "libexec/rofi-screen" *zz-load-directory*))))
 
-;; locate menu
 (defcommand locate-menu () ()
   "locate menu"
   (run-shell-command (format nil "~a"
                              (merge-pathnames "libexec/rofi-locate" *zz-load-directory*))))
 
-;; search menu
 (defcommand search-menu () ()
   "search menu"
   (run-shell-command (format nil "~a"
                              (merge-pathnames "libexec/rofi-search" *zz-load-directory*))))
 
-;; run stumpish
 ;; Ubuntu: sudo apt install rlwrap
 (defcommand stumpish () ()
   "run stumpish"
   (run-shell-command (format nil "urxvt -e ~a"
                              (merge-pathnames "bin/stumpish" *zz-load-directory*))))
 
-;; run info manual
 (defcommand stumpwm-manual () ()
   "run stumpwm info manual"
   (run-shell-command (format nil "urxvt -e info ~a"
                              (merge-pathnames "doc/stumpwm.info" *zz-load-directory*))))
 
-;; brightness up
 (defcommand bright-up () ()
   "brightness up"
   (run-shell-command (format nil "~a +5"
                              (merge-pathnames "libexec/brightness" *zz-load-directory*))))
-;; brightness down
 (defcommand bright-down () ()
   "brightness down"
   (run-shell-command (format nil "~a -5"
                              (merge-pathnames "libexec/brightness" *zz-load-directory*))))
 
-;; pactl up
 (defcommand pactl-up () ()
   "pactl sound up"
   (pactl-volume "+10%")
   (stumpwm::eval-command "pactl-status"))
 
-;; pactl down
 (defcommand pactl-down () ()
   "pactl sound down"
   (pactl-volume "-10%")
   (stumpwm::eval-command "pactl-status"))
 
-;; pactl 100%
 (defcommand pactl-inc () ()
   "pactl sound 100%"
   (pactl-volume "100%"))
 
-;; pactl 50%
 (defcommand pactl-dec () ()
   "pactl sound 50%"
   (pactl-volume "50%"))
 
-;; pactl status
 (defcommand pactl-status () ()
   "pactl status"
   (let ((cmd (format nil "~a vol status"
                      (merge-pathnames "bin/sndctl" *zz-load-directory*))))
     (message "~a" (run-shell-command cmd t))))
 
-;; pactl toggle
 (defcommand pactl-toggle () ()
   "pactl sound toggle"
   (run-shell-command "pactl set-sink-mute @DEFAULT_SINK@ toggle")
   (stumpwm::eval-command "pactl-status"))
 
-;; pactl mic up
 (defcommand pactl-mic-up () ()
   "pactl mic sound up"
   (pactl-mic-volume "+10%")
   (stumpwm::eval-command "pactl-mic-status"))
 
-;; pactl mic-down
 (defcommand pactl-mic-down () ()
   "pactl mic sound down"
   (pactl-mic-volume "-10%")
   (stumpwm::eval-command "pactl-mic-status"))
 
-;; pactl mic status
 (defcommand pactl-mic-status () ()
   "pactl mic status"
   (let ((cmd (format nil "~a mic status"
                      (merge-pathnames "bin/sndctl" *zz-load-directory*))))
     (message "~a" (run-shell-command cmd t))))
 
-;; pactl mic toggle
 (defcommand pactl-mic-toggle () ()
   "pactl micphone toggle"
   (run-shell-command "pactl set-source-mute @DEFAULT_SOURCE@ toggle")
   (stumpwm::eval-command "pactl-mic-status"))
 
-;; system action
 (defcommand system-action () ()
   "system actions"
   (let ((choice (cadr (select-from-menu
@@ -330,7 +295,6 @@ used for matching windows with run-or-raise or window placement-merules."
 (defvar *zz-shot-folder* "~/Pictures/screenshots/"
   "folder for store screenshots")
 
-;; screenshot full
 (defcommand scrot-full () ()
   "screenshot full"
   (ensure-directories-exist *zz-shot-folder*)
@@ -338,7 +302,6 @@ used for matching windows with run-or-raise or window placement-merules."
                              *zz-shot-folder*) t)
   (message "screenshot full under: ~a" *zz-shot-folder*))
 
-;; screenshot window
 (defcommand scrot-window () ()
   "screenshot windows"
   (ensure-directories-exist *zz-shot-folder*)
@@ -346,7 +309,6 @@ used for matching windows with run-or-raise or window placement-merules."
                              *zz-shot-folder*) t)
   (message "screenshot window under: ~a" *zz-shot-folder*))
 
-;; screenshot select
 (defcommand scrot-select () ()
   "screenshot select"
   (ensure-directories-exist *zz-shot-folder*)
@@ -354,7 +316,6 @@ used for matching windows with run-or-raise or window placement-merules."
                              *zz-shot-folder*) t)
   (message "screenshot select under: ~a" *zz-shot-folder*))
 
-;; capslock toggle
 (defcommand capslock-toggle () ()
   "capslock toggle"
   (run-shell-command "setcapslock toggle"))
@@ -363,14 +324,12 @@ used for matching windows with run-or-raise or window placement-merules."
 (defvar *last-saved-window* nil
   "Last saved window configuration.")
 
-;; show root window
 (defcommand show-root () ()
   "Show root window."
   (unless (stumpwm::only-one-frame-p)
     (stumpwm::only))
   (stumpwm::fclear))
 
-;; toggle root window
 (defcommand toggle-root () ()
   "Toggle between root window and last window configuration."
   (if (current-window)
@@ -410,17 +369,14 @@ used for matching windows with run-or-raise or window placement-merules."
       (stumpwm::restore-from-file *zz-group-file*)
       (message "This no is ~a." *zz-group-file*)))
 
-;; htop
 (defcommand htop () ()
-  "Run htop."
+  "Run htop"
   (run-or-raise "urxvt -name HTop -e htop" '(:instance "HTop")))
 
-;; tmux
 (defcommand tmux () ()
-  "Run htop."
+  "Run tmux"
   (run-or-raise "urxvt -name Tmux -e tmux" '(:instance "Tmux")))
 
-;; eval shell
 (defcommand eval-shell (&optional (initial "")) (:rest)
   "shell interactive command, done to keep"
   (let ((cmd (read-one-line (current-screen) "shell: " :initial-input initial)))
@@ -429,7 +385,6 @@ used for matching windows with run-or-raise or window placement-merules."
                             cmd)
                     t))))
 
-;; eval command
 (defcommand eval-command (&optional (initial "")) (:rest)
   "shell interactive command, done to exit"
   (let ((cmd (read-one-line (current-screen) "cmd: " :initial-input initial)))
@@ -438,7 +393,6 @@ used for matching windows with run-or-raise or window placement-merules."
                             cmd)
                     t))))
 
-;; trans command
 (defcommand trans-command (&optional (initial "")) (:rest)
   "shell interactive command, done to exit"
   (let ((cmd (read-one-line (current-screen) "trans: " :initial-input initial)))
@@ -447,12 +401,10 @@ used for matching windows with run-or-raise or window placement-merules."
                             cmd)
                     t))))
 
-;; trans shell
 (defcommand trans-shell () ()
-  "run skippy-xd"
+  "trans shell"
   (run-shell-command "exec urxvt -title 'trans' -e bash -c 'trans -I'"))
 
-;; ssh shell
 (defcommand ssh-shell (&optional (initial "")) (:rest)
   "ssh shell"
   (let ((cmd (read-one-line (current-screen) "ssh: " :initial-input initial)))
@@ -461,7 +413,6 @@ used for matching windows with run-or-raise or window placement-merules."
                             cmd)
                     t))))
 
-;; kill from windowlist
 (defcommand kill-from-windowlist (&optional (fmt *window-format*)) (:rest)
   "kill from windowlist"
   (let ((window-to-kill (stumpwm::select-window-from-menu
@@ -470,33 +421,42 @@ used for matching windows with run-or-raise or window placement-merules."
     (when window-to-kill
       (stumpwm::kill-window window-to-kill))))
 
-;; manpage reader. needs filename completion, etc..
 (defcommand manpage (command) ((:rest "manpage: "))
-  "manpage reader"
+  "manpage reader. needs filename completion, etc.."
   (run-shell-command (format nil "urxvt -e man ~a" command)))
 
-;; wifi toggle
 (defcommand wifi-toggle () ()
   "wifi toggle"
   (message "~a"
            (run-shell-command (format nil "~a"
                                       (merge-pathnames "libexec/wifi-toggle" *zz-load-directory*)) t)))
 
-;; touchpad toggle
 (defcommand touchpad-toggle () ()
   "touchpad toggle"
   (message "~a"
            (run-shell-command (format nil "~a"
                                       (merge-pathnames "libexec/touchpad-toggle" *zz-load-directory*)) t)))
 
-;; bpython
 (defcommand bpython () ()
   "bpython"
   (run-shell-command "exec urxvt -e bpython"))
 
-;; toggle window floating
 (defcommand toggle-float () ()
   "Toggle weather window is floating or not"
   (if (typep (current-window) 'stumpwm::float-window)
       (unfloat-this)
       (float-this)))
+
+(defcommand swank-start () ()
+  "Start swank server."
+  (swank-start-server))
+
+(defcommand swank-stop () ()
+  "Stop swank server."
+  (swank-stop-server))
+
+(defcommand swank-toggle () ()
+  "toggle swank server."
+  (if *swank-server-running*
+      (swank-stop-server)
+      (swank-start-server)))
