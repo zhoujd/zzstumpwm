@@ -8,12 +8,10 @@ test -f ~/.zwmrc && . ~/.zwmrc
 
 case $session in
     stumpwm )
-        exec sbcl --eval '(ql:quickload :stumpwm)' \
-                  --eval '(stumpwm:stumpwm)'
+        exec stumpwm
         ;;
     clfswm )
-        exec sbcl --eval '(ql:quickload :clfswm)' \
-                  --eval '(clfswm:main)'
+        exec clfswm
         ;;
     sawfish )
         exec sawfish
