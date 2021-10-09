@@ -292,82 +292,79 @@ used for matching windows with run-or-raise or window placement-merules."
     (when choice
       (stumpwm::eval-command (format nil "~a" choice)))))
 
-(defvar *zz-shot-folder* "~/Pictures/screenshots/"
-  "folder for store screenshots")
-
-(defcommand scrot-full () ()
-  "screenshot full"
-  (ensure-directories-exist *zz-shot-folder*)
-  (run-shell-command (format nil "scrot ~a/%b%d::%H%M%S.png"
-                             *zz-shot-folder*) t)
-  (message "screenshot full under: ~a" *zz-shot-folder*))
-
-(defcommand scrot-window () ()
-  "screenshot windows"
-  (ensure-directories-exist *zz-shot-folder*)
-  (run-shell-command (format nil "scrot -u ~a/%b%d::%H%M%S.png"
-                             *zz-shot-folder*) t)
-  (message "screenshot window under: ~a" *zz-shot-folder*))
-
-(defcommand scrot-select () ()
-  "screenshot select"
-  (ensure-directories-exist *zz-shot-folder*)
-  (run-shell-command (format nil "scrot -s ~a/%b%d::%H%M%S.png"
-                             *zz-shot-folder*) t)
-  (message "screenshot select under: ~a" *zz-shot-folder*))
+(progn
+  (defvar *zz-shot-folder* "~/Pictures/screenshots/"
+    "folder for store screenshots")
+  (defcommand scrot-full () ()
+    "screenshot full"
+    (ensure-directories-exist *zz-shot-folder*)
+    (run-shell-command (format nil "scrot ~a/%b%d::%H%M%S.png"
+                               *zz-shot-folder*) t)
+    (message "screenshot full under: ~a" *zz-shot-folder*))
+  (defcommand scrot-window () ()
+    "screenshot windows"
+    (ensure-directories-exist *zz-shot-folder*)
+    (run-shell-command (format nil "scrot -u ~a/%b%d::%H%M%S.png"
+                               *zz-shot-folder*) t)
+    (message "screenshot window under: ~a" *zz-shot-folder*))
+  (defcommand scrot-select () ()
+    "screenshot select"
+    (ensure-directories-exist *zz-shot-folder*)
+    (run-shell-command (format nil "scrot -s ~a/%b%d::%H%M%S.png"
+                               *zz-shot-folder*) t)
+    (message "screenshot select under: ~a" *zz-shot-folder*)))
 
 (defcommand capslock-toggle () ()
   "capslock toggle"
   (run-shell-command "setcapslock toggle"))
 
 ;; showing and toggling the root window
-(defvar *last-saved-window* nil
-  "Last saved window configuration.")
-
-(defcommand show-root () ()
-  "Show root window."
-  (unless (stumpwm::only-one-frame-p)
-    (stumpwm::only))
-  (stumpwm::fclear))
-
-(defcommand toggle-root () ()
-  "Toggle between root window and last window configuration."
-  (if (current-window)
-      (progn
-        (setf *last-saved-window* (stumpwm::dump-group (current-group)))
-        (show-root))
-      ;; Current window is root.
-      (if *last-saved-window*
-          (stumpwm::restore-group (current-group) *last-saved-window*)
-          (stumpwm::echo "There is no saved window configuration yet."))))
+(progn
+  (defvar *last-saved-window* nil
+    "Last saved window configuration.")
+  (defcommand show-root () ()
+    "Show root window."
+    (unless (stumpwm::only-one-frame-p)
+      (stumpwm::only))
+    (stumpwm::fclear))
+  (defcommand toggle-root () ()
+    "Toggle between root window and last window configuration."
+    (if (current-window)
+        (progn
+          (setf *last-saved-window* (stumpwm::dump-group (current-group)))
+          (show-root))
+        ;; Current window is root.
+        (if *last-saved-window*
+            (stumpwm::restore-group (current-group) *last-saved-window*)
+            (stumpwm::echo "There is no saved window configuration yet.")))))
 
 ;; swap windows
-(defun shift-windows-forward (frames win)
-  (when frames
-    (let ((frame (car frames)))
-      (shift-windows-forward (cdr frames)
-                             (stumpwm::frame-window frame))
-      (when win
-        (stumpwm::pull-window win frame)))))
-
-(defcommand swap-windows () ()
-  "swap 2 windows"
-  (let* ((frames (stumpwm::group-frames (current-group)))
-         (win (stumpwm::frame-window (car (last frames)))))
-    (shift-windows-forward frames win)))
+(progn
+  (defun shift-windows-forward (frames win)
+    (when frames
+      (let ((frame (car frames)))
+        (shift-windows-forward (cdr frames)
+                               (stumpwm::frame-window frame))
+        (when win
+          (stumpwm::pull-window win frame)))))
+  (defcommand swap-windows () ()
+    "swap 2 windows"
+    (let* ((frames (stumpwm::group-frames (current-group)))
+           (win (stumpwm::frame-window (car (last frames)))))
+      (shift-windows-forward frames win))))
 
 ;; save & restore group
-(defvar *zz-group-file* "~/.stumpwm-group"
-  "group layout file name")
-(defcommand dump-group-file () ()
-  "dump group"
-  (dump-group-to-file *zz-group-file*))
-
-(defcommand restore-group-file () ()
-  "restore group"
-  (if (probe-file *zz-group-file*)
-      (stumpwm::restore-from-file *zz-group-file*)
-      (message "This no is ~a." *zz-group-file*)))
+(progn
+  (defvar *zz-group-file* "~/.stumpwm-group"
+    "group layout file name")
+  (defcommand dump-group-file () ()
+    "dump group"
+    (dump-group-to-file *zz-group-file*))
+  (defcommand restore-group-file () ()
+    "restore group"
+    (if (probe-file *zz-group-file*)
+        (stumpwm::restore-from-file *zz-group-file*)
+        (message "This no is ~a." *zz-group-file*))))
 
 (defcommand htop () ()
   "Run htop"
