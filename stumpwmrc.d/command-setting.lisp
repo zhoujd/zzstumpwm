@@ -72,7 +72,7 @@ used for matching windows with run-or-raise or window placement-merules."
 ;; emacs in current group
 (defcommand runemacs () ()
   "run emacs"
-  (run-or-raise "emacs" '(:class "Emacs") nil nil))
+  (run-or-raise-prefer-group "emacs" "Emacs"))
 
 (defcommand emacsclient () ()
   "emacsclient"
@@ -107,7 +107,7 @@ used for matching windows with run-or-raise or window placement-merules."
 
 (defcommand urxvt () ()
   "run urxvt"
-  (run-or-raise "urxvt" '(:class "URxvt") nil nil))
+  (run-or-raise-prefer-group "urxvt" "URxvt"))
 
 (defcommand safe-kill () ()
   "safe delete current window"

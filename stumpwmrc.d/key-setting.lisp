@@ -199,6 +199,7 @@
   (kbd "s-o")               "pull-hidden-other"
   (kbd "s-M-o")             "gother"
 
+  (kbd "s-M-c")             "urxvt"
   (kbd "s-M-e")             "runemacs"
   (kbd "s-M-g")             "google-chrome"
   (kbd "s-M-t")             "teams"
