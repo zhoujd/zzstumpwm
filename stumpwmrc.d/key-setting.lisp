@@ -24,7 +24,7 @@
   (kbd "b")                 "google"
   (kbd "C-b")               "bing"
   (kbd "M-b")               "wikipedia"
-  (kbd "c")                 "runurxvt"
+  (kbd "c")                 "runterm"
   (kbd "C-c")               "exec urxvt"
   (kbd "s-c")               "urxvt"
   (kbd "d")                 "deadbeef"
@@ -37,7 +37,7 @@
   (kbd "f")                 "firefox"
   (kbd "C-f")               "exec firefox"
   (kbd "M-f")               "colon exec firefox http://"
-  (kbd "g")                 "runchrome"
+  (kbd "g")                 "rungc"
   (kbd "M-g")               "colon exec google-chrome http://"
   (kbd "s-g")               "google-chrome"
   (kbd "h")                 "thunar"
@@ -201,9 +201,9 @@
   (kbd "s-o")               "pull-hidden-other"
   (kbd "s-M-o")             "gother"
 
-  (kbd "s-M-c")             "runurxvt"
+  (kbd "s-M-c")             "runterm"
   (kbd "s-M-e")             "runemacs"
-  (kbd "s-M-g")             "runchrome"
+  (kbd "s-M-g")             "rungc"
   (kbd "s-M-t")             "teams"
   ))
 

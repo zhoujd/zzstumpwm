@@ -106,11 +106,11 @@ used for matching windows with run-or-raise or window placement-merules."
   "print current group name"
   (message "Current Group: ~A" (stumpwm::group-name (current-group))))
 
-(defcommand runurxvt () ()
+(defcommand runterm () ()
   "run urxvt"
   (run-or-raise-prefer-group "urxvt" "URxvt"))
 
-(defcommand runchrome () ()
+(defcommand rungc () ()
   "run google-chrome"
   (run-or-raise-prefer-group "google-chrome" "Google-chrome"))
 
