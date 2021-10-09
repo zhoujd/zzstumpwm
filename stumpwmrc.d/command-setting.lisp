@@ -22,6 +22,7 @@
 (def-run-or-raise-command drawio        '(:class "draw.io"))
 (def-run-or-raise-command evolution     '(:class "Evolution"))
 (def-run-or-raise-command firefox       '(:class "Firefox"))
+(def-run-or-raise-command google-chrome '(:class "Google-chrome"))
 (def-run-or-raise-command gvim          '(:class "Gvim"))
 (def-run-or-raise-command intel-unite   '(:title "Intel Unite® App"))
 (def-run-or-raise-command klavaro       '(:class "Klavaro"))
@@ -35,6 +36,7 @@
 (def-run-or-raise-command thunderbird   '(:class "Thunderbird"))
 (def-run-or-raise-command thunar        '(:class "Thunar"))
 (def-run-or-raise-command teams         '(:class "Microsoft Teams - Preview"))
+(def-run-or-raise-command urxvt         '(:class "URxvt"))
 (def-run-or-raise-command vlc           '(:class "Vlc"))
 (def-run-or-raise-command wireshark     '(:class "Wireshark"))
 (def-run-or-raise-command pavucontrol   '(:class "Pavucontrol"))
@@ -104,11 +106,11 @@ used for matching windows with run-or-raise or window placement-merules."
   "print current group name"
   (message "Current Group: ~A" (stumpwm::group-name (current-group))))
 
-(defcommand urxvt () ()
+(defcommand runurxvt () ()
   "run urxvt"
   (run-or-raise-prefer-group "urxvt" "URxvt"))
 
-(defcommand google-chrome () ()
+(defcommand runchrome () ()
   "run google-chrome"
   (run-or-raise-prefer-group "google-chrome" "Google-chrome"))
 
