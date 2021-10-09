@@ -22,7 +22,6 @@
 (def-run-or-raise-command drawio        '(:class "draw.io"))
 (def-run-or-raise-command evolution     '(:class "Evolution"))
 (def-run-or-raise-command firefox       '(:class "Firefox"))
-(def-run-or-raise-command google-chrome '(:class "Google-chrome"))
 (def-run-or-raise-command gvim          '(:class "Gvim"))
 (def-run-or-raise-command intel-unite   '(:title "Intel Unite® App"))
 (def-run-or-raise-command klavaro       '(:class "Klavaro"))
@@ -108,6 +107,10 @@ used for matching windows with run-or-raise or window placement-merules."
 (defcommand urxvt () ()
   "run urxvt"
   (run-or-raise-prefer-group "urxvt" "URxvt"))
+
+(defcommand google-chrome () ()
+  "run google-chrome"
+  (run-or-raise-prefer-group "google-chrome" "Google-chrome"))
 
 (defcommand safe-kill () ()
   "safe delete current window"
