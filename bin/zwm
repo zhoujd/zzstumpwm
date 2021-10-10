@@ -15,9 +15,11 @@ test -f ~/.zwmrc && . ~/.zwmrc
 ## Start window manager
 case "$WM_SELECT" in
     "1" )
-        exec stumpwm
+        exec sbcl --eval '(ql:quickload :stumpwm)' \
+                  --eval '(stumpwm:stumpwm)'
         ;;
     "2" )
-        exec clfswm
+        exec sbcl --eval '(ql:quickload :clfswm)' \
+                  --eval '(clfswm:main)'
         ;;
 esac

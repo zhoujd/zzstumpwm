@@ -80,27 +80,6 @@ run-or-raise with group search t."
         (run-or-raise cmd `(:class ,win-cls) nil T)
         (run-or-raise cmd `(:class ,win-cls) T T))))
 
-(defun run-raise-or-list (cmd props &optional (all-groups *run-or-raise-all-groups*)
-                                      (all-screens *run-or-raise-all-screens*))
-  "Run the shell command, {cmd}, unless an existing window
-    matches the {props} as described in run-or-raise. If {props} have multiple matches, generate a window list"
-  (labels
-      ;; Raise the window win and select its frame.  For now, it
-      ;; does not select the screen.
-      ((goto-win (win)
-         (let* ((group (window-group win))
-                (frame (window-frame win))
-                (old-frame (tile-group-current-frame group)))
-           (focus-all win)
-           (unless (eq frame old-frame)
-             (show-frame-indicator group)))))
-    (let ((matches (find-matching-windows props all-groups all-screens)))
-      (case (length matches)
-        (0 (run-shell-command cmd))
-        (1 (if (eq (type-of (window-group (car matches))) 'float-group)
-               (focus-all (car matches))
-               (goto-win (car matches))))
-        (t (windowlist *window-format* matches))))))
 
 ;; startup run commands
 (mapc
