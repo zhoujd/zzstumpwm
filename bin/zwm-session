@@ -2,7 +2,7 @@
 
 ## Select window manager
 ## 1:stumpwm 2:clfswm
-echo "You can also run : $0 [1|2]"
+echo "You can also run: $0 [1|2]"
 echo "1:stumpwm"
 echo "2:clfswm"
 
