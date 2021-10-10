@@ -8,3 +8,4 @@ quicklisp/retired
 quicklisp/tmp
 quicklisp/config
 
+pkg/
