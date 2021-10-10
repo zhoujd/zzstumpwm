@@ -10,6 +10,6 @@
           (set-font (make-instance 'xft:font
                                    :family "WenQuanYi Micro Hei Mono"
                                    :subfamily "Regular"
-                                   :size 9
+                                   :size 10
                                    :antialias t)))
      (set-font "10x20")))

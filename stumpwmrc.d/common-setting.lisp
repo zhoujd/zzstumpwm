@@ -11,6 +11,8 @@
 (set-bg-color "black")
 (set-float-focus-color   "green")
 (set-float-unfocus-color "black")
+(set-border-color "grey9")
+(set-win-bg-color "grey9")
 
 ;; suppress the message StumpWM displays when it starts. Set it to NIL
 (setf *suppress-frame-indicator*    t

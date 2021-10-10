@@ -56,7 +56,7 @@ configuration {
     highlight:        underline bold #ffffff;
 
     transparent:      rgba(0,0,0,0.9);
-    font:             "WenQuanYi Micro Hei Mono 13";
+    font:             "WenQuanYi Micro Hei Mono 11";
 }
 
 #window {
