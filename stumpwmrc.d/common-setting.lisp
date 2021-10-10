@@ -9,6 +9,8 @@
 ;; color select
 (set-fg-color "green")
 (set-bg-color "black")
+(set-focus-color "green")
+(set-unfocus-color "black")
 (set-float-focus-color   "green")
 (set-float-unfocus-color "black")
 (set-border-color "grey9")
