@@ -2,7 +2,7 @@
 
 ##https://github.com/stumpwm/stumpwm/wiki/Compiling-SBCL
 SBCL_PKG=~/Downloads/sbcl
-SBCL_PREFIX=${HOME}/.zach/sbcl
+SBCL_PREFIX=/usr/local/sbcl
 
 ## make sure the download folder exist
 mkdir -p ~/Downloads
@@ -28,7 +28,7 @@ install() {
         pushd $SBCL_PKG
         export -n SBCL_HOME
         sh make.sh --fancy --prefix=$SBCL_PREFIX
-        sh install.sh --prefix=$SBCL_PREFIX
+        sudo sh install.sh --prefix=$SBCL_PREFIX
         popd
     else
         echo "Cannot find $SBCL_PKG, please download first"

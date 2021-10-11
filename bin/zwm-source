@@ -1,5 +1,8 @@
 #!/bin/sh
 
+## Select window manager
+echo "You can also run: $(basename $0) {stumpwm|clfswm}"
+
 ## Here stumpwm is kept as default
 WM_SELECT=${1:-stumpwm}
 
@@ -15,8 +18,5 @@ case $WM_SELECT in
     clfswm )
         exec sbcl --eval '(ql:quickload :clfswm)' \
                   --eval '(clfswm:main)'
-        ;;
-    * )
-        echo "Usage: $(basename $0) {stumpwm|clfswm}"
         ;;
 esac
