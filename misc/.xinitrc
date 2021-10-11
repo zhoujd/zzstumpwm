@@ -1,17 +1,11 @@
 ### .xinitrc
 
-# Here stumpwm is kept as default
+## Here stumpwm is kept as default
 session=${1:-stumpwm}
 
-## Source zwmrc
-test -f ~/.zwmrc && . ~/.zwmrc
-
 case $session in
-    stumpwm )
-        exec stumpwm
-        ;;
-    clfswm )
-        exec clfswm
+    stumpwm|clfswm )
+        exec $HOME/zzstumpwm/bin/zwm-session $session
         ;;
     sawfish )
         exec sawfish
