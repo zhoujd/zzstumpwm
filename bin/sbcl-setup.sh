@@ -1,5 +1,7 @@
 #!/bin/bash
 
+## http://www.sbcl.org/getting.html
+
 SBCL_VERSION="2.0.1"
 SBCL_PKG="sbcl-$SBCL_VERSION-x86-64-linux-binary.tar.bz2"
 SBCL_PREFIX=/usr/local
