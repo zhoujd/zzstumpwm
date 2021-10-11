@@ -4,8 +4,11 @@
 session=${1:-stumpwm}
 
 case $session in
-    stumpwm|clfswm )
-        exec $HOME/zzstumpwm/bin/zwm-session $session
+    stumpwm )
+        exec stumpwm
+        ;;
+    zwm )
+        exec zwm
         ;;
     sawfish )
         exec sawfish
