@@ -22,7 +22,7 @@
     ("5+VPN"
      ("1-Connect VPN"    "runvpn up")
      ("2-Disconnect VPN" "runvpn down"))
-    ("6*SYSTEM"
+    ("6+SYSTEM"
      ("1+COMPOSITE"
       ("1-On"            "xcompmgr -C")
       ("2-Off"           "killall xcompmgr"))
