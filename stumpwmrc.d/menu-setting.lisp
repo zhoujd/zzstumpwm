@@ -4,25 +4,25 @@
 (in-package :zwm)
 
 (defparameter *app-menu*
-  '(("0+INTERNET"
+  '(("1+INTERNET"
      ("1-Firefox"        firefox)
      ("2-Chrome"         google-chrome)
      ("3-Teams"          teams))
-    ("1+VIRTUAL"
+    ("2+VIRTUAL"
      ("1-Virtualbox"     "virtualbox")
      ("2-Virt-Manager"   "virt-manager"))
-    ("2+MEDIA"
+    ("3+MEDIA"
      ("1-Audacity"       "audacity")
      ("2-Openshot"       "openshot")
      ("3-Vidcutter"      "vidcutter"))
-    ("3+WORK"
+    ("4+WORK"
      ("1-libreoffice"    "libreoffice"))
-    ("4+GRAPHICS"
+    ("5+GRAPHICS"
      ("1-GIMP"           "gimp"))
-    ("5+VPN"
+    ("6+VPN"
      ("1-Connect VPN"    "runvpn up")
      ("2-Disconnect VPN" "runvpn down"))
-    ("6+SYSTEM"
+    ("7+SYSTEM"
      ("1+COMPOSITE"
       ("1-On"            "xcompmgr -C")
       ("2-Off"           "killall xcompmgr"))
@@ -45,21 +45,20 @@
      :for command :being :the :hash-keys :of stumpwm::*command-hash*
      :when (string= (symbol-name command-name)
                     (symbol-name command ))
-     :return command))
+       :return command))
+
 
 (defcommand app-menu () ()
   "Show the application menu"
   (labels
       ((pick (options)
          (let ((selection
-                (select-from-menu
-                 (current-screen) ; screen
-                 options          ; table
-                 nil              ; prompt
-                 0                ; initial-selection
-                 ))
-               (up-flag t)
-               (up-item "0 .."))
+                 (select-from-menu
+                  (current-screen) ; screen
+                  options          ; table
+                  nil              ; prompt
+                  0                ; initial-selection
+                  )))
            (cond
              ((null selection)
               nil)
@@ -69,10 +68,8 @@
                    (commandp (second selection)))
               (funcall (second selection)))
              (t
-              (if up-flag
-                  (if (equalp up-item (first selection))
-                      (pick (second selection))
-                      (pick (append (list (list up-item options))
-                                    (cdr selection))))
-                  (pick (cdr selection))))))))
+              (if (equalp ".." (first selection))
+                  (pick (second selection))
+                  (pick (append (list (list ".." options))
+                                (cdr selection)))))))))
     (pick *app-menu*)))
