@@ -4,7 +4,7 @@
 (in-package :zwm)
 
 ;; start-up message
-(setf *startup-message* "Welcome to zzstumpwm!")
+(setf *startup-message* "")
 
 ;; color select
 (set-fg-color "green")
