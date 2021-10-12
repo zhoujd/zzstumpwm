@@ -4,7 +4,7 @@ SCRIPT_ROOT=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
 ZZSTUMPWM_ROOT=$(cd $SCRIPT_ROOT/.. && pwd)
 PREFIX=/usr/local/stumpwm
 
-build() {
+install() {
     echo "build stumpwm"
     pushd $ZZSTUMPWM_ROOT/lisp/system/stumpwm
     ./autogen.sh
@@ -29,7 +29,7 @@ uninstall() {
 
 
 case $1 in
-    build )
+    install )
         install
         ;;
     config )
