@@ -42,6 +42,20 @@ install() {
     popd
 }
 
+uninstall() {
+    echo "Uninstall SBCL"
+    sudo rm -rf $SBCL_PREFIX
+    sudo rm /etc/profile.d/zz-sbcl.sh
+}
+
+config() {
+    echo "Install config"
+    sudo tee /etc/profile.d/zz-sbcl.sh <<EOF
+export SBCL_HOME=$SBCL_PREFIX/lib/sbcl
+export PATH=$SBCL_PREFIX/bin${PATH:+:}$PATH
+EOF
+}
+
 case $1 in
     install )
         download
@@ -53,8 +67,11 @@ case $1 in
     remove )
         remove
         ;;
+    uninstall )
+        uninstall
+        ;;
     * )
-        echo "Usage: $(basename $0) {install|download|remove}"
+        echo "Usage: $(basename $0) {install|download|remove|uninstall}"
         ;;
 esac
 
