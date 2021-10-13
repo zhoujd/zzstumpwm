@@ -1,16 +1,8 @@
 ### .xinitrc
 
 ### Switching between desktop environments/window managers
-## $ xinit session
-## $ startx ~/.xinitrc session
-
-## Here zwm is kept as default
-session=${1:-zwm}
-
-case $session in
-    zwm )
-        exec zwm
-        ;;
+## $ WM=stumpwm startx
+case $WM in
     stumpwm )
         exec stumpwm
         ;;
@@ -21,6 +13,6 @@ case $session in
         exec startxfce4
         ;;
     * )
-        exec $1
+        exec zwm
         ;;
 esac
