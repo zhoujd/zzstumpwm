@@ -94,6 +94,7 @@ run-or-raise with group search t."
   (list "keynav")
   (list "redshift")
   (list "dunst")
+  (list "zwmrc")
   (list "nm-applet")
   (list "blueman-applet")
   ))
