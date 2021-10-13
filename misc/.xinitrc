@@ -1,5 +1,9 @@
 ### .xinitrc
 
+### Switching between desktop environments/window managers
+## $ xinit session
+## $ startx ~/.xinitrc session
+
 ## Here zwm is kept as default
 session=${1:-zwm}
 
