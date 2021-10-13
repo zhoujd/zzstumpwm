@@ -20,6 +20,13 @@ install() {
     fi
 }
 
+clean() {
+    echo "clean stumpwm"
+    pushd $ZZSTUMPWM_ROOT/lisp/system/stumpwm
+    git clean -dfx
+    popd
+}
+
 config() {
     echo "config stumpwm"
     sudo tee /etc/profile.d/zz-stumpwm.sh <<EOF
@@ -38,6 +45,9 @@ case $1 in
     install )
         install
         ;;
+    clean )
+        clean
+        ;;
     config )
         config
         ;;
@@ -45,7 +55,7 @@ case $1 in
         uninstall
         ;;
     * )
-        echo "Usage: $(basename $0) {install|config|uninstall}"
+        echo "Usage: $(basename $0) {install|clean|config|uninstall}"
         ;;
 esac
 
