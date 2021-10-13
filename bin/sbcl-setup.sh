@@ -4,7 +4,7 @@
 
 SBCL_VERSION="2.0.1"
 SBCL_PKG="sbcl-$SBCL_VERSION-x86-64-linux-binary.tar.bz2"
-SBCL_PREFIX=/usr/local
+SBCL_PREFIX=/usr/local/sbcl
 
 ## make sure the download folder exist
 mkdir -p ~/Downloads
@@ -60,6 +60,7 @@ case $1 in
     install )
         download
         install
+        config
         ;;
     download )
         download
