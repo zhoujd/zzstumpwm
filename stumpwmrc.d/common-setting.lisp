@@ -18,7 +18,7 @@
   (set-float-unfocus-color background-color)
   (set-border-color        border-color))
 
-;; suppress the message StumpWM displays when it starts. Set it to NIL
+;; suppress the message display
 (setf *suppress-frame-indicator*    t
       *suppress-abort-messages*     t
       *timeout-wait*                3
