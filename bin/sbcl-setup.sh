@@ -70,8 +70,11 @@ case $1 in
     uninstall )
         uninstall
         ;;
+    config )
+        config
+        ;;
     * )
-        echo "Usage: $(basename $0) {install|download|remove|uninstall}"
+        echo "Usage: $(basename $0) {install|download|remove|uninstall|config}"
         ;;
 esac
 

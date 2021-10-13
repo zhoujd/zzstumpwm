@@ -6,12 +6,18 @@ PREFIX=/usr/local/stumpwm
 
 install() {
     echo "build stumpwm"
-    pushd $ZZSTUMPWM_ROOT/lisp/system/stumpwm
-    ./autogen.sh
-    ./configure --prefix=$PREFIX
-    make all
-    sudo make install
-    popd
+    if [ -n "$SBCL_HOME" ]; then
+        echo "use SBCL_HOME=$SBCL_HOME"
+        pushd $ZZSTUMPWM_ROOT/lisp/system/stumpwm
+        ./autogen.sh
+        ./configure --prefix=$PREFIX
+        make all
+        sudo make install
+        popd
+    else
+        echo "not find SBCL_HOME in environment, please setup SBCL_HOME first"
+        exit 1
+    fi
 }
 
 config() {
