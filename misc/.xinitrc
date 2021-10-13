@@ -1,14 +1,14 @@
 ### .xinitrc
 
-## Here stumpwm is kept as default
-session=${1:-stumpwm}
+## Here zwm is kept as default
+session=${1:-zwm}
 
 case $session in
-    stumpwm )
-        exec stumpwm
-        ;;
     zwm )
         exec zwm
+        ;;
+    stumpwm )
+        exec stumpwm
         ;;
     sawfish )
         exec sawfish
