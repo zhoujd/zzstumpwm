@@ -52,7 +52,7 @@ config() {
     echo "Install config"
     sudo tee /etc/profile.d/zz-sbcl.sh <<EOF
 export SBCL_HOME=$SBCL_PREFIX/lib/sbcl
-export PATH=$SBCL_PREFIX/bin${PATH:+:}$PATH
+export PATH=$SBCL_PREFIX/bin\${PATH:+:}\$PATH
 EOF
 }
 

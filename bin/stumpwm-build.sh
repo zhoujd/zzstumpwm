@@ -23,7 +23,7 @@ install() {
 config() {
     echo "config stumpwm"
     sudo tee /etc/profile.d/zz-stumpwm.sh <<EOF
-export PATH=/usr/local/stumpwm/bin${PATH:+:}$PATH
+export PATH=$PREFIX/bin\${PATH:+:}\$PATH
 EOF
 }
 
