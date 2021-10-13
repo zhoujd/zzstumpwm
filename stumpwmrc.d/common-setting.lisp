@@ -4,17 +4,19 @@
 (in-package :zwm)
 
 ;; start-up message
-(setf *startup-message* "Welcome to zzstumpwm!")
+(setf *startup-message* nil)
 
 ;; color select
-(set-fg-color "green")
-(set-bg-color "black")
-(set-focus-color "green")
-(set-unfocus-color "black")
-(set-float-focus-color   "green")
-(set-float-unfocus-color "black")
-(set-border-color "grey9")
-(set-win-bg-color "grey9")
+(let ((foreground-color "green")
+      (background-color "black")
+      (border-color     "grey9"))
+  (set-fg-color            foreground-color)
+  (set-bg-color            background-color)
+  (set-focus-color         foreground-color)
+  (set-unfocus-color       background-color)
+  (set-float-focus-color   foreground-color)
+  (set-float-unfocus-color background-color)
+  (set-border-color        border-color))
 
 ;; suppress the message StumpWM displays when it starts. Set it to NIL
 (setf *suppress-frame-indicator*    t
@@ -28,6 +30,8 @@
 (setf *normal-border-width*         0
       *maxsize-border-width*        0
       *transient-border-width*      0
+      *message-window-padding*      10
+      *message-window-y-padding*    5
       stumpwm::+default-frame-outline-width+ 1
       stumpwm::*float-window-border*         1
       stumpwm::*float-window-title-height*   10
