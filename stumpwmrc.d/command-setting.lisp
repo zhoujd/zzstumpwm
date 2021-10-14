@@ -27,7 +27,6 @@
 (def-run-or-raise-command intel-unite   '(:title "Intel Unite® App"))
 (def-run-or-raise-command klavaro       '(:class "Klavaro"))
 (def-run-or-raise-command libreoffice   '(:title "libreoffice"))
-(def-run-or-raise-command mobl-raise    '(:title "jiandon-mobl"))
 (def-run-or-raise-command mpv           '(:class "mpv"))
 (def-run-or-raise-command nyxt          '(:class "Nyxt"))
 (def-run-or-raise-command qutebrowser   '(:class "qutebrowser"))
@@ -98,9 +97,9 @@ used for matching windows with run-or-raise or window placement-merules."
   "run skippy-xd"
   (run-shell-command "skippy-xd"))
 
-(defcommand mobl-run () ()
+(defcommand jiandon-mobl () ()
   "run remote jiandon-mobl"
-  (run-shell-command "remmina -c ~/.jiandon-mobl.remmina"))
+  (run-or-raise "remmina -c ~/.jiandon-mobl.remmina" '(:title "jiandon-mobl")))
 
 (defcommand gprint () ()
   "print current group name"
