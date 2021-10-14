@@ -24,7 +24,7 @@
   (kbd "b")                 "google"
   (kbd "C-b")               "bing"
   (kbd "M-b")               "wikipedia"
-  (kbd "c")                 "runterm"
+  (kbd "c")                 "runurxvt"
   (kbd "C-c")               "exec urxvt"
   (kbd "s-c")               "urxvt"
   (kbd "d")                 "deadbeef"
@@ -200,9 +200,9 @@
   (kbd "s-o")               "pull-hidden-other"
   (kbd "s-M-o")             "gother"
 
-  (kbd "s-M-c")             "runterm"
-  (kbd "s-M-e")             "runemacs"
-  (kbd "s-M-g")             "rungc"
+  (kbd "s-M-c")             "urxvt"
+  (kbd "s-M-e")             "emacs"
+  (kbd "s-M-g")             "google-chrome"
   (kbd "s-M-t")             "teams"
   ))
 
