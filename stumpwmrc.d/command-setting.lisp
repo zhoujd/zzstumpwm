@@ -438,6 +438,18 @@ used for matching windows with run-or-raise or window placement-merules."
            (run-shell-command (format nil "~a"
                                       (merge-pathnames "libexec/touchpad-toggle" *zz-load-directory*)) t)))
 
+(defcommand touchpad-on () ()
+  "touchpad toggle on"
+  (message "~a"
+           (run-shell-command (format nil "~a on"
+                                      (merge-pathnames "libexec/touchpad-toggle" *zz-load-directory*)) t)))
+
+(defcommand touchpad-off () ()
+  "touchpad toggle off"
+  (message "~a"
+           (run-shell-command (format nil "~a off"
+                                      (merge-pathnames "libexec/touchpad-toggle" *zz-load-directory*)) t)))
+
 (defcommand bpython () ()
   "bpython"
   (run-shell-command "exec urxvt -e bpython"))

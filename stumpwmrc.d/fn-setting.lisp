@@ -117,10 +117,13 @@
 (apply-keys-to-map
  *top-map*
  (list
+  (kbd "XF86AudioMute")          "pactl-toggle"
   (kbd "XF86AudioLowerVolume")   "pactl-down"
   (kbd "XF86AudioRaiseVolume")   "pactl-up"
-  (kbd "XF86AudioMute")          "pactl-toggle"
   (kbd "XF86AudioMicMute")       "pactl-mic-toggle"
+  (kbd "XF86TouchpadOn")         "touchpad-on"
+  (kbd "XF86TouchpadOff")        "touchpad-off"
+  (kbd "XF86RFKill")             "wifi-toggle"
   (kbd "XF86WebCam")             "cheese"
   (kbd "XF86MonBrightnessDown")  "bright-down"
   (kbd "XF86MonBrightnessUp")    "bright-up"
