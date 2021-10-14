@@ -69,11 +69,6 @@ used for matching windows with run-or-raise or window placement-merules."
   "show uptime"
   (echo-string (current-screen) (run-shell-command "uptime" t)))
 
-;; emacs in current group
-(defcommand runemacs () ()
-  "run emacs"
-  (run-or-raise-prefer-group "emacs" "Emacs"))
-
 (defcommand emacsclient () ()
   "emacsclient"
   (if (emacs-ds-exists)
@@ -108,6 +103,10 @@ used for matching windows with run-or-raise or window placement-merules."
 (defcommand runurxvt () ()
   "run urxvt"
   (run-or-raise-prefer-group "urxvt" "URxvt"))
+
+(defcommand runemacs () ()
+  "run emacs"
+  (run-or-raise-prefer-group "emacs" "Emacs"))
 
 (defcommand rungc () ()
   "run google-chrome"
