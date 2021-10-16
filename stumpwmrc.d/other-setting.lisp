@@ -91,6 +91,7 @@ run-or-raise with group search t."
   (list "nitrogen" :options "--restore")
   (list "ulauncher" :options "--hide-window")
   (list "redshift")
+  (list "compton")
   (list "keynav")
   (list "dunst")
   (list "zwmrc")
