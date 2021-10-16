@@ -204,6 +204,7 @@
   (kbd "s-M-e")             "runemacs"
   (kbd "s-M-g")             "rungc"
   (kbd "s-M-t")             "teams"
+  (kbd "s-M-z")             "jiandon-mobl"
   ))
 
 (apply-keys-to-map
