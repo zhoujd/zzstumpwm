@@ -25,6 +25,16 @@ install_src() {
     popd
 }
 
-install_pkg
+case $1 in
+    pkg )
+        install_pkg
+        ;;
+    src )
+        install_src
+        ;;
+    * )
+        echo "Usage: $(basename $0) {pkg|src}"
+        ;;
+esac
 
 echo "Install xcompmgr Done ..."
