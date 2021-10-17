@@ -113,4 +113,4 @@ set cmdheight=1
 set ruler
 
 " Default the statusline when entering Vim
-hi statusline ctermfg=green guibg=#565063
+hi statusline ctermfg=green guibg=grey
