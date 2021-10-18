@@ -165,74 +165,30 @@ used for matching windows with run-or-raise or window placement-merules."
       (safe-end)
       (kill-ps "stumpwm"))))
 
-(defcommand resolution () ()
-  "select resolution for stumpwm"
-  (let ((choice (cadr (select-from-menu
-                       (current-screen)
-                       '(("1-1920x1080" "--mode 1920x1080")
-                         ("2-1600x900"  "--mode 1600x900")
-                         ("3-1280x720"  "--mode 1280x720"))
-                       "Select display resolution")))
-        (output "xrandr | grep primary | awk '{print $1}'"))
-    (run-shell-command (format nil "xrandr --output `~a` ~a" output choice))))
-
-(defcommand keymap-menu () ()
-  "keymap menu"
-  (let* ((choice (cadr (select-from-menu
-                        (current-screen)
-                        '(("1-default" "default.xmodmap")
-                          ("2-hyper"   "hyper.xmodmap")
-                          ("3-laptop"  "laptop.xmodmap"))
-                        "Select keyboard layout")))
-         (config (merge-pathnames
-                  (concat "misc/.xmodmap/" choice) *zz-load-directory*)))
-    (run-shell-command "setcapslock off")
-    (run-shell-command (format nil "xmodmap ~a" config))))
-
-(defcommand wifi-menu () ()
-  "wifi menu"
-  (run-shell-command (format nil "~a"
-                             (merge-pathnames "libexec/rofi-wifi" *zz-load-directory*))))
-
-(defcommand tmux-menu () ()
-  "tmux menu"
-  (run-shell-command (format nil "~a"
-                             (merge-pathnames "libexec/tmux-session" *zz-load-directory*))))
-
-(defcommand screen-menu () ()
-  "screen menu"
-  (run-shell-command (format nil "~a"
-                             (merge-pathnames "libexec/rofi-screen" *zz-load-directory*))))
-
-(defcommand locate-menu () ()
-  "locate menu"
-  (run-shell-command (format nil "~a"
-                             (merge-pathnames "libexec/rofi-locate" *zz-load-directory*))))
-
-(defcommand search-menu () ()
-  "search menu"
-  (run-shell-command (format nil "~a"
-                             (merge-pathnames "libexec/rofi-search" *zz-load-directory*))))
-
 ;; Ubuntu: sudo apt install rlwrap
 (defcommand stumpish () ()
   "run stumpish"
-  (run-shell-command (format nil "urxvt -e ~a"
-                             (merge-pathnames "bin/stumpish" *zz-load-directory*))))
+  (run-shell-command
+   (format nil "urxvt -e ~a"
+           (merge-pathnames "bin/stumpish" *zz-load-directory*))))
 
 (defcommand stumpwm-manual () ()
   "run stumpwm info manual"
-  (run-shell-command (format nil "urxvt -e info ~a"
-                             (merge-pathnames "doc/stumpwm.info" *zz-load-directory*))))
+  (run-shell-command
+   (format nil "urxvt -e info ~a"
+           (merge-pathnames "doc/stumpwm.info" *zz-load-directory*))))
 
 (defcommand bright-up () ()
   "brightness up"
-  (run-shell-command (format nil "~a +5"
-                             (merge-pathnames "libexec/brightness" *zz-load-directory*))))
+  (run-shell-command
+   (format nil "~a +5"
+           (merge-pathnames "libexec/brightness" *zz-load-directory*))))
+
 (defcommand bright-down () ()
   "brightness down"
-  (run-shell-command (format nil "~a -5"
-                             (merge-pathnames "libexec/brightness" *zz-load-directory*))))
+  (run-shell-command
+   (format nil "~a -5"
+           (merge-pathnames "libexec/brightness" *zz-load-directory*))))
 
 (defcommand pactl-up () ()
   "pactl sound up"
@@ -283,17 +239,6 @@ used for matching windows with run-or-raise or window placement-merules."
   "pactl micphone toggle"
   (run-shell-command "pactl set-source-mute @DEFAULT_SOURCE@ toggle")
   (stumpwm::eval-command "pactl-mic-status"))
-
-(defcommand system-action () ()
-  "system actions"
-  (let ((choice (cadr (select-from-menu
-                       (current-screen)
-                       '(("1-logout"    "kill-stumpwm")
-                         ("2-reboot"    "reboot")
-                         ("3-shutdown"  "shutdown"))
-                       "Select system action"))))
-    (when choice
-      (stumpwm::eval-command (format nil "~a" choice)))))
 
 (progn
   (defvar *zz-shot-folder* "~/Pictures/screenshots/"
@@ -397,9 +342,10 @@ used for matching windows with run-or-raise or window placement-merules."
   "shell interactive command, done to exit"
   (let ((cmd (read-one-line (current-screen) "trans: " :initial-input initial)))
     (when cmd
-      (stumpwm::eval-command (format nil "exec urxvt -title 'trans' -e bash -c 'trans -no-warn ~a; read'"
-                            cmd)
-                    t))))
+      (stumpwm::eval-command
+       (format nil "exec urxvt -title 'trans' -e bash -c 'trans -no-warn ~a; read'"
+               cmd)
+       t))))
 
 (defcommand trans-shell () ()
   "trans shell"
@@ -413,14 +359,6 @@ used for matching windows with run-or-raise or window placement-merules."
                             cmd)
                     t))))
 
-(defcommand kill-from-windowlist (&optional (fmt *window-format*)) (:rest)
-  "kill from windowlist"
-  (let ((window-to-kill (stumpwm::select-window-from-menu
-                         (stumpwm::group-windows (current-group))
-                         fmt)))
-    (when window-to-kill
-      (stumpwm::kill-window window-to-kill))))
-
 (defcommand manpage (command) ((:rest "manpage: "))
   "manpage reader. needs filename completion, etc.."
   (run-shell-command (format nil "urxvt -e man ~a" command)))
@@ -428,26 +366,30 @@ used for matching windows with run-or-raise or window placement-merules."
 (defcommand wifi-toggle () ()
   "wifi toggle"
   (message "~a"
-           (run-shell-command (format nil "~a"
-                                      (merge-pathnames "libexec/wifi-toggle" *zz-load-directory*)) t)))
+           (run-shell-command
+            (format nil "~a"
+                    (merge-pathnames "libexec/wifi-toggle" *zz-load-directory*)) t)))
 
 (defcommand touchpad-toggle () ()
   "touchpad toggle"
   (message "~a"
-           (run-shell-command (format nil "~a"
-                                      (merge-pathnames "libexec/touchpad-toggle" *zz-load-directory*)) t)))
+           (run-shell-command
+            (format nil "~a"
+                    (merge-pathnames "libexec/touchpad-toggle" *zz-load-directory*)) t)))
 
 (defcommand touchpad-on () ()
   "touchpad toggle on"
   (message "~a"
-           (run-shell-command (format nil "~a on"
-                                      (merge-pathnames "libexec/touchpad-toggle" *zz-load-directory*)) t)))
+           (run-shell-command
+            (format nil "~a on"
+                    (merge-pathnames "libexec/touchpad-toggle" *zz-load-directory*)) t)))
 
 (defcommand touchpad-off () ()
   "touchpad toggle off"
   (message "~a"
-           (run-shell-command (format nil "~a off"
-                                      (merge-pathnames "libexec/touchpad-toggle" *zz-load-directory*)) t)))
+           (run-shell-command
+            (format nil "~a off"
+                    (merge-pathnames "libexec/touchpad-toggle" *zz-load-directory*)) t)))
 
 (defcommand bpython () ()
   "bpython"
