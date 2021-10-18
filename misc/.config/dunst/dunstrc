@@ -56,7 +56,7 @@
     padding = 8                 # Padding between text and separator
     horizontal_padding = 8      # Horizontal padding
     separator_color = frame     # Color for separator: auto/foreground/frame/X color
-    icon_position = left        # Align icons left/right/off
+    icon_position = off         # Align icons left/right/off
 
     idle_threshold = 120        # Don't remove messages if the user is idle (no mouse or keyboard input) for longer than idle_threshold seconds
     sticky_history = yes        # Make notifications remain until clicked on (yes) or timeout as normal (no) when recalled from history
