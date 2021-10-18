@@ -43,7 +43,7 @@
   (kbd "s-C-F5")    "deadbeef"
   (kbd "s-C-F6")    "mpv"
   (kbd "s-C-F7")    "vlc"
-  (kbd "s-C-F8")    "intel-unite"
+  (kbd "s-C-F8")    "claws-mail"
   (kbd "s-C-F9")    "urxvt"
   (kbd "s-C-F10")   "thunar"
   ))
