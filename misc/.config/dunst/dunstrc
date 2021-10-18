@@ -85,4 +85,4 @@
 
 [play_sound]
     summary = "*"
-    script = 
+    script = noalert
