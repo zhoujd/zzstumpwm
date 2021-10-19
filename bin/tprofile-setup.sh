@@ -8,8 +8,9 @@ install() {
     echo "tprofile install"
     ln -sf $ZZSTUMPWM_ROOT/misc/.tprofile ~/.tprofile
     ## setup .profile or .bash_profile
-    cat <<EOF >> ~/.bash_profile
-[[ -f ~/.tprofile ]] &&  ~/.tprofile
+    cat <<EOF >> ~/.profile
+# tprofile
+test -f ~/.tprofile &&  ~/.tprofile
 EOF
 }
 
