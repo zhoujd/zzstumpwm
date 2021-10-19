@@ -10,7 +10,7 @@ install() {
     ## setup .profile or .bash_profile
     cat <<EOF >> ~/.profile
 # tprofile
-test -f ~/.tprofile &&  ~/.tprofile
+test -f ~/.tprofile && ~/.tprofile
 EOF
 }
 
