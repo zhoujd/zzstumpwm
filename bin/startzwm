@@ -1,17 +1,17 @@
 #!/bin/sh
 
-## Here zwm is kept as default
-WM_SELECT=${1:-zwm}
+## Select window manager
+WM_SELECT=${1:-}
 
+## Usage
 usage() {
     echo "Usage: $(basename $0) {stumpwm|sawfish|zwm|xfce}
-Please run under console.
-The default WM is zwm."
+Please run under Console."
 }
 
 ## Start window manager
 case $WM_SELECT in
-    stumpwm|sawfish|zwm|xfce )
+    stumpwm|zwm|sawfish|xfce )
         if [ -z "$DISPLAY" ]; then
             WM=$WM_SELECT startx
         else
