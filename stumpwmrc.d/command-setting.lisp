@@ -147,7 +147,6 @@ used for matching windows with run-or-raise or window placement-merules."
 
 (defcommand safe-end () ()
   "safe end session"
-  (echo-string (current-screen) "Ending Session...")
   (delete-all)
   (run-hook *quit-hook*))
 
