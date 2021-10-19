@@ -5,7 +5,7 @@ WM_SELECT=${1:-}
 
 ## Usage
 usage() {
-    echo "Usage: $(basename $0) {stumpwm|sawfish|zwm|xfce}
+    echo "Usage: $(basename $0) {stumpwm|zwm|sawfish|xfce}
 Please run under Console."
 }
 
