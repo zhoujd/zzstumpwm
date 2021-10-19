@@ -6,6 +6,9 @@ case $WM in
     stumpwm )
         exec stumpwm
         ;;
+    zwm )
+        exec zwm
+        ;;
     sawfish )
         exec sawfish
         ;;
