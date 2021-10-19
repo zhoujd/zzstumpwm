@@ -12,11 +12,15 @@
       (border-color     "grey9"))
   (set-fg-color            foreground-color)
   (set-bg-color            background-color)
+  (set-win-bg-color        background-color)
   (set-focus-color         foreground-color)
   (set-unfocus-color       background-color)
   (set-float-focus-color   foreground-color)
   (set-float-unfocus-color background-color)
   (set-border-color        border-color))
+
+(set-msg-border-width      1)
+(set-frame-outline-width   1)
 
 ;; suppress the message display
 (setf *suppress-frame-indicator*    t
