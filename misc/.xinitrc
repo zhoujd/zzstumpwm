@@ -6,9 +6,6 @@ case $WM in
     stumpwm )
         exec stumpwm
         ;;
-    zwm )
-        exec zwm
-        ;;
     sawfish )
         exec sawfish
         ;;
@@ -16,6 +13,6 @@ case $WM in
         exec startxfce4
         ;;
     * )
-        echo "Unsupport $WM"
+        exec zwm
         ;;
 esac
