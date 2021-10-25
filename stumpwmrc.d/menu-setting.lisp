@@ -23,7 +23,8 @@
      ("1+WIFI"
       ("1-TOGGLE"         wifi-toggle)
       ("2-CMCC"           "nmcli dev wifi con CMCC-bUpT")
-      ("3-ZZ"             "nmcli dev wifi con zz-home-net"))
+      ("3-ZZ"             "nmcli dev wifi con zz-home-net")
+      ("4-OFFICE"         "nmcli dev wifi con TSNOfficeWLAN"))
      ("2+VPN"
       ("1-Connect VPN"    "runvpn up")
       ("2-Disconnect VPN" "runvpn down")))
