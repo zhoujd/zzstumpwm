@@ -4,8 +4,7 @@ TMUX_SESSION=$((echo new; tmux list-session -F '#S') | rofi -dmenu -p "Tmux Sess
 TERM_SELECT=urxvt  ##rofi-sensible-terminal
 
 if [[ x"new" = x"${TMUX_SESSION}" ]]; then
-    SID=$(echo -en "" | rofi -dmenu -p "Session:" -mesg "Enter the Session Name" \
-                                   -lines 0)
+    SID=$(echo -en "" | rofi -dmenu -p "Session:" -mesg "Enter the Session Name" -lines 0)
     if [[ "$SID" != ''  ]]; then
         ${TERM_SELECT} -e tmux new-session -s ${SID} &
     else
