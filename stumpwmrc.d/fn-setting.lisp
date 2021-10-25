@@ -56,6 +56,11 @@
   (kbd "s-S-F3")    "eval-shell"
   (kbd "s-S-F4")    "trans-command"
   (kbd "s-S-F5")    "colon exec google-chrome http://"
+  (kbd "s-S-F6")    "vpn-menu"
+  (kbd "s-S-F7")    "wifi-menu"
+  (kbd "s-S-F8")    "tmux-menu"
+  (kbd "s-S-F9")    "screen-menu"
+  (kbd "s-S-F10")   "exec rofi -show"
   ))
 
 (apply-keys-to-map
