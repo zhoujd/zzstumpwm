@@ -19,7 +19,7 @@
      ("1-libreoffice"     "libreoffice"))
     ("5+GRAPHICS"
      ("1-GIMP"            "gimp"))
-    ("6+Network"
+    ("6+NETWORK"
      ("1+WIFI"
       ("1-TOGGLE"         wifi-toggle)
       ("2-CMCC"           "nmcli dev wifi con CMCC-bUpT")
