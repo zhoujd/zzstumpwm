@@ -7,8 +7,6 @@ if [[ x"new" = x"${TMUX_SESSION}" ]]; then
     SID=$(echo -en "" | rofi -dmenu -p "Session:" -mesg "Enter the Session Name" -lines 0)
     if [[ "$SID" != ''  ]]; then
         ${TERM_SELECT} -e tmux new-session -s ${SID} &
-    else
-        ${TERM_SELECT} -e tmux new-session &
     fi
 elif [[ -z "${TMUX_SESSION}" ]]; then
     echo "Cancel"
