@@ -109,6 +109,12 @@
    (format nil "~a"
            (merge-pathnames "libexec/rofi-wifi" *zz-load-directory*))))
 
+(defcommand vpn-menu () ()
+  "vpn menu"
+  (run-shell-command
+   (format nil "~a"
+           (merge-pathnames "libexec/rofi-vpn" *zz-load-directory*))))
+
 (defcommand tmux-menu () ()
   "tmux menu"
   (run-shell-command

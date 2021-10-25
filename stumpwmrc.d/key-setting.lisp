@@ -304,5 +304,6 @@
   (kbd "p")                 "screen-menu"
   (kbd "s")                 "search-menu"
   (kbd "t")                 "tmux-menu"
+  (kbd "v")                 "vpn-menu"
   (kbd "w")                 "wifi-menu"
   ))
