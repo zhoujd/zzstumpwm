@@ -120,7 +120,7 @@
   "tmux menu"
   (run-shell-command
    (format nil "~a"
-           (merge-pathnames "libexec/tmux-session" *zz-load-directory*))))
+           (merge-pathnames "libexec/rofi-tmux" *zz-load-directory*))))
 
 (defcommand screen-menu () ()
   "screen menu"
