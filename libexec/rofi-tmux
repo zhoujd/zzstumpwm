@@ -1,10 +1,6 @@
 #!/usr/bin/env bash
 
-tmux_sessions() {
-    tmux list-session -F '#S'
-}
-
-TMUX_SESSION=$((echo new; tmux_sessions) | rofi -dmenu -p "Tmux Session:")
+TMUX_SESSION=$((echo new; tmux list-session -F '#S') | rofi -dmenu -p "Tmux Session:")
 TERM_SELECT=urxvt  ##rofi-sensible-terminal
 
 if [[ x"new" = x"${TMUX_SESSION}" ]]; then
