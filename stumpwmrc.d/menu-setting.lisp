@@ -5,30 +5,35 @@
 
 (defparameter *app-menu*
   '(("1+INTERNET"
-     ("1-Firefox"        firefox)
-     ("2-Chrome"         google-chrome)
-     ("3-Teams"          teams))
+     ("1-Firefox"         firefox)
+     ("2-Chrome"          google-chrome)
+     ("3-Teams"           teams))
     ("2+VIRTUAL"
-     ("1-Virtualbox"     "virtualbox")
-     ("2-Virt-Manager"   "virt-manager"))
+     ("1-Virtualbox"      "virtualbox")
+     ("2-Virt-Manager"    "virt-manager"))
     ("3+MEDIA"
-     ("1-Audacity"       "audacity")
-     ("2-Openshot"       "openshot")
-     ("3-Vidcutter"      "vidcutter"))
+     ("1-Audacity"        "audacity")
+     ("2-Openshot"        "openshot")
+     ("3-Vidcutter"       "vidcutter"))
     ("4+WORK"
-     ("1-libreoffice"    "libreoffice"))
+     ("1-libreoffice"     "libreoffice"))
     ("5+GRAPHICS"
-     ("1-GIMP"           "gimp"))
-    ("6+VPN"
-     ("1-Connect VPN"    "runvpn up")
-     ("2-Disconnect VPN" "runvpn down"))
+     ("1-GIMP"            "gimp"))
+    ("6+Network"
+     ("1+WIFI"
+      ("1-TOGGLE"         wifi-toggle)
+      ("2-CMCC"           "nmcli dev wifi con CMCC-bUpT")
+      ("3-ZZ"             "nmcli dev wifi con zz-home-net"))
+     ("2+VPN"
+      ("1-Connect VPN"    "runvpn up")
+      ("2-Disconnect VPN" "runvpn down")))
     ("7+SYSTEM"
      ("1+COMPOSITE"
-      ("1-On"            "xcompmgr -C")
-      ("2-Off"           "killall xcompmgr"))
+      ("1-On"             "xcompmgr -C")
+      ("2-Off"            "killall xcompmgr"))
      ("2+AUTOLOCK"
-      ("1-On"            "xautolock -time 15 -locker slock")
-      ("2-Off"           "killall xautolock"))))
+      ("1-On"             "xautolock -time 15 -locker slock")
+      ("2-Off"            "killall xautolock"))))
   "Where the menu structure is held")
 
 (defun load-menu (file-name &key (strip 0))
