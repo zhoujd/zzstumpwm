@@ -1,17 +1,18 @@
 #!/usr/bin/env bash
 
-TMUX_SESSION=$((echo new; echo new default; tmux list-session -F '#S') | rofi -dmenu -p "Tmux Session:")
-TERM_SELECT=urxvt  ##rofi-sensible-terminal
+WIDTH=20
+SEL=$((echo new; echo new default; tmux list-session -F '#S') | rofi -dmenu -p "Tmux Session:" -width $WIDTH)
+TERM=urxvt  ##rofi-sensible-terminal
 
-if [[ x"new" = x"${TMUX_SESSION}" ]]; then
+if [[ x"new" = x"${SEL}" ]]; then
     SID=$(echo -en "" | rofi -dmenu -p "Session:" -mesg "Enter the Session Name" -lines 0)
     if [[ "$SID" != ''  ]]; then
-        ${TERM_SELECT} -e tmux new-session -s ${SID} &
+        ${TERM} -e tmux new-session -s ${SID} &
     fi
-elif [[ x"new default" = x"${TMUX_SESSION}" ]]; then
-    ${TERM_SELECT} -e tmux new-session &
-elif [[ -z "${TMUX_SESSION}" ]]; then
+elif [[ x"new default" = x"${SEL}" ]]; then
+    ${TERM} -e tmux new-session &
+elif [[ -z "${SEL}" ]]; then
     echo "Cancel"
 else
-    ${TERM_SELECT} -e tmux attach -t "${TMUX_SESSION}" &
+    ${TERM} -e tmux attach -t "${SEL}" &
 fi
