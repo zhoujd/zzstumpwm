@@ -20,14 +20,8 @@
     ("5+GRAPHICS"
      ("1-GIMP"            "gimp"))
     ("6+NETWORK"
-     ("1+WIFI"
-      ("1-TOGGLE"         wifi-toggle)
-      ("2-CMCC"           "nmcli dev wifi con CMCC-bUpT")
-      ("3-ZZ"             "nmcli dev wifi con zz-home-net")
-      ("4-OFFICE"         "nmcli dev wifi con TSNOfficeWLAN"))
-     ("2+VPN"
-      ("1-Connect VPN"    "runvpn up")
-      ("2-Disconnect VPN" "runvpn down")))
+     ("1+WIFI"            wifi-menu)
+     ("2+VPN"             vpn-menu))
     ("7+SYSTEM"
      ("1+COMPOSITE"
       ("1-On"             "xcompmgr -C")
