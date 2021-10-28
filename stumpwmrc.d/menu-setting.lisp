@@ -20,8 +20,14 @@
     ("5+GRAPHIC"
      ("1-GIMP"            "gimp"))
     ("6+NETWORK"
-     ("1-WIFI"            wifi-menu)
-     ("2-VPN"             vpn-menu))
+     ("1+WIFI"
+      ("1-TOGGLE"         "runwifi toggle")
+      ("2-CMCC"           "runwifi cmcc")
+      ("3-ZZ"             "runwifi zz")
+      ("4-OFFICE"         "runwifi office"))
+     ("2+VPN"
+      ("1-Connect VPN"    "runvpn up")
+      ("2-Disconnect VPN" "runvpn down")))
     ("7+SYSTEM"
      ("1+COMPOSITE"
       ("1-On"             "xcompmgr -C")
