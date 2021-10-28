@@ -21,7 +21,7 @@
      ("1-GIMP"            "gimp"))
     ("6+NETWORK"
      ("1+WIFI"
-      ("1-TOGGLE"         "runwifi toggle")
+      ("1-TOGGLE"         wifi-toggle)
       ("2-CMCC"           "runwifi cmcc")
       ("3-ZZ"             "runwifi zz")
       ("4-OFFICE"         "runwifi office"))
