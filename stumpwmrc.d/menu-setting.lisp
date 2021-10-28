@@ -20,8 +20,8 @@
     ("5+GRAPHICS"
      ("1-GIMP"            "gimp"))
     ("6+NETWORK"
-     ("1+WIFI"            wifi-menu)
-     ("2+VPN"             vpn-menu))
+     ("1-WIFI"            wifi-menu)
+     ("2-VPN"             vpn-menu))
     ("7+SYSTEM"
      ("1+COMPOSITE"
       ("1-On"             "xcompmgr -C")
