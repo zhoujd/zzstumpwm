@@ -17,7 +17,7 @@
      ("3-Vidcutter"       "vidcutter"))
     ("4+WORK"
      ("1-libreoffice"     "libreoffice"))
-    ("5+GRAPHICS"
+    ("5+GRAPHIC"
      ("1-GIMP"            "gimp"))
     ("6+NETWORK"
      ("1-WIFI"            wifi-menu)
