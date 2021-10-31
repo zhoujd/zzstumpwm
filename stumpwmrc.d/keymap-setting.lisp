@@ -31,7 +31,7 @@
   (kbd "s-c")       *zz-c-map*
   (kbd "s-e")       *zz-exec-map*
   (kbd "s-s")       *zz-screen-map*
-  (kbd "s-/")       *zz-menu-map*
+  (kbd "s-m")       *zz-menu-map*
   (kbd "s-?")       *zz-help-map*
   (kbd "s-r")       *root-map*
   (kbd "s-g")       *groups-map*

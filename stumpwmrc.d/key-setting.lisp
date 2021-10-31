@@ -190,12 +190,12 @@
   (kbd "s-\\")              "iresize"
   (kbd "s-M-\\")            "balance-frames"
 
-  (kbd "s-m")               "pactl-toggle"
-  (kbd "s-M-m")             "pactl-mic-toggle"
   (kbd "s-,")               "pactl-down"
   (kbd "s-.")               "pactl-up"
   (kbd "s-M-,")             "pactl-mic-down"
   (kbd "s-M-.")             "pactl-mic-up"
+  (kbd "s-/")               "pactl-toggle"
+  (kbd "s-M-/")             "pactl-mic-toggle"
 
   (kbd "s-a")               "app-menu"
   (kbd "s-o")               "pull-hidden-other"
@@ -204,6 +204,7 @@
   (kbd "s-M-c")             "runurxvt"
   (kbd "s-M-e")             "runemacs"
   (kbd "s-M-g")             "rungc"
+  (kbd "s-M-m")             "evolution"
   (kbd "s-M-t")             "teams"
   (kbd "s-M-z")             "jiandon-mobl"
   ))
