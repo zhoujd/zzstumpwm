@@ -49,5 +49,6 @@
   *zz-c-map*
   *zz-exec-map*
   *zz-screen-map*
+  *zz-menu-map*
   *zz-help-map*
   ))
