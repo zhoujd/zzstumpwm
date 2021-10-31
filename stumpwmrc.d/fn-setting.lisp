@@ -58,9 +58,9 @@
   (kbd "s-S-F5")    "colon exec google-chrome http://"
   (kbd "s-S-F6")    "vpn-menu"
   (kbd "s-S-F7")    "wifi-menu"
-  (kbd "s-S-F8")    "tmux-menu"
-  (kbd "s-S-F9")    "screen-menu"
-  (kbd "s-S-F10")   "exec rofi -show windowcd"
+  (kbd "s-S-F8")    "audio-menu"
+  (kbd "s-S-F9")    "tmux-menu"
+  (kbd "s-S-F10")   "screen-menu"
   ))
 
 (apply-keys-to-map

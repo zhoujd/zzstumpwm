@@ -79,7 +79,7 @@
                                 (cdr selection)))))))))
     (pick *app-menu*)))
 
-(defcommand resolution () ()
+(defcommand rez-menu () ()
   "select resolution for stumpwm"
   (let ((choice (cadr (select-from-menu
                        (current-screen)
@@ -115,6 +115,12 @@
   (run-shell-command
    (format nil "~a"
            (merge-pathnames "libexec/rofi-vpn" *zz-load-directory*))))
+
+(defcommand audio-menu () ()
+  "audio menu"
+  (run-shell-command
+   (format nil "~a"
+           (merge-pathnames "libexec/rofi-audio" *zz-load-directory*))))
 
 (defcommand tmux-menu () ()
   "tmux menu"
