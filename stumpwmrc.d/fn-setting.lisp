@@ -60,7 +60,7 @@
   (kbd "s-S-F7")    "wifi-menu"
   (kbd "s-S-F8")    "tmux-menu"
   (kbd "s-S-F9")    "screen-menu"
-  (kbd "s-S-F10")   "exec rofi -show"
+  (kbd "s-S-F10")   "exec rofi -show windowcd"
   ))
 
 (apply-keys-to-map
