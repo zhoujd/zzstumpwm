@@ -198,6 +198,7 @@
   (kbd "s-M-/")             "pactl-mic-toggle"
 
   (kbd "s-a")               "app-menu"
+  (kbd "s-p")               "screen-menu"
   (kbd "s-o")               "pull-hidden-other"
   (kbd "s-M-o")             "gother"
 
