@@ -190,12 +190,12 @@
   (kbd "s-\\")              "iresize"
   (kbd "s-M-\\")            "balance-frames"
 
+  (kbd "s-m")               "pactl-toggle"
+  (kbd "s-M-m")             "pactl-mic-toggle"
   (kbd "s-,")               "pactl-down"
   (kbd "s-.")               "pactl-up"
   (kbd "s-M-,")             "pactl-mic-down"
   (kbd "s-M-.")             "pactl-mic-up"
-  (kbd "s-m")               "pactl-toggle"
-  (kbd "s-M-m")             "pactl-mic-toggle"
 
   (kbd "s-a")               "app-menu"
   (kbd "s-o")               "pull-hidden-other"
@@ -307,4 +307,16 @@
   (kbd "t")                 "tmux-menu"
   (kbd "v")                 "vpn-menu"
   (kbd "w")                 "wifi-menu"
+  ))
+
+(apply-keys-to-map
+ *zz-menu-map*
+ (list
+  (kbd "a")                 "app-menu"
+  (kbd "w")                 "exec rofi -show window"
+  (kbd "r")                 "exec rofi -show run"
+  (kbd "s")                 "exec rofi -show ssh"
+  (kbd "d")                 "exec rofi -show drun"
+  (kbd "v")                 "exec rofi -show windowcd"
+  (kbd "k")                 "exec rofi -show keys -modi keys"
   ))

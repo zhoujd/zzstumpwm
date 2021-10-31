@@ -20,8 +20,9 @@
 (defvar *zz-x-map*      (make-sparse-keymap) "Keymap like emacs C-x")
 (defvar *zz-c-map*      (make-sparse-keymap) "Keymap like emacs C-c")
 (defvar *zz-exec-map*   (make-sparse-keymap) "Keymap execute commands")
-(defvar *zz-help-map*   (make-sparse-keymap) "Keymap help")
 (defvar *zz-screen-map* (make-sparse-keymap) "Keymap screen")
+(defvar *zz-menu-map*   (make-sparse-keymap) "Keymap menu")
+(defvar *zz-help-map*   (make-sparse-keymap) "Keymap help")
 
 (apply-keys-to-map
  *top-map*
@@ -30,8 +31,9 @@
   (kbd "s-c")       *zz-c-map*
   (kbd "s-e")       *zz-exec-map*
   (kbd "s-s")       *zz-screen-map*
+  (kbd "s-/")       *zz-menu-map*
   (kbd "s-?")       *zz-help-map*
-  (kbd "s-/")       *root-map*
+  (kbd "s-r")       *root-map*
   (kbd "s-g")       *groups-map*
   ))
 
