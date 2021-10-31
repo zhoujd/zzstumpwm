@@ -169,10 +169,11 @@
   (kbd "s-C-Up")            "exchange-direction up"
   (kbd "s-C-Down")          "exchange-direction down"
 
+  (kbd "s-M-d")             "exec rofi -show drun"
   (kbd "s-M-r")             "exec rofi -show run"
   (kbd "s-M-s")             "exec rofi -show ssh"
   (kbd "s-M-w")             "exec rofi -show window"
-  (kbd "s-M-d")             "exec rofi -show drun"
+  (kbd "s-M-u")             "exec rofi -show windowcd"
   (kbd "s-M-?")             "exec rofi -show keys"
 
   (kbd "s-C-b")             "mode-line"
