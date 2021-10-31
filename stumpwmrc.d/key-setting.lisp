@@ -174,7 +174,7 @@
   (kbd "s-M-s")             "exec rofi -show ssh"
   (kbd "s-M-d")             "exec rofi -show drun"
   (kbd "s-M-v")             "exec rofi -show windowcd"
-  (kbd "s-M-?")             "exec rofi -show keys -modi keys"
+  (kbd "s-M-?")             "exec rofi -show keys"
 
   (kbd "s-C-b")             "mode-line"
   (kbd "s-C-d")             "safe-delete"
@@ -318,5 +318,5 @@
   (kbd "s")                 "exec rofi -show ssh"
   (kbd "d")                 "exec rofi -show drun"
   (kbd "v")                 "exec rofi -show windowcd"
-  (kbd "k")                 "exec rofi -show keys -modi keys"
+  (kbd "M-?")               "exec rofi -show keys"
   ))
