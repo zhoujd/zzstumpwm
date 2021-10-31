@@ -313,10 +313,16 @@
  *zz-menu-map*
  (list
   (kbd "a")                 "app-menu"
+  (kbd "C-a")               "app-menu"
   (kbd "w")                 "exec rofi -show window"
+  (kbd "C-w")               "exec rofi -show window"
   (kbd "r")                 "exec rofi -show run"
+  (kbd "C-r")               "exec rofi -show run"
   (kbd "s")                 "exec rofi -show ssh"
+  (kbd "C-s")               "exec rofi -show ssh"
   (kbd "d")                 "exec rofi -show drun"
+  (kbd "C-d")               "exec rofi -show drun"
   (kbd "v")                 "exec rofi -show windowcd"
-  (kbd "M-?")               "exec rofi -show keys"
+  (kbd "C-v")               "exec rofi -show windowcd"
+  (kbd "C-?")               "exec rofi -show keys"
   ))
