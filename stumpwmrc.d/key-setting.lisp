@@ -214,7 +214,7 @@
  *root-map*
  (list
   (kbd "c")                 "urxvt"
-  (kbd "C-c")               "exec urxvt"
+  (kbd "C-c")               "urxvt"
   ))
 
 (apply-keys-to-map
