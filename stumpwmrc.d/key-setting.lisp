@@ -52,6 +52,7 @@
   (kbd "n")                 "cherrytree"
   (kbd "C-n")               "exec cherrytree"
   (kbd "p")                 (urxvt-command "bpython")
+  (kbd "C-p")               "pavucontrol"
   (kbd "q")                 "slingscold"
   (kbd "C-q")               "exec slingscold"
   (kbd "r")                 "exec remmina"
@@ -304,6 +305,7 @@
   (kbd "h")                 "htop"
   (kbd "k")                 "keymap-menu"
   (kbd "l")                 "locate-menu"
+  (kbd "o")                 "audio-menu"
   (kbd "p")                 "screen-menu"
   (kbd "s")                 "search-menu"
   (kbd "t")                 "tmux-menu"
