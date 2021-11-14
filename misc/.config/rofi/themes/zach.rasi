@@ -13,7 +13,7 @@ configuration {
 }
 
 * {
-    font:             "WenQuanYi Micro Hei Mono 11";
+    font:             "WenQuanYi Micro Hei Mono 12";
     transparent:      rgba(0,0,0,0.7);
 
     foreground:       #ffeedd;
