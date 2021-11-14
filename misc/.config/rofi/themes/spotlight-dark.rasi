@@ -5,7 +5,7 @@
  *******************************************************************************/
 
 * {
-    font:   "Montserrat 12";
+    font:   "WenQuanYi Micro Hei Mono 12";
 
     bg0:    #242424E6;
     bg1:    #7E7E7E80;
@@ -33,7 +33,7 @@ window {
 }
 
 inputbar {
-    font:       "Montserrat 20";
+    font:       inherit;
     padding:    12px;
     spacing:    12px;
     children:   [ icon-search, entry ];
