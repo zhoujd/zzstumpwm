@@ -1,6 +1,6 @@
-![](http://www.kenanb.com/static/img/stumpwm-logo/stumpwm-logo-stripe.png)
+![](https://stumpwm.github.io/images/stumpwm-logo-stripe.png)
 # The Stump Window Manager
-
+![](https://travis-ci.org/stumpwm/stumpwm.svg)
 Stumpwm is a window manager written entirely in Common Lisp. It
 attempts to be highly customizable while relying entirely on the
 keyboard for input. You will not find buttons, icons, title bars, tool
@@ -31,7 +31,7 @@ WMs."
 
 If you want a minimalist tiling window manager, then StumpWM is *not*
 what you're looking for.  The code base is ~15k sloc, the binaries
-produced are ~60mb.  
+produced are ~60mb.
 
 StumpWM manages windows the way emacs manages buffers, or the way
 screen manages terminals. If you want a flexible, customizable,
@@ -51,7 +51,7 @@ The recommended way to install the dependencies is using Quicklisp.
 Follow the instructions at http://www.quicklisp.org/ to install it.
 In short: 
 ```
-$ curl -O http://beta.quicklisp.org/quicklisp.lisp
+$ curl -O https://beta.quicklisp.org/quicklisp.lisp
 ```
 
 ```
@@ -81,7 +81,7 @@ If there's already a configure script then just run it.
 ```
  ./configure
 ```
-By default stumpwm elects sbcl.  If you have multiple lisps installed,
+By default stumpwm selects sbcl.  If you have multiple lisps installed,
 you can explicitly select clisp, ccl, or ecl like so:
 ```
  ./configure --with-lisp=clisp
@@ -121,6 +121,7 @@ For stumpwm to work as intended with multiple monitors setups the
 Pull requests are always welcome! Here are some guidelines to ensure
 that your contribution gets merged in a timely manner: 
 * Do's 
+  * Add your name to the list of AUTHORS with your pull request.  
   * Preserve comments or docstrings explaining what code does, and
     update them if your patch changes them in a significant way
   * Try to follow an "80 column rule." The current code base does not
@@ -128,7 +129,7 @@ that your contribution gets merged in a timely manner:
   * [Use lisp idioms](http://people.ace.ed.ac.uk/staff/medward2/class/moz/cm/doc/contrib/lispstyle.html)
   * If you are working on a major change to the internals, keep us
     informed on stumpwm-devel! Also, it will probably help if the
-    changes are made and the incrementally applied to the codebase in
+    changes are made and then incrementally applied to the codebase in
     order to avoid introducing show-stopping bugs.
 * Do not's
   * Include emacs local variables 
@@ -146,6 +147,39 @@ documenting and organizing the wiki. There's a lot of information
 floating around, if you find it where you didn't expect it, move or
 link to it in a more logical place.
 
+# Wishlist 
+
+Fancy yourself a lisp hacker? Here's a wishlist of features for the
+StumpWM universe (in no particular order):
+* float-splits (ie allow floating windows over tiled ones)
+* Float windows within parent applications (specifically dialogs in
+  gimp or firefox).
+* tab-list showing the contents of the current frame at the side, top,
+  or bottom of the frame
+* Emacs' iswitchb function implemented in emacs
+  * Re-arranging windows between groups
+  * Killing windows
+  * Marking windows for batch operations
+  * Deleting/adding groups
+  * Import data from stumpwm to emacs, use an emacs minor mode to
+    implement the above features, then export the data back to stumpwm
+    and let stumpwm perform the appropriate actions 
+* Emacs' completing-read-multiple function
+* Dynamic tiling
+* Lock Screen (with support for leaving notes, bonus points if emacs
+  is involved)
+* Wallpapers! (support pulling from remote sources, changing based on
+  timers, and other hacky features)
+* Shutdown, restart, suspend, and hibernate functions that don't
+  require root access
+* Revamped, mouse-friendly mode-line. 
+  * Support fixed number of chars for window titles
+  * Dynamically trim window titles to fit them all on the mode-line
+  * Split the mode-line into multiple cells for containing different information
+  * Implement widget icons to indicate system status (new mail, low
+    battery, network etc)
+  * Support raising windows when left-clicked, closing/killing when right-clicked  
+
 # CCL And Virtual Memory
 
 
@@ -158,13 +192,13 @@ http://ccl.clozure.com/manual/chapter15.1.html for an explanation.
 
 There's a texinfo manual, stumpwm.texi.  The build scripts generate an
 info file you can read in emacs or with the `info' program.  The
-manual for the 0.9.7 (slightly out of date) is available to read
-online at: [The Manual](http://www.nongnu.org/stumpwm/manual/stumpwm.html)
+manual for the latest git version (may be slightly out of date) is
+available to read online at: [The Manual](https://stumpwm.github.io/)
 
 And, as in emacs, you can always do "C-t h v,f,k,c,w" for docstrings
 of Variable,Functions,Keys,Commands, and Where-is respectively.
 
-For other stuff (tips tricks and examples) visit the [stumpwm wiki](https://github.com/sabetts/stumpwm/wiki)
+For other stuff (tips tricks and examples) visit the [stumpwm wiki](https://github.com/stumpwm/stumpwm/wiki)
 
 There's a #stumpwm channel on irc.freenode.net, too.
 

@@ -25,6 +25,7 @@
 
 (export '(*input-history-ignore-duplicates*
           *input-map*
+          *numpad-map*
 	  completing-read
 	  input-delete-region
 	  input-goto-char
@@ -70,6 +71,7 @@
           (define-key map (kbd "C-g") 'input-abort)
           (define-key map (kbd "ESC") 'input-abort)
           (define-key map (kbd "C-y") 'input-yank-selection)
+          (define-key map (kbd "C-Y") 'input-yank-clipboard)
           (define-key map (kbd "TAB") 'input-complete-forward)
           (define-key map (kbd "ISO_Left_Tab") 'input-complete-backward)
           (define-key map t 'input-self-insert)
@@ -92,6 +94,11 @@
 
 (defvar *input-history-ignore-duplicates* nil
   "Do not add a command to the input history if it's already the first in the list.")
+(defvar *numpad-map* '((87 10 . 16) (88  11 . 16) (89 12 . 16) (106 61 . 16)
+                       (83 13 . 16) (84  14 . 16) (85 15 . 16) (86  21 . 17)
+                       (79 16 . 16) (80  17 . 16) (81 18 . 16) (63  17 . 17) 
+                       (82 20 . 16) (104 36 . 16) (91 60 . 16) (90  19 . 16))
+  "A keycode to keycode map to re-wire numpads when the numlock key is active")
 
 ;;; keysym functions
 
@@ -130,16 +137,11 @@
                                      &key event-key root code state 
                                        &allow-other-keys)
   (declare (ignore event-slots root))
-  (let* ((numpad-map '((87 10 . 16) (88  11 . 16) (89 12 . 16) (106 61 . 16)
-                      (83 13 . 16) (84  14 . 16) (85 15 . 16) (86  21 . 17)
-                      (79 16 . 16) (80  17 . 16) (81 18 . 16) (63  17 . 17) 
-                      (82 20 . 16) (104 36 . 16) (91 60 . 16) (90  19 . 17)))
-         (numlock-on-p (= 2 (logand 2 (nth-value 4 (xlib:keyboard-control *display*)))))
-         (numpad-key (assoc code numpad-map)))
+  (let ((numlock-on-p (= 2 (logand 2 (nth-value 4 (xlib:keyboard-control *display*)))))
+         (numpad-key (assoc code *numpad-map*)))
     (when (and numlock-on-p numpad-key)
       (setf code (first (rest numpad-key))
             state (rest (rest numpad-key))))
-    ;; FIXME: don't use a cons
     (list* event-key code state)))
 
 (defun input-handle-selection-event (&key window selection property &allow-other-keys)
@@ -214,7 +216,9 @@ match with an element of the completions."
                (let* ((in (string-trim " " (input-line-string input)))
                       (compls (input-find-completions in *input-completions*)))
                  (and (consp compls)
-                      (string= in (car compls)))))
+                      (string= in (if (consp (car compls))
+                                      (caar compls)
+                                      (car compls))))))
              (key-loop ()
                (loop for key = (read-key-or-selection) do
                      (cond ((stringp key)
@@ -251,17 +255,23 @@ match with an element of the completions."
          (string (if (input-line-password input)
                      (make-string (length line-content) :initial-element #\*)
                      line-content))
-         (string-width (text-line-width (screen-font screen) string :translate #'translate-id))
+         (string-width (loop for char across string
+                             summing (text-line-width (screen-font screen)
+                                                      (string char)
+                                                      :translate #'translate-id)))
          (space-width  (text-line-width (screen-font screen) " "    :translate #'translate-id))
          (tail-width   (text-line-width (screen-font screen) tail   :translate #'translate-id))
          (full-string-width (+ string-width space-width))
          (pos (input-line-position input))
          (width (+ prompt-width
                    (max 100 (+ full-string-width space-width tail-width)))))
+    (when errorp (rotatef (xlib:gcontext-background gcontext)
+                          (xlib:gcontext-foreground gcontext)))
     (xlib:with-state (win)
-      (xlib:clear-area win :x (+ *message-window-padding*
-                                 prompt-width
-                                 string-width))
+      (xlib:with-gcontext (gcontext :foreground (xlib:gcontext-background gcontext))
+        (xlib:draw-rectangle win gcontext 0 0
+                           (xlib:drawable-width win)
+                           (xlib:drawable-height win) t))
       (setf (xlib:drawable-width win) (+ width (* *message-window-padding* 2)))
       (setup-win-gravity screen win *input-window-gravity*))
     (xlib:with-state (win)
@@ -271,35 +281,48 @@ match with an element of the completions."
                          prompt
                          :translate #'translate-id
                          :size 16)
-      (draw-image-glyphs win gcontext (screen-font screen)
-                         (+ *message-window-padding* prompt-width)
-                         (font-ascent (screen-font screen))
-                         string
-                         :translate #'translate-id
-                         :size 16)
-      (draw-image-glyphs win gcontext (screen-font screen)
-                         (+ *message-window-padding* prompt-width full-string-width space-width)
-                         (font-ascent (screen-font screen))
-                         tail
-                         :translate #'translate-id
-                         :size 16)
-      ;; draw a block cursor
-      (invert-rect screen win
-                   (+ *message-window-padding*
-                      prompt-width
-                      (text-line-width (screen-font screen) (subseq string 0 pos) :translate #'translate-id))
-                   0
-                   (text-line-width (screen-font screen) (if (>= pos (length string))
-                                                             " "
-                                                             (string (char string pos)))
-                                    :translate #'translate-id)
-                   (font-height (screen-font screen)))
-      ;; draw the error
-      (when errorp
-        (invert-rect screen win 0 0 (xlib:drawable-width win) (xlib:drawable-height win))
-        (xlib:display-force-output *display*)
-        (sleep 0.05)
-        (invert-rect screen win 0 0 (xlib:drawable-width win) (xlib:drawable-height win))))))
+      (loop with x = (+ *message-window-padding* prompt-width)
+            for char across string
+            for i from 0 below (length string)
+            for char-width = (text-line-width (screen-font screen) (string char) :translate #'translate-id)
+            if (= pos i)
+              do (xlib:with-gcontext (gcontext :foreground (xlib:gcontext-background gcontext)
+                                               :background (xlib:gcontext-foreground gcontext))
+                   (draw-image-glyphs win gcontext (screen-font screen)
+                                      x
+                                      (font-ascent (screen-font screen))
+                                      (string char)
+                                      :translate #'translate-id
+                                      :size 16))
+            else
+              do (draw-image-glyphs win gcontext (screen-font screen)
+                                    x
+                                    (font-ascent (screen-font screen))
+                                    (string char)
+                                    :translate #'translate-id
+                                    :size 16)
+            end
+            do (incf x char-width)
+            finally (when (>= pos (length string))
+                      (xlib:with-gcontext (gcontext :foreground (xlib:gcontext-background gcontext)
+                                                    :background (xlib:gcontext-foreground gcontext))
+                        (draw-image-glyphs win gcontext (screen-font screen)
+                                           x
+                                           (font-ascent (screen-font screen))
+                                           " "
+                                           :translate #'translate-id
+                                           :size 16))))
+         (draw-image-glyphs win gcontext (screen-font screen)
+                            (+ *message-window-padding* prompt-width full-string-width space-width)
+                            (font-ascent (screen-font screen))
+                            tail
+                            :translate #'translate-id
+                            :size 16))
+    (when errorp
+      (sleep 0.05)
+      (rotatef (xlib:gcontext-background gcontext)
+               (xlib:gcontext-foreground gcontext))
+      (draw-input-bucket screen prompt input tail))))
 
 (defun code-state->key (code state)
   (let* ((mods    (xlib:make-state-keys state))
@@ -556,9 +579,19 @@ functions are passed this structure as their first argument."
 (defun input-yank-selection (input key)
   (declare (ignore key))
   ;; if we own the selection then just insert it.
-  (if *x-selection*
-      (input-insert-string input *x-selection*)
-      (xlib:convert-selection :primary :string (screen-input-window (current-screen)) :stumpwm-selection)))
+  (if (getf *x-selection* :primary)
+      (input-insert-string input (getf *x-selection* :primary))
+      (xlib:convert-selection :primary
+                              :string (screen-input-window (current-screen))
+                              :stumpwm-selection)))
+
+(defun input-yank-clipboard (input key)
+  (declare (ignore key))
+  (if (getf *x-selection* :clipboard)
+      (input-insert-string input (getf *x-selection* :clipboard))
+      (xlib:convert-selection :clipboard
+                              :string (screen-input-window (current-screen))
+                              :stumpwm-selection)))
 
 
 ;;; Misc functions

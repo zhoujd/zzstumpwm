@@ -29,6 +29,7 @@
 	  programs-in-path
 	  restarts-menu
 	  run-or-raise
+          run-or-pull
 	  run-shell-command
           window-send-string))
 
@@ -174,9 +175,11 @@ such a case, kill the shell command to resume StumpWM."
 (defcommand eval-line (cmd) ((:rest "Eval: "))
   "Evaluate the s-expression and display the result(s)."
   (handler-case
-      (message "^20~{~a~^~%~}"
+      (if cmd
+          (message "^20~{~a~^~%~}"
                (mapcar 'prin1-to-string
                        (multiple-value-list (eval (read-from-string cmd)))))
+          (throw 'error :abort))
     (error (c)
       (err "^B^1*~A" c))))
 
@@ -257,7 +260,8 @@ number, with group being more significant (think radix sort)."
     (stable-sort (sort matches #'< :key #'window-number)
                  #'< :key (lambda (w) (group-number (window-group w))))))
 
-(defun run-or-raise (cmd props &optional (all-groups *run-or-raise-all-groups*) (all-screens *run-or-raise-all-screens*))
+(defun run-or-raise (cmd props &optional (all-groups *run-or-raise-all-groups*)
+                                 (all-screens *run-or-raise-all-screens*))
   "Run the shell command, @var{cmd}, unless an existing window
 matches @var{props}. @var{props} is a property list with the following keys:
 
@@ -295,8 +299,9 @@ instance. @var{all-groups} overrides this default. Similarily for
                     (second other-matches)
                     (first matches))))
       (if win
-          (if (eq (type-of (window-group win)) 'float-group)
-              (group-focus-window (window-group win) win)
+          (if (eq (type-of (window-group win))
+                  'stumpwm.floating-group:float-group)
+              (focus-all win)
               (goto-win win))
           (run-shell-command cmd)))))
 
@@ -342,11 +347,11 @@ submitting the bug report."
 
 (defmacro defprogram-shortcut (name &key (command (string-downcase (string name)))
                                          (props `'(:class ,(string-capitalize command)))
-                                         (map *top-map*)
-                                         (key (kbd (concat "H-" (subseq command 0 1))))
+                                         (map '*top-map*)
+                                         (key `(kbd ,(concat "H-" (subseq command 0 1))))
                                          (pullp nil)
                                          (pull-name (intern1 (concat (string name) "-PULL")))
-                                         (pull-key (kbd (concat "H-M-" (subseq command 0 1)))))
+                                         (pull-key `(kbd ,(concat "H-M-" (subseq command 0 1)))))
   "Define a command and key binding to run or raise a program. If
 @var{pullp} is set, also define a command and key binding to run or
 pull the program."
@@ -354,22 +359,25 @@ pull the program."
      (defcommand ,name () ()
        (run-or-raise ,command ,props))
      (define-key ,map ,key ,(string-downcase (string name)))
-     (when ,pullp
-       (defcommand (,pull-name tile-group) () ()
-          (run-or-pull ,command ,props))
-       (define-key ,map ,pull-key ,(string-downcase (string pull-name))))))
+     ,(when pullp
+        `(progn
+           (defcommand (,pull-name tile-group) () ()
+             (run-or-pull ,command ,props))
+           (define-key ,map ,pull-key ,(string-downcase (string pull-name)))))))
 
 (defcommand show-window-properties () ()
   "Shows the properties of the current window. These properties can be
 used for matching windows with run-or-raise or window placement
 rules."
   (let ((w (current-window)))
-    (message-no-timeout "class: ~A~%instance: ~A~%type: :~A~%role: ~A~%title: ~A"
-                        (window-class w)
-                        (window-res w)
-                        (string (window-type w))
-                        (window-role w)
-                        (window-title w))))
+    (if (not w)
+        (message "No active window!")
+        (message-no-timeout "class: ~A~%instance: ~A~%type: :~A~%role: ~A~%title: ~A"
+                            (window-class w)
+                            (window-res w)
+                            (string (window-type w))
+                            (window-role w)
+                            (window-title w)))))
 
 (defcommand list-window-properties () ()
   "List all the properties of the current window and their values,

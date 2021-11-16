@@ -121,8 +121,9 @@
 
 (defun remove-head (screen head)
   (dformat 1 "Removing head #~D~%" (head-number head))
-  (when (head-mode-line head)
-    (toggle-mode-line screen head))
+  (let ((mode-line (head-mode-line head)))
+    (when mode-line
+      (destroy-mode-line mode-line)))
   (dolist (group (screen-groups screen))
     (group-remove-head group head))
   ;; Remove it from SCREEN's head list.
@@ -144,9 +145,8 @@
       ;; Some heads were removed (or cloned), try to guess which.
       (dolist (oh oheads)
         (dolist (nh heads)
-          (when (and (= (head-x nh) (head-x oh))
-                     (= (head-y nh) (head-y oh)))
-          ;; Same screen position; probably the same head.
+          (when (= (head-number oh) (head-number nh))
+            ;; Same frame number, probably the same head
             (setf (head-number nh) (head-number oh))))))
     (dolist (h (set-difference oheads heads :test '= :key 'head-number))
       (remove-head screen h))
@@ -156,3 +156,13 @@
       (let ((nh (find (head-number h) heads  :test '= :key 'head-number))
             (oh (find (head-number h) oheads :test '= :key 'head-number)))
         (scale-head screen oh nh)))))
+
+(defun head-force-refresh (screen new-heads)
+  (scale-screen screen new-heads)    
+  (mapc 'group-sync-all-heads (screen-groups screen))
+  (update-mode-lines screen))
+
+(defcommand refresh-heads (&optional (screen (current-screen))) ()
+  "Refresh screens in case a monitor was connected, but a
+  ConfigureNotify event was snarfed by another program."
+  (head-force-refresh screen (make-screen-heads screen (screen-root screen))))

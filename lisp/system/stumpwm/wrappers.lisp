@@ -30,6 +30,13 @@
 (define-condition not-implemented (stumpwm-error)
   () (:documentation "A function has been called that is not implemented yet."))
 
+(defun screen-display-string (screen &optional (assign t))
+  (format nil
+          (if assign "DISPLAY=~a:~d.~d" "~a:~d.~d")
+          (screen-host screen)
+          (xlib:display-display *display*)
+          (screen-id screen)))
+
 (defun run-prog (prog &rest opts &key args output (wait t) &allow-other-keys)
   "Common interface to shell. Does not return anything useful."
   #+(or clisp ccl ecl gcl)
@@ -37,7 +44,9 @@
     ;; variable so it's inherited by the child process.
     (when (current-screen)
       (setf (getenv "DISPLAY") (screen-display-string (current-screen) nil)))
-  (setq opts (remove-plist opts :args :output :wait))
+  (remf opts :args)
+  (remf opts :output)
+  (remf opts :wait)
   #+allegro
   (apply #'excl:run-shell-command (apply #'vector prog prog args)
          :output output :wait wait :environment
@@ -182,7 +191,7 @@
 
 (defun print-backtrace (&optional (frames 100))
   "print a backtrace of FRAMES number of frames to standard-output"
-  #+sbcl (sb-debug:backtrace frames *standard-output*)
+  #+sbcl (sb-debug:print-backtrace :count frames :stream *standard-output*)
   #+clisp (ext:show-stack 1 frames (sys::the-frame))
   #+ccl (ccl:print-call-history :count frames :stream *standard-output* :detailed-p nil)
   ;; borrowed from 'trivial-backtrace'
@@ -197,7 +206,9 @@
 (defun bytes-to-string (data)
   "Convert a list of bytes into a string."
   #+sbcl (handler-bind
-             ((sb-impl::octet-decoding-error #'(lambda (c) (invoke-restart 'use-value "?"))))
+             ((sb-impl::octet-decoding-error #'(lambda (c)
+                                                 (declare (ignore c))
+                                                 (invoke-restart 'use-value "?"))))
           (sb-ext:octets-to-string
            (make-array (length data) :element-type '(unsigned-byte 8) :initial-contents data)))
   #+clisp
@@ -259,31 +270,14 @@ they should be windows. So use this function to make a window out of them."
   #-(or sbcl clisp ecl openmcl lispworks)
   (error 'not-implemented))
 
-;; Right now clisp and sbcl both work the same way
-(defun lookup-error-recoverable-p ()
-  #+(or clisp sbcl) (find :one (compute-restarts) :key 'restart-name)
-  #-(or clisp sbcl) nil)
-
-(defun recover-from-lookup-error ()
-  #+(or clisp sbcl) (invoke-restart :one)
-  #-(or clisp sbcl) (error 'not-implemented))
-
 (defun directory-no-deref (pathspec)
   "Call directory without dereferencing symlinks in the results"
   #+(or cmu scl) (directory pathspec :truenamep nil)
   #+clisp (mapcar #'car (directory pathspec :full t))
   #+lispworks (directory pathspec :link-transparency nil)
   #+openmcl (directory pathspec :follow-links nil)
-  ;; FIXME: seems like there ought to be a less cumbersome way to run
-  ;; different code based on the version.
-  #+sbcl (macrolet ((dir (p)
-                      (if (>= (parse-integer (third (split-seq (lisp-implementation-version) '(#\.))) :junk-allowed t)
-                              24)
-                          `(directory ,p :resolve-symlinks nil)
-                          `(directory ,p))))
-           (dir pathspec))
-  #-(or clisp cmu lispworks openmcl sbcl scl) (directory pathspec)
-  )
+  #+sbcl (directory pathspec :resolve-symlinks nil)
+  #-(or clisp cmu lispworks openmcl sbcl scl) (directory pathspec))
 
 ;;; CLISP does not include features to distinguish different Unix
 ;;; flavours (at least until version 2.46). Until this is fixed, use a
@@ -374,6 +368,7 @@ regarding files in sysfs. Data is read in chunks of BLOCKSIZE bytes."
     (setf (sb-alien:deref argv (length arguments)) nil)
     (sb-alien:alien-funcall (sb-alien:extern-alien "execv" (function sb-alien:int sb-alien:c-string (* sb-alien:c-string)))
                             prg (sb-alien:cast argv (* sb-alien:c-string))))
+  ;; FIXME: Using unexported and undocumented functionality isn't nice
   #+clisp
   (funcall (ffi::find-foreign-function "execv"
                                        (ffi:parse-c-type '(ffi:c-function
@@ -382,10 +377,67 @@ regarding files in sysfs. Data is read in chunks of BLOCKSIZE bytes."
                                                             (args (ffi:c-array-ptr ffi:c-string))
                                                             )
                                                            (:return-type ffi:int)))
-                                       nil nil nil)
+                                       nil nil nil nil)
            program
            (coerce arguments 'array))
   #-(or sbcl clisp)
   (error "Unimplemented"))
+
+(defun open-pipe (&key (element-type '(unsigned-byte 8)))
+  "Create a pipe and return two streams. The first value is the input
+stream, and the second value is the output stream."
+  #+sbcl
+  (multiple-value-bind (in-fd out-fd)
+      (sb-posix:pipe)
+    (let ((in-stream (sb-sys:make-fd-stream in-fd :input t :element-type element-type))
+          (out-stream (sb-sys:make-fd-stream out-fd :output t :element-type element-type)))
+      (values in-stream out-stream)))
+  #+ccl
+  (multiple-value-bind (in-fd out-fd)
+      (ccl::pipe)
+    (let ((in-stream (ccl::make-fd-stream in-fd :direction :input :element-type element-type))
+          (out-stream (ccl::make-fd-stream out-fd :direction :output :element-type element-type)))
+      (values in-stream out-stream)))
+  #-(or sbcl ccl)
+  (error "Unsupported CL implementation"))
+
+(defun make-lock ()
+  #+sbcl
+  (sb-thread:make-mutex)
+  #+ccl
+  (ccl:make-lock "Anonymous lock")
+  #+(and clisp mt)
+  (mt:make-mutex)
+  #+lispworks
+  (mp:make-lock)
+  #+ecl
+  (mp:make-lock)
+  #+allegro
+  (mp:make-process-lock)
+  #-(or sbcl ccl (and clisp mt) lispworks ecl allegro)
+  nil)
+
+(defmacro with-lock-held ((lock) &body body)
+  #+sbcl
+  `(sb-thread:with-mutex (,lock)
+     ,@body)
+  #+ccl
+  `(ccl:with-lock-grabbed (,lock)
+     ,@body)
+  #+(and clisp mt)
+  `(mt:with-mutex-lock (,lock)
+     ,@body)
+  #+lispworks
+  `(mp:with-lock (,lock)
+     ,@body)
+  #+ecl
+  `(mp:with-lock (,lock)
+     ,@body)
+  #+allegro
+  `(mp:with-process-lock (,lock :norecursive t)
+     ,@body)
+  #-(or sbcl ccl (and clisp mt) lispworks ecl allegro)
+  `(progn
+     ,@body))
 
 ;;; EOF

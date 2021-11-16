@@ -2,7 +2,14 @@
 
 (load "load-stumpwm.lisp")
 
-#-ecl (stumpwm:set-contrib-dir "@CONTRIB_DIR@")
+#-ecl (stumpwm:set-module-dir "@MODULE_DIR@")
+
+(when (uiop:version<= "3.1.5" (asdf:asdf-version))
+  ;; We register StumpWM and its dependencies as immutable, to stop ASDF from
+  ;; looking for their source code when loading modules.
+  (uiop:symbol-call '#:asdf '#:register-immutable-system :stumpwm)
+  (dolist (system-name (asdf:system-depends-on (asdf:find-system :stumpwm)))
+    (uiop:symbol-call '#:asdf '#:register-immutable-system system-name)))
 
 #+sbcl
 (sb-ext:save-lisp-and-die "stumpwm" :toplevel (lambda ()
@@ -10,7 +17,8 @@
                                                 (sb-posix:putenv (format nil "SBCL_HOME=~A" #.(sb-ext:posix-getenv "SBCL_HOME")))
                                                 (stumpwm:stumpwm)
                                                 0)
-                          :executable t)
+                                    :executable t
+                                    :purify t)
 
 #+clisp
 (ext:saveinitmem "stumpwm" :init-function (lambda ()
@@ -26,7 +34,7 @@
                  :move-here "."
                  :name-suffix ""
                  :epilogue-code '(progn
-                                  (stumpwm:set-contrib-dir "@CONTRIB_DIR@")
+                                  (stumpwm:set-module-dir "@MODULE_DIR@")
                                   (stumpwm:stumpwm)))
 
 ;;; if you want to save an image

@@ -25,14 +25,15 @@
 (in-package #:stumpwm)
 
 (export '(argument-line-end-p
-	  argument-pop
-	  argument-pop-or-read
-	  argument-pop-rest
-	  define-stumpwm-command
+          argument-pop
+          argument-pop-or-read
+          argument-pop-rest
+          define-stumpwm-command
           defcommand
           defcommand-alias
-	  define-stumpwm-type
-	  run-commands))
+          define-stumpwm-type
+          run-commands
+          %interactivep%))
 
 (defstruct command-alias
   from to)
@@ -46,20 +47,23 @@
 (defvar *max-command-alias-depth* 10
   "")
 
-;; XXX: I'd like to just use straight warn, but sbcl drops to the
-;; debugger when compiling so i've made a style warning instead
-;; -sabetts
 (define-condition command-docstring-warning (style-warning)
+  ;; Don't define an accessor to prevent collision with the generic command
   ((command :initarg :command))
   (:report
-   (lambda (c s)
-     (format s "command ~a doesn't have a docstring" (slot-value c 'command)))))
+   (lambda (condition stream)
+     (format stream "The command ~A doesn't have a docstring" (slot-value condition 'command)))))
 
 (defmacro defcommand (name (&rest args) (&rest interactive-args) &body body)
   "Create a command function and store its interactive hints in
 *command-hash*. The local variable %interactivep% can be used to check
 if the command was called interactively. If it is non-NIL then it was
 called from a keybinding or from the colon command.
+
+The NAME argument can be a string, or a list of two symbols. If the
+latter, the first symbol names the command, and the second indicates
+the type of group under which this command will be usable. Currently,
+tile-group and floating-group are the two possible values.
 
 INTERACTIVE-ARGS is a list of the following form: ((TYPE PROMPT) (TYPE PROMPT) ...)
 
@@ -131,9 +135,13 @@ out, an element can just be the argument type."
      (defun ,name ,args
        ,docstring
        (let ((%interactivep% *interactivep*)
-	     (*interactivep* nil))
-	 (declare (ignorable %interactivep%))
-	 ,@body))
+             (*interactivep* nil))
+         (declare (ignorable %interactivep%))
+         (run-hook-with-args *pre-command-hook* ',name)
+         (multiple-value-prog1
+             (progn ,@body)
+           (run-hook-with-args *post-command-hook* ',name))))
+     (export ',name)
      (setf (gethash ',name *command-hash*)
            (make-command :name ',name
                          :class ',group
@@ -292,8 +300,7 @@ then describes the symbol."
 (define-stumpwm-type :y-or-n (input prompt)
   (let ((s (or (argument-pop input)
                (read-one-line (current-screen) (concat prompt "(y/n): ")))))
-    (when s
-      (values (list (equal s "y"))))))
+    (equal s "y")))
 
 (defun lookup-symbol (string)
   ;; FIXME: should we really use string-upcase?
@@ -486,9 +493,7 @@ user aborted."
                               (if (and (null prompt)
                                        (argument-line-end-p arg-line))
                                   (loop-finish)
-                                  ;; FIXME: Is it presumptuous to assume NIL means abort?
-                                  (or (funcall fn arg-line prompt)
-                                      (throw 'error :abort)))))))
+                                  (funcall fn arg-line prompt))))))
       ;; Did the whole string get parsed?
       (unless (or (argument-line-end-p arg-line)
                   (position-if 'alphanumericp (argument-line-string arg-line) :start (argument-line-start arg-line)))
@@ -519,6 +524,7 @@ user aborted."
                                                             (backtrace-string) ""))))))
               (parse-and-run-command cmd))
           (eval-command-error (err-text)
+            :interactive (lambda () nil)
             (values err-text t)))
       ;; interactive commands update the modeline
       (update-all-mode-lines)

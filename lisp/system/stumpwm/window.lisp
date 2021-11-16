@@ -31,6 +31,18 @@
           set-transient-gravity
           set-window-geometry))
 
+(export
+  '(window window-xwin window-width window-height window-x window-y
+    window-gravity window-group window-number window-parent window-title
+    window-user-title window-class window-type window-res window-role
+    window-unmap-ignores window-state window-normal-hints window-marked
+    window-plist window-fullscreen window-screen
+    ;; Window utilities
+    update-configuration no-focus
+    ;; Window management API
+    update-decoration focus-window raise-window window-visible-p window-sync
+    window-head really-raise-window))
+
 (defvar *default-window-name* "Unnamed"
   "The name given to a window that does not supply its own name.")
 
@@ -65,8 +77,8 @@
 
 (defgeneric update-decoration (window)
   (:documentation "Update the window decoration."))
-(defgeneric focus-window (window)
-  (:documentation "Give the specified window keyboard focus."))
+(defgeneric focus-window (window &optional raise)
+  (:documentation "Give the specified window keyboard focus and (optionally) raise."))
 (defgeneric raise-window (window)
   (:documentation "Bring the window to the top of the window stack."))
 (defgeneric window-visible-p (window)
@@ -76,6 +88,8 @@
 may need to sync itself. WHAT-CHANGED is a hint at what changed."))
 (defgeneric window-head (window)
   (:documentation "Report what window the head is currently on."))
+(defgeneric really-raise-window (window)
+  (:documentation "Really bring the window to the top of the window stack in group"))
 
 ;; Urgency / demands attention
 
@@ -120,10 +134,6 @@ _NET_WM_STATE_DEMANDS_ATTENTION set"
                        (find :urgency flags)
                        (logtest 256 flags)))
         (find-wm-state (window-xwin window) :_NET_WM_STATE_DEMANDS_ATTENTION))))
-
-(defun only-urgent (windows)
-  "Return a list of all urgent windows on SCREEN"
-  (remove-if-not 'window-urgent-p (copy-list windows)))
 
 (defcommand next-urgent () ()
             "Jump to the next urgent window"
@@ -206,7 +216,9 @@ _NET_WM_STATE_DEMANDS_ATTENTION set"
        (window-gang window))
       (t
        (let ((w (window-by-id tr)))
-         (append (list w) (transients-of w)))))))
+         (if w
+             (append (list w) (transients-of w))
+           '()))))))
 
 (defun only-transients (windows)
   "Out of WINDOWS, return a list of those which are transient."
@@ -324,6 +336,14 @@ _NET_WM_STATE_DEMANDS_ATTENTION set"
                  (xwin-net-wm-name win)
                  (xlib:wm-name win))))
 
+(defun update-configuration (win)
+  ;; Send a synthetic configure-notify event so that the window
+  ;; knows where it is onscreen.
+  (xwin-send-configuration-notify (window-xwin win)
+                                  (xlib:drawable-x (window-parent win))
+                                  (xlib:drawable-y (window-parent win))
+                                  (window-width win) (window-height win) 0))
+
 ;; FIXME: should we raise the window or its parent?
 (defmethod raise-window (win)
   "Map the window if needed and bring it to the top of the stack. Does not affect focus."
@@ -334,7 +354,6 @@ _NET_WM_STATE_DEMANDS_ATTENTION set"
     (update-configuration win))
   (when (window-in-current-group-p win)
     (setf (xlib:window-priority (window-parent win)) :top-if)))
-
 ;; some handy wrappers
 
 (defun xwin-border-width (win)
@@ -379,9 +398,39 @@ _NET_WM_STATE_DEMANDS_ATTENTION set"
       (defun (setf ,(intern1 (format nil "WINDOW-~a" attr))) (,val ,win)
         (setf (gethash ,attr (window-plist ,win)) ,val)))))
 
-(defun sort-windows (group)
+(defgeneric sort-windows-by-number (window-list-spec)
+  (:documentation "Return a copy of the provided window list sorted by number."))
+
+(defmethod sort-windows-by-number ((window-list list))
+  "Return a copy of the screen's window list sorted by number."
+  (sort1 window-list '< :key 'window-number))
+
+(defmethod sort-windows-by-number ((group group))
   "Return a copy of the screen's window list sorted by number."
   (sort1 (group-windows group) '< :key 'window-number))
+
+
+(defgeneric sort-windows-by-class (window-list-spec)
+  (:documentation "Return a copy of the provided window list sortes by class
+ then by numer."))
+
+(defmethod sort-windows-by-class ((window-list list))
+  "Return a copy of the provided window list sorted by class then by number."
+  (sort1 window-list (lambda (w1 w2)
+		       (let ((class1 (window-class w1))
+			     (class2 (window-class w2)))
+			 (if (string= class1 class2)
+			     (< (window-number w1) (window-number w2))
+			     (string< class1 class2))))))
+
+(defmethod sort-windows-by-class (group)
+  "Return a copy of the provided window list sorted by class then by number."
+  (sort-windows-by-class (group-windows group)))
+
+
+(defun sort-windows (group)
+  "Return a copy of the screen's window list sorted by number."
+    (sort-windows-by-number group))
 
 (defun marked-windows (group)
   "Return the marked windows in the specified group."
@@ -470,8 +519,10 @@ actually returned; see +NETWM-WINDOW-TYPES+."
   (or (let ((net-wm-window-type (xlib:get-property win :_NET_WM_WINDOW_TYPE)))
         (when net-wm-window-type
           (dolist (type-atom net-wm-window-type)
-            (when (assoc (xlib:atom-name *display* type-atom) +netwm-window-types+)
-              (return (cdr (assoc (xlib:atom-name *display* type-atom) +netwm-window-types+)))))))
+            (let ((net-wm-window-type
+                   (assoc (xlib:atom-name *display* type-atom) +netwm-window-types+)))
+              (when net-wm-window-type
+                (return (cdr net-wm-window-type)))))))
       (and (xlib:get-property win :WM_TRANSIENT_FOR)
            :transient)
       :normal))
@@ -569,27 +620,31 @@ and bottom_end_x."
   ;; apparently we need to grab the server so the client doesn't get
   ;; the mapnotify event before the reparent event. that's what fvwm
   ;; says.
-  (xlib:with-server-grabbed (*display*)
-    (let ((master-window (xlib:create-window
-                          :parent (screen-root screen)
-                          :x (xlib:drawable-x (window-xwin window)) :y (xlib:drawable-y (window-xwin window))
-                          :width (window-width window)
-                          :height (window-height window)
-                          :background (if (eq (window-type window) :normal)
-                                          (screen-win-bg-color screen)
-                                          :none)
-                          :border (screen-unfocus-color screen)
-                          :border-width (default-border-width-for-type window)
-                          :event-mask *window-parent-events*)))
-      (unless (eq (xlib:window-map-state (window-xwin window)) :unmapped)
-        (incf (window-unmap-ignores window)))
-      (xlib:reparent-window (window-xwin window) master-window 0 0)
-      (xwin-grab-buttons master-window)
-      ;;     ;; we need to update these values since they get set to 0,0 on reparent
-      ;;     (setf (window-x window) 0
-      ;;          (window-y window) 0)
-      (xlib:add-to-save-set (window-xwin window))
-      (setf (window-parent window) master-window))))
+  (let* ((xwin (window-xwin window))
+         (master-window (xlib:create-window
+                         :parent (screen-root screen)
+                         :x (xlib:drawable-x (window-xwin window))
+                         :y (xlib:drawable-y (window-xwin window))
+                         :width (window-width window)
+                         :height (window-height window)
+                         :background (if (eq (window-type window) :normal)
+                                         (screen-win-bg-color screen)
+                                         :none)
+                         :border (screen-unfocus-color screen)
+                         :border-width (default-border-width-for-type window)
+                         :event-mask *window-parent-events*
+                         :depth (xlib:drawable-depth xwin)
+                         :visual (xlib:window-visual-info xwin)
+                         :colormap (xlib:window-colormap xwin))))
+    (unless (eq (xlib:window-map-state (window-xwin window)) :unmapped)
+      (incf (window-unmap-ignores window)))
+    (xlib:reparent-window (window-xwin window) master-window 0 0)
+    (xwin-grab-buttons master-window)
+    ;;     ;; we need to update these values since they get set to 0,0 on reparent
+    ;;     (setf (window-x window) 0
+    ;;          (window-y window) 0)
+    (xlib:add-to-save-set (window-xwin window))
+    (setf (window-parent window) master-window)))
 
 (defun process-existing-windows (screen)
   "Windows present when stumpwm starts up must be absorbed by stumpwm."
@@ -616,21 +671,29 @@ and bottom_end_x."
                       (eql wm-state +iconic-state+))
                   (progn
                     (dformat 1 "Processing ~S ~S~%" (xwin-name win) win)
-                    (process-mapped-window screen win))))))))
+                    (xlib:with-server-grabbed (*display*)
+                      (process-mapped-window screen win)))))))))
   (dolist (w (screen-windows screen))
     (setf (window-state w) +normal-state+)
     (xwin-hide w)))
 
-(defun xwin-grab-keys (win screen)
+(defun xwin-grab-keys (win group)
   (labels ((add-shift-modifier (key)
              ;; don't butcher the caller's structure
              (let ((key (copy-structure key)))
                (setf (key-shift key) t)
                key))
+           (key-modifiers-exist-p (key)
+             (and
+              (or (not (key-meta key)) (modifiers-meta *modifiers*))
+              (or (not (key-alt key)) (modifiers-alt *modifiers*))
+              (or (not (key-hyper key)) (modifiers-hyper *modifiers*))
+              (or (not (key-super key)) (modifiers-super *modifiers*))))
            (grabit (w key)
-             (loop for code in (multiple-value-list (xlib:keysym->keycodes *display* (key-keysym key))) do
+             (loop for code in (multiple-value-list (xlib:keysym->keycodes *display* (key-keysym key)))
                ;; some keysyms aren't mapped to keycodes so just ignore them.
-               (when code
+                when (and code (key-modifiers-exist-p key))
+                  do
                  ;; Some keysyms, such as upper case letters, need the
                  ;; shift modifier to be set in order to grab properly.
                  (let ((key
@@ -650,8 +713,8 @@ and bottom_end_x."
                                     :modifiers (x11-mods key t nil) :owner-p t
                                     :sync-pointer-p nil :sync-keyboard-p nil)
                      (xlib:grab-key w code :modifiers (x11-mods key t t) :owner-p t
-                                    :sync-keyboard-p nil :sync-keyboard-p nil)))))))
-    (dolist (map (dereference-kmaps (top-maps screen)))
+                                    :sync-keyboard-p nil :sync-keyboard-p nil))))))
+    (dolist (map (dereference-kmaps (top-maps group)))
       (dolist (i (kmap-bindings map))
         (grabit win (binding-key i))))))
 
@@ -687,8 +750,8 @@ and bottom_end_x."
                  do (xwin-ungrab-keys j))
         do (xlib:display-finish-output *display*)
         do (loop for j in (screen-mapped-windows i)
-                 do (xwin-grab-keys j i))
-        do (xwin-grab-keys (screen-focus-window i) i))
+                 do (xwin-grab-keys j (window-group (find-window j))))
+        do (xwin-grab-keys (screen-focus-window i) (screen-current-group i)))
   (xlib:display-finish-output *display*))
 
 (defun netwm-remove-window (window)
@@ -828,33 +891,39 @@ needed."
     (when last-win
       (update-decoration last-win))))
 
-(defmethod focus-window (window)
-  "Make the window visible and give it keyboard focus."
+(defmethod focus-window (window &optional (raise t))
+  "Make the window visible and give it keyboard focus. If raise is t, raise the window."
   (dformat 3 "focus-window: ~s~%" window)
   (let* ((group (window-group window))
          (screen (group-screen group))
          (cw (screen-focus screen))
          (xwin (window-xwin window)))
+    (when raise
+      (raise-window window))
     (cond
       ((eq window cw)
        ;; If window to focus is already focused then our work is done.
        )
-      ((and *current-event-time* 
-            (member :WM_TAKE_FOCUS (xlib:wm-protocols xwin) :test #'eq))
-       (raise-window window)
+      ;; If a WM_TAKE_FOCUS client message is not sent to the window,
+      ;; widgets in Java applications tend to lose focus when the
+      ;; window gets focused. This is hopefully the right way to
+      ;; handle this.
+      ((member :WM_TAKE_FOCUS (xlib:wm-protocols xwin) :test #'eq)
        (let ((hints (xlib:wm-hints xwin)))
          (when (or (null hints) (eq (xlib:wm-hints-input hints) :on))
-           (screen-set-focus screen window)
-           (update-decoration window)
-           (when cw
-             (update-decoration cw))))
+           (screen-set-focus screen window)))
+       (update-decoration window)
+       (when cw
+         (update-decoration cw))
        (move-window-to-head group window)
        (send-client-message window :WM_PROTOCOLS
                             (xlib:intern-atom *display* :WM_TAKE_FOCUS)
-                            *current-event-time*)
+                            ;; From reading the ICCCM spec, it's not
+                            ;; entirely clear that this is the correct
+                            ;; value for time that we send here.
+                            (or *current-event-time* 0))
        (run-hook-with-args *focus-window-hook* window cw))
       (t
-       (raise-window window)
        (screen-set-focus screen window)
        (update-decoration window)
        (when cw
@@ -868,7 +937,19 @@ needed."
   (dformat 3 "Kill client~%")
   (xlib:kill-client *display* (xlib:window-id window)))
 
-(defun select-window-from-menu (windows fmt)
+(defun default-window-menu-filter (item-string item-object user-input)
+  "The default filter predicate for window menus."
+  (or (menu-item-matches-regexp item-string item-object user-input)
+      (match-all-regexps user-input (window-title item-object)
+                         :case-insensitive t)))
+
+(defvar *window-menu-filter* #'default-window-menu-filter
+  "The filter predicate used to filter menu items in window menus
+  created by SELECT-WINDOW-FROM-MENU. The interface for filter
+  predicates is described in the docstring for SELECT-FROM-ITEM.")
+
+(defun select-window-from-menu (windows fmt &optional prompt
+                                              (filter-pred *window-menu-filter*))
   "Allow the user to select a window from the list passed in @var{windows}.  The
 @var{fmt} argument specifies the window formatting used.  Returns the window
 selected."
@@ -876,8 +957,10 @@ selected."
 			    (mapcar (lambda (w)
 				      (list (format-expand *window-formatters* fmt w) w))
                                     windows)
-                            nil
-                            (or (position (current-window) windows) 0))))
+                            prompt
+                            (or (position (current-window) windows) 0)  ; Initial selection
+                            nil  ; Extra keymap
+                            filter-pred)))
 
 ;;; Window commands
 
@@ -980,19 +1063,35 @@ is using the number, then the windows swap numbers. Defaults to current group."
 		     (mapcar 'window-number windows))
 		   0))))))
 
-(defcommand windowlist (&optional (fmt *window-format*)) (:rest)
-"Allow the user to Select a window from the list of windows and focus
-the selected window. For information of menu bindings
-@xref{Menus}. The optional argument @var{fmt} can be specified to
-override the default window formatting."
-  (if (null (group-windows (current-group)))
-      (message "No Managed Windows")
-      (let* ((group (current-group))
-             (window (select-window-from-menu (sort-windows group) fmt)))
-        (if window
-            (group-focus-window group window)
-            (throw 'error :abort)))))
+;; It would make more sense that the window-list argument was before the fmt one
+;; but window-list was added latter and I didn't want to break other's code.
+(defcommand windowlist (&optional (fmt *window-format*)
+                                  window-list) (:rest)
+  "Allow the user to select a window from the list of windows and focus the 
+selected window. For information of menu bindings @xref{Menus}. The optional
+ argument @var{fmt} can be specified to override the default window formatting.
+The optional argument @var{window-list} can be provided to show a custom window
+list (see @command{windowlist-by-class}). The default window list is the list of
+all window in the current group. Also note that the default window list is sorted
+by number and if the @var{windows-list} is provided, it is shown unsorted (as-is)."
+  ;; Shadowing the window-list argument.
+  (let ((window-list (or window-list
+                         (sort-windows-by-number 
+                          (group-windows (current-group))))))
+    (if (null window-list)
+        (message "No Managed Windows")
+        (let ((window (select-window-from-menu window-list fmt)))
+          (if window
+              (group-focus-window (current-group) window)
+              (throw 'error :abort))))))
 
+
+(defcommand windowlist-by-class (&optional (fmt *window-format-by-class*)) (:rest)
+  "Allow the user to select a window from the list of windows (sorted by class)
+ and focus the selected window. For information of menu bindings @xref{Menus}. 
+The optional argument @var{fmt} can be specified to override the default window
+formatting. This is a simple wrapper around the command @command{windowlist}."
+  (windowlist fmt (sort-windows-by-class (group-windows (current-group)))))
 
 (defcommand window-send-string (string &optional (window (current-window))) ((:rest "Insert: "))
   "Send the string of characters to the current window as if they'd been typed."
@@ -1006,7 +1105,7 @@ override the default window formatting."
                                  (stumpwm-name->keysym "TAB"))
                                 ((char= ch #\Newline)
                                  (stumpwm-name->keysym "RET"))
-                                (t nil))))
+                                (t (first (xlib:character->keysyms ch *display*))))))
                  (when sym
                    (send-fake-key window
                                   (make-key :keysym sym)))))

@@ -9,7 +9,8 @@
 like xterm and emacs.")
 
 (defclass tile-window (window)
-  ((frame   :initarg :frame   :accessor window-frame)))
+  ((frame   :initarg :frame   :accessor window-frame)
+   (normal-size :initform nil :accessor window-normal-size)))
 
 (defmethod update-decoration ((window tile-window))
   ;; give it a colored border but only if there are more than 1 frames.
@@ -54,7 +55,7 @@ like xterm and emacs.")
 
 ;;;;
 
-(defun really-raise-window (window)
+(defmethod really-raise-window ((window tile-window))
   (frame-raise-window (window-group window) (window-frame window) window))
 
 (defun raise-modals-of (window)
@@ -88,6 +89,8 @@ than the root window's width and height."
          (hints-max-height (and hints (xlib:wm-size-hints-max-height hints)))
          (hints-width (and hints (xlib:wm-size-hints-base-width hints)))
          (hints-height (and hints (xlib:wm-size-hints-base-height hints)))
+         (hints-spec-width (and hints (xlib:wm-size-hints-width hints)))
+         (hints-spec-height (and hints (xlib:wm-size-hints-height hints)))
          (hints-inc-x (and hints (xlib:wm-size-hints-width-inc hints)))
          (hints-inc-y (and hints (xlib:wm-size-hints-height-inc hints)))
          (hints-min-aspect (and hints (xlib:wm-size-hints-min-aspect hints)))
@@ -119,6 +122,12 @@ than the root window's width and height."
                               (or hints-min-height 0)
                               (window-height win))
                          height)))
+      ;; Set requested size for non-maximized windows
+      ((and (window-normal-size win)
+            hints-spec-width hints-spec-height)
+       (setf center t
+             width (min hints-spec-width width)
+             height (min hints-spec-height height)))
       ;; aspect hints are handled similar to max size hints
       ((and hints-min-aspect hints-max-aspect)
        (let ((ratio (/ width height)))
@@ -148,7 +157,7 @@ than the root window's width and height."
            (setf height (+ h (* hints-inc-y
                                 (+ (floor (- fheight h -1) hints-inc-y)))))))))
     ;; adjust for gravity
-    (multiple-value-bind (wx wy) (get-gravity-coords (gravity-for-window win)
+    (multiple-value-bind (wx wy) (gravity-coords (gravity-for-window win)
                                                      width height
                                                      0 0
                                                      fwidth fheight)
@@ -191,7 +200,8 @@ than the root window's width and height."
                             (list wx wy
                                   (- (xlib:drawable-width (window-parent win)) width wx)
                                   (- (xlib:drawable-height (window-parent win)) height wy))
-                            :cardinal 32))))
+                            :cardinal 32))
+    (update-configuration win)))
 
 ;;;
 
@@ -309,6 +319,16 @@ current frame and raise it."
   (let ((group (current-group)))
     (pull-other-hidden-window group)))
 
+(defcommand (pull-from-windowlist tile-group) () ()
+  "Pulls a window selected from the list of windows.
+This allows a behavior similar to Emacs' switch-to-buffer
+when selecting another window."
+  (let ((pulled-window (select-window-from-menu
+                        (group-windows (current-group))
+                        *window-format*)))
+    (when pulled-window
+      (pull-window pulled-window))))
+
 (defun exchange-windows (win1 win2)
   "Exchange the windows in their respective frames."
   (let ((f1 (window-frame win1))
@@ -395,7 +415,7 @@ frame. Possible values are:
                                   ((:y-or-n "Lock to group? ")
                                    (:y-or-n "Use title? "))
   "Make a generic placement rule for the current window. Might be too specific/not specific enough!"
-  (make-rule-for-window (current-window) (first lock) (first title)))
+  (make-rule-for-window (current-window) lock title))
 
 (defcommand (forget tile-group) () ()
   "Forget the window placement rule that matches the current window."
@@ -422,7 +442,8 @@ frame. Possible values are:
 (defcommand (redisplay tile-group) () ()
   "Refresh current window by a pair of resizes, also make it occupy entire frame."
   (let ((window (current-window)))
-    (with-slots (width height frame) window
+    (when window
+      (with-slots (width height frame) window
       (set-window-geometry window
                            :width (- width (window-width-inc window))
                            :height (- height (window-height-inc window)))
@@ -437,7 +458,20 @@ frame. Possible values are:
                                       (* (window-height-inc window)
                                          (floor (- (frame-height frame) height)
                                                 (window-height-inc window)))))
-      (maximize-window window))))
+      (maximize-window window)))))
+
+(defcommand (unmaximize tile-group) () ()
+  "Use the size the program requested for current window (if any) instead of maximizing it."
+  (let* ((window (current-window))
+         (status (not (window-normal-size window)))
+         (hints (window-normal-hints window)))
+    (if (and (xlib:wm-size-hints-width hints)
+             (xlib:wm-size-hints-height hints))
+        (progn
+          (setf (window-normal-size window) status)
+          ;; This makes the naming a bit funny.
+          (maximize-window window))
+        (message "Window has no normal size."))))
 
 (defcommand frame-windowlist (&optional (fmt *window-format*)) (:rest)
   "Allow the user to select a window from the list of windows in the current
