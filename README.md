@@ -22,5 +22,6 @@ zzstumpwm
 
 ## Software version
     
-    * SBCL  1.4.6
-    * Slime 2.2
+    * SBCL 2.0.1
+    * Stumpwm 1.0
+    * Slime 2.26.1
