@@ -64,7 +64,6 @@
  (list
   (kbd "c")                 "fclear"
   (kbd "d")                 "delete"
-  (kbd "f")                 "toggle-float"
   (kbd "i")                 "window-info"
   (kbd "k")                 "kill-from-windowlist"
   (kbd "m")                 "fselect"
