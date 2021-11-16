@@ -1,0 +1,24 @@
+From f1914b40f49f0eec0ccfaecd71cd79bc62399973 Mon Sep 17 00:00:00 2001
+From: Zachary Zhou <zchrzhou@gmail.com>
+Date: Tue, 16 Nov 2021 20:31:42 +0800
+Subject: [PATCH] add XF86RFKill support for laptop
+
+---
+ lisp/system/stumpwm/keysyms.lisp | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/lisp/system/stumpwm/keysyms.lisp b/lisp/system/stumpwm/keysyms.lisp
+index 4b9b49c..c0682a3 100644
+--- a/lisp/system/stumpwm/keysyms.lisp
++++ b/lisp/system/stumpwm/keysyms.lisp
+@@ -2068,6 +2068,7 @@
+ (define-keysym #x1008FFB0 "XF86TouchpadOn")
+ (define-keysym #x1008FFB1 "XF86TouchpadOff")
+ (define-keysym #x1008FFB2 "XF86AudioMicMute")
++(define-keysym #x1008FFB5 "XF86RFKill")
+ (define-keysym #x1008FE01 "XF86_Switch_VT_1")
+ (define-keysym #x1008FE02 "XF86_Switch_VT_2")
+ (define-keysym #x1008FE03 "XF86_Switch_VT_3")
+-- 
+2.25.1
+
