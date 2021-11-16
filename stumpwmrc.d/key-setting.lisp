@@ -7,38 +7,27 @@
 (apply-keys-to-map
  *zz-exec-map*
  (list
-  (kbd "1")                 "runemacs"
-  (kbd "2")                 "google-chrome"
-  (kbd "3")                 "teams"
-  (kbd "4")                 "evolution"
-  (kbd "5")                 "libreoffice"
-  (kbd "6")                 "exec libreoffice --writer"
-  (kbd "7")                 "exec libreoffice --calc"
-  (kbd "8")                 "exec libreoffice --impress"
-  (kbd "9")                 "trans-shell"
-  (kbd "0")                 "trans-command"
-  (kbd "-")                 "eval-command"
-  (kbd "=")                 "eval-shell"
   (kbd "a")                 "audacity"
   (kbd "C-a")               "exec audacity"
   (kbd "b")                 "google"
   (kbd "C-b")               "bing"
   (kbd "M-b")               "wikipedia"
-  (kbd "c")                 "urxvt"
+  (kbd "c")                 "runurxvt"
   (kbd "C-c")               "exec urxvt"
-  (kbd "M-c")               "cheese"
+  (kbd "s-c")               "urxvt"
   (kbd "d")                 "deadbeef"
   (kbd "C-d")               "exec meld"
   (kbd "M-d")               "drawio"
   (kbd "e")                 "runemacs"
-  (kbd "s-e")               "emacs"
   (kbd "C-e")               "exec emacs"
   (kbd "M-e")               "emacsclient"
+  (kbd "s-e")               "emacs"
   (kbd "f")                 "firefox"
   (kbd "C-f")               "exec firefox"
   (kbd "M-f")               "colon exec firefox http://"
-  (kbd "g")                 "google-chrome"
+  (kbd "g")                 "rungc"
   (kbd "M-g")               "colon exec google-chrome http://"
+  (kbd "s-g")               "google-chrome"
   (kbd "h")                 "thunar"
   (kbd "C-h")               "exec thunar"
   (kbd "M-h")               "exec thunar -B"
@@ -51,13 +40,13 @@
   (kbd "n")                 "cherrytree"
   (kbd "C-n")               "exec cherrytree"
   (kbd "p")                 (urxvt-command "bpython")
+  (kbd "C-p")               "pavucontrol"
   (kbd "q")                 "slingscold"
   (kbd "C-q")               "exec slingscold"
   (kbd "r")                 "exec remmina"
   (kbd "C-r")               (urxvt-command "ranger")
   (kbd "t")                 "teams"
-  (kbd "C-t")               (urxvt-command "tmux")
-  (kbd "M-t")               "tmux"
+  (kbd "C-t")               "tmux"
   (kbd "s")                 (urxvt-command "speedpad")
   (kbd "C-s")               "stumpish"
   (kbd "M-s")               "exec stacer"
@@ -66,31 +55,24 @@
   (kbd "C-v")               "exec gvim"
   (kbd "M-v")               (urxvt-command "vim")
   (kbd "w")                 "wireshark"
-  (kbd "z")                 "mobl-raise"
-  (kbd "C-z")               "mobl-run"
+  (kbd "z")                 "jiandon-mobl"
   ))
 
 ;; *zz-x-map*
 (apply-keys-to-map
  *zz-x-map*
  (list
-  (kbd "1")                 "only"
-  (kbd "2")                 "vsplit"
-  (kbd "3")                 "hsplit"
-  (kbd "4")                 "kill"
-  (kbd "0")                 "remove"
-
   (kbd "c")                 "fclear"
   (kbd "d")                 "delete"
+  (kbd "f")                 "toggle-float"
   (kbd "i")                 "window-info"
-  (kbd "k")                 "kill"
-  (kbd "C-k")               "kill-from-windowlist"
+  (kbd "k")                 "kill-from-windowlist"
   (kbd "m")                 "fselect"
   (kbd "o")                 "fother"
   (kbd "q")                 "system-action"
+  (kbd "r")                 "remove"
   (kbd "s")                 "swap-windows"
-  (kbd "r")                 "restore-group-file"
-  (kbd "C-r")               "dump-group-file"
+  (kbd "t")                 "toggle-always-on-top"
   ))
 
 ;; *zz-help-map*
@@ -171,10 +153,11 @@
   (kbd "s-C-Up")            "exchange-direction up"
   (kbd "s-C-Down")          "exchange-direction down"
 
+  (kbd "s-M-w")             "exec rofi -show window"
   (kbd "s-M-r")             "exec rofi -show run"
   (kbd "s-M-s")             "exec rofi -show ssh"
-  (kbd "s-M-w")             "exec rofi -show window"
   (kbd "s-M-d")             "exec rofi -show drun"
+  (kbd "s-M-v")             "exec rofi -show windowcd"
   (kbd "s-M-?")             "exec rofi -show keys"
 
   (kbd "s-C-b")             "mode-line"
@@ -195,41 +178,32 @@
   (kbd "s-.")               "pactl-up"
   (kbd "s-M-,")             "pactl-mic-down"
   (kbd "s-M-.")             "pactl-mic-up"
-  (kbd "s-m")               "pactl-toggle"
-  (kbd "s-M-m")             "pactl-mic-toggle"
+  (kbd "s-/")               "pactl-toggle"
+  (kbd "s-M-/")             "pactl-mic-toggle"
 
   (kbd "s-a")               "app-menu"
+  (kbd "s-p")               "screen-menu"
   (kbd "s-o")               "pull-hidden-other"
   (kbd "s-M-o")             "gother"
 
+  (kbd "s-M-c")             "runurxvt"
   (kbd "s-M-e")             "runemacs"
-  (kbd "s-M-g")             "google-chrome"
+  (kbd "s-M-g")             "rungc"
+  (kbd "s-M-m")             "evolution"
   (kbd "s-M-t")             "teams"
+  (kbd "s-M-z")             "jiandon-mobl"
   ))
 
 (apply-keys-to-map
  *root-map*
  (list
   (kbd "c")                 "urxvt"
-  (kbd "C-c")               "exec urxvt"
+  (kbd "C-c")               "urxvt"
   ))
 
 (apply-keys-to-map
  *zz-screen-map*
  (list
-  (kbd "1")                 "pactl-toggle"
-  (kbd "2")                 "pactl-down"
-  (kbd "3")                 "pactl-up"
-  (kbd "4")                 "pactl-mic-toggle"
-  (kbd "5")                 "exec xdotool key F5"
-  (kbd "6")                 "touchpad-toggle"
-  (kbd "7")                 "wifi-toggle"
-  (kbd "8")                 "cheese"
-  (kbd "9")                 "exec zlock"
-  (kbd "0")                 "screen-menu"
-  (kbd "-")                 "bright-down"
-  (kbd "=")                 "bright-up"
-
   (kbd "d")                 "toggle-root"
   (kbd "f")                 "fullscreen"
   (kbd "g")                 "refresh"
@@ -243,7 +217,7 @@
   (kbd "C-l")               "exec zlock"
   (kbd "t")                 "exec transset"
 
-  (kbd "r")                 "resolution"
+  (kbd "r")                 "rez-menu"
   (kbd "b")                 "show-battery"
 
   (kbd "p")                 "scrot-full"
@@ -273,12 +247,6 @@
 (apply-keys-to-map
  *zz-c-map*
  (list
-  (kbd "1")                 (rat-click 1)   ;;left
-  (kbd "2")                 (rat-click 2)   ;;middle
-  (kbd "3")                 (rat-click 3)   ;;right
-  (kbd "4")                 (rat-click 4)   ;;wheel up
-  (kbd "5")                 (rat-click 5)   ;;whell down
-
   (kbd "b")                 (getkey-top (kbd "s-Left"))
   (kbd "f")                 (getkey-top (kbd "s-Right"))
   (kbd "p")                 (getkey-top (kbd "s-Up"))
@@ -297,17 +265,32 @@
   ;;b/f, p/n for arrow control
   (kbd "Tab")               "capslock-toggle"
   (kbd "a")                 "pavucontrol"
-  (kbd "h")                 "process-menu"
+  (kbd "c")                 "cheese"
+  (kbd "h")                 "htop"
   (kbd "k")                 "keymap-menu"
   (kbd "l")                 "locate-menu"
+  (kbd "o")                 "audio-menu"
   (kbd "p")                 "screen-menu"
   (kbd "s")                 "search-menu"
   (kbd "t")                 "tmux-menu"
+  (kbd "v")                 "vpn-menu"
   (kbd "w")                 "wifi-menu"
   ))
 
 (apply-keys-to-map
- *resize-map*
+ *zz-menu-map*
  (list
-  (kbd "C-m")               "exit-iresize"
+  (kbd "a")                 "app-menu"
+  (kbd "C-a")               "app-menu"
+  (kbd "w")                 "exec rofi -show window"
+  (kbd "C-w")               "exec rofi -show window"
+  (kbd "r")                 "exec rofi -show run"
+  (kbd "C-r")               "exec rofi -show run"
+  (kbd "s")                 "exec rofi -show ssh"
+  (kbd "C-s")               "exec rofi -show ssh"
+  (kbd "d")                 "exec rofi -show drun"
+  (kbd "C-d")               "exec rofi -show drun"
+  (kbd "v")                 "exec rofi -show windowcd"
+  (kbd "C-v")               "exec rofi -show windowcd"
+  (kbd "C-?")               "exec rofi -show keys"
   ))

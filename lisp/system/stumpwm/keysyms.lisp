@@ -2091,3 +2091,4 @@
 (define-keysym #x100000AC "usldead_asciitilde")
 (define-keysym #x1000FE2C "usldead_cedilla")
 (define-keysym #x1000FEB0 "usldead_ring")
+(define-keysym #x1008FFB5 "XF86RFKill")

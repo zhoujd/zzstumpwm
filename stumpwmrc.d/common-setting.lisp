@@ -3,15 +3,26 @@
 
 (in-package :zwm)
 
-(setq *startup-message*   nil)
+;; start-up message
+(setf *startup-message* nil)
 
 ;; color select
-(set-fg-color "green")
-(set-bg-color "black")
-(set-float-focus-color   "green")
-(set-float-unfocus-color "black")
+(let ((foreground-color "green")
+      (background-color "black")
+      (border-color     "grey9"))
+  (set-fg-color            foreground-color)
+  (set-bg-color            background-color)
+  (set-win-bg-color        background-color)
+  (set-focus-color         foreground-color)
+  (set-unfocus-color       background-color)
+  (set-float-focus-color   foreground-color)
+  (set-float-unfocus-color background-color)
+  (set-border-color        border-color))
 
-;; suppress the message StumpWM displays when it starts. Set it to NIL
+(set-msg-border-width      1)
+(set-frame-outline-width   1)
+
+;; suppress the message display
 (setf *suppress-frame-indicator*    t
       *suppress-abort-messages*     t
       *timeout-wait*                3
@@ -20,10 +31,11 @@
       *input-window-gravity*        :center)
 
 ;; window appearance
-(setf *normal-border-width*         1
-      *maxsize-border-width*        1
-      *transient-border-width*      1
-      stumpwm::+default-frame-outline-width+ 1
+(setf *normal-border-width*         0
+      *maxsize-border-width*        0
+      *transient-border-width*      0
+      *message-window-padding*      10
+      *message-window-y-padding*    5
       stumpwm::*float-window-border*         1
       stumpwm::*float-window-title-height*   10
       stumpwm::*window-border-style*         :thin)

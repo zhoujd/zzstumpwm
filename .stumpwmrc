@@ -36,5 +36,6 @@
   "menu-setting"
   "keymap-setting"
   "key-setting"
-  "fn-setting"
+  "nkey-setting"
+  "fkey-setting"
   ))
