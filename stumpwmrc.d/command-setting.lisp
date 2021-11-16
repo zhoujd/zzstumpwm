@@ -269,11 +269,16 @@ used for matching windows with run-or-raise or window placement-merules."
 (progn
   (defvar *last-saved-window* nil
     "Last saved window configuration.")
+
+  ;; show root window
   (defcommand show-root () ()
     "Show root window."
-    (unless (stumpwm::only-one-frame-p)
+    (when (cdr (stumpwm::group-frames (current-group)))
+      ;; Make one frame if necessary.
       (stumpwm::only))
     (stumpwm::fclear))
+
+  ;; toggle root window
   (defcommand toggle-root () ()
     "Toggle between root window and last window configuration."
     (if (current-window)
