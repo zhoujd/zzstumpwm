@@ -1,1 +1,0 @@
-dists/quicklisp/software/cl-store-20160531-git/cl-store.asd
