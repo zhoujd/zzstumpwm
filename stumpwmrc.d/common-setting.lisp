@@ -35,7 +35,6 @@
       *maxsize-border-width*        0
       *transient-border-width*      0
       *message-window-padding*      10
-      *message-window-y-padding*    5
       stumpwm::*float-window-border*         1
       stumpwm::*float-window-title-height*   10
       stumpwm::*window-border-style*         :thin)
