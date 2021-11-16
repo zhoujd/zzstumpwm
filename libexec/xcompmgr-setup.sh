@@ -1,5 +1,8 @@
 #!/bin/bash
 
+##xcompmgr on Ubuntu 20.04 hasing issue on border rendering
+##suggest install src instead of pkg on Ubuntu
+
 install_pkg() {
     echo "install pkg"
     sudo apt install -y xcompmgr
@@ -25,6 +28,16 @@ install_src() {
     popd
 }
 
-install_pkg
+case $1 in
+    pkg )
+        install_pkg
+        ;;
+    src )
+        install_src
+        ;;
+    * )
+        echo "Usage: $(basename $0) {pkg|src}"
+        ;;
+esac
 
 echo "Install xcompmgr Done ..."

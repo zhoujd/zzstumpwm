@@ -1,0 +1,12 @@
+#!/bin/bash
+
+source="$(pactl list short sinks | cut -f 2 | rofi -dmenu -p "Change audio:")"
+if [ $? = 0 ]; then
+    inputs="$(pactl list sink-inputs short | cut -f 1)"
+    if [ -n $source ]; then
+        for input in $inputs; do
+            pactl move-sink-input "$input" "$source"
+        done
+        pactl set-default-sink "$source"
+    fi
+fi

@@ -1,0 +1,24 @@
+#!/bin/sh
+
+## Select window manager
+WM_SELECT=${1:-}
+
+## Usage
+usage() {
+    echo "Usage: $(basename $0) {stumpwm|zwm|sawfish|xfce}
+Please run under Console."
+}
+
+## Start window manager
+case $WM_SELECT in
+    stumpwm|zwm|sawfish|xfce )
+        if [ -z "$DISPLAY" ]; then
+            WM=$WM_SELECT startx
+        else
+            usage
+        fi
+        ;;
+    *)
+        usage
+        ;;
+esac

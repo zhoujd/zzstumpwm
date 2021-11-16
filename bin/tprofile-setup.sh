@@ -2,10 +2,18 @@
 #set -x -v
 
 SCRIPT_ROOT=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
+ZZSTUMPWM_ROOT=$(cd $SCRIPT_ROOT/.. && pwd)
 
-## setup .profile or .bash_profile
-cat <<EOF >> ~/.bash_profile
-[[ -f ~/.tprofile ]] &&  ~/.tprofile
+install() {
+    echo "tprofile install"
+    ln -sf $ZZSTUMPWM_ROOT/misc/.tprofile ~/.tprofile
+    ## setup .profile or .bash_profile
+    cat <<EOF >> ~/.profile
+# tprofile
+test -f ~/.tprofile && ~/.tprofile
 EOF
+}
 
-echo "tprofile_setup done"
+install
+
+echo "tprofile setup done"
