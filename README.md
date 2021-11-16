@@ -4,9 +4,10 @@ zzstumpwm
 ## Help URL
 
     * <http://stumpwm.org>
+    * <https://stumpwm.github.io/download.html>
+
     * <http://www.clisp.org>
     * <http://www.xsteve.at/prg/stumpwm/>
-    
     * <https://github.com/alezost/stumpwmrc>
     * <https://github.com/stumpwm/stumpwm/wiki>
     * <https://github.com/stumpwm/stumpwm/wiki/TipsAndTricks>
