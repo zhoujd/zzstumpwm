@@ -75,8 +75,8 @@ Returns true when yes is selected"
 (defun run-or-raise-prefer-group (cmd win-cls)
   "If there are windows in the same class, cycle in those. Otherwise call
 run-or-raise with group search t."
-  (let ((windows (group-windows (current-group))))
-    (if (member win-cls (mapcar #'window-class windows) :test #'string-equal)
+  (let ((windows (stumpwm::group-windows (current-group))))
+    (if (member win-cls (mapcar #'stumpwm::window-class windows) :test #'string-equal)
         (run-or-raise cmd `(:class ,win-cls) nil T)
         (run-or-raise cmd `(:class ,win-cls) T T))))
 

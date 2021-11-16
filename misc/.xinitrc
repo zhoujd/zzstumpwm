@@ -1,19 +1,13 @@
 ### .xinitrc
 
-# Here stumpwm is kept as default
-session=${1:-stumpwm}
-
-## Source zwmrc
-test -f ~/.zwmrc && . ~/.zwmrc
-
-case $session in
+### Switching between desktop environments/window managers
+## $ WM=stumpwm startx
+case $WM in
     stumpwm )
-        exec sbcl --eval '(ql:quickload :stumpwm)' \
-                  --eval '(stumpwm:stumpwm)'
+        exec stumpwm
         ;;
-    clfswm )
-        exec sbcl --eval '(ql:quickload :clfswm)' \
-                  --eval '(clfswm:main)'
+    zwm )
+        exec zwm
         ;;
     sawfish )
         exec sawfish
@@ -22,6 +16,6 @@ case $session in
         exec startxfce4
         ;;
     * )
-        exec $1
+        exec zwm
         ;;
 esac
