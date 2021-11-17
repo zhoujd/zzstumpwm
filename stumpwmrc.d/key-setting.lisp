@@ -72,7 +72,6 @@
   (kbd "q")                 "system-action"
   (kbd "r")                 "remove"
   (kbd "s")                 "swap-windows"
-  (kbd "t")                 "toggle-always-on-top"
   ))
 
 ;; *zz-help-map*
