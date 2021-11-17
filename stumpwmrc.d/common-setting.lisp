@@ -35,9 +35,7 @@
       *maxsize-border-width*        0
       *transient-border-width*      0
       *message-window-padding*      10
-      stumpwm::*float-window-border*         1
-      stumpwm::*float-window-title-height*   10
-      stumpwm::*window-border-style*         :thin)
+      *window-border-style*         :thin)
 
 ;; time string
 (setf *time-modeline-string*       "%a %b %e %l:%M %P"
