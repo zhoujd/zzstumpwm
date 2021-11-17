@@ -68,6 +68,7 @@
   (kbd "k")                 "kill-from-windowlist"
   (kbd "m")                 "fselect"
   (kbd "o")                 "fother"
+  (kbd "p")                 "pull-from-windowlist"
   (kbd "q")                 "system-action"
   (kbd "r")                 "remove"
   (kbd "s")                 "swap-windows"
