@@ -66,6 +66,7 @@
   (kbd "d")                 "delete"
   (kbd "i")                 "window-info"
   (kbd "k")                 "kill-from-windowlist"
+  (kbd "l")                 "list-window-properties"
   (kbd "m")                 "fselect"
   (kbd "o")                 "fother"
   (kbd "p")                 "pull-from-windowlist"
