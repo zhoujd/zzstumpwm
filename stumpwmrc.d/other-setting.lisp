@@ -80,8 +80,8 @@ run-or-raise with group search t."
         (run-or-raise cmd `(:class ,win-cls) nil T)
         (run-or-raise cmd `(:class ,win-cls) T T))))
 
-(defun gravity-message (location string)
-  "gravity message, A gravity symbol. One of :center :top :right :bottom :left
+(defun show-message (location string)
+  "show message, A gravity symbol. One of :center :top :right :bottom :left
      :top-right :top-left :bottom-right :bottom-left"
   (let ((old-location *message-window-gravity*))
     (setf *message-window-gravity* location)
