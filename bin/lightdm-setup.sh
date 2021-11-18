@@ -11,7 +11,7 @@ fi
 echo "[Desktop Entry]
 Name=Stumpwm
 Comment=Stumpwm window manager
-Exec=stumpwm
+Exec=startstumpwm
 Icon=
 Type=Application
 DesktopNames=STUMPWM
