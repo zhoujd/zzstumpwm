@@ -66,12 +66,13 @@
   (kbd "d")                 "delete"
   (kbd "i")                 "window-info"
   (kbd "k")                 "kill-from-windowlist"
+  (kbd "l")                 "list-window-properties"
   (kbd "m")                 "fselect"
   (kbd "o")                 "fother"
+  (kbd "p")                 "pull-from-windowlist"
   (kbd "q")                 "system-action"
   (kbd "r")                 "remove"
   (kbd "s")                 "swap-windows"
-  (kbd "t")                 "toggle-always-on-top"
   ))
 
 ;; *zz-help-map*

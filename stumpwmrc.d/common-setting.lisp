@@ -4,7 +4,7 @@
 (in-package :zwm)
 
 ;; start-up message
-(setf *startup-message* nil)
+(setf *startup-message* (machine-instance))
 
 ;; color select
 (let ((foreground-color "green")
@@ -35,9 +35,7 @@
       *maxsize-border-width*        0
       *transient-border-width*      0
       *message-window-padding*      10
-      stumpwm::*float-window-border*         1
-      stumpwm::*float-window-title-height*   10
-      stumpwm::*window-border-style*         :thin)
+      *window-border-style*         :thin)
 
 ;; time string
 (setf *time-modeline-string*       "%a %b %e %l:%M %P"
@@ -52,3 +50,6 @@
       *mode-line-pad-y*             0
       *mode-line-timeout*           5
       *screen-mode-line-format*     (list "[^B%n^b]%W" "^> [" "^>%d]"))
+
+;; shell program
+(setf *shell-program* (getenv "SHELL"))
