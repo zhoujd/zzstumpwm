@@ -3,5 +3,5 @@
 
 # run script
 for i in ~/.zwmrc.d/*.sh ; do
-    test -x "$i" && "$i" >/dev/null 2>&1
+    test -x "$i" && "$i"
 done

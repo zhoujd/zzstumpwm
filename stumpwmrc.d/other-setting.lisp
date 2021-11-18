@@ -101,7 +101,6 @@ run-or-raise with group search t."
   (list "redshift")
   (list "keynav")
   (list "dunst")
-  (list "zwmrc")
   (list "nm-applet")
   (list "blueman-applet")
   ))
