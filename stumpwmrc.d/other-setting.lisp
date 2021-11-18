@@ -85,7 +85,7 @@ run-or-raise with group search t."
      :top-right :top-left :bottom-right :bottom-left"
   (let ((old-location *message-window-gravity*))
     (setf *message-window-gravity* location)
-    (echo string)
+    (stumpwm::echo string)
     (setf *message-window-gravity* old-location)))
 
 ;; startup run commands
