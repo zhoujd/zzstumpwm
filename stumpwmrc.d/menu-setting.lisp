@@ -165,7 +165,7 @@
     (when choice
       (stumpwm::kill-window choice))))
 
-(defcommand pull-from-windowlist () (:rest)
+(defcommand pull-from-all-windows () (:rest)
   "pull from windowlist"
   (let ((choice (stumpwm::select-window-from-menu
                  (stumpwm::all-windows)
