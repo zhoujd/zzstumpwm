@@ -13,6 +13,7 @@
   (kbd "C-b")               "bing"
   (kbd "M-b")               "wikipedia"
   (kbd "c")                 "runurxvt"
+  (kbd "C")                 "pullurxvt"
   (kbd "C-c")               "exec urxvt"
   (kbd "s-c")               "urxvt"
   (kbd "d")                 "deadbeef"

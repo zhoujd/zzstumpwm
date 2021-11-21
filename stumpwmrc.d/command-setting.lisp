@@ -104,13 +104,17 @@ used for matching windows with run-or-raise or window placement-merules."
   "run urxvt"
   (run-or-raise-prefer-group "urxvt" "URxvt"))
 
+(defcommand pullurxvt () ()
+  "pull urxvt"
+  (run-or-pull "urxvt" '(:class "URxvt")))
+
 (defcommand runemacs () ()
   "run emacs"
   (run-or-raise-prefer-group "emacs" "Emacs"))
 
 (defcommand pullemacs () ()
   "pull emacs"
-  (run-or-pull "emacs" '(:title "Emacs")))
+  (run-or-pull "emacs" '(:class "Emacs")))
 
 (defcommand rungc () ()
   "run google-chrome"
