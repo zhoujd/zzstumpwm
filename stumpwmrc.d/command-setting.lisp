@@ -424,3 +424,26 @@ used for matching windows with run-or-raise or window placement-merules."
   (if *swank-server-running*
       (swank-stop-server)
       (swank-start-server)))
+
+(defcommand window-other () ()
+  "Focus previously focused floating window."
+  (if (typep (current-group) 'stumpwm.floating-group:float-group)
+      (focus-window (cadr (group-windows (current-group))))
+      (run-commands "pull-hidden-other")
+      ))
+
+(defcommand window-next () ()
+  "Focus next floating window."
+  (if (typep (current-group) 'stumpwm.floating-group:float-group)
+      (float-window-focus-forward
+       (stumpwm::sort-windows (current-group)))
+      (run-commands "next-in-frame")
+      ))
+
+(defcommand window-previous () ()
+  "Focus previous floating window."
+  (if (typep (current-group) 'stumpwm.floating-group:float-group)
+      (float-window-focus-forward
+       (nreverse (stumpwm::sort-windows (current-group))))
+      (run-commands "prev-in-frame")
+      ))

@@ -170,10 +170,8 @@
   (kbd "s-C-q")             "kill-stumpwm"
   (kbd "s-C-r")             "reinit"
 
-  (kbd "s-[")               "prev-in-frame"
-  (kbd "s-]")               "next-in-frame"
-  (kbd "s-C-[")             "float-window-previous"
-  (kbd "s-C-]")             "float-window-next"
+  (kbd "s-[")               "window-previous"
+  (kbd "s-]")               "window-next"
   (kbd "s-M-[")             "gprev"
   (kbd "s-M-]")             "gnext"
 
@@ -189,8 +187,7 @@
 
   (kbd "s-a")               "app-menu"
   (kbd "s-p")               "screen-menu"
-  (kbd "s-o")               "pull-hidden-other"
-  (kbd "s-C-o")             "float-window-other"
+  (kbd "s-o")               "window-other"
   (kbd "s-M-o")             "gother"
 
   (kbd "s-M-c")             "runurxvt"

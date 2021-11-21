@@ -88,6 +88,18 @@ run-or-raise with group search t."
     (echo string)
     (setf *message-window-gravity* old-location)))
 
+(defun float-window-focus-forward
+    (window-list &optional (window (group-current-window
+                                    (current-group))))
+  "Focus the next window in WINDOW-LIST after WINDOW."
+  (let* ((wins (cdr (member window window-list)))
+         (nw (if wins
+                 (car wins)
+                 ;; If the last window in the list is focused, then
+                 ;; focus the first one.
+                 (car window-list))))
+    (and nw (focus-window nw))))
+
 ;; startup run commands
 (mapc
  #'(lambda (cmd)
