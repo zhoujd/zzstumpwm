@@ -19,6 +19,7 @@
   (kbd "C-d")               "exec meld"
   (kbd "M-d")               "drawio"
   (kbd "e")                 "runemacs"
+  (kbd "E")                 "pullemacs"
   (kbd "C-e")               "exec emacs"
   (kbd "M-e")               "emacsclient"
   (kbd "s-e")               "emacs"

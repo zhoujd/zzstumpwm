@@ -108,6 +108,10 @@ used for matching windows with run-or-raise or window placement-merules."
   "run emacs"
   (run-or-raise-prefer-group "emacs" "Emacs"))
 
+(defcommand pullemacs () ()
+  "pull emacs"
+  (run-or-pull "emacs" '(:title "Emacs")))
+
 (defcommand rungc () ()
   "run google-chrome"
   (run-or-raise-prefer-group "google-chrome" "Google-chrome"))
