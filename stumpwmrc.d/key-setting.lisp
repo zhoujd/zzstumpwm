@@ -28,6 +28,7 @@
   (kbd "C-f")               "exec firefox"
   (kbd "M-f")               "colon exec firefox http://"
   (kbd "g")                 "rungc"
+  (kbd "G")                 "pullgc"
   (kbd "M-g")               "colon exec google-chrome http://"
   (kbd "s-g")               "google-chrome"
   (kbd "h")                 "thunar"

@@ -120,6 +120,10 @@ used for matching windows with run-or-raise or window placement-merules."
   "run google-chrome"
   (run-or-raise-prefer-group "google-chrome" "Google-chrome"))
 
+(defcommand pullgc () ()
+  "pull google-chromje"
+  (run-or-pull "google-chrome" '(:class "Google-chrome")))
+
 (defcommand safe-kill () ()
   "safe delete current window"
   (if (current-window)
