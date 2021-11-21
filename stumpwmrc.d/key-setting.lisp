@@ -137,10 +137,10 @@
   (kbd "M-SunPrint_Screen") "scrot-window"
   (kbd "C-SunPrint_Screen") "scrot-select"
 
-  (kbd "s-Tab")             "pull-hidden-next"
+  (kbd "s-Tab")             "pull-window-next"
   (kbd "s-M-Tab")           "gnext"
-  (kbd "s-BackSpace")       "pull-hidden-next"
-  (kbd "s-M-BackSpace")     "gnext"
+  (kbd "s-BackSpace")       "pull-window-prev"
+  (kbd "s-M-BackSpace")     "gprev"
 
   (kbd "s-Left")            "move-focus left"
   (kbd "s-Right")           "move-focus right"

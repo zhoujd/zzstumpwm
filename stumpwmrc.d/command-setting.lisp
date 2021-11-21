@@ -433,7 +433,7 @@ used for matching windows with run-or-raise or window placement-merules."
       ))
 
 (defcommand window-next () ()
-  "Focus next floating window."
+  "Focus next window."
   (if (typep (current-group) 'stumpwm.floating-group:float-group)
       (float-window-focus-forward
        (stumpwm::sort-windows (current-group)))
@@ -441,9 +441,25 @@ used for matching windows with run-or-raise or window placement-merules."
       ))
 
 (defcommand window-previous () ()
-  "Focus previous floating window."
+  "Focus previous window."
   (if (typep (current-group) 'stumpwm.floating-group:float-group)
       (float-window-focus-forward
        (nreverse (stumpwm::sort-windows (current-group))))
       (run-commands "prev-in-frame")
+      ))
+
+(defcommand pull-window-next () ()
+  "Pull next window."
+  (if (typep (current-group) 'stumpwm.floating-group:float-group)
+      (float-window-focus-forward
+       (stumpwm::sort-windows (current-group)))
+      (run-commands "pull-hidden-next")
+      ))
+
+(defcommand pull-window-prev () ()
+  "Pull previous window."
+  (if (typep (current-group) 'stumpwm.floating-group:float-group)
+      (float-window-focus-forward
+       (nreverse (stumpwm::sort-windows (current-group))))
+      (run-commands "pull-hidden-previous")
       ))
