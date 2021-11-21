@@ -169,6 +169,7 @@
   "pull from windowlist"
   (let ((choice (stumpwm::select-window-from-menu
                  (stumpwm::all-windows)
-                 "%n %t" "Pull which window to this frame?")))
+                 "%n %t"
+                 "Pull which window to this frame?")))
     (when choice
       (stumpwm::pull-window choice))))
