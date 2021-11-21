@@ -172,6 +172,8 @@
 
   (kbd "s-[")               "prev-in-frame"
   (kbd "s-]")               "next-in-frame"
+  (kbd "s-C-[")             "float-window-previous"
+  (kbd "s-C-]")             "float-window-next"
   (kbd "s-M-[")             "gprev"
   (kbd "s-M-]")             "gnext"
 
@@ -188,6 +190,7 @@
   (kbd "s-a")               "app-menu"
   (kbd "s-p")               "screen-menu"
   (kbd "s-o")               "pull-hidden-other"
+  (kbd "s-C-o")             "float-window-other"
   (kbd "s-M-o")             "gother"
 
   (kbd "s-M-c")             "runurxvt"
@@ -297,12 +300,4 @@
   (kbd "v")                 "exec rofi -show windowcd"
   (kbd "C-v")               "exec rofi -show windowcd"
   (kbd "C-?")               "exec rofi -show keys"
-  ))
-
-(apply-keys-to-map
- *groups-map*
- (list
-  (kbd "[")                 "float-window-previous"
-  (kbd "]")                 "float-window-next"
-  (kbd "o")                 "float-window-other"
   ))
