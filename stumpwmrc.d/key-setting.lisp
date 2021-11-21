@@ -298,3 +298,11 @@
   (kbd "C-v")               "exec rofi -show windowcd"
   (kbd "C-?")               "exec rofi -show keys"
   ))
+
+(apply-keys-to-map
+ *groups-map*
+ (list
+  (kbd "[")                 "float-window-previous"
+  (kbd "]")                 "float-window-next"
+  (kbd "o")                 "float-window-other"
+  ))
