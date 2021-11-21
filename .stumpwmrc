@@ -33,6 +33,7 @@
   "tool-setting"
   "other-setting"
   "command-setting"
+  "float-setting"
   "menu-setting"
   "keymap-setting"
   "key-setting"
