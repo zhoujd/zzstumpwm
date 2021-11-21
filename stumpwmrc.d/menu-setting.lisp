@@ -162,15 +162,15 @@
   (let ((choice (stumpwm::select-window-from-menu
                  (stumpwm::group-windows (current-group))
                  fmt
-                 "Kill which window?")))
+                 "Kill which window in group?")))
     (when choice
       (stumpwm::kill-window choice))))
 
-(defcommand pull-from-all-windows (&optional (fmt *window-format*)) (:rest)
+(defcommand kill-from-all-windows (&optional (fmt *window-format*)) (:rest)
   "pull from all windows"
   (let ((choice (stumpwm::select-window-from-menu
                  (stumpwm::all-windows)
                  fmt
-                 "Pull which window to this frame?")))
+                 "kill which window?")))
     (when choice
-      (stumpwm::pull-window choice))))
+      (stumpwm::kill-window choice))))

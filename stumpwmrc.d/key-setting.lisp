@@ -73,6 +73,7 @@
   (kbd "q")                 "system-action"
   (kbd "r")                 "remove"
   (kbd "s")                 "swap-windows"
+  (kbd "x")                 "kill-from-all-windows"
   ))
 
 ;; *zz-help-map*
