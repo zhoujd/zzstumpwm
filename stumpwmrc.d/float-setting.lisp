@@ -78,6 +78,12 @@ GRAVITY controls where the window will appear.  Possible values are:
      :x (car coords) :y (cdr coords))))
 
 ;;focus float window
-(add-hook *focus-window-hook* (lambda (win lastw)
-                                (when (typep (current-group) 'stumpwm.floating-group:float-group)
-                                  (focus-window win))))
+(defun float-focus-window (win lastw)
+  (when (typep (current-group) 'stumpwm.floating-group:float-group)
+    (focus-window win)))
+(add-hook *focus-window-hook* 'float-focus-window)
+
+;;focus group
+(defun float-focus-group (grp lastg)
+  (message "focus group!"))
+(add-hook *focus-group-hook* 'float-focus-group)
