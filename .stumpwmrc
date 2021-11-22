@@ -32,6 +32,7 @@
   "font-setting"
   "tool-setting"
   "other-setting"
+  "float-setting"
   "command-setting"
   "menu-setting"
   "keymap-setting"
