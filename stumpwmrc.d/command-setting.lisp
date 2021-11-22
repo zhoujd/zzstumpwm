@@ -106,7 +106,7 @@ used for matching windows with run-or-raise or window placement-merules."
 
 (defcommand pullurxvt () ()
   "pull urxvt"
-  (run-or-pull "urxvt" '(:class "URxvt")))
+  (run-or-pull-prefer-group "urxvt" "URxvt"))
 
 (defcommand runemacs () ()
   "run emacs"
@@ -114,7 +114,7 @@ used for matching windows with run-or-raise or window placement-merules."
 
 (defcommand pullemacs () ()
   "pull emacs"
-  (run-or-pull "emacs" '(:class "Emacs")))
+  (run-or-pull-prefer-group "emacs" "Emacs"))
 
 (defcommand rungc () ()
   "run google-chrome"
@@ -122,7 +122,7 @@ used for matching windows with run-or-raise or window placement-merules."
 
 (defcommand pullgc () ()
   "pull google-chromje"
-  (run-or-pull "google-chrome" '(:class "Google-chrome")))
+  (run-or-pull-prefer-group "google-chrome" "Google-chrome"))
 
 (defcommand safe-kill () ()
   "safe delete current window"

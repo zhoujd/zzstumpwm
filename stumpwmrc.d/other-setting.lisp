@@ -80,6 +80,10 @@ run-or-raise with group search t."
         (run-or-raise cmd `(:class ,win-cls) nil T)
         (run-or-raise cmd `(:class ,win-cls) T T))))
 
+(defun run-or-pull-prefer-group (cmd win-cls)
+  (ignore-errors
+   (run-or-pull cmd `(:class ,win-cls))))
+
 (defun show-message (location string)
   "show message, A gravity symbol. One of :center :top :right :bottom :left
      :top-right :top-left :bottom-right :bottom-left"
