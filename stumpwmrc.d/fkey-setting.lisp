@@ -11,7 +11,7 @@
   (kbd "s-M-F1")    "gmove"
   (kbd "s-F2")      "exec rofi -show run"
   (kbd "s-M-F2")    "exec rofi -show drun"
-  (kbd "s-F3")      "pull-hidden-other"
+  (kbd "s-F3")      "window-other"
   (kbd "s-M-F3")    "gother"
   (kbd "s-F4")      "safe-kill"
   (kbd "s-M-F4")    "safe-gkill"
