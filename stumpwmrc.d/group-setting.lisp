@@ -34,6 +34,7 @@
       (run-commands "pull-hidden-previous")
       (run-commands "float-window-previous")))
 
+;;move focus keys
 (defcommand move-focus-left () ()
   "move focus left"
   (if (typep (current-group) 'stumpwm::tile-group)
@@ -53,11 +54,12 @@
       (run-commands "move-float-window 0 -10")))
 
 (defcommand move-focus-down () ()
-  "move focus up"
+  "move focus down"
   (if (typep (current-group) 'stumpwm::tile-group)
       (run-commands "move-focus down")
       (run-commands "move-float-window 0 +10")))
 
+;;move window keys
 (defcommand move-window-left () ()
   "move window left"
   (if (typep (current-group) 'stumpwm::tile-group)
@@ -77,11 +79,12 @@
       (run-commands "resize-float-window 0 -10")))
 
 (defcommand move-window-down () ()
-  "move window up"
+  "move window down"
   (if (typep (current-group) 'stumpwm::tile-group)
       (run-commands "move-window down")
       (run-commands "resize-float-window 0 +10")))
 
+;;exchange keys
 (defcommand exchange-left () ()
   "exchange left"
   (if (typep (current-group) 'stumpwm::tile-group)
@@ -101,7 +104,7 @@
       (run-commands "float-window-gravity top")))
 
 (defcommand exchange-down () ()
-  "exchange up"
+  "exchange down"
   (if (typep (current-group) 'stumpwm::tile-group)
       (run-commands "exchange-direction down")
       (run-commands "float-window-gravity bottom")))
