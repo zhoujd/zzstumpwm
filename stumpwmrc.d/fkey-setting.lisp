@@ -36,31 +36,31 @@
 (apply-keys-to-map
  *top-map*
  (list
-  (kbd "s-C-F1")    "emacs"
-  (kbd "s-C-F2")    "google-chrome"
-  (kbd "s-C-F3")    "teams"
-  (kbd "s-C-F4")    "evolution"
-  (kbd "s-C-F5")    "deadbeef"
-  (kbd "s-C-F6")    "mpv"
-  (kbd "s-C-F7")    "vlc"
-  (kbd "s-C-F8")    "claws-mail"
-  (kbd "s-C-F9")    "urxvt"
-  (kbd "s-C-F10")   "thunar"
+  (kbd "s-S-F1")    "emacs"
+  (kbd "s-S-F2")    "google-chrome"
+  (kbd "s-S-F3")    "teams"
+  (kbd "s-S-F4")    "evolution"
+  (kbd "s-S-F5")    "deadbeef"
+  (kbd "s-S-F6")    "mpv"
+  (kbd "s-S-F7")    "vlc"
+  (kbd "s-S-F8")    "claws-mail"
+  (kbd "s-S-F9")    "urxvt"
+  (kbd "s-S-F10")   "thunar"
   ))
 
 (apply-keys-to-map
  *top-map*
  (list
-  (kbd "s-S-F1")    "exec"
-  (kbd "s-S-F2")    "ssh-shell"
-  (kbd "s-S-F3")    "eval-shell"
-  (kbd "s-S-F4")    "trans-command"
-  (kbd "s-S-F5")    "colon exec google-chrome http://"
-  (kbd "s-S-F6")    "vpn-menu"
-  (kbd "s-S-F7")    "wifi-menu"
-  (kbd "s-S-F8")    "audio-menu"
-  (kbd "s-S-F9")    "tmux-menu"
-  (kbd "s-S-F10")   "screen-menu"
+  (kbd "s-C-F1")    "exec"
+  (kbd "s-C-F2")    "ssh-shell"
+  (kbd "s-C-F3")    "eval-shell"
+  (kbd "s-C-F4")    "trans-command"
+  (kbd "s-C-F5")    "colon exec google-chrome http://"
+  (kbd "s-C-F6")    "vpn-menu"
+  (kbd "s-C-F7")    "wifi-menu"
+  (kbd "s-C-F8")    "audio-menu"
+  (kbd "s-C-F9")    "tmux-menu"
+  (kbd "s-C-F10")   "screen-menu"
   ))
 
 (apply-keys-to-map
