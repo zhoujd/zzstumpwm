@@ -29,7 +29,7 @@ window {
     location:       center;
     width:          640;
     y-offset:       -200;
-    border-radius:  8;
+    border-radius:  0;
 }
 
 inputbar {
