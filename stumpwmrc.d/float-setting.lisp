@@ -79,6 +79,7 @@ GRAVITY controls where the window will appear.  Possible values are:
 
 ;;focus float window
 (defun float-focus-window (win lastw)
+  (declare (ignore lastw))
   (when (typep (current-group) 'stumpwm.floating-group:float-group)
     (focus-window win)))
 (add-hook *focus-window-hook* 'float-focus-window)
