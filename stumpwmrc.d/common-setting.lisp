@@ -35,7 +35,7 @@
       *maxsize-border-width*        0
       *transient-border-width*      0
       *message-window-padding*      10
-      *window-border-style*         :none)
+      *window-border-style*         :thin)
 
 ;; time string
 (setf *time-modeline-string*       "%a %b %e %l:%M %P"
