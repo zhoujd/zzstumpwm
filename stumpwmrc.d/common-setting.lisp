@@ -50,6 +50,3 @@
       *mode-line-pad-y*             0
       *mode-line-timeout*           5
       *screen-mode-line-format*     (list "[^B%n^b]%W" "^> [" "^>%d]"))
-
-;; shell program
-(setf *shell-program* (getenv "SHELL"))
