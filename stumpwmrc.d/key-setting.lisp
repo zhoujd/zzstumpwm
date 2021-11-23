@@ -190,6 +190,10 @@
   (kbd "s-o")               "window-other"
   (kbd "s-M-o")             "gother"
 
+  (kbd "s-C")               "urxvt"
+  (kbd "s-E")               "emacs"
+  (kbd "s-G")               "google-chrome"
+
   (kbd "s-M-c")             "runurxvt"
   (kbd "s-M-e")             "runemacs"
   (kbd "s-M-g")             "rungc"
