@@ -142,4 +142,4 @@ configuration {
 /*	me-accept-entry: "MouseDPrimary";*/
 /*	me-accept-custom: "Control+MouseDPrimary";*/
 }
-@import "themes/zach-dark.rasi"
+@import "themes/spotlight-dark.rasi"
