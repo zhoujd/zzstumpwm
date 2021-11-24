@@ -67,7 +67,7 @@ determine_connection_list(){
 
 determine_menu_title(){
     if [[ -z $CONNECTION_LIST ]]; then
-        MENU_TITLE="No VPN connections configured"
+        MENU_TITLE="No VPN configured"
         return 0
     fi
 
