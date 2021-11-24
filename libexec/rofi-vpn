@@ -72,10 +72,10 @@ determine_menu_title(){
     fi
 
     if [[ $CONNECTION_STATE == true ]]; then
-        MENU_TITLE="VPN connections - Active"
+        MENU_TITLE="VPN Active:"
         return 0
     else
-        MENU_TITLE="VPN connections - Inactive"
+        MENU_TITLE="VPN Inactive:"
         return 0
     fi
 }

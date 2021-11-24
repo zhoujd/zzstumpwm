@@ -86,7 +86,7 @@ function menu () {
 
 function rofi_cmd () {
     # don't repeat lines with uniq -u
-    echo -e "$1" | uniq -u | rofi -dmenu -p "Wi-Fi SSID:" -lines "$LINENUM" \
+    echo -e "$1" | uniq -u | rofi -dmenu -p "WIFI SSID:" -lines "$LINENUM" \
                                   -location "$POSITION" -yoffset "$YOFF" -xoffset "$XOFF" -font "$FONT" -width "$RWIDTH"
 }
 
