@@ -18,7 +18,10 @@
 
 (defcommand (float-window-other float-group) () ()
   "Focus previously focused floating window."
-  (focus-window (cadr (group-windows (current-group)))))
+  (let ((win (cadr (group-windows (current-group)))))
+    (if win
+        (focus-window win)
+        (message "No other window."))))
 
 (defcommand (float-window-next float-group) () ()
   "Focus next floating window."
