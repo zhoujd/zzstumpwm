@@ -3,7 +3,6 @@
 
 (in-package :zwm)
 
-;; Floating Group: Left click/drag=>move, Right click/drag=>resize
 (apply-keys-to-map
  *top-map*
  (list

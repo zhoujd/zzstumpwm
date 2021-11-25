@@ -1,5 +1,6 @@
 ;;;; float setting -*-lisp-*-
-;;
+;; left click/drag=>move
+;; right click/drag=>resize
 
 (in-package :zwm)
 (use-package :stumpwm.floating-group)
