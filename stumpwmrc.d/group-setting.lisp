@@ -109,8 +109,10 @@
       (run-commands "exchange-direction down")
       (run-commands "float-window-gravity bottom")))
 
-(defcommand group-refresh () ()
+(defcommand grefresh () ()
   "refresh current group"
-  (let ((group (current-group)))
-    (run-commands "gselect Default")
+  (let ((group (current-group))
+        (screen (current-screen))
+        (name *default-group-name*))
+    (gselect (stumpwm::find-group screen name))
     (gselect group)))

@@ -67,6 +67,7 @@
  (list
   (kbd "c")                 "fclear"
   (kbd "d")                 "delete"
+  (kbd "g")                 "refresh"
   (kbd "i")                 "window-info"
   (kbd "k")                 "kill-from-windowlist"
   (kbd "l")                 "list-window-properties"
@@ -214,7 +215,7 @@
  (list
   (kbd "d")                 "toggle-root"
   (kbd "f")                 "fullscreen"
-  (kbd "g")                 "refresh"
+  (kbd "g")                 "grefresh"
 
   (kbd "k")                 "sprev"
   (kbd "j")                 "snext"
