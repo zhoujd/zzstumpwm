@@ -79,10 +79,3 @@ GRAVITY controls where the window will appear.  Possible values are:
     (stumpwm.floating-group::float-window-move-resize
      (current-window)
      :x (car coords) :y (cdr coords))))
-
-(defun float-focus-window (win lastw)
-  "focus float window"
-  (declare (ignore lastw))
-  (when (typep (current-group) 'float-group)
-    (focus-window win)))
-(add-hook *focus-window-hook* 'float-focus-window)
