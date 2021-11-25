@@ -111,8 +111,4 @@
 
 (defcommand grefresh () ()
   "refresh current group"
-  (let ((group (current-group))
-        (screen (current-screen))
-        (name *default-group-name*))
-    (stumpwm::switch-to-group (stumpwm::find-group screen name))
-    (stumpwm::switch-to-group group)))
+  (run-commands "gother" "gother"))
