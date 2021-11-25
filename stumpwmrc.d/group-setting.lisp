@@ -108,3 +108,9 @@
   (if (typep (current-group) 'stumpwm::tile-group)
       (run-commands "exchange-direction down")
       (run-commands "float-window-gravity bottom")))
+
+(defcommand group-refresh () ()
+  "refresh current group"
+  (let ((group (current-group)))
+    (run-commands "gselect Default")
+    (gselect group)))
