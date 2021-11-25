@@ -215,7 +215,7 @@
  (list
   (kbd "d")                 "toggle-root"
   (kbd "f")                 "fullscreen"
-  (kbd "g")                 "grefresh"
+  (kbd "g")                 "group-fresh"
 
   (kbd "k")                 "sprev"
   (kbd "j")                 "snext"

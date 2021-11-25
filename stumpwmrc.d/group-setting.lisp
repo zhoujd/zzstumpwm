@@ -109,6 +109,13 @@
       (run-commands "exchange-direction down")
       (run-commands "float-window-gravity bottom")))
 
-(defcommand grefresh () ()
+(defcommand group-fresh () ()
   "refresh current group"
   (run-commands "gother" "gother"))
+
+(defcommand group-move () ()
+  "move window to-group"
+  (let ((group (current-group)))
+    (run-commands "gmove")
+    (unless (typep group 'stumpwm::tile-group)
+      (run-commands "group-fresh"))))

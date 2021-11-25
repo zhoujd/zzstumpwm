@@ -8,7 +8,7 @@
  *top-map*
  (list
   (kbd "s-F1")      "gprint"
-  (kbd "s-M-F1")    "gmove"
+  (kbd "s-M-F1")    "group-move"
   (kbd "s-F2")      "exec rofi -show run"
   (kbd "s-M-F2")    "exec rofi -show drun"
   (kbd "s-F3")      "window-other"
