@@ -424,3 +424,11 @@ used for matching windows with run-or-raise or window placement-merules."
   (if *swank-server-running*
       (swank-stop-server)
       (swank-start-server)))
+
+(defcommand debug-enable () ()
+  "debug enable"
+  (setf stumpwm::*debug-level* 10))
+
+(defcommand debug-disable () ()
+  "debug disable"
+  (setf stumpwm::*debug-level* 0))
