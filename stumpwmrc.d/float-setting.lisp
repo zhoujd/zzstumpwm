@@ -80,8 +80,10 @@ GRAVITY controls where the window will appear.  Possible values are:
      (current-window)
      :x (car coords) :y (cdr coords))))
 
-;;focus float window
+(defmethod group-root-exposure ((group float-group)))
+
 (defun float-focus-window (win lastw)
+  "focus float window"
   (declare (ignore lastw))
   (when (typep (current-group) 'float-group)
     (focus-window win)))
