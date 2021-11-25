@@ -174,12 +174,3 @@
                  "kill which window?")))
     (when choice
       (stumpwm::kill-window choice))))
-
-(defcommand pull-from-all-windows (&optional (fmt *window-format*)) (:rest)
-  "pull from all windows"
-  (let ((choice (stumpwm::select-window-from-menu
-                 (stumpwm::all-windows)
-                 fmt
-                 "pull which window?")))
-    (when choice
-      (stumpwm::pull-window choice))))
