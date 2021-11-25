@@ -114,5 +114,5 @@
   (let ((group (current-group))
         (screen (current-screen))
         (name *default-group-name*))
-    (gselect (stumpwm::find-group screen name))
-    (gselect group)))
+    (stumpwm::switch-to-group (stumpwm::find-group screen name))
+    (stumpwm::switch-to-group group)))
