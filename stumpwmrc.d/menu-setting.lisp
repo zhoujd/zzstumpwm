@@ -82,7 +82,7 @@
                                 (cdr selection)))))))))
     (pick *app-menu*)))
 
-(defcommand rez-menu () ()
+(defcommand reso-menu () ()
   "select resolution for stumpwm"
   (let ((choice (cadr (select-from-menu
                        (current-screen)

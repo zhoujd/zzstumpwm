@@ -226,7 +226,7 @@
   (kbd "C-l")               "exec zlock"
   (kbd "t")                 "exec transset"
 
-  (kbd "r")                 "rez-menu"
+  (kbd "r")                 "reso-menu"
   (kbd "b")                 "show-battery"
 
   (kbd "p")                 "scrot-full"
