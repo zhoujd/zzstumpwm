@@ -140,9 +140,10 @@ used for matching windows with run-or-raise or window placement-merules."
                  (format nil "Close group: ~a?"
                          (stumpwm::group-name (current-group))))))
     (when choice
-      (dolist (window (stumpwm::group-windows (current-group)))
-        (stumpwm::delete-window window))
-      (stumpwm::gkill))))
+      (ignore-errors
+       (dolist (window (stumpwm::group-windows (current-group)))
+         (stumpwm::delete-window window))
+       (stumpwm::gkill)))))
 
 (defcommand delete-all () ()
   "close all windows"
