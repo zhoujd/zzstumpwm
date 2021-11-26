@@ -33,7 +33,7 @@
       ("1-On"             "xcompmgr -C")
       ("2-Off"            "killall xcompmgr"))
      ("2+UNCLUTTER"
-      ("1-On"             "unclutter -grab")
+      ("1-On"             "unclutter")
       ("2-Off"            "killall unclutter"))
      ("3+AUTOLOCK"
       ("1-On"             "xautolock -time 15 -locker slock")
