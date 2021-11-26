@@ -13,5 +13,7 @@ rofi
 ## Themes
 
     ##https://github.com/lr-tech/rofi-themes-collection
+    ##obtain a template configuration file
     $ rofi -dump-config > config.rasi
+    ##migrate from the old the new configuration syntax
     $ rofi -upgrade-config
