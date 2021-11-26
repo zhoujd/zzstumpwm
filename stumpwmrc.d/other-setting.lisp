@@ -103,6 +103,7 @@ run-or-raise with group search t."
   (list "xsetroot" :options "-cursor_name left_ptr")
   (list "nitrogen" :options "--restore")
   (list "ulauncher" :options "--hide-window")
+  (list "unclutter" :options "-grab")
   (list "xcompmgr" :options "-C")
   (list "redshift")
   (list "keynav")

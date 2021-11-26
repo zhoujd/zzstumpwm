@@ -69,3 +69,8 @@ Ubunut 18.04 Server
 
     $ sudo apt-get install lightdm
     $ sudo dpkg-reconfigure lightdm
+
+## Unclutter hides your X mouse cursor when you do not need it
+
+    ##https://wiki.archlinux.org/title/unclutter
+    $ sudo apt install unclutter
