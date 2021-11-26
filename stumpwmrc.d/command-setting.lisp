@@ -145,7 +145,12 @@ used for matching windows with run-or-raise or window placement-merules."
          (stumpwm::delete-window window))
        (stumpwm::gkill)))))
 
-(defcommand delete-all () ()
+(defcommand delete-group-windows () ()
+  "close all group windows"
+  (dolist (window (stumpwm::group-windows (current-group)))
+    (stumpwm::delete-window window)))
+
+(defcommand delete-all-windows () ()
   "close all windows"
   (dolist (screen *screen-list*)
     (dolist (group (stumpwm::screen-groups screen))
@@ -156,11 +161,11 @@ used for matching windows with run-or-raise or window placement-merules."
   "safe delete all windows"
   (let ((choice (yes-no-diag "Close all programs?")))
     (when choice
-      (delete-all))))
+      (delete-all-windows))))
 
 (defcommand safe-end () ()
   "safe end session"
-  (delete-all)
+  (delete-all-windows)
   (run-hook *quit-hook*))
 
 (defcommand safe-quit () ()
