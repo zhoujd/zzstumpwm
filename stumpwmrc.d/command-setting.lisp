@@ -157,6 +157,14 @@ used for matching windows with run-or-raise or window placement-merules."
       (dolist (window (stumpwm::group-windows group))
         (stumpwm::delete-window window)))))
 
+(defcommand safe-delete-windows () ()
+  "safe delete all windows in current group"
+    (let ((choice (yes-no-diag
+                 (format nil "Close all programs in group: ~a?"
+                         (stumpwm::group-name (current-group))))))
+    (when choice
+      (delete-group-windows))))
+
 (defcommand safe-delete () ()
   "safe delete all windows"
   (let ((choice (yes-no-diag "Close all programs?")))
