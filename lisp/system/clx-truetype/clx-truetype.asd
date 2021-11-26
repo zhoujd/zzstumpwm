@@ -20,7 +20,7 @@
                (:file "clx-truetype")))
 
 
-(asdf:defsystem #:clx-truetype-test
+(asdf:defsystem #:clx-truetype/test
   :serial t
   :description "Testing library for clx-truetype."
   :author "Michael Filonenko <filonenko.mikhail@gmail.com>"

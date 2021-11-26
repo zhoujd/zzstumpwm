@@ -68,7 +68,7 @@ CLISP, ECL and AllegroCL are supported.")
   (oos 'load-op :cl-store-tests)
   (oos 'test-op :cl-store-tests))
 
-(defsystem cl-store-tests
+(defsystem cl-store/tests
   :depends-on (rt cl-store)
   :components ((:file "tests")))
 
