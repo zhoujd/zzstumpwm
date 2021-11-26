@@ -32,7 +32,10 @@
      ("1+COMPOSITE"
       ("1-On"             "xcompmgr -C")
       ("2-Off"            "killall xcompmgr"))
-     ("2+AUTOLOCK"
+     ("2+UNCLUTTER"
+      ("1-On"             "unclutter -grab")
+      ("2-Off"            "killall unclutter"))
+     ("3+AUTOLOCK"
       ("1-On"             "xautolock -time 15 -locker slock")
       ("2-Off"            "killall xautolock"))))
   "Where the menu structure is held")
