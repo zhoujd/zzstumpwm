@@ -124,3 +124,9 @@
   (if (typep (current-group) 'stumpwm::tile-group)
       (fullscreen)
       (float-window-gravity :center)))
+
+(defcommand group-desktop () ()
+  "group desktop"
+  (if (typep (current-group) 'stumpwm::tile-group)
+      (toggle-root)
+      (message "No support in float group.")))
