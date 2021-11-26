@@ -119,3 +119,9 @@
     (run-commands "gmove")
     (unless (typep group 'stumpwm::tile-group)
       (run-commands "group-fresh"))))
+
+(defcommand group-fullscreen () ()
+  "group fullscreen"
+  (if (typep (current-group) 'stumpwm::tile-group)
+      (run-commands "fullscreen")
+      (run-commands "float-window-gravity center")))

@@ -214,7 +214,7 @@
  *zz-screen-map*
  (list
   (kbd "d")                 "toggle-root"
-  (kbd "f")                 "fullscreen"
+  (kbd "f")                 "group-fullscreen"
   (kbd "g")                 "group-fresh"
 
   (kbd "k")                 "sprev"
