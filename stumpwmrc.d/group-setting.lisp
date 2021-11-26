@@ -3,7 +3,6 @@
 
 (in-package :zwm)
 
-
 (defcommand window-other () ()
   "Focus previously focused floating window."
   (if (typep (current-group) 'stumpwm::tile-group)
@@ -34,7 +33,6 @@
       (pull-hidden-previous)
       (float-window-previous)))
 
-;;move focus keys
 (defcommand move-focus-left () ()
   "move focus left"
   (if (typep (current-group) 'stumpwm::tile-group)
