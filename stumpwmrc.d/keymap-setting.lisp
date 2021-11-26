@@ -43,6 +43,7 @@
       map
       (list
        (kbd "C-g")  "abort"
+       (kbd "ESC")  "abort"
        )))
  (list
   *zz-x-map*
@@ -51,4 +52,6 @@
   *zz-screen-map*
   *zz-menu-map*
   *zz-help-map*
+  *root-map*
+  *groups-map*
   ))
