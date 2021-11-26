@@ -14,3 +14,4 @@ rofi
 
     ##https://github.com/lr-tech/rofi-themes-collection
     $ rofi -dump-config > config.rasi
+    $ rofi -upgrade-config
