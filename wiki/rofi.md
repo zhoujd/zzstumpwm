@@ -17,3 +17,7 @@ rofi
     $ rofi -dump-config > config.rasi
     ##migrate from the old the new configuration syntax
     $ rofi -upgrade-config
+    ##choosing the Rofi theme interactively
+    $ rofi-theme-selector
+    Checking themes in: /usr/share/rofi/themes
+    Checking themes in: ~/.config/rofi/themes
