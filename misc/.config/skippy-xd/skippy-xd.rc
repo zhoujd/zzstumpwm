@@ -44,9 +44,9 @@ ignoreSkipTaskbar = true
 updateFreq = 10.0
 lazyTrans = false
 pipePath = /tmp/skippy-xd-fifo
-movePointerOnStart = true
+movePointerOnStart = false
 movePointerOnSelect = true
-movePointerOnRaise = true
+movePointerOnRaise = false
 switchDesktopOnActivate = false
 useNameWindowPixmap = false
 forceNameWindowPixmap = false
@@ -66,7 +66,7 @@ showAll = true
 [normal]
 tint = black
 tintOpacity = 0
-opacity = 200
+opacity = 250
 
 [highlight]
 tint = #101020
