@@ -49,4 +49,4 @@
       *mode-line-pad-x*             0
       *mode-line-pad-y*             0
       *mode-line-timeout*           5
-      *screen-mode-line-format*     (list "[^B%n^b]%W" "^> [" "^>%d]"))
+      *screen-mode-line-format*     (list "[^B%n^b]%W" "^>[%d]"))
