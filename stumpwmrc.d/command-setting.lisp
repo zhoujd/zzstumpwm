@@ -136,14 +136,17 @@ used for matching windows with run-or-raise or window placement-merules."
 
 (defcommand safe-gkill () ()
   "safe delete current group"
-  (let ((choice (yes-no-diag
-                 (format nil "Close group: ~a?"
-                         (stumpwm::group-name (current-group))))))
+  (let* ((group (current-group))
+         (screen (group-screen group))
+         (choice (yes-no-diag
+                  (format nil "Close group: ~a?"
+                          (stumpwm::group-name group)))))
     (when choice
-      (ignore-errors
-       (dolist (window (stumpwm::group-windows (current-group)))
-         (stumpwm::delete-window window))
-       (stumpwm::gkill)))))
+      (dolist (window (stumpwm::group-windows group))
+        (stumpwm::delete-window window))
+      (ignore-errors (gkill))
+      (setf (screen-groups screen)
+            (remove group (screen-groups screen))))))
 
 (defcommand delete-group-windows () ()
   "close all group windows"
