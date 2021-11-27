@@ -58,8 +58,12 @@ ln -sfvT $CURRENT_DIR/misc/.xsession ~/.xsession
 ## Install .keynavrc
 ln -sfvT $CURRENT_DIR/misc/.keynavrc ~/.keynavrc
 
-## Install rofi
+## make sure the folder ~/.config exist
 mkdir -p ~/.config
+
+## Install rofi
 ln -sfvT $CURRENT_DIR/misc/.config/rofi ~/.config/rofi
+## Install skippy-xd
+ln -sfvT $CURRENT_DIR/misc/.config/skippy-xd ~/.config/skippy-xd
 
 echo "install stumpwm end ..."
