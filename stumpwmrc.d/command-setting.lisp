@@ -69,12 +69,6 @@ used for matching windows with run-or-raise or window placement-merules."
   "show uptime"
   (echo-string (current-screen) (run-shell-command "uptime" t)))
 
-(defcommand emacsclient () ()
-  "emacsclient"
-  (if (emacs-ds-exists)
-      (run-shell-command "emacsclient -c -a emacs")
-      (echo-string (current-screen) "No emacs daemon exist!")))
-
 ;; surf browser
 ;; arch: sudo pacman -S surf tabbed
 ;; C-g -> enter new URL
@@ -108,6 +102,10 @@ used for matching windows with run-or-raise or window placement-merules."
   "pull urxvt"
   (run-or-pull-prefer-group "urxvt" "URxvt"))
 
+(defcommand urxvtclient () ()
+  "run urxvt client"
+  (run-shell-command "urxvtc"))
+
 (defcommand runemacs () ()
   "run emacs"
   (run-or-raise-prefer-group "emacs" "Emacs"))
@@ -115,6 +113,12 @@ used for matching windows with run-or-raise or window placement-merules."
 (defcommand pullemacs () ()
   "pull emacs"
   (run-or-pull-prefer-group "emacs" "Emacs"))
+
+(defcommand emacsclient () ()
+  "emacsclient"
+  (if (emacs-ds-exists)
+      (run-shell-command "emacsclient -c -a emacs")
+      (echo-string (current-screen) "No emacs daemon exist!")))
 
 (defcommand rungc () ()
   "run google-chrome"

@@ -15,7 +15,7 @@
   (kbd "c")                 "runurxvt"
   (kbd "C")                 "pullurxvt"
   (kbd "C-c")               "exec urxvt"
-  (kbd "M-c")               "exec urxvtc"
+  (kbd "M-c")               "urxvtclient"
   (kbd "s-c")               "urxvt"
   (kbd "d")                 "deadbeef"
   (kbd "C-d")               "exec meld"
