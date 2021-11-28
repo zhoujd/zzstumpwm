@@ -134,7 +134,7 @@ used for matching windows with run-or-raise or window placement-merules."
           (stumpwm::kill-window)))
       (message "Cannot close desktop!")))
 
-(defcommand safe-gkill () ()
+(defcommand group-kill () ()
   "safe delete current group"
   (let* ((group (current-group))
          (screen (group-screen group))
@@ -144,7 +144,6 @@ used for matching windows with run-or-raise or window placement-merules."
     (when choice
       (dolist (window (stumpwm::group-windows group))
         (stumpwm::delete-window window))
-      (ignore-errors (gkill))
       (setf (screen-groups screen)
             (remove group (screen-groups screen))))))
 

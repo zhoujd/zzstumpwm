@@ -106,6 +106,7 @@ run-or-raise with group search t."
   (list "xcompmgr" :options "-C")
   (list "unclutter")
   (list "redshift")
+  (list "urxvtd")
   (list "keynav")
   (list "dunst")
   (list "nm-applet")

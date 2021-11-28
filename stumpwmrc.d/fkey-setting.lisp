@@ -13,7 +13,7 @@
   (kbd "s-F3")      "window-other"
   (kbd "s-M-F3")    "gother"
   (kbd "s-F4")      "safe-kill"
-  (kbd "s-M-F4")    "safe-gkill"
+  (kbd "s-M-F4")    "group-kill"
   (kbd "s-F5")      "gnew f5"
   (kbd "s-M-F5")    "gnew-float f5-float"
   (kbd "s-F6")      "gnew f6"
