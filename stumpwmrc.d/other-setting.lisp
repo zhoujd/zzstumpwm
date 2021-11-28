@@ -104,7 +104,7 @@ run-or-raise with group search t."
   (list "xcompmgr" :options "-C")
   (list "nitrogen" :options "--restore")
   (list "ulauncher" :options "--hide-window")
-  (list "urxvtd" :options "-q -o")
+  (list "urxvtd" :options "-q -f -o")
   (list "unclutter")
   (list "redshift")
   (list "keynav")
