@@ -107,6 +107,7 @@ if has("win32")
 else
   set statusline+=%{strftime(\"%a\ %b\ %d\ %l:%M\ %p\")}
 endif
+set statusline+=\ %=
 
 set laststatus=2
 set cmdheight=1
