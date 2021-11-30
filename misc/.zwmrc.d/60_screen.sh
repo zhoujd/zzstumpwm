@@ -6,18 +6,10 @@ screen() {
     local flag=`xrandr | grep "^$ext" | awk '{print $2}'`
     local size="1920x1080"
     if [ "$flag" = "connected" ]; then
-        echo "[laptop] mirror ext monitor"
+        echo "[screen] mirror ext monitor"
         xrandr --addmode $ext $size
         xrandr --output $ext --same-as $laptop --mode $size
     fi
 }
 
-touchpad() {
-    if [ -n "$(xinput list | grep -i touchpad)" ]; then
-        echo "[laptop] disable tap to click"
-        synclient TapButton1=0
-    fi           
-}
-
 screen
-touchpad
