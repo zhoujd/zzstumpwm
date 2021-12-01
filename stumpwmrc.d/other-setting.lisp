@@ -80,12 +80,6 @@ run-or-raise with group search t."
         (run-or-raise cmd `(:class ,win-cls) nil T)
         (run-or-raise cmd `(:class ,win-cls) T T))))
 
-(defun run-or-pull-prefer-group (cmd win-cls)
-  "Run or pull window, If tile group then pull window from other group"
-  (if (typep (current-group) 'stumpwm::tile-group)
-      (run-or-pull cmd `(:class ,win-cls))
-      (run-or-pull cmd `(:class ,win-cls) nil nil)))
-
 (defun show-message (location string)
   "show message, A gravity symbol. One of :center :top :right :bottom :left
      :top-right :top-left :bottom-right :bottom-left"
@@ -135,6 +129,12 @@ on run-or-raise"
                  (group-focus-window (current-group) result))
                 (t
                  (stumpwm::pull-window result)))))))
+
+(defun run-or-pull-prefer-group (cmd win-cls)
+  "Run or pull window, If tile group then pull window from other group"
+  (if (typep (current-group) 'stumpwm::tile-group)
+      (run-raise-pull-list cmd `(:class ,win-cls))
+      (run-raise-pull-list cmd `(:class ,win-cls) nil nil)))
 
 ;; startup run commands
 (mapc
