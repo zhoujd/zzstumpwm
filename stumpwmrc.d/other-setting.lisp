@@ -134,8 +134,7 @@ on run-or-raise"
   "Run or pull window, If tile group then pull window from other group"
   (if (typep (current-group) 'stumpwm::tile-group)
       (run-raise-pull-list cmd `(:class ,win-cls))
-      (run-raise-pull-list cmd `(:class ,win-cls) :all-groups nil
-                                                  :all-screens nil)))
+      (run-raise-pull-list cmd `(:class ,win-cls) :all-groups nil :all-screens nil)))
 
 ;; startup run commands
 (mapc
