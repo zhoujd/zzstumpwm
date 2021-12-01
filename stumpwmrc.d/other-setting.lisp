@@ -94,6 +94,36 @@ run-or-raise with group search t."
     (echo string)
     (setf *message-window-gravity* old-location)))
 
+(defun run-raise-pull-list (cmd props &key prompt
+                                        (all-groups *run-or-raise-all-groups*)
+                                        (all-screens *run-or-raise-all-screens*)
+                                        (filter-pred stumpwm::*window-menu-filter*)
+                                        (fmt *window-format*))
+  "run-raise-pull-list opens a menu to choose either an existing window, or
+execute a command. If no windows match props, the command is run. This is built
+on run-or-raise"
+  (let ((windows (stumpwm::find-matching-windows props all-groups all-screens)))
+    (if (not windows)
+        (run-shell-command cmd)
+        (let* ((table  `(("NEW" ,cmd)
+                         ,@(mapcar (lambda (el)
+                                     (list (format-expand
+                                            *window-formatters* fmt el)
+                                           el))
+                                   windows)))
+               (result
+                 (second
+                  (select-from-menu (current-screen) table prompt
+                                    1 nil filter-pred))))
+          (cond ((not result)
+                 '())
+                ((stringp result)
+                 (run-shell-command result))
+                ((window-visible-p result)
+                 (group-focus-window (current-group) result))
+                (t
+                 (stumpwm::pull-window result)))))))
+
 ;; startup run commands
 (mapc
  #'(lambda (cmd)
