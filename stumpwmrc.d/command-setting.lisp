@@ -271,30 +271,15 @@ used for matching windows with run-or-raise or window placement-merules."
   (run-shell-command "pactl set-source-mute @DEFAULT_SOURCE@ toggle")
   (stumpwm::eval-command "pactl-mic-status"))
 
-(progn
-  (defvar *zz-shot-folder* "~/Pictures/screenshots"
-    "folder for store screenshots")
-  (defcommand scrot-full () ()
-    "screenshot full"
-    (ensure-directories-exist *zz-shot-folder*)
-    (run-shell-command (format nil "scrot ~a/%b%d::%H%M%S.png"
-                               *zz-shot-folder*) t)
-    (message "screenshot full under: ~a" *zz-shot-folder*))
-  (defcommand scrot-window () ()
-    "screenshot windows"
-    (ensure-directories-exist *zz-shot-folder*)
-    (run-shell-command (format nil "scrot -u ~a/%b%d::%H%M%S.png"
-                               *zz-shot-folder*) t)
-    (message "screenshot window under: ~a" *zz-shot-folder*))
-  (defcommand scrot-select () ()
-    "screenshot select"
-    (ensure-directories-exist *zz-shot-folder*)
-    (let* ((file-name (string-trim '(#\Newline)
-                                   (run-shell-command "date +%b%d::%H%M%S.png" t)))
-           (file-path (format nil "~a/~a" *zz-shot-folder* file-name)))
-      (run-shell-command (format nil "scrot -s ~a" file-path) t)
-      (when (probe-file file-path)
-        (message "screenshot select: ~a" file-path)))))
+(defcommand scrot-full () ()
+  "screenshot full"
+  (screen-snap "scrot"))
+(defcommand scrot-window () ()
+  "screenshot windows"
+  (screen-snap "scrot -u"))
+(defcommand scrot-select () ()
+  "screenshot select"
+  (screen-snap "scrot -s"))
 
 (defcommand capslock-toggle () ()
   "capslock toggle"
