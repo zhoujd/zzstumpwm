@@ -28,6 +28,7 @@
 (def-run-or-raise-command klavaro       '(:class "Klavaro"))
 (def-run-or-raise-command libreoffice   '(:title "libreoffice"))
 (def-run-or-raise-command mpv           '(:class "mpv"))
+(def-run-or-raise-command meld          '(:class "Meld"))
 (def-run-or-raise-command nyxt          '(:class "Nyxt"))
 (def-run-or-raise-command qutebrowser   '(:class "qutebrowser"))
 (def-run-or-raise-command pidgin        '(:class "Pidgin"))
