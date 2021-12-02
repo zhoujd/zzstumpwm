@@ -50,7 +50,8 @@
   (kbd "r")                 "exec remmina"
   (kbd "C-r")               (urxvt-command "ranger")
   (kbd "t")                 "teams"
-  (kbd "C-t")               "tmux"
+  (kbd "C-t")               (urxvt-command "tmux")
+  (kbd "M-t")               "tmux"
   (kbd "s")                 (urxvt-command "speedpad")
   (kbd "C-s")               "stumpish"
   (kbd "M-s")               "exec stacer"
