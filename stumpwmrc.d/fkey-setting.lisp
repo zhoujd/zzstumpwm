@@ -6,7 +6,7 @@
 (apply-keys-to-map
  *top-map*
  (list
-  (kbd "s-F1")      "gprint"
+  (kbd "s-F1")      "group-print"
   (kbd "s-M-F1")    "group-move"
   (kbd "s-F2")      "exec rofi -show run"
   (kbd "s-M-F2")    "exec rofi -show drun"

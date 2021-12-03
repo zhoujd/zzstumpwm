@@ -91,10 +91,6 @@ used for matching windows with run-or-raise or window placement-merules."
   "run remote jiandon-mobl"
   (run-or-raise "remmina -c ~/.jiandon-mobl.remmina" '(:title "jiandon-mobl")))
 
-(defcommand gprint () ()
-  "print current group name"
-  (message "Current Group: ~A" (stumpwm::group-name (current-group))))
-
 (defcommand runurxvt () ()
   "run urxvt"
   (run-or-raise-prefer-group "urxvt" "URxvt"))

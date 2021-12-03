@@ -107,6 +107,10 @@
       (exchange-direction :down)
       (float-window-gravity :bottom)))
 
+(defcommand group-print () ()
+  "print current group name"
+  (message "Current Group: ~A" (stumpwm::group-name (current-group))))
+
 (defcommand group-fresh () ()
   "refresh current group"
   (gother)
