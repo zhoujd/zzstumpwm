@@ -109,7 +109,8 @@
 
 (defcommand group-print () ()
   "print current group name"
-  (message "Current Group: ~A" (stumpwm::group-name (current-group))))
+  (message "Current Group: ~A"
+           (stumpwm::group-name (current-group))))
 
 (defcommand group-fresh () ()
   "refresh current group"
@@ -134,3 +135,31 @@
   (if (typep (current-group) 'stumpwm::tile-group)
       (toggle-root)
       (message "No support in float group.")))
+
+;; save & restore group
+(progn
+  (defvar *zz-group-file* "~/.stumpwm-group"
+    "group layout file name")
+  (defcommand dump-group-file () ()
+    "dump group"
+    (dump-group-to-file *zz-group-file*))
+  (defcommand restore-group-file () ()
+    "restore group"
+    (if (probe-file *zz-group-file*)
+        (stumpwm::restore-from-file *zz-group-file*)
+        (message "This no is ~a." *zz-group-file*))))
+
+(defcommand window-info () ()
+  "Shows the properties of the current window. These properties can be
+used for matching windows with run-or-raise or window placement-merules."
+  (let ((w (current-window))
+        (nl (string #\NewLine))
+        (*suppress-echo-timeout* t))
+    (echo-string (current-screen)
+                 (concat "class:    " (stumpwm::window-class w) nl
+                         "instance: " (stumpwm::window-res w) nl
+                         "type:     " (string (stumpwm::window-type w)) nl
+                         "role:     " (stumpwm::window-role w) nl
+                         "title:    " (stumpwm::window-title w) nl
+                         "width:    " (format nil "~a" (stumpwm::window-width w)) nl
+                         "height    " (format nil "~a" (stumpwm::window-height w))))))

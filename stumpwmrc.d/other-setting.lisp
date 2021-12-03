@@ -136,6 +136,14 @@ on run-or-raise"
       (run-raise-pull-list cmd `(:class ,win-cls))
       (run-raise-pull-list cmd `(:class ,win-cls) :all-groups nil :all-screens nil)))
 
+  (defun shift-windows-forward (frames win)
+    (when frames
+      (let ((frame (car frames)))
+        (shift-windows-forward (cdr frames)
+                               (stumpwm::frame-window frame))
+        (when win
+          (stumpwm::pull-window win frame)))))
+
 ;; startup run commands
 (mapc
  #'(lambda (cmd)
