@@ -1,9 +1,9 @@
 ### .xinitrc
 
-## Source zwmrc
+# source zwmrc
 [ -f ~/.zwmrc ] && . ~/.zwmrc 2>&1 > ~/.zwmrc.log
 
-## WM=stumpwm startx
+# WM=stumpwm startx
 case $WM in
     stumpwm )
         exec stumpwm
