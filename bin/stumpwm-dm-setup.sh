@@ -9,7 +9,7 @@ fi
 echo "[Desktop Entry]
 Name=Stumpwm
 Comment=Stumpwm window manager
-Exec=startstumpwm
+Exec=stumpwm-session
 Icon=
 Type=Application
 DesktopNames=STUMPWM

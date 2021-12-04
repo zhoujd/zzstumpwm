@@ -6,10 +6,10 @@
 # WM=stumpwm startx
 case $WM in
     stumpwm )
-        exec startstumpwm
+        exec stumpwm-session
         ;;
     zwm )
-        exec zwm
+        exec zwm-session
         ;;
     sawfish )
         exec sawfish
@@ -18,6 +18,6 @@ case $WM in
         exec startxfce4
         ;;
     * )
-        exec zwm
+        exec zwm-session
         ;;
 esac

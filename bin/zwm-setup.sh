@@ -6,13 +6,13 @@ TARGET=/usr/bin/
 
 install() {
     echo "install zwm"
-    sudo ln -sfvT $SCRIPT_ROOT/zwm $TARGET/zwm
+    sudo ln -sfvT $SCRIPT_ROOT/zwm-session $TARGET/zwm-session
     sudo ln -sfvT $SCRIPT_ROOT/startzwm $TARGET/startzwm
 }
 
 uninstall() {
     echo "uninstall zwm"
-    sudo rm -vf $TARGET/zwm
+    sudo rm -vf $TARGET/zwm-session
     sudo rm -vf $TARGET/startzwm
 }
 
