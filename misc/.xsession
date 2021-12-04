@@ -1,4 +1,4 @@
 ### .xsession
 
-# Source files
-test -f ~/.xinitrc && . ~/.xinitrc
+# source files
+[ -f ~/.xinitrc ] && . ~/.xinitrc
