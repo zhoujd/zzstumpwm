@@ -1,7 +1,7 @@
 ### .xinitrc
 
 # source zwmrc
-[ -f ~/.zwmrc ] && . ~/.zwmrc 2>&1 > ~/.zwmrc.log
+[ -f ~/.zwmrc ] && . ~/.zwmrc
 
 # WM=stumpwm startx
 case $WM in
