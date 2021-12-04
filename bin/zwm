@@ -7,9 +7,7 @@ echo "You can also run: $(basename $0) {stumpwm|clfswm}"
 WM_SELECT=${1:-stumpwm}
 
 ## Source zwmrc
-if [ -f ~/.zwmrc ]; then
-    . ~/.zwmrc 2>&1 > ~/.zwmrc.log
-fi
+[ -f ~/.zwmrc ] && . ~/.zwmrc 2>&1 > ~/.zwmrc.log
 
 ## Start window manager
 case $WM_SELECT in

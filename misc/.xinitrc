@@ -1,11 +1,8 @@
 ### .xinitrc
 
 ## Source zwmrc
-if [ -f ~/.zwmrc ]; then
-    . ~/.zwmrc 2>&1 > ~/.zwmrc.log
-fi
+[ -f ~/.zwmrc ] && . ~/.zwmrc 2>&1 > ~/.zwmrc.log
 
-### Switching between desktop environments/window managers
 ## WM=stumpwm startx
 case $WM in
     stumpwm )
