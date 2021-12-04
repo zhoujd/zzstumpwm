@@ -6,7 +6,7 @@
 # WM=stumpwm startx
 case $WM in
     stumpwm )
-        exec stumpwm
+        exec startstumpwm
         ;;
     zwm )
         exec zwm
