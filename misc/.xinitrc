@@ -1,8 +1,5 @@
 ### .xinitrc
 
-# source zwmrc
-[ -f ~/.zwmrc ] && . ~/.zwmrc
-
 # WM=stumpwm startx
 case $WM in
     stumpwm )
