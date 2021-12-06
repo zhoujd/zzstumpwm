@@ -151,12 +151,12 @@ on run-or-raise"
  (list
   (list "xset" :options "b off")
   (list "xsetroot" :options "-cursor_name left_ptr")
-  (list "xcompmgr" :options "-C")
   (list "nitrogen" :options "--restore")
   (list "ulauncher" :options "--hide-window")
   (list "urxvtd" :options "-q -f -o")
   (list "unclutter")
   (list "redshift")
+  (list "compton")
   (list "keynav")
   (list "dunst")
   (list "nm-applet")

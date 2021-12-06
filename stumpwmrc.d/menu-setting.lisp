@@ -30,8 +30,12 @@
       ("2-Disconnect VPN" "runvpn down")))
     ("7+SYSTEM"
      ("1+COMPOSITE"
-      ("1-On"             "xcompmgr -C")
-      ("2-Off"            "killall xcompmgr"))
+      ("1+COMPTON"
+       ("1-On"             "compton")
+       ("2-Off"            "killall compton"))
+      ("2+XCOMPMGR"
+       ("1-On"             "xcompmgr -C")
+       ("2-Off"            "killall xcompmgr")))
      ("2+UNCLUTTER"
       ("1-On"             "unclutter")
       ("2-Off"            "killall unclutter"))
