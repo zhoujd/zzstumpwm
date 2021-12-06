@@ -24,10 +24,6 @@
 (defun kill-ps (command)
   (run-shell-command (kill-ps-command command)))
 
-(defun gnome-term-command (name)
-  "Start a gnome-terminal with an command session"
-  (format nil "exec gnome-terminal --name=~a -t ~a -x ~a" name name name))
-
 (defun xterm-command (name)
   "Start a xterm with an command session"
   (format nil "exec xterm -e ~a" name))
