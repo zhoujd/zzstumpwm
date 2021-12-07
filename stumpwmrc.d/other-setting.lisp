@@ -150,7 +150,7 @@ on run-or-raise"
   (list "nitrogen" :options "--restore")
   (list "ulauncher" :options "--hide-window")
   (list "urxvtd" :options "-q -f -o")
-  (list "unclutter" :options "-root -idle 1")
+  (list "unclutter")
   (list "redshift")
   (list "compton")
   (list "keynav")
