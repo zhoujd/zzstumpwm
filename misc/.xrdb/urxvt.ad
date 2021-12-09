@@ -34,7 +34,7 @@ URxvt.iso14755_52: false
 
 !! disable bell
 URxvt.urgentOnBell: false
-URxvt.visualBell: true
+URxvt.visualBell: false
 
 !! urxvt fonts
 URxvt.font: xft:JetBrains Mono NL:size=13, \
