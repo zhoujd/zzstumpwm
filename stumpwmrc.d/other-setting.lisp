@@ -147,6 +147,7 @@ on run-or-raise"
  (list
   (list "xset" :options "b off")
   (list "xsetroot" :options "-cursor_name left_ptr")
+  (list "ibus" :options "engine xkb:us::eng")
   (list "nitrogen" :options "--restore")
   (list "ulauncher" :options "--hide-window")
   (list "urxvtd" :options "-q -f -o")
