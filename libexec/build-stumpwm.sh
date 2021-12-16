@@ -31,8 +31,8 @@ clean() {
 
 env() {
     echo "Set stumpwm env start"
-    tee /etc/profile.d/zz-stumpwm.sh <<EOF
-    export PATH=/usr/local/stumpwm/bin\${PATH:+:}\$PATH
+    sudo tee /etc/profile.d/zz-stumpwm.sh <<EOF
+export PATH=/usr/local/stumpwm/bin\${PATH:+:}\$PATH
 EOF
     echo "Set stumpwm env done"
 }
