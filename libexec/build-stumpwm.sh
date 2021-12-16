@@ -29,6 +29,14 @@ clean() {
     echo "Clean stumpwm clean"
 }
 
+env() {
+    echo "Set stumpwm env start"
+    tee /etc/profile.d/zz-stumpwm.sh <<EOF
+    export PATH=/usr/local/stumpwm/bin\${PATH:+:}\$PATH
+EOF
+    echo "Set stumpwm env done"
+}
+
 case $1 in
     build )
         build
@@ -36,8 +44,11 @@ case $1 in
     clean )
         clean
         ;;
+    env )
+        env
+        ;;
     * )
-        echo "$(basename $0) {build|clean}"
+        echo "$(basename $0) {build|clean|env}"
         ;;
 esac
 
