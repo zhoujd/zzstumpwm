@@ -3,25 +3,29 @@
 
 (in-package :zwm)
 
-;; process management
 (defun ps-exists (ps)
+  "check process exist"
   (let ((f "ps -ef | grep ~S | grep -v -e grep -e stumpish | wc -l"))
     (< 0 (parse-integer (run-shell-command (format nil f ps) t)))))
 
 (defun start-command-ps (command &key options (background t))
+  "start command if not exist"
   (unless (ps-exists command)
     (run-shell-command
      (concat command " " options " " (when background "&")))))
 
 (defun emacs-ds-exists ()
+  "check emacs process exist"
   (let ((f "ps -e -o args | grep -E 'emacs --(fg-|)daemon' | wc -l"))
     (< 0 (parse-integer (run-shell-command f t)))))
 
 (defun kill-ps-command (command)
+  "kill process command"
   (format nil "kill -9 `ps -ef | grep ~S | grep -v grep | awk '{print $2}'`"
           command))
 
 (defun kill-ps (command)
+  "kill process"
   (run-shell-command (kill-ps-command command)))
 
 (defun xterm-command (name)
