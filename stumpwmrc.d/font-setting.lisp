@@ -1,5 +1,5 @@
 ;;;; font setting -*-lisp-*-
-;;xlsfonts
+;;tools: xlsfonts or xfontsel
 
 (in-package :zwm)
 
