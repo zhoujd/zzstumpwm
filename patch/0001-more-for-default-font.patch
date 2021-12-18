@@ -1,0 +1,25 @@
+From 35df312fa861f04d5cb4261fd7e7eadda3eec57a Mon Sep 17 00:00:00 2001
+From: Zachary Zhou <zchrzhou@gmail.com>
+Date: Sat, 18 Dec 2021 13:36:18 +0800
+Subject: [PATCH] more for default font
+
+---
+ lisp/system/stumpwm/primitives.lisp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/lisp/system/stumpwm/primitives.lisp b/lisp/system/stumpwm/primitives.lisp
+index f27b09d..95cac89 100644
+--- a/lisp/system/stumpwm/primitives.lisp
++++ b/lisp/system/stumpwm/primitives.lisp
+@@ -462,7 +462,7 @@ are valid values.
+ (defparameter +default-background-color+ "Black")
+ (defparameter +default-window-background-color+ "Black")
+ (defparameter +default-border-color+ "White")
+-(defparameter +default-font-name+ "9x15")
++(defparameter +default-font-name+ "12x24")
+ (defparameter +default-focus-color+ "White")
+ (defparameter +default-unfocus-color+ "Black")
+ (defparameter +default-float-focus-color+ "Orange")
+-- 
+2.25.1
+
