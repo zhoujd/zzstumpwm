@@ -4,7 +4,7 @@
 (in-package :zwm)
 
 ;; start-up message
-(setf *startup-message* (machine-instance))
+(setf *startup-message* nil)
 
 ;; color select
 (let ((foreground-color "green")

@@ -1,5 +1,5 @@
 ;;;; font setting -*-lisp-*-
-;;
+;;xlsfonts
 
 (in-package :zwm)
 
@@ -10,6 +10,6 @@
           (set-font (make-instance 'xft:font
                                    :family "WenQuanYi Micro Hei Mono"
                                    :subfamily "Regular"
-                                   :size 11
+                                   :size 12
                                    :antialias t)))
-     (set-font "10x20")))
+     (set-font "12x24")))
