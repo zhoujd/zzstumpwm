@@ -8,7 +8,6 @@
 
 (in-package :zwm)
 
-;; loading additional rc files
 (defvar *zz-load-directory*
   (directory-namestring
    (truename (merge-pathnames (user-homedir-pathname)
