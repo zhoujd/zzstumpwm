@@ -126,9 +126,11 @@
 
 (defcommand group-fullscreen () ()
   "group fullscreen"
-  (if (typep (current-group) 'stumpwm::tile-group)
-      (fullscreen)
-      (float-window-gravity :center)))
+  (if (current-window)
+      (if (typep (current-group) 'stumpwm::tile-group)
+          (fullscreen)
+          (float-window-gravity :center))
+      (message "No fullscreen for root")))
 
 (defcommand group-desktop () ()
   "group desktop"
