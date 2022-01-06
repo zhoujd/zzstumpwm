@@ -62,7 +62,7 @@
     sticky_history = yes        # Make notifications remain until clicked on (yes) or timeout as normal (no) when recalled from history
     history_length = 20         # Maximum amount of notifications kept in history
 
-    icon_folders = /usr/share/icons/hicolor/16x16
+    icon_folders = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/
     startup_notification = false
     dmenu = /usr/bin/dmenu -p dunst:
     browser = /usr/bin/firefox -new-tab
