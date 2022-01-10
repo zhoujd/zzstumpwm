@@ -43,6 +43,8 @@
   (kbd "C-m")               "claws-mail"
   (kbd "n")                 "cherrytree"
   (kbd "C-n")               "exec cherrytree"
+  (kbd "o")                 "ocenaudio"
+  (kbd "C-o")               "exec ocenaudio"
   (kbd "p")                 (urxvt-command "bpython")
   (kbd "C-p")               "pavucontrol"
   (kbd "q")                 "slingscold"
