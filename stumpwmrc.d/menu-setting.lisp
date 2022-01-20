@@ -153,6 +153,12 @@
    (format nil "~a"
            (merge-pathnames "libexec/rofi-search" *zz-load-directory*))))
 
+(defcommand vbox-menu () ()
+  "virtualbox menu"
+  (run-shell-command
+   (format nil "~a"
+           (merge-pathnames "libexec/rofi-virtualbox" *zz-load-directory*))))
+
 (defcommand system-action () ()
   "system actions"
   (let ((choice (cadr (select-from-menu

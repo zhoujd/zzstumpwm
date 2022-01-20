@@ -283,11 +283,12 @@
   (kbd "k")                 "keymap-menu"
   (kbd "l")                 "locate-menu"
   (kbd "o")                 "audio-menu"
-  (kbd "p")                 "screen-menu"
+  (kbd "r")                 "screen-menu"
   (kbd "s")                 "search-menu"
   (kbd "t")                 "tmux-menu"
   (kbd "v")                 "vpn-menu"
   (kbd "w")                 "wifi-menu"
+  (kbd "x")                 "vbox-menu"
   ))
 
 (apply-keys-to-map
