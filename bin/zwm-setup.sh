@@ -2,7 +2,7 @@
 #set -x -v
 
 SCRIPT_ROOT=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
-TARGET=/usr/bin/
+TARGET=/usr/bin
 
 install() {
     echo "install zwm"
