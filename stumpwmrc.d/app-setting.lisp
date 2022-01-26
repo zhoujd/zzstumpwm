@@ -72,11 +72,11 @@
 
 (defcommand runemacs () ()
   "run emacs"
-  (run-or-raise-prefer-group "emacs" "Emacs"))
+  (run-or-raise-prefer-group "emacsclient -c -a emacs" "Emacs"))
 
 (defcommand pullemacs () ()
   "pull emacs"
-  (run-or-pull-prefer-group "emacs" "Emacs"))
+  (run-or-pull-prefer-group "emacsclient -c -a emacs" "Emacs"))
 
 (defcommand emacsclient () ()
   "emacsclient"
