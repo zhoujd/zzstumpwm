@@ -194,6 +194,7 @@
   (kbd "s-p")               "screen-menu"
   (kbd "s-o")               "window-other"
   (kbd "s-M-o")             "gother"
+  (kbd "s-q")               "exec xdotool getwindowfocus windowkill"
 
   (kbd "s-C")               "urxvt"
   (kbd "s-E")               "emacs"
