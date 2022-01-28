@@ -211,6 +211,6 @@
       (safe-end)
       (kill-ps "stumpwm"))))
 
-(defcommand quit-window () ()
-  "quit current window"
+(defcommand kill-current-window () ()
+  "kill current window"
   (run-shell-command "xdotool getwindowfocus windowkill"))
