@@ -194,7 +194,8 @@
   (kbd "s-p")               "screen-menu"
   (kbd "s-o")               "window-other"
   (kbd "s-M-o")             "gother"
-  (kbd "s-q")               "quit-window"
+  (kbd "s-q")               "safe-kill"
+  (kbd "s-M-q")             "group-kill"
 
   (kbd "s-C")               "urxvt"
   (kbd "s-E")               "emacs"
