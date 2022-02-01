@@ -214,3 +214,7 @@
 (defcommand kill-current-window () ()
   "kill current window"
   (run-shell-command "xdotool getwindowfocus windowkill"))
+
+(defcommand recordscreen () ()
+  "record screen"
+  (run-shell-command "simplescreenrecorder"))

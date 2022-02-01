@@ -51,6 +51,7 @@
   (kbd "C-q")               "exec slingscold"
   (kbd "r")                 "exec remmina"
   (kbd "C-r")               (urxvt-command "ranger")
+  (kbd "M-r")               "recordscreen"
   (kbd "t")                 "teams"
   (kbd "C-t")               (urxvt-command "tmux")
   (kbd "M-t")               "tmux"
