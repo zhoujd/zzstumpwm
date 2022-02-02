@@ -219,9 +219,24 @@
   "record screen"
   (run-shell-command "simplescreenrecorder"))
 
+(defcommand record-stop () ()
+  "screen record stop"
+  (message "screen record stop")
+  (let ((cmd (format nil "~a stop"
+                     (merge-pathnames "libexec/screen-record" *zz-load-directory*))))
+    (run-shell-command cmd)))
+
+(defcommand record-start () ()
+  "screen record start"
+  (message "screen record start")
+  (let* ((file "/tmp/record.mkv")
+         (cmd (format nil "~a start ~a"
+                      (merge-pathnames "libexec/screen-record" *zz-load-directory*)
+                      file)))
+    (run-shell-command cmd)))
+
 (defcommand record-toggle () ()
   "screen record toggle"
-  (message "~a"
-           (run-shell-command
-            (format nil "~a toggle"
-                    (merge-pathnames "libexec/screen-record" *zz-load-directory*)) t)))
+  (run-shell-command
+   (format nil "~a toggle"
+           (merge-pathnames "libexec/screen-record" *zz-load-directory*))))
