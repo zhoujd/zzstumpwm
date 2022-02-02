@@ -2,6 +2,7 @@
 
 pid_file=/tmp/screen-record-pid
 default_file=/tmp/record.mkv
+log_file=/tmp/record.log
 
 start() {
     if [ $# != 1 ]; then
@@ -22,7 +23,8 @@ start() {
          -s ${w}x${h} \
          -framerate 30 \
          -i $DISPLAY+${x},${y} \
-         ${file} &
+         ${file} \
+         2>$log_file &
     pid=$!
     echo $pid > $pid_file
 }
