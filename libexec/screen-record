@@ -1,16 +1,60 @@
 #!/bin/bash
 
-if [ $# != 1 ]; then
-    echo "Usage: $(basename $0) {file}"
-    exit 1
-fi
+pid_file=/tmp/screen-record-pid
 
-file=$1
-read -r x y w h G ID < <(slop -f '%x %y %w %h %g %i')
-echo "Recording x:$x, y:$y, w:$w, h:$h, file:$file"
-exec ffmpeg -y \
-     -f x11grab \
-     -s ${w}x${h} \
-     -framerate 30 \
-     -i $DISPLAY+${x},${y} \
-     ${file}
+start() {
+    if [ $# != 1 ]; then
+        echo "Usage: $(basename $0) start {file}"
+        echo "Usage: mkv is good support"
+        exit 1
+    fi
+    
+    echo "record start"
+    file=$1
+    read -r x y w h G ID < <(slop -f '%x %y %w %h %g %i')
+    echo "Recording x:$x, y:$y, w:$w, h:$h, file:$file"
+    exec ffmpeg -y \
+         -f x11grab \
+         -s ${w}x${h} \
+         -framerate 30 \
+         -i $DISPLAY+${x},${y} \
+         -y ${file} &
+    pid=$!
+    echo $pid > $pid_file
+}
+
+stop() {
+    echo "record stop"
+    if [ -f $pid_file ]; then
+        kill -9 $(cat $pid_file)
+        rm -f $pid_file
+    else
+        echo "no exist recording"
+    fi
+}
+
+status() {
+    echo "record status"
+    if [ -f $pid_file ]; then
+        cat $pid_file
+    else
+        echo "no exist recording"
+    fi
+}
+
+
+case $1 in
+    start )
+        start $2
+        ;;
+    stop )
+        stop
+        ;;
+    status )
+        status
+        ;;
+    * )
+        echo "Usage $(basename $0) {start|stop|status}"
+        exit 1
+        ;;
+esac
