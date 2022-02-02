@@ -17,12 +17,12 @@ start() {
         exit 1
     fi
     echo "recording x:$x, y:$y, w:$w, h:$h, file:$file"
-    exec ffmpeg \
+    exec ffmpeg -y \
          -f x11grab \
          -s ${w}x${h} \
          -framerate 30 \
          -i $DISPLAY+${x},${y} \
-         -y ${file} &
+         ${file} &
     pid=$!
     echo $pid > $pid_file
 }
