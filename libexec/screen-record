@@ -5,7 +5,6 @@ pid_file=/tmp/screen-record-pid
 start() {
     if [ $# != 1 ]; then
         echo "Usage: $(basename $0) start {file}"
-        echo "Usage: mkv is good support"
         exit 1
     fi
     
@@ -23,10 +22,12 @@ start() {
     echo $pid > $pid_file
 }
 
+## To stop recording, make the terminal active and then press q.
+## kill the ffmpeg process with SIGINT
 stop() {
     echo "record stop"
     if [ -f $pid_file ]; then
-        kill -9 $(cat $pid_file)
+        kill -SIGINT $(cat $pid_file)
         rm -f $pid_file
     else
         echo "no exist recording"
