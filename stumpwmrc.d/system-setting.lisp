@@ -218,3 +218,10 @@
 (defcommand recordscreen () ()
   "record screen"
   (run-shell-command "simplescreenrecorder"))
+
+(defcommand record-toggle () ()
+  "screen record toggle"
+  (message "~a"
+           (run-shell-command
+            (format nil "~a toggle"
+                    (merge-pathnames "libexec/screen-record" *zz-load-directory*)) t)))
