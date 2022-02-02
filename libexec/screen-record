@@ -59,6 +59,14 @@ toggle() {
     fi
 }
 
+play() {
+    if [ -f $default_file ]; then
+        mpv $default_file
+    else
+        echo "no exist $default_file"
+    fi
+}
+
 case $1 in
     start )
         start $2
@@ -72,8 +80,11 @@ case $1 in
     toggle )
         toggle
         ;;
+    play )
+        play
+        ;;
     * )
-        echo "Usage $(basename $0) {start|stop|status|toggle}"
+        echo "Usage $(basename $0) {start|stop|status|toggle|play}"
         exit 1
         ;;
 esac

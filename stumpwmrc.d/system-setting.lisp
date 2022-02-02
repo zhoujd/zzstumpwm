@@ -221,18 +221,28 @@
 
 (defcommand record-stop () ()
   "screen record stop"
-  (message "screen record stop")
   (let ((cmd (format nil "~a stop"
-                     (merge-pathnames "libexec/screen-record" *zz-load-directory*))))
-    (run-shell-command cmd)))
+                     (merge-pathnames "libexec/screen-record" *zz-load-directory*)))
+        (msg "Stop recording"))
+    (run-shell-command cmd)
+    (message msg)))
 
 (defcommand record-start () ()
   "screen record start"
-  (message "screen record start")
   (let* ((file "/tmp/record.mkv")
          (cmd (format nil "~a start ~a"
                       (merge-pathnames "libexec/screen-record" *zz-load-directory*)
-                      file)))
+                      file))
+         (msg "Start recording"))
+    (message msg)
+    (run-shell-command cmd)))
+
+(defcommand record-play () ()
+  "screen record play"
+  (let* ((cmd (format nil "~a play"
+                      (merge-pathnames "libexec/screen-record" *zz-load-directory*)))
+         (msg "Play recording"))
+    (message msg)
     (run-shell-command cmd)))
 
 (defcommand record-toggle () ()

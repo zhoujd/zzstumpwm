@@ -51,7 +51,6 @@
   (kbd "C-q")               "exec slingscold"
   (kbd "r")                 "exec remmina"
   (kbd "C-r")               (urxvt-command "ranger")
-  (kbd "M-r")               "record-toggle"
   (kbd "t")                 "teams"
   (kbd "C-t")               (urxvt-command "tmux")
   (kbd "M-t")               "tmux"
@@ -233,7 +232,10 @@
   (kbd "C-l")               "exec zlock"
   (kbd "t")                 "exec transset"
 
-  (kbd "r")                 "reso-menu"
+  (kbd "r")                 "record-start"
+  (kbd "C-r")               "record-stop"
+  (kbd "M-r")               "record-play"
+  (kbd "s-r")               "record-toggle"
   (kbd "b")                 "show-battery"
 
   (kbd "p")                 "scrot-full"
