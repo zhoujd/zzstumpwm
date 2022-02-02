@@ -12,6 +12,10 @@ start() {
     echo "record start"
     file=$1
     read -r x y w h G ID < <(slop -f '%x %y %w %h %g %i')
+    if [ -z $G ]; then
+        echo "slop cancelled"
+        exit 1
+    fi
     echo "recording x:$x, y:$y, w:$w, h:$h, file:$file"
     exec ffmpeg -y \
          -f x11grab \
