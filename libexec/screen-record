@@ -11,7 +11,11 @@ start() {
     echo "record start"
     file=$1
     read -r x y w h G ID < <(slop -f '%x %y %w %h %g %i')
-    echo "Recording x:$x, y:$y, w:$w, h:$h, file:$file"
+    if [ $? != 0 ]; then
+        echo "abort for slop"
+        exit 2
+    fi        
+    echo "recording x:$x, y:$y, w:$w, h:$h, file:$file"
     exec ffmpeg -y \
          -f x11grab \
          -s ${w}x${h} \
@@ -43,6 +47,13 @@ status() {
     fi
 }
 
+toggle() {
+    if [ -f $pid_file ]; then
+        stop
+    else
+        start $1
+    fi
+}
 
 case $1 in
     start )
@@ -54,8 +65,11 @@ case $1 in
     status )
         status
         ;;
+    toggle )
+        toggle $2
+        ;;
     * )
-        echo "Usage $(basename $0) {start|stop|status}"
+        echo "Usage $(basename $0) {start|stop|status|toggle}"
         exit 1
         ;;
 esac
