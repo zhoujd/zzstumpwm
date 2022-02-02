@@ -17,7 +17,7 @@ start() {
         exit 1
     fi
     echo "recording x:$x, y:$y, w:$w, h:$h, file:$file"
-    exec ffmpeg -y \
+    exec ffmpeg \
          -f x11grab \
          -s ${w}x${h} \
          -framerate 30 \
