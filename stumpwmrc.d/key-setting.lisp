@@ -228,8 +228,8 @@
   (kbd "o")                 "sother"
 
   (kbd "l")                 "exec slock"
-  (kbd "M-l")               "exec xtrlock"
   (kbd "C-l")               "exec zlock"
+  (kbd "M-l")               "exec xtrlock"
   (kbd "t")                 "exec transset"
 
   (kbd "r")                 "record-start"
@@ -239,8 +239,8 @@
   (kbd "b")                 "show-battery"
 
   (kbd "p")                 "scrot-full"
-  (kbd "M-p")               "scrot-window"
   (kbd "C-p")               "scrot-select"
+  (kbd "M-p")               "scrot-window"
   ))
 
 (apply-keys-to-map
