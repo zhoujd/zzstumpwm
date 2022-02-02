@@ -64,7 +64,7 @@ case $1 in
         status
         ;;
     toggle )
-        toggle $2
+        toggle
         ;;
     * )
         echo "Usage $(basename $0) {start|stop|status|toggle}"
