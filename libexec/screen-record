@@ -1,6 +1,7 @@
 #!/bin/bash
 
 pid_file=/tmp/screen-record-pid
+default_file=/tmp/record.mkv
 
 start() {
     if [ $# != 1 ]; then
@@ -51,7 +52,7 @@ toggle() {
     if [ -f $pid_file ]; then
         stop
     else
-        start $1
+        start $default_file
     fi
 }
 
