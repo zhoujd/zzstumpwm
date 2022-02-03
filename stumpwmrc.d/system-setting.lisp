@@ -247,6 +247,7 @@
 
 (defcommand record-toggle () ()
   "screen record toggle"
-  (run-shell-command
-   (format nil "~a toggle"
-           (merge-pathnames "libexec/screen-record" *zz-load-directory*))))
+  (let ((pid-file "/tmp/screen-record-pid"))
+    (if (probe-file pid-file)
+        (stumpwm::eval-command "record-stop")
+        (stumpwm::eval-command "record-start"))))
