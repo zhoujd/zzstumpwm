@@ -232,10 +232,10 @@
   (kbd "M-l")               "exec xtrlock"
   (kbd "t")                 "exec transset"
 
-  (kbd "r")                 "record-start"
-  (kbd "C-r")               "record-stop"
-  (kbd "M-r")               "record-play"
-  (kbd "s-r")               "record-toggle"
+  (kbd "r")                 "record-toggle"
+  (kbd "C-r")               "record-start"
+  (kbd "M-r")               "record-stop"
+  (kbd "s-r")               "record-play"
   (kbd "b")                 "show-battery"
 
   (kbd "p")                 "scrot-full"
