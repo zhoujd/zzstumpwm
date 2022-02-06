@@ -26,6 +26,7 @@
 (def-run-or-raise-command meld          '(:class "Meld"))
 (def-run-or-raise-command nyxt          '(:class "Nyxt"))
 (def-run-or-raise-command ocenaudio     '(:class "ocenaudio"))
+(def-run-or-raise-command openshot      '(:class "openshot"))
 (def-run-or-raise-command qutebrowser   '(:class "qutebrowser"))
 (def-run-or-raise-command pidgin        '(:class "Pidgin"))
 (def-run-or-raise-command slingscold    '(:Class "Slingscold"))

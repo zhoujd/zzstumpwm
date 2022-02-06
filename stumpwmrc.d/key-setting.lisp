@@ -45,6 +45,7 @@
   (kbd "C-n")               "exec cherrytree"
   (kbd "o")                 "ocenaudio"
   (kbd "C-o")               "exec ocenaudio"
+  (kbd "M-o")               "openshot"
   (kbd "p")                 (urxvt-command "bpython")
   (kbd "C-p")               "pavucontrol"
   (kbd "q")                 "slingscold"
