@@ -26,8 +26,8 @@
   (kbd "s-M-F9")    "gselect"
   (kbd "s-F10")     "colon1"
   (kbd "s-M-F10")   "eval1"
-  (kbd "s-F11")     "gnew"
-  (kbd "s-M-F11")   "gnew-float"
+  (kbd "s-F11")     "gnew1"
+  (kbd "s-M-F11")   "gnew-float1"
   (kbd "s-F12")     "lastmsg"
   (kbd "s-M-F12")   "echo-date"
   ))

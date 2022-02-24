@@ -3,6 +3,22 @@
 
 (in-package :zwm)
 
+(defcommand gnew1 (&optional (initial "")) (:rest)
+  "colon1"
+  (let ((name (read-one-line (current-screen) "Group Name: " :initial-input initial)))
+    (unless name
+      (throw 'error :abort))
+    (when (plusp (length name))
+      (run-commands (concat "gnew " name)))))
+
+(defcommand gnew-float1 (&optional (initial "")) (:rest)
+  "colon1"
+  (let ((name (read-one-line (current-screen) "Group Name: " :initial-input initial)))
+    (unless name
+      (throw 'error :abort))
+    (when (plusp (length name))
+      (run-commands (concat "gnew-float " name)))))
+
 (defcommand window-other () ()
   "Focus previously focused floating window."
   (if (typep (current-group) 'stumpwm::tile-group)
