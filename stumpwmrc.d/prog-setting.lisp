@@ -6,14 +6,16 @@
 (defcommand colon1 (&optional (initial "")) (:rest)
   "colon1"
   (let ((cmd (read-one-line (current-screen) ": " :initial-input initial)))
-    (unless (string= cmd "")
-      (stumpwm::eval-command cmd t))))
+    (when cmd
+      (unless (string= cmd "")
+        (stumpwm::eval-command cmd t)))))
 
 (defcommand eval1 (&optional (initial "")) (:rest)
   "eval1"
   (let ((line (read-one-line (current-screen) "Eval: " :initial-input initial)))
-    (unless (string= line "")
-      (stumpwm::eval-line line))))
+    (when line
+      (unless (string= line "")
+        (stumpwm::eval-line line)))))
 
 (defcommand bpython () ()
   "bpython"

@@ -109,7 +109,7 @@
                             cmd)
                     t))))
 
-(defcommand eval-line (&optional (initial "")) (:rest)
+(defcommand eval-cmd (&optional (initial "")) (:rest)
   "shell interactive command, done to exit"
   (let ((cmd (read-one-line (current-screen) "cmd: " :initial-input initial)))
     (when cmd
@@ -117,7 +117,7 @@
                             cmd)
                     t))))
 
-(defcommand trans-line (&optional (initial "")) (:rest)
+(defcommand trans-cmd (&optional (initial "")) (:rest)
   "shell interactive command, done to exit"
   (let ((cmd (read-one-line (current-screen) "trans: " :initial-input initial)))
     (when cmd
