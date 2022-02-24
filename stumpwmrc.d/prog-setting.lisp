@@ -7,7 +7,7 @@
   "colon1"
   (let ((cmd (read-one-line (current-screen) ": " :initial-input initial)))
     (unless (string= cmd "")
-      (eval-command cmd t))))
+      (eval-command cmd))))
 
 (defcommand eval1 (&optional (initial "")) (:rest)
   "eval1"
