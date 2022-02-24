@@ -15,8 +15,8 @@
   (kbd "7")                 "exec libreoffice --calc"
   (kbd "8")                 "exec libreoffice --impress"
   (kbd "9")                 "trans-shell"
-  (kbd "0")                 "trans-command"
-  (kbd "-")                 "eval-command"
+  (kbd "0")                 "trans-line"
+  (kbd "-")                 "eval-line"
   (kbd "=")                 "eval-shell"
   ))
 
