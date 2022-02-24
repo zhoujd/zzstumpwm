@@ -3,6 +3,18 @@
 
 (in-package :zwm)
 
+(defcommand colon1 (&optional (initial "")) (:rest)
+  "colon1"
+  (let ((cmd (read-one-line (current-screen) ": " :initial-input initial)))
+    (unless (string= cmd "")
+      (eval-command cmd t))))
+
+(defcommand eval1 (&optional (initial "")) (:rest)
+  "eval1"
+  (let ((line (read-one-line (current-screen) "Eval: " :initial-input initial)))
+    (unless (string= line "")
+      (eval-line line))))
+
 (defcommand bpython () ()
   "bpython"
   (run-shell-command "exec urxvt -e bpython"))
