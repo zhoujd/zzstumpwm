@@ -37,12 +37,12 @@
 (defcommand pactl-up () ()
   "pactl sound up"
   (pactl-volume "+10%")
-  (stumpwm::eval-command "pactl-status"))
+  (eval-command "pactl-status"))
 
 (defcommand pactl-down () ()
   "pactl sound down"
   (pactl-volume "-10%")
-  (stumpwm::eval-command "pactl-status"))
+  (eval-command "pactl-status"))
 
 (defcommand pactl-inc () ()
   "pactl sound 100%"
@@ -61,17 +61,17 @@
 (defcommand pactl-toggle () ()
   "pactl sound toggle"
   (run-shell-command "pactl set-sink-mute @DEFAULT_SINK@ toggle")
-  (stumpwm::eval-command "pactl-status"))
+  (eval-command "pactl-status"))
 
 (defcommand pactl-mic-up () ()
   "pactl mic sound up"
   (pactl-mic-volume "+10%")
-  (stumpwm::eval-command "pactl-mic-status"))
+  (eval-command "pactl-mic-status"))
 
 (defcommand pactl-mic-down () ()
   "pactl mic sound down"
   (pactl-mic-volume "-10%")
-  (stumpwm::eval-command "pactl-mic-status"))
+  (eval-command "pactl-mic-status"))
 
 (defcommand pactl-mic-status () ()
   "pactl mic status"
@@ -82,7 +82,7 @@
 (defcommand pactl-mic-toggle () ()
   "pactl micphone toggle"
   (run-shell-command "pactl set-source-mute @DEFAULT_SOURCE@ toggle")
-  (stumpwm::eval-command "pactl-mic-status"))
+  (eval-command "pactl-mic-status"))
 
 (defcommand capslock-toggle () ()
   "capslock toggle"
@@ -249,5 +249,5 @@
   "screen record toggle"
   (let ((pid-file "/tmp/screen-record-pid"))
     (if (probe-file pid-file)
-        (stumpwm::eval-command "record-stop")
-        (stumpwm::eval-command "record-start"))))
+        (eval-command "record-stop")
+        (eval-command "record-start"))))

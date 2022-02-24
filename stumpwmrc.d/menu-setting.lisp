@@ -168,7 +168,7 @@
                          ("3-shutdown"  "shutdown"))
                        "Select system action"))))
     (when choice
-      (stumpwm::eval-command (format nil "~a" choice)))))
+      (eval-command (format nil "~a" choice)))))
 
 (defcommand kill-from-windowlist (&optional (fmt *window-format*)) (:rest)
   "kill from windowlist"

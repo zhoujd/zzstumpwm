@@ -7,13 +7,13 @@
   "colon1"
   (let ((cmd (read-one-line (current-screen) ": " :initial-input initial)))
     (unless (string= cmd "")
-      (stumpwm::eval-command cmd t))))
+      (eval-command cmd t))))
 
 (defcommand eval1 (&optional (initial "")) (:rest)
   "eval1"
   (let ((line (read-one-line (current-screen) "Eval: " :initial-input initial)))
     (unless (string= line "")
-      (stumpwm::eval-line line))))
+      (eval-line line))))
 
 (defcommand bpython () ()
   "bpython"

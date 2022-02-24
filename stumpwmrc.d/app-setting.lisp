@@ -105,23 +105,23 @@
   "shell interactive command, done to keep"
   (let ((cmd (read-one-line (current-screen) "shell: " :initial-input initial)))
     (when cmd
-      (stumpwm::eval-command (format nil "exec urxvt -e bash -c '~a; bash -l'"
+      (eval-command (format nil "exec urxvt -e bash -c '~a; bash -l'"
                             cmd)
                     t))))
 
-(defcommand eval-command (&optional (initial "")) (:rest)
+(defcommand eval-line (&optional (initial "")) (:rest)
   "shell interactive command, done to exit"
   (let ((cmd (read-one-line (current-screen) "cmd: " :initial-input initial)))
     (when cmd
-      (stumpwm::eval-command (format nil "exec urxvt -e bash -c '~a; read'"
+      (eval-command (format nil "exec urxvt -e bash -c '~a; read'"
                             cmd)
                     t))))
 
-(defcommand trans-command (&optional (initial "")) (:rest)
+(defcommand trans-line (&optional (initial "")) (:rest)
   "shell interactive command, done to exit"
   (let ((cmd (read-one-line (current-screen) "trans: " :initial-input initial)))
     (when cmd
-      (stumpwm::eval-command
+      (eval-command
        (format nil "exec urxvt -title 'trans' -e bash -c 'trans -no-warn ~a; read'"
                cmd)
        t))))
@@ -134,7 +134,7 @@
   "ssh shell"
   (let ((cmd (read-one-line (current-screen) "ssh: " :initial-input initial)))
     (when cmd
-      (stumpwm::eval-command (format nil "exec urxvt -e ssh ~a"
+      (eval-command (format nil "exec urxvt -e ssh ~a"
                             cmd)
                     t))))
 
