@@ -5,7 +5,7 @@
 ;;; Documentation: Layout functions
 ;;; --------------------------------------------------------------------------
 ;;;
-;;; (C) 2012 Philippe Brochard <pbrochard@common-lisp.net>
+;;; (C) 2005-2015 Philippe Brochard <pbrochard@common-lisp.net>
 ;;;
 ;;; This program is free software; you can redistribute it and/or modify
 ;;; it under the terms of the GNU General Public License as published by
@@ -428,13 +428,49 @@
 
 
 
+
+
+(defun three-columns-layout (child parent)
+  "Three Colums: main child in the middle, others on the two sides."
+  (with-slots (rx ry rw rh) parent
+    (let* ((managed-children (update-layout-managed-children child parent))
+           (pos (child-position child managed-children))
+           (len (max (1- (length managed-children)) 1))
+           (dy (round (/ rh (max (truncate (/ (+ (if (oddp pos) 1 0) len) 2)) 1))))
+           (size (or (frame-data-slot parent :tile-size) 0.75))
+           (other-size (if (> len 1) (/ (- 1 size) 2) (- 1 size))))
+      (if (> (length managed-children) 1)
+          (if (= pos 0)
+              (values (adj-border-xy (if (> len 1)
+                                         (round (+ rx (* rw other-size)))
+                                         rx) parent)
+                      (adj-border-xy ry parent)
+                      (adj-border-wh (round (* rw size)) child)
+                      (adj-border-wh rh child))
+              (values (adj-border-xy (if (oddp pos)
+                                         (round (+ rx (* rw (if (> len 1) (+ size other-size) size))))
+                                         rx) parent)
+                      (adj-border-xy (round (+ ry (* dy (truncate (/ (1- pos) 2))))) parent)
+                      (adj-border-wh (round (* rw other-size)) parent)
+                      (adj-border-wh dy parent)))
+          (no-layout child parent)))))
+
+(defun set-three-columns-layout ()
+  "Three Columns: main child in the middle, others on the two sides."
+  (layout-ask-size "Tile size in percent (%)" :tile-size)
+  (set-layout-managed-children)
+  (set-layout #'three-columns-layout))
+
+
+
 (register-layout-sub-menu 'frame-tile-layout-menu "Frame tile layout menu"
 			  '(("v" set-tile-layout)
 			    ("h" set-tile-horizontal-layout)
                             ("m" set-tile-layout-mix)
 			    ("c" set-one-column-layout)
 			    ("l" set-one-line-layout)
-			    ("s" set-tile-space-layout)))
+			    ("s" set-tile-space-layout)
+                            ("t" set-three-columns-layout)))
 
 
 
@@ -811,7 +847,7 @@ Or do actions on corners - Skip windows in main window list"
     (if (and (frame-p (current-child))
 	     (child-member window (frame-data-slot (current-child) :main-window-list)))
 	(replay-button-event)
-	(mouse-click-to-focus-generic root-x root-y #'move-frame))))
+	(mouse-click-to-focus-generic window root-x root-y #'move-frame))))
 
 
 
@@ -837,11 +873,11 @@ Or do actions on corners - Skip windows in main window list"
     (when (frame-p (current-child))
       ;; Note: There is no need to ungrab/grab keys because this
       ;; is done when leaving the second mode.
-      (define-main-key ("F8" :mod-1) 'add-in-main-window-list)
-      (define-main-key ("F9" :mod-1) 'remove-in-main-window-list)
-      (define-main-key ("F10" :mod-1) 'clear-main-window-list)
-      (define-main-key ("Tab" :mod-1) 'select-next-child-no-main-window)
-      (define-main-key ("Tab" :mod-1 :shift) 'select-previous-child-no-main-window)
+      (define-main-key ("F8" :alt) 'add-in-main-window-list)
+      (define-main-key ("F9" :alt) 'remove-in-main-window-list)
+      (define-main-key ("F10" :alt) 'clear-main-window-list)
+      (define-main-key ("Tab" :prefix) 'select-next-child-no-main-window)
+      (define-main-key ("Tab" :prefix :shift) 'select-previous-child-no-main-window)
       (define-main-mouse (1) 'mouse-click-to-focus-and-move-no-main-window)
       (setf (frame-data-slot (current-child) :focus-policy-save)
             (frame-focus-policy (current-child)))
@@ -856,11 +892,11 @@ Or do actions on corners - Skip windows in main window list"
 
 (defun set-previous-layout ()
   "Restore the previous layout"
-  (undefine-main-key ("F8" :mod-1))
-  (undefine-main-key ("F9" :mod-1))
-  (undefine-main-key ("F10" :mod-1))
-  (define-main-key ("Tab" :mod-1) 'select-next-child)
-  (define-main-key ("Tab" :mod-1 :shift) 'select-previous-child)
+  (undefine-main-key ("F8" :alt))
+  (undefine-main-key ("F9" :alt))
+  (undefine-main-key ("F10" :alt))
+  (define-main-key ("Tab" :prefix) 'select-next-child)
+  (define-main-key ("Tab" :prefix :shift) 'select-previous-child)
   (define-main-mouse (1) 'mouse-click-to-focus-and-move)
   (setf (frame-focus-policy (current-child))
 	(frame-data-slot (current-child) :focus-policy-save))
@@ -884,5 +920,3 @@ Or do actions on corners - Skip windows in main window list"
 			    ("a" add-in-main-window-list)
 			    ("v" remove-in-main-window-list)
 			    ("c" clear-main-window-list)))
-
-

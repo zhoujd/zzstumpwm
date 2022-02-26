@@ -5,7 +5,7 @@
 ;;; Documentation: General tools
 ;;; --------------------------------------------------------------------------
 ;;;
-;;; (C) 2012 Philippe Brochard <pbrochard@common-lisp.net>
+;;; (C) 2005-2015 Philippe Brochard <pbrochard@common-lisp.net>
 ;;;
 ;;; This program is free software; you can redistribute it and/or modify
 ;;; it under the terms of the GNU General Public License as published by
@@ -27,103 +27,104 @@
 (in-package :common-lisp-user)
 
 (defpackage tools
-  (:use common-lisp)
+  (:use #:common-lisp)
   (:export :it
-	   :awhen
-	   :aif
+		   :awhen
+		   :aif
            :defconfig :*config-var-table* :configvar-value :configvar-group :config-default-value
            :config-all-groups
            :config-group->string
-	   :find-in-hash
+		   :find-in-hash
            :search-in-hash
            :view-hash-table
            :copy-hash-table
-	   :nfuncall
-	   :pfuncall
+		   :nfuncall
+		   :pfuncall
            :symbol-search
-	   :create-symbol :create-symbol-in-package
-	   :call-hook
+		   :create-symbol :create-symbol-in-package
+		   :call-hook
            :add-new-hook
-	   :add-hook
-	   :remove-hook
-	   :clear-timers
-	   :add-timer
-	   :at
-	   :with-timer
-	   :process-timers
-	   :erase-timer
-	   :timer-loop
-	   :dbg
-	   :dbgnl
-	   :dbgc
+		   :add-hook
+		   :remove-hook
+		   :clear-timers
+		   :add-timer
+		   :at
+		   :with-timer
+		   :process-timers
+		   :erase-timer
+		   :timer-loop
+		   :dbg
+		   :dbgnl
+		   :dbgc
            :make-rectangle
            :rectangle-x :rectangle-y :rectangle-width :rectangle-height
            :in-rectangle
            :distance
+           :concat
            :collect-all-symbols
-	   :with-all-internal-symbols
-	   :export-all-functions :export-all-variables
-	   :export-all-functions-and-variables
-	   :ensure-function
-	   :empty-string-p
-	   :find-common-string
+		   :with-all-internal-symbols
+		   :export-all-functions :export-all-variables
+		   :export-all-functions-and-variables
+		   :ensure-function
+		   :empty-string-p
+		   :find-common-string
            :command-in-path
-	   :setf/=
-	   :number->char
+		   :setf/=
+		   :number->char
            :number->string
            :number->letter
-	   :simple-type-of
-	   :repeat-chars
-	   :nth-insert
-	   :split-string
+		   :simple-type-of
+		   :repeat-chars
+		   :nth-insert
+		   :split-string
            :substring-equal
            :string-match
-           :extented-alphanumericp
-	   :append-newline-space
-	   :expand-newline
-	   :ensure-list
-	   :ensure-printable
-	   :limit-length
-	   :ensure-n-elems
-	   :begin-with-2-spaces
-	   :string-equal-p
-	   :find-assoc-word
-	   :print-space
-	   :escape-string
-	   :first-position
-	   :find-free-number
-	   :date-string
+           :extended-alphanumericp
+		   :append-newline-space
+		   :expand-newline
+		   :ensure-list
+		   :ensure-printable
+		   :limit-length
+		   :ensure-n-elems
+		   :begin-with-2-spaces
+		   :string-equal-p
+		   :find-assoc-word
+		   :print-space
+		   :escape-string
+		   :first-position
+		   :find-free-number
+		   :date-string
            :write-backtrace
-	   :do-execute
-	   :do-shell :fdo-shell :do-shell-output
-	   :getenv
-	   :uquit
-	   :urun-prog
-	   :ushell
-	   :ush
-	   :ushell-loop
-	   :cldebug
-	   :get-command-line-words
-	   :string-to-list
-	   :near-position
-	   :string-to-list-multichar
-	   :list-to-string
-	   :list-to-string-list
-	   :clean-string
-	   :one-in-list
-	   :exchange-one-in-list
-	   :rotate-list
-	   :anti-rotate-list
+		   :do-execute
+		   :do-shell :fdo-shell :do-shell-output
+		   :getenv
+		   :uquit
+		   :urun-prog
+		   :ushell
+		   :ush
+		   :ushell-loop
+		   :cldebug
+		   :get-command-line-words
+		   :string-to-list
+		   :near-position
+		   :string-to-list-multichar
+		   :list-to-string
+		   :list-to-string-list
+		   :clean-string
+		   :one-in-list
+		   :exchange-one-in-list
+		   :rotate-list
+		   :anti-rotate-list
            :n-rotate-list
-	   :append-formated-list
-	   :shuffle-list
-	   :parse-integer-in-list
-	   :convert-to-number
-	   :next-in-list :prev-in-list
-	   :find-string
-	   :find-all-strings
-	   :subst-strings
-	   :test-find-string
+		   :append-formated-list
+		   :shuffle-list
+		   :parse-integer-in-list
+		   :convert-to-number
+		   :next-in-list :prev-in-list
+		   :find-string
+		   :find-all-strings
+		   :subst-strings
+		   :test-find-string
            :memory-usage
            :cpu-usage
            :battery-usage
@@ -317,7 +318,7 @@ Return the result of the last hook"
   "Start the function fun at delay seconds."
   (funcall #'add-timer delay fun id))
 
-(defmacro with-timer ((delay &optional (id (gensym))) &body body)
+(defmacro with-timer ((delay &optional (id '(gensym))) &body body)
   "Same thing as add-timer but with syntaxic sugar"
   `(add-timer ,delay
 	      (lambda ()
@@ -415,13 +416,17 @@ Return the result of the last hook"
 
 
 ;;; Symbols tools
+(defun concat (&rest strings)
+  "Concatenate strings"
+  (apply #'concatenate 'string strings))
+
 (defun collect-all-symbols (&optional package)
   (format t "Collecting all symbols for Lisp REPL completion...")
   (let (all-symbols)
     (do-symbols (symbol (or package *package*))
       (pushnew (string-downcase (symbol-name symbol)) all-symbols :test #'string=))
     (do-symbols (symbol :keyword)
-      (pushnew (concatenate 'string ":" (string-downcase (symbol-name symbol)))
+      (pushnew (concat ":" (string-downcase (symbol-name symbol)))
                all-symbols :test #'string=))
     (format t " Done.~%")
     all-symbols))
@@ -567,25 +572,23 @@ Return the result of the last hook"
 (defun substring-equal (substring string)
   (string-equal substring (subseq string 0 (min (length substring) (length string)))))
 
-(defun string-match (match list)
+(defun string-match (match list &optional key)
   "Return the string in list witch match the match string"
   (let ((len (length match)))
     (remove-duplicates (remove-if-not (lambda (x)
                                         (string-equal match (subseq x 0 (min len (length x)))))
-                                      list)
-                       :test #'string-equal)))
+                                      list
+                                      :key key)
+                       :test #'string-equal
+                       :key key)))
 
 
-(defun extented-alphanumericp (char)
-  (or (alphanumericp char)
-      (eq char #\-)
-      (eq char #\_)
-      (eq char #\.)
-      (eq char #\+)
-      (eq char #\=)
-      (eq char #\*)
-      (eq char #\:)
-      (eq char #\%)))
+(defun extended-alphanumericp (char)
+  "Is the character an alphanumeric or one of the following characters: -, _,
+., +, =, *, :, %."
+  (some (lambda (c)
+		  (char= c char))
+		'(#\- #\_ #\. #\+ #\= #\* #\: #\%)))
 
 
 (defun append-newline-space (string)
@@ -692,7 +695,7 @@ of the program to return.
   #-CLISP (declare (ignore io))
   (let ((fullstring program))
     (dolist (a args)
-      (setf fullstring (concatenate 'string fullstring " " a)))
+      (setf fullstring (concat fullstring " " a)))
     #+:cmu (let ((proc (ext:run-program program args :input :stream :output :stream :wait wt)))
              (unless proc
                (error "Cannot create process."))
@@ -998,10 +1001,10 @@ Useful for re-using the &REST arg after removing some options."
     (dolist (i lst)
       (cond ((funcall test-not-fun i) nil)
 	    (t (setq str
-		     (concatenate 'string str
-				  (if first "" ", ")
-				  (format nil "~A"
-					  (funcall print-fun i))))
+		     (concat str
+			     (if first "" ", ")
+		 	     (format nil "~A"
+				     (funcall print-fun i))))
 	       (setq first nil))))
     (if (string= base-str str)
 	(concatenate 'string str default-str) str)))
@@ -1041,23 +1044,22 @@ Useful for re-using the &REST arg after removing some options."
 (defun prev-in-list (item lst)
   (next-in-list item (reverse lst)))
 
-
-(let ((jours '("Lundi" "Mardi" "Mercredi" "Jeudi" "Vendredi" "Samedi" "Dimanche"))
-      (mois '("Janvier" "Fevrier" "Mars" "Avril" "Mai" "Juin" "Juillet"
-	      "Aout" "Septembre" "Octobre" "Novembre" "Decembre"))
-      (days '("Monday" "Tuesday" "Wednesday" "Thursday" "Friday" "Saturday" "Sunday"))
-      (months '("January" "February" "March" "April" "May" "June" "July"
-		 "August" "September" "October" "November" "December")))
-  (defun date-string ()
+(defun date-string ()
+  (let ((jours '#("Lundi" "Mardi" "Mercredi" "Jeudi" "Vendredi" "Samedi" "Dimanche"))
+	(mois '#("Janvier" "Fevrier" "Mars" "Avril" "Mai" "Juin" "Juillet"
+		 "Aout" "Septembre" "Octobre" "Novembre" "Decembre"))
+	(days '#("Monday" "Tuesday" "Wednesday" "Thursday" "Friday" "Saturday" "Sunday"))
+	(months '#("January" "February" "March" "April" "May" "June" "July"
+		   "August" "September" "October" "November" "December")))
     (multiple-value-bind (second minute hour date month year day)
 	(get-decoded-time)
       (if (search "fr" (getenv "LANG") :test #'string-equal)
 	  (format nil "   ~2,'0D:~2,'0D:~2,'0D    ~A ~2,'0D ~A ~A "
 		  hour minute second
-		  (nth day jours) date (nth (1- month) mois) year)
-	  (format nil "   ~2,'0D:~2,'0D:~2,'0D    ~A ~A ~2,'0D ~A "
-		  hour minute second
-		  (nth day days) (nth (1- month) months) date year)))))
+		  (aref jours day) date (aref mois (1- month)) year)
+	(format nil "   ~2,'0D:~2,'0D:~2,'0D    ~A ~A ~2,'0D ~A "
+		hour minute second
+		(aref days day) (aref months (1- month)) date year)))))
 
 ;;;
 ;;; Backtrace function
@@ -1075,7 +1077,7 @@ Useful for re-using the &REST arg after removing some options."
               (lisp-implementation-version))
       #+clisp (system::print-backtrace)
       #+(or cmucl scl) (debug:backtrace)
-      #+sbcl (sb-debug:backtrace)
+      #+sbcl (sb-debug:print-backtrace)
       #+(or mcl ccl) (ccl:print-call-history :detailed-p nil)
       #-(or clisp cmucl scl sbcl mcl ccl) (format t "Backtrace not defined~%")
       (when other-info
@@ -1221,9 +1223,3 @@ done~%" *bat-cmd* *cpu-cmd* *mem-cmd* poll-log poll-log poll-log delay)))
                (awhen (and (= total -1) (extract-mem-total line))
                  (setf total it)))))
       (values cpu used total bat))))
-
-
-
-
-
-

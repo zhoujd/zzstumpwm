@@ -5,7 +5,7 @@
 ;;; Documentation: Corner functions
 ;;; --------------------------------------------------------------------------
 ;;;
-;;; (C) 2012 Philippe Brochard <pbrochard@common-lisp.net>
+;;; (C) 2005-2015 Philippe Brochard <pbrochard@common-lisp.net>
 ;;;
 ;;; This program is free software; you can redistribute it and/or modify
 ;;; it under the terms of the GNU General Public License as published by
@@ -27,8 +27,8 @@
 
 
 
-(symbol-macrolet ((sw (xlib:screen-width *screen*))
-		  (sh (xlib:screen-height *screen*))
+(symbol-macrolet ((sw (screen-width))
+		  (sh (screen-height))
 		  (cs *corner-size*))
   (defun in-corner (corner x y)
     "Return t if (x, y) is in corner.
@@ -44,8 +44,8 @@ Corner is one of :bottom-right :bottom-left :top-right :top-left"
 	   (<= ymin y ymax)))))
 
 
-(symbol-macrolet ((sw (xlib:screen-width *screen*))
-		  (sh (xlib:screen-height *screen*))
+(symbol-macrolet ((sw (screen-width))
+		  (sh (screen-height))
 		  (cs *corner-size*))
   (defun find-corner (x y)
     (cond ((and (< cs x (- sw cs)) (< cs y (- sh cs))) nil)
@@ -130,7 +130,7 @@ stop the button event"
 
 (let (win)
   (defun equal-clfswm-terminal (window)
-    (when win
+    (when (and win (xlib:window-p window))
       (xlib:window-equal window win)))
   (defun close-clfswm-terminal ()
     (when win
@@ -145,5 +145,3 @@ stop the button event"
 				    win
 				    t))
     t))
-
-

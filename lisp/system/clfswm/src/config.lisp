@@ -10,7 +10,7 @@
 ;;; (you can do a 'grep CONFIG *.lisp' to see what you can configure)
 ;;; --------------------------------------------------------------------------
 ;;;
-;;; (C) 2012 Philippe Brochard <pbrochard@common-lisp.net>
+;;; (C) 2005-2015 Philippe Brochard <pbrochard@common-lisp.net>
 ;;;
 ;;; This program is free software; you can redistribute it and/or modify
 ;;; it under the terms of the GNU General Public License as published by
@@ -30,10 +30,14 @@
 
 (in-package :clfswm)
 
+;;; CONFIG - WM Name
+(defconfig *wm-name* "clfswm"
+  nil "Set to \"LG3D\" for making Java GUI programs work.")
+
 
 ;;; CONFIG - Default modifiers
-(defconfig *default-modifiers* '() nil
-           "Default modifiers list to append to explicit modifiers
+(defconfig *default-modifiers* '()
+  nil "Default modifiers list to append to explicit modifiers
 Example: :mod-2 for num_lock, :lock for Caps_lock...")
 
 
@@ -59,22 +63,24 @@ Example: :mod-2 for num_lock, :lock for Caps_lock...")
 A list of (list match-function handle-function)")
 
 
+(defconfig *steal-focus* t
+  nil "Allow to steal the focus on configure request")
 
-(defconfig *hide-unmanaged-window* t nil
-           "Hide or not unmanaged windows when a child is deselected.")
+(defconfig *hide-unmanaged-window* t
+  nil "Hide or not unmanaged windows when a child is deselected.")
 
-(defconfig *snap-size* 5 nil
-           "Snap size (in % of parent size) when move or resize frame is constrained")
+(defconfig *snap-size* 5
+  nil "Snap size (in % of parent size) when move or resize frame is constrained")
 
-(defconfig *spatial-move-delay-before* 0.2 nil
-           "Delay to display the current child before doing a spatial move")
+(defconfig *spatial-move-delay-before* 0.2
+  nil "Delay to display the current child before doing a spatial move")
 
-(defconfig *spatial-move-delay-after* 0.5 nil
-           "Delay to display the new child after doing a spatial move")
+(defconfig *spatial-move-delay-after* 0.5
+  nil "Delay to display the new child after doing a spatial move")
 
 
-(defconfig  *corner-size* 3 'Corner
-            "The size of the corner square")
+(defconfig  *corner-size* 3
+  'Corner "The size of the corner square")
 
 ;;; CONFIG: Corner actions - See in clfswm-corner.lisp for
 ;;;   allowed functions
@@ -222,7 +228,7 @@ on the root window in the main mode with the mouse")
   'Second-mode "Second mode window background color")
 (defconfig *sm-foreground-color* "Red"
   'Second-mode "Second mode window foreground color")
-(defconfig *sm-font-string* *default-font-string*
+(defconfig *sm-font-string* "genera-cptfontbi"
   'Second-mode "Second mode window font string")
 (defconfig *sm-width* 300
   'Second-mode "Second mode window width")
@@ -235,7 +241,7 @@ on the root window in the main mode with the mouse")
 
 
 ;;; CONFIG - Identify key colors
-(defconfig *identify-font-string* *default-font-string*
+(defconfig *identify-font-string* "genera-hl10"
   'Identify-key "Identify window font string")
 (defconfig *identify-background* "black"
   'Identify-key "Identify window background color")
@@ -282,7 +288,7 @@ on the root window in the main mode with the mouse")
   'Info-mode "Info window line cursor color color")
 (defconfig *info-selected-background* "blue"
   'Info-mode "Info selected item background color")
-(defconfig *info-font-string* *default-font-string*
+(defconfig *info-font-string* "genera-cptfontcc"
   'Info-mode "Info window font string")
 (defconfig *info-transparency* *default-transparency*
   'Info-mode "Info window background transparency")
@@ -291,7 +297,7 @@ on the root window in the main mode with the mouse")
   'Info-mode "If true, click on info window select item. Otherwise, click to drag the menu")
 
 ;;; CONFIG - Circulate string colors
-(defconfig *circulate-font-string* *default-font-string*
+(defconfig *circulate-font-string* "genera-cptfonti"
   'Circulate-mode "Circulate string window font string")
 (defconfig *circulate-background* "black"
   'Circulate-mode "Circulate string window background color")
@@ -336,6 +342,34 @@ on the root window in the main mode with the mouse")
   'Expose-mode "Immediately select child if they can be directly accessed")
 
 
+;;; CONFIG - Fastswitch string colors
+(defconfig *fastswitch-font-string* "genera-13fgb"
+  'Fastswitch-mode "Fastswitch string window font string")
+(defconfig *fastswitch-background* "grey10"
+  'Fastswitch-mode "Fastswitch string window background color")
+(defconfig *fastswitch-foreground* "grey50"
+  'Fastswitch-mode "Fastswitch string window foreground color")
+(defconfig *fastswitch-foreground-letter* "red"
+  'Fastswitch-mode "Fastswitch string window foreground color for letters")
+(defconfig *fastswitch-foreground-letter-second* "magenta"
+  'Fastswitch-mode "Fastswitch string window foreground color for letters")
+(defconfig *fastswitch-foreground-letter-second-frame* "yellow"
+  'Fastswitch-mode "Fastswitch string window foreground color for letters for frames")
+(defconfig *fastswitch-foreground-childname* "grey70"
+  'Fastswitch-mode "Fastswitch string window foreground color for childname")
+(defconfig *fastswitch-border* "grey20"
+  'Fastswitch-mode "Fastswitch string window border color")
+(defconfig *fastswitch-transparency* 0.9
+  'Fastswitch-mode "Fastswitch string window background transparency")
+(defconfig *fastswitch-show-frame-p* t
+  'Fastswitch-mode "Fastswitch show frame in mini window")
+(defconfig *fastswitch-adjust-window-p* t
+  'Fastswitch-mode "Fastswitch adjust window to show all children names")
+(defconfig *fastswitch-display-mode* 'Tree
+  'Fastswitch-mode "Fastswitch display mode (one of LINE or TREE)")
+
+
+
 ;;; CONFIG - Show key binding colors
 (defconfig *info-color-title* "Magenta"
   'Info-mode "Colored info title color")
@@ -362,7 +396,7 @@ on the root window in the main mode with the mouse")
 
 
 ;;; CONFIG - Notify window string colors
-(defconfig *notify-window-font-string* *default-font-string*
+(defconfig *notify-window-font-string* "genera-sail12"
   'Notify-Window "Notify window font string")
 (defconfig *notify-window-background* "black"
   'Notify-Window "Notify Window background color")
@@ -374,4 +408,3 @@ on the root window in the main mode with the mouse")
   'Notify-Window "Notify Window display delay")
 (defconfig *notify-window-transparency* *default-transparency*
   'Notify-window "Notify window background transparency")
-

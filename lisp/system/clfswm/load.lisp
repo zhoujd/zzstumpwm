@@ -5,7 +5,7 @@
 ;;; Documentation: System loading functions
 ;;; --------------------------------------------------------------------------
 ;;;
-;;; (C) 2005 Philippe Brochard <hocwp@free.fr>
+;;; (C) 2005-2015 Philippe Brochard <hocwp@free.fr>
 ;;;
 ;;; This program is free software; you can redistribute it and/or modify
 ;;; it under the terms of the GNU General Public License as published by
@@ -68,7 +68,7 @@ from $XDG_CONFIG_HOME/clfswm/clfswmrc")
 #+:SBCL
 (require :sb-posix)
 
-(load (compile-file "src/tools.lisp"))
+;; (load (compile-file "src/tools.lisp"))
 
 (defun load-info (formatter &rest args)
   (format t "~&  ==> ~A~%" (apply #'format nil formatter args))
@@ -136,6 +136,7 @@ from $XDG_CONFIG_HOME/clfswm/clfswmrc")
 #+:clfswm-compile
 (progn
   (load-info "Compiling CLFSWM")
+  (load "clfswm.asd")
   (asdf:oos 'asdf:load-op :clfswm))
 
 
@@ -170,4 +171,4 @@ from $XDG_CONFIG_HOME/clfswm/clfswmrc")
 #+:clfswm-build-image
 (progn
   (cl-user::load-info "Building CLFSWM executable image")
-   (build-lisp-image "clfswm"))
+  (build-lisp-image "clfswm"))

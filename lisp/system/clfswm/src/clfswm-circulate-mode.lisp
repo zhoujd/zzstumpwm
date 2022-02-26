@@ -5,7 +5,7 @@
 ;;; Documentation: Main functions
 ;;; --------------------------------------------------------------------------
 ;;;
-;;; (C) 2012 Philippe Brochard <pbrochard@common-lisp.net>
+;;; (C) 2005-2015 Philippe Brochard <pbrochard@common-lisp.net>
 ;;;
 ;;; This program is free software; you can redistribute it and/or modify
 ;;; it under the terms of the GNU General Public License as published by
@@ -44,7 +44,8 @@
 	 (len (length text)))
     (xlib:draw-glyphs *pixmap-buffer* *circulate-gc*
 		      (truncate (/ (- *circulate-width* (* (xlib:max-char-width *circulate-font*) len)) 2))
-		      (truncate (/ (+ *circulate-height* (- (xlib:font-ascent *circulate-font*) (xlib:font-descent *circulate-font*))) 2))
+		      (truncate (/ (+ *circulate-height* (- (xlib:font-ascent *circulate-font*)
+                                                            (xlib:font-descent *circulate-font*))) 2))
 		      text))
   (copy-pixmap-buffer *circulate-window* *circulate-gc*))
 
@@ -160,12 +161,12 @@
   (define-circulate-key ("g" :control) 'leave-circulate-mode)
   (define-circulate-key ("Escape" :alt) 'leave-circulate-mode)
   (define-circulate-key ("g" :control :alt) 'leave-circulate-mode)
-  (define-circulate-key ("Tab" :mod-1) 'circulate-select-next-child)
-  (define-circulate-key ("Tab" :mod-1 :control) 'circulate-select-next-subchild)
-  (define-circulate-key ("Tab" :mod-1 :shift) 'circulate-select-previous-child)
-  (define-circulate-key ("Iso_Left_Tab" :mod-1 :shift) 'circulate-select-previous-child)
-  (define-circulate-key ("Right" :mod-1) 'circulate-select-next-brother)
-  (define-circulate-key ("Left" :mod-1) 'circulate-select-previous-brother)
+  (define-circulate-key ("Tab" :prefix) 'circulate-select-next-child)
+  (define-circulate-key ("Tab" :prefix :control) 'circulate-select-next-subchild)
+  (define-circulate-key ("Tab" :prefix :shift) 'circulate-select-previous-child)
+  (define-circulate-key ("Iso_Left_Tab" :prefix :shift) 'circulate-select-previous-child)
+  (define-circulate-key ("Right" :prefix) 'circulate-select-next-brother)
+  (define-circulate-key ("Left" :prefix) 'circulate-select-previous-brother)
   (define-circulate-release-key ("Alt_L" :alt) 'leave-circulate-mode)
   (define-circulate-release-key ("Alt_L") 'leave-circulate-mode))
 
@@ -177,10 +178,10 @@
     (xlib:destroy-window *circulate-window*))
   (when *circulate-font*
     (xlib:close-font *circulate-font*))
-  (xlib:display-finish-output *display*)
   (setf *circulate-window* nil
 	*circulate-gc* nil
-	*circulate-font* nil))
+	*circulate-font* nil)
+  (xlib:display-finish-output *display*))
 
 (defun circulate-loop-function ()
   (unless (is-a-key-pressed-p)
@@ -264,6 +265,28 @@
     (setf *circulate-orig* (frame-child *circulate-parent*)))
   (circulate-mode :brother-direction -1))
 
+
+(defmacro with-move-current-focused-window (() &body body)
+  `(with-current-window
+     ,@body
+     (move-child-to window (if (frame-p (current-child))
+                               (current-child)
+                               (find-parent-frame (current-child) (find-current-root))))))
+
+
+
+(defun select-next-brother-take-current ()
+  "Select the next brother and move the current focused child in it"
+  (with-move-current-focused-window ()
+    (select-next-brother)))
+
+(defun select-previous-brother-take-current ()
+  "Select the previous brother and move the current focused child in it"
+  (with-move-current-focused-window ()
+    (select-previous-brother)))
+
+
+
 (defun select-next-subchild ()
   "Select the next subchild"
   (when (and (frame-p (current-child))
@@ -271,6 +294,14 @@
     (setf *circulate-orig* (frame-child (current-child))
 	  *circulate-parent* nil)
     (circulate-mode :subchild-direction +1)))
+
+(defun select-previous-subchild ()
+  "Select the previous subchild"
+  (when (and (frame-p (current-child))
+	     (frame-p (frame-selected-child (current-child))))
+    (setf *circulate-orig* (frame-child (current-child))
+	  *circulate-parent* nil)
+    (circulate-mode :subchild-direction -1)))
 
 
 (defun select-next-child-simple ()
@@ -289,15 +320,24 @@
 
 
 (defun reorder-brother-simple (reorder-fun)
-  (unless (child-root-p (current-child))
+  (let ((is-root (child-root-p (current-child))))
     (no-focus)
     (select-current-frame nil)
+    (when is-root
+      (let ((root (find-root (current-child))))
+	(unless (or (child-equal-p (root-child root) *root-frame*)
+		    (child-original-root-p (root-child root)))
+	  (awhen (and root (find-parent-frame (root-child root)))
+	    (when (frame-p it)
+	      (change-root root it))))))
     (let ((parent-frame (find-parent-frame (current-child))))
       (when (frame-p parent-frame)
-        (with-slots (child) parent-frame
-          (setf child (funcall reorder-fun child)
-                (current-child) (frame-selected-child parent-frame))))
-      (show-all-children t))))
+	(with-slots (child) parent-frame
+	  (setf child (funcall reorder-fun child)
+		(current-child) (frame-selected-child parent-frame)))))
+    (when is-root
+      (change-root (find-root (current-child)) (current-child)))
+    (show-all-children (not is-root))))
 
 
 (defun select-next-brother-simple ()
@@ -376,3 +416,23 @@
                                                        (middle-child-x child) (child-y2 child))))))
 
 
+(defun select-brother-spatial-move-right-take-current ()
+  "Select spatially the nearest brother of the current child in the right direction - move current focused child"
+  (with-move-current-focused-window ()
+    (select-brother-spatial-move-right)))
+
+
+(defun select-brother-spatial-move-left-take-current ()
+  "Select spatially the nearest brother of the current child in the left direction - move current focused child"
+  (with-move-current-focused-window ()
+    (select-brother-spatial-move-left)))
+
+(defun select-brother-spatial-move-down-take-current ()
+  "Select spatially the nearest brother of the current child in the down direction - move current focused child"
+  (with-move-current-focused-window ()
+    (select-brother-spatial-move-down)))
+
+(defun select-brother-spatial-move-up-take-current ()
+  "Select spatially the nearest brother of the current child in the up direction - move current focused child"
+  (with-move-current-focused-window ()
+    (select-brother-spatial-move-up)))

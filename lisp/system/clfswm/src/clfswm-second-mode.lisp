@@ -5,7 +5,7 @@
 ;;; Documentation: Second mode functions
 ;;; --------------------------------------------------------------------------
 ;;;
-;;; (C) 2012 Philippe Brochard <pbrochard@common-lisp.net>
+;;; (C) 2005-2015 Philippe Brochard <pbrochard@common-lisp.net>
 ;;;
 ;;; This program is free software; you can redistribute it and/or modify
 ;;; it under the terms of the GNU General Public License as published by
@@ -25,9 +25,6 @@
 
 (in-package :clfswm)
 
-(defparameter *sm-window* nil)
-(defparameter *sm-font* nil)
-(defparameter *sm-gc* nil)
 
 (defparameter *second-mode-leave-function* nil
   "Execute the function if not nil")
@@ -36,13 +33,14 @@
 (defun draw-second-mode-window ()
   (raise-window *sm-window*)
   (clear-pixmap-buffer *sm-window* *sm-gc*)
-  (let* ((text (format nil "Second mode"))
+  (let* ((text (format nil "SECOND MODE"))
 	 (len (length text)))
     (xlib:draw-glyphs *pixmap-buffer* *sm-gc*
 		      (truncate (/ (- *sm-width* (* (xlib:max-char-width *sm-font*) len)) 2))
 		      (truncate (/ (+ *sm-height* (- (xlib:font-ascent *sm-font*) (xlib:font-descent *sm-font*))) 2))
 		      text))
-  (copy-pixmap-buffer *sm-window* *sm-gc*))
+  (copy-pixmap-buffer *sm-window* *sm-gc*)
+  (no-focus))
 
 
 

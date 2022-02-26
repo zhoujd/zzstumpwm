@@ -6,7 +6,7 @@
 ;;;   http://freedesktop.org/wiki/Specifications_2fwm_2dspec
 ;;; --------------------------------------------------------------------------
 ;;;
-;;; (C) 2012 Philippe Brochard <pbrochard@common-lisp.net>
+;;; (C) 2005-2015 Philippe Brochard <pbrochard@common-lisp.net>
 ;;;
 ;;; This program is free software; you can redistribute it and/or modify
 ;;; it under the terms of the GNU General Public License as published by
@@ -49,8 +49,8 @@
   ;;  (xlib:change-property *root* :_NET_NUMBER_OF_DESKTOPS
   ;;		   (list (length *workspace-list*)) :cardinal 32)
   ;;  (xlib:change-property *root* :_NET_DESKTOP_GEOMETRY
-  ;;		   (list (xlib:screen-width *screen*)
-  ;;			 (xlib:screen-height *screen*))
+  ;;		   (list (screen-width)
+  ;;			 (screen-height))
   ;;		   :cardinal 32)
   ;;  (xlib:change-property *root* :_NET_DESKTOP_VIEWPORT
   ;;		   (list 0 0) :cardinal 32)
@@ -83,11 +83,6 @@ FOCUS-WINDOW is an extra window used for _NET_SUPPORTING_WM_CHECK."
 			(list *no-focus-window*) :window 32
 			:transform #'xlib:drawable-id)
   (xlib:change-property *no-focus-window* :_NET_WM_NAME
-			"clfswm"
+			*wm-name*
 			:string 8 :transform #'xlib:char->card8)
   (netwm-update-desktop-property))
-
-
-
-
-

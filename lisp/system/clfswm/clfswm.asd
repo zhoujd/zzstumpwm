@@ -54,10 +54,15 @@
 				:depends-on ("package" "config" "clfswm-internal" "xlib-util" "tools"
                                                        "clfswm-keys" "clfswm-generic-mode" "clfswm-placement"
                                                        "clfswm-query"))
+                         (:file "clfswm-fastswitch-mode"
+                                :depends-on ("package" "config" "clfswm-internal" "xlib-util" "tools"
+                                                       "clfswm-keys" "clfswm-generic-mode" "clfswm-placement"
+                                                       "clfswm-expose-mode"))
 			 (:file "clfswm-corner"
 				:depends-on ("package" "config" "clfswm-internal" "clfswm-expose-mode" "xlib-util"))
 			 (:file "clfswm-info"
-				:depends-on ("package" "version" "xlib-util" "config" "clfswm-keys" "clfswm" "clfswm-internal"
+				:depends-on ("package" "version" "xlib-util" "config" "clfswm-keys" "clfswm"
+                                                       "clfswm-internal"
 						       "clfswm-autodoc" "clfswm-corner"
 						       "clfswm-generic-mode" "clfswm-placement"))
 			 (:file "clfswm-menu"
@@ -82,7 +87,7 @@
 			 (:file "bindings-second-mode"
 				:depends-on ("clfswm" "clfswm-util" "clfswm-query" "bindings" "clfswm-pack"
                                                       "clfswm-menu" "menu-def" "clfswm-layout")))))
-  :depends-on ( #-:CLX :clx #+:sbcl :sb-posix ))
+  :depends-on ( #-:CLX :clx #+:sbcl :sb-posix #+:ccl :asdf))
 
 
 

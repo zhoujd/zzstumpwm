@@ -5,7 +5,7 @@
 ;;; Documentation: Main functions
 ;;; --------------------------------------------------------------------------
 ;;;
-;;; (C) 2012 Philippe Brochard <pbrochard@common-lisp.net>
+;;; (C) 2005-2015 Philippe Brochard <pbrochard@common-lisp.net>
 ;;;
 ;;; This program is free software; you can redistribute it and/or modify
 ;;; it under the terms of the GNU General Public License as published by
@@ -25,6 +25,7 @@
 
 (in-package :clfswm)
 
+(defparameter *clfswm-initializing* nil)
 
 (define-handler main-mode :key-press (code state)
   (funcall-key-from-code *main-keys* code state))
@@ -76,13 +77,13 @@
           (when (has-stackmode value-mask)
             (case stack-mode
               (:above
-               (unless (null-size-window-p window)
-                 (when (or (child-equal-p window (current-child))
-                           (is-in-current-child-p window))
-                   (setf change (or change :moved))
-                   (raise-window window)
+               (when (or (child-equal-p window (current-child))
+                         (is-in-current-child-p window))
+                 (setf change (or change :moved))
+                 (when *steal-focus*
                    (focus-window window)
-                   (focus-all-children window (find-parent-frame window (find-current-root)))))))))
+                   (when (focus-all-children window (find-parent-frame window (find-current-root)))
+                     (show-all-children))))))))
         (unless (eq change :resized)
           ;; To be ICCCM compliant, send a fake configuration notify event only when
           ;; the window has moved and not when it has been resized or the border width has changed.
@@ -97,56 +98,42 @@
       (unhide-window window)
       (process-new-window window)
       (map-window window)
-      (unless (null-size-window-p window)
-        (multiple-value-bind (never-managed raise)
-            (never-managed-window-p window)
-          (unless (and never-managed raise)
-            (show-all-children)))))))
+      (multiple-value-bind (never-managed raise)
+          (never-managed-window-p window)
+        (unless (and never-managed raise)
+          (show-all-children))))))
 
 
 
 (define-handler main-mode :unmap-notify (send-event-p event-window window)
   (unless (and (not send-event-p)
-	       (not (xlib:window-equal window event-window)))
+               (not (xlib:window-equal window event-window)))
     (when (find-child window *root-frame*)
       (setf (window-state window) +withdrawn-state+)
-      (xlib:unmap-window window)
       (remove-child-in-all-frames window)
-      (unless (null-size-window-in-frame *root-frame*)
-        (show-all-children)))))
-
-
-
+      ;;(xlib:unmap-window window)
+      (show-all-children))))
 
 
 (define-handler main-mode :destroy-notify (send-event-p event-window window)
   (unless (or send-event-p
-	      (xlib:window-equal window event-window))
+              (xlib:window-equal window event-window))
     (when (find-child window *root-frame*)
       (delete-child-in-all-frames window)
-      (unless (null-size-window-in-frame *root-frame*)
-        (show-all-children))
-      (xlib:destroy-window window))))
+      (xlib:destroy-window window)
+      (show-all-children))))
+
 
 (define-handler main-mode :enter-notify  (window root-x root-y)
-  (unless (and (> root-x (- (xlib:screen-width *screen*) 3))
-	       (> root-y (- (xlib:screen-height *screen*) 3)))
-    (case (if (frame-p (current-child))
-	      (frame-focus-policy (current-child))
-	      *default-focus-policy*)
-      (:sloppy (focus-window window))
-      (:sloppy-strict (when (and (frame-p (current-child))
-				 (child-member window (frame-child (current-child))))
-			(focus-window window)))
-      (:sloppy-select (let* ((child (find-child-under-mouse root-x root-y))
-			     (parent (find-parent-frame child)))
-			(unless (or (child-root-p child)
-				    (equal (typecase child
-				    	     (xlib:window parent)
-					     (t child))
-					   (current-child)))
-			    (focus-all-children child parent)
-			    (show-all-children)))))))
+  (unless (and (> root-x (- (screen-width) 3))
+	       (> root-y (- (screen-height) 3)))
+    (manage-focus window root-x root-y)))
+
+
+(define-handler main-mode :focus-in (window)
+  (unless (child-equal-p window (focused-window))
+    (set-focus-to-current-child)))
+
 
 (define-handler main-mode :exposure (window)
   (awhen (find-frame-window window)
@@ -155,11 +142,10 @@
 
 (define-handler main-mode :configure-notify (window)
   (when (child-equal-p window *root*)
-    (unless (null-size-window-in-frame *root-frame*)
-      (unless (eql (place-frames-from-xinerama-infos) :update)
-        (finish-configuring-root))
-      (show-all-children)
-      (call-hook *root-size-change-hook*))))
+    (unless (eql (place-frames-from-xinerama-infos) :update)
+      (finish-configuring-root))
+    (show-all-children)
+    (call-hook *root-size-change-hook*)))
 
 
 (defun error-handler (display error-key &rest key-vals &key asynchronous &allow-other-keys)
@@ -170,8 +156,12 @@
           (find error-key '(xlib:window-error xlib:drawable-error xlib:match-error)))
      #+:xlib-debug (format t "~&Ignoring XLib asynchronous error: ~s~%" error-key))
     ((eq error-key 'xlib:access-error)
-     (write-line "~&Another window manager is running.")
-     (throw 'exit-clfswm nil))
+     (if *clfswm-initializing*
+         (progn
+           (format t "~3&Another window manager is running. Exiting...~%")
+           (throw 'exit-clfswm nil))
+         #+:xlib-debug
+         (format t "~&Ignoring XLib asynchronous access error: ~s~%" error-key)))
     ;; all other asynchronous errors are printed.
     (asynchronous
      #+:xlib-debug (format t "~&Caught Asynchronous X Error: ~s ~s" error-key key-vals))
@@ -179,6 +169,8 @@
     ;; (format t "~&Ignoring Xlib error: ~S ~S~%" error-key key-vals))
     (t
      (apply 'error error-key :display display :error-key error-key key-vals))))
+
+
 
 
 (defun main-loop ()
@@ -218,12 +210,13 @@
 	*root* (xlib:screen-root *screen*)
 	*no-focus-window* (xlib:create-window :parent *root* :x 0 :y 0 :width 1 :height 1)
 	*default-font* (xlib:open-font *display* *default-font-string*)
-	*pixmap-buffer* (xlib:create-pixmap :width (xlib:screen-width *screen*)
-					    :height (xlib:screen-height *screen*)
+	*pixmap-buffer* (xlib:create-pixmap :width (screen-width)
+					    :height (screen-height)
 					    :depth (xlib:screen-root-depth *screen*)
 					    :drawable *root*)
 	*in-second-mode* nil
-        *x-error-count* 0)
+        *x-error-count* 0
+        *expose-child-list* nil)
   (store-root-background)
   (init-modifier-list)
   (xgrab-init-pointer)
@@ -290,6 +283,7 @@
 (defun main-unprotected (&key (display (or (getenv "DISPLAY") ":0")) protocol
 			 (read-conf-file-p t) (alternate-conf nil)
 			 error-msg)
+  (setf *clfswm-initializing* t)
   (conf-file-name alternate-conf)
   (when read-conf-file-p
     (read-conf-file))
@@ -312,6 +306,7 @@
       (exit-clfswm)))
   (when error-msg
     (info-mode error-msg))
+  (setf *clfswm-initializing* nil)
   (catch 'exit-main-loop
       (unwind-protect
 	   (main-loop)
@@ -346,6 +341,3 @@
 	       (format t "~&~A~%Reinitializing...~%" msg)
 	       (setf error-msg (list (list msg *info-color-title*)
 				     "Reinitializing...")))))))))
-
-
-

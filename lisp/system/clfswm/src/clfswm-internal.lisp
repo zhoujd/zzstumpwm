@@ -1,11 +1,11 @@
-;; --------------------------------------------------------------------------
+;;; --------------------------------------------------------------------------
 ;;; CLFSWM - FullScreen Window Manager
 ;;;
 ;;; --------------------------------------------------------------------------
 ;;; Documentation: Main functions
 ;;; --------------------------------------------------------------------------
 ;;;
-;;; (C) 2012 Philippe Brochard <pbrochard@common-lisp.net>
+;;; (C) 2005-2015 Philippe Brochard <pbrochard@common-lisp.net>
 ;;;
 ;;; This program is free software; you can redistribute it and/or modify
 ;;; it under the terms of the GNU General Public License as published by
@@ -126,6 +126,7 @@
                 (x-drawable-x window) (x-drawable-y window)
                 (x-drawable-width window) (x-drawable-height window))))
 
+
 (defgeneric in-child (child x y))
 
 (defmethod in-child ((child frame) x y)
@@ -229,11 +230,16 @@
 	(return (values t (second type)))))))
 
 
+(defun never-managed-window-and-handled-p (window)
+  (multiple-value-bind (never-managed handle)
+      (never-managed-window-p window)
+    (and never-managed handle)))
+
 
 (defgeneric child-name (child))
 
 (defmethod child-name ((child xlib:window))
-  (xlib:wm-name child))
+  (ensure-printable (xlib:wm-name child)))
 
 (defmethod child-name ((child frame))
   (frame-name child))
@@ -246,10 +252,10 @@
 (defgeneric set-child-name (child name))
 
 (defmethod set-child-name ((child xlib:window) name)
-  (setf (xlib:wm-name child) name))
+  (setf (xlib:wm-name child) (ensure-printable name)))
 
 (defmethod set-child-name ((child frame) name)
-  (setf (frame-name child) name))
+  (setf (frame-name child) (ensure-printable name)))
 
 (defmethod set-child-name (child name)
   (declare (ignore child name)))
@@ -490,15 +496,6 @@
 
 
 
-(defun null-size-window-in-frame (frame)
-  (let ((null-size-window-p nil))
-    (with-all-windows (frame window)
-      (when (null-size-window-p window)
-        (setf null-size-window-p t)))
-    null-size-window-p))
-
-
-
 (defun create-frame-window ()
   (let ((win (xlib:create-window :parent *root*
                                  :x 0
@@ -709,7 +706,7 @@
         (return-from find-child-in-all-root root))))
 
   (defun find-current-root ()
-    (root-child (find-root (current-child))))
+    (root-child (find-root current-child)))
 
   (defun exchange-root-geometry (root-1 root-2)
     (when (and root-1 root-2)
@@ -746,9 +743,10 @@
     current-child)
 
   (defun current-child-setter (value)
-    (awhen (find-root value)
-      (setf (root-current-child it) value))
-    (setf current-child value))
+    (when value
+      (awhen (find-root value)
+        (setf (root-current-child it) value))
+      (setf current-child value)))
 
   (defmacro with-current-child ((new-child) &body body)
     "Temporarly change the current child"
@@ -769,7 +767,7 @@
   (unless (get-root-list)
     (let ((frame (create-frame)))
       (add-frame frame *root-frame*)
-      (define-as-root frame 0 0 (xlib:screen-width *screen*) (xlib:screen-height *screen*))
+      (define-as-root frame 0 0 (screen-width) (screen-height))
       (add-frame (create-frame) frame))))
 
 
@@ -858,8 +856,8 @@ XINERAMA version 1.1 opcode: 150
   (defun place-frames-from-xinerama-infos ()
     "Place frames according to xdpyinfo/xinerama informations"
     (let ((sizes (get-connected-heads-size))
-          (width (xlib:screen-width *screen*))
-          (height (xlib:screen-height *screen*)))
+          (width (screen-width))
+          (height (screen-height)))
       (labels ((update-root-geometry ()
                  (loop for size in sizes
                     for root in (get-root-list)
@@ -924,6 +922,20 @@ XINERAMA version 1.1 opcode: 150
   (let ((acc nil))
     (with-all-frames (root frame)
       (push (frame-window frame) acc))
+    acc))
+
+(defun get-all-frames (&optional (root *root-frame*))
+  "Return all frame in root and in its children"
+  (let ((acc nil))
+    (with-all-frames (root frame)
+      (push frame acc))
+    acc))
+
+(defun get-all-children (&optional (root *root-frame*))
+  "Return a list of all children in root"
+  (let ((acc nil))
+    (with-all-children (root child)
+      (push child acc))
     acc))
 
 
@@ -1013,8 +1025,8 @@ XINERAMA version 1.1 opcode: 150
                     (funcall it child parent)
                     (no-layout child parent))
                (values (- (child-border-size child)) (- (child-border-size child))
-                       (xlib:screen-width *screen*)
-                       (xlib:screen-height *screen*)))
+                       (screen-width)
+                       (screen-height)))
            (values (x-drawable-x child) (x-drawable-y child)
                    (x-drawable-width child) (x-drawable-height child)))))
 
@@ -1069,7 +1081,7 @@ XINERAMA version 1.1 opcode: 150
 
 
 (defgeneric set-child-stack-order (window child)
-  (:documentation "Raise window if child is NIL else put window just below child"))
+  (:documentation "Put window just below child"))
 
 (defmethod set-child-stack-order (window (child xlib:window))
   (lower-window window child))
@@ -1079,7 +1091,8 @@ XINERAMA version 1.1 opcode: 150
 
 (defmethod set-child-stack-order (window child)
   (declare (ignore child))
-  (raise-window window))
+  (unless (maxmin-size-equal-window-in-tree)
+    (raise-window window)))
 
 
 
@@ -1194,86 +1207,108 @@ XINERAMA version 1.1 opcode: 150
 			(/= (x-drawable-width window) (child-rect-w rect))
 			(/= (x-drawable-height window) (child-rect-h rect)))))
         (when change
-          (setf (x-drawable-x window) (child-rect-x rect)
-                (x-drawable-y window) (child-rect-y rect)
-                (x-drawable-width window) (child-rect-w rect)
-                (x-drawable-height window) (child-rect-h rect)))
+          (setf (x-drawable-width window) (child-rect-w rect)
+                (x-drawable-height window) (child-rect-h rect)
+                (x-drawable-x window) (child-rect-x rect)
+                (x-drawable-y window) (child-rect-y rect)))
 	change))))
 
 
 
+(let ((displayed-child nil))
+  (defun get-displayed-child ()
+    displayed-child)
 
-(defun show-all-children (&optional (from-root-frame nil))
-  "Show all children and hide those not in a root frame"
-  (declare (ignore from-root-frame))
-  (let ((geometry-change nil)
-        (displayed-child nil)
-        (hidden-child nil))
-    (labels ((in-displayed-list (child)
-               (member child displayed-child :test (lambda (c rect)
-                                                     (child-equal-p c (child-rect-child rect)))))
+  (defun show-all-children (&optional (from-root-frame nil))
+    "Show all children and hide those not in a root frame"
+    (declare (ignore from-root-frame))
+    (let ((geometry-change nil)
+          (hidden-child nil)
+          (has-no-leader-list nil))
+      (labels ((set-has-no-leader-list ()
+                 (let ((window-list nil)
+                       (leader-list nil))
+                   (with-all-windows (*root-frame* win)
+                     (let ((leader (window-leader win)))
+                       (when leader
+                         (when (member leader window-list :test (lambda (x y) (eql x (first y))))
+                           (pushnew leader leader-list))
+                         (push (list leader win) window-list))))
+                   (dolist (leader-win window-list)
+                     (unless (member leader-win leader-list :test (lambda (x y) (eql (first x) y)))
+                       (push (second leader-win) has-no-leader-list)))))
 
-             (add-in-hidden-list (child)
-               (pushnew child hidden-child :test #'child-equal-p))
+               (in-displayed-list (child)
+                 (member child displayed-child :test (lambda (c rect)
+                                                       (child-equal-p c (child-rect-child rect)))))
 
-             (set-geometry (child parent in-current-root child-current-root-p)
-               (if (or in-current-root child-current-root-p)
+               (add-in-hidden-list (child)
+                 (pushnew child hidden-child :test #'child-equal-p))
+
+               (set-geometry (child parent in-current-root child-current-root-p)
+                 (if (or in-current-root child-current-root-p)
+                     (when (frame-p child)
+                       (adapt-frame-to-parent child (if child-current-root-p nil parent)))
+                     (add-in-hidden-list child)))
+
+               (recurse-on-frame-child (child in-current-root child-current-root-p selected-p)
+                 (let ((selected-child (frame-selected-child child)))
+                   (dolist (sub-child (frame-child child))
+                     (rec sub-child child
+                          (and selected-p (child-equal-p sub-child selected-child))
+                          (or in-current-root child-current-root-p)))))
+
+               (hidden-child-p (rect)
+                 (when (or (frame-p (child-rect-child rect))
+                           (member (window-type (child-rect-child rect)) *show-hide-policy-type*))
+                   (dolist (r displayed-child)
+                     (when (and (rect-hidden-p r rect)
+                                (or (not (xlib:window-p (child-rect-child r)))
+                                    (eq (window-type (child-rect-child r)) :normal)))
+                       (return t)))))
+
+               (select-and-display (child parent selected-p)
+                 (multiple-value-bind (nx ny nw nh)
+                     (get-parent-layout child parent)
+                   (let ((rect (make-child-rect :child child :parent parent
+                                                :selected-p selected-p
+                                                :x nx :y ny :w nw :h nh)))
+                     (if (and *show-hide-policy* (hidden-child-p rect)
+                              (member child has-no-leader-list :test #'child-equal-p))
+                         (add-in-hidden-list child)
+                         (push rect displayed-child)))))
+
+               (display-displayed-child ()
+                 (let ((previous nil))
+                   (setf displayed-child (nreverse displayed-child))
+                   (dolist (rect displayed-child)
+                     (when (adapt-child-to-rect rect)
+                       (setf geometry-change t))
+                     (select-child (child-rect-child rect) (child-rect-selected-p rect))
+                     (show-child (child-rect-child rect)
+                                 (child-rect-parent rect)
+                                 previous)
+                     (setf previous (child-rect-child rect)))))
+
+               (rec (child parent selected-p in-current-root)
+                 (let ((child-current-root-p (child-root-p child)))
+                   (unless (in-displayed-list child)
+                     (set-geometry child parent in-current-root child-current-root-p))
                    (when (frame-p child)
-                     (adapt-frame-to-parent child (if child-current-root-p nil parent)))
-                   (add-in-hidden-list child)))
+                     (recurse-on-frame-child child in-current-root child-current-root-p selected-p))
+                   (when (and (or in-current-root child-current-root-p)
+                              (not (in-displayed-list child)))
+                     (select-and-display child parent selected-p)))))
 
-             (recurse-on-frame-child (child in-current-root child-current-root-p selected-p)
-               (let ((selected-child (frame-selected-child child)))
-                 (dolist (sub-child (frame-child child))
-                   (rec sub-child child
-                        (and selected-p (child-equal-p sub-child selected-child))
-                        (or in-current-root child-current-root-p)))))
-
-             (hidden-child-p (rect)
-               (dolist (r displayed-child)
-                 (when (and (rect-hidden-p r rect)
-                            (or (not (xlib:window-p (child-rect-child r)))
-                                (eq (window-type (child-rect-child r)) :normal)))
-                   (return t))))
-
-             (select-and-display (child parent selected-p)
-               (multiple-value-bind (nx ny nw nh)
-                   (get-parent-layout child parent)
-                 (let ((rect (make-child-rect :child child :parent parent
-                                              :selected-p selected-p
-                                              :x nx :y ny :w nw :h nh)))
-                   (if (and *show-hide-policy* (hidden-child-p rect))
-                       (add-in-hidden-list child)
-                       (push rect displayed-child)))))
-
-             (display-displayed-child ()
-               (let ((previous nil))
-                 (dolist (rect (nreverse displayed-child))
-                   (when (adapt-child-to-rect rect)
-                     (setf geometry-change t))
-                   (select-child (child-rect-child rect) (child-rect-selected-p rect))
-                   (show-child (child-rect-child rect)
-                               (child-rect-parent rect)
-                               previous)
-                   (setf previous (child-rect-child rect)))))
-
-             (rec (child parent selected-p in-current-root)
-               (let ((child-current-root-p (child-root-p child)))
-                 (unless (in-displayed-list child)
-                   (set-geometry child parent in-current-root child-current-root-p))
-                 (when (frame-p child)
-                   (recurse-on-frame-child child in-current-root child-current-root-p selected-p))
-                 (when (and (or in-current-root child-current-root-p)
-                            (not (in-displayed-list child)))
-                   (select-and-display child parent selected-p)))))
-
-      (rec *root-frame* nil t (child-root-p *root-frame*))
-      (display-displayed-child)
-      (dolist (child hidden-child)
-        (hide-child child))
-      (set-focus-to-current-child)
-      (xlib:display-finish-output *display*)
-      geometry-change)))
+        (setf displayed-child nil)
+        (set-has-no-leader-list)
+        (rec *root-frame* nil t (child-root-p *root-frame*))
+        (display-displayed-child)
+        (dolist (child hidden-child)
+          (hide-child child))
+        (set-focus-to-current-child)
+        (xlib:display-finish-output *display*)
+        geometry-change))))
 
 
 
@@ -1460,6 +1495,14 @@ For window: set current child to window or its parent according to window-parent
 
 
 
+(defun move-child-to (child frame-dest)
+  (when (and child (frame-p frame-dest))
+    (remove-child-in-frame child (find-parent-frame child))
+    (pushnew child (frame-child frame-dest) :test #'child-equal-p)
+    (focus-all-children child frame-dest)
+    (show-all-children t)))
+
+
 (defun prevent-current-*-equal-child (child)
   " Prevent current-root and current-child equal to child"
   (if (child-original-root-p child)
@@ -1524,7 +1567,10 @@ Warning:frame window and gc are freeed."
     (when (frame-p child)
       (delete-child-and-children-in-frames child *root-frame* close-methode))
     (when (xlib:window-p child)
-      (funcall close-methode child))))
+      (funcall close-methode child))
+    (when (frame-p child)
+      (awhen (frame-gc child) (xlib:free-gcontext it) (setf it nil))
+      (awhen (frame-window child) (xlib:destroy-window it) (setf it nil)))))
 
 
 (defun clean-windows-in-all-frames ()
@@ -1587,8 +1633,8 @@ managed."
 
 (defun store-root-background ()
   (with-all-mapped-windows *screen* #'hide-window)
-  (setf *background-image* (xlib:create-pixmap :width (xlib:screen-width *screen*)
-                                               :height (xlib:screen-height *screen*)
+  (setf *background-image* (xlib:create-pixmap :width (screen-width)
+                                               :height (screen-height)
                                                :depth (xlib:screen-root-depth *screen*)
                                                :drawable *root*)
         *background-gc* (xlib:create-gcontext :drawable *background-image*
@@ -1597,7 +1643,7 @@ managed."
                                               :font *default-font*
                                               :line-style :solid))
   (xlib:copy-area *root* *background-gc*
-                  0 0 (xlib:screen-width *screen*) (xlib:screen-height *screen*)
+                  0 0 (screen-width) (screen-height)
                   *background-image* 0 0)
   (with-all-mapped-windows *screen* #'unhide-window))
 
@@ -1619,7 +1665,9 @@ managed."
         (all-frame-windows (get-all-frame-windows)))
     (dolist (win (xlib:query-tree (xlib:screen-root screen)))
       (unless (or (child-member win all-windows)
-                  (child-member win all-frame-windows))
+                  (child-member win all-frame-windows)
+                  (child-equal-p win *no-focus-window*)
+                  (child-equal-p win *sm-window*))
 	(let ((map-state (xlib:window-map-state win))
 	      (wm-state (window-state win)))
 	  (unless (or (eql (xlib:window-override-redirect win) :on)
@@ -1652,3 +1700,129 @@ managed."
 	  (frame-selected-pos parent) 0)))
 
 
+(let ((last-child nil))
+  (defun manage-focus (window root-x root-y)
+    (case (if (frame-p (current-child))
+              (frame-focus-policy (current-child))
+              *default-focus-policy*)
+      (:sloppy (focus-window window))
+      (:sloppy-strict (when (and (frame-p (current-child))
+                                 (child-member window (frame-child (current-child))))
+                        (focus-window window)))
+      (:sloppy-select (let* ((child (find-child-under-mouse root-x root-y))
+                             (parent (find-parent-frame child)))
+                        (unless (or (child-root-p child)
+                                    (child-equal-p (typecase child
+                                                     (xlib:window parent)
+                                                     (t child))
+                                                   (current-child)))
+                          (focus-all-children child parent)
+                          (show-all-children))))
+      (:sloppy-select-window (let* ((child (find-child-under-mouse root-x root-y))
+                                    (parent (find-parent-frame child))
+                                    (need-warp-pointer (not (or (frame-p child)
+                                                                (child-equal-p child (frame-selected-child parent))))))
+                               (unless (or (child-root-p child)
+                                           (child-equal-p child last-child))
+                                 (setf last-child child)
+                                 (when (focus-all-children child parent)
+                                   (show-all-children)
+                                   (when (and need-warp-pointer
+                                              (not (eql (frame-data-slot (current-child) :tile-layout-keep-position)
+                                                        :yes)))
+                                     (typecase child
+                                       (xlib:window (xlib:warp-pointer *root*
+                                                                       (truncate (+ (x-drawable-x child)
+                                                                                    (/ (x-drawable-width child) 2)))
+                                                                       (truncate (+ (x-drawable-y child)
+                                                                                    (/ (x-drawable-height child) 2)))))
+                                       (frame (xlib:warp-pointer *root*
+                                                                 (+ (frame-rx child) 10)
+                                                                 (+ (frame-ry child) 10))))))))))))
+
+
+
+;;; Dumping/restoring frame tree functions
+(defun print-frame-tree (root &optional (disp-fun #'child-fullname))
+  (labels ((rec (child space)
+             (print-space space)
+             (format t "~A~%" (funcall disp-fun child))
+             (when (frame-p child)
+               (dolist (c (reverse (frame-child child)))
+                 (rec c (+ space 2))))))
+    (rec root 0)))
+
+(defmethod print-object ((frame frame) stream)
+  (format stream "~A - ~F ~F ~F ~F ~A ~A ~A ~X ~X ~A ~A ~A ~A"
+          (child-fullname frame)
+          (frame-x frame) (frame-y frame) (frame-w frame) (frame-h frame)
+          (frame-layout frame) (frame-nw-hook frame)
+          (frame-managed-type frame)
+          (frame-forced-managed-window frame)
+          (frame-forced-unmanaged-window frame)
+          (frame-show-window-p frame)
+          (frame-hidden-children frame)
+          (frame-selected-pos frame)
+          (frame-focus-policy frame)
+          ;;(frame-data frame))
+          ))
+
+
+(defun window->xid (window)
+  (when (xlib:window-p window)
+    (xlib:window-id window)))
+
+(defun xid->window (xid)
+  (dolist (win (xlib:query-tree *root*))
+    (when (equal xid (xlib:window-id win))
+      (return-from xid->window win))))
+
+
+
+(defun copy-frame (frame &optional (window-fun #'window->xid))
+  (labels ((handle-window-list (list)
+             (loop for win in list
+                collect (funcall window-fun win))))
+    (with-slots (name number x y w h layout nw-hook managed-type
+                      forced-managed-window forced-unmanaged-window
+                      show-window-p hidden-children selected-pos
+                      focus-policy data)
+        frame
+      (make-instance 'frame :name name :number number
+                     :x x :y y :w w :h h
+                     :layout layout :nw-hook nw-hook
+                     :managed-type (if (consp managed-type)
+                                       (copy-list managed-type)
+                                       managed-type)
+                     :forced-managed-window (handle-window-list forced-managed-window)
+                     :forced-unmanaged-window (handle-window-list forced-unmanaged-window)
+                     :show-window-p show-window-p
+                     :hidden-children (handle-window-list hidden-children)
+                     :selected-pos selected-pos
+                     :focus-policy focus-policy
+                     :data (copy-tree data)))))
+
+(defun dump-frame-tree (root &optional (window-fun #'window->xid))
+  "Return a tree of frames."
+  (let ((new-root (copy-frame root window-fun)))
+    (labels ((store (from root)
+               (when (frame-p from)
+                 (dolist (c (reverse (frame-child from)))
+                   (push (if (frame-p c)
+                             (let ((new-root (copy-frame c window-fun)))
+                               (store c new-root)
+                               new-root)
+                             (funcall window-fun c))
+                         (frame-child root))))))
+      (store root new-root)
+      new-root)))
+
+(defun test-dump-frame-tree ()
+  (let ((store (dump-frame-tree *root-frame*)))
+    (print-frame-tree store
+                      #'(lambda (x)
+                          (format nil "~A" x)))
+    (format t "~&--------------------------------------------------~2%")
+    (print-frame-tree (dump-frame-tree store #'xid->window)
+                      #'(lambda (x)
+                          (format nil "~A" (if (frame-p x) x (child-fullname x)))))))

@@ -5,7 +5,7 @@
 ;;; Documentation: Placement functions
 ;;; --------------------------------------------------------------------------
 ;;;
-;;; (C) 2012 Philippe Brochard <pbrochard@common-lisp.net>
+;;; (C) 2005-2015 Philippe Brochard <pbrochard@common-lisp.net>
 ;;;
 ;;; This program is free software; you can redistribute it and/or modify
 ;;; it under the terms of the GNU General Public License as published by
@@ -61,8 +61,8 @@
 ;;; Absolute placement
 ;;;
 (defun root-screen-coord (border-size)
-  (values (- (xlib:screen-width *screen*) (* 2 border-size))
-          (- (xlib:screen-height *screen*) (* 2 border-size))))
+  (values (- (screen-width) (* 2 border-size))
+          (- (screen-height) (* 2 border-size))))
 
 (defmacro with-root-screen-coord ((border-size w h) &body body)
   `(multiple-value-bind (,w ,h)
@@ -255,4 +255,3 @@
 (defun test-some-placement (placement)
   (setf *second-mode-placement* placement
         *query-mode-placement* placement))
-

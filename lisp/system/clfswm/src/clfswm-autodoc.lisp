@@ -5,7 +5,7 @@
 ;;; Documentation: Auto documentation tools
 ;;; --------------------------------------------------------------------------
 ;;;
-;;; (C) 2012 Philippe Brochard <pbrochard@common-lisp.net>
+;;; (C) 2005-2015 Philippe Brochard <pbrochard@common-lisp.net>
 ;;;
 ;;; This program is free software; you can redistribute it and/or modify
 ;;; it under the terms of the GNU General Public License as published by
@@ -65,7 +65,7 @@
 	(title "CLFSWM Keys"))
        (body
 	(h1 "CLFSWM Keys")
-	(p (small "Note: Mod-1 is the Meta or Alt key"))
+	(p (small "Note: Mod-1 is the Meta or Alt key, Mod-4 is the Super or Cmd key"))
 	,@(let ((acc nil))
 	       (dolist (hk hash-table-key-list)
 		 (push `(h3 (u ,(gethash 'name hk))) acc)
@@ -95,7 +95,7 @@ or<br> CLFSWM> (produce-all-docs)"))))
   "Produce a text doc from a hash-table key"
   (format stream "    * CLFSWM Keys *~%")
   (format stream "      -----------~%")
-  (format stream "~%Note: Mod-1 is the Meta or Alt key~%")
+  (format stream "~%Note:~%Mod-1 is the Meta or Alt key, Mod-4 is the Super or Cmd key~%")
   (dolist (hk hash-table-key-list)
     (format stream "~2&~A:~%" (gethash 'name hk))
     (dotimes (i (length (gethash 'name hk)))
@@ -103,7 +103,7 @@ or<br> CLFSWM> (produce-all-docs)"))))
     (format stream "~2%")
     (maphash #'(lambda (k v)
 		 (when (consp k)
-		   (format stream "~&  ~20@<~{~@(~A~) ~}~> ~13@<~@(~A~)~>   ~A~%"
+		   (format stream "~&  ~20@<~{~@(~A~) ~}~> ~20@<~@(~A~)~>   ~A~%"
 			   (state->modifiers (second k))
 			   (remove #\# (remove #\\ (format nil "~S" (or (is-string-keysym (first k)) (first k)))))
 			   (documentation (or (first v) (third v)) 'function))))
@@ -416,8 +416,3 @@ or<br> CLFSWM> (produce-all-docs)"))))
   (produce-corner-doc-html-in-file "doc/corner.html")
   (produce-conf-var-doc-in-file "doc/variables.txt")
   (produce-conf-var-doc-html-in-file "doc/variables.html"))
-
-
-
-
-

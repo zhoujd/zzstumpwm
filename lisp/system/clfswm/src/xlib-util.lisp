@@ -5,7 +5,7 @@
 ;;; Documentation: Utility functions
 ;;; --------------------------------------------------------------------------
 ;;;
-;;; (C) 2012 Philippe Brochard <pbrochard@common-lisp.net>
+;;; (C) 2005-2015 Philippe Brochard <pbrochard@common-lisp.net>
 ;;;
 ;;; This program is free software; you can redistribute it and/or modify
 ;;; it under the terms of the GNU General Public License as published by
@@ -103,6 +103,15 @@ Features: ~A"
 ;;  `(progn
 ;;     ,@body))
 
+
+(declaim (inline screen-width screen-height))
+(defun screen-width ()
+  ;;(xlib:screen-width *screen*))
+  (x-drawable-width *root*))
+
+(defun screen-height ()
+  ;;(xlib:screen-height *screen*))
+  (x-drawable-height *root*))
 
 
 (defmacro with-x-pointer (&body body)
@@ -328,6 +337,31 @@ they should be windows. So use this function to make a window out of them."
 
 
 
+(defun maxmin-size-equal-p (window)
+  (when (xlib:window-p window)
+    (let ((hints (xlib:wm-normal-hints window)))
+      (when hints
+        (let ((hint-x (xlib:wm-size-hints-x hints))
+              (hint-y (xlib:wm-size-hints-y hints))
+              (user-specified-position-p (xlib:wm-size-hints-user-specified-position-p hints))
+              (min-width (xlib:wm-size-hints-min-width hints))
+              (min-height (xlib:wm-size-hints-min-height hints))
+              (max-width (xlib:wm-size-hints-max-width hints))
+              (max-height (xlib:wm-size-hints-max-height hints)))
+          (and hint-x hint-y min-width max-width min-height max-height
+               user-specified-position-p
+               (= hint-x 0) (= hint-y 0)
+               (= min-width max-width)
+               (= min-height max-height)))))))
+
+(defun maxmin-size-equal-window-in-tree ()
+  (dolist (win (xlib:query-tree *root*))
+    (when (maxmin-size-equal-p win)
+      (return win))))
+
+
+
+
 (defun window-state (win)
   "Get the state (iconic, normal, withdrawn) of a window."
   (first (xlib:get-property win :WM_STATE)))
@@ -349,16 +383,15 @@ they should be windows. So use this function to make a window out of them."
   (eql (window-state window) +iconic-state+))
 
 
-(defun null-size-window-p (window)
-  (let ((hints (xlib:wm-normal-hints window)))
-    (and hints
-	 (not (or (xlib:wm-size-hints-width hints)
-		  (xlib:wm-size-hints-height hints)
-		  (xlib:wm-size-hints-win-gravity hints)))
-	 (xlib:wm-size-hints-user-specified-position-p hints))))
+(defun window-transient-for (window)
+  (first (xlib:get-property window :WM_TRANSIENT_FOR)))
 
-
-
+(defun window-leader (window)
+  (when (xlib:window-p window)
+    (or (first (xlib:get-property window :WM_CLIENT_LEADER))
+        (let ((id (window-transient-for window)))
+          (when id
+            (window-leader id))))))
 
 
 
@@ -481,20 +514,23 @@ they should be windows. So use this function to make a window out of them."
 (defun window-type (window)
   "Return one of :desktop, :dock, :toolbar, :utility, :splash,
 :dialog, :transient, :maxsize and :normal."
-  (or (and (let ((hints (xlib:wm-normal-hints window)))
-             (and hints (or (xlib:wm-size-hints-max-width hints)
-                            (xlib:wm-size-hints-max-height hints)
-                            (xlib:wm-size-hints-min-aspect hints)
-                            (xlib:wm-size-hints-max-aspect hints))))
-           :maxsize)
-      (let ((net-wm-window-type (xlib:get-property window :_NET_WM_WINDOW_TYPE)))
-        (when net-wm-window-type
-          (dolist (type-atom net-wm-window-type)
-            (when (assoc (xlib:atom-name *display* type-atom) +netwm-window-types+)
-              (return (cdr (assoc (xlib:atom-name *display* type-atom) +netwm-window-types+)))))))
-      (and (xlib:get-property window :WM_TRANSIENT_FOR)
-           :transient)
-      :normal))
+  (when (xlib:window-p window)
+    (or (and (let ((hints (xlib:wm-normal-hints window)))
+               (and hints (or (and (xlib:wm-size-hints-max-width hints)
+                                   (< (xlib:wm-size-hints-max-width hints) (x-drawable-width *root*)))
+                              (and (xlib:wm-size-hints-max-height hints)
+                                   (< (xlib:wm-size-hints-max-height hints) (x-drawable-height *root*)))
+                              (xlib:wm-size-hints-min-aspect hints)
+                              (xlib:wm-size-hints-max-aspect hints))))
+             :maxsize)
+        (let ((net-wm-window-type (xlib:get-property window :_NET_WM_WINDOW_TYPE)))
+          (when net-wm-window-type
+            (dolist (type-atom net-wm-window-type)
+              (when (assoc (xlib:atom-name *display* type-atom) +netwm-window-types+)
+                (return (cdr (assoc (xlib:atom-name *display* type-atom) +netwm-window-types+)))))))
+        (and (xlib:get-property window :WM_TRANSIENT_FOR)
+             :transient)
+        :normal)))
 
 
 
@@ -533,19 +569,29 @@ they should be windows. So use this function to make a window out of them."
       (unhide-window window))
     (setf (xlib:window-priority window) :above)))
 
-(defun focus-window (window)
-  "Give the window focus."
-  (when (xlib:window-p window)
-    (xlib:set-input-focus *display* window :parent)))
+
+(let ((focused-window nil))
+  (defun no-focus ()
+    "don't focus any window but still read keyboard events."
+    (xlib:set-input-focus *display* *no-focus-window* :pointer-root)
+    (setf focused-window nil))
+
+  (defun focus-window (window)
+    "Give the window focus."
+    (no-focus)
+    (when (xlib:window-p window)
+      (xlib:set-input-focus *display* window :parent)
+      (setf focused-window window)))
+
+  (defun focused-window ()
+    focused-window))
+
+
 
 (defun raise-and-focus-window (window)
   "Raise and focus."
   (raise-window window)
   (focus-window window))
-
-(defun no-focus ()
-  "don't focus any window but still read keyboard events."
-  (xlib:set-input-focus *display* *no-focus-window* :pointer-root))
 
 
 (defun lower-window (window sibling)
@@ -965,6 +1011,7 @@ they should be windows. So use this function to make a window out of them."
                              t))))
 
 
+
 (defun copy-pixmap-buffer (window gc)
   (xlib:copy-area *pixmap-buffer* gc
   		  0 0 (x-drawable-width window) (x-drawable-height window)
@@ -983,8 +1030,8 @@ they should be windows. So use this function to make a window out of them."
      (when (xlib:window-p window)
        (string-equal (xlib:get-wm-class window) ,class))))
 
+
 (defmacro defun-equal-wm-name (symbol name)
   `(defun ,symbol (window)
      (when (xlib:window-p window)
        (string-equal (xlib:wm-name window) ,name))))
-

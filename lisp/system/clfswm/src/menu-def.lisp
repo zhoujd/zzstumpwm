@@ -7,7 +7,7 @@
 ;;; Note: Mod-1 is the Alt or Meta key, Mod-2 is the Numlock key.
 ;;; --------------------------------------------------------------------------
 ;;;
-;;; (C) 2012 Philippe Brochard <pbrochard@common-lisp.net>
+;;; (C) 2005-2015 Philippe Brochard <pbrochard@common-lisp.net>
 ;;;
 ;;; This program is free software; you can redistribute it and/or modify
 ;;; it under the terms of the GNU General Public License as published by
@@ -81,15 +81,18 @@
 
 
 (add-menu-key 'child-menu "r" 'rename-current-child)
+(add-menu-key 'child-menu "b" 'bury-current-child)
+(add-menu-key 'child-menu "f" 'bury-first-child)
 (add-menu-key 'child-menu "t" 'set-current-child-transparency)
-(add-menu-key 'child-menu "b" 'set-current-child-border-size)
+(add-menu-key 'child-menu "o" 'set-current-child-border-size)
 (add-menu-key 'child-menu "e" 'ensure-unique-name)
 (add-menu-key 'child-menu "n" 'ensure-unique-number)
 (add-menu-key 'child-menu "Delete" 'delete-current-child)
 (add-menu-key 'child-menu "X" 'remove-current-child)
+(add-menu-key 'child-menu "R" 'retrieve-existing-window)
 (add-menu-key 'child-menu "h" 'hide-current-child)
 (add-menu-key 'child-menu "u" 'unhide-a-child)
-(add-menu-key 'child-menu "f" 'unhide-a-child-from-all-frames)
+(add-menu-key 'child-menu "F" 'unhide-a-child-from-all-frames)
 (add-menu-key 'child-menu "a" 'unhide-all-children)
 (add-menu-key 'child-menu "Page_Up" 'frame-lower-child)
 (add-menu-key 'child-menu "Page_Down" 'frame-raise-child)
@@ -155,11 +158,13 @@
 (add-menu-key 'frame-focus-policy "b" 'current-frame-set-sloppy-focus-policy)
 (add-menu-key 'frame-focus-policy "c" 'current-frame-set-sloppy-strict-focus-policy)
 (add-menu-key 'frame-focus-policy "d" 'current-frame-set-sloppy-select-policy)
+(add-menu-key 'frame-focus-policy "e" 'current-frame-set-sloppy-select-window-policy)
 (add-menu-comment 'frame-focus-policy "-=- For all frames -=-")
-(add-menu-key 'frame-focus-policy "e" 'all-frames-set-click-focus-policy)
-(add-menu-key 'frame-focus-policy "f" 'all-frames-set-sloppy-focus-policy)
-(add-menu-key 'frame-focus-policy "g" 'all-frames-set-sloppy-strict-focus-policy)
-(add-menu-key 'frame-focus-policy "h" 'all-frames-set-sloppy-select-policy)
+(add-menu-key 'frame-focus-policy "f" 'all-frames-set-click-focus-policy)
+(add-menu-key 'frame-focus-policy "g" 'all-frames-set-sloppy-focus-policy)
+(add-menu-key 'frame-focus-policy "h" 'all-frames-set-sloppy-strict-focus-policy)
+(add-menu-key 'frame-focus-policy "i" 'all-frames-set-sloppy-select-policy)
+(add-menu-key 'frame-focus-policy "j" 'all-frames-set-sloppy-select-window-policy)
 
 
 

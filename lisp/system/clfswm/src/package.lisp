@@ -5,7 +5,7 @@
 ;;; Documentation: Package definition
 ;;; --------------------------------------------------------------------------
 ;;;
-;;; (C) 2012 Philippe Brochard <pbrochard@common-lisp.net>
+;;; (C) 2005-2015 Philippe Brochard <pbrochard@common-lisp.net>
 ;;;
 ;;; This program is free software; you can redistribute it and/or modify
 ;;; it under the terms of the GNU General Public License as published by
@@ -65,7 +65,8 @@ It is particulary useful with CLISP/MIT-CLX.")
 
 
 
-(defparameter *modifier-alias* '((:alt :mod-1)     (:alt-l :mod-1)
+(defparameter *modifier-alias* '((:prefix :mod-4)
+				 (:alt :mod-1)  (:alt-l :mod-1)
 				 (:numlock :mod-2)
 				 (:super_l :mod-4)
 				 (:alt-r :mod-5)   (:alt-gr :mod-5)
@@ -78,8 +79,15 @@ It is particulary useful with CLISP/MIT-CLX.")
 (defparameter *root* nil)
 (defparameter *no-focus-window* nil)
 
+(defparameter *sm-window* nil)
+(defparameter *sm-font* nil)
+(defparameter *sm-gc* nil)
+
+
 (defparameter *background-image* nil)
 (defparameter *background-gc* nil)
+
+(defparameter *expose-child-list* nil)
 
 (defconfig *loop-timeout* 1 nil
            "Maximum time (in seconds) to wait before calling *loop-hook*")
@@ -90,7 +98,7 @@ It is particulary useful with CLISP/MIT-CLX.")
 
 (defparameter *default-font* nil)
 ;;(defparameter *default-font-string* "9x15")
-(defconfig *default-font-string* "fixed" nil
+(defconfig *default-font-string* "genera-cptfontc" nil
            "The default font used in clfswm")
 
 (defconfig *color-move-window* "DeepPink" 'Main-mode
@@ -119,13 +127,17 @@ It is particulary useful with CLISP/MIT-CLX.")
 
 ;;; CONFIG - Default focus policy
 (defconfig *default-focus-policy* :click nil
-           "Default mouse focus policy. One of :click, :sloppy, :sloppy-strict or :sloppy-select.")
+           "Default mouse focus policy. One of :click, :sloppy, :sloppy-strict, :sloppy-select or
+:sloppy-select-window.")
 
 
 (defconfig *show-hide-policy* #'<=
   nil "'NIL': always display all children (better with transparency support).
 '<': Hide only children less than children above.
 '<=': Hide children less or equal to children above (better for performance on slow machine).")
+
+(defconfig *show-hide-policy-type* '(:normal)
+  nil "Windows types which are optimized by the show hide policy")
 
 (defstruct child-rect child parent selected-p x y w h)
 
@@ -134,12 +146,12 @@ It is particulary useful with CLISP/MIT-CLX.")
 (defclass frame ()
   ((name :initarg :name :accessor frame-name :initform nil)
    (number :initarg :number :accessor frame-number :initform 0)
-   ;;; Float size between 0 and 1 - Manipulate only this variable and not real size
+   ;;; Float size between 0 and 1 - Manipulate only those variables and not real size
    (x :initarg :x :accessor frame-x :initform 0.1)
    (y :initarg :y :accessor frame-y :initform 0.1)
    (w :initarg :w :accessor frame-w :initform 0.8)
    (h :initarg :h :accessor frame-h :initform 0.8)
-   ;;; Real size (integer) in screen size - Don't set directly this variables
+   ;;; Real size (integer) in screen size - Don't set directly those variables
    ;;; they may be recalculated by the layout manager.
    (rx :initarg :rx :accessor frame-rx :initform 0)
    (ry :initarg :ry :accessor frame-ry :initform 0)
@@ -157,17 +169,17 @@ It is particulary useful with CLISP/MIT-CLX.")
    (forced-managed-window :initarg :forced-managed-window
 			  :accessor frame-forced-managed-window
 			  :initform nil
-			  :documentation "A list of forced managed windows (wm-name or window)")
+			  :documentation "A list of forced managed windows (xlib:wm-name or window)")
    (forced-unmanaged-window :initarg :forced-unmanaged-window
 			  :accessor frame-forced-unmanaged-window
 			  :initform nil
-			  :documentation "A list of forced unmanaged windows (wm-name or window)")
+			  :documentation "A list of forced unmanaged windows (xlib:wm-name or window)")
    (show-window-p :initarg :show-window-p :accessor frame-show-window-p :initform t)
    (hidden-children :initarg :hidden-children :accessor frame-hidden-children :initform nil
 		    :documentation "A list of hidden children")
    (selected-pos :initarg :selected-pos :accessor frame-selected-pos :initform 0
 		 :documentation "The position in the child list of the selected child")
-   (focus-policy :initarg :focus-ploicy :accessor frame-focus-policy
+   (focus-policy :initarg :focus-policy :accessor frame-focus-policy
 		 :initform *default-focus-policy*)
    (window :initarg :window :accessor frame-window :initform nil)
    (gc :initarg :gc :accessor frame-gc :initform nil)
@@ -247,6 +259,8 @@ loading configuration file and before opening the display.")
   'Placement "Expose mode window placement (Selection keys position)")
 (defconfig *expose-query-placement* 'bottom-left-root-placement
   'Placement "Expose mode query window placement")
+(defconfig *fastswitch-mode-placement* 'top-left-root-placement
+  'Placement "Fastswitch mode window placement")
 (defconfig *notify-window-placement* 'bottom-right-root-placement
   'Placement "Notify window placement")
 (defconfig *ask-close/kill-placement* 'top-right-root-placement
@@ -258,21 +272,23 @@ loading configuration file and before opening the display.")
 (defparameter *in-process-existing-windows* nil)
 
 ;; For debug - redefine defun
-;;(shadow :defun)
+#+(or)
+(progn
+  (shadow :defun)
 
-;;(defmacro defun (name args &body body)
-;;  `(progn
-;;    (format t "defun: ~A ~A~%" ',name ',args)
-;;    (force-output)
-;;    (cl:defun ,name ,args
-;;      (handler-case
-;;	  (progn
-;;	    ,@body)
-;;	(error (c)
-;;	  (format t "New defun: Error in ~A : ~A~%" ',name c)
-;;	  (format t "Root tree=~A~%All windows=~A~%"
-;;		  (xlib:query-tree *root*) (get-all-windows))
-;;	  (force-output))))))
+  (defmacro defun (name args &body body)
+    `(progn
+       (format t "defun: ~A ~A~%" ',name ',args)
+       (force-output)
+       (cl:defun ,name ,args
+	 (handler-case
+	     (progn
+	       ,@body)
+	   (error (c)
+	     (format t "New defun: Error in ~A : ~A~%" ',name c)
+	     (format t "Root tree=~A~%All windows=~A~%"
+		     (xlib:query-tree *root*) (get-all-windows))
+	     (force-output)))))))
 
 
 

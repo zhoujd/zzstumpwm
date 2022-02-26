@@ -5,7 +5,7 @@
 ;;; Documentation: Info function (see the end of this file for user definition
 ;;; --------------------------------------------------------------------------
 ;;;
-;;; (C) 2012 Philippe Brochard <pbrochard@common-lisp.net>
+;;; (C) 2005-2015 Philippe Brochard <pbrochard@common-lisp.net>
 ;;;
 ;;; This program is free software; you can redistribute it and/or modify
 ;;; it under the terms of the GNU General Public License as published by
@@ -96,7 +96,7 @@
                         *pixmap-buffer* (info-gc info)
                         (- (+ (info-ilw info) (* posx (info-ilw info))) (info-x info))
                         (info-y-display-coords info posy)
-                        (format nil "~A" line)))
+                        (ensure-printable (format nil "~A" line))))
 	     (+ posx (length line))))
     (clear-pixmap-buffer (info-window info) (info-gc info))
     (loop for line in (info-list info)
@@ -317,10 +317,10 @@ Or ((1_word color) (2_word color) 3_word (4_word color)...)"
 	       (ilh (+ (xlib:max-char-ascent font) (xlib:max-char-descent font) 1))
 	       (width (or width
 			  (min (* (+ (loop for l in info-list maximize (compute-size l)) 2) ilw)
-			       (xlib:screen-width *screen*))))
+			       (screen-width))))
 	       (height (or height
 			   (min (round (+ (* (length info-list) ilh) (/ ilh 2)))
-				(xlib:screen-height *screen*)))))
+				(screen-height)))))
 	  (with-placement (*info-mode-placement* x y width height)
 	    (let* ((window (xlib:create-window :parent *root*
 					       :x x :y y
@@ -346,8 +346,6 @@ Or ((1_word color) (2_word color) 3_word (4_word color)...)"
               (wait-no-key-or-button-press)
               (with-grab-keyboard-and-pointer (68 69 66 67)
                 (generic-mode 'info-mode 'exit-info-loop
-                              :loop-function (lambda ()
-                                               (raise-window (info-window info)))
                               :original-mode '(main-mode)))
 	      (xlib:free-gcontext gc)
 	      (xlib:destroy-window window)
@@ -418,14 +416,14 @@ Function can be a function or a list (function color) for colored output"
 ;;;,-----
 ;;;| CONFIG - Info mode functions
 ;;;`-----
-(defun key-binding-colorize-line (list)
+(defun key-binding-colorize-line (list); FIXME: Use a parameter instead of hard code
   (loop :for line :in list
      :collect (cond ((search "* CLFSWM Keys *" line) (list line *info-color-title*))
 		    ((search "---" line) (list line *info-color-underline*))
 		    ((begin-with-2-spaces line)
 		     (list (list (subseq line 0 22) *info-color-second*)
-			   (list (subseq line 22 35) *info-color-first*)
-			   (subseq line 35)))
+			   (list (subseq line 22 44) *info-color-first*)
+			   (subseq line 44)))
 		    (t line))))
 
 
@@ -592,9 +590,3 @@ Pass the :no-producing-doc symbol to remove the producing doc"
 (defun show-version ()
   "Show the current CLFSWM version"
   (info-mode (list *version*)))
-
-
-
-
-
-

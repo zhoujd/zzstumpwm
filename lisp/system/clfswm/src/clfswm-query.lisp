@@ -5,7 +5,7 @@
 ;;; Documentation: Query utility
 ;;; --------------------------------------------------------------------------
 ;;;
-;;; (C) 2012 Philippe Brochard <pbrochard@common-lisp.net>
+;;; (C) 2005-2015 Philippe Brochard <pbrochard@common-lisp.net>
 ;;;
 ;;; This program is free software; you can redistribute it and/or modify
 ;;; it under the terms of the GNU General Public License as published by
@@ -41,12 +41,13 @@
 
 
 (defun add-char-in-query-string (char)
-  (setf *query-string* (concatenate 'string
-                                    (when (<= *query-pos* (length *query-string*))
-                                      (subseq *query-string* 0 *query-pos*))
-                                    (string char)
-                                    (when (< *query-pos* (length *query-string*))
-                                      (subseq *query-string* *query-pos*))))
+  (setf *query-string* (ensure-printable
+                        (concatenate 'string
+                                     (when (<= *query-pos* (length *query-string*))
+                                       (subseq *query-string* 0 *query-pos*))
+                                     (string char)
+                                     (when (< *query-pos* (length *query-string*))
+                                       (subseq *query-string* *query-pos*)))))
   (incf *query-pos*))
 
 
@@ -107,7 +108,7 @@
 
 
 (defun query-find-complet-list ()
-  (let* ((pos (1+ (or (position-if-not #'extented-alphanumericp *query-string*
+  (let* ((pos (1+ (or (position-if-not #'extended-alphanumericp *query-string*
                                        :end *query-pos* :from-end t)
                       -1)))
          (str (subseq *query-string* pos *query-pos*)))
@@ -137,7 +138,7 @@
     (xlib:draw-glyphs *pixmap-buffer* *query-gc*
 		      (+ 10 dec)
 		      (+ (* 2 (+ (xlib:max-char-ascent *query-font*) (xlib:max-char-descent *query-font*))) 5)
-		      *query-string*)
+		      (ensure-printable *query-string*))
     (setf (xlib:gcontext-foreground *query-gc*) (get-color *query-cursor-color*))
     (xlib:draw-line *pixmap-buffer* *query-gc*
 		    (+ 10 (* *query-pos* (xlib:max-char-width *query-font*)) dec)
@@ -150,7 +151,7 @@
 
 (defun query-enter-function ()
   (setf *query-font* (xlib:open-font *display* *query-font-string*))
-  (let ((width (- (xlib:screen-width *screen*) 2))
+  (let ((width (- (screen-width) 2))
 	(height (* 3 (+ (xlib:max-char-ascent *query-font*) (xlib:max-char-descent *query-font*)))))
     (with-placement (*query-mode-placement* x y width height)
       (setf *query-window* (xlib:create-window :parent *root*
@@ -178,9 +179,6 @@
   (xlib:destroy-window *query-window*)
   (xlib:close-font *query-font*)
   (wait-no-key-or-button-press))
-
-(defun query-loop-function ()
-  (raise-window *query-window*))
 
 
 
@@ -395,7 +393,6 @@ that calls query-mode-complete-suggest."
   (with-grab-keyboard-and-pointer (92 93 66 67 t)
     (generic-mode 'query-mode 'exit-query-loop
 		  :enter-function #'query-enter-function
-		  :loop-function #'query-loop-function
 		  :leave-function #'query-leave-function
 		  :original-mode '(main-mode)))
   (when (equal *query-return* :Return)

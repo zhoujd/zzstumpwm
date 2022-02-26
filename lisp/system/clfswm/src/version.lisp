@@ -1,5 +1,5 @@
-;; Copyright (C) 2012 Xavier Maillard <xma@gnu.org>
-;; Copyright (C) 2012 Martin Bishop
+;; Copyright (C) 2005-2015 Xavier Maillard <xma@gnu.org>
+;; Copyright (C) 2005-2015 Martin Bishop
 ;;
 ;;  Borrowed from Stumpwm
 ;;  This file is part of clfswm.
@@ -33,4 +33,4 @@
 
 (in-package :version)
 
-(defparameter *version* #.(concatenate 'string "Version: 1209.2   built " (date-string)))
+(defparameter *version* #.(concatenate 'string "Version: 13??   built " (date-string)))
