@@ -1,5 +1,5 @@
 clfswm
-=======
+======
 
 ## Linux - startx cannot open /dev/fb0: Permission denied
 
@@ -11,5 +11,11 @@ clfswm
 
 ## clfswm wiki home
 
-    https://gitlab.common-lisp.net/clfswm/clfswm/-/wikis/home
-    https://gitlab.common-lisp.net/clfswm/clfswm/-/wikis/Setup
+    ## https://gitlab.common-lisp.net/clfswm/clfswm/-/wikis/home
+    ## https://gitlab.common-lisp.net/clfswm/clfswm/-/wikis/Setup
+
+## build clfswm
+
+    $ cd ~/lisp/system/clfswm
+    $ make
+    $ sudo make install
