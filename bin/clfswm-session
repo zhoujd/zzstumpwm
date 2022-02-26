@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# source zwmrc
+[ -f ~/.zwmrc ] && . ~/.zwmrc
+
+# clfswm
+sbcl --eval '(ql:quickload :clfswm)' \
+     --eval '(clfswm:main)'

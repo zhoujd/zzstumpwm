@@ -5,6 +5,9 @@ case $WM in
     stumpwm )
         exec stumpwm-session
         ;;
+    clfswm )
+        exec clfswm-session
+        ;;
     zwm )
         exec zwm-session
         ;;
