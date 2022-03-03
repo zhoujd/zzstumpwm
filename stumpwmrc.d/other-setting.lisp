@@ -152,7 +152,7 @@ on run-or-raise"
   (list "xset" :options "b off")
   (list "xsetroot" :options "-cursor_name left_ptr")
   (list "nitrogen" :options "--restore")
-  (list "ulauncher" :options "--hide-window")
+  (list "ulauncher" :options "--hide-window --no-window-shadow")
   (list "urxvtd" :options "-q -f -o")
   (list "unclutter")
   (list "redshift")
