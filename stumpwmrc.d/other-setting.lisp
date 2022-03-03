@@ -40,8 +40,8 @@
   "Presents a yes-no dialog to the user asking query-string.
 Returns true when yes is selected"
   (equal :yes (cadr (select-from-menu (current-screen)
-                            '(("No" :no) ("Yes" :yes))
-                            query-string))))
+                                      '(("No" :no) ("Yes" :yes))
+                                      query-string))))
 
 (defun random-string (length)
   "Return a random string with LENGTH characters."
@@ -136,13 +136,13 @@ on run-or-raise"
       (run-raise-pull-list cmd `(:class ,win-cls))
       (run-raise-pull-list cmd `(:class ,win-cls) :all-groups nil :all-screens nil)))
 
-  (defun shift-windows-forward (frames win)
-    (when frames
-      (let ((frame (car frames)))
-        (shift-windows-forward (cdr frames)
-                               (stumpwm::frame-window frame))
-        (when win
-          (stumpwm::pull-window win frame)))))
+(defun shift-windows-forward (frames win)
+  (when frames
+    (let ((frame (car frames)))
+      (shift-windows-forward (cdr frames)
+                             (stumpwm::frame-window frame))
+      (when win
+        (stumpwm::pull-window win frame)))))
 
 ;; startup run commands
 (mapc
