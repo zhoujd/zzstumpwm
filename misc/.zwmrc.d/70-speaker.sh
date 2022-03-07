@@ -10,4 +10,13 @@ speaker_init() {
     fi
 }
 
+headset_init() {
+    local headset=$(pactl list short sinks | grep usb | cut -f 2)
+    if [ -n $headset ]; then
+        echo "[speaker] set usb headset as default sink"
+        pactl set-default-sink $headset
+    fi
+}
+
 speaker_init
+headset_init
