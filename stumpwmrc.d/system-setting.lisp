@@ -84,8 +84,8 @@
   (run-shell-command "pactl set-source-mute @DEFAULT_SOURCE@ toggle")
   (stumpwm::eval-command "pactl-mic-status"))
 
-(defcommand speaker-test () ()
-  "speaker test"
+(defcommand runspeaker () ()
+  "run speaker test"
   (run-shell-command "speaker-test -t wav -c 6 -l 1"))
 
 (defcommand capslock-toggle () ()
