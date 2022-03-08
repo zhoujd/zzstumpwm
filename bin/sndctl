@@ -2,7 +2,7 @@
 
 usage() {
     app=$(basename $0)
-echo "Usage:
+cat <<EOF 
 $app vol up
 $app vol down
 $app vol toggle
@@ -14,7 +14,8 @@ $app mic toggle
 $app mic status
 $app mic test
 $app info
-$app status"
+$app status
+EOF
 }
 
 info() {
