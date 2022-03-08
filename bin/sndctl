@@ -7,10 +7,12 @@ $app vol up
 $app vol down
 $app vol toggle
 $app vol status
+$app vol test
 $app mic up
 $app mic down
 $app mic toggle
 $app mic status
+$app mic test
 $app info
 $app status"
 }
@@ -19,7 +21,7 @@ info() {
     pactl info
 }
 
-vol_status () {
+vol_status() {
     DEFAULT_SINK=$(pactl info | grep "Default Sink" | cut -d " " -f3)
     vol_mute=$(pactl list | grep -E "Name: $DEFAULT_SINK$|Mute" | grep "Name:" -A1 | tail -1 |cut -d: -f2| tr -d " ")
     vol=$(pactl list | grep -E "Name: $DEFAULT_SINK$|Volume" | grep "Name:" -A1 | tail -1 | cut -d% -f1 | cut -d/ -f2 | tr -d " ")
@@ -36,7 +38,7 @@ vol_status () {
     esac
 }
 
-mic_status () {
+mic_status() {
     DEFAULT_SOURCE=$(pactl info | grep "Default Source" | cut -d " " -f3)
     mic_mute=$(pactl list | grep -E "Name: $DEFAULT_SOURCE$|Mute" | grep "Name:" -A1 | tail -1 |cut -d: -f2| tr -d " ")
     mic_vol=$(pactl list | grep -E "Name: $DEFAULT_SOURCE$|Volume" | grep "Name:" -A1 | tail -1 | cut -d% -f1 | cut -d/ -f2 | tr -d " ")
@@ -53,7 +55,7 @@ mic_status () {
     esac
 }
 
-status () {
+status() {
     vol_status
     mic_status
 }
@@ -127,8 +129,11 @@ case $1 in
             status )
                 vol_status
                 ;;
+            test )
+                vol_test
+                ;;
             * )
-                echo "$0 $1 {up|down|toggle|status}"
+                echo "$0 $1 {up|down|toggle|status|test}"
                 exit 1
         esac
         ;;
@@ -146,8 +151,11 @@ case $1 in
             status )
                 mic_status
                 ;;
+            test )
+                mic_test
+                ;;
             * )
-                echo "$0 $1 {up|down|toggle|status}"
+                echo "$0 $1 {up|down|toggle|status|test}"
                 exit 1
         esac
         ;;
