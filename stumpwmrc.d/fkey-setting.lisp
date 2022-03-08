@@ -45,6 +45,8 @@
   (kbd "s-C-F8")    "claws-mail"
   (kbd "s-C-F9")    "urxvt"
   (kbd "s-C-F10")   "thunar"
+  (kbd "s-C-F11")   "pactl-test"
+  (kbd "s-C-F12")   "pactl-mic-test"
   ))
 
 (apply-keys-to-map

@@ -58,6 +58,13 @@
                      (merge-pathnames "bin/sndctl" *zz-load-directory*))))
     (message "~a" (run-shell-command cmd t))))
 
+(defcommand pactl-test () ()
+  "pactl test"
+  (let ((cmd (format nil "~a vol test"
+                     (merge-pathnames "bin/sndctl" *zz-load-directory*))))
+    (message "Speaker testing")
+    (run-shell-command cmd)))
+
 (defcommand pactl-toggle () ()
   "pactl sound toggle"
   (run-shell-command "pactl set-sink-mute @DEFAULT_SINK@ toggle")
@@ -79,14 +86,17 @@
                      (merge-pathnames "bin/sndctl" *zz-load-directory*))))
     (message "~a" (run-shell-command cmd t))))
 
+(defcommand pactl-mic-test () ()
+  "pactl mic test"
+  (let ((cmd (format nil "~a mic test"
+                     (merge-pathnames "bin/sndctl" *zz-load-directory*))))
+    (message "Recording in 5s, then play")
+    (run-shell-command cmd)))
+
 (defcommand pactl-mic-toggle () ()
   "pactl micphone toggle"
   (run-shell-command "pactl set-source-mute @DEFAULT_SOURCE@ toggle")
   (stumpwm::eval-command "pactl-mic-status"))
-
-(defcommand runspeaker () ()
-  "run speaker test"
-  (run-shell-command "speaker-test -t wav -c 6 -l 1"))
 
 (defcommand capslock-toggle () ()
   "capslock toggle"

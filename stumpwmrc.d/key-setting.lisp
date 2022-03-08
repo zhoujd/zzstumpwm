@@ -202,7 +202,6 @@
   (kbd "s-E")               "emacs"
   (kbd "s-G")               "google-chrome"
 
-  (kbd "s-M-a")             "runspeaker"
   (kbd "s-M-c")             "runurxvt"
   (kbd "s-M-e")             "runemacs"
   (kbd "s-M-g")             "rungc"

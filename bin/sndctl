@@ -103,7 +103,7 @@ mic_toggle() {
 }
 
 vol_test() {
-    echo "Speakering"
+    echo "Speaker testing"
     speaker-test speaker-test -t wav -c 6 -l 1
 }
 
