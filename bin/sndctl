@@ -100,6 +100,18 @@ mic_toggle() {
         xargs -I{} pactl set-source-mute {} toggle
 }
 
+vol_test() {
+    echo "Speakering"
+    speaker-test speaker-test -t wav -c 6 -l 1
+}
+
+mic_test() {
+    echo "Recording in 5s, then play"
+    local test=/tmp/test-mic.wav
+    arecord -d 5 $test
+    aplay $test
+}
+
 case $1 in
     vol )
         case $2 in
