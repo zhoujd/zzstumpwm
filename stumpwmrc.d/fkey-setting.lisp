@@ -53,8 +53,8 @@
  *top-map*
  (list
   (kbd "s-S-F1")    "exec"
-  (kbd "s-S-F2")    "ssh-shell"
-  (kbd "s-S-F3")    "eval-shell"
+  (kbd "s-S-F2")    "ssh"
+  (kbd "s-S-F3")    "eval-cmd"
   (kbd "s-S-F4")    "trans-cmd"
   (kbd "s-S-F5")    "colon1 exec google-chrome http://"
   (kbd "s-S-F6")    "vpn-menu"
@@ -62,6 +62,8 @@
   (kbd "s-S-F8")    "audio-menu"
   (kbd "s-S-F9")    "tmux-menu"
   (kbd "s-S-F10")   "screen-menu"
+  (kbd "s-S-F11")   "bright-down"
+  (kbd "s-S-F12")   "bright-up"
   ))
 
 (apply-keys-to-map
