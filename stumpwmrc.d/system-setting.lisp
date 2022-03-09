@@ -265,3 +265,7 @@
     (if (probe-file pid-file)
         (stumpwm::eval-command "record-stop")
         (stumpwm::eval-command "record-start"))))
+
+(defcommand slock () ()
+  "screen lock"
+  (run-shell-command "slock"))

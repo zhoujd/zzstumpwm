@@ -134,6 +134,7 @@
   (kbd "s-'")               "windowlist"
   (kbd "s-M-'")             "grouplist"
   (kbd "s-C-'")             "skippy"
+  (kbd "s-C-;")             "slock"
 
   (kbd "s-Escape")          "abort"
   (kbd "s-M-Escape")        "banish"
@@ -175,7 +176,6 @@
   (kbd "s-C-g")             "refresh"
   (kbd "s-C-q")             "kill-stumpwm"
   (kbd "s-C-r")             "reinit"
-  (kbd "s-C-;")             "exec slock"
 
   (kbd "s-[")               "window-previous"
   (kbd "s-]")               "window-next"
