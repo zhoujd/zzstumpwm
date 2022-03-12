@@ -48,6 +48,7 @@
   (kbd "M-o")               "openshot"
   (kbd "p")                 (urxvt-command "bpython")
   (kbd "C-p")               "pavucontrol"
+  (kbd "M-p")               "exec p4merge"
   (kbd "q")                 "slingscold"
   (kbd "C-q")               "exec slingscold"
   (kbd "r")                 "exec remmina"
