@@ -40,5 +40,6 @@
   "keymap-setting"
   "key-setting"
   "nkey-setting"
+  "dkey-setting"
   "fkey-setting"
   ))
