@@ -263,6 +263,11 @@
   (kbd "s-C-l")             (getkey-top (kbd "s-C-Right"))
   (kbd "s-C-k")             (getkey-top (kbd "s-C-Up"))
   (kbd "s-C-j")             (getkey-top (kbd "s-C-Down"))
+
+  (kbd "s-H")               (getkey-top (kbd "s-S-Left"))
+  (kbd "s-L")               (getkey-top (kbd "s-S-Right"))
+  (kbd "s-K")               (getkey-top (kbd "s-S-Up"))
+  (kbd "s-J")               (getkey-top (kbd "s-S-Down"))
   ))
 
 (apply-keys-to-map
