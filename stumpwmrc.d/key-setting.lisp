@@ -288,6 +288,11 @@
   (kbd "C-p")               (getkey-top (kbd "s-C-Up"))
   (kbd "C-n")               (getkey-top (kbd "s-C-Down"))
 
+  (kbd "H")                 (getkey-top (kbd "s-S-Left"))
+  (kbd "L")                 (getkey-top (kbd "s-S-Right"))
+  (kbd "K")                 (getkey-top (kbd "s-S-Up"))
+  (kbd "J")                 (getkey-top (kbd "s-S-Down"))
+
   ;;b/f, p/n for arrow control
   (kbd "Tab")               "capslock-toggle"
   (kbd "a")                 "pavucontrol"
