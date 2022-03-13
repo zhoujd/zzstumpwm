@@ -279,4 +279,6 @@
          (deltas (format nil (cdr (assoc (princ d) formats))
                          *resize-increment*))
          (to-be-run (concatenate 'string "resize " deltas)))
-    (run-commands to-be-run)))
+    (if (cdr (stumpwm::group-frames (current-group)))
+        (run-commands to-be-run)
+        (message "There is no others frames."))))
