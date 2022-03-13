@@ -35,6 +35,7 @@
   (kbd "h")                 "thunar"
   (kbd "C-h")               "exec thunar"
   (kbd "M-h")               "exec thunar -B"
+  (kbd "i")                 "iptux"
   (kbd "k")                 (urxvt-command "gtypist")
   (kbd "C-k")               "klavaro"
   (kbd "l")                 "libreoffice"

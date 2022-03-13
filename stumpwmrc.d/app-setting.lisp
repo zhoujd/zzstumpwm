@@ -19,6 +19,7 @@
 (def-run-or-raise-command firefox       '(:class "Firefox"))
 (def-run-or-raise-command google-chrome '(:class "Google-chrome"))
 (def-run-or-raise-command gvim          '(:class "Gvim"))
+(def-run-or-raise-command iptux         '(:class "Iptux"))
 (def-run-or-raise-command intel-unite   '(:title "Intel Unite® App"))
 (def-run-or-raise-command klavaro       '(:class "Klavaro"))
 (def-run-or-raise-command libreoffice   '(:title "libreoffice"))
