@@ -181,3 +181,17 @@ used for matching windows with run-or-raise or window placement-merules."
                          "title:    " (stumpwm::window-title w) nl
                          "width:    " (format nil "~a" (stumpwm::window-width w)) nl
                          "height    " (format nil "~a" (stumpwm::window-height w))))))
+
+(defcommand resize-direction (d) ((:direction "Direction: "))
+  "Resize frame to direction @var{d}"
+  (let* ((formats '((:up . "0 -~D")
+                    (:down . "0 ~D")
+                    (:left . "-~D 0")
+                    (:right . "~D 0")))
+         (deltas (format nil (cdr (assoc (princ d) formats))
+                         *resize-increment*))
+         (to-be-run (concatenate 'string "resize " deltas)))
+    (if (and (typep (current-group) 'stumpwm::tile-group)
+             (cdr (stumpwm::group-frames (current-group))))
+        (run-commands to-be-run)
+        (message "There is no others frames."))))

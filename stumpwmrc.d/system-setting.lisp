@@ -269,16 +269,3 @@
 (defcommand slock () ()
   "screen lock"
   (run-shell-command "slock"))
-
-(defcommand resize-direction (d) ((:direction "Direction: "))
-  "Resize frame to direction @var{d}"
-  (let* ((formats '((:up . "0 -~D")
-                    (:down . "0 ~D")
-                    (:left . "-~D 0")
-                    (:right . "~D 0")))
-         (deltas (format nil (cdr (assoc (princ d) formats))
-                         *resize-increment*))
-         (to-be-run (concatenate 'string "resize " deltas)))
-    (if (cdr (stumpwm::group-frames (current-group)))
-        (run-commands to-be-run)
-        (message "There is no others frames."))))
