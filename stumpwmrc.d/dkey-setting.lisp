@@ -1,4 +1,4 @@
-;;;; akey setting -*-lisp-*-
+;;;; dkey setting -*-lisp-*-
 ;;
 
 (in-package :zwm)
