@@ -2,7 +2,13 @@
 
 super+semicolon start
 ctrl+g end
+Tab restart
 
 # Enabling double-click & right-click:
 i warp,doubleclick 1,end
 o warp,click 3,end
+1 click 1
+2 click 2
+3 click 3
+4 click 4
+5 click 5
