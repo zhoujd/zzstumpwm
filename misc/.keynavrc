@@ -13,5 +13,7 @@ o warp,click 3,end
 4 click 4
 5 click 5
 
+w warp
 t windowzoom
 c cursorzoom 200 200
+e end
