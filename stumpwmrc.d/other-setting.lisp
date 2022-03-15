@@ -93,7 +93,7 @@ run-or-raise with group search t."
   (let* ((directory "~/Pictures/screenshots/")
          (file-name (string-trim
                      '(#\Newline)
-                     (run-shell-command "date +%b%d::%H%M%S.png" t)))
+                     (run-shell-command "date +%b%d-%H%M%S.png" t)))
          (file-path (merge-pathnames directory file-name)))
     (ensure-directories-exist directory)
     (run-shell-command (format nil "~a ~a" prefix file-path) t)
