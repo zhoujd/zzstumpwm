@@ -1,0 +1,16 @@
+Stumpwm Error
+=============
+
+## Component 'stumpwm' not found
+
+    Create source repository config for ASDF,
+    e.g: ~/.config/common-lisp/source-registry.conf.d/my-asdf.conf
+    with path to stumpwm directory like: (:tree "~/build/stumpwm/")
+
+## My mouse wheel doesn't work with gtk3 applications
+
+    Add the following to your .xinitrc: sh export GDK_CORE_DEVICE_EVENTS=1
+    If you don't use a .xsession or a .xinitrc, then you must set this somewhere upstream of stumpwm.
+    Alternatively, so long as you don't want to bind any stumpwm commands to the mouse wheel,
+    add a when (/= i 4 5) to xwin-grab-buttons.
+    This is particularly useful for laptops so that you still get full smooth scrolling on a touchpad.
