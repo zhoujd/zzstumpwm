@@ -3,6 +3,9 @@
 
 (in-package :zwm)
 
+;;find a font of your choice in `xfontsel' and put it here.
+;(set-font "*-unifont-medium-*-normal-*-16-*-*-*-*-*-*-*")
+
 (require 'clx-truetype)
 (require 'ttf-fonts)
 (ignore-errors
