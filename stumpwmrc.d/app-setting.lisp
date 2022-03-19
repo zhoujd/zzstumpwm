@@ -58,11 +58,12 @@
 
 (defcommand jiandon-mobl () ()
   "run remote jiandon-mobl"
-  (let ((cmd (format nil
-                     "xfreerdp $HOME/.jiandon-mobl.rdp ~a ~a"
-                     "-grab-keyboard"
-                     "/wm-class:jiandon-mobl")))
-    (run-or-raise cmd '(:class "jiandon-mobl"))))
+  (let* ((prefix "xfreerdp ~/.jiandon-mobl.rdp")
+         (cls "jiandon-mobl")
+         (cmd (format nil "~a -grab-keyboard /wm-class:~a"
+                      prefix
+                      cls)))
+    (run-or-raise cmd (list :class cls))))
 
 (defcommand runurxvt () ()
   "run urxvt"
