@@ -66,6 +66,7 @@
   (kbd "M-v")               (urxvt-command "vim")
   (kbd "w")                 "wireshark"
   (kbd "z")                 "jiandon-mobl"
+  (kbd "C-z")               "exec jiandon-mobl"
   ))
 
 ;; *zz-x-map*
