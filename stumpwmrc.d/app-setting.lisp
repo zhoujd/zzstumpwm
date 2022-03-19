@@ -58,7 +58,8 @@
 
 (defcommand jiandon-mobl () ()
   "run remote jiandon-mobl"
-  (run-or-raise "remmina -c ~/.jiandon-mobl.remmina" '(:title "jiandon-mobl")))
+  (let ((cmd "xfreerdp ~/.jiandon-mobl.rdp -grab-keyboard"))
+    (run-or-raise cmd '(:title "jiandon-mobl"))))
 
 (defcommand runurxvt () ()
   "run urxvt"
