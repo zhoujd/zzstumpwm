@@ -122,17 +122,30 @@
   (kbd "s-+")       (getkey-top (kbd "s-S-F12"))
   ))
 
+(defvar fkeys-alist
+  '(("F1"  . "XF86AudioMute")
+    ("F2"  . "XF86AudioLowerVolume")
+    ("F3"  . "XF86AudioRaiseVolume")
+    ("F4"  . "XF86AudioMicMute")
+    ("F6"  . "XF86TouchpadOn")
+    ("F6"  . "XF86TouchpadOff")
+    ("F7"  . "XF86RFKill")
+    ("F8"  . "XF86WebCam")
+    ("F11" . "XF86MonBrightnessDown")
+    ("F12" . "XF86MonBrightnessUp"))
+  "Alist of functional and additional keys")
+
 (apply-keys-to-map
  *top-map*
  (list
-  (kbd "XF86AudioMute")          "pactl-toggle"       ;F1
-  (kbd "XF86AudioLowerVolume")   "pactl-down"         ;F2
-  (kbd "XF86AudioRaiseVolume")   "pactl-up"           ;F3
-  (kbd "XF86AudioMicMute")       "pactl-mic-toggle"   ;F4
-  (kbd "XF86TouchpadOn")         "touchpad-on"        ;F6
-  (kbd "XF86TouchpadOff")        "touchpad-off"       ;F6
-  (kbd "XF86RFKill")             "wifi-toggle"        ;F7
-  (kbd "XF86WebCam")             "cheese"             ;F8
-  (kbd "XF86MonBrightnessDown")  "bright-down"        ;F11
-  (kbd "XF86MonBrightnessUp")    "bright-up"          ;F12
+  (kbd "XF86AudioMute")          "pactl-toggle"
+  (kbd "XF86AudioLowerVolume")   "pactl-down"
+  (kbd "XF86AudioRaiseVolume")   "pactl-up"
+  (kbd "XF86AudioMicMute")       "pactl-mic-toggle"
+  (kbd "XF86TouchpadOn")         "touchpad-on"
+  (kbd "XF86TouchpadOff")        "touchpad-off"
+  (kbd "XF86RFKill")             "wifi-toggle"
+  (kbd "XF86WebCam")             "cheese"
+  (kbd "XF86MonBrightnessDown")  "bright-down"
+  (kbd "XF86MonBrightnessUp")    "bright-up"
   ))
