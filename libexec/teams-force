@@ -1,0 +1,5 @@
+#!/bin/bash
+
+killall teams && teams
+
+echo "teams force done"
