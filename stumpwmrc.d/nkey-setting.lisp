@@ -55,4 +55,6 @@
   (kbd "3")                 (rat-click 3)   ;;right
   (kbd "4")                 (rat-click 4)   ;;wheel up
   (kbd "5")                 (rat-click 5)   ;;whell down
+  (kbd "-")                 "pactl-test"
+  (kbd "=")                 "pactl-mic-test"
   ))
