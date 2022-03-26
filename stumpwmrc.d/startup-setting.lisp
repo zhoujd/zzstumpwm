@@ -1,4 +1,4 @@
-;;;; autorun setting -*-lisp-*-
+;;;; startup setting -*-lisp-*-
 ;;
 
 (in-package :zwm)

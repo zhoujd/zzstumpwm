@@ -37,7 +37,7 @@
   "float-setting"
   "group-setting"
   "menu-setting"
-  "autorun-setting"
+  "startup-setting"
   "keymap-setting"
   "key-setting"
   "nkey-setting"
