@@ -8,4 +8,10 @@ im_ibus() {
     export XMODIFIERS=@im=ibus
 }
 
+def_im() {
+    echo "[lang] eng as input method"
+    ibus engine xkb:us::eng
+}
+
 im_ibus
+def_im
