@@ -111,7 +111,10 @@ vol_test() {
 mic_test() {
     echo "Recording in 5s, then play"
     local test=/tmp/test-mic.wav
+    local vol=90%
+    pactl set-source-volume @DEFAULT_SOURCE@ $vol
     arecord -d 5 $test
+    pactl set-sink-volume @DEFAULT_SINK@ $vol
     aplay $test
 }
 
