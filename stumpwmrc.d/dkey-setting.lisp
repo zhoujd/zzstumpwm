@@ -70,8 +70,8 @@
   (kbd "C-p")               (getkey-top (kbd "s-C-Up"))
   (kbd "C-n")               (getkey-top (kbd "s-C-Down"))
 
-  (kbd "H")                 (getkey-top (kbd "s-S-Left"))
-  (kbd "L")                 (getkey-top (kbd "s-S-Right"))
-  (kbd "K")                 (getkey-top (kbd "s-S-Up"))
-  (kbd "J")                 (getkey-top (kbd "s-S-Down"))
+  (kbd "B")                 (getkey-top (kbd "s-S-Left"))
+  (kbd "F")                 (getkey-top (kbd "s-S-Right"))
+  (kbd "P")                 (getkey-top (kbd "s-S-Up"))
+  (kbd "N")                 (getkey-top (kbd "s-S-Down"))
   ))
