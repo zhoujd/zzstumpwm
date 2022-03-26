@@ -24,17 +24,15 @@
 
 (defcommand bright-up () ()
   "brightness up"
-  (message "~a"
-           (run-shell-command
-            (format nil "~a +5"
-                    (merge-pathnames "libexec/brightness" *zz-load-directory*)) t)))
+  (let ((cmd (format nil "~a +5"
+                     (merge-pathnames "libexec/brightness" *zz-load-directory*))))
+    (message "~a" (run-shell-command cmd t))))
 
 (defcommand bright-down () ()
   "brightness down"
-  (message "~a"
-           (run-shell-command
-            (format nil "~a -5"
-                    (merge-pathnames "libexec/brightness" *zz-load-directory*)) t)))
+  (let ((cmd (format nil "~a -5"
+                     (merge-pathnames "libexec/brightness" *zz-load-directory*))))
+    (message "~a" (run-shell-command cmd t))))
 
 (defcommand pactl-up () ()
   "pactl sound up"
