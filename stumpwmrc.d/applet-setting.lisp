@@ -1,4 +1,4 @@
-;;;; app setting -*-lisp-*-
+;;;; applet setting -*-lisp-*-
 ;;
 
 (in-package :zwm)
