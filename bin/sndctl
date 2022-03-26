@@ -105,6 +105,8 @@ mic_toggle() {
 
 vol_test() {
     echo "Speaker testing"
+    local vol=90%
+    pactl set-sink-volume @DEFAULT_SINK@ $vol
     speaker-test speaker-test -t wav -c 6 -l 1
 }
 
