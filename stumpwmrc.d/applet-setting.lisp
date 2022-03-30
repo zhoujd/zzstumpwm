@@ -107,6 +107,10 @@
   "Run tmux"
   (run-or-raise "urxvt -name Tmux -e tmux" '(:instance "Tmux")))
 
+(defcommand ranger () ()
+  "Run ranger"
+  (run-or-raise "urxvt -name Ranger -e ranger" '(:instance "Ranger")))
+
 (defcommand eval-shell (&optional (initial "")) (:rest)
   "shell interactive command, done to keep"
   (let ((cmd (read-one-line (current-screen) "shell: " :initial-input initial)))
