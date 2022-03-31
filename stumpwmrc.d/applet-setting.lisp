@@ -63,7 +63,7 @@
          (cmd (format nil "~a -grab-keyboard /wm-class:~a"
                       prefix
                       cls)))
-    (run-or-raise cmd (list :class cls))))
+    (run-or-raise cmd `(:class ,cls))))
 
 (defcommand runurxvt () ()
   "run urxvt"
