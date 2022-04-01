@@ -62,8 +62,9 @@
   "pactl test"
   (let ((cmd (format nil "~a vol test"
                      (merge-pathnames "bin/sndctl" *zz-load-directory*))))
-    (message "Speaker testing")
-    (run-shell-command cmd)))
+    (when (yes-no-diag "Volume test?")
+      (message "Speaker testing")
+      (run-shell-command cmd))))
 
 (defcommand pactl-toggle () ()
   "pactl sound toggle"
@@ -90,8 +91,9 @@
   "pactl mic test"
   (let ((cmd (format nil "~a mic test"
                      (merge-pathnames "bin/sndctl" *zz-load-directory*))))
-    (message "Recording in 5s, then play")
-    (run-shell-command cmd)))
+    (when (yes-no-diag "Micphone test?")
+      (message "Recording in 5s, then play")
+      (run-shell-command cmd))))
 
 (defcommand pactl-mic-toggle () ()
   "pactl micphone toggle"
