@@ -42,7 +42,7 @@
   (kbd "s-C-F5")    "ranger"
   (kbd "s-C-F6")    "mpv"
   (kbd "s-C-F7")    "deadbeef"
-  (kbd "s-C-F8")    "claws-mail"
+  (kbd "s-C-F8")    "tmux"
   (kbd "s-C-F9")    "urxvt"
   (kbd "s-C-F10")   "thunar"
   (kbd "s-C-F11")   "pactl-test"
