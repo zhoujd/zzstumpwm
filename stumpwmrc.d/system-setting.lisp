@@ -104,17 +104,17 @@
   "capslock toggle"
   (run-shell-command "setcapslock toggle"))
 
-;; showing and toggling the root window
-(defvar *last-saved-window* nil
-  "Last saved window configuration.")
 (defcommand show-root () ()
   "Show root window."
   (when (cdr (stumpwm::group-frames (current-group)))
     ;; Make one frame if necessary.
     (stumpwm::only))
   (stumpwm::fclear))
+
 (defcommand toggle-root () ()
   "Toggle between root window and last window configuration."
+  (defvar *last-saved-window* nil
+    "Last saved window configuration")
   (if (current-window)
       (progn
         (setf *last-saved-window* (stumpwm::dump-group (current-group)))
@@ -197,7 +197,7 @@
 
 (defcommand safe-delete-windows () ()
   "safe delete all windows in current group"
-    (let ((choice (yes-no-diag
+  (let ((choice (yes-no-diag
                  (format nil "Close all programs in group: ~a?"
                          (stumpwm::group-name (current-group))))))
     (when choice
