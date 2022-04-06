@@ -186,7 +186,7 @@
   (kbd "s-p")               "screen-menu"
   (kbd "s-o")               "window-other"
   (kbd "s-M-o")             "gother"
-  (kbd "s-q")               "safe-kill"
+  (kbd "s-q")               "window-kill"
   (kbd "s-M-q")             "group-kill"
 
   (kbd "s-C")               "urxvt"

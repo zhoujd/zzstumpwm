@@ -159,18 +159,18 @@
          (win (stumpwm::frame-window (car (last frames)))))
     (shift-windows-forward frames win)))
 
-(defcommand safe-kill () ()
-  "safe delete current window"
+(defcommand window-kill () ()
+  "kill current window"
   (if (current-window)
       (let ((choice (yes-no-diag
                      (format nil "Close window: ~a?"
                              (stumpwm::window-name (current-window))))))
         (when choice
-          (stumpwm::kill-window)))
+          (run-shell-command "wmctrl -c :ACTIVE:")))
       (message "Cannot close desktop!")))
 
 (defcommand group-kill () ()
-  "safe delete current group"
+  "kill current group"
   (let* ((group (current-group))
          (screen (group-screen group))
          (choice (yes-no-diag
@@ -212,6 +212,16 @@
   "safe end session"
   (delete-all-windows)
   (run-hook *quit-hook*))
+
+(defcommand safe-kill () ()
+  "safe delete current window"
+  (if (current-window)
+      (let ((choice (yes-no-diag
+                     (format nil "Close window: ~a?"
+                             (stumpwm::window-name (current-window))))))
+        (when choice
+          (stumpwm::kill-window)))
+      (message "Cannot close desktop!")))
 
 (defcommand safe-quit () ()
   "safe quit"
