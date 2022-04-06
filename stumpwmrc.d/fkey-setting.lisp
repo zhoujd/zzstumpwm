@@ -12,7 +12,7 @@
   (kbd "s-M-F2")    "exec rofi -show drun"
   (kbd "s-F3")      "window-other"
   (kbd "s-M-F3")    "gother"
-  (kbd "s-F4")      "safe-kill"
+  (kbd "s-F4")      "window-kill"
   (kbd "s-M-F4")    "group-kill"
   (kbd "s-F5")      "gnew f5"
   (kbd "s-M-F5")    "gnew-float f5-float"

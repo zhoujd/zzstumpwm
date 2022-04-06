@@ -4,12 +4,12 @@ target=$1
 
 case $target in
     ubuntu )
-        sudo apt install -y rlwrap
+        sudo apt install -y rlwrap wmctrl
         sudo apt install -y sbcl
         sudo apt install -y rofi keynav slop
         ;;
     arch|majaro )
-        sudo pacman -S rlwrap
+        sudo pacman -S rlwrap wmctrl
         sudo pacman -S sbcl
         sudo pacman -S rofi keynav slop
         ;;
