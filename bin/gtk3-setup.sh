@@ -22,6 +22,13 @@ install_sys() {
     sudo sed -i 's/gtk-icon-theme-name.*/gtk-icon-theme-name = Yaru/' $target
 }
 
+install_cursor() {
+    local target=$HOME/.icons/default
+    echo "Install gtk3 cursor config to $target"
+    mkdir -p $target
+    ln -sfvT $ZZSTUMPWM_ROOT/misc/.icons/default/index.theme $target/index.theme
+}
+
 case $1 in
     dep )
         install_dep
@@ -32,7 +39,10 @@ case $1 in
     sys )
         install_sys
         ;;
+    cursor )
+        install_cursor
+        ;;
     * )
-        echo "Usage: $0 {dep|user|sys}"
+        echo "Usage: $0 {dep|user|sys|cursor}"
         ;;
 esac
