@@ -8,5 +8,5 @@ widget_class "*" style "user-font"
 gtk-font-name="Droid Sans Fallback 10"
 gtk-enable-event-sounds=0
 gtk-enable-input-feedback-sounds=0
-gtk-cursor-theme-name="macOSBigSur"
+gtk-cursor-theme-name="mintymac-cursors"
 gtk-cursor-theme-size=0
