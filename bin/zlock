@@ -9,7 +9,6 @@
 ## xss-lock -l [path of your script]
 ## xautolock -time 15 -locker [path of your script]
 
-
 lock_advance() {
     icon="$HOME/.icons/lock.png"
     # create a temp file
