@@ -104,25 +104,25 @@
   "capslock toggle"
   (run-shell-command "setcapslock toggle"))
 
-(defcommand show-root () ()
-  "Show root window."
-  (when (cdr (stumpwm::group-frames (current-group)))
-    ;; Make one frame if necessary.
-    (stumpwm::only))
-  (stumpwm::fclear))
-
-(defcommand toggle-root () ()
-  "Toggle between root window and last window configuration."
+(progn
   (defvar *last-saved-window* nil
     "Last saved window configuration")
-  (if (current-window)
-      (progn
-        (setf *last-saved-window* (stumpwm::dump-group (current-group)))
-        (show-root))
-      ;; Current window is root.
-      (if *last-saved-window*
-          (stumpwm::restore-group (current-group) *last-saved-window*)
-          (stumpwm::echo "There is no saved window configuration yet."))))
+  (defcommand show-root () ()
+    "Show root window."
+    (when (cdr (stumpwm::group-frames (current-group)))
+      ;; Make one frame if necessary.
+      (stumpwm::only))
+    (stumpwm::fclear))
+  (defcommand toggle-root () ()
+    "Toggle between root window and last window configuration."
+    (if (current-window)
+        (progn
+          (setf *last-saved-window* (stumpwm::dump-group (current-group)))
+          (show-root))
+        ;; Current window is root.
+        (if *last-saved-window*
+            (stumpwm::restore-group (current-group) *last-saved-window*)
+            (stumpwm::echo "There is no saved window configuration yet.")))))
 
 (defcommand wifi-toggle () ()
   "wifi toggle"
