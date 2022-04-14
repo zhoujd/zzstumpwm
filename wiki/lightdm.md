@@ -20,6 +20,3 @@ lightdm
     $ cat /usr/share/icons/default/index.theme
     [Icon Theme]
     Inherits=macOSBigSur
-    or
-    $ cd /etc/alternatives
-    $ sudo ln -sf /usr/share/icons/macOSBigSur/cursor.theme x-cursor-theme
