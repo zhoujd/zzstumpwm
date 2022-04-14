@@ -14,3 +14,9 @@ lightdm
 ## ligthdm configure
 
     $ sudo vim /etc/lightdm/lightdm-gtk-greeter.conf
+
+## cursor theme
+
+    $ cat /usr/share/icons/default/index.theme
+    [Icon Theme]
+    Inherits=macOSBigSur
