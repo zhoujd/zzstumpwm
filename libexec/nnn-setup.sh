@@ -4,6 +4,12 @@ SCRIPT_ROOT=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
 ZZSTUMPWM_ROOT=$(cd $SCRIPT_ROOT/.. && pwd)
 NNN_TGT=~/Downloads/nnn
 
+deps() {
+    ##https://github.com/jarun/nnn/wiki/Usage
+    echo "install dependences"
+    sudo apt install -y pkg-config libncursesw5-dev libreadline-dev
+}
+
 install() {
     echo "install nnn packages"
     if [ -d $NNN_TGT ]; then
@@ -36,6 +42,9 @@ clean() {
 }
 
 case $1 in
+    deps )
+        deps
+        ;;
     install )
         install
         ;;
@@ -46,6 +55,6 @@ case $1 in
         clean
         ;;
     * )
-        echo "Usage: $(basename $0) {install|config|clean}"
+        echo "Usage: $(basename $0) {deps|install|config|clean}"
         ;;
 esac
