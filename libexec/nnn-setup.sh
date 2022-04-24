@@ -2,14 +2,13 @@
 
 SCRIPT_ROOT=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
 ZZSTUMPWM_ROOT=$(cd $SCRIPT_ROOT/.. && pwd)
-NNN_TGT=~/Downloads/nnn
+NNN_TGT=~/Downloads/nnn/n1
 
 install() {
     echo "install nnn packages"
     if [ -d $NNN_TGT ]; then
         echo "The folder $NNN_TGT already there"
     else
-        mkdir -p ~/Downloads/
         git clone https://github.com/jarun/nnn $NNN_TGT
         pushd $NNN_TGT
         make
