@@ -39,6 +39,11 @@
 (def-run-or-raise-command wireshark     '(:class "Wireshark"))
 (def-run-or-raise-command pavucontrol   '(:class "Pavucontrol"))
 
+;; run-or-raise-terminal
+(def-run-or-raise-terminal htop)
+(def-run-or-raise-terminal tmux)
+(def-run-or-raise-terminal ranger)
+
 ;; surf browser
 ;; arch: sudo pacman -S surf tabbed
 ;; C-g -> enter new URL
@@ -98,18 +103,6 @@
 (defcommand pullgc () ()
   "pull google-chromje"
   (run-or-pull-prefer-group "google-chrome" "Google-chrome"))
-
-(defcommand htop () ()
-  "Run htop"
-  (run-or-raise-terminal "htop"))
-
-(defcommand tmux () ()
-  "Run tmux"
-  (run-or-raise-terminal "tmux"))
-
-(defcommand ranger () ()
-  "Run ranger"
-  (run-or-raise-terminal "ranger"))
 
 (defcommand eval-shell (&optional (initial "")) (:rest)
   "shell interactive command, done to keep"

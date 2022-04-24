@@ -4,9 +4,9 @@
 (in-package :zwm)
 
 ;; sudo command
-(define-sudo-command reboot "reboot")
-(define-sudo-command shutdown "shutdown -h now")
-(define-sudo-command bright-setup (concat *zz-load-directory* "libexec/brightness-setup.sh"))
+(def-sudo-command reboot "reboot")
+(def-sudo-command shutdown "shutdown -h now")
+(def-sudo-command bright-setup (concat *zz-load-directory* "libexec/brightness-setup.sh"))
 
 (defcommand reinit () ()
   "reload stumpwm configure"
