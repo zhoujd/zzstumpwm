@@ -4,8 +4,9 @@ SCRIPT_ROOT=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
 ZZSTUMPWM_ROOT=$(cd $SCRIPT_ROOT/.. && pwd)
 NNN_TGT=~/Downloads/nnn
 
+## https://github.com/jarun/nnn/wiki/Usage
+
 deps() {
-    ##https://github.com/jarun/nnn/wiki/Usage
     echo "install dependences"
     sudo apt install -y pkg-config libncursesw5-dev libreadline-dev
 }
