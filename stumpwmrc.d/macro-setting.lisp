@@ -38,5 +38,5 @@
     `(defcommand ,cmd () ()
        "run or raise urxvt command"
        (let* ((name ,cmd-str)
-              (cmd (format nil "exec urxvt -name ~a -e ~a" name name)))
-         (run-or-raise cmd `(:instance ,name))))))
+              (line (format nil "urxvt -name ~a -e ~a" name name)))
+         (run-or-raise line `(:instance ,name))))))
