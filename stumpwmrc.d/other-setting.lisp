@@ -19,11 +19,15 @@
 
 (defun xterm-command (name)
   "Start a xterm with an command session"
-  (format nil "exec xterm -e ~a" name))
+  (format nil "exec xterm -name ~a -e ~a" name name))
 
 (defun urxvt-command (name)
   "Start a urxvt with an command session"
-  (format nil "exec urxvt -e ~a" name))
+  (format nil "exec urxvt -name ~a -e ~a" name name))
+
+(defun run-or-raise-terminal (name)
+  "run or raise terminal command"
+  (run-or-raise (urxvt-command name) `(:instance ,name)))
 
 (defun yes-no-diag (query-string)
   "Presents a yes-no dialog to the user asking query-string.

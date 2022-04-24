@@ -101,15 +101,15 @@
 
 (defcommand htop () ()
   "Run htop"
-  (run-or-raise "urxvt -name HTop -e htop" '(:instance "HTop")))
+  (run-or-raise-terminal "htop"))
 
 (defcommand tmux () ()
   "Run tmux"
-  (run-or-raise "urxvt -name Tmux -e tmux" '(:instance "Tmux")))
+  (run-or-raise-terminal "tmux"))
 
 (defcommand ranger () ()
   "Run ranger"
-  (run-or-raise "urxvt -name Ranger -e ranger" '(:instance "Ranger")))
+  (run-or-raise-terminal "ranger"))
 
 (defcommand eval-shell (&optional (initial "")) (:rest)
   "shell interactive command, done to keep"
