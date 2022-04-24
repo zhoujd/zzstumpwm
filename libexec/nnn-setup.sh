@@ -2,7 +2,7 @@
 
 SCRIPT_ROOT=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
 ZZSTUMPWM_ROOT=$(cd $SCRIPT_ROOT/.. && pwd)
-NNN_TGT=~/Downloads/nnn/n1
+NNN_TGT=~/Downloads/nnn
 
 install() {
     echo "install nnn packages"
