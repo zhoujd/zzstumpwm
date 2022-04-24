@@ -39,7 +39,7 @@
   (kbd "s-C-F2")    "google-chrome"
   (kbd "s-C-F3")    "teams"
   (kbd "s-C-F4")    "evolution"
-  (kbd "s-C-F5")    "ranger"
+  (kbd "s-C-F5")    "nnn"
   (kbd "s-C-F6")    "mpv"
   (kbd "s-C-F7")    "deadbeef"
   (kbd "s-C-F8")    "tmux"

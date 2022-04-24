@@ -42,8 +42,8 @@
   (kbd "C-l")               "exec libreoffice"
   (kbd "m")                 "evolution"
   (kbd "C-m")               "claws-mail"
-  (kbd "n")                 "cherrytree"
-  (kbd "C-n")               "exec cherrytree"
+  (kbd "n")                 "nnn"
+  (kbd "C-n")               (urxvt-command "nnn")
   (kbd "o")                 "ocenaudio"
   (kbd "C-o")               "exec ocenaudio"
   (kbd "M-o")               "openshot"
@@ -52,9 +52,7 @@
   (kbd "M-p")               "exec p4merge"
   (kbd "q")                 "slingscold"
   (kbd "C-q")               "exec slingscold"
-  (kbd "r")                 "ranger"
-  (kbd "C-r")               (urxvt-command "ranger")
-  (kbd "M-r")               "exec remmina"
+  (kbd "r")                 "exec remmina"
   (kbd "t")                 "teams"
   (kbd "C-t")               (urxvt-command "tmux")
   (kbd "M-t")               "tmux"
