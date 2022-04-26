@@ -40,9 +40,9 @@
 (def-run-or-raise-command pavucontrol   '(:class "Pavucontrol"))
 
 ;; run-or-raise-terminal
+(def-run-or-raise-terminal bpython)
 (def-run-or-raise-terminal htop)
 (def-run-or-raise-terminal tmux)
-(def-run-or-raise-terminal bpython)
 
 ;; surf browser
 ;; arch: sudo pacman -S surf tabbed
