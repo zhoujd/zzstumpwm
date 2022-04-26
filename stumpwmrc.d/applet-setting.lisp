@@ -41,7 +41,6 @@
 
 ;; run-or-raise-terminal
 (def-run-or-raise-terminal htop)
-(def-run-or-raise-terminal nnn)
 (def-run-or-raise-terminal tmux)
 
 ;; surf browser
@@ -77,6 +76,13 @@
 (defcommand pullurxvt () ()
   "pull urxvt"
   (run-or-pull-prefer-group "urxvt" "URxvt"))
+
+(defcommand nnn () ()
+  "run or raise nnn"
+  (let* ((name "nnn")
+         (cmd (format nil "~a -e" name))
+         (line (format nil "urxvt -name ~a -e ~a" name cmd)))
+    (run-or-raise line `(:instance ,name))))
 
 (defcommand urxvtclient () ()
   "run urxvt client"
