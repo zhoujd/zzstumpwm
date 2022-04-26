@@ -19,10 +19,6 @@
     (when (plusp (length line))
       (stumpwm::eval-line line))))
 
-(defcommand bpython () ()
-  "bpython"
-  (run-shell-command "exec urxvt -e bpython"))
-
 (defcommand swank-start () ()
   "Start swank server."
   (swank-start-server))
