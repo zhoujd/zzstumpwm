@@ -195,6 +195,7 @@
   (kbd "s-M-e")             "runemacs"
   (kbd "s-M-g")             "rungc"
   (kbd "s-M-m")             "evolution"
+  (kbd "s-M-n")             "nnn"
   (kbd "s-M-t")             "teams"
   (kbd "s-M-z")             "jiandon-mobl"
   ))
