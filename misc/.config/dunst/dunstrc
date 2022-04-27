@@ -51,8 +51,8 @@
     icon_path = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/:/usr/share/icons/
     startup_notification = false
     dmenu = /usr/bin/dmenu -p dunst:
-    browser = /usr/bin/firefox -new-tab
-
+    browser = /usr/bin/xdg-open
+    
 [shortcuts]
     # Available modifiers are "ctrl", "mod1", "mod2", "mod3", and "mod4"
     # Xev might be helpful to find names for keys
