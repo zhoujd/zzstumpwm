@@ -1,22 +1,3 @@
-[frame]
-    width = 0
-    color = "#212121"
-
-[urgency_low]
-    background = "#000000"
-    foreground = "#ffffff"
-    timeout = 10
-
-[urgency_normal]
-    background = "#212121"
-    foreground = "#ffffff"
-    timeout = 10
-
-[urgency_critical]
-    background = "#fbc02d"
-    foreground = "#000000"
-    timeout = 0
-
 [global]
     # The format of the message.  Possible variables:
     #   %a  appname
@@ -36,7 +17,7 @@
     geometry = "300x5-30+20"
 
     font = Roboto 10
-    allow_markup = yes
+    markup = yes
     plain_text = no             # Treat message as plain text
     sort = yes                  # Sort messages by urgency
     indicate_hidden = yes       # Show how many messages are currently hidden (see geometry)
@@ -62,7 +43,11 @@
     sticky_history = yes        # Make notifications remain until clicked on (yes) or timeout as normal (no) when recalled from history
     history_length = 20         # Maximum amount of notifications kept in history
 
-    icon_folders = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/
+    frame_width = 0
+    frame_color = "#212121"
+
+    icon_path = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/
+    max_icon_size = 150
     startup_notification = false
     dmenu = /usr/bin/dmenu -p dunst:
     browser = /usr/bin/firefox -new-tab
@@ -77,12 +62,30 @@
     # Close all notifications
     close_all = ctrl+shift+space
 
-    # Recall last message(s) 
-    history = mod1+grave
+    # Redisplay last message(s).
+    # On the US keyboard layout "grave" is normally above TAB and left
+    # of "1". Make sure this key actually exists on your keyboard layout,
+    # e.g. check output of 'xmodmap -pke'
+    history = ctrl+grave
 
-    # Context menu
-    # context = ctrl+shift+period
+    # Context menu.
+    context = ctrl+shift+period
 
 [play_sound]
     summary = "*"
     script = noalert
+
+[urgency_low]
+    background = "#000000"
+    foreground = "#ffffff"
+    timeout = 10
+
+[urgency_normal]
+    background = "#212121"
+    foreground = "#ffffff"
+    timeout = 10
+
+[urgency_critical]
+    background = "#fbc02d"
+    foreground = "#000000"
+    timeout = 0
