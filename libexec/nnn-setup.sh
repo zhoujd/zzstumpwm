@@ -30,6 +30,7 @@ config() {
 ### zz-nnn.sh
 
 export NNN_BMS='d:~/Downloads/;w:~/work/;/:/;~:~/;z:/zach/'
+export NNN_OPTS='e'
 export NNN_SSHFS='sshfs -o follow_symlinks'
 export NNN_TRASH=1
 export NNN_FIFO='/tmp/nnn.fifo'
