@@ -34,7 +34,7 @@ export NNN_OPTS='e'
 export NNN_SSHFS='sshfs -o follow_symlinks'
 export NNN_TRASH=1
 export NNN_FIFO='/tmp/nnn.fifo'
-export NNN_PLUG='e:!emacsclient $nnn;x:!chmod +x $nnn;g:!git log'
+export NNN_PLUG='e:!emacsclient $nnn;x:!chmod +x $nnn;g:!git log;T:!trash-empty'
 EOF
     echo "Init NNN Done, please reboot or re-login"
 }
