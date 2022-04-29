@@ -278,3 +278,9 @@
   (let ((cmd (format nil "~a"
                      (merge-pathnames "libexec/teams-force" *zz-load-directory*))))
     (run-shell-command cmd)))
+
+(defcommand evolution-force () ()
+  "evolution force"
+  (let ((cmd (format nil "~a"
+                     (merge-pathnames "libexec/evolution-force" *zz-load-directory*))))
+    (run-shell-command cmd)))

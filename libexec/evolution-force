@@ -1,0 +1,5 @@
+#!/bin/bash
+
+evolution --force-shutdown && evolution
+
+echo "evolution force done"
