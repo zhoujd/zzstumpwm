@@ -45,8 +45,8 @@
   (kbd "s-m")               "evolution-force"
   (kbd "n")                 "nnn"
   (kbd "C-n")               (urxvt-command "nnn")
-  (kbd "o")                 "ocenaudio"
-  (kbd "C-o")               "exec ocenaudio"
+  (kbd "o")                 "onlyoffice"
+  (kbd "C-o")               "ocenaudio"
   (kbd "M-o")               "openshot"
   (kbd "p")                 (urxvt-command "bpython")
   (kbd "C-p")               "pavucontrol"

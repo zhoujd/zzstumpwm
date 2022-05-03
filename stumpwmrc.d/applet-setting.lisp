@@ -70,6 +70,12 @@
                       cls)))
     (run-or-raise cmd `(:class ,cls))))
 
+(defcommand onlyoffice () ()
+  "run onlyoffice"
+  (let ((cls "DesktopEditors")
+        (cmd "onlyoffice"))
+    (run-or-raise cmd `(:class ,cls))))
+
 (defcommand runurxvt () ()
   "run urxvt"
   (run-or-raise-prefer-group "urxvt" "URxvt"))
