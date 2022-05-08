@@ -16,8 +16,8 @@ install_user() {
 }
 
 install_sys() {
-    echo "Install gtk3 config to $target"
     local target=/etc/gtk-3.0/settings.ini
+    echo "Install gtk3 config to $target"
     sudo sed -i 's/gtk-theme-name.*/gtk-theme-name = Yaru/' $target
     sudo sed -i 's/gtk-icon-theme-name.*/gtk-icon-theme-name = Yaru/' $target
 }
