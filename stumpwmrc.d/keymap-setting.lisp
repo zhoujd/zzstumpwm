@@ -19,10 +19,17 @@
 ;; self define keymap
 (defvar *zz-x-map*      (make-sparse-keymap) "Keymap like emacs C-x")
 (defvar *zz-c-map*      (make-sparse-keymap) "Keymap like emacs C-c")
+(defvar *zz-func-map*   (make-sparse-keymap) "Keymap function keys")
 (defvar *zz-exec-map*   (make-sparse-keymap) "Keymap execute commands")
 (defvar *zz-screen-map* (make-sparse-keymap) "Keymap screen")
 (defvar *zz-menu-map*   (make-sparse-keymap) "Keymap menu")
 (defvar *zz-help-map*   (make-sparse-keymap) "Keymap help")
+
+(defmacro getkey-top (key)
+  `(lookup-key *top-map* ,key))
+
+(defmacro getkey-func (key)
+  `(lookup-key *zz-func-map* ,key))
 
 (apply-keys-to-map
  *top-map*
@@ -30,6 +37,7 @@
   (kbd "s-x")       *zz-x-map*
   (kbd "s-c")       *zz-c-map*
   (kbd "s-e")       *zz-exec-map*
+  (kbd "s-f")       *zz-func-map*
   (kbd "s-s")       *zz-screen-map*
   (kbd "s-m")       *zz-menu-map*
   (kbd "s-?")       *zz-help-map*
@@ -49,6 +57,7 @@
   *zz-x-map*
   *zz-c-map*
   *zz-exec-map*
+  *zz-func-map*
   *zz-screen-map*
   *zz-menu-map*
   *zz-help-map*

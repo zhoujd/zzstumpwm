@@ -7,9 +7,6 @@
   `(remove-hook ,hook ,fn)
   `(add-hook ,hook ,fn))
 
-(defmacro getkey-top (key)
-  `(lookup-key *top-map* ,key))
-
 (defmacro make-web-jump (name prefix)
   `(defcommand ,(intern name) (search) ((:rest ,(concatenate 'string (string-capitalize name) " Search: ")))
      "web jump"
