@@ -1,0 +1,25 @@
+From 55e8f19458c1120c8e7179cb603d061be034a5aa Mon Sep 17 00:00:00 2001
+From: Zachary Zhou <zchrzhou@gmail.com>
+Date: Tue, 10 May 2022 09:54:11 +0800
+Subject: [PATCH] more for keys help
+
+---
+ lisp/system/stumpwm/help.lisp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/lisp/system/stumpwm/help.lisp b/lisp/system/stumpwm/help.lisp
+index 57a1d24..6abda01 100644
+--- a/lisp/system/stumpwm/help.lisp
++++ b/lisp/system/stumpwm/help.lisp
+@@ -53,7 +53,7 @@
+ (defun display-bindings-for-keymaps (key-seq &rest keymaps)
+   (let* ((screen (current-screen))
+          (data (mapcan (lambda (map)
+-                         (mapcar (lambda (b) (format nil "^5*~5a^n ~a" (print-key (binding-key b)) (binding-command b))) (kmap-bindings map)))
++                         (mapcar (lambda (b) (format nil "^5* ~5a^n ~a" (print-key (binding-key b)) (binding-command b))) (kmap-bindings map)))
+                        keymaps))
+          (cols (ceiling (1+ (length data))
+                         (truncate (- (head-height (current-head)) (* 2 (screen-msg-border-width screen)))
+-- 
+2.25.1
+
