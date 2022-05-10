@@ -58,11 +58,7 @@
   (kbd "s-M-F11")   (getkey-func (kbd "M--"))
   (kbd "s-F12")     (getkey-func (kbd "="))
   (kbd "s-M-F12")   (getkey-func (kbd "M-="))
-  ))
 
-(apply-keys-to-map
- *top-map*
- (list
   (kbd "s-C-F1")    (getkey-func (kbd "C-1"))
   (kbd "s-C-F2")    (getkey-func (kbd "C-2"))
   (kbd "s-C-F3")    (getkey-func (kbd "C-3"))
@@ -75,11 +71,7 @@
   (kbd "s-C-F10")   (getkey-func (kbd "C-0"))
   (kbd "s-C-F11")   (getkey-func (kbd "C--"))
   (kbd "s-C-F12")   (getkey-func (kbd "C-="))
-  ))
 
-(apply-keys-to-map
- *top-map*
- (list
   (kbd "s-S-F1")    (getkey-func (kbd "!"))
   (kbd "s-S-F2")    (getkey-func (kbd "@"))
   (kbd "s-S-F3")    (getkey-func (kbd "#"))
