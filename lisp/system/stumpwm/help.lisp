@@ -53,7 +53,7 @@
 (defun display-bindings-for-keymaps (key-seq &rest keymaps)
   (let* ((screen (current-screen))
          (data (mapcan (lambda (map)
-                         (mapcar (lambda (b) (format nil "^5* ~4a^n ~a" (print-key (binding-key b)) (binding-command b))) (kmap-bindings map)))
+                         (mapcar (lambda (b) (format nil "^5* ~5a^n ~a" (print-key (binding-key b)) (binding-command b))) (kmap-bindings map)))
                        keymaps))
          (cols (ceiling (1+ (length data))
                         (truncate (- (head-height (current-head)) (* 2 (screen-msg-border-width screen)))
