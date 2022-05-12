@@ -13,14 +13,14 @@
   (format nil "kill -9 `ps -ef | grep ~S | grep -v grep | awk '{print $2}'`"
           command))
 
+(defun kill-ps (command)
+  "kill process"
+  (run-shell-command (kill-ps-command command)))
+
 (defun kill-port (port)
   "kill port"
   (let ((cmd (format nil "kill -9 `lsof -i:~a | grep LISTEN | awk '{print $2}'`" port)))
     (run-shell-command cmd)))
-
-(defun kill-ps (command)
-  "kill process"
-  (run-shell-command (kill-ps-command command)))
 
 (defun xterm-command (name)
   "Start a xterm with an command session"
