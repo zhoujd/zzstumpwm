@@ -5,9 +5,9 @@
 
 ;; auto start swank server
 (require 'swank)
-(let* ((server-running nil)
-       (server-port 4405))
-  (defcommand swank () ()
+(let ((server-running nil)
+      (server-port 4405))
+  (defcommand swank-toggle () ()
     "Toggle the swank server on/off"
     (if server-running
         (progn
