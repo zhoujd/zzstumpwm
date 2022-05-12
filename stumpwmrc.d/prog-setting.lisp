@@ -19,20 +19,6 @@
     (when (plusp (length line))
       (stumpwm::eval-line line))))
 
-(defcommand swank-start () ()
-  "Start swank server."
-  (swank-start-server))
-
-(defcommand swank-stop () ()
-  "Stop swank server."
-  (swank-stop-server))
-
-(defcommand swank-toggle () ()
-  "toggle swank server."
-  (if *swank-server-running*
-      (swank-stop-server)
-      (swank-start-server)))
-
 (defcommand debug-enable () ()
   "debug enable"
   (setf stumpwm::*debug-level* 10))
