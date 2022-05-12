@@ -240,6 +240,7 @@
  (list
   ;;b/f, p/n for arrow control
   (kbd "Tab")               "capslock-toggle"
+  (kbd "BackSpace")         "swank-toggle"
   (kbd "a")                 "pavucontrol"
   (kbd "c")                 "cheese"
   (kbd "h")                 "htop"
@@ -252,7 +253,6 @@
   (kbd "v")                 "vpn-menu"
   (kbd "w")                 "wifi-menu"
   (kbd "x")                 "vbox-menu"
-  (kbd ";")                 "swank-toggle"
   ))
 
 (apply-keys-to-map
