@@ -33,10 +33,10 @@
 (defun swank-restart-server ()
   "swank restart server"
   (ignore-errors
-   (swank:stop-server *swank-server-port*)
-   (swank:create-server :port *swank-server-port*
-                        :dont-close t)
-   (setf *swank-server-running* t)))
+   (swank:stop-server *swank-server-port*))
+  (swank:create-server :port *swank-server-port*
+                       :dont-close t)
+  (setf *swank-server-running* t))
 
 ;; restart server
 (swank-restart-server)
