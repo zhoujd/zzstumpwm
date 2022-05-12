@@ -19,8 +19,13 @@
     (and *swank-server-running*
          (swank:stop-server *swank-server-port*)
          (setf *swank-server-running* nil)))
-  ;; start server
-  (swank-start-server))
+  (defun swank-restart-server ()
+    (and (not *swank-server-running*)
+         (swank:restart-server :port *swank-server-port*
+                               :dont-close t)
+         (setf *swank-server-running* t)))
+  ;; restart server
+  (swank-restart-server))
 
 ;; screen shot
 (require 'screenshot)
