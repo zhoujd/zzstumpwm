@@ -25,6 +25,11 @@
     (swank:stop-server *swank-server-port*)
     (setf *swank-server-running* nil)))
 
+(defun swank-port-exists (port)
+  "swank port exists"
+  (let ((f (format nil "lsof -i:~a | grep LISTEN | awk {print $2}" port)))
+    (plusp (length (run-shell-command f t)))))
+
 (defun swank-restart-server ()
   "swank restart server"
   (ignore-errors
