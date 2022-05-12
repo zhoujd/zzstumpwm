@@ -252,6 +252,7 @@
   (kbd "v")                 "vpn-menu"
   (kbd "w")                 "wifi-menu"
   (kbd "x")                 "vbox-menu"
+  (kbd ";")                 "swank-toggle"
   ))
 
 (apply-keys-to-map
