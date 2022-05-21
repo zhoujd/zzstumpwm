@@ -30,6 +30,7 @@
 (def-run-or-raise-command openshot      '(:class "openshot"))
 (def-run-or-raise-command qutebrowser   '(:class "qutebrowser"))
 (def-run-or-raise-command pidgin        '(:class "Pidgin"))
+(def-run-or-raise-command remmina       '(:Class "org.remmina.Remmina"))
 (def-run-or-raise-command slingscold    '(:Class "Slingscold"))
 (def-run-or-raise-command thunderbird   '(:class "Thunderbird"))
 (def-run-or-raise-command thunar        '(:class "Thunar"))

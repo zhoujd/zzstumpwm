@@ -53,7 +53,8 @@
   (kbd "M-p")               "exec p4merge"
   (kbd "q")                 "slingscold"
   (kbd "C-q")               "exec slingscold"
-  (kbd "r")                 "exec remmina"
+  (kbd "r")                 "remmina"
+  (kbd "C-r")               "exec remmina"
   (kbd "t")                 "teams"
   (kbd "C-t")               (urxvt-command "tmux")
   (kbd "M-t")               "tmux"
