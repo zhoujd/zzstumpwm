@@ -29,7 +29,7 @@ config() {
     sudo tee /etc/profile.d/zz-nnn.sh <<EOF
 ### zz-nnn.sh
 
-export NNN_BMS='d:~/Downloads/;t:~/.local/share/Trash/files/;w:~/work/;z:/zach/;/:/;~:~/'
+export NNN_BMS='d:~/Downloads/;t:~/.local/share/Trash/files/;w:~/work/;z:/zach/'
 export NNN_OPTS='e'
 export NNN_SSHFS='sshfs -o follow_symlinks'
 export NNN_TRASH=1
