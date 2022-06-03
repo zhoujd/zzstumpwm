@@ -17,32 +17,32 @@ declare MENU_TITLE=""
 declare PICKED_ENTRY=""
 
 usage(){
-	cat <<- EOF
-	usage: $PROGNAME
+    cat <<- EOF
+    Usage: $PROGNAME
 
     Creates a rofi menu for VPN connections.
 
          -h      show this help
 
 	EOF
-	return 0
+    return 0
 }
 
 parse_args(){
-	while getopts "h" argument; do
+    while getopts "h" argument; do
     	case "$argument" in
-        	h)
-				usage
-				exit 0
-				;;
-        	*)
+            h)
+		usage
+		exit 0
+		;;
+            *)
             	usage
-				exit 1
-	            ;;
-	    esac
-	done
-	shift "$((OPTIND-1))"
-	return 0
+		exit 1
+	        ;;
+	esac
+    done
+    shift "$((OPTIND-1))"
+    return 0
 }
 
 determine_connection_list(){
