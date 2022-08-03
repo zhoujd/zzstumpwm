@@ -284,3 +284,7 @@
   (let ((cmd (format nil "~a"
                      (merge-pathnames "libexec/evolution-force" *zz-load-directory*))))
     (run-shell-command cmd)))
+
+(defcommand ulauncher () ()
+  "ulauncher toggle"
+  (run-shell-command "ulauncher-toggle"))

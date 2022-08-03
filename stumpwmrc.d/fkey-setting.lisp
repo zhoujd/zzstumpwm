@@ -29,6 +29,8 @@
   (kbd "XF86WebCam")             "cheese"
   (kbd "XF86MonBrightnessDown")  "bright-down"
   (kbd "XF86MonBrightnessUp")    "bright-up"
+  (kbd "XF86LaunchA")            "slingscold"
+  (kbd "XF86LaunchB")            "ulauncher"
   ))
 
 (apply-keys-to-map
