@@ -33,10 +33,10 @@
   ))
 
 (mapc
- #'(lambda (script)
-     (when (probe-file script)
+ #'(lambda (file)
+     (when (probe-file file)
        (run-shell-command
-        (format nil "source %a" script))))
+        (format nil "source %a" file))))
  (list
   "~/.zwmrc"
   ))
