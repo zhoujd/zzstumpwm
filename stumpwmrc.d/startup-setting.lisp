@@ -14,14 +14,12 @@
     (run-shell-command
      (concat command " " options " " (when background "&")))))
 
-;; startup run commands
 (mapc
  #'(lambda (cmd)
      (apply #'start-command-ps cmd))
  (list
   (list "xset" :options "b off")
   (list "xsetroot" :options "-cursor_name left_ptr")
-  (list "source" :options "~/.zwmrc")
   (list "nitrogen" :options "--restore")
   (list "ulauncher" :options "--hide-window --no-window-shadow")
   (list "urxvtd" :options "-q -f -o")
@@ -32,4 +30,13 @@
   (list "dunst")
   (list "nm-applet")
   (list "blueman-applet")
+  ))
+
+(mapc
+ #'(lambda (script)
+     (when (probe-file script)
+       (run-shell-command
+        (format nil "source %a" script))))
+ (list
+  "~/.zwmrc"
   ))
