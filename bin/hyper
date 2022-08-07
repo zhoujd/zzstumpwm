@@ -6,10 +6,14 @@ XMODMAP_TARGET=~/.Xmodmap
 
 switch_xmodmap() {
     echo "switch to $1"
-    setcapslock off
-    xmodmap $1
-    ln -sf $1 $XMODMAP_TARGET
-    setcapslock off
+    if [ -f $1 ]; then
+        setcapslock off
+        xmodmap $1
+        ln -sfvT $1 $XMODMAP_TARGET
+        setcapslock off
+    else
+        echo "$1 not exist"
+    fi
 }
 
 case "$1" in
