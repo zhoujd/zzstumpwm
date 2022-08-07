@@ -14,6 +14,10 @@
     (run-shell-command
      (concat command " " options " " (when background "&")))))
 
+(defun zwm-init ()
+  "init zwm"
+  (run-shell-command "source ~/.zwmrc"))
+
 ;; startup run commands
 (mapc
  #'(lambda (cmd)
@@ -32,3 +36,6 @@
   (list "nm-applet")
   (list "blueman-applet")
   ))
+
+;; init zwm
+(zwm-init)

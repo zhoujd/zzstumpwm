@@ -1,4 +1,3 @@
 #!/bin/bash
 
-[ -f ~/.zwmrc ] && . ~/.zwmrc
 stumpwm
