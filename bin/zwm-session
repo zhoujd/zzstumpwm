@@ -6,6 +6,9 @@ echo "You can also run: $(basename $0) {stumpwm|clfswm}"
 # stumpwm as default
 WM_SELECT=${1:-stumpwm}
 
+# source zwmrc
+[ -f ~/.zwmrc ] && . ~/.zwmrc
+
 # start window manager
 case $WM_SELECT in
     stumpwm )
