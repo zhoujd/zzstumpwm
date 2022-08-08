@@ -33,8 +33,10 @@
   ))
 
 (mapc
- #'(lambda (cmd)
-     (stumpwm::run-prog *shell-program* :args (list "-c" cmd) :wait nil))
+ #'(lambda (file)
+     (when (probe-file file)
+       (run-shell-command
+        (format nil "sh -c '. ~a'" file))))
  (list
-  ". ~/.zwmrc"
+  "~/.zwmrc"
   ))
