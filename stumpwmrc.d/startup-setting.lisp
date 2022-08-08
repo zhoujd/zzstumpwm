@@ -14,6 +14,12 @@
     (run-shell-command
      (concat command " " options " " (when background "&")))))
 
+(defun start-shell-ps (file)
+  "start shell script"
+  (when (probe-file file)
+    (run-shell-command
+     (format nil "~a -c '. ~a'" *shell-program* file))))
+
 (mapc
  #'(lambda (cmd)
      (apply #'start-command-ps cmd))
@@ -34,9 +40,7 @@
 
 (mapc
  #'(lambda (file)
-     (when (probe-file file)
-       (run-shell-command
-        (format nil "~a -c '. ~a'" *shell-program* file))))
+     (start-shell-ps file))
  (list
   "~/.zwmrc"
   ))
