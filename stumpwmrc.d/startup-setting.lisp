@@ -39,8 +39,8 @@
   ))
 
 (mapc
- #'(lambda (file)
-     (start-shell-ps file))
+ #'(lambda (cmd)
+     (apply #'start-shell-ps cmd))
  (list
-  "~/.zwmrc"
+  (list "~/.zwmrc")
   ))
