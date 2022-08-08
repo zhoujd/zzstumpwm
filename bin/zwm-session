@@ -1,15 +1,15 @@
 #!/bin/sh
 
-# select window manager
+# Select window manager
 echo "You can also run: $(basename $0) {stumpwm|clfswm}"
 
-# stumpwm as default
+# Stumpwm as default
 WM_SELECT=${1:-stumpwm}
 
-# source zwmrc
+# Source zwmrc
 [ -f ~/.zwmrc ] && . ~/.zwmrc
 
-# start window manager
+# Start window manager
 case $WM_SELECT in
     stumpwm )
         exec sbcl --eval '(ql:quickload :stumpwm)' \
