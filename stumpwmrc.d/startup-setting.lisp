@@ -36,7 +36,7 @@
  #'(lambda (file)
      (when (probe-file file)
        (run-shell-command
-        (format nil "sh -c '. ~a'" file))))
+        (format nil "~a -c '. ~a'" *shell-program* file))))
  (list
   "~/.zwmrc"
   ))
