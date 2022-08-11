@@ -10,7 +10,7 @@
 ## xautolock -time 15 -locker [path of your script]
 
 lock_advance() {
-    icon="$HOME/.icons/lock.png"
+    icon="~/.icons/lock.png"
     # create a temp file
     img=$(mktemp /tmp/XXXXXXXXXX.png)
     # Take a screenshot of current desktop
