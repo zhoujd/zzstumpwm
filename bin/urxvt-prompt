@@ -2,6 +2,7 @@
 
 if [ $# -eq 0 ]; then
     echo "Usage: $0 [cmd] [opt1..n]"
+    echo "KEEP=1 $0 [cmd] [opt1..n]"
     exit 1;
 fi
 
