@@ -41,7 +41,10 @@ case ${1:-simple} in
     simple )
         lock_simple
         ;;
+    off )
+        off_screen
+        ;;
     * )
-        echo "$0 {advance|simple}"
+        echo "$0 {advance|simple|off}"
         ;;
 esac
