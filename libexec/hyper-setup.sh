@@ -7,7 +7,7 @@ Install_hyper() {
     local bin_target=/usr/bin
     local bin_name=hyper
     echo "Install hyper to $BIN_TARGET"
-    sudo ln -sfvT $ZZSTUMPWM_ROOT/bin/$bin_name $bin_target/$bin_name
+    sudo ln -sfvT $ZZSTUMPWM_ROOT/libexec/$bin_name $bin_target/$bin_name
 }
 
 Install_xmodmap() {
