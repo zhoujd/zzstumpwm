@@ -35,10 +35,11 @@
 (defun start-hook-ps ()
   "start hook ps"
   (mapc
-   #'run-shell-command
+   #'(lambda (cmd)
+       (apply #'start-command-ps cmd))
    (list
-    "xrdb -load ~/.Xresources"
-    "xmodmap ~/.Xmodmap"
+    (list "xrdb" :options  "-load ~/.Xresources")
+    (list "xmodmap" :options "~/.Xmodmap")
     )))
 
 (stumpwm:add-hook stumpwm:*start-hook* #'start-hook-ps)
