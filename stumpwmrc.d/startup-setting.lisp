@@ -37,6 +37,7 @@
   (mapc
    #'run-shell-command
    (list
+    "xrdb -load ~/.Xresources"
     "xmodmap ~/.Xmodmap"
     )))
 
