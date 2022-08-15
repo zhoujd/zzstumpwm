@@ -38,7 +38,6 @@
    #'(lambda (cmd)
        (apply #'start-command-ps cmd))
    (list
-    (list "xrdb" :options  "-load ~/.Xresources")
     (list "xmodmap" :options "~/.Xmodmap")
     )))
 
