@@ -36,9 +36,9 @@
   "start hook ps"
   (mapc
    #'(lambda (cmd)
-       (apply #'start-command-ps cmd))
+       (apply #'run-shell-command cmd))
    (list
-    (list "xmodmap" :options "~/.Xmodmap")
+    (list "xmodmap ~/.Xmodmap")
     )))
 
 (stumpwm:add-hook stumpwm:*start-hook* #'start-hook-ps)
