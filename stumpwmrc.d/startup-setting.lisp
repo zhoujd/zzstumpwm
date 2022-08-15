@@ -38,7 +38,6 @@
    #'(lambda (cmd)
        (apply #'start-command-ps cmd))
    (list
-    (list "ibus" :options "engine xkb:us::eng")
     (list "xmodmap" :options "~/.Xmodmap")
     )))
 
