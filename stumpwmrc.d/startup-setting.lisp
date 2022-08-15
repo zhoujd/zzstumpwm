@@ -31,3 +31,13 @@
   (list "nm-applet")
   (list "blueman-applet")
   ))
+
+(defun start-hook-ps ()
+  "start hook ps"
+  (mapc
+   #'run-shell-command
+   (list
+    "xmodmap ~/.Xmodmap"
+    )))
+
+(stumpwm:add-hook stumpwm:*start-hook* #'start-hook-ps)
