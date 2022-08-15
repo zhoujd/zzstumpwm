@@ -16,10 +16,4 @@ im_ibus() {
     export XMODIFIERS=@im=ibus
 }
 
-im_default() {
-    echo "[lang] eng as input method"
-    ibus engine xkb:us::eng
-}
-
 im_ibus
-im_default
