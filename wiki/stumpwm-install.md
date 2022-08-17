@@ -14,6 +14,8 @@ Stumpwm
 ## Get Quicklisp at the Quicklisp website
 
      - curl -O http://beta.quicklisp.org/quicklisp.lisp
+     - curl -O https://beta.quicklisp.org/quicklisp.lisp.asc
+     - gpg --verify quicklisp.lisp.asc quicklisp.lisp
 
 ## Load Quicklisp with SBCL
 
