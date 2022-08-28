@@ -32,7 +32,7 @@
   ))
 
 (defun run-command-ps (command &key options (background t))
-  "run command"
+  "run command ps"
   (run-shell-command
    (concat command " " options " " (when background "&"))))
 
