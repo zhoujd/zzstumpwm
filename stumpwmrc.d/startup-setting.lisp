@@ -31,13 +31,18 @@
   (list "blueman-applet")
   ))
 
+(defun run-command-ps (command &key options (background t))
+  "run command"
+  (run-shell-command
+   (concat command " " options " " (when background "&"))))
+
 (defun start-hook-ps ()
   "start hook ps"
   (mapc
    #'(lambda (cmd)
-       (apply #'run-shell-command cmd))
+       (apply #'run-command-ps cmd))
    (list
-    (list "xmodmap ~/.Xmodmap")
+    (list "xmodmap" :options "~/.Xmodmap")
     )))
 
 (stumpwm:add-hook stumpwm:*start-hook* #'start-hook-ps)
