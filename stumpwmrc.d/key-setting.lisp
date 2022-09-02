@@ -12,6 +12,8 @@
   (kbd "b")                 "google"
   (kbd "C-b")               "bing"
   (kbd "M-b")               "wikipedia"
+  (kbd "B")                 "bcompare"
+  (kbd "C-B")               "exec bcompare"
   (kbd "c")                 "runurxvt"
   (kbd "C")                 "pullurxvt"
   (kbd "C-c")               "exec urxvt"
