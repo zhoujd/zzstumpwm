@@ -42,7 +42,7 @@
      ("3+AUTOLOCK"
       ("1-On"             "xautolock -time 15 -locker slock")
       ("2-Off"            "killall xautolock")))
-    ("8+Windows"
+    ("8+WINDOWS"
      ("1-jiandon-mobl"    jiandon-mobl)
      ("2-jianodn-nuc"     jiandon-nuc)))
   "Where the menu structure is held")
