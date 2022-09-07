@@ -72,6 +72,15 @@
                       cls)))
     (run-or-raise cmd `(:class ,cls))))
 
+(defcommand jiandon-nuc () ()
+  "run remote jiandon-nuc"
+  (let* ((prefix "xfreerdp ~/.jiandon-nuc.rdp")
+         (cls "jiandon-nuc")
+         (cmd (format nil "~a -grab-keyboard /wm-class:~a"
+                      prefix
+                      cls)))
+    (run-or-raise cmd `(:class ,cls))))
+
 (defcommand onlyoffice () ()
   "run onlyoffice"
   (let ((cls "DesktopEditors")
