@@ -41,7 +41,10 @@
       ("2-Off"            "killall unclutter"))
      ("3+AUTOLOCK"
       ("1-On"             "xautolock -time 15 -locker slock")
-      ("2-Off"            "killall xautolock"))))
+      ("2-Off"            "killall xautolock")))
+    ("8+Windows"
+     ("1-jiandon-mobl"    jiandon-mobl)
+     ("2-jianodn-nuc"     jiandon-nuc)))
   "Where the menu structure is held")
 
 (defun load-menu (file-name &key (strip 0))
