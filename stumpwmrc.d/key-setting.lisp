@@ -69,8 +69,9 @@
   (kbd "C-v")               "exec gvim"
   (kbd "M-v")               (urxvt-command "vim")
   (kbd "w")                 "wireshark"
-  (kbd "z")                 "jiandon-mobl"
-  (kbd "C-z")               "exec jiandon-mobl"
+  (kbd "z")                 "jiandon-win"
+  (kbd "C-z")               "jiandon-mobl"
+  (kbd "M-z")               "jiandon-nuc"
   ))
 
 ;; *zz-x-map*
@@ -201,7 +202,7 @@
   (kbd "s-M-m")             "evolution"
   (kbd "s-M-n")             "nnn"
   (kbd "s-M-t")             "teams"
-  (kbd "s-M-z")             "jiandon-mobl"
+  (kbd "s-M-z")             "jiandon-win"
   ))
 
 (apply-keys-to-map

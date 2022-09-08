@@ -63,23 +63,33 @@
   "run skippy-xd"
   (run-shell-command "skippy-xd"))
 
-(defcommand jiandon-mobl () ()
-  "run remote jiandon-mobl"
-  (let* ((prefix "xfreerdp ~/.jiandon-mobl.rdp")
-         (cls "jiandon-mobl")
-         (cmd (format nil "~a -grab-keyboard /wm-class:~a"
-                      prefix
-                      cls)))
-    (run-or-raise cmd `(:class ,cls))))
-
-(defcommand jiandon-nuc () ()
-  "run remote jiandon-nuc"
-  (let* ((prefix "xfreerdp ~/.jiandon-nuc.rdp")
-         (cls "jiandon-nuc")
-         (cmd (format nil "~a -grab-keyboard /wm-class:~a"
-                      prefix
-                      cls)))
-    (run-or-raise cmd `(:class ,cls))))
+(progn
+  (defvar *win-cls* "jiandon-win"
+    "rdp window classs")
+  (defcommand jiandon-mobl () ()
+    "run remote jiandon-mobl"
+    (let* ((prefix "xfreerdp ~/.jiandon-mobl.rdp")
+           (cls *win-cls*)
+           (cmd (format nil "~a -grab-keyboard /wm-class:~a"
+                        prefix
+                        cls)))
+      (run-shell-command cmd)))
+  (defcommand jiandon-nuc () ()
+    "run remote jiandon-nuc"
+    (let* ((prefix "xfreerdp ~/.jiandon-nuc.rdp")
+           (cls *win-cls*)
+           (cmd (format nil "~a -grab-keyboard /wm-class:~a"
+                        prefix
+                        cls)))
+      (run-shell-command cmd)))
+  (defcommand jiandon-win () ()
+    "run remote jiandon-mobl"
+    (let* ((prefix "xfreerdp ~/.jiandon-mobl.rdp")
+           (cls *win-cls*)
+           (cmd (format nil "~a -grab-keyboard /wm-class:~a"
+                        prefix
+                        cls)))
+      (run-or-raise cmd `(:class ,cls)))))
 
 (defcommand onlyoffice () ()
   "run onlyoffice"
