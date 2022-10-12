@@ -4,6 +4,11 @@ pid_file=/tmp/screen-record-pid
 default_file=/tmp/record.mkv
 log_file=/tmp/record.log
 
+deps() {
+    echo "install deps"
+    sudo apt install slop ffmpeg
+}
+
 start() {
     if [ $# != 1 ]; then
         echo "Usage: $(basename $0) start {file}"
@@ -68,6 +73,10 @@ play() {
 }
 
 case $1 in
+    deps )
+        deps
+        ;;
+
     start )
         start $2
         ;;
@@ -84,7 +93,7 @@ case $1 in
         play
         ;;
     * )
-        echo "Usage $(basename $0) {start|stop|status|toggle|play}"
+        echo "Usage $(basename $0) {deps|start|stop|status|toggle|play}"
         exit 1
         ;;
 esac
