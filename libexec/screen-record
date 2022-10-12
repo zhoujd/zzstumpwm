@@ -10,13 +10,8 @@ deps() {
 }
 
 slop() {
-    if [ $# != 1 ]; then
-        echo "Usage: $(basename $0) slop {file}"
-        exit 1
-    fi
-    
     echo "record select"
-    file=$1
+    file=${1:-$default_file}
     read -r x y w h G ID < <(slop -f '%x %y %w %h %g %i')
     if [ -z $G ]; then
         echo "slop cancelled"
@@ -35,13 +30,8 @@ slop() {
 }
 
 screen() {
-    if [ $# != 1 ]; then
-        echo "Usage: $(basename $0) screen {file}"
-        exit 1
-    fi
-    
     echo "record screen"
-    file=$1
+    file=${1:-$default_file}
     x=0
     y=0
     rez=$(xdpyinfo | awk '/dimensions/{print $2}')
@@ -83,7 +73,7 @@ toggle() {
         stop
     else
         echo "record to $default_file"
-        start $default_file
+        slop
     fi
 }
 
@@ -92,7 +82,7 @@ full() {
         stop
     else
         echo "screen record to $default_file"
-        screen $default_file
+        screen
     fi
 }
 
@@ -106,16 +96,14 @@ play() {
 
 usage() {
     echo "Usage: $(basename $0) {deps|slop|screen|stop|status|toggle|full|play}
-    deps       install deps (slop/ffmpeg/mpv)
-    slop       select recording
-    screen     full screen recording
-    stop       stop recording
-    status     status of recording
-    toggle     the switch for recording
-    full       the switch for full screen recording
-    play       playback the recording file $default_file"
-    
-    exit 1
+    deps             install deps (slop/ffmpeg/mpv)
+    slop   {file}    select recording
+    screen {file}    full screen recording
+    stop             stop recording
+    status           status of recording
+    toggle           the switch for recording
+    full             the switch for full screen recording
+    play             playback the recording file $default_file"
 }
 
 case $1 in

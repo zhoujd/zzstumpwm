@@ -229,7 +229,7 @@
   (kbd "t")                 "exec transset"
 
   (kbd "r")                 "record-toggle"
-  (kbd "C-r")               "record-start"
+  (kbd "C-r")               "record-full"
   (kbd "M-r")               "record-stop"
   (kbd "s-r")               "record-play"
   (kbd "b")                 "show-battery"

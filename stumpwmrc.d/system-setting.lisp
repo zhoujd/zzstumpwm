@@ -244,14 +244,22 @@
     (run-shell-command cmd)
     (message msg)))
 
-(defcommand record-start () ()
-  "screen record start"
-  (let* ((file "/tmp/record.mkv")
-         (cmd (format nil "~a start ~a"
-                      (merge-pathnames "libexec/screen-record" *zz-load-directory*)
-                      file))
-         (msg "Start recording"))
+(defcommand record-slop () ()
+  "select record"
+  (let* ((cmd (format nil "~a slop"
+                      (merge-pathnames "libexec/screen-record" *zz-load-directory*)))
+         (msg "Start slop recording"))
     (message msg)
+    (run-shell-command cmd)))
+
+(defcommand record-screen () ()
+  "screen record"
+  (let* ((cmd (format nil "~a screen"
+                      (merge-pathnames "libexec/screen-record" *zz-load-directory*)))
+         (*timeout-wait* 2))
+    (progn
+     (message "Start screen recording after ~a seconds" *timeout-wait*)
+     (sleep (+ 1 *timeout-wait*)))
     (run-shell-command cmd)))
 
 (defcommand record-play () ()
@@ -263,11 +271,18 @@
     (run-shell-command cmd)))
 
 (defcommand record-toggle () ()
+  "select record toggle"
+  (let ((pid-file "/tmp/screen-record-pid"))
+    (if (probe-file pid-file)
+        (stumpwm::eval-command "record-stop")
+        (stumpwm::eval-command "record-slop"))))
+
+(defcommand record-full () ()
   "screen record toggle"
   (let ((pid-file "/tmp/screen-record-pid"))
     (if (probe-file pid-file)
         (stumpwm::eval-command "record-stop")
-        (stumpwm::eval-command "record-start"))))
+        (stumpwm::eval-command "record-screen"))))
 
 (defcommand slock () ()
   "screen lock"
