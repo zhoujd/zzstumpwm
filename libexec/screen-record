@@ -6,16 +6,16 @@ log_file=/tmp/record.log
 
 deps() {
     echo "install deps"
-    sudo apt install slop ffmpeg
+    sudo apt install slop ffmpeg mpv
 }
 
-start() {
+slop() {
     if [ $# != 1 ]; then
-        echo "Usage: $(basename $0) start {file}"
+        echo "Usage: $(basename $0) slop {file}"
         exit 1
     fi
     
-    echo "record start"
+    echo "record select"
     file=$1
     read -r x y w h G ID < <(slop -f '%x %y %w %h %g %i')
     if [ -z $G ]; then
@@ -26,6 +26,29 @@ start() {
     exec ffmpeg -y \
          -f x11grab \
          -s ${w}x${h} \
+         -framerate 30 \
+         -i $DISPLAY+${x},${y} \
+         ${file} \
+         2>$log_file &
+    pid=$!
+    echo $pid > $pid_file
+}
+
+screen() {
+    if [ $# != 1 ]; then
+        echo "Usage: $(basename $0) screen {file}"
+        exit 1
+    fi
+    
+    echo "record screen"
+    file=$1
+    x=0
+    y=0
+    rez=$(xdpyinfo | awk '/dimensions/{print $2}')
+    echo "recording x:${x}, y:${y}, rez:$rez, file:$file"
+    exec ffmpeg -y \
+         -f x11grab \
+         -s ${rez} \
          -framerate 30 \
          -i $DISPLAY+${x},${y} \
          ${file} \
@@ -64,6 +87,15 @@ toggle() {
     fi
 }
 
+full() {
+    if [ -f $pid_file ]; then
+        stop
+    else
+        echo "screen record to $default_file"
+        screen $default_file
+    fi
+}
+
 play() {
     if [ -f $default_file ]; then
         mpv $default_file
@@ -72,13 +104,29 @@ play() {
     fi
 }
 
+usage() {
+    echo "Usage: $(basename $0) {deps|slop|screen|stop|status|toggle|full|play}
+    deps       install deps (slop/ffmpeg/mpv)
+    slop       select recording
+    screen     full screen recording
+    stop       stop recording
+    status     status of recording
+    toggle     the switch for recording
+    full       the switch for full screen recording
+    play       playback the recording file $default_file
+"
+    exit 1
+}
+
 case $1 in
     deps )
         deps
         ;;
-
-    start )
-        start $2
+    slop )
+        slop $2
+        ;;
+    screen )
+        screen $2
         ;;
     stop )
         stop
@@ -89,11 +137,13 @@ case $1 in
     toggle )
         toggle
         ;;
+    full )
+        full
+        ;;
     play )
         play
         ;;
     * )
-        echo "Usage $(basename $0) {deps|start|stop|status|toggle|play}"
-        exit 1
+        usage
         ;;
 esac
