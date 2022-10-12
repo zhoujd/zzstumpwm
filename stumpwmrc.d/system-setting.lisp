@@ -244,11 +244,11 @@
     (run-shell-command cmd)
     (message msg)))
 
-(defcommand record-slop () ()
+(defcommand record-region () ()
   "select record"
-  (let* ((cmd (format nil "~a slop"
+  (let* ((cmd (format nil "~a region"
                       (merge-pathnames "libexec/screen-record" *zz-load-directory*)))
-         (msg "Start slop recording"))
+         (msg "Start region recording, please select the region via mouse"))
     (message msg)
     (run-shell-command cmd)))
 
@@ -263,7 +263,7 @@
     (run-shell-command cmd)))
 
 (defcommand record-play () ()
-  "screen record play"
+  "record play"
   (let* ((cmd (format nil "~a play"
                       (merge-pathnames "libexec/screen-record" *zz-load-directory*)))
          (msg "Play recording"))
@@ -275,7 +275,7 @@
   (let ((pid-file "/tmp/screen-record-pid"))
     (if (probe-file pid-file)
         (stumpwm::eval-command "record-stop")
-        (stumpwm::eval-command "record-slop"))))
+        (stumpwm::eval-command "record-region"))))
 
 (defcommand record-full () ()
   "screen record toggle"

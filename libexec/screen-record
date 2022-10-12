@@ -9,7 +9,7 @@ deps() {
     sudo apt install slop ffmpeg mpv
 }
 
-slop() {
+region() {
     echo "record select"
     file=${1:-$default_file}
     read -r x y w h G ID < <(slop -f '%x %y %w %h %g %i')
@@ -73,7 +73,7 @@ toggle() {
         stop
     else
         echo "record to $default_file"
-        slop
+        region
     fi
 }
 
@@ -97,7 +97,7 @@ play() {
 usage() {
     echo "Usage: $(basename $0) {deps|slop|screen|stop|status|toggle|full|play}
     deps             install deps (slop/ffmpeg/mpv)
-    slop   {file}    select recording
+    region {file}    select recording
     screen {file}    full screen recording
     stop             stop recording
     status           status of recording
@@ -110,8 +110,8 @@ case $1 in
     deps )
         deps
         ;;
-    slop )
-        slop $2
+    region )
+        region $2
         ;;
     screen )
         screen $2
