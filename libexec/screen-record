@@ -95,7 +95,7 @@ play() {
 }
 
 usage() {
-    echo "Usage: $(basename $0) {deps|slop|screen|stop|status|toggle|full|play}
+    echo "Usage: $(basename $0) {deps|region|screen|stop|status|toggle|full|play}
     deps             install deps (slop/ffmpeg/mpv)
     region {file}    select recording
     screen {file}    full screen recording
