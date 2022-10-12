@@ -113,8 +113,8 @@ usage() {
     status     status of recording
     toggle     the switch for recording
     full       the switch for full screen recording
-    play       playback the recording file $default_file
-"
+    play       playback the recording file $default_file"
+    
     exit 1
 }
 
