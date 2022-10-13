@@ -87,23 +87,24 @@ full() {
 }
 
 play() {
-    if [ -f $default_file ]; then
-        mpv $default_file
+    file=${1:-$default_file}
+    if [ -f $file ]; then
+        mpv $file
     else
-        echo "no exist $default_file"
+        echo "no exist $file"
     fi
 }
 
 usage() {
     echo "Usage: $(basename $0) {deps|region|screen|stop|status|toggle|full|play}
     deps             install deps (slop/ffmpeg/mpv)
-    region {file}    select recording
-    screen {file}    full screen recording
+    region {file}    select recording, default file: $default_file
+    screen {file}    full screen recording, default file: $default_file
     stop             stop recording
     status           status of recording
-    toggle           the switch for recording
-    full             the switch for full screen recording
-    play             playback the recording file $default_file"
+    toggle           switch for select recording
+    full             switch for full screen recording
+    play   {file}    play recording, default file: $default_file"
 }
 
 case $1 in
@@ -129,7 +130,7 @@ case $1 in
         full
         ;;
     play )
-        play
+        play $2
         ;;
     * )
         usage
