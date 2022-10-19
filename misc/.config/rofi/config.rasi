@@ -143,3 +143,4 @@ configuration {
 /*	me-accept-custom: "Control+MouseDPrimary";*/
 }
 @import "themes/spotlight-dark.rasi"
+@theme "/home/jiandon/.config/rofi/themes/spotlight-dark.rasi"

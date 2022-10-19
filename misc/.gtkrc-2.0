@@ -1,5 +1,5 @@
-gtk-theme-name=Yaru-Blue-dark
-gtk-icon-theme-name=Os-Catalina-Night
+gtk-theme-name=Yaru-blue-dark
+gtk-icon-theme-name=os-catalina-night
 style "user-font"
 {
     font_name="Droid Sans Fallback 10"
