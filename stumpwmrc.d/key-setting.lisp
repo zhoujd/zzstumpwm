@@ -70,8 +70,7 @@
   (kbd "M-v")               (urxvt-command "vim")
   (kbd "w")                 "wireshark"
   (kbd "z")                 "jiandon-win"
-  (kbd "C-z")               "jiandon-mobl"
-  (kbd "M-z")               "jiandon-nuc"
+  (kbd "C-z")               "jiandon-nuc"
   ))
 
 ;; *zz-x-map*

@@ -84,7 +84,7 @@
       (run-shell-command cmd)))
   (defcommand jiandon-win () ()
     "run remote jiandon-mobl"
-    (let* ((prefix "xfreerdp ~/.jiandon-mobl.rdp")
+    (let* ((prefix "xfreerdp ~/.jiandon-nuc.rdp")
            (cls *win-cls*)
            (cmd (format nil "~a -grab-keyboard /wm-class:~a"
                         prefix
