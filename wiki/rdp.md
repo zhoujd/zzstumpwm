@@ -5,8 +5,8 @@ RDP
 
     $ sudo apt install freerdp2-x11 freerdp2-shadow-x11
     $ xfreerdp
-    $ cat ~/.jiandon-mobl
-    /t:jiandon-mobl
+    $ cat ~/.jiandon-nuc.rdp
+    /t:jiandon-nuc
     /smart-sizing
     /w:1920
     /h:1080
@@ -14,7 +14,7 @@ RDP
     /microphone
     /clipboard
     /disp
-    $ xfreerdp ~/.jiandon-mobl.rdp -grab-keyboard \
+    $ xfreerdp ~/.jiandon-nuc.rdp -grab-keyboard \
       /u:<domain>\<user> \
       /p:<passwd> \
       /v:<host>

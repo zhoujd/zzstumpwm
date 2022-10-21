@@ -66,14 +66,6 @@
 (progn
   (defvar *win-cls* "jiandon-win"
     "rdp window classs")
-  (defcommand jiandon-mobl () ()
-    "run remote jiandon-mobl"
-    (let* ((prefix "xfreerdp ~/.jiandon-mobl.rdp")
-           (cls *win-cls*)
-           (cmd (format nil "~a -grab-keyboard /wm-class:~a"
-                        prefix
-                        cls)))
-      (run-shell-command cmd)))
   (defcommand jiandon-nuc () ()
     "run remote jiandon-nuc"
     (let* ((prefix "xfreerdp ~/.jiandon-nuc.rdp")
@@ -83,7 +75,7 @@
                         cls)))
       (run-shell-command cmd)))
   (defcommand jiandon-win () ()
-    "run remote jiandon-mobl"
+    "run remote jiandon-win"
     (let* ((prefix "xfreerdp ~/.jiandon-nuc.rdp")
            (cls *win-cls*)
            (cmd (format nil "~a -grab-keyboard /wm-class:~a"
