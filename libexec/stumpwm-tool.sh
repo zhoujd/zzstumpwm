@@ -4,7 +4,7 @@ target=$1
 
 case $target in
     ubuntu )
-        sudo apt install -y rlwrap wmctrl
+        sudo apt install -y rlwrap wmctrl scrot
         sudo apt install -y sbcl
         sudo apt install -y rofi keynav slop
         ;;
