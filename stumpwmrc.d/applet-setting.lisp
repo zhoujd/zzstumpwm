@@ -176,3 +176,10 @@
 (defcommand scrot-select () ()
   "screenshot select"
   (screen-snap "scrot -s"))
+(defcommand scrot-clipboard () ()
+  "screen clipboard"
+  (let ((cmd (format nil "~a"
+                     (merge-pathnames "libexec/screen-clipboard" *zz-load-directory*)))
+        (msg "use mouse to select the region"))
+    (run-shell-command cmd)
+    (message msg)))

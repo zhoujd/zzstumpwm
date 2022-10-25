@@ -236,6 +236,7 @@
   (kbd "p")                 "scrot-full"
   (kbd "C-p")               "scrot-select"
   (kbd "M-p")               "scrot-window"
+  (kbd "s-p")               "scrot-clipboard"
   ))
 
 (apply-keys-to-map
