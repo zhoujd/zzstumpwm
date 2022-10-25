@@ -1,3 +1,18 @@
-#!/bin/sh
+#!/bin/bash
 
-scrot -s -e 'xclip -selection clipboard -t image/png -i $f' /tmp/screen-clipboard.png
+TMP=/tmp/screen-clipboard.png
+
+case $1 in
+    full )
+        scrot -e 'xclip -selection clipboard -t image/png -i $f' $TMP
+        ;;
+    region )
+        scrot -s -e 'xclip -selection clipboard -t image/png -i $f' $TMP
+        ;;
+    window )
+        scrot -u -e 'xclip -selection clipboard -t image/png -i $f' $TMP
+        ;;
+    * )
+        echo "Usage: $(basename $0) {full|region|window}"
+        ;;
+esac
