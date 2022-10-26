@@ -1,0 +1,29 @@
+#!/bin/bash
+
+PIC=~/Pictures/screenshots
+FILE=$(date +%b%d-%H%M%S.png)
+
+case $1 in
+    full )
+        mkdir -p $PIC
+        scrot $PIC/$FILE
+        echo "Screenshot fullscreen: $PIC/$FILE"
+        ;;
+    region )
+        mkdir -p $PIC
+        scrot -s $PIC/$FILE
+        if [ $? = 0 ]; then
+            echo "Screenshot region: $PIC/$FILE"
+        else
+            echo "Screenshot region abort"
+        fi
+        ;;
+    window )
+        mkdir -p $PIC
+        scrot -u $PIC/$FILE
+        echo "Screenshot window: $PIC/$FILE"
+        ;;
+    * )
+        echo "Usage: $(basename $0) {full|region|window}"
+        ;;
+esac
