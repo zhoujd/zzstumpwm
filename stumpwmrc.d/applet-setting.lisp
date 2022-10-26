@@ -181,5 +181,5 @@
   (let ((cmd (format nil "~a region"
                      (merge-pathnames "libexec/screen-clipboard" *zz-load-directory*)))
         (msg "use mouse to select the region"))
-    (run-shell-command cmd)
-    (message msg)))
+    (message msg)
+    (run-shell-command cmd)))
