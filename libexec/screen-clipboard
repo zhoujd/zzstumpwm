@@ -5,12 +5,15 @@ TMP=/tmp/screen-clipboard.png
 case $1 in
     full )
         scrot -e 'xclip -selection clipboard -t image/png -i $f' $TMP
+        echo "Screenshot fullscreen to clipboard and $TMP"
         ;;
     region )
         scrot -s -e 'xclip -selection clipboard -t image/png -i $f' $TMP
+        echo "Screenshot region to clipboard and $TMP"
         ;;
     window )
         scrot -u -e 'xclip -selection clipboard -t image/png -i $f' $TMP
+        echo "Screenshot window to clipboard and $TMP"
         ;;
     * )
         echo "Usage: $(basename $0) {full|region|window}"
