@@ -169,23 +169,15 @@
 
 (defcommand scrot-full () ()
   "screenshot full"
-  (let ((cmd (format nil "~a full"
-                     (merge-pathnames "libexec/screen-snap" *zz-load-directory*))))
-    (message (run-shell-command cmd t))))
+  (screen-snap "scrot"))
 
 (defcommand scrot-window () ()
   "screenshot windows"
-  (let ((cmd (format nil "~a window"
-                     (merge-pathnames "libexec/screen-snap" *zz-load-directory*))))
-    (message (run-shell-command cmd t))))
+  (screen-snap "scrot -u"))  
 
 (defcommand scrot-select () ()
   "screenshot select"
-  (let ((cmd (format nil "~a region"
-                     (merge-pathnames "libexec/screen-snap" *zz-load-directory*)))
-        (msg "Use mouse to select the region, ESC to abort"))
-    (message msg)
-    (message (run-shell-command cmd t))))
+  (screen-snap "scrot -s"))
 
 (defcommand scrot-clipboard () ()
   "screen clipboard"
@@ -194,4 +186,3 @@
         (msg "Use mouse to select the region, ESC to abort"))
     (message msg)
     (run-shell-command cmd)))
-

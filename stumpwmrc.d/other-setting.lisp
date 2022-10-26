@@ -86,6 +86,18 @@ run-or-raise with group search t."
     (echo string)
     (setf *message-window-gravity* old-location)))
 
+(defun screen-snap (prefix)
+  "screen snap support with command prefix"
+  (let* ((directory "~/Pictures/screenshots/")
+         (file-name (string-trim
+                     '(#\Newline)
+                     (run-shell-command "date +%b%d-%H%M%S.png" t)))
+         (file-path (merge-pathnames directory file-name)))
+    (ensure-directories-exist directory)
+    (run-shell-command (format nil "~a ~a" prefix file-path) t)
+    (when (probe-file file-path)
+      (message "screenshot: ~a" file-path))))
+
 (defun run-raise-pull-list (cmd props &key prompt
                                         (all-groups *run-or-raise-all-groups*)
                                         (all-screens *run-or-raise-all-screens*)
