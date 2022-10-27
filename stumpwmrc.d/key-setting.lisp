@@ -148,8 +148,8 @@
 
   ;; PSc/SRq
   (kbd "SunPrint_Screen")   "scrot-full"
-  (kbd "M-SunPrint_Screen") "scrot-window"
   (kbd "C-SunPrint_Screen") "scrot-select"
+  (kbd "M-SunPrint_Screen") "scrot-window"
 
   (kbd "s-Tab")             "pull-window-next"
   (kbd "s-M-Tab")           "gnext"
@@ -214,6 +214,9 @@
 (apply-keys-to-map
  *zz-screen-map*
  (list
+  (kbd "b")                 "show-battery"
+  (kbd "t")                 "transset"
+
   (kbd "d")                 "group-desktop"
   (kbd "f")                 "group-fullscreen"
   (kbd "g")                 "group-fresh"
@@ -225,13 +228,11 @@
   (kbd "l")                 "exec slock"
   (kbd "C-l")               "exec zlock"
   (kbd "M-l")               "exec xtrlock"
-  (kbd "t")                 "exec transset"
 
   (kbd "r")                 "record-toggle"
   (kbd "C-r")               "record-full"
   (kbd "M-r")               "record-stop"
   (kbd "s-r")               "record-play"
-  (kbd "b")                 "show-battery"
 
   (kbd "p")                 "scrot-full"
   (kbd "C-p")               "scrot-select"

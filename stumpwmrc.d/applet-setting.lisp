@@ -208,3 +208,10 @@
         (msg "Screen region to clipboard"))
     (message msg)
     (run-shell-command cmd)))
+
+(defcommand transset () ()
+  "transparent window"
+  (let ((cmd "transset")
+        (msg "Please select window to transparent"))
+    (message msg)
+    (run-shell-command cmd)))
