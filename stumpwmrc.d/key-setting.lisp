@@ -32,7 +32,7 @@
   (kbd "M-f")               "colon1 exec firefox http://"
   (kbd "g")                 "rungc"
   (kbd "G")                 "pullgc"
-  (kbd "M-g")               "colon1 exec google-chrome http://"
+  (kbd "M-g")               "exec google-chrome"
   (kbd "s-g")               "google-chrome"
   (kbd "h")                 "thunar"
   (kbd "C-h")               "exec thunar"
