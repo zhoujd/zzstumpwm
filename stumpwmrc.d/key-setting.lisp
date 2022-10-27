@@ -236,7 +236,10 @@
   (kbd "p")                 "scrot-full"
   (kbd "C-p")               "scrot-select"
   (kbd "M-p")               "scrot-window"
-  (kbd "s-p")               "scrot-clipboard"
+
+  (kbd "c")                 "clipboard-full"
+  (kbd "C-c")               "clipboard-select"
+  (kbd "M-c")               "clipboard-window"
   ))
 
 (apply-keys-to-map

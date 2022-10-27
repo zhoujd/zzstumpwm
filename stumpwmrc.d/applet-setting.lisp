@@ -185,10 +185,26 @@
                      (merge-pathnames "libexec/screen-snap" *zz-load-directory*))))
     (message (run-shell-command cmd t))))
 
-(defcommand scrot-clipboard () ()
-  "screen clipboard"
+(defcommand clipboard-full () ()
+  "screen clipboard fullscreen"
+  (let ((cmd (format nil "~a full"
+                     (merge-pathnames "libexec/screen-clipboard" *zz-load-directory*)))
+        (msg "Screen full to clipboard"))
+    (message msg)
+    (run-shell-command cmd)))
+
+(defcommand clipboard-window () ()
+  "screen clipboard window"
+  (let ((cmd (format nil "~a window"
+                     (merge-pathnames "libexec/screen-clipboard" *zz-load-directory*)))
+        (msg "Screen window to clipboard"))
+    (message msg)
+    (run-shell-command cmd)))
+
+(defcommand clipboard-select () ()
+  "screen clipboard region"
   (let ((cmd (format nil "~a region"
                      (merge-pathnames "libexec/screen-clipboard" *zz-load-directory*)))
-        (msg "Use mouse to select the region, ESC to abort"))
+        (msg "Screen region to clipboard"))
     (message msg)
     (run-shell-command cmd)))
