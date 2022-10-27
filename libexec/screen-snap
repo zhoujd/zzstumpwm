@@ -4,6 +4,9 @@ PIC=~/Pictures/screenshots
 FILE=$(date +%b%d-%H%M%S.png)
 
 case $1 in
+    dep )
+        sudo apt install -y scrot
+        ;;
     full )
         mkdir -p $PIC
         scrot $PIC/$FILE
@@ -24,6 +27,6 @@ case $1 in
         echo "Screenshot window: $PIC/$FILE"
         ;;
     * )
-        echo "Usage: $(basename $0) {full|region|window}"
+        echo "Usage: $(basename $0) {dep|full|region|window}"
         ;;
 esac

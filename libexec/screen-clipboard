@@ -3,6 +3,9 @@
 TMP=/tmp/screen-clipboard.png
 
 case $1 in
+    dep )
+        sudo apt install -y scrot
+        ;;
     full )
         scrot -e 'xclip -selection clipboard -t image/png -i $f' $TMP
         echo "Screenshot fullscreen to clipboard and $TMP"
@@ -16,6 +19,6 @@ case $1 in
         echo "Screenshot window to clipboard and $TMP"
         ;;
     * )
-        echo "Usage: $(basename $0) {full|region|window}"
+        echo "Usage: $(basename $0) {dep|full|region|window}"
         ;;
 esac
