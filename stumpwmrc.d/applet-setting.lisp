@@ -215,3 +215,21 @@
         (msg "Please select window to transparent"))
     (message msg)
     (run-shell-command cmd)))
+
+(defcommand outlook () ()
+  "run or raise outlook"
+  (let* ((name "pkooggnaalmfkidjmlhoelhdllpphaga")
+         (cmd (format nil "google-chrome --profile-directory=Default --app-id=~a" name)))
+    (run-or-raise cmd `(:instance ,name))))
+
+(defcommand office () ()
+  "run or raise office"
+  (let* ((name "ocdlmjhbenodhlknglojajgokahchlkk")
+         (cmd (format nil "google-chrome --profile-directory=Default --app-id=~a" name)))
+    (run-or-raise cmd `(:instance ,name))))
+
+(defcommand onedrive () ()
+  "run or raise outlook"
+  (let* ((name "jgajkdfdncijdhpgnkmjghkpdkgcjmkn")
+         (cmd (format nil "google-chrome --profile-directory=Default --app-id=~a" name)))
+    (run-or-raise cmd `(:instance ,name))))
