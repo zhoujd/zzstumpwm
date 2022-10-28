@@ -50,6 +50,9 @@
   (kbd "o")                 "outlook"
   (kbd "C-o")               "office"
   (kbd "M-o")               "onedrive"
+  (kbd "O")                 "onlyoffice"
+  (kbd "C-O")               "ocenaudio"
+  (kbd "M-O")               "openshot"
   (kbd "p")                 (urxvt-command "bpython")
   (kbd "C-p")               "pavucontrol"
   (kbd "M-p")               "exec p4merge"
