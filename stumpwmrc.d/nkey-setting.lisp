@@ -104,7 +104,7 @@
   (kbd "!")                 "outlook"
   (kbd "@")                 "office"
   (kbd "#")                 "onedrive"
-  (kbd "$")                 "exec xdg-open https://translate.google.com/"
+  (kbd "$")                 "translate"
   (kbd "%")                 "colon1 exec xdg-open http://"
   (kbd "^")                 "vpn-menu"
   (kbd "&")                 "wifi-menu"

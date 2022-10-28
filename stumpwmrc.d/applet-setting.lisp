@@ -233,3 +233,8 @@
   (let* ((name "jgajkdfdncijdhpgnkmjghkpdkgcjmkn")
          (cmd (format nil "google-chrome --profile-directory=Default --app-id=~a" name)))
     (run-or-raise cmd `(:instance ,name))))
+
+(defcommand translate () ()
+  "open translate website"
+  (let ((cmd "xdg-open https://translate.google.com/"))
+    (run-shell-command cmd)))
