@@ -1,11 +1,19 @@
-gtk-theme-name=Yaru-blue-dark
-gtk-icon-theme-name=Os-Catalina-Night
+# Include
+include "/usr/share/themes/Adwaita-dark/gtk-2.0/gtkrc"
+
+# Font
 style "user-font"
 {
     font_name="Droid Sans Fallback 10"
 }
 widget_class "*" style "user-font"
 gtk-font-name="Droid Sans Fallback 10"
+
+# Icon/Theme
+gtk-theme-name=Yaru-blue-dark
+gtk-icon-theme-name=Os-Catalina-Night
+
+# Set GTK settings
 gtk-enable-event-sounds=0
 gtk-enable-input-feedback-sounds=0
 gtk-cursor-theme-name=macOSBigSur

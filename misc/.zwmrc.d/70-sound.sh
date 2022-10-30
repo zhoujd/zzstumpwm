@@ -14,7 +14,7 @@ headset_init() {
     local headset=$(pactl list short sinks | grep usb | cut -f 2)
     local defvol=50%
     if [ -n "$headset" ]; then
-        echo "[sound] set usb headset $headset as default sink"
+        echo "[sound] set usb headset as default sink"
         pactl set-default-sink $headset
         pactl set-sink-volume $headset $defvol
     fi
