@@ -66,4 +66,7 @@ ln -sfvT $CURRENT_DIR/misc/.config/rofi ~/.config/rofi
 ## Install skippy-xd
 ln -sfvT $CURRENT_DIR/misc/.config/skippy-xd ~/.config/skippy-xd
 
+## .Xmodmap.d
+ln -sfvT $CURRENT_DIR/misc/.Xmodmap.d ~/.Xmodmap.d
+
 echo "install stumpwm end ..."
