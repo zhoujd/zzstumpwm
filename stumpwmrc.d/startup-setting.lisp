@@ -12,7 +12,7 @@
   "start command if not exist"
   (unless (ps-exists command)
     (run-shell-command
-     (concat command " " options " " (when background "&")))))
+     (concatenate 'string command " " options " " (when background "&")))))
 
 (mapc
  #'(lambda (cmd)
@@ -22,9 +22,9 @@
   (list "xsetroot" :options "-cursor_name left_ptr")
   (list "nitrogen" :options "--restore")
   (list "ulauncher" :options "--hide-window --no-window-shadow")
+  (list "redshift" :options "-l +34.41:+121.29 -t 6500:3000")
   (list "urxvtd" :options "-q -f -o")
   (list "unclutter")
-  (list "redshift")
   (list "keynav")
   (list "dunst")
   (list "nm-applet")
@@ -34,7 +34,7 @@
 (defun run-command-ps (command &key options (background t))
   "run command ps"
   (run-shell-command
-   (concat command " " options " " (when background "&"))))
+   (concatenate 'string command " " options " " (when background "&"))))
 
 (defun start-hook-ps ()
   "start hook ps"
