@@ -2,6 +2,7 @@
 
 # Simple script to modify screen brightness
 # USAGE:
+# usermod -aG video $USER
 # brightness.sh +20 (Increase brightness by 20%)
 
 basedir="/sys/class/backlight/"
