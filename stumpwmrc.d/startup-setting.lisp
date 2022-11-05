@@ -20,9 +20,9 @@
  (list
   (list "xset" :options "b off")
   (list "xsetroot" :options "-cursor_name left_ptr")
-  (list "nitrogen" :options "--restore")
   (list "ulauncher" :options "--hide-window --no-window-shadow")
   (list "redshift" :options "-l +34.41:+121.29 -t 6500:3000")
+  (list "nitrogen" :options "--restore")
   (list "urxvtd" :options "-q -f -o")
   (list "unclutter")
   (list "keynav")
