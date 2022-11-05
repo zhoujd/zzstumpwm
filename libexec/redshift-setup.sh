@@ -8,7 +8,7 @@ Install_redshift() {
     sudo apt install -y redshift
 
     echo "Install redshift config"
-    ln -sfvT $ZZSTUMPWM_ROOT/misc/.config/redshift ~/.config/redshift
+    cp -fv $ZZSTUMPWM_ROOT/misc/.config/redshift.conf ~/.config/
 }
 
 Install_redshift
