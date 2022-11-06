@@ -4,10 +4,10 @@ include "/usr/share/themes/Adwaita-dark/gtk-2.0/gtkrc"
 # Font
 style "user-font"
 {
-    font_name="Droid Sans Fallback 10"
+    font_name="Droid Sans Fallback 11"
 }
 widget_class "*" style "user-font"
-gtk-font-name="Droid Sans Fallback 10"
+gtk-font-name="Droid Sans Fallback 11"
 
 # Icon/Theme
 gtk-theme-name=Yaru-blue-dark
