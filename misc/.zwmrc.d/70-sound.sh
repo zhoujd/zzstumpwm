@@ -2,7 +2,7 @@
 
 speaker_init() {
     local defvol=0
-    local speaker=$(pactl list short sinks | grep pci-0000 | cut -f 1)
+    local speaker=$(pactl list short sinks | grep pci-0000 | cut -f 1 | tail -n 1)
     if [ -n "$speaker" ]; then
         echo "[sound] set speaker $speaker volume to $defvol and mute"
         pactl set-sink-volume $speaker $defvol
@@ -11,7 +11,7 @@ speaker_init() {
 }
 
 headset_init() {
-    local headset=$(pactl list short sinks | grep usb | cut -f 2)
+    local headset=$(pactl list short sinks | grep usb | cut -f 2 | tail -n 1)
     local defvol=50%
     if [ -n "$headset" ]; then
         echo "[sound] set usb headset as default sink"
