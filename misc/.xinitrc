@@ -1,7 +1,5 @@
 ### .xinitrc
 
-XDG_SESSION_TYPE=x11
-
 # WM=stumpwm startx
 case $WM in
     stumpwm )
