@@ -61,7 +61,7 @@ ln -sfvT $CURRENT_DIR/misc/.keynavrc ~/.keynavrc
 ## Install .Xmodmap.d
 ln -sfvT $CURRENT_DIR/misc/.Xmodmap.d ~/.Xmodmap.d
 
-## make sure the folder ~/.config exist
+## Make sure the folder ~/.config exist
 mkdir -p ~/.config
 
 ## Install rofi
