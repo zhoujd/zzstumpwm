@@ -10,7 +10,7 @@ widget_class "*" style "user-font"
 gtk-font-name="Droid Sans Fallback 10"
 
 # Icon/Theme
-gtk-theme-name=Yaru-blue-dark
+gtk-theme-name=WhiteSur-Dark
 gtk-icon-theme-name=Os-Catalina-Night
 
 # Set GTK settings
