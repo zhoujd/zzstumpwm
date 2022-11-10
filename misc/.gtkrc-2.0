@@ -11,7 +11,7 @@ gtk-font-name="Droid Sans Fallback 10"
 
 # Icon/Theme
 gtk-theme-name=WhiteSur-Dark
-gtk-icon-theme-name=Os-Catalina-Night
+gtk-icon-theme-name=Mkos-Big-Sur-Night
 
 # Set GTK settings
 gtk-enable-event-sounds=0
