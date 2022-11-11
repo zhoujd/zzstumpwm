@@ -15,8 +15,9 @@ Install_Chili() {
     mkdir -p $DL_DIR
     pushd $DL_DIR
     curl -JL https://github.com/MarianArlt/sddm-chili/archive/0.1.5.tar.gz -o sddm-chili-0.1.5.tar.gz
-    sudo tar -xzvf ~/Downloads/sddm-chili-0.1.5.tar.gz -C /usr/share/sddm/themes
+    sudo tar -xzvf sddm-chili-0.1.5.tar.gz -C /usr/share/sddm/themes
     sudo mv /usr/share/sddm/themes/sddm-chili-0.1.5 /usr/share/sddm/themes/chili
+    rm sddm-chili-0.1.5.tar.gz
     popd
 }
 
