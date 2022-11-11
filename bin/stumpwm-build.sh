@@ -3,17 +3,21 @@
 SCRIPT_ROOT=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
 ZZSTUMPWM_ROOT=$(cd $SCRIPT_ROOT/.. && pwd)
 PREFIX=/usr/local/stumpwm
-SBCL_HOME=${SBCL_HOME:-/usr/lib/sbcl}
 
 install() {
     echo "build stumpwm"
-    echo "use SBCL_HOME=$SBCL_HOME"
-    pushd $ZZSTUMPWM_ROOT/lisp/system/stumpwm
-    ./autogen.sh
-    ./configure --prefix=$PREFIX
-    make all
-    sudo make install
-    popd
+    if [ -n "$SBCL_HOME" ]; then
+        echo "use SBCL_HOME=$SBCL_HOME"
+        pushd $ZZSTUMPWM_ROOT/lisp/system/stumpwm
+        ./autogen.sh
+        ./configure --prefix=$PREFIX
+        make all
+        sudo make install
+        popd
+    else
+        echo "not find SBCL_HOME in environment, please setup SBCL_HOME first"
+        exit 1
+    fi
 }
 
 clean() {
