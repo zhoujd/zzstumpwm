@@ -1,6 +1,44 @@
-#!/bin/bash
+#!/usr/bin/env bash
+#set -e
 
-killall redshift
-sleep 1
-redshift
+dep() {
+    echo "Install redshift dep"
+    sudo apt install -y redshift redshift-gtk
+}
 
+start() {
+    echo "Start redshift"
+    IFS=$'\n\t'
+    gpsinfo="$(curl -s ipinfo.io | sed 's/[" ]//g')"
+    lat=$(echo "$gpsinfo" | awk -F '[:,]' '/loc/{print $2}')
+    lon=$(echo "$gpsinfo" | awk -F '[:,]' '/loc/{print $3}')
+
+    redshift -l $lat:$lon 1>/dev/null 2>/dev/null &
+}
+
+stop() {
+    echo "Stop redshift"
+    if [ ! -z "$(pgrep redshift)" ]; then
+        killall redshift
+        wait
+    fi
+}
+
+case $1 in
+    dep )
+        dep
+        ;;
+    start )
+        start
+        ;;
+    stop )
+        stop
+        ;;
+    restart )
+        stop
+        start
+        ;;
+    * )
+        echo "$(basename $0) {dep|start|stop|restart}"
+        ;;
+esac
