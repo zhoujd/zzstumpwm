@@ -13,7 +13,11 @@ start() {
     lat=$(echo "$gpsinfo" | awk -F '[:,]' '/loc/{print $2}')
     lon=$(echo "$gpsinfo" | awk -F '[:,]' '/loc/{print $3}')
 
-    redshift -P -x -l $lat:$lon 1>/dev/null 2>/dev/null &
+    echo "Killall shift"
+    killall redshift
+    echo "Start after 3s"
+    sleep 3
+    redshift -P -l $lat:$lon 1>/dev/null 2>/dev/null &
 }
 
 stop() {
@@ -26,6 +30,7 @@ stop() {
 
 status() {
     echo "Status of redshift"
+    ps -ef | grep redshift | grep -v grep | grep -v $(basename $0)
     redshift -p
 }
 
@@ -39,14 +44,10 @@ case $1 in
     stop )
         stop
         ;;
-    restart )
-        stop
-        start
-        ;;
     status )
         status
         ;;
     * )
-        echo "$(basename $0) {dep|start|stop|restart|status}"
+        echo "$(basename $0) {dep|start|stop|status}"
         ;;
 esac
