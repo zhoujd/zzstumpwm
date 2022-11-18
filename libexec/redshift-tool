@@ -24,6 +24,11 @@ stop() {
     fi
 }
 
+status() {
+    echo "Status of redshift"
+    ps -ef | grep -i redshift | grep -v grep | grep -v $(basename $0)
+}
+
 case $1 in
     dep )
         dep
@@ -38,7 +43,10 @@ case $1 in
         stop
         start
         ;;
+    status )
+        status
+        ;;
     * )
-        echo "$(basename $0) {dep|start|stop|restart}"
+        echo "$(basename $0) {dep|start|stop|restart|status}"
         ;;
 esac
