@@ -13,7 +13,7 @@ start() {
     lat=$(echo "$gpsinfo" | awk -F '[:,]' '/loc/{print $2}')
     lon=$(echo "$gpsinfo" | awk -F '[:,]' '/loc/{print $3}')
 
-    redshift -l $lat:$lon 1>/dev/null 2>/dev/null &
+    redshift -P -x -l $lat:$lon 1>/dev/null 2>/dev/null &
 }
 
 stop() {
@@ -26,7 +26,7 @@ stop() {
 
 status() {
     echo "Status of redshift"
-    ps -ef | grep -i redshift | grep -v grep | grep -v $(basename $0)
+    redshift -p
 }
 
 case $1 in
