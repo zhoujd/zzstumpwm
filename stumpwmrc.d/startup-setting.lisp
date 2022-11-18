@@ -25,6 +25,7 @@
   (list "urxvtd" :options "-q -f -o")
   (list "redshift" :options "-P")
   (list "unclutter")
+  (list "compton")
   (list "keynav")
   (list "dunst")
   (list "nm-applet")
