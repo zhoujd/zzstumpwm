@@ -21,7 +21,8 @@ URxvt.loginShell: true
 URxvt.saveLines: 4096
 
 !! border
-URxvt.externalBorder: 1
+URxvt.borderWidth: 0
+URxvt.externalBorder: 0
 URxvt.internalBorder: 0
 
 URxvt.lineSpace: 0
