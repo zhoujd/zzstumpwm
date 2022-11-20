@@ -1,6 +1,7 @@
 #!/bin/bash
 
 ## https://github.com/stumpwm/stumpwm/wiki/Compiling-SBCL
+## http://www.sbcl.org/getting.html
 ## sudo apt install libzstd-dev
 
 SBCL_PKG=~/Downloads/sbcl
@@ -14,6 +15,9 @@ download() {
     mkdir -p ~/Downloads
     if [ ! -d $SBCL_PKG ]; then
         git clone https://github.com/sbcl/sbcl $SBCL_PKG
+        pushd $SBCL_PKG
+        git checkout -b zz/sbcl-2.1.11 sbcl-2.1.11
+        popd
     else
         echo "The $SBCL_PKG already be downloaded"
     fi
@@ -42,7 +46,7 @@ env() {
     echo "Set sbcl env start"
     sudo tee /etc/profile.d/zz-sbcl.sh <<EOF
 export PATH=/usr/local/sbcl/bin\${PATH:+:}\$PATH
-export SBCL_HOME=/usr/local/sbcl
+export SBCL_HOME=/usr/local/sbcl/lib/sbcl
 EOF
     echo "Set sbcl env done"
 }
