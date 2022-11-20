@@ -1,6 +1,8 @@
 #!/bin/bash
 
-##https://github.com/stumpwm/stumpwm/wiki/Compiling-SBCL
+## https://github.com/stumpwm/stumpwm/wiki/Compiling-SBCL
+## sudo apt install libzstd-dev
+
 SBCL_PKG=~/Downloads/sbcl
 SBCL_PREFIX=/usr/local/sbcl
 
@@ -11,7 +13,7 @@ download() {
     echo "Download SBCL $SBCL_VERSION ...."
     mkdir -p ~/Downloads
     if [ ! -d $SBCL_PKG ]; then
-        git clone git://git.code.sf.net/p/sbcl/sbcl $SBCL_PKG
+        git clone https://github.com/sbcl/sbcl $SBCL_PKG
     else
         echo "The $SBCL_PKG already be downloaded"
     fi
@@ -20,6 +22,7 @@ download() {
 remove() {
     echo "Remove old SBCL"
     rm -rf $SBCL_PREFIX
+    rm -f /etc/profile.d/zz-sbcl.sh
 }
 
 install() {
@@ -35,6 +38,15 @@ install() {
     fi
 }
 
+env() {
+    echo "Set sbcl env start"
+    sudo tee /etc/profile.d/zz-sbcl.sh <<EOF
+export PATH=/usr/local/sbcl/bin\${PATH:+:}\$PATH
+export SBCL_HOME=/usr/local/sbcl
+EOF
+    echo "Set sbcl env done"
+}
+
 case $1 in
     install )
         download
@@ -46,8 +58,11 @@ case $1 in
     remove )
         remove
         ;;
+    env )
+        env
+        ;;
     * )
-        echo "Usage: $(basename $0) {install|download|remove}"
+        echo "Usage: $(basename $0) {install|download|remove|env}"
         ;;
 esac
 
