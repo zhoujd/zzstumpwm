@@ -195,3 +195,10 @@ used for matching windows with run-or-raise or window placement-merules."
              (cdr (stumpwm::group-frames (current-group))))
         (run-commands to-be-run)
         (message "There is no others frames."))))
+
+(defcommand pull-group-windows () ()
+  "pull all group windows to current frame"
+  (if (typep (current-group) 'stumpwm::tile-group)
+      (dolist (window (stumpwm::group-windows (current-group)))
+        (stumpwm::pull-window window))
+      (message "No support in float group.")))

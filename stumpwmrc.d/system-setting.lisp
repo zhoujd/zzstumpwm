@@ -152,11 +152,6 @@
             (format nil "~a off"
                     (merge-pathnames "libexec/touchpad-toggle" *zz-load-directory*)) t)))
 
-(defcommand pull-group-windows () ()
-  "pull all group windows to current frame"
-  (dolist (window (stumpwm::group-windows (current-group)))
-    (stumpwm::pull-window window)))
-
 (defcommand swap-windows () ()
   "swap 2 windows"
   (let* ((frames (stumpwm::group-frames (current-group)))
