@@ -78,6 +78,7 @@
  (list
   (kbd "c")                 "fclear"
   (kbd "d")                 "delete"
+  (kbd "f")                 "pull-group-windows"
   (kbd "g")                 "refresh"
   (kbd "i")                 "window-info"
   (kbd "k")                 "kill-from-windowlist"
