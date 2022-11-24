@@ -7,6 +7,7 @@
 SBCL_PKG=~/Downloads/sbcl
 SBCL_PREFIX=/usr/local/sbcl
 SBCL_VERSION=2.1.11
+SBCL_ENV=/etc/profile.d/zz-sbcl.sh
 
 ## make sure the download folder exist
 mkdir -p ~/Downloads
@@ -25,7 +26,7 @@ download() {
 remove() {
     echo "Remove old SBCL"
     rm -rf $SBCL_PREFIX
-    rm -f /etc/profile.d/zz-sbcl.sh
+    rm -f $SBCL_ENV
 }
 
 install() {
@@ -43,7 +44,7 @@ install() {
 
 env() {
     echo "Set sbcl env start"
-    sudo tee /etc/profile.d/zz-sbcl.sh <<EOF
+    sudo tee $SBCL_ENV <<EOF
 export PATH=/usr/local/sbcl/bin\${PATH:+:}\$PATH
 export SBCL_HOME=/usr/local/sbcl/lib/sbcl
 EOF
