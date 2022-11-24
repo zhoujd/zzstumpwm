@@ -6,6 +6,7 @@
 
 SBCL_PKG=~/Downloads/sbcl
 SBCL_PREFIX=/usr/local/sbcl
+SBCL_VERSION=2.1.11
 
 ## make sure the download folder exist
 mkdir -p ~/Downloads
@@ -15,7 +16,7 @@ download() {
     mkdir -p ~/Downloads
     if [ ! -d $SBCL_PKG ]; then
         git clone https://github.com/sbcl/sbcl $SBCL_PKG && cd $SBCL_PKG
-        git checkout -b zz/sbcl-2.1.11 sbcl-2.1.11
+        git checkout -b zz/sbcl-${SBCL_VERSION} sbcl-${SBCL_VERSION}
     else
         echo "The $SBCL_PKG already be downloaded"
     fi
