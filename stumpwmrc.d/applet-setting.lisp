@@ -216,21 +216,27 @@
     (message msg)
     (run-shell-command cmd)))
 
-(defcommand outlook () ()
-  "run or raise outlook"
+(defcommand outlook365 () ()
+  "run or raise outlook365"
   (let* ((name "pkooggnaalmfkidjmlhoelhdllpphaga")
          (cmd (format nil "google-chrome --profile-directory=Default --app-id=~a" name)))
     (run-or-raise cmd `(:instance ,name))))
 
-(defcommand office () ()
-  "run or raise office"
+(defcommand office365 () ()
+  "run or raise office365"
   (let* ((name "ocdlmjhbenodhlknglojajgokahchlkk")
          (cmd (format nil "google-chrome --profile-directory=Default --app-id=~a" name)))
     (run-or-raise cmd `(:instance ,name))))
 
-(defcommand onedrive () ()
-  "run or raise outlook"
+(defcommand onedrive365 () ()
+  "run or raise onedrive365"
   (let* ((name "jgajkdfdncijdhpgnkmjghkpdkgcjmkn")
+         (cmd (format nil "google-chrome --profile-directory=Default --app-id=~a" name)))
+    (run-or-raise cmd `(:instance ,name))))
+
+(defcommand teams365 () ()
+  "run or raise teams365"
+  (let* ((name "cifhbcnohmdccbgoicgdjpfamggdegmo")
          (cmd (format nil "google-chrome --profile-directory=Default --app-id=~a" name)))
     (run-or-raise cmd `(:instance ,name))))
 
