@@ -30,7 +30,6 @@
 (def-run-or-raise-command remmina              '(:Class "org.remmina.Remmina"))
 (def-run-or-raise-command slingscold           '(:Class "Slingscold"))
 (def-run-or-raise-command thunar               '(:class "Thunar"))
-(def-run-or-raise-command teams                '(:class "Microsoft Teams - Preview"))
 (def-run-or-raise-command urxvt                '(:class "URxvt"))
 (def-run-or-raise-command vlc                  '(:class "Vlc"))
 (def-run-or-raise-command wireshark            '(:class "Wireshark"))
@@ -218,26 +217,26 @@
     (message msg)
     (run-shell-command cmd)))
 
-(defcommand outlook365 () ()
-  "run or raise outlook365"
+(defcommand outlook () ()
+  "run or raise outlook"
   (let* ((name "pkooggnaalmfkidjmlhoelhdllpphaga")
          (cmd (format nil "google-chrome --profile-directory=Default --app-id=~a" name)))
     (run-or-raise cmd `(:instance ,name))))
 
-(defcommand office365 () ()
-  "run or raise office365"
+(defcommand office () ()
+  "run or raise office"
   (let* ((name "ocdlmjhbenodhlknglojajgokahchlkk")
          (cmd (format nil "google-chrome --profile-directory=Default --app-id=~a" name)))
     (run-or-raise cmd `(:instance ,name))))
 
-(defcommand onedrive365 () ()
-  "run or raise onedrive365"
+(defcommand onedrive () ()
+  "run or raise onedrive"
   (let* ((name "jgajkdfdncijdhpgnkmjghkpdkgcjmkn")
          (cmd (format nil "google-chrome --profile-directory=Default --app-id=~a" name)))
     (run-or-raise cmd `(:instance ,name))))
 
-(defcommand teams365 () ()
-  "run or raise teams365"
+(defcommand teams () ()
+  "run or raise teams"
   (let* ((name "cifhbcnohmdccbgoicgdjpfamggdegmo")
          (cmd (format nil "google-chrome --profile-directory=Default --app-id=~a" name)))
     (run-or-raise cmd `(:instance ,name))))
