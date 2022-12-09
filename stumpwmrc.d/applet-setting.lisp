@@ -8,7 +8,7 @@
 (make-web-jump "bing"      "firefox https://www.bing.com/search?q=")
 (make-web-jump "wikipedia" "firefox https://en.wikipedia.org/w/index.php?search=")
 
-;; run-or-raise
+;; run-or-raise via class
 (def-run-or-raise-command audacity             '(:class "Audacity"))
 (def-run-or-raise-command bcompare             '(:class "Bcompare"))
 (def-run-or-raise-command cheese               '(:class "Cheese"))
@@ -23,7 +23,6 @@
 (def-run-or-raise-command iptux                '(:class "Iptux"))
 (def-run-or-raise-command intel-unite-client   '(:class "Intel Unite"))
 (def-run-or-raise-command klavaro              '(:class "Klavaro"))
-(def-run-or-raise-command libreoffice          '(:title "libreoffice"))
 (def-run-or-raise-command mpv                  '(:class "mpv"))
 (def-run-or-raise-command meld                 '(:class "Meld"))
 (def-run-or-raise-command ocenaudio            '(:class "ocenaudio"))
@@ -36,6 +35,9 @@
 (def-run-or-raise-command vlc                  '(:class "Vlc"))
 (def-run-or-raise-command wireshark            '(:class "Wireshark"))
 (def-run-or-raise-command pavucontrol          '(:class "Pavucontrol"))
+
+;; run-or-raise via instance
+(def-run-or-raise-command libreoffice          '(:instance "libreoffice"))
 
 ;; run-or-raise-terminal
 (def-run-or-raise-terminal bpython)
