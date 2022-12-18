@@ -5,6 +5,13 @@
 # usermod -aG video $USER
 # brightness.sh +20 (Increase brightness by 20%)
 
+if [ $# != 1 ]; then
+    echo "Usage $(basename $0) {value}
+$ $(basename $0) +5
+$ $(basename $0) -5"
+    exit 1
+fi
+
 basedir="/sys/class/backlight/"
 
 # get the backlight handler
