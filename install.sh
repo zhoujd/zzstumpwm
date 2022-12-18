@@ -68,6 +68,8 @@ mkdir -p ~/.config
 ln -sfvT $CURRENT_DIR/misc/.config/rofi ~/.config/rofi
 ## Install skippy-xd
 ln -sfvT $CURRENT_DIR/misc/.config/skippy-xd ~/.config/skippy-xd
+## Install xsettingsd
+ln -sfvT $CURRENT_DIR/misc/.config/xsettingsd ~/.config/xsettingsd
 
 
 echo "install stumpwm end ..."
