@@ -1,22 +1,20 @@
 #!/bin/bash
 
-TMP=/tmp/screen-clipboard.png
-
 case $1 in
     dep )
-        sudo apt install -y scrot
+        sudo apt install -y maim
         ;;
     full )
-        scrot -e 'xclip -selection clipboard -t image/png -i $f' $TMP
-        echo "Screenshot fullscreen to clipboard and $TMP"
+        maim -u | xclip -selection clipboard -t image/png        
+        echo "Screenshot fullscreen to clipboard"
         ;;
     region )
-        scrot -s -e 'xclip -selection clipboard -t image/png -i $f' $TMP
-        echo "Screenshot region to clipboard and $TMP"
+        maim -u -s | xclip -selection clipboard -t image/png        
+        echo "Screenshot region to clipboard"
         ;;
     window )
-        scrot -u -e 'xclip -selection clipboard -t image/png -i $f' $TMP
-        echo "Screenshot window to clipboard and $TMP"
+        maim -u -i $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
+        echo "Screenshot window to clipboard"
         ;;
     * )
         echo "Usage: $(basename $0) {dep|full|region|window}"
