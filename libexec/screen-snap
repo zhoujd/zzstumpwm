@@ -5,6 +5,7 @@ FILE=$(date +%b%d-%H%M%S.png)
 
 case $1 in
     dep )
+        ## https://github.com/naelstrof/maim
         sudo apt install -y maim
         ;;
     full )

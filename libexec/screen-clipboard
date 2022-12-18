@@ -2,6 +2,7 @@
 
 case $1 in
     dep )
+        ## https://github.com/naelstrof/maim
         sudo apt install -y maim
         ;;
     full )
