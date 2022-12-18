@@ -1,20 +1,24 @@
 #!/bin/bash
 
+## https://github.com/naelstrof/maim
+
+XCLIPCMD="xclip -selection clipboard -t image/png"
+WINDOW=$(xdotool getactivewindow)
+
 case $1 in
     dep )
-        ## https://github.com/naelstrof/maim
         sudo apt install -y maim
         ;;
     full )
-        maim -u | xclip -selection clipboard -t image/png        
+        maim -u | $XCLIPCMD
         echo "Screenshot fullscreen to clipboard"
         ;;
     region )
-        maim -u -s | xclip -selection clipboard -t image/png        
+        maim -u -s | $XCLIPCMD
         echo "Screenshot region to clipboard"
         ;;
     window )
-        maim -u -i $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
+        maim -u -i $WINDOW | $XCLIPCMD
         echo "Screenshot window to clipboard"
         ;;
     * )
