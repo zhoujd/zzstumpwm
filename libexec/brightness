@@ -6,7 +6,8 @@
 # brightness.sh +20 (Increase brightness by 20%)
 
 if [ $# != 1 ]; then
-    echo "Usage $(basename $0) {value}
+    echo "Usage: $(basename $0) {value}
+Examples:
 $ $(basename $0) +5
 $ $(basename $0) -5"
     exit 1
