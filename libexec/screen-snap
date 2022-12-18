@@ -5,16 +5,16 @@ FILE=$(date +%b%d-%H%M%S.png)
 
 case $1 in
     dep )
-        sudo apt install -y scrot
+        sudo apt install -y maim
         ;;
     full )
         mkdir -p $PIC
-        scrot $PIC/$FILE
+        maim -u  $PIC/$FILE
         echo "Screenshot fullscreen: $PIC/$FILE"
         ;;
     region )
         mkdir -p $PIC
-        scrot -s $PIC/$FILE
+        maim -u -s $PIC/$FILE
         if [ $? = 0 ]; then
             echo "Screenshot region: $PIC/$FILE"
         else
@@ -23,7 +23,7 @@ case $1 in
         ;;
     window )
         mkdir -p $PIC
-        scrot -u $PIC/$FILE
+        maim -u -i $(xdotool getactivewindow) $PIC/$FILE
         echo "Screenshot window: $PIC/$FILE"
         ;;
     * )
