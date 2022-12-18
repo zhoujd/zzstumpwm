@@ -156,8 +156,7 @@
 
 ;; save & restore group
 (progn
-  (defvar *zz-group-file* "~/.stumpwm-group"
-    "group layout file name")
+  (defvar *zz-group-file* "~/.stumpwm-group" "group layout file name")
   (defcommand dump-group-file () ()
     "dump group"
     (dump-group-to-file *zz-group-file*))

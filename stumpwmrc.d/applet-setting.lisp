@@ -61,8 +61,7 @@
   (run-shell-command "skippy-xd"))
 
 (progn
-  (defvar *win-cls* "jiandon-win"
-    "rdp window classs")
+  (defvar *win-cls* "jiandon-win" "rdp window classs")
   (defcommand jiandon-nuc () ()
     "run remote jiandon-nuc"
     (let* ((prefix "xfreerdp ~/.jiandon-nuc.rdp")

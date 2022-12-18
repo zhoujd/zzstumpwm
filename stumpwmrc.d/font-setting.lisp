@@ -6,8 +6,12 @@
 ;;find a font of your choice in `xfontsel' and put it here.
 ;(set-font "*-unifont-medium-*-normal-*-16-*-*-*-*-*-*-*")
 
+#-clx-truetype
 (require 'clx-truetype)
+
+#-ttf-fonts
 (require 'ttf-fonts)
+
 (ignore-errors
  (or (and (xft:cache-fonts)
           (set-font (make-instance 'xft:font

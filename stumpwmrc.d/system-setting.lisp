@@ -105,8 +105,7 @@
   (run-shell-command "setcapslock toggle"))
 
 (progn
-  (defvar *last-saved-window* nil
-    "Last saved window configuration")
+  (defvar *last-saved-window* nil "last saved window configuration")
   (defcommand show-root () ()
     "Show root window."
     (when (cdr (stumpwm::group-frames (current-group)))
