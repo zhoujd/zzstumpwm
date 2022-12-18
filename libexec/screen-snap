@@ -12,7 +12,7 @@ case $1 in
         ;;
     full )
         mkdir -p $PIC
-        maim -u  $PIC/$FILE
+        maim -u $PIC/$FILE
         echo "Screenshot fullscreen: $PIC/$FILE"
         ;;
     region )
