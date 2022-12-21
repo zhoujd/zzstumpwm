@@ -59,6 +59,7 @@
   (kbd "t")                 "teams"
   (kbd "C-t")               (urxvt-command "tmux")
   (kbd "M-t")               "tmux"
+  (kbd "M-t")               "teams-force"
   (kbd "s")                 (urxvt-command "speedpad")
   (kbd "C-s")               "stumpish"
   (kbd "M-s")               "exec stacer"
