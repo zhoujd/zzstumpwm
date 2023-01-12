@@ -24,7 +24,6 @@
   (list "ulauncher" :options "--hide-window --no-window-shadow")
   (list "nitrogen" :options "--restore")
   (list "urxvtd" :options "-q -f -o")
-  (list "redshift" :options "-P")
   (list "unclutter")
   (list "compton")
   (list "keynav")
@@ -35,6 +34,8 @@
 
 (defun run-command-ps (command &key options (background t))
   "run command ps"
+  (when (ps-exists command)
+    (run-shell-command (format nil "killall ~a >/dev/null" command)))
   (run-shell-command
    (concatenate 'string command " " options " " (when background "&"))))
 
@@ -44,6 +45,7 @@
    #'(lambda (cmd)
        (apply #'run-command-ps cmd))
    (list
+    (list "redshift" :options "-P")
     (list "xmodmap" :options "~/.Xmodmap")
     )))
 
