@@ -4,9 +4,9 @@
 (in-package :zwm)
 
 ;; webjumps q=query+goes+here
-(make-web-jump "google"    "google-chrome https://www.google.com/search?q=")
-(make-web-jump "bing"      "google-chrome https://www.bing.com/search?q=")
-(make-web-jump "wikipedia" "google-chrome https://en.wikipedia.org/w/index.php?search=")
+(make-web-jump "google"    "firefox https://www.google.com/search?q=")
+(make-web-jump "bing"      "firefox https://www.bing.com/search?q=")
+(make-web-jump "wikipedia" "firefox https://en.wikipedia.org/w/index.php?search=")
 
 ;; run-or-raise via class
 (def-run-or-raise-command audacity             '(:class "Audacity"))
