@@ -43,6 +43,7 @@
   (kbd "C-l")               "exec libreoffice"
   (kbd "m")                 "evolution"
   (kbd "C-m")               "claws-mail"
+  (kbd "M-m")               "outlook"
   (kbd "s-m")               "evolution-force"
   (kbd "n")                 "nnn"
   (kbd "C-n")               (urxvt-command "nnn")

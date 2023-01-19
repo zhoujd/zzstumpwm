@@ -9,7 +9,7 @@
   (kbd "1")                 "runemacs"
   (kbd "2")                 "google-chrome"
   (kbd "3")                 "teams"
-  (kbd "4")                 "evolution"
+  (kbd "4")                 "outlook"
   (kbd "5")                 "libreoffice"
   (kbd "6")                 "exec libreoffice --writer"
   (kbd "7")                 "exec libreoffice --calc"
