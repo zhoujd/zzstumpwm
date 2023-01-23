@@ -1,6 +1,6 @@
 #!/bin/bash
 
-killall teams
+teams --quit || killall teams
 sleep 1s
 teams --disable-namespace-sandbox --disable-setuid-sandbox
 
