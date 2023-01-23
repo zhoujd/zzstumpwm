@@ -248,7 +248,7 @@
 (defcommand teams () ()
   "run or raise teams"
   (let* ((name "Microsoft Teams - Preview")
-         (cmd "teams --disable-namespace-sandbox --disable-setuid-sandbox"))
+         (cmd "teams"))
     (run-or-raise cmd `(:class ,name))))
 
 (defcommand teams-force () ()

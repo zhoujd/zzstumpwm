@@ -1,7 +1,6 @@
 #!/bin/bash
 
 teams --quit || killall teams
-sleep 1s
-teams --disable-namespace-sandbox --disable-setuid-sandbox
+sleep 1s && teams
 
 echo "teams force done"
