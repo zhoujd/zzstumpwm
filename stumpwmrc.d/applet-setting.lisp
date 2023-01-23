@@ -30,7 +30,6 @@
 (def-run-or-raise-command remmina              '(:Class "org.remmina.Remmina"))
 (def-run-or-raise-command slingscold           '(:Class "Slingscold"))
 (def-run-or-raise-command thunar               '(:class "Thunar"))
-(def-run-or-raise-command teams                '(:class "Microsoft Teams - Preview"))
 (def-run-or-raise-command urxvt                '(:class "URxvt"))
 (def-run-or-raise-command vlc                  '(:class "Vlc"))
 (def-run-or-raise-command wireshark            '(:class "Wireshark"))
@@ -236,10 +235,16 @@
     (run-or-raise cmd `(:instance ,name))))
 
 (defcommand teamspwa () ()
-  "run or raise teams"
+  "run or raise teams PWA"
   (let* ((name "cifhbcnohmdccbgoicgdjpfamggdegmo")
          (cmd (format nil "google-chrome --profile-directory=Default --app-id=~a" name)))
     (run-or-raise cmd `(:instance ,name))))
+
+(defcommand teams () ()
+  "run or raise teams"
+  (let* ((name "Microsoft Teams - Preview")
+         (cmd "teams --disable-namespace-sandbox --disable-setuid-sandbox"))
+    (run-or-raise cmd `(:class ,name))))
 
 (defcommand translate () ()
   "open translate website"
