@@ -216,6 +216,11 @@
     (message msg)
     (run-shell-command cmd)))
 
+(defcommand translate () ()
+  "open translate website"
+  (let ((cmd "xdg-open https://translate.google.com/"))
+    (run-shell-command cmd)))
+
 (defcommand outlook () ()
   "run or raise outlook"
   (let* ((name "pkooggnaalmfkidjmlhoelhdllpphaga")
@@ -246,7 +251,14 @@
          (cmd "teams --disable-namespace-sandbox --disable-setuid-sandbox"))
     (run-or-raise cmd `(:class ,name))))
 
-(defcommand translate () ()
-  "open translate website"
-  (let ((cmd "xdg-open https://translate.google.com/"))
+(defcommand teams-force () ()
+  "teams force"
+  (let ((cmd (format nil "~a"
+                     (merge-pathnames "libexec/teams-force" *zz-load-directory*))))
+    (run-shell-command cmd)))
+
+(defcommand evolution-force () ()
+  "evolution force"
+  (let ((cmd (format nil "~a"
+                     (merge-pathnames "libexec/evolution-force" *zz-load-directory*))))
     (run-shell-command cmd)))
