@@ -32,6 +32,7 @@ EOF
 
 uninstall() {
     echo "uinstall stumpwm"
+    sudo rm -f /usr/share/xsessions/stumpwm.desktop
     sudo rm -f /etc/profile.d/zz-stumpwm.sh
     sudo rm -rf $PREFIX
 }
