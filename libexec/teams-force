@@ -1,5 +1,5 @@
 #!/bin/bash
 
-killall teams && teams
+killall teams && teams --disable-namespace-sandbox --disable-setuid-sandbox
 
 echo "teams force done"
