@@ -3,7 +3,7 @@
 ## https://github.com/naelstrof/maim
 
 PIC=~/Pictures/screenshots
-FILE=$(date +%b%d-%H%M%S.png)
+FILE=$(date +screenshot-%Y%m%d-%H%M%S.png)
 WINDOW=$(xdotool getactivewindow)
 
 case $1 in
