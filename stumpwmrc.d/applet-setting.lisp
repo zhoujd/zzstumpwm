@@ -239,13 +239,13 @@
          (cmd (format nil "google-chrome --profile-directory=Default --app-id=~a" name)))
     (run-or-raise cmd `(:instance ,name))))
 
-(defcommand teams () ()
+(defcommand teamspwa () ()
   "run or raise teams PWA"
   (let* ((name "cifhbcnohmdccbgoicgdjpfamggdegmo")
          (cmd (format nil "google-chrome --profile-directory=Default --app-id=~a" name)))
     (run-or-raise cmd `(:instance ,name))))
 
-(defcommand teamsapp () ()
+(defcommand teams () ()
   "run or raise teams"
   (let* ((name "Microsoft Teams - Preview")
          (cmd "teams"))
