@@ -230,7 +230,7 @@
 
 (defcommand office () ()
   "run or raise office"
-  (let* ((name "ocdlmjhbenodhlknglojajgokahchlkk")
+  (let* ((name "onhfoihkhodaeblmangmjjgfpfehnlkm")
          (cmd (format nil "google-chrome --profile-directory=Default --app-id=~a" name)))
     (run-or-raise cmd `(:instance ,name))))
 
