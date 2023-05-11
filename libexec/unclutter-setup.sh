@@ -2,7 +2,11 @@
 
 TARGET_ROOT=~/Downloads
 
-Install() {
+dep() {
+    sudo apt install -y libev-dev
+}
+
+install() {
     echo "Install unclutter"
     mkdir -p $TARGET_ROOT
     if [ ! -d $TARGET_ROOT/unclutter-xfixes ]; then
@@ -15,6 +19,7 @@ Install() {
     popd
 }
 
-Install
+dep
+install
 
 echo "Install unclutter Done ..."

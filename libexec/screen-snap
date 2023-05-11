@@ -4,11 +4,10 @@
 
 PIC=~/Pictures/screenshots
 FILE=$(date +screenshot-%Y%m%d-%H%M%S.png)
-WINDOW=$(xdotool getactivewindow)
 
 case $1 in
     dep )
-        sudo apt install -y maim
+        sudo apt install -y maim xdotool
         ;;
     full )
         mkdir -p $PIC
@@ -25,6 +24,7 @@ case $1 in
         fi
         ;;
     window )
+        WINDOW=$(xdotool getactivewindow)
         mkdir -p $PIC
         maim -u -i $WINDOW $PIC/$FILE
         echo "Screenshot window: $PIC/$FILE"

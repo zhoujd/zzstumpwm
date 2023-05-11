@@ -17,3 +17,4 @@ im_ibus() {
 }
 
 im_ibus
+ibus-daemon -drx
