@@ -45,7 +45,7 @@
    #'(lambda (cmd)
        (apply #'run-command-ps cmd))
    (list
-    (list "redshift" :options "-P")
+    (list "redshift")
     (list "xmodmap" :options "~/.Xmodmap")
     )))
 
