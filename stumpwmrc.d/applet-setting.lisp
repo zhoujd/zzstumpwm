@@ -34,6 +34,7 @@
 (def-run-or-raise-command vlc                  '(:class "Vlc"))
 (def-run-or-raise-command wireshark            '(:class "Wireshark"))
 (def-run-or-raise-command pavucontrol          '(:class "Pavucontrol"))
+(def-run-or-raise-command vmware-view          '(:class "Vmware-view"))
 
 ;; run-or-raise via instance
 (def-run-or-raise-command libreoffice          '(:instance "libreoffice"))
