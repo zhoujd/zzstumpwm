@@ -24,6 +24,7 @@
   (list "ulauncher" :options "--hide-window --no-window-shadow")
   (list "nitrogen" :options "--restore")
   (list "urxvtd" :options "-q -f -o")
+  (list "redshift" :options "~/.config/redshift.conf")
   (list "unclutter")
   (list "compton")
   (list "keynav")
@@ -45,7 +46,6 @@
    #'(lambda (cmd)
        (apply #'run-command-ps cmd))
    (list
-    (list "redshift")
     (list "xmodmap" :options "~/.Xmodmap")
     )))
 
