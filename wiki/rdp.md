@@ -19,7 +19,7 @@ RDP
       /p:<passwd> \
       /v:<host>
 
-## rdp on Linux
+## xrdp on Linux
 
     ## https://linuxize.com/post/how-to-install-xrdp-on-ubuntu-18-04/
     ## Installing Xrdp
@@ -28,7 +28,14 @@ RDP
     $ sudo apt install xrdp
     $ sudo systemctl status xrdp
     $ sudo adduser xrdp ssl-cert
+
     ## Configuring Xrdp in /etc/xrdp/{xrdp.ini|startwm.sh}
     ## Configuring Firewall
     $ sudo ufw allow from 192.168.1.0/24 to any port 3389
     $ sudo ufw allow 3389
+
+    ## Remove thinclient_drives
+    $ sudo umount thinclient_drives
+    $ sudo rm -rf thinclient_drives
+    $ sudo vim /etc/xrdp/sesman.ini
+    FuseMountName=/run/user/%u/thinclient_drives
