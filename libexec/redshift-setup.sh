@@ -3,6 +3,14 @@
 SCRIPT_ROOT=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
 ZZSTUMPWM_ROOT=$(cd $SCRIPT_ROOT/.. && pwd)
 
+### https://github.com/jonls/redshift
+## $ sudo apt install intltool
+## $ ./bootstrap 
+## $ automake --add-missing --copy --force-missing
+## $ ./configure
+## $ make
+## $ sudo make install
+
 Install_redshift() {
     echo "Install redshift packages"
     sudo apt install -y redshift
