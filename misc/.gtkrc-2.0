@@ -11,10 +11,10 @@ gtk-font-name="Droid Sans Fallback 10"
 
 # Icon/Theme
 gtk-theme-name="WhiteSur-Dark"
-gtk-icon-theme-name="Os-Catalina-Night"
+gtk-icon-theme-name="WhiteSur-dark"
 
 # Set GTK settings
 gtk-enable-event-sounds=0
 gtk-enable-input-feedback-sounds=0
-gtk-cursor-theme-name=macOSBigSur
+gtk-cursor-theme-name="McMojave Cursors"
 gtk-cursor-theme-size=0
