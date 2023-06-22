@@ -26,7 +26,7 @@ install_cursor() {
     local target=~/.icons/default
     echo "Install gtk3 cursor config to $target"
     mkdir -p $target
-    ln -sfvT $ZZSTUMPWM_ROOT/misc/.icons/default/index.theme $target/index.theme
+    ln -sfvT $ZZSTUMPWM_ROOT/misc/.xfce/icons/default/index.theme $target/index.theme
 }
 
 case $1 in
