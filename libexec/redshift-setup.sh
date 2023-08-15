@@ -18,11 +18,27 @@ Install_redshift() {
 
 Install_cfg() {
     echo "Install redshift config"
-    cp -fv $ZZSTUMPWM_ROOT/misc/.config/redshift.conf ~/.config/
+    cp -fv $ZZSTUMPWM_ROOT/misc/.config/redshift.conf ~/.config/redshift.conf
+
+    if [ -e /usr/bin/redshift ]; then
+        ln -sfTv $ZZSTUMPWM_ROOT/misc/.config/systemd/user/redshift.service ~/.config/systemd/user/redshift.service
+        systemctl --user enable --now redshift
+        systemctl --user start --now redshift
+        systemctl --user status redshift
+        echo "redshift setup done"
+    else
+        echo "No redshift are found"
+    fi
 }
 
-
-Install_cfg
-Install_redshift
-
-echo "redshift setup done"
+case $1 in
+    install )
+        Install_redshift
+        ;;
+    service )
+        Install_cfg
+        ;;
+    * )
+        echo "Usage: $(basename $0) {install|service}"
+        ;;
+esac

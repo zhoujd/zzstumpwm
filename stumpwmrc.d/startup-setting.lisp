@@ -24,7 +24,6 @@
   (list "ulauncher" :options "--hide-window --no-window-shadow")
   (list "nitrogen" :options "--restore")
   (list "urxvtd" :options "-q -f -o")
-  (list "redshift" :options "-P")
   (list "unclutter")
   (list "compton")
   (list "keynav")
