@@ -4,7 +4,7 @@ After=display-manager.service
 
 [Service]
 Environment=DISPLAY=:0
-ExecStart=/usr/bin/redshift -P
+ExecStart=/usr/bin/redshift -r -P
 Restart=always
 
 [Install]

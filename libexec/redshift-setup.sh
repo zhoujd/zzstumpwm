@@ -5,7 +5,7 @@ ZZSTUMPWM_ROOT=$(cd $SCRIPT_ROOT/.. && pwd)
 
 ### https://github.com/jonls/redshift
 ## $ sudo apt install intltool
-## $ ./bootstrap 
+## $ ./bootstrap
 ## $ automake --add-missing --copy --force-missing
 ## $ ./configure
 ## $ make
@@ -22,6 +22,7 @@ Install_cfg() {
 
     if [ -e /usr/bin/redshift ]; then
         ln -sfTv $ZZSTUMPWM_ROOT/misc/.config/systemd/user/redshift.service ~/.config/systemd/user/redshift.service
+        systemctl daemon-reload --user
         systemctl --user enable --now redshift
         systemctl --user start --now redshift
         systemctl --user status redshift
