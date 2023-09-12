@@ -5,7 +5,7 @@ dep() {
 }
 
 xephyr() {
-    local REZ=${1:-1024x768}
+    local REZ=${1:-1280x720}
     local DSP=${2:-:100}
     Xephyr $DSP -ac -screen $REZ -resizeable &
     XEPHYR_PID=$!
