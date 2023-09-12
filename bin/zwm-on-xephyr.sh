@@ -1,10 +1,38 @@
 #!/usr/bin/env bash
 
-## sudo apt install xserver-xephyr
+dep() {
+    sudo apt install xserver-xephyr
+}
 
-Xephyr :100 -ac -screen 1920x1080 -resizeable &
-XEPHYR_PID=$!
-sleep 0.5
+xephyr() {
+    local REZ=${1:-1024x768}
+    local DSP=${2:-:100}
+    Xephyr $DSP -ac -screen $REZ -resizeable &
+    XEPHYR_PID=$!
+    sleep 0.5
 
-DISPLAY=:100 zwm-session
-kill ${XEPHYR_PID}
+    DISPLAY=$DSP zwm-session
+    kill -9 ${XEPHYR_PID}
+}
+
+usage() {
+    echo "
+Usage:
+$(basename $0) {dep|help}
+$(basename $0) {Resulution} {DISPLAY}
+$(basename $0) 1280x720
+$(basename $0) 1280x720 :100
+"
+}
+
+case "$1" in
+    "dep" )
+        dep
+        ;;
+    "help" | "-h" )
+        usage
+        ;;
+    * )
+        xephyr $@
+        ;;
+esac
