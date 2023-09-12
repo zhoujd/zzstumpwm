@@ -19,17 +19,9 @@ HOST_NAME=${HOST_NAME:-dockerhost}
 HOST_IP=${HOST_IP:-host-gateway}
 PROMPT=${PROMPT:-$(basename $0)}
 
-## Use local X11 Server
-X11_PARAM=(
-    -e DISPLAY=$DISPLAY
-    -v /tmp/.X11-unix:/tmp/.X11-unix
-)
-
 RUN_PARAM=(
-    -it
-    --rm
+    -d
     -e DISPLAY=:100
-    -e SHELL=/bin/bash
     --privileged=true
     --cap-add=ALL
     --add-host=$HOST_NAME:$HOST_IP
