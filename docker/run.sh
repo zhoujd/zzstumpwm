@@ -18,6 +18,7 @@ SSH_USER=${CTN_USER}
 HOST_NAME=${HOST_NAME:-dockerhost}
 HOST_IP=${HOST_IP:-host-gateway}
 PROMPT=${PROMPT:-$(basename $0)}
+VIRT_DISPLAY=:100
 
 RUN_PARAM=(
     -d
@@ -54,7 +55,17 @@ SHELL_PARAM=(
     -l
 )
 
+XEPHYR_PARAM=(
+    $VIRT_DISPLAY
+    -ac
+    -screen 1920x1080
+    -resizeable
+)
+
 case $1 in
+    prepare )
+        Xephyr ${XEPHYR_PARAM[@]} &
+        ;;
     start )
         docker run --name=${CTN_NAME} ${RUN_PARAM[@]} ${IMG}:${TAG}
         ;;
@@ -77,7 +88,10 @@ case $1 in
         shift
         make -C dockerfiles $@
         ;;
+    clean )
+        killall Xephyr
+        ;;
     * )
-        echo "Usage: ${PROMPT} {start|stop|status|emacs|shell|ssh|build}"
+        echo "Usage: ${PROMPT} {prepare|start|stop|status|emacs|shell|ssh|build|clean}"
         ;;
 esac
