@@ -60,11 +60,12 @@ XEPHYR_PARAM=(
     -ac
     -screen 1920x1080
     -resizeable
+    &
 )
 
 case $1 in
     prepare )
-        Xephyr ${XEPHYR_PARAM[@]} &
+        Xephyr ${XEPHYR_PARAM[@]}
         ;;
     start )
         docker run --name=${CTN_NAME} ${RUN_PARAM[@]} ${IMG}:${TAG}
