@@ -60,12 +60,14 @@ XEPHYR_PARAM=(
     -ac
     -screen 1920x1080
     -resizeable
-    &
 )
 
 case $1 in
+    dep )
+        sudo apt install xserver-xephyr
+        ;;
     prepare )
-        Xephyr ${XEPHYR_PARAM[@]}
+        Xephyr ${XEPHYR_PARAM[@]} &
         ;;
     start )
         docker run --name=${CTN_NAME} ${RUN_PARAM[@]} ${IMG}:${TAG}
@@ -93,6 +95,6 @@ case $1 in
         killall Xephyr
         ;;
     * )
-        echo "Usage: ${PROMPT} {prepare|start|stop|status|emacs|shell|ssh|build|clean}"
+        echo "Usage: ${PROMPT} {dep|prepare|start|stop|status|emacs|shell|ssh|build|clean}"
         ;;
 esac
