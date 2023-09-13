@@ -58,6 +58,7 @@ SHELL_PARAM=(
 XEPHYR_PARAM=(
     $VIRT_DISPLAY
     -ac
+    -br
     -screen 1920x1080
     -resizeable
 )
