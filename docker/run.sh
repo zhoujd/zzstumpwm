@@ -6,7 +6,7 @@ ZWM_ROOT=$(cd $SCRIPT_ROOT/.. && pwd)
 ZWM_TOP=$(cd $ZWM_ROOT/.. && pwd)
 
 IMG=${IMG:-zz/ubuntu-20.04-zwm}
-TAG=${TAG:-base}
+TAG=${TAG:-latest}
 CTN_PREFIX=${CTN_PREFIX:-zwm}
 CTN_NAME=${CTN_NAME:-$CTN_PREFIX-$TAG}
 CTN_HOST=${CTN_HOST:-ubuntu-2004-zwm}

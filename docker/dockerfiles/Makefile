@@ -4,7 +4,7 @@
 all: ubuntu2004
 
 BUILD_ARG += ## --rm --no-cache
-Ubuntu2004_TAG := zz/ubuntu-20.04-zwm:base
+Ubuntu2004_TAG := zz/ubuntu-20.04-zwm:latest
 
 ubuntu2004: ubuntu2004.dockerfile
 	docker build $(BUILD_ARG) -t $(Ubuntu2004_TAG) -f $< .
