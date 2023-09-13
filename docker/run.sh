@@ -30,7 +30,7 @@ RUN_PARAM=(
     -u $CTN_USER
     -p $SSH_PORT:22
     -v /dev:/dev
-    #-v /tmp/.X11-unix:/tmp/.X11-unix
+    -v /tmp/.X11-unix:/tmp/.X11-unix
     -v /var/run/docker.sock:/var/run/docker.sock
     -v /etc/security/limits.conf:/etc/security/limits.conf
     -v /etc/sysctl.conf:/etc/sysctl.conf
