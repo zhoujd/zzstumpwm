@@ -50,6 +50,11 @@ setup_zwm() {
     popd
 }
 
+setup_sleep() {
+    echo "Setup sleep ..."
+    sleep infinity
+}
+
 setup_help() {
     echo "Usage: $0 {init|help}"
 }
@@ -58,6 +63,14 @@ setup_help() {
 CMD=${1:-""}
 case "$CMD" in
     "init" )
+        setup_common
+        setup_zzemacs
+        setup_libvirtd
+        setup_dbus
+        setup_ssh
+        setup_sleep
+        ;;
+    "zwm" )
         setup_common
         setup_zzemacs
         setup_libvirtd
