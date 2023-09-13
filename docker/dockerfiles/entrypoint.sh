@@ -45,19 +45,14 @@ setup_zwm() {
     echo "Setup zwm ..."
     pushd $ZWM_ROOT
     ./install.sh
+    sleep 2s
+    ./bin/zwm-session
     popd
 }
 
 setup_sleep() {
     echo "Setup sleep ..."
     sleep infinity
-}
-
-run_zwm() {
-    echo "Setup zwm ..."
-    pushd $ZWM_ROOT
-    ./bin/zwm-session
-    popd
 }
 
 setup_help() {
@@ -74,16 +69,6 @@ case "$CMD" in
         setup_dbus
         setup_ssh
         setup_zwm        
-        setup_sleep
-        ;;
-    "zwm" )
-        setup_common
-        setup_zzemacs
-        setup_libvirtd
-        setup_dbus
-        setup_ssh
-        setup_zwm
-        run_zwm
         ;;
     "help" )
         setup_help
