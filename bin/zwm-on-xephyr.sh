@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+SCRIPT_ROOT=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
+ZWM_ROOT=$(cd $SCRIPT_ROOT/.. && pwd)
 
 dep() {
     sudo apt install xserver-xephyr
@@ -12,7 +14,7 @@ xephyr() {
     XEPHYR_PID=$!
     sleep 0.5
 
-    DISPLAY=$DSP zwm-session
+    DISPLAY=$DSP $ZWM_ROOT/bin/zwm-session
     kill -9 ${XEPHYR_PID}
 }
 
