@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+
 dep() {
     sudo apt install xserver-xephyr
 }
@@ -16,12 +17,13 @@ xephyr() {
 }
 
 usage() {
+    prompt=$(basename $0)
     echo "
 Usage:
-$(basename $0) {dep|help}
-$(basename $0) {Resulution} {DISPLAY}
-$(basename $0) 1280x720
-$(basename $0) 1280x720 :100
+$prompt {dep|help}
+$prompt {Resulution} {DISPLAY}
+$prompt 1280x720
+$prompt 1280x720 :100
 "
 }
 
