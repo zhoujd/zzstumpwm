@@ -4,7 +4,8 @@ USER root
 
 RUN apt-get update \
         && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-        rofi \
+        rofi xserver-xephyr keynav maim slop xclip \
+        acpi rlwrap wmctrl \
         && apt-get autoremove \
         && apt-get clean
 
