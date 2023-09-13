@@ -45,8 +45,6 @@ setup_zwm() {
     echo "Setup zwm ..."
     pushd $ZWM_ROOT
     ./install.sh
-    sleep 2s
-    ./bin/zwm-session
     popd
 }
 
@@ -55,8 +53,15 @@ setup_sleep() {
     sleep infinity
 }
 
+run_zwm() {
+    echo "Setup zwm ..."
+    pushd $ZWM_ROOT
+    ./bin/zwm-session
+    popd
+}
+
 setup_help() {
-    echo "Usage: $0 {init|help}"
+    echo "Usage: $0 {init|zwm|help}"
 }
 
 
@@ -68,6 +73,7 @@ case "$CMD" in
         setup_libvirtd
         setup_dbus
         setup_ssh
+        setup_zwm        
         setup_sleep
         ;;
     "zwm" )
@@ -77,6 +83,7 @@ case "$CMD" in
         setup_dbus
         setup_ssh
         setup_zwm
+        run_zwm
         ;;
     "help" )
         setup_help

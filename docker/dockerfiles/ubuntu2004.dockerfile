@@ -9,6 +9,8 @@ RUN apt-get update \
         && apt-get autoremove \
         && apt-get clean
 
+RUN mkdir -p /tmp/.X11-unix
+RUN chmod 1777 /tmp/.X11-unix
 
 USER $USER
 

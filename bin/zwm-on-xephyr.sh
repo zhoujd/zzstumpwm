@@ -10,12 +10,16 @@ dep() {
 xephyr() {
     local REZ=${1:-1280x720}
     local DSP=${2:-:100}
+    
     Xephyr $DSP -ac -br -screen $REZ -resizeable &
     XEPHYR_PID=$!
-    sleep 0.5
+    sleep 2s
 
-    DISPLAY=$DSP $ZWM_ROOT/bin/zwm-session
-    kill -9 ${XEPHYR_PID}
+    pushd $ZWM_ROOT
+    DISPLAY=$DSP ./bin/zwm-session
+    popd
+    
+    kill ${XEPHYR_PID}
 }
 
 usage() {
