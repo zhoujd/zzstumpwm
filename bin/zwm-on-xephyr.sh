@@ -18,7 +18,7 @@ run() {
 }
 
 clean() {
-    killall Xephyr
+    killall Xephyr >/dev/null 2>&1
 }
 
 usage() {

@@ -93,7 +93,7 @@ case $1 in
         make -C dockerfiles $@
         ;;
     clean )
-        killall Xephyr
+        killall Xephyr >/dev/null 2>&1
         ;;
     * )
         echo "Usage: ${PROMPT} {dep|prepare|start|stop|status|emacs|shell|ssh|build|clean}"
