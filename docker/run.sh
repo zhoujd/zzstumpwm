@@ -68,6 +68,7 @@ case $1 in
         sudo apt install xserver-xephyr
         ;;
     prepare )
+        unset XDG_SEAT
         Xephyr ${XEPHYR_PARAM[@]} &
         ;;
     start )
