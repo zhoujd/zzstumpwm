@@ -9,7 +9,7 @@ usage() {
     prompt=$(basename $0)
     echo "
 Usage:
-$prompt {depend|prepare|run|clean|help}
+$prompt {dep|prepare|run|clean|help}
 $prompt {Resulution} {DISPLAY}
 $prompt 1280x720
 $prompt 1280x720 :100
@@ -17,7 +17,7 @@ $prompt 1280x720 :100
 }
 
 case "$1" in
-    "depend" )
+    "dep" )
         sudo apt install xserver-xephyr
         ;;
     "prepare" )
