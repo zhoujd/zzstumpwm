@@ -17,13 +17,6 @@ setup_zzemacs() {
     fi
 }
 
-setup_zwm() {
-    echo "Setup zwm ..."
-    pushd $ZWM_ROOT
-    ./install.sh
-    popd
-}
-
 setup_libvirtd() {
     local libvirtd_cmd=/usr/sbin/libvirtd
     if [ -x $libvirtd_cmd ]; then
@@ -48,13 +41,27 @@ setup_ssh() {
     fi
 }
 
+setup_zwm() {
+    echo "Setup zwm ..."
+    pushd $ZWM_ROOT
+    ./install.sh
+    popd
+}
+
 setup_sleep() {
     echo "Setup sleep ..."
     sleep infinity
 }
 
+run_zwm() {
+    echo "Setup zwm ..."
+    pushd $ZWM_ROOT
+    ./bin/zwm-session
+    popd
+}
+
 setup_help() {
-    echo "Usage: $0 {init|help}"
+    echo "Usage: $0 {init|zwm|help}"
 }
 
 
@@ -63,11 +70,20 @@ case "$CMD" in
     "init" )
         setup_common
         setup_zzemacs
-        setup_zwm        
         setup_libvirtd
         setup_dbus
         setup_ssh
+        setup_zwm        
         setup_sleep
+        ;;
+    "zwm" )
+        setup_common
+        setup_zzemacs
+        setup_libvirtd
+        setup_dbus
+        setup_ssh
+        setup_zwm
+        run_zwm
         ;;
     "help" )
         setup_help

@@ -18,9 +18,11 @@ SSH_USER=${CTN_USER}
 HOST_NAME=${HOST_NAME:-dockerhost}
 HOST_IP=${HOST_IP:-host-gateway}
 PROMPT=${PROMPT:-$(basename $0)}
+VIRT_DISPLAY=:100
 
 RUN_PARAM=(
     -d
+    -e DISPLAY=:100
     --privileged=true
     --cap-add=ALL
     --add-host=$HOST_NAME:$HOST_IP
@@ -28,6 +30,7 @@ RUN_PARAM=(
     -u $CTN_USER
     -p $SSH_PORT:22
     -v /dev:/dev
+    #-v /tmp/.X11-unix:/tmp/.X11-unix
     -v /var/run/docker.sock:/var/run/docker.sock
     -v /etc/security/limits.conf:/etc/security/limits.conf
     -v /etc/sysctl.conf:/etc/sysctl.conf
@@ -52,7 +55,21 @@ SHELL_PARAM=(
     -l
 )
 
+XEPHYR_PARAM=(
+    $VIRT_DISPLAY
+    -ac
+    -br
+    -screen 1920x1080
+    -resizeable
+)
+
 case $1 in
+    dep )
+        sudo apt install xserver-xephyr
+        ;;
+    prepare )
+        Xephyr ${XEPHYR_PARAM[@]} &
+        ;;
     start )
         docker run --name=${CTN_NAME} ${RUN_PARAM[@]} ${IMG}:${TAG}
         ;;
@@ -75,7 +92,10 @@ case $1 in
         shift
         make -C dockerfiles $@
         ;;
+    clean )
+        killall Xephyr
+        ;;
     * )
-        echo "Usage: ${PROMPT} {start|stop|status|emacs|shell|ssh|build}"
+        echo "Usage: ${PROMPT} {dep|prepare|start|stop|status|emacs|shell|ssh|build|clean}"
         ;;
 esac
