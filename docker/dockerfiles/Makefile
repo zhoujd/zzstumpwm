@@ -3,14 +3,7 @@
 .PHONY: all
 all: ubuntu2004
 
-CTN_USER ?= ${USER}
-
 BUILD_ARG += ## --rm --no-cache
-BUILD_ARG += --build-arg USER_NAME=$(CTN_USER)
-BUILD_ARG += --build-arg USER_UID=$(shell id -u ${USER})
-BUILD_ARG += --build-arg USER_GID=$(shell id -g ${USER})
-BUILD_ARG += --build-arg DOCKER_GID=$(shell getent group docker | cut -d: -f3)
-
 Ubuntu2004_TAG := zz/ubuntu-20.04-zwm:base
 
 ubuntu2004: ubuntu2004.dockerfile
