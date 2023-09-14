@@ -9,6 +9,10 @@ RUN apt-get update \
         && apt-get autoremove \
         && apt-get clean
 
+# Clean up APT when done.
+RUN apt-get clean \
+        && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
 RUN mkdir -p /tmp/.X11-unix
 RUN chmod 1777 /tmp/.X11-unix
 
