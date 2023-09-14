@@ -26,9 +26,11 @@ usage() {
     echo "
 Usage:
 $prompt {dep|prepare|run|clean|help|-h}
-$prompt {Resulution} {DISPLAY}
-$prompt 1280x720
-$prompt 1280x720 :100
+$prompt prepare {Resolution} {DISPLAY}
+        Resolution   - 1280x720 (default)
+        DISPLAY      - :100 (default)
+$prompt prepare 1280x720
+$prompt prepare 1280x720 :100
 "
 }
 
