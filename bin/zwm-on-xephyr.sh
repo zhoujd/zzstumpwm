@@ -23,7 +23,7 @@ clean() {
 
 usage() {
     prompt=$(basename $0)
-    echo "
+    cat <<EOF
 Usage:
 $prompt {dep|prepare|run|clean|help|-h}
 $prompt prepare {Resolution} {DISPLAY}
@@ -31,7 +31,7 @@ $prompt prepare {Resolution} {DISPLAY}
         DISPLAY      - :100 (default)
 $prompt prepare 1280x720
 $prompt prepare 1280x720 :100
-"
+EOF
 }
 
 case "$1" in
