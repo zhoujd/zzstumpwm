@@ -16,4 +16,4 @@ USER $USER
 
 COPY entrypoint.sh /app
 ENTRYPOINT ["/app/entrypoint.sh"]
-CMD ["init"]
+CMD ["zwm"]

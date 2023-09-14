@@ -10,7 +10,7 @@ README
 ## How to run ZWM in remote docker container
 
     ## Step 1
-    ## Make Xephyr is installed on local
+    ## Make sure Xephyr is installed on local
     $ sudo apt install xserver-xephyr
 
     ## Step 2
@@ -31,3 +31,9 @@ README
 
     ## Step 5
     ## Check ZWM on virtual display about 1 mintue later
+    ## Because ZWM needs about 1 minitue to ready
+
+    ## Step 6
+    ## Stop ZWM in docker
+    $ ./run.sh stop
+    $ ./run.sh clean

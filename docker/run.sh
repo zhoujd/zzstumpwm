@@ -22,10 +22,12 @@ VIRT_DISPLAY=:100
 
 RUN_PARAM=(
     -d
-    -e DISPLAY=:100
+    --ipc=host
+    --pid=host
     --privileged=true
     --cap-add=ALL
     --add-host=$HOST_NAME:$HOST_IP
+    -e DISPLAY=$VIRT_DISPLAY
     -h $CTN_HOST
     -u $CTN_USER
     -p $SSH_PORT:22
@@ -70,6 +72,9 @@ case $1 in
     prepare )
         Xephyr ${XEPHYR_PARAM[@]} &
         ;;
+    init )
+        docker run --name=${CTN_NAME} ${RUN_PARAM[@]} ${IMG}:${TAG} init
+        ;;
     start )
         docker run --name=${CTN_NAME} ${RUN_PARAM[@]} ${IMG}:${TAG}
         ;;
@@ -78,7 +83,10 @@ case $1 in
         docker rm ${CTN_NAME} 2>/dev/null
         ;;
     status )
+        echo "* Container list"
         docker ps | grep ${CTN_NAME}
+        echo "* Xephyr list"
+        ps -ef | grep Xephyr | grep -v grep
         ;;
     emacs )
         docker exec -it ${EXEC_PARAM[@]} ${CTN_NAME} ${EMACS_PARAM[@]}
@@ -97,6 +105,6 @@ case $1 in
         killall Xephyr >/dev/null 2>&1
         ;;
     * )
-        echo "Usage: ${PROMPT} {dep|prepare|start|stop|status|emacs|shell|ssh|build|clean}"
+        echo "Usage: ${PROMPT} {dep|prepare|init|start|stop|status|emacs|shell|ssh|build|clean}"
         ;;
 esac

@@ -1,8 +1,10 @@
-#!/bin/sh
+#!/bin/bash
 
-CURRENT_DIR=`pwd`
+SCRIPT_ROOT=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
+ZWM_ROOT=$(cd $SCRIPT_ROOT && pwd)
+ZWM_TOP=$(cd $ZWM_ROOT/.. && pwd)
 
-echo "uninstall stumpwm start ..."
+echo "Uninstall stumpwm start ..."
 
 ## Remove configure file and quicklisp
 rm -f ~/.stumpwmrc
@@ -45,4 +47,4 @@ rm -f ~/.xrdb
 rm -f ~/.keynavrc
 
 
-echo "uninstall stumpwm end ..."
+echo "Uninstall stumpwm end ..."

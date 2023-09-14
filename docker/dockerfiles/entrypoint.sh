@@ -7,6 +7,7 @@ ZWM_ROOT=$HOME/zzstumpwm
 setup_common() {
     echo "Setup common ..."
     touch $HOME/.Xauthority
+    $ZWM_ROOT/install.sh
 }
 
 setup_zzemacs() {
@@ -43,11 +44,7 @@ setup_ssh() {
 
 setup_zwm() {
     echo "Setup zwm ..."
-    pushd $ZWM_ROOT
-    ./install.sh
-    sleep 2s
-    ./bin/zwm-session
-    popd
+    $ZWM_ROOT/bin/zwm-session
 }
 
 setup_sleep() {
@@ -56,19 +53,27 @@ setup_sleep() {
 }
 
 setup_help() {
-    echo "Usage: $0 {init|zwm|help}"
+    echo "Usage: $0 {zwm|init|help}"
 }
 
 
 CMD=${1:-""}
 case "$CMD" in
-    "init" )
+    "zwm" )
         setup_common
         setup_zzemacs
         setup_libvirtd
         setup_dbus
         setup_ssh
         setup_zwm        
+        ;;
+    "init" )
+        setup_common
+        setup_zzemacs
+        setup_libvirtd
+        setup_dbus
+        setup_ssh
+        setup_sleep
         ;;
     "help" )
         setup_help

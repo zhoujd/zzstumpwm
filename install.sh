@@ -1,75 +1,77 @@
-#!/bin/sh
+#!/bin/bash
 
-CURRENT_DIR=`pwd`
+SCRIPT_ROOT=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
+ZWM_ROOT=$(cd $SCRIPT_ROOT && pwd)
+ZWM_TOP=$(cd $ZWM_ROOT/.. && pwd)
 
-echo "install stumpwm start ..."
+echo "Install stumpwm start ..."
 
 ## Set asdf load folder
 mkdir -p ~/common-lisp
 
 ## Set configure file and quicklisp
-ln -sfvT $CURRENT_DIR/.stumpwmrc ~/.stumpwmrc
-ln -sfvT $CURRENT_DIR/.clfswmrc ~/.clfswmrc
-ln -sfvT $CURRENT_DIR/quicklisp ~/quicklisp
-ln -sfvT $CURRENT_DIR/lisp ~/lisp
+ln -sfvT $ZWM_ROOT/.stumpwmrc ~/.stumpwmrc
+ln -sfvT $ZWM_ROOT/.clfswmrc ~/.clfswmrc
+ln -sfvT $ZWM_ROOT/quicklisp ~/quicklisp
+ln -sfvT $ZWM_ROOT/lisp ~/lisp
 
 ## Set SBCL configre
-ln -sfvT $CURRENT_DIR/misc/.sbclrc ~/.sbclrc
+ln -sfvT $ZWM_ROOT/misc/.sbclrc ~/.sbclrc
 
 ## Set ECL configure
-ln -sfvT $CURRENT_DIR/misc/.eclrc ~/.eclrc
+ln -sfvT $ZWM_ROOT/misc/.eclrc ~/.eclrc
 
 ## Set CLISP configure
-ln -sfvT $CURRENT_DIR/misc/.clisprc ~/.clisprc
+ln -sfvT $ZWM_ROOT/misc/.clisprc ~/.clisprc
 
 ## Set Vim configure
-ln -sfvT $CURRENT_DIR/misc/.vimrc ~/.vimrc
+ln -sfvT $ZWM_ROOT/misc/.vimrc ~/.vimrc
 
 ## Set Nano configure
-ln -sfvT $CURRENT_DIR/misc/.nanorc ~/.nanorc
+ln -sfvT $ZWM_ROOT/misc/.nanorc ~/.nanorc
 
 ## Set tmux configure
-ln -sfvT $CURRENT_DIR/misc/.tmux.conf ~/.tmux.conf
+ln -sfvT $ZWM_ROOT/misc/.tmux.conf ~/.tmux.conf
 
 ## Set csh configure
-ln -sfvT $CURRENT_DIR/misc/.cshrc ~/.cshrc
+ln -sfvT $ZWM_ROOT/misc/.cshrc ~/.cshrc
 
 ## Install .Xresources
-ln -sfvT $CURRENT_DIR/misc/.Xresources ~/.Xresources
+ln -sfvT $ZWM_ROOT/misc/.Xresources ~/.Xresources
 
 ## Install .Xdefaults
-ln -sfvT $CURRENT_DIR/misc/.Xdefaults ~/.Xdefaults
+ln -sfvT $ZWM_ROOT/misc/.Xdefaults ~/.Xdefaults
 
 ## Install .inputrc
-ln -sfvT $CURRENT_DIR/misc/.inputrc ~/.inputrc
+ln -sfvT $ZWM_ROOT/misc/.inputrc ~/.inputrc
 
 ## Install .urxvt
-ln -sfvT $CURRENT_DIR/misc/.urxvt ~/.urxvt
+ln -sfvT $ZWM_ROOT/misc/.urxvt ~/.urxvt
 
 ## Install .xrdb
-ln -sfvT $CURRENT_DIR/misc/.xrdb ~/.xrdb
+ln -sfvT $ZWM_ROOT/misc/.xrdb ~/.xrdb
 
 ## Install .xinitrc
-ln -sfvT $CURRENT_DIR/misc/.xinitrc ~/.xinitrc
+ln -sfvT $ZWM_ROOT/misc/.xinitrc ~/.xinitrc
 
 ## Install .xsession
-ln -sfvT $CURRENT_DIR/misc/.xsession ~/.xsession
+ln -sfvT $ZWM_ROOT/misc/.xsession ~/.xsession
 
 ## Install .keynavrc
-ln -sfvT $CURRENT_DIR/misc/.keynavrc ~/.keynavrc
+ln -sfvT $ZWM_ROOT/misc/.keynavrc ~/.keynavrc
 
 ## Install .Xmodmap.d
-ln -sfvT $CURRENT_DIR/misc/.Xmodmap.d ~/.Xmodmap.d
+ln -sfvT $ZWM_ROOT/misc/.Xmodmap.d ~/.Xmodmap.d
 
 ## Make sure the folder ~/.config exist
 mkdir -p ~/.config
 
 ## Install rofi
-ln -sfvT $CURRENT_DIR/misc/.config/rofi ~/.config/rofi
+ln -sfvT $ZWM_ROOT/misc/.config/rofi ~/.config/rofi
 ## Install skippy-xd
-ln -sfvT $CURRENT_DIR/misc/.config/skippy-xd ~/.config/skippy-xd
+ln -sfvT $ZWM_ROOT/misc/.config/skippy-xd ~/.config/skippy-xd
 ## Install xsettingsd
-ln -sfvT $CURRENT_DIR/misc/.config/xsettingsd ~/.config/xsettingsd
+ln -sfvT $ZWM_ROOT/misc/.config/xsettingsd ~/.config/xsettingsd
 
 
-echo "install stumpwm end ..."
+echo "Install stumpwm end ..."
