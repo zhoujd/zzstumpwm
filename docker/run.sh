@@ -22,8 +22,6 @@ DSP_NUM=100
 
 RUN_PARAM=(
     -d
-    --ipc=host
-    --pid=host
     --privileged=true
     --cap-add=ALL
     --add-host=$HOST_NAME:$HOST_IP
