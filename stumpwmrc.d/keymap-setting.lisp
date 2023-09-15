@@ -14,6 +14,7 @@
         (define-key map key fn)))))
 
 ;; change the prefix key to something else
+;; stumpwm's default prefix key is C-t
 (set-prefix-key (kbd "s-z"))
 
 ;; self define keymap
