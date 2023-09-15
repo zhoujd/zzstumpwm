@@ -18,7 +18,7 @@ SSH_USER=${CTN_USER}
 HOST_NAME=${HOST_NAME:-dockerhost}
 HOST_IP=${HOST_IP:-host-gateway}
 PROMPT=${PROMPT:-$(basename $0)}
-VIRT_DISPLAY=:100
+DSP_NUM=100
 
 RUN_PARAM=(
     -d
@@ -27,14 +27,14 @@ RUN_PARAM=(
     --privileged=true
     --cap-add=ALL
     --add-host=$HOST_NAME:$HOST_IP
-    -e DISPLAY=$VIRT_DISPLAY
+    -e DISPLAY=:$DSP_NUM
     -e GITHUB_TOKEN=$GITHUB_TOKEN
     -e GITLAB_TOKEN=$GITLAB_TOKEN
     -h $CTN_HOST
     -u $CTN_USER
     -p $SSH_PORT:22
     -v /dev:/dev
-    -v /tmp/.X11-unix:/tmp/.X11-unix
+    -v /tmp/.X11-unix/X${DSP_NUM}:/tmp/.X11-unix/X${DSP_NUM}
     -v /var/run/docker.sock:/var/run/docker.sock
     -v /etc/security/limits.conf:/etc/security/limits.conf
     -v /etc/sysctl.conf:/etc/sysctl.conf
@@ -60,7 +60,7 @@ SHELL_PARAM=(
 )
 
 XEPHYR_PARAM=(
-    $VIRT_DISPLAY
+    :$DSP_NUM
     -ac
     -br
     -screen 1920x1080
