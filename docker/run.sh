@@ -82,6 +82,9 @@ case $1 in
         docker stop ${CTN_NAME} 2>/dev/null
         docker rm ${CTN_NAME} 2>/dev/null
         ;;
+    log )
+        docker logs ${CTN_NAME} 2>/dev/null
+        ;;
     status )
         echo "* Container list"
         docker ps | grep ${CTN_NAME}
@@ -105,6 +108,6 @@ case $1 in
         killall Xephyr >/dev/null 2>&1
         ;;
     * )
-        echo "Usage: ${PROMPT} {dep|prepare|init|start|stop|status|emacs|shell|ssh|build|clean}"
+        echo "Usage: ${PROMPT} {dep|prepare|init|start|stop|log|status|emacs|shell|ssh|build|clean}"
         ;;
 esac
