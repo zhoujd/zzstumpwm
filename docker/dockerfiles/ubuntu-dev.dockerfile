@@ -17,7 +17,7 @@ RUN apt-get clean \
 RUN mkdir -p /tmp/.X11-unix
 RUN chmod 1777 /tmp/.X11-unix
 
-USER $USER
+USER ${USER}
 
 COPY entrypoint.sh /app
 ENTRYPOINT ["/app/entrypoint.sh"]
