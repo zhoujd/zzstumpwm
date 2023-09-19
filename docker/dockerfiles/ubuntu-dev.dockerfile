@@ -1,4 +1,5 @@
-FROM zz/ubuntu-20.04-zzemacs:dev
+ARG VARIANT=20.04
+FROM zz/ubuntu-${VARIANT}-zzemacs:dev
 
 USER root
 
