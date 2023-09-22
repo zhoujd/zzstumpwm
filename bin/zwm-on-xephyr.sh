@@ -12,9 +12,8 @@ prepare() {
 }
 
 run() {
-    pushd $ZWM_ROOT
-    DISPLAY=$DSP ./bin/zwm-session
-    popd
+    DSP=${1:-$DSP}
+    DISPLAY=$DSP $ZWM_ROOT/bin/zwm-session
 }
 
 clean() {
@@ -31,6 +30,8 @@ $prompt prepare {Resolution} {DISPLAY}
         DISPLAY      - :100 (default)
 $prompt prepare 1280x720
 $prompt prepare 1280x720 :100
+$prompt run {DISPLAY}
+        DISPLAY      - :100 (default)
 EOF
 }
 
@@ -43,7 +44,8 @@ case "$1" in
         prepare $@
         ;;
     "run" )
-        run
+        shift
+        run $@
         ;;        
     "clean" )
         clean

@@ -43,8 +43,11 @@ setup_ssh() {
 }
 
 setup_zwm() {
-    echo "Setup zwm ..."
-    $ZWM_ROOT/bin/zwm-session
+    local zwm_cmd=$ZWM_ROOT/bin/zwm-session
+    if [ -x $zwm_cmd ]; then
+        echo "Setup zwm ..."
+        $zwm_cmd
+    fi
 }
 
 setup_sleep() {
@@ -65,7 +68,7 @@ case "$CMD" in
         setup_libvirtd
         setup_dbus
         setup_ssh
-        setup_zwm        
+        setup_zwm
         ;;
     "init" )
         setup_common
