@@ -65,7 +65,7 @@ init() {
     docker run --name=${CTN_NAME} ${INIT_PARAM[@]} ${IMG}:${TAG} init
 }
 
-start() {
+zwm() {
     RUN_PARAM=(
         -d
         --privileged=true
@@ -106,7 +106,7 @@ status() {
     ps -ef | grep Xephyr | grep -v grep
 }
 
-emacs () {
+emacs() {
     EMACS_PARAM=(
         emacs
         -nw
@@ -147,8 +147,8 @@ case $1 in
     init )
         init
         ;;
-    start )
-        start
+    zwm )
+        zwm
         ;;
     stop )
         stop
@@ -176,6 +176,6 @@ case $1 in
         clean
         ;;
     * )
-        echo "Usage: $(basename $0) {dep|prepare|init|start|stop|logs|status|emacs|shell|ssh|build|clean}"
+        echo "Usage: $(basename $0) {dep|prepare|init|zwm|stop|logs|status|emacs|shell|ssh|build|clean}"
         ;;
 esac
