@@ -18,21 +18,20 @@ SSH_USER=${CTN_USER}
 HOST_NAME=${HOST_NAME:-dockerhost}
 HOST_IP=${HOST_IP:-host-gateway}
 PROMPT=${PROMPT:-$(basename $0)}
-DSP_NUM=100
 
 RUN_PARAM=(
     -d
     --privileged=true
     --cap-add=ALL
     --add-host=$HOST_NAME:$HOST_IP
-    -e DISPLAY=:$DSP_NUM
+    -e DISPLAY=$DISPLAY
     -e GITHUB_TOKEN=$GITHUB_TOKEN
     -e GITLAB_TOKEN=$GITLAB_TOKEN
     -h $CTN_HOST
     -u $CTN_USER
     -p $SSH_PORT:22
     -v /dev:/dev
-    -v /tmp/.X11-unix/X${DSP_NUM}:/tmp/.X11-unix/X${DSP_NUM}
+    -v /tmp/.X11-unix:/tmp/.X11-unix
     -v /var/run/docker.sock:/var/run/docker.sock
     -v /etc/security/limits.conf:/etc/security/limits.conf
     -v /etc/sysctl.conf:/etc/sysctl.conf

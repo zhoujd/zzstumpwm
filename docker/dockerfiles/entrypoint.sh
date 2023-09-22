@@ -1,8 +1,13 @@
 #!/bin/bash
 
 SCRIPT_ROOT=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
+DISPLAY=${DISPLAY:-":0.0"}
+
 ZZEMACS_ROOT=$HOME/zzemacs
 ZWM_ROOT=$HOME/zzstumpwm
+ZWM_DISP=${ZWM_DISP:-":110"}
+ZWM_WIDTH=${ZWM_WIDTH:-1280}
+ZWM_HEIGHT=${ZWM_WIDTH:-720}
 
 setup_common() {
     echo "Setup common ..."
@@ -44,7 +49,21 @@ setup_ssh() {
 
 setup_zwm() {
     echo "Setup zwm ..."
-    $ZWM_ROOT/bin/zwm-session
+
+    XEPHYR_PARAM=(
+        -ac
+        -br
+        -screen ${ZWM_WIDTH}x${ZWM_HEIGHT}
+        -resizeable
+        -extension MIT-SHM
+        -extension XTEST
+        $ZWM_DISP
+    )
+
+    Xephyr ${XEPHYR_PARAM[@]} &
+    sleep 2s
+
+    DISPLAY=$ZWM_DISP $ZWM_ROOT/bin/zwm-session
 }
 
 setup_sleep() {
