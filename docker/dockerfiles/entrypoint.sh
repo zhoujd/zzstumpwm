@@ -48,21 +48,11 @@ setup_ssh() {
 
 setup_zwm() {
     echo "Setup zwm ..."
-
-    XEPHYR_PARAM=(
-        -ac
-        -br
-        -screen $ZWM_REZ
-        -resizeable
-        -extension MIT-SHM
-        -extension XTEST
-        $ZWM_DSP
-    )
-
-    Xephyr ${XEPHYR_PARAM[@]} &
-    sleep 2s
-
-    DISPLAY=$ZWM_DSP $ZWM_ROOT/bin/zwm-session
+    local zwm_cmd=$ZWM_ROOT/bin/zwm-on-xephyr.sh
+    if [ -x $zwm_cmd ]; then
+        echo "Setup zwm on xephyr ..."
+        $zwm_cmd
+    fi
 }
 
 setup_sleep() {

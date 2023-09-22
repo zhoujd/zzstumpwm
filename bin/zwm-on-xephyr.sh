@@ -5,7 +5,7 @@ ZWM_ROOT=$(cd $SCRIPT_ROOT/.. && pwd)
 ZWM_REZ=${ZWM_REZ:-1280x720}
 ZWM_DSP=${ZWM_DSP:-:110}
 
-prepare() {
+run() {
     REZ=${1:-$ZWM_REZ}
     DSP=${2:-$ZWM_DSP}
 
@@ -20,10 +20,7 @@ prepare() {
     )
 
     Xephyr ${XEPHYR_PARAM[@]} &
-}
-
-run() {
-    DSP=${1:-$ZWM_DSP}
+    sleep 2s
     DISPLAY=$DSP $ZWM_ROOT/bin/zwm-session
 }
 
@@ -36,26 +33,17 @@ usage() {
     cat <<EOF
 Usage:
 $prompt {dep|prepare|run|clean|help|-h}
-
-$prompt prepare {Resolution} {DISPLAY}
+$prompt run {Resolution} {DISPLAY}
         Resolution   - 1280x720 (default)
-        DISPLAY      - :100 (default)
-$prompt prepare 1280x720
-$prompt prepare 1280x720 :100
-
-$prompt run {DISPLAY}
-        DISPLAY      - :100 (default)
-$prompt run :100
+        DISPLAY      - :110 (default)
+$prompt run 1280x720
+$prompt run 1280x720 :110
 EOF
 }
 
 case "$1" in
     "dep" )
         sudo apt install xserver-xephyr
-        ;;
-    "prepare" )
-        shift
-        prepare $@
         ;;
     "run" )
         shift
