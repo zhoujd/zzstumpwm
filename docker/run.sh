@@ -63,6 +63,8 @@ XEPHYR_PARAM=(
     -br
     -screen 1920x1080
     -resizeable
+    -extension MIT-SHM
+    -extension XTEST
 )
 
 case $1 in
@@ -70,6 +72,10 @@ case $1 in
         sudo apt install xserver-xephyr
         ;;
     prepare )
+        if [ -d /tmp/.X11-unix/X${DSP_NUM} ]; then
+            sudo rm -rf /tmp/.X11-unix/X${DSP_NUM}
+            echo "Remove /tmp/.X11-unix/X${DSP_NUM}"
+        fi            
         Xephyr ${XEPHYR_PARAM[@]} &
         ;;
     init )
