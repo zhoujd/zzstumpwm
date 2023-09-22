@@ -25,13 +25,14 @@ usage() {
     cat <<EOF
 Usage:
 $prompt {dep|prepare|run|clean|help|-h}
-$prompt prepare {Resolution} {DISPLAY}
-        Resolution   - 1280x720 (default)
-        DISPLAY      - :100 (default)
-$prompt prepare 1280x720
-$prompt prepare 1280x720 :100
-$prompt run {DISPLAY}
-        DISPLAY      - :100 (default)
+prepare {Resolution} {DISPLAY}
+    Resolution   - 1280x720 (default)
+    DISPLAY      - :100 (default)
+    prepare 1280x720
+    prepare 1280x720 :100
+run {DISPLAY}
+    DISPLAY      - :100 (default)
+    run :100
 EOF
 }
 
