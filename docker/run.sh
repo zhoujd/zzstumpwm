@@ -4,6 +4,7 @@
 SCRIPT_ROOT=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
 ZWM_ROOT=$(cd $SCRIPT_ROOT/.. && pwd)
 ZWM_TOP=$(cd $ZWM_ROOT/.. && pwd)
+ZWM_DSP=:100
 
 IMG=${IMG:-zz/ubuntu-20.04-zwm}
 TAG=${TAG:-dev}
@@ -17,98 +18,164 @@ SSH_PORT=${SSH_PORT:-9022}
 SSH_USER=${CTN_USER}
 HOST_NAME=${HOST_NAME:-dockerhost}
 HOST_IP=${HOST_IP:-host-gateway}
-PROMPT=${PROMPT:-$(basename $0)}
-DSP_NUM=100
-
-RUN_PARAM=(
-    -d
-    --privileged=true
-    --cap-add=ALL
-    --add-host=$HOST_NAME:$HOST_IP
-    -e DISPLAY=:$DSP_NUM
-    -e GITHUB_TOKEN=$GITHUB_TOKEN
-    -e GITLAB_TOKEN=$GITLAB_TOKEN
-    -h $CTN_HOST
-    -u $CTN_USER
-    -p $SSH_PORT:22
-    -v /dev:/dev
-    -v /tmp/.X11-unix:/tmp/.X11-unix
-    -v /var/run/docker.sock:/var/run/docker.sock
-    -v /etc/security/limits.conf:/etc/security/limits.conf
-    -v /etc/sysctl.conf:/etc/sysctl.conf
-    -v $ZWM_ROOT:$CTN_HOME/zzstumpwm
-    -v $ZWM_TOP/zzemacs:$CTN_HOME/zzemacs
-    -v $ZWM_TOP/lab:$CTN_HOME/lab
-)
 
 EXEC_PARAM=(
-    -e DISPLAY=$DISPLAY
     -e SHELL=/bin/bash
     -u $CTN_USER
 )
 
-EMACS_PARAM=(
-    emacs
-    -nw
-)
+dep() {
+    sudo apt install xserver-xephyr
+}
 
-SHELL_PARAM=(
-    bash
-    -l
-)
+prepare() {
+    XEPHYR_PARAM=(
+        $ZWM_DSP
+        -ac
+        -br
+        -screen 1920x1080
+        -resizeable
+    )
 
-XEPHYR_PARAM=(
-    :$DSP_NUM
-    -ac
-    -br
-    -screen 1920x1080
-    -resizeable
-)
+    Xephyr ${XEPHYR_PARAM[@]} &
+}
+
+init() {
+    INIT_PARAM=(
+        -d
+        --privileged=true
+        --cap-add=ALL
+        --add-host=$HOST_NAME:$HOST_IP
+        -e DISPLAY=$DISPLAY
+        -e GITHUB_TOKEN=$GITHUB_TOKEN
+        -e GITLAB_TOKEN=$GITLAB_TOKEN
+        -h $CTN_HOST
+        -u $CTN_USER
+        -p $SSH_PORT:22
+        -v /dev:/dev
+        -v /tmp/.X11-unix:/tmp/.X11-unix
+        -v /var/run/docker.sock:/var/run/docker.sock
+        -v /etc/security/limits.conf:/etc/security/limits.conf
+        -v /etc/sysctl.conf:/etc/sysctl.conf
+        -v $ZWM_ROOT:$CTN_HOME/zzstumpwm
+        -v $ZWM_TOP/zzemacs:$CTN_HOME/zzemacs
+        -v $ZWM_TOP/lab:$CTN_HOME/lab
+    )
+
+    docker run --name=${CTN_NAME} ${INIT_PARAM[@]} ${IMG}:${TAG} init
+}
+
+start() {
+    RUN_PARAM=(
+        -d
+        --privileged=true
+        --cap-add=ALL
+        --add-host=$HOST_NAME:$HOST_IP
+        -e DISPLAY=$ZWM_DSP
+        -e GITHUB_TOKEN=$GITHUB_TOKEN
+        -e GITLAB_TOKEN=$GITLAB_TOKEN
+        -h $CTN_HOST
+        -u $CTN_USER
+        -p $SSH_PORT:22
+        -v /dev:/dev
+        -v /tmp/.X11-unix:/tmp/.X11-unix
+        -v /var/run/docker.sock:/var/run/docker.sock
+        -v /etc/security/limits.conf:/etc/security/limits.conf
+        -v /etc/sysctl.conf:/etc/sysctl.conf
+        -v $ZWM_ROOT:$CTN_HOME/zzstumpwm
+        -v $ZWM_TOP/zzemacs:$CTN_HOME/zzemacs
+        -v $ZWM_TOP/lab:$CTN_HOME/lab
+    )
+
+    docker run --name=${CTN_NAME} ${RUN_PARAM[@]} ${IMG}:${TAG} zwm
+}
+
+stop() {
+    docker stop ${CTN_NAME} >/dev/null 2>&1
+    docker rm ${CTN_NAME} >/dev/null 2>&1
+}
+
+logs() {
+    docker logs ${CTN_NAME} 2>/dev/null
+}
+
+status() {
+    echo "* Container list"
+    docker ps | grep ${CTN_NAME}
+    echo "* Xephyr list"
+    ps -ef | grep Xephyr | grep -v grep
+}
+
+emacs () {
+    EMACS_PARAM=(
+        emacs
+        -nw
+    )
+
+    docker exec -it ${EXEC_PARAM[@]} ${CTN_NAME} ${EMACS_PARAM[@]}
+}
+
+shell() {
+    SHELL_PARAM=(
+        bash
+        -l
+    )
+
+    docker exec -it ${EXEC_PARAM[@]} ${CTN_NAME} ${SHELL_PARAM[@]}
+}
+
+ssh() {
+    export TERM=xterm
+    ssh -X -l ${SSH_USER} ${SSH_HOST} -p ${SSH_PORT}
+}
+
+build() {
+    make -C dockerfiles $@
+}
+
+clean() {
+    killall Xephyr >/dev/null 2>&1
+}
 
 case $1 in
     dep )
-        sudo apt install xserver-xephyr
+        dep
         ;;
     prepare )
-        Xephyr ${XEPHYR_PARAM[@]} &
+        prepare
         ;;
     init )
-        DSP_NUM=$DISPLAY
-        docker run --name=${CTN_NAME} ${RUN_PARAM[@]} ${IMG}:${TAG} init
+        init
         ;;
     start )
-        docker run --name=${CTN_NAME} ${RUN_PARAM[@]} ${IMG}:${TAG}
+        start
         ;;
     stop )
-        docker stop ${CTN_NAME} 2>/dev/null
-        docker rm ${CTN_NAME} 2>/dev/null
+        stop
         ;;
-    log )
-        docker logs ${CTN_NAME} 2>/dev/null
+    logs )
+        logs
         ;;
     status )
-        echo "* Container list"
-        docker ps | grep ${CTN_NAME}
-        echo "* Xephyr list"
-        ps -ef | grep Xephyr | grep -v grep
+        status
         ;;
     emacs )
-        docker exec -it ${EXEC_PARAM[@]} ${CTN_NAME} ${EMACS_PARAM[@]}
+        emacs
         ;;
     shell )
-        docker exec -it ${EXEC_PARAM[@]} ${CTN_NAME} ${SHELL_PARAM[@]}
+        shell
         ;;
     ssh )
-        TERM=xterm ssh -X -l ${SSH_USER} ${SSH_HOST} -p ${SSH_PORT}
+        ssh
         ;;
     build )
         shift
-        make -C dockerfiles $@
+        build
         ;;
     clean )
-        killall Xephyr >/dev/null 2>&1
+        clean
         ;;
     * )
-        echo "Usage: ${PROMPT} {dep|prepare|init|start|stop|log|status|emacs|shell|ssh|build|clean}"
+        echo "Usage: $(basename $0) {dep|prepare|init|start|stop|logs|status|emacs|shell|ssh|build|clean}"
         ;;
 esac
