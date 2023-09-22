@@ -5,9 +5,8 @@ DISPLAY=${DISPLAY:-":0.0"}
 
 ZZEMACS_ROOT=$HOME/zzemacs
 ZWM_ROOT=$HOME/zzstumpwm
-ZWM_DISP=${ZWM_DISP:-":110"}
-ZWM_WIDTH=${ZWM_WIDTH:-1280}
-ZWM_HEIGHT=${ZWM_WIDTH:-720}
+ZWM_DSP=${ZWM_DSP:-:110}
+ZWM_REZ=${ZWM_REZ:-1280x720}
 
 setup_common() {
     echo "Setup common ..."
@@ -53,17 +52,17 @@ setup_zwm() {
     XEPHYR_PARAM=(
         -ac
         -br
-        -screen ${ZWM_WIDTH}x${ZWM_HEIGHT}
+        -screen $ZWM_REZ
         -resizeable
         -extension MIT-SHM
         -extension XTEST
-        $ZWM_DISP
+        $ZWM_DSP
     )
 
     Xephyr ${XEPHYR_PARAM[@]} &
     sleep 2s
 
-    DISPLAY=$ZWM_DISP $ZWM_ROOT/bin/zwm-session
+    DISPLAY=$ZWM_DSP $ZWM_ROOT/bin/zwm-session
 }
 
 setup_sleep() {
