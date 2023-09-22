@@ -18,20 +18,21 @@ SSH_USER=${CTN_USER}
 HOST_NAME=${HOST_NAME:-dockerhost}
 HOST_IP=${HOST_IP:-host-gateway}
 PROMPT=${PROMPT:-$(basename $0)}
+DSP_NUM=100
 
 RUN_PARAM=(
     -d
     --privileged=true
     --cap-add=ALL
     --add-host=$HOST_NAME:$HOST_IP
-    -e DISPLAY=$DISPLAY
+    -e DISPLAY=:$DSP_NUM
     -e GITHUB_TOKEN=$GITHUB_TOKEN
     -e GITLAB_TOKEN=$GITLAB_TOKEN
     -h $CTN_HOST
     -u $CTN_USER
     -p $SSH_PORT:22
     -v /dev:/dev
-    -v /tmp/.X11-unix:/tmp/.X11-unix
+    -v /tmp/.X11-unix/X${DSP_NUM}:/tmp/.X11-unix/X${DSP_NUM}
     -v /var/run/docker.sock:/var/run/docker.sock
     -v /etc/security/limits.conf:/etc/security/limits.conf
     -v /etc/sysctl.conf:/etc/sysctl.conf
@@ -56,17 +57,32 @@ SHELL_PARAM=(
     -l
 )
 
+XEPHYR_PARAM=(
+    :$DSP_NUM
+    -ac
+    -br
+    -screen 1920x1080
+    -resizeable
+)
+
 case $1 in
+    dep )
+        sudo apt install xserver-xephyr
+        ;;
+    prepare )
+        Xephyr ${XEPHYR_PARAM[@]} &
+        ;;
+    init )
+        docker run --name=${CTN_NAME} ${RUN_PARAM[@]} ${IMG}:${TAG} init
+        ;;
     start )
-        shift
-        ENTRY=${1:-zwm}   ## zwm|init
-        docker run --name=${CTN_NAME} ${RUN_PARAM[@]} ${IMG}:${TAG} $ENTRY
+        docker run --name=${CTN_NAME} ${RUN_PARAM[@]} ${IMG}:${TAG}
         ;;
     stop )
         docker stop ${CTN_NAME} 2>/dev/null
         docker rm ${CTN_NAME} 2>/dev/null
         ;;
-    logs )
+    log )
         docker logs ${CTN_NAME} 2>/dev/null
         ;;
     status )
@@ -88,7 +104,10 @@ case $1 in
         shift
         make -C dockerfiles $@
         ;;
+    clean )
+        killall Xephyr >/dev/null 2>&1
+        ;;
     * )
-        echo "Usage: ${PROMPT} {start|stop|logs|status|emacs|shell|ssh|build}"
+        echo "Usage: ${PROMPT} {dep|prepare|init|start|stop|log|status|emacs|shell|ssh|build|clean}"
         ;;
 esac

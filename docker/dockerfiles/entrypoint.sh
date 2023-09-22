@@ -1,12 +1,8 @@
 #!/bin/bash
 
 SCRIPT_ROOT=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
-DISPLAY=${DISPLAY:-":0.0"}
-
 ZZEMACS_ROOT=$HOME/zzemacs
 ZWM_ROOT=$HOME/zzstumpwm
-ZWM_DSP=${ZWM_DSP:-:110}
-ZWM_REZ=${ZWM_REZ:-1280x720}
 
 setup_common() {
     echo "Setup common ..."
@@ -48,11 +44,7 @@ setup_ssh() {
 
 setup_zwm() {
     echo "Setup zwm ..."
-    local zwm_cmd=$ZWM_ROOT/bin/zwm-on-xephyr.sh
-    if [ -x $zwm_cmd ]; then
-        echo "Setup zwm on xephyr ..."
-        $zwm_cmd
-    fi
+    $ZWM_ROOT/bin/zwm-session
 }
 
 setup_sleep() {
