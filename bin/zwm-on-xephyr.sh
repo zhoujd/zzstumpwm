@@ -2,19 +2,29 @@
 
 SCRIPT_ROOT=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
 ZWM_ROOT=$(cd $SCRIPT_ROOT/.. && pwd)
-REZ=${REZ:-1280x720}
-DSP=${DSP:-:100}
+ZWM_REZ=${ZWM_REZ:-1280x720}
+ZWM_DSP=${ZWM_DSP:-:110}
 
 prepare() {
-    REZ=${1:-$REZ}
-    DSP=${2:-$DSP}
-    Xephyr $DSP -ac -br -screen $REZ -resizeable &
+    REZ=${1:-$ZWM_REZ}
+    DSP=${2:-$ZWM_DSP}
+
+    XEPHYR_PARAM=(
+        -ac
+        -br
+        -screen $REZ
+        -resizeable
+        -extension MIT-SHM
+        -extension XTEST
+        $DSP
+    )
+
+    Xephyr ${XEPHYR_PARAM[@]} &
 }
 
 run() {
-    pushd $ZWM_ROOT
-    DISPLAY=$DSP ./bin/zwm-session
-    popd
+    DSP=${1:-$ZWM_DSP}
+    DISPLAY=$DSP $ZWM_ROOT/bin/zwm-session
 }
 
 clean() {
@@ -26,11 +36,16 @@ usage() {
     cat <<EOF
 Usage:
 $prompt {dep|prepare|run|clean|help|-h}
+
 $prompt prepare {Resolution} {DISPLAY}
         Resolution   - 1280x720 (default)
         DISPLAY      - :100 (default)
 $prompt prepare 1280x720
 $prompt prepare 1280x720 :100
+
+$prompt run {DISPLAY}
+        DISPLAY      - :100 (default)
+$prompt run :100
 EOF
 }
 
@@ -43,7 +58,8 @@ case "$1" in
         prepare $@
         ;;
     "run" )
-        run
+        shift
+        run $@
         ;;        
     "clean" )
         clean
