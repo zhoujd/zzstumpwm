@@ -4,7 +4,8 @@
 SCRIPT_ROOT=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
 ZWM_ROOT=$(cd $SCRIPT_ROOT/.. && pwd)
 ZWM_TOP=$(cd $ZWM_ROOT/.. && pwd)
-ZWM_DSP=:100
+ZWM_DSP_NUM=100
+ZWM_DSP=:$ZWM_DSP_NUM
 
 IMG=${IMG:-zz/ubuntu-20.04-zwm}
 TAG=${TAG:-dev}
@@ -78,7 +79,7 @@ zwm() {
         -u $CTN_USER
         -p $SSH_PORT:22
         -v /dev:/dev
-        -v /tmp/.X11-unix:/tmp/.X11-unix
+        -v /tmp/.X11-unix/X${ZWM_DSP_NUM}:/tmp/.X11-unix/X${ZWM_DSP_NUM}
         -v /var/run/docker.sock:/var/run/docker.sock
         -v /etc/security/limits.conf:/etc/security/limits.conf
         -v /etc/sysctl.conf:/etc/sysctl.conf
@@ -134,7 +135,10 @@ build() {
 }
 
 clean() {
+    DSP_NUM=${1:-$ZWM_DSP_NUM}
     killall Xephyr >/dev/null 2>&1
+    rm -rf /tmp/.X${DSP_NUM}-lock
+    rm -rf /tmp/.X11-unix/X${DSP_NUM}
 }
 
 case $1 in
@@ -170,10 +174,11 @@ case $1 in
         ;;
     build )
         shift
-        build
+        build $@
         ;;
     clean )
-        clean
+        shift
+        clean $@
         ;;
     * )
         echo "Usage: $(basename $0) {dep|prepare|init|zwm|stop|logs|status|emacs|shell|ssh|build|clean}"
