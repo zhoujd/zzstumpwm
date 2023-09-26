@@ -15,7 +15,9 @@ services:
       ZWM_DSP: ${ZWM_DSP}
       ZWM_REZ: ${ZWM_REZ}
     network_mode: bridge
-    entrypoint: /app/entrypoint.sh xephyr
+    entrypoint:
+      - /app/entrypoint.sh
+      - xephyr
     extra_hosts:
       - "myhost:host-gateway"
     restart: always
@@ -23,8 +25,8 @@ services:
     cap_add:
       - ALL
     volumes:
-      - /tmp/.X11-unix:/tmp/.X11-unix
       - /dev:/dev
+      - /tmp/.X11-unix:/tmp/.X11-unix
       - /var/run/docker.sock:/var/run/docker.sock
       - /etc/security/limits.conf:/etc/security/limits.conf
       - /etc/sysctl.conf:/etc/sysctl.conf
