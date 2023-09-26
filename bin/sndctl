@@ -2,7 +2,7 @@
 
 usage() {
     app=$(basename $0)
-cat <<EOF 
+    cat <<EOF
 $app vol up
 $app vol down
 $app vol toggle
