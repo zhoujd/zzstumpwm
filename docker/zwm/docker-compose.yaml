@@ -1,14 +1,15 @@
 version: "3"
 
 services:
-  xephyr:
+  zwm:
     build:
       context: ../dockerfiles
       dockerfile: ubuntu-dev.dockerfile
       args:
         VARIANT: 20.04
     image: zz/ubuntu-20.04-zwm:dev
-    container_name: xephyr-base
+    hostname: ubuntu-2004-zwm
+    container_name: zwm-dev
     environment:
       DISPLAY: ${DISPLAY}
     network_mode: bridge
