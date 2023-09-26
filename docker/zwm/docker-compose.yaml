@@ -12,8 +12,10 @@ services:
     container_name: zwm-dev
     environment:
       DISPLAY: ${DISPLAY}
+      ZWM_DSP: ${ZWM_DSP}
+      ZWM_REZ: ${ZWM_REZ}
     network_mode: bridge
-    command: Xephyr ${XR_DSP} -ac -br -screen ${XR_REZ} -resizeable
+    entrypoint: /app/entrypoint.sh xephyr
     extra_hosts:
       - "myhost:host-gateway"
     restart: always
@@ -22,3 +24,10 @@ services:
       - ALL
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix
+      - /dev:/dev
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /etc/security/limits.conf:/etc/security/limits.conf
+      - /etc/sysctl.conf:/etc/sysctl.conf
+      - ${ZWM_ROOT}:/home/${USER}/zzstumpwm
+      - ${ZWM_TOP}/zzemacs:/home/${USER}/zzemacs
+      - ${ZWM_TOP}/lab:/home/${USER}/lab
