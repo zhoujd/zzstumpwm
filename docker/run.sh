@@ -67,6 +67,7 @@ init() {
 }
 
 zwm() {
+    ZWM_DSP=${1:-$ZWM_DSP}
     RUN_PARAM=(
         -d
         --privileged=true
@@ -152,7 +153,8 @@ case $1 in
         init
         ;;
     zwm )
-        zwm
+        shift
+        zwm $@
         ;;
     stop )
         stop
