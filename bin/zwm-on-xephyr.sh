@@ -2,8 +2,8 @@
 
 SCRIPT_ROOT=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
 ZWM_ROOT=$(cd $SCRIPT_ROOT/.. && pwd)
-REZ=${REZ:-1280x720}
-DSP=${DSP:-:100}
+DSP=${ZWM_DSP:-:100}
+REZ=${ZWM_REZ:-1280x720}
 
 prepare() {
     REZ=${1:-$REZ}
