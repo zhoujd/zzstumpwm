@@ -50,6 +50,14 @@ setup_zwm() {
     fi
 }
 
+setup_xephyr() {
+    local xephyr_cmd=$ZWM_ROOT/bin/zwm-on-xephyr.sh
+    if [ -x $xephyr_cmd ]; then
+        echo "Setup zwm on xephyr ..."
+        $xephyr_cmd
+    fi
+}
+
 setup_sleep() {
     echo "Setup sleep ..."
     sleep infinity
