@@ -15,9 +15,7 @@ services:
       ZWM_DSP: ${ZWM_DSP}
       ZWM_REZ: ${ZWM_REZ}
     network_mode: bridge
-    entrypoint:
-      - /app/entrypoint.sh
-      - xephyr
+    command: xephyr
     extra_hosts:
       - "myhost:host-gateway"
     restart: always
