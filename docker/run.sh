@@ -36,6 +36,8 @@ prepare() {
         -br
         -screen 1920x1080
         -resizeable
+        -extension MIT-SHM
+        -extension XTEST
     )
 
     Xephyr ${XEPHYR_PARAM[@]} &
