@@ -11,9 +11,11 @@ services:
     hostname: ubuntu-2004-zwm
     container_name: zwm-dev
     environment:
-      DISPLAY: ${DISPLAY}
-      ZWM_DSP: ${ZWM_DSP}
-      ZWM_REZ: ${ZWM_REZ}
+      DISPLAY:
+      ZWM_DSP:
+      ZWM_REZ:
+      GITLAB_TOKEN:
+      GITHUB_TOKEN:
     network_mode: bridge
     command: xephyr
     extra_hosts:
