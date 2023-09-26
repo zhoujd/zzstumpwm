@@ -78,6 +78,14 @@ case "$CMD" in
         setup_ssh
         setup_zwm
         ;;
+    "xephyr" )
+        setup_common
+        setup_zzemacs
+        setup_libvirtd
+        setup_dbus
+        setup_ssh
+        setup_xephyr
+        ;;
     "init" )
         setup_common
         setup_zzemacs
