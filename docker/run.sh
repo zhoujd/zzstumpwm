@@ -138,8 +138,8 @@ build() {
 clean() {
     DSP_NUM=${1:-$ZWM_DSP_NUM}
     killall Xephyr >/dev/null 2>&1
-    rm -rf /tmp/.X${DSP_NUM}-lock
-    rm -rf /tmp/.X11-unix/X${DSP_NUM}
+    sudo rm -rf /tmp/.X${DSP_NUM}-lock
+    sudo rm -rf /tmp/.X11-unix/X${DSP_NUM}
 }
 
 case $1 in
