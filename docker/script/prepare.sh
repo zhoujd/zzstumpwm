@@ -5,10 +5,14 @@ SCRIPT_ROOT=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
 ZWM_ROOT=$(cd $SCRIPT_ROOT/../.. && pwd)
 ZWM_TOP=$(cd $ZWM_ROOT/.. && pwd)
 
-mkdir -p $ZWM_TOP/.zwm
+dot_zwm(){
+    mkdir -p $ZWM_TOP/.zwm
+    pushd $ZWM_TOP/.zwm
+    mkdir -p .config .emacs.d .local .ssh
+    popd
+    echo "Prepare .zwm Done"
+}
 
-pushd $ZWM_TOP/.zwm
-mkdir -p .config .emacs.d .local .ssh
-popd
+dot_zwm
 
-echo "Prepare Done"
+echo "Prepare All Done"
