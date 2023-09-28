@@ -8,7 +8,7 @@ ZWM_TOP=$(cd $ZWM_ROOT/.. && pwd)
 dot_zwm(){
     mkdir -p $ZWM_TOP/.zwm
     pushd $ZWM_TOP/.zwm
-    mkdir -p .config .emacs.d .local .ssh
+    mkdir -p .config .emacs.d .local .ssh .vscode
     popd
     echo "Prepare .zwm Done"
 }

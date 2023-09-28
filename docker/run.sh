@@ -74,6 +74,7 @@ xephyr() {
         -v $ZWM_TOP/.zwm/.local:$CTN_HOME/.local
         -v $ZWM_TOP/.zwm/.config:$CTN_HOME/.config
         -v $ZWM_TOP/.zwm/.emacs.d:$CTN_HOME/.emacs.d
+        -v $ZWM_TOP/.zwm/.vscode:$CTN_HOME/.vscode
     )
 
     docker run --name=${CTN_NAME} ${XEPHYR_PARAM[@]} ${IMG}:${TAG} xephyr

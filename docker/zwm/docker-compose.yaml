@@ -37,3 +37,4 @@ services:
       - ${ZWM_TOP}/.zwm/.local:/home/${USER}/.local
       - ${ZWM_TOP}/.zwm/.config:/home/${USER}/.config
       - ${ZWM_TOP}/.zwm/.emacs.d:/home/${USER}/.emacs.d
+      - ${ZWM_TOP}/.zwm/.vscode:/home/${USER}/.vscode
