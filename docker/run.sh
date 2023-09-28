@@ -70,6 +70,10 @@ xephyr() {
         -v $ZWM_ROOT:$CTN_HOME/zzstumpwm
         -v $ZWM_TOP/zzemacs:$CTN_HOME/zzemacs
         -v $ZWM_TOP/lab:$CTN_HOME/lab
+        -v $ZWM_TOP/.zwm/.ssh:$CTN_HOME/.ssh
+        -v $ZWM_TOP/.zwm/.local:$CTN_HOME/.local
+        -v $ZWM_TOP/.zwm/.config:$CTN_HOME/.config
+        -v $ZWM_TOP/.zwm/.emacs.d:$CTN_HOME/.emacs.d
     )
 
     docker run --name=${CTN_NAME} ${XEPHYR_PARAM[@]} ${IMG}:${TAG} xephyr
@@ -96,6 +100,10 @@ zwm() {
         -v $ZWM_ROOT:$CTN_HOME/zzstumpwm
         -v $ZWM_TOP/zzemacs:$CTN_HOME/zzemacs
         -v $ZWM_TOP/lab:$CTN_HOME/lab
+        -v $ZWM_TOP/.zwm/.ssh:$CTN_HOME/.ssh
+        -v $ZWM_TOP/.zwm/.local:$CTN_HOME/.local
+        -v $ZWM_TOP/.zwm/.config:$CTN_HOME/.config
+        -v $ZWM_TOP/.zwm/.emacs.d:$CTN_HOME/.emacs.d
     )
 
     docker run --name=${CTN_NAME} ${RUN_PARAM[@]} ${IMG}:${TAG} zwm

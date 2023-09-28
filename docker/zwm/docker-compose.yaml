@@ -33,3 +33,7 @@ services:
       - ${ZWM_ROOT}:/home/${USER}/zzstumpwm
       - ${ZWM_TOP}/zzemacs:/home/${USER}/zzemacs
       - ${ZWM_TOP}/lab:/home/${USER}/lab
+      - ${ZWM_TOP}/.zwm/.ssh:/home/${USER}/.ssh
+      - ${ZWM_TOP}/.zwm/.local:/home/${USER}/.local
+      - ${ZWM_TOP}/.zwm/.config:/home/${USER}/.config
+      - ${ZWM_TOP}/.zwm/.emacs.d:/home/${USER}/.emacs.d
