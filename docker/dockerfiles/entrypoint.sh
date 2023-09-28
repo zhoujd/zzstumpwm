@@ -8,6 +8,9 @@ setup_common() {
     echo "Setup common ..."
     touch $HOME/.Xauthority
     $ZWM_ROOT/install.sh
+    $ZWM_ROOT/bin/gtk2-setup.sh
+    $ZWM_ROOT/bin/gtk3-setup.sh user
+    $ZWM_ROOT/bin/gtk3-setup.sh cursor
 }
 
 setup_zzemacs() {
