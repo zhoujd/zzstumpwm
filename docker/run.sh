@@ -4,8 +4,9 @@
 SCRIPT_ROOT=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
 ZWM_ROOT=$(cd $SCRIPT_ROOT/.. && pwd)
 ZWM_TOP=$(cd $ZWM_ROOT/.. && pwd)
-ZWM_DSP_NUM=100
+ZWM_DSP_NUM=${ZWM_DSP_NUM:-100}
 ZWM_DSP=:$ZWM_DSP_NUM
+ZWM_REZ=${ZWM_REZ:-1920x1080}
 
 IMG=${IMG:-zz/ubuntu-20.04-zwm}
 TAG=${TAG:-dev}
@@ -19,6 +20,33 @@ SSH_PORT=${SSH_PORT:-9022}
 SSH_USER=${CTN_USER}
 HOST_NAME=${HOST_NAME:-dockerhost}
 HOST_IP=${HOST_IP:-host-gateway}
+
+CMN_PARAM=(
+    --detach
+    --name=$CTN_NAME
+    --restart=always
+    --privileged=true
+    --cap-add=ALL
+    --add-host=$HOST_NAME:$HOST_IP
+    -e GITHUB_TOKEN=$GITHUB_TOKEN
+    -e GITLAB_TOKEN=$GITLAB_TOKEN
+    -h $CTN_HOST
+    -u $CTN_USER
+    -p $SSH_PORT:22
+    -v /dev:/dev
+    -v /tmp/.X11-unix:/tmp/.X11-unix
+    -v /var/run/docker.sock:/var/run/docker.sock
+    -v /etc/security/limits.conf:/etc/security/limits.conf
+    -v /etc/sysctl.conf:/etc/sysctl.conf
+    -v $ZWM_ROOT:$CTN_HOME/zzstumpwm
+    -v $ZWM_TOP/zzemacs:$CTN_HOME/zzemacs
+    -v $ZWM_TOP/lab:$CTN_HOME/lab
+    -v $ZWM_TOP/.zwm/.ssh:$CTN_HOME/.ssh
+    -v $ZWM_TOP/.zwm/.local:$CTN_HOME/.local
+    -v $ZWM_TOP/.zwm/.config:$CTN_HOME/.config
+    -v $ZWM_TOP/.zwm/.emacs.d:$CTN_HOME/.emacs.d
+    -v $ZWM_TOP/.zwm/.vscode:$CTN_HOME/.vscode
+)
 
 EXEC_PARAM=(
     -e SHELL=/bin/bash
@@ -34,7 +62,7 @@ prepare() {
         $ZWM_DSP
         -ac
         -br
-        -screen 1920x1080
+        -screen $ZWM_REZ
         -resizeable
         -extension MIT-SHM
         -extension XTEST
@@ -45,102 +73,29 @@ prepare() {
 
 init() {
     INIT_PARAM=(
-        --detach
-        --name=$CTN_NAME
-        --restart=always
-        --privileged=true
-        --cap-add=ALL
-        --add-host=$HOST_NAME:$HOST_IP
         -e DISPLAY=$DISPLAY
-        -e GITHUB_TOKEN=$GITHUB_TOKEN
-        -e GITLAB_TOKEN=$GITLAB_TOKEN
-        -e ZWM_DSP=:110
-        -e ZWM_REZ=1920x1080
-        -h $CTN_HOST
-        -u $CTN_USER
-        -p $SSH_PORT:22
-        -v /dev:/dev
-        -v /tmp/.X11-unix:/tmp/.X11-unix
-        -v /var/run/docker.sock:/var/run/docker.sock
-        -v /etc/security/limits.conf:/etc/security/limits.conf
-        -v /etc/sysctl.conf:/etc/sysctl.conf
-        -v $ZWM_ROOT:$CTN_HOME/zzstumpwm
-        -v $ZWM_TOP/zzemacs:$CTN_HOME/zzemacs
-        -v $ZWM_TOP/lab:$CTN_HOME/lab
-        -v $ZWM_TOP/.zwm/.ssh:$CTN_HOME/.ssh
-        -v $ZWM_TOP/.zwm/.local:$CTN_HOME/.local
-        -v $ZWM_TOP/.zwm/.config:$CTN_HOME/.config
-        -v $ZWM_TOP/.zwm/.emacs.d:$CTN_HOME/.emacs.d
-        -v $ZWM_TOP/.zwm/.vscode:$CTN_HOME/.vscode
     )
 
-    docker run --name=${CTN_NAME} ${INIT_PARAM[@]} ${IMG}:${TAG} init
+    docker run ${CMN_PARAM[@]} ${INIT_PARAM[@]} ${IMG}:${TAG} init
 }
 
 xephyr() {
     XEPHYR_PARAM=(
-        --detach
-        --name=$CTN_NAME
-        --restart=always
-        --privileged=true
-        --cap-add=ALL
-        --add-host=$HOST_NAME:$HOST_IP
         -e DISPLAY=$DISPLAY
-        -e GITHUB_TOKEN=$GITHUB_TOKEN
-        -e GITLAB_TOKEN=$GITLAB_TOKEN
-        -e ZWM_DSP=:110
-        -e ZWM_REZ=1920x1080
-        -h $CTN_HOST
-        -u $CTN_USER
-        -p $SSH_PORT:22
-        -v /dev:/dev
-        -v /tmp/.X11-unix:/tmp/.X11-unix
-        -v /var/run/docker.sock:/var/run/docker.sock
-        -v /etc/security/limits.conf:/etc/security/limits.conf
-        -v /etc/sysctl.conf:/etc/sysctl.conf
-        -v $ZWM_ROOT:$CTN_HOME/zzstumpwm
-        -v $ZWM_TOP/zzemacs:$CTN_HOME/zzemacs
-        -v $ZWM_TOP/lab:$CTN_HOME/lab
-        -v $ZWM_TOP/.zwm/.ssh:$CTN_HOME/.ssh
-        -v $ZWM_TOP/.zwm/.local:$CTN_HOME/.local
-        -v $ZWM_TOP/.zwm/.config:$CTN_HOME/.config
-        -v $ZWM_TOP/.zwm/.emacs.d:$CTN_HOME/.emacs.d
-        -v $ZWM_TOP/.zwm/.vscode:$CTN_HOME/.vscode
+        -e ZWM_DSP=$ZWM_DSP
+        -e ZWM_REZ=$ZWM_REZ
     )
 
-    docker run ${XEPHYR_PARAM[@]} ${IMG}:${TAG} xephyr
+    docker run ${CMN_PARAM[@]} ${XEPHYR_PARAM[@]} ${IMG}:${TAG} xephyr
 }
 
 zwm() {
     ZWM_DSP=${1:-$ZWM_DSP}
     RUN_PARAM=(
-        --detach
-        --name=$CTN_NAME
-        --restart=always
-        --privileged=true
-        --cap-add=ALL
-        --add-host=$HOST_NAME:$HOST_IP
         -e DISPLAY=$ZWM_DSP
-        -e GITHUB_TOKEN=$GITHUB_TOKEN
-        -e GITLAB_TOKEN=$GITLAB_TOKEN
-        -h $CTN_HOST
-        -u $CTN_USER
-        -p $SSH_PORT:22
-        -v /dev:/dev
-        -v /tmp/.X11-unix/X${ZWM_DSP_NUM}:/tmp/.X11-unix/X${ZWM_DSP_NUM}
-        -v /var/run/docker.sock:/var/run/docker.sock
-        -v /etc/security/limits.conf:/etc/security/limits.conf
-        -v /etc/sysctl.conf:/etc/sysctl.conf
-        -v $ZWM_ROOT:$CTN_HOME/zzstumpwm
-        -v $ZWM_TOP/zzemacs:$CTN_HOME/zzemacs
-        -v $ZWM_TOP/lab:$CTN_HOME/lab
-        -v $ZWM_TOP/.zwm/.ssh:$CTN_HOME/.ssh
-        -v $ZWM_TOP/.zwm/.local:$CTN_HOME/.local
-        -v $ZWM_TOP/.zwm/.config:$CTN_HOME/.config
-        -v $ZWM_TOP/.zwm/.emacs.d:$CTN_HOME/.emacs.d
     )
 
-    docker run ${RUN_PARAM[@]} ${IMG}:${TAG} zwm
+    docker run ${CMN_PARAM[@]} ${RUN_PARAM[@]} ${IMG}:${TAG} zwm
 }
 
 stop() {
