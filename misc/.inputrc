@@ -15,3 +15,6 @@ set visible-stats On
 
 # none, visible or audible
 set bell-style none
+
+# im-confg -n ibus
+run_im ibus

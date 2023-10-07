@@ -24,7 +24,7 @@ RUN apt-get update \
 # Setup input method
 RUN apt-get update \
         && DEBIAN_FRONTEND=noninteractive apt-get -y install --no-install-recommends \
-        language-pack-zh-hans dbus-x11 ibus-rime \
+        language-pack-zh-hans dbus-x11 ibus-rime im-config \
         librime-bin librime-data-cangjie5 librime-data-luna-pinyin
 
 # Clean up APT when done.
