@@ -8,7 +8,7 @@ patch:
     - schema: luna_pinyin_fluency
     - schema: luna_pinyin_simp
   "style/font_face": "Droid Sans Fallback"
-  "style/font_point": 16
+  "style/font_point": 13
   "style/color_scheme": aqua
   "style/horizontal": true
   "style/display_tray_icon": false
