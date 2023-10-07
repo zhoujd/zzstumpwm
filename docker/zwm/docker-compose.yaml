@@ -16,6 +16,9 @@ services:
       ZWM_REZ:
       GITLAB_TOKEN:
       GITHUB_TOKEN:
+      XMODIFIERS:
+      QT_IM_MODULE:
+      GTK_IM_MODULE:
     network_mode: bridge
     command: xephyr
     extra_hosts:
