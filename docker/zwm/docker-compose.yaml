@@ -33,6 +33,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - /etc/security/limits.conf:/etc/security/limits.conf
       - /etc/sysctl.conf:/etc/sysctl.conf
+      - /etc/localtime:/etc/localtime:ro
       - ${ZWM_ROOT}:/home/${USER}/zzstumpwm
       - ${ZWM_TOP}/zzemacs:/home/${USER}/zzemacs
       - ${ZWM_TOP}/lab:/home/${USER}/lab
