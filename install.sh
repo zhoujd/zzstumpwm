@@ -72,6 +72,7 @@ ln -sfvT $ZWM_ROOT/misc/.config/rofi ~/.config/rofi
 ln -sfvT $ZWM_ROOT/misc/.config/skippy-xd ~/.config/skippy-xd
 ## Install xsettingsd
 ln -sfvT $ZWM_ROOT/misc/.config/xsettingsd ~/.config/xsettingsd
-
+## Install ibus-rime
+ln -sfvT $ZWM_ROOT/misc/.config/ibus/rime/default.custom.yaml ~/.config/ibus/rime/default.custom.yaml
 
 echo "Install stumpwm end ..."
