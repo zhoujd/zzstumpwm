@@ -7,7 +7,9 @@ USER root
 RUN apt-get update \
         && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
         rofi xserver-xephyr keynav maim slop xclip acpi rlwrap wmctrl \
-        nitrogen x11-xserver-utils x11-utils suckless-tools ibus-rime dbus-x11 \
+        pulseaudio-utils xinput gnome-keyring \
+        nitrogen x11-xserver-utils x11-utils \
+        suckless-tools ibus-rime dbus-x11 \
         && apt-get autoremove \
         && apt-get clean
 
