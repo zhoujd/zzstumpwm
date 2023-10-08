@@ -27,8 +27,6 @@ CMN_PARAM=(
     --restart=always
     --privileged=true
     --cap-add=ALL
-    #--ipc=host  ## use the same IPC namespace
-    #--pid=host  ## see (and modify) the processes of the host
     --add-host=$HOST_NAME:$HOST_IP
     -e XMODIFIERS="@im=ibus"
     -e QT_IM_MODULE="ibus"
