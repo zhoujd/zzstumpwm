@@ -27,7 +27,12 @@ CMN_PARAM=(
     --restart=always
     --privileged=true
     --cap-add=ALL
+    #--ipc=host  ## use the same IPC namespace
+    #--pid=host  ## see (and modify) the processes of the host
     --add-host=$HOST_NAME:$HOST_IP
+    -e XMODIFIERS="@im=ibus"
+    -e QT_IM_MODULE="ibus"
+    -e GTK_IM_MODULE="ibus"
     -e GITHUB_TOKEN=$GITHUB_TOKEN
     -e GITLAB_TOKEN=$GITLAB_TOKEN
     -h $CTN_HOST
@@ -193,6 +198,6 @@ case $1 in
         clean $@
         ;;
     * )
-        echo "Usage: $(basename $0) {dep|prepare|init|zwm|stop|logs|status|emacs|shell|ssh|build|clean}"
+        echo "Usage: $(basename $0) {dep|prepare|init|xephyr|zwm|stop|logs|status|emacs|shell|ssh|build|clean}"
         ;;
 esac
