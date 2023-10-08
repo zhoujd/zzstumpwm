@@ -10,9 +10,6 @@ RUN apt-get update \
         && locale-gen en_US.UTF-8
 ENV LANG=en_US.UTF-8 \
         XMODIFIERS=@im=ibus \
-        QT_IM_MODULE=ibus \
-        GTK_IM_MODULE=ibus \
-        QT4_IM_MODULE=xim \
         GTK_IM_MODULE=xim
 
 # Install package
