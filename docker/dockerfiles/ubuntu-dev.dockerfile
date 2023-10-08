@@ -9,8 +9,6 @@ RUN apt-get update \
         locales \
         && locale-gen en_US.UTF-8
 ENV LANG en_US.UTF-8
-ENV LANGUAGE en_US:en
-ENV LC_ALL en_US.UTF-8
 
 # Install package
 RUN apt-get update \
