@@ -9,14 +9,17 @@ RUN apt-get update \
         locales \
         && locale-gen en_US.UTF-8
 ENV LANG=en_US.UTF-8 \
+        GTK_IM_MODULE=xim \
+        QT4_IM_MODULE=xim \
+        QT_IM_MODULE=ibus \
         XMODIFIERS=@im=ibus \
-        GTK_IM_MODULE=xim
+        CLUTTER_IM_MODULE=xim
 
 # Install package
 RUN apt-get update \
         && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
         rofi xserver-xephyr keynav maim slop xclip acpi rlwrap wmctrl \
-        pulseaudio-utils xinput gnome-keyring suckless-tools xdotool \
+        pulseaudio-utils xinput gnome-keyring suckless-tools xdotool lftp \
         nitrogen x11-xserver-utils x11-utils ffmpeg mpv \
         && apt-get autoremove \
         && apt-get clean
