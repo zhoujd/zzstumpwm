@@ -37,22 +37,17 @@ RUN apt-get clean \
 
 USER ${USER}
 
-## Install icon and theme
-RUN wget https://github.com/vinceliuice/WhiteSur-gtk-theme/archive/refs/heads/master.zip \
-        && unzip master.zip \
-        && mkdir -p ~/.themes \
-        && tar xf WhiteSur-gtk-theme-master/release/WhiteSur-Dark-44-0.tar.xz -C ~/.themes \
-        && rm -rf WhiteSur-gtk-theme-master master.zip
-
+# Install icon and theme
+RUN mkdir -p ~/.themes ~/.icons
+RUN wget https://github.com/vinceliuice/WhiteSur-gtk-theme/raw/master/release/WhiteSur-Dark-44-0.tar.xz \
+        && tar xf WhiteSur-Dark-44-0.tar.xz -C ~/.themes \
+        && rm -f WhiteSur-Dark-44-0.tar.xz
 RUN wget https://github.com/vinceliuice/WhiteSur-icon-theme/archive/refs/heads/master.zip \
         && unzip master.zip \
-        && mkdir -p ~/.icons \
         && ./WhiteSur-icon-theme-master/install.sh -d ~/.icons \
         && rm -rf WhiteSur-icon-theme-master master.zip
-
 RUN wget https://github.com/vinceliuice/McMojave-cursors/archive/refs/heads/master.zip \
         && unzip master.zip \
-        && mkdir -p ~/.icons \
         && rm -rf ~/.icons/McMojave-cursors \
         && cp -pr McMojave-cursors-master/dist ~/.icons/McMojave-cursors \
         && rm -rf McMojave-cursors-master master.zip
