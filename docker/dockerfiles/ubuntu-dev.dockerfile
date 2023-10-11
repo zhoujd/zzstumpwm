@@ -20,7 +20,7 @@ RUN apt-get update \
         && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
         rofi xserver-xephyr keynav maim slop xclip acpi rlwrap wmctrl \
         pulseaudio-utils xinput gnome-keyring suckless-tools xdotool lftp \
-        nitrogen x11-xserver-utils x11-utils ffmpeg mpv \
+        nitrogen x11-xserver-utils x11-utils ffmpeg mpv evolution evolution-ews \
         && apt-get autoremove \
         && apt-get clean
 
