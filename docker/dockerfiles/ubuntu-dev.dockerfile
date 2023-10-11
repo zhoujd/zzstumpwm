@@ -18,9 +18,10 @@ ENV LANG=en_US.UTF-8 \
 # Install package
 RUN apt-get update \
         && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-        rofi xserver-xephyr keynav maim slop xclip acpi rlwrap wmctrl \
+        rofi xserver-xephyr keynav maim slop xclip acpi rlwrap wmctrl unzip \
         pulseaudio-utils xinput gnome-keyring suckless-tools xdotool lftp \
-        nitrogen x11-xserver-utils x11-utils ffmpeg mpv evolution evolution-ews \
+        nitrogen x11-xserver-utils x11-utils ffmpeg mpv \
+        evolution evolution-ews sassc libxml2-utils \
         && apt-get autoremove \
         && apt-get clean
 
@@ -35,6 +36,26 @@ RUN apt-get clean \
         && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 USER ${USER}
+
+## Install icon and theme
+RUN wget https://github.com/vinceliuice/WhiteSur-gtk-theme/archive/refs/heads/master.zip \
+        && unzip master.zip \
+        && mkdir -p ~/.themes \
+        && tar xf WhiteSur-gtk-theme-master/release/WhiteSur-Dark-44-0.tar.xz -C ~/.themes \
+        && rm -rf WhiteSur-gtk-theme-master master.zip
+
+RUN wget https://github.com/vinceliuice/WhiteSur-icon-theme/archive/refs/heads/master.zip \
+        && unzip master.zip \
+        && mkdir -p ~/.icons \
+        && ./WhiteSur-icon-theme-master/install.sh -d ~/.icons \
+        && rm -rf WhiteSur-icon-theme-master master.zip
+
+RUN wget https://github.com/vinceliuice/McMojave-cursors/archive/refs/heads/master.zip \
+        && unzip master.zip \
+        && mkdir -p ~/.icons \
+        && rm -rf ~/.icons/McMojave-cursors \
+        && cp -pr McMojave-cursors-master/dist ~/.icons/McMojave-cursors \
+        && rm -rf McMojave-cursors-master master.zip
 
 COPY entrypoint.sh /app
 ENTRYPOINT ["/app/entrypoint.sh"]
