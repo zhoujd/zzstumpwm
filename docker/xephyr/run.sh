@@ -17,8 +17,6 @@ RUN_PARAM=(
     -d
     --privileged=true
     --cap-add=ALL
-    --ipc=host
-    --pid=host
     -e DISPLAY=$DISPLAY
     -u $USER_UID:$USER_GID
     -v /tmp/.X11-unix:/tmp/.X11-unix
