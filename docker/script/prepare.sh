@@ -3,16 +3,22 @@
 
 SCRIPT_ROOT=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
 ZWM_ROOT=$(cd $SCRIPT_ROOT/../.. && pwd)
-ZWM_TOP=$(cd $ZWM_ROOT/.. && pwd)
+ZWM_DATA=/opt/zwm
 
-dot_zwm(){
-    mkdir -p $ZWM_TOP/.zwm
-    pushd $ZWM_TOP/.zwm
-    mkdir -p .config .emacs.d .local .ssh .vscode
-    popd
-    echo "Prepare .zwm Done"
+zwm_create() {
+    sudo mkdir -p $ZWM_DATA
+    sudo chown -R $(id -u):$(id -g) $ZWM_DATA
+    echo "Prepare: $ZWM_DATA Create Done"
 }
 
-dot_zwm
+zwm_init() {
+    pushd $ZWM_DATA > /dev/null
+    mkdir -p .config .emacs.d .local .ssh .vscode
+    popd > /dev/null
+    echo "Prepare: Init Done"
+}
 
-echo "Prepare All Done"
+zwm_create
+zwm_init
+
+echo "Prepare: All Done"

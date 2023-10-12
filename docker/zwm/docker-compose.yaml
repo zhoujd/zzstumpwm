@@ -33,9 +33,9 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - ${ZWM_ROOT}:/home/${USER}/zzstumpwm
       - ${ZWM_TOP}/zzemacs:/home/${USER}/zzemacs
-      - ${ZWM_TOP}/lab:/home/${USER}/lab
-      - ${ZWM_TOP}/.zwm/.ssh:/home/${USER}/.ssh
-      - ${ZWM_TOP}/.zwm/.local:/home/${USER}/.local
-      - ${ZWM_TOP}/.zwm/.config:/home/${USER}/.config
-      - ${ZWM_TOP}/.zwm/.emacs.d:/home/${USER}/.emacs.d
-      - ${ZWM_TOP}/.zwm/.vscode:/home/${USER}/.vscode
+      - /opt/zwm/lab:/home/${USER}/lab
+      - /opt/zwm/.ssh:/home/${USER}/.ssh
+      - /opt/zwm/.local:/home/${USER}/.local
+      - /opt/zwm/.config:/home/${USER}/.config
+      - /opt/zwm/.emacs.d:/home/${USER}/.emacs.d
+      - /opt/zwm/.vscode:/home/${USER}/.vscode
