@@ -9,8 +9,7 @@ CTN_NAME=${CTN_NAME:-$CTN_PREFIX-$TAG}
 USER_UID=$(id -u)
 USER_GID=$(id -g)
 
-XR_DSP_NUM=120
-XR_DSP=:$XR_DSP_NUM
+XR_DSP=:120
 XR_REZ=1280x720
 
 RUN_PARAM=(
@@ -19,9 +18,9 @@ RUN_PARAM=(
     --cap-add=ALL
     -e DISPLAY=$DISPLAY
     -u $USER_UID:$USER_GID
-    -v /tmp/.X11-unix:/tmp/.X11-unix
     -v /etc/passwd:/etc/passwd
     -v /etc/group:/etc/group
+    -v /tmp/.X11-unix:/tmp/.X11-unix
 )
 
 XEPHYR_PARAM=(
@@ -57,19 +56,6 @@ status() {
     ps -ef | grep Xephyr | grep -v grep
 }
 
-clean() {
-    DSP_NUM=${1:-$XR_DSP_NUM}
-    XR_PID=$(ps -ef | grep Xephyr | grep :$DSP_NUM | awk '{ print $2 }')
-    if [ -n "$XR_PID" ]; then
-        kill -9 $XR_PID
-        echo "Kill $XR_PID for $DSP_NUM"
-    else
-        echo "No XR_PID for $DSP_NUM"
-    fi
-    sudo rm -rf /tmp/.X${DSP_NUM}-lock
-    sudo rm -rf /tmp/.X11-unix/X${DSP_NUM}
-}
-
 case $1 in
     build )
         make
@@ -94,6 +80,6 @@ case $1 in
         clean $@
         ;;
     * )
-        echo "Usage: $(basename $0) {start|stop|shell|logs|status|clean}"
+        echo "Usage: $(basename $0) {start|stop|shell|logs|status}"
         ;;
 esac
