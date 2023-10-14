@@ -46,7 +46,7 @@ shell() {
 }
 
 logs() {
-    docker logs ${CTN_NAME} 2>/dev/null
+    docker logs ${CTN_NAME}
 }
 
 status() {
