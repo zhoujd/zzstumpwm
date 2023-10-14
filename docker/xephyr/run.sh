@@ -19,7 +19,6 @@ RUN_PARAM=(
     -e DISPLAY=$DISPLAY
     -u $USER_UID:$USER_GID
     -v /etc/passwd:/etc/passwd
-    -v /etc/group:/etc/group
     -v /tmp/.X11-unix:/tmp/.X11-unix
 )
 
