@@ -1,4 +1,5 @@
-#!/bin/sh
+#!/bin/bash
+
 for i in ~/.zwmrc.d/*.sh ; do
     test -x "$i" && "$i"
 done

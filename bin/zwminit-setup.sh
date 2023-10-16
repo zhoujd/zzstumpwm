@@ -15,14 +15,7 @@ install_zwmrc() {
     ln -sfvT $ZWM_ROOT/misc/.zwmrc.d ~/.zwmrc.d
 }
 
-install_zwminit() {
-    local target=/usr/bin/zwminit
-    sudo ln -sfvT $ZWM_ROOT/bin/zwminit $target
-    sudo chmod +x $target
-}
-
 install_gtk
 install_zwmrc
-install_zwminit
 
 echo "zwminit setup done"

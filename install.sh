@@ -69,10 +69,9 @@ ln -sfvT $ZWM_ROOT/misc/.config/rofi ~/.config/rofi
 ln -sfvT $ZWM_ROOT/misc/.config/skippy-xd ~/.config/skippy-xd
 ## Install xsettingsd
 ln -sfvT $ZWM_ROOT/misc/.config/xsettingsd ~/.config/xsettingsd
-## Install ibus-rime
-mkdir -p ~/.config/ibus/rime
-ln -sfvT $ZWM_ROOT/misc/.config/ibus/rime/ibus_rime.yaml ~/.config/ibus/rime/ibus_rime.yaml
 
+## Install ibus-rime
+$ZWM_ROOT/bin/rime-setup.sh
 ## Init ZWM
 $ZWM_ROOT/bin/zwminit-setup.sh
 
