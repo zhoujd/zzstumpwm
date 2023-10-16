@@ -29,7 +29,7 @@ RUN apt-get update \
 RUN apt-get update \
         && DEBIAN_FRONTEND=noninteractive apt-get -y install --no-install-recommends \
         ibus-m17n ibus-rime language-pack-zh-hans dbus-x11 im-config zenity \
-        ibus-data ibus-gtk ibus-gtk3 \
+        ibus-data ibus-gtk ibus-gtk3 ibus-clutter \
         gir1.2-ibus-1.0 libibus-1.0-5 libibus-1.0-dev python3-ibus-1.0 \
         librime-bin librime-data-cangjie5 librime-data-luna-pinyin
 

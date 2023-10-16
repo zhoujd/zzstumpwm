@@ -17,12 +17,7 @@ install_zwmrc() {
 
 install_zwminit() {
     local target=/usr/bin/zwminit
-    sudo tee $target <<EOF
-#!/bin/sh
-for i in ~/.zwmrc.d/*.sh ; do
-    test -x "\$i" && "\$i"
-done
-EOF
+    sudo ln -sfvT $ZWM_ROOT/bin/zwminit $target
     sudo chmod +x $target
 }
 
