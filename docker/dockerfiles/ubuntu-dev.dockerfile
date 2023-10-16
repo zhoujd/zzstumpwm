@@ -33,6 +33,11 @@ RUN apt-get update \
         gir1.2-ibus-1.0 libibus-1.0-5 libibus-1.0-dev python3-ibus-1.0 \
         librime-bin librime-data-cangjie5 librime-data-luna-pinyin
 
+# Setup audio
+RUN apt-get update \
+        && DEBIAN_FRONTEND=noninteractive apt-get -y install --no-install-recommends \
+        alsa-base pulseaudio
+
 # Clean up APT when done.
 RUN apt-get clean \
         && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*

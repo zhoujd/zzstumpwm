@@ -18,14 +18,6 @@ setup_zzemacs() {
     fi
 }
 
-setup_libvirtd() {
-    local libvirtd_cmd=/usr/sbin/libvirtd
-    if [ -x $libvirtd_cmd ]; then
-        echo "Setup libvirtd ..."
-        sudo $libvirtd_cmd -d
-    fi
-}
-
 setup_dbus() {
     local dbus_cmd=/etc/init.d/dbus
     if [ -x $dbus_cmd ]; then
@@ -34,11 +26,27 @@ setup_dbus() {
     fi
 }
 
+setup_libvirtd() {
+    local libvirtd_cmd=/usr/sbin/libvirtd
+    if [ -x $libvirtd_cmd ]; then
+        echo "Setup libvirtd ..."
+        sudo $libvirtd_cmd -d
+    fi
+}
+
 setup_ssh() {
     local ssh_cmd=/etc/init.d/ssh
     if [ -x $ssh_cmd ]; then
         echo "Setup ssh ..."
         sudo $ssh_cmd start
+    fi
+}
+
+setup_audio() {
+    local audio_cmd=/usr/bin/pulseaudio
+    if [ -x $audio_cmd ]; then
+        echo "Setup audio ..."
+        $audio_cmd --start
     fi
 }
 
@@ -73,25 +81,28 @@ case "$CMD" in
     "zwm" )
         setup_common
         setup_zzemacs
-        setup_libvirtd
         setup_dbus
+        setup_libvirtd
         setup_ssh
+        setup_audio
         setup_zwm
         ;;
     "xephyr" )
         setup_common
         setup_zzemacs
-        setup_libvirtd
         setup_dbus
+        setup_libvirtd
         setup_ssh
+        setup_audio
         setup_xephyr
         ;;
     "init" )
         setup_common
         setup_zzemacs
-        setup_libvirtd
         setup_dbus
+        setup_libvirtd
         setup_ssh
+        setup_audio
         setup_sleep
         ;;
     "help" )
