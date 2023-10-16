@@ -29,7 +29,8 @@ RUN apt-get update \
 RUN apt-get update \
         && DEBIAN_FRONTEND=noninteractive apt-get -y install --no-install-recommends \
         ibus-m17n ibus-rime language-pack-zh-hans dbus-x11 im-config zenity \
-        ibus-data ibus-gtk ibus-gtk3 ibus-qt4 gir1.2-ibus-1.0 libibus-1.0-5 python3-ibus-1.0 \
+        ibus-data ibus-gtk ibus-gtk3 \
+        gir1.2-ibus-1.0 libibus-1.0-5 libibus-1.0-dev python3-ibus-1.0 \
         librime-bin librime-data-cangjie5 librime-data-luna-pinyin
 
 # Clean up APT when done.
@@ -40,9 +41,9 @@ USER ${USER}
 
 # Install icon and theme
 RUN mkdir -p ~/.themes ~/.icons
-RUN wget https://github.com/vinceliuice/WhiteSur-gtk-theme/raw/master/release/WhiteSur-Dark-44-0.tar.xz \
-        && tar xf WhiteSur-Dark-44-0.tar.xz -C ~/.themes \
-        && rm -f WhiteSur-Dark-44-0.tar.xz
+RUN wget https://github.com/vinceliuice/WhiteSur-gtk-theme/raw/master/release/WhiteSur-Dark.tar.xz \
+        && tar xf WhiteSur-Dark.tar.xz -C ~/.themes \
+        && rm -f WhiteSur-Dark.tar.xz
 RUN wget https://github.com/vinceliuice/WhiteSur-icon-theme/archive/refs/heads/master.zip \
         && unzip master.zip \
         && ./WhiteSur-icon-theme-master/install.sh -d ~/.icons \
