@@ -70,7 +70,7 @@ setup_help() {
 
 CMD=${1:-""}
 case "$CMD" in
-    zwm )
+    "zwm" )
         setup_common
         setup_zzemacs
         setup_dbus
@@ -78,7 +78,7 @@ case "$CMD" in
         setup_ssh
         setup_zwm
         ;;
-    xephyr )
+    "xephyr" )
         setup_common
         setup_zzemacs
         setup_dbus
@@ -86,7 +86,7 @@ case "$CMD" in
         setup_ssh
         setup_xephyr
         ;;
-    init )
+    "init" )
         setup_common
         setup_zzemacs
         setup_dbus
@@ -94,7 +94,7 @@ case "$CMD" in
         setup_ssh
         setup_sleep
         ;;
-    help )
+    "help" )
         setup_help
         ;;
     * )
