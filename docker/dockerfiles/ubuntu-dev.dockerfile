@@ -60,5 +60,5 @@ RUN wget https://github.com/vinceliuice/McMojave-cursors/archive/refs/heads/mast
         && rm -rf McMojave-cursors-master master.zip
 
 COPY entrypoint.sh /app
-ENTRYPOINT ["/bin/bash", "/app/entrypoint.sh"]
+ENTRYPOINT ["/app/entrypoint.sh"]
 CMD ["zwm"]
