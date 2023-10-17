@@ -42,14 +42,6 @@ setup_ssh() {
     fi
 }
 
-setup_audio() {
-    local audio_cmd=/usr/bin/pulseaudio
-    if [ -x $audio_cmd ]; then
-        echo "Setup audio ..."
-        $audio_cmd --start
-    fi
-}
-
 setup_zwm() {
     local zwm_cmd=$ZWM_ROOT/bin/zwm-session
     if [ -x $zwm_cmd ]; then
@@ -72,40 +64,37 @@ setup_sleep() {
 }
 
 setup_help() {
-    echo "Usage: $0 {zwm|init|help}"
+    echo "Usage: $0 {zwm|xephyr|init|help}"
 }
 
 
 CMD=${1:-""}
 case "$CMD" in
-    "zwm" )
+    zwm )
         setup_common
         setup_zzemacs
         setup_dbus
         setup_libvirtd
         setup_ssh
-        setup_audio
         setup_zwm
         ;;
-    "xephyr" )
+    xephyr )
         setup_common
         setup_zzemacs
         setup_dbus
         setup_libvirtd
         setup_ssh
-        setup_audio
         setup_xephyr
         ;;
-    "init" )
+    init )
         setup_common
         setup_zzemacs
         setup_dbus
         setup_libvirtd
         setup_ssh
-        setup_audio
         setup_sleep
         ;;
-    "help" )
+    help )
         setup_help
         ;;
     * )
