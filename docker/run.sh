@@ -28,6 +28,8 @@ CMN_PARAM=(
     --privileged=true
     --cap-add=ALL
     --group-add video
+    --group-add pulse-access
+    --device /dev/snd
     --add-host=$HOST_NAME:$HOST_IP
     -e GITHUB_TOKEN=$GITHUB_TOKEN
     -e GITLAB_TOKEN=$GITLAB_TOKEN

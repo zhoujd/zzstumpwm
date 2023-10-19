@@ -36,7 +36,10 @@ RUN apt-get update \
 # Setup audio
 RUN apt-get update \
         && DEBIAN_FRONTEND=noninteractive apt-get -y install --no-install-recommends \
-        alsa-base pulseaudio
+        alsa-base \
+        alsa-utils \
+        libsndfile1-dev \
+        pulseaudio
 
 # Clean up APT when done.
 RUN apt-get clean \
