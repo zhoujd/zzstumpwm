@@ -27,7 +27,6 @@ CMN_PARAM=(
     --restart=always
     --privileged=true
     --cap-add=ALL
-    --group-add audio
     --group-add video
     --add-host=$HOST_NAME:$HOST_IP
     -e GITHUB_TOKEN=$GITHUB_TOKEN
