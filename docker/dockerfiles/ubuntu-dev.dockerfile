@@ -23,13 +23,18 @@ RUN apt-get update \
         nitrogen x11-xserver-utils x11-utils ffmpeg mpv \
         evolution evolution-ews sassc libxml2-utils
 
-# Setup input method
+# Setup ibus
 RUN apt-get update \
         && DEBIAN_FRONTEND=noninteractive apt-get -y install --no-install-recommends \
         ibus-m17n ibus-rime language-pack-zh-hans dbus-x11 im-config zenity \
         ibus-data ibus-gtk ibus-gtk3 ibus-clutter \
         gir1.2-ibus-1.0 libibus-1.0-5 libibus-1.0-dev python3-ibus-1.0 \
         librime-bin librime-data-cangjie5 librime-data-luna-pinyin
+
+# Setup fcitx
+RUN apt-get update \
+        && DEBIAN_FRONTEND=noninteractive apt-get -y install --no-install-recommends \
+        fcitx fcitx-frontend-all fcitx-rime
 
 # Setup audio
 RUN apt-get update \
