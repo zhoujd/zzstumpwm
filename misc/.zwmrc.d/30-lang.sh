@@ -6,6 +6,8 @@ im_fcitx() {
     export GTK_IM_MODULE="fcitx"
     export QT_IM_MODULE="fcitx"
     export XMODIFIERS="@im=fcitx"
+
+    fcitx -d
 }
 
 im_ibus() {
@@ -14,7 +16,8 @@ im_ibus() {
     export GTK_IM_MODULE=ibus
     export QT_IM_MODULE=ibus
     export XMODIFIERS=@im=ibus
+
+    ibus-daemon -drx
 }
 
 im_ibus
-ibus-daemon -drx
