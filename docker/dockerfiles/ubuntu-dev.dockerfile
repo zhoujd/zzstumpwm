@@ -26,15 +26,15 @@ RUN apt-get update \
 # Setup ibus
 RUN apt-get update \
         && DEBIAN_FRONTEND=noninteractive apt-get -y install --no-install-recommends \
-        ibus-m17n ibus-rime language-pack-zh-hans dbus-x11 im-config zenity \
-        ibus-data ibus-gtk ibus-gtk3 ibus-clutter \
-        gir1.2-ibus-1.0 libibus-1.0-5 libibus-1.0-dev python3-ibus-1.0 \
-        librime-bin librime-data-cangjie5 librime-data-luna-pinyin
+        ibus-m17n ibus-rime ibus-data ibus-gtk ibus-gtk3 ibus-clutter \
+        librime-bin librime-data-cangjie5 librime-data-luna-pinyin \
+        gir1.2-ibus-1.0 python3-ibus-1.0 \
+        dbus-x11 im-config zenity
 
 # Setup fcitx
 RUN apt-get update \
         && DEBIAN_FRONTEND=noninteractive apt-get -y install --no-install-recommends \
-        fcitx fcitx-frontend-all fcitx-rime
+        fcitx fcitx-frontend-all fcitx-rime fcitx-config-gtk
 
 # Setup audio
 RUN apt-get update \
