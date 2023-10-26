@@ -21,7 +21,7 @@ RUN apt-get update \
         rofi xserver-xephyr keynav maim slop xclip acpi rlwrap wmctrl unzip \
         pulseaudio-utils xinput gnome-keyring suckless-tools xdotool lftp \
         nitrogen x11-xserver-utils x11-utils ffmpeg mpv \
-        evolution evolution-ews sassc libxml2-utils
+        evolution evolution-ews sassc libxml2-utils fuse
 
 # Setup ibus
 RUN apt-get update \
