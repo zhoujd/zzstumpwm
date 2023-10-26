@@ -7,7 +7,7 @@ services:
       dockerfile: ubuntu-dev.dockerfile
       args:
         VARIANT: 20.04
-    image: zz/ubuntu-20.04-zwm:dev
+    image: zhoujd/ubuntu-20.04-zwm:dev
     hostname: ubuntu-2004-zwm
     container_name: zwm-dev
     environment:

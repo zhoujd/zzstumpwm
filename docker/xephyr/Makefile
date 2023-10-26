@@ -4,11 +4,12 @@
 all: xephyr-dev
 
 VARIANT ?= 20.04
+IMG_NS ?= zhoujd
 
 BUILD_ARG += ## --rm --no-cache
 BUILD_ARG += --build-arg VARIANT=$(VARIANT)
 
-Xephyr_DEV_TAG := zz/ubuntu-$(VARIANT)-xephyr:dev
+Xephyr_DEV_TAG := $(IMG_NS)/ubuntu-$(VARIANT)-xephyr:dev
 
 xephyr-dev: xephyr.dockerfile
 	docker build $(BUILD_ARG) -t $(Xephyr_DEV_TAG) -f $< .

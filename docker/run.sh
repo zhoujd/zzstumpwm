@@ -8,7 +8,7 @@ ZWM_DSP_NUM=${ZWM_DSP_NUM:-100}
 ZWM_DSP=:$ZWM_DSP_NUM
 ZWM_REZ=${ZWM_REZ:-1920x1080}
 
-IMG=${IMG:-zz/ubuntu-20.04-zwm}
+IMG=${IMG:-zhoujd/ubuntu-20.04-zwm}
 TAG=${TAG:-dev}
 CTN_PREFIX=${CTN_PREFIX:-zwm}
 CTN_NAME=${CTN_NAME:-$CTN_PREFIX-$TAG}

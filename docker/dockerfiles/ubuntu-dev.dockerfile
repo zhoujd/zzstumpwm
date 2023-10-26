@@ -1,5 +1,5 @@
 ARG VARIANT=20.04
-FROM zz/ubuntu-${VARIANT}-zzemacs:dev
+FROM zhoujd/ubuntu-${VARIANT}-zzemacs:dev
 
 USER root
 
@@ -21,9 +21,7 @@ RUN apt-get update \
         rofi xserver-xephyr keynav maim slop xclip acpi rlwrap wmctrl unzip \
         pulseaudio-utils xinput gnome-keyring suckless-tools xdotool lftp \
         nitrogen x11-xserver-utils x11-utils ffmpeg mpv \
-        evolution evolution-ews sassc libxml2-utils \
-        && apt-get autoremove \
-        && apt-get clean
+        evolution evolution-ews sassc libxml2-utils
 
 # Setup input method
 RUN apt-get update \
