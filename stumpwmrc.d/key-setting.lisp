@@ -64,7 +64,8 @@
   (kbd "s")                 (urxvt-command "speedpad")
   (kbd "C-s")               "stumpish"
   (kbd "M-s")               "exec stacer"
-  (kbd "u")                 "intel-unite-client"
+  (kbd "u")                 "code"
+  (kbd "C-u")               "exec code"
   (kbd "v")                 "gvim"
   (kbd "C-v")               "exec gvim"
   (kbd "M-v")               (urxvt-command "vim")
