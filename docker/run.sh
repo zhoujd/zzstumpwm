@@ -39,6 +39,7 @@ CMN_PARAM=(
     -v /var/run/docker.sock:/var/run/docker.sock
     -v /etc/security/limits.conf:/etc/security/limits.conf
     -v /etc/sysctl.conf:/etc/sysctl.conf
+    -v /etc/timezone:/etc/timezone:ro
     -v /etc/localtime:/etc/localtime:ro
     -v $ZWM_ROOT:$CTN_HOME/zzstumpwm
     -v $ZWM_TOP/zzemacs:$CTN_HOME/zzemacs
