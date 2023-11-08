@@ -3,7 +3,7 @@
 ## https://ulauncher.io/
 ## Press Alt+Enter to access an alt menu
 
-version=5.14.0
+version=5.15.4
 Install_ulauncher() {
     echo "Install ulauncher"
     local tmp=~/.tmp
@@ -11,6 +11,7 @@ Install_ulauncher() {
     mkdir -p $tmp
     pushd $tmp
     wget https://github.com/Ulauncher/Ulauncher/releases/download/${version}/ulauncher_${version}_all.deb
+    sudo apt update
     sudo apt install ./ulauncher_${version}_all.deb
     popd
 }
