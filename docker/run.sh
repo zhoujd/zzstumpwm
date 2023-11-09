@@ -43,12 +43,12 @@ CMN_PARAM=(
     -v /etc/localtime:/etc/localtime:ro
     -v $ZWM_ROOT:$CTN_HOME/zzstumpwm
     -v $ZWM_TOP/zzemacs:$CTN_HOME/zzemacs
-    -v /opt/zwm/lab:$CTN_HOME/lab
-    -v /opt/zwm/.ssh:$CTN_HOME/.ssh
-    -v /opt/zwm/.local:$CTN_HOME/.local
-    -v /opt/zwm/.config:$CTN_HOME/.config
-    -v /opt/zwm/.emacs.d:$CTN_HOME/.emacs.d
-    -v /opt/zwm/.vscode:$CTN_HOME/.vscode
+    -v /opt/zach/lab:$CTN_HOME/lab
+    -v /opt/zach/zwm/.ssh:$CTN_HOME/.ssh
+    -v /opt/zach/zwm/.local:$CTN_HOME/.local
+    -v /opt/zach/zwm/.config:$CTN_HOME/.config
+    -v /opt/zach/zwm/.emacs.d:$CTN_HOME/.emacs.d
+    -v /opt/zach/zwm/.vscode:$CTN_HOME/.vscode
 )
 
 EXEC_PARAM=(

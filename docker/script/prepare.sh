@@ -3,7 +3,7 @@
 
 SCRIPT_ROOT=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
 ZWM_ROOT=$(cd $SCRIPT_ROOT/../.. && pwd)
-ZWM_DATA=/opt/zwm
+ZWM_DATA=/opt/zach/zwm
 ZWM_USER=$(id -u):$(id -g)
 
 zwm_create() {
