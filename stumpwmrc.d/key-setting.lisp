@@ -202,6 +202,7 @@
   (kbd "s-M-m")             "evolution"
   (kbd "s-M-n")             "nnn"
   (kbd "s-M-t")             "teams"
+  (kbd "s-M-u")             "code"
   (kbd "s-M-z")             "vmware-view"
   ))
 
