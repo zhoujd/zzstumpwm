@@ -19,14 +19,14 @@ ENV LANG=en_US.UTF-8 \
 RUN apt-get update \
         && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
         rofi xserver-xephyr keynav maim slop xclip acpi rlwrap wmctrl unzip \
-        pulseaudio-utils xinput gnome-keyring suckless-tools xdotool lftp \
+        pulseaudio-utils xinput gnome-keyring suckless-tools xdotool \
         nitrogen x11-xserver-utils x11-utils ffmpeg mpv \
         evolution evolution-ews sassc libxml2-utils
 
 # Install APP tool
 RUN apt-get update \
         && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-        fuse
+        fuse lftp
 
 # Setup ibus
 RUN apt-get update \
@@ -35,11 +35,6 @@ RUN apt-get update \
         librime-bin librime-data-cangjie5 librime-data-luna-pinyin \
         gir1.2-ibus-1.0 python3-ibus-1.0 \
         dbus-x11 im-config zenity
-
-# Setup fcitx
-RUN apt-get update \
-        && DEBIAN_FRONTEND=noninteractive apt-get -y install --no-install-recommends \
-        fcitx fcitx-frontend-all fcitx-rime fcitx-config-gtk
 
 # Setup audio
 RUN apt-get update \
