@@ -45,7 +45,7 @@ URxvt.font: xft:JetBrains Mono NL:size=13, \
 !URxvt.iconFile: /usr/share/pixmaps/urxvt_48x48.svg
 
 !! Extensions
-URxvt.perl-ext-common: default,eval,url-select,keyboard-select,tabbedex,selection-to-clipboard,font-size
+URxvt.perl-ext-common: default,eval,url-select,keyboard-select,tabbedex,selection-to-clipboard,font-size,searchable-scrollback
 URxvt.colorUL: #4682B4
 
 !! eval
@@ -59,7 +59,13 @@ URxvt.keysym.M-u: perl:url-select:select_next
 !! keyboard-select ctrl+alt+[c|v]
 URxvt.keysym.M-Escape: perl:keyboard-select:activate
 URxvt.keysym.M-q: perl:keyboard-select:activate
-URxvt.keysym.M-s: perl:keyboard-select:search
+
+!! searchable-scrollback
+!! https://linux.die.net/man/1/urxvt-searchable-scrollback
+!! <Meta><S> incremental scrollback search (enabled by default)
+!! Up/Down (upwards/downwards)
+!! Return/Escape (stay/cancell)
+URxvt.keysym.C-s: searchable-scrollback:start
 
 !! tabbedex 'ctrl+d' to close tab
 URxvt.tabbed.tabbar-fg: 2
