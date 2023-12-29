@@ -33,6 +33,8 @@ rm -f ~/.xinitrc
 rm -f ~/.xsession
 ## Remove .tmux.conf
 rm -f ~/.tmux.conf
+## Remove .screenrc
+rm -f ~/.screenrc
 ## Remove .Xresources
 rm -f ~/.Xresources
 ## Remove .Xdefaults

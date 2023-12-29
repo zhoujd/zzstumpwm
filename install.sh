@@ -33,6 +33,9 @@ ln -sfvT $ZWM_ROOT/misc/.nanorc ~/.nanorc
 ## Set tmux configure
 ln -sfvT $ZWM_ROOT/misc/.tmux.conf ~/.tmux.conf
 
+## Set screen configure
+ln -sfvT $ZWM_ROOT/misc/.screenrc ~/.screenrc
+
 ## Set csh configure
 ln -sfvT $ZWM_ROOT/misc/.cshrc ~/.cshrc
 
