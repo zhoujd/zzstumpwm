@@ -45,8 +45,11 @@ URxvt.font: xft:SF Mono:size=13, \
 !URxvt.iconFile: /usr/share/pixmaps/urxvt_48x48.svg
 
 !! Extensions
-URxvt.perl-ext-common: default,eval,url-select,keyboard-select,tabbedex,selection-to-clipboard,font-size
+URxvt.perl-ext-common: default,eval,url-select,keyboard-select,tabbedex,selection-to-clipboard,font-size,fullscreen
 URxvt.colorUL: #4682B4
+
+!! fullscreen
+URxvt.keysym.F11: perl:fullscreen:switch
 
 !! eval
 URxvt.keysym.Shift-Control-V: eval:paste_clipboard
