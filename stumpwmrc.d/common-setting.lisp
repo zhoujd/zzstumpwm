@@ -35,6 +35,8 @@
       *maxsize-border-width*        0
       *transient-border-width*      0
       *message-window-padding*      10
+      *float-window-border*         2
+      *float-window-title-height*   2
       *window-border-style*         :thin)
 
 ;; time string
