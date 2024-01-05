@@ -45,6 +45,9 @@ ln -sfvT $ZWM_ROOT/misc/.Xresources ~/.Xresources
 ## Install .Xdefaults
 ln -sfvT $ZWM_ROOT/misc/.Xdefaults ~/.Xdefaults
 
+## Install .inputrc
+ln -sfvT $ZWM_ROOT/misc/.inputrc ~/.inputrc
+
 ## Install .urxvt
 ln -sfvT $ZWM_ROOT/misc/.urxvt ~/.urxvt
 
