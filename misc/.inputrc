@@ -1,4 +1,4 @@
-## .inputrc
+## Configuration file of GNU readline
 
 $include /etc/inputrc
 
