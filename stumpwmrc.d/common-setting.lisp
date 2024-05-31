@@ -35,8 +35,6 @@
       *maxsize-border-width*        0
       *transient-border-width*      0
       *message-window-padding*      10
-      stumpwm.floating-group::*float-window-border*         2
-      stumpwm.floating-group::*float-window-title-height*   2
       *window-border-style*         :thin)
 
 ;; time string
