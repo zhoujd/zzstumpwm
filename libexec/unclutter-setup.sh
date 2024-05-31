@@ -3,7 +3,7 @@
 TARGET_ROOT=~/Downloads
 
 dep() {
-    sudo apt install -y libev-dev
+    sudo apt install -y libev-dev libxi-dev
 }
 
 install() {
