@@ -45,7 +45,7 @@
    #'(lambda (cmd)
        (apply #'run-command-ps cmd))
    (list
-    (list "xmodmap" :options "~/.Xmodmap")
+    (list "echo" :options "Welcome to zwm!")
     )))
 
 (stumpwm:add-hook stumpwm:*start-hook* #'start-hook-ps)
