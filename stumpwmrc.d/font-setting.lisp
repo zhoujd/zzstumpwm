@@ -16,10 +16,13 @@
 #-ttf-fonts
 (require 'ttf-fonts)
 
+
 ;;ttf font
 (ignore-errors
- (set-font (make-instance 'xft:font
+ (and
+  (xft:cache-fonts)
+  (set-font (make-instance 'xft:font
                           :family "WenQuanYi Micro Hei Mono"
                           :subfamily "Regular"
                           :size 12
-                          :antialias t)))
+                          :antialias t))))

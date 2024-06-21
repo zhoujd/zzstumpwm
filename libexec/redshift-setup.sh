@@ -23,6 +23,7 @@ Install_cfg() {
 
 Install_service() {
     if [ -e /usr/bin/redshift ]; then
+        mkdir -p $ZZSTUMPWM_ROOT/misc/.config/systemd/user
         ln -sfTv $ZZSTUMPWM_ROOT/misc/.config/systemd/user/redshift.service ~/.config/systemd/user/redshift.service
         systemctl daemon-reload --user
         systemctl --user enable --now redshift
