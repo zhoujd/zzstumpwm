@@ -5,12 +5,22 @@ ZZSTUMPWM_ROOT=$(cd $SCRIPT_ROOT/.. && pwd)
 PREFIX=/usr/local/stumpwm
 SBCL_HOME=${SBCL_HOME:-/usr/lib/sbcl}
 
-install() {
+sbcl() {
     echo "build stumpwm"
     echo "use SBCL_HOME=$SBCL_HOME"
     pushd $ZZSTUMPWM_ROOT/lisp/system/stumpwm
     ./autogen.sh
     ./configure --prefix=$PREFIX
+    make all
+    sudo make install
+    popd
+}
+
+clisp() {
+    echo "build stumpwm with clisp"
+    pushd $ZZSTUMPWM_ROOT/lisp/system/stumpwm
+    ./autogen.sh
+    ./configure --prefix=$PREFIX --with-lisp=clisp
     make all
     sudo make install
     popd
@@ -32,15 +42,16 @@ EOF
 
 uninstall() {
     echo "uinstall stumpwm"
-    sudo rm -f /usr/share/xsessions/stumpwm.desktop
     sudo rm -f /etc/profile.d/zz-stumpwm.sh
     sudo rm -rf $PREFIX
 }
 
-
 case $1 in
-    install )
-        install
+    sbcl )
+        sbcl
+        ;;
+    clisp )
+        clisp
         ;;
     clean )
         clean
@@ -52,7 +63,7 @@ case $1 in
         uninstall
         ;;
     * )
-        echo "Usage: $(basename $0) {install|clean|config|uninstall}"
+        echo "Usage: $(basename $0) {sbcl|clisp|clean|config|uninstall}"
         ;;
 esac
 
