@@ -2,7 +2,7 @@
 
 SCRIPT_ROOT=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
 ZZSTUMPWM_ROOT=$(cd $SCRIPT_ROOT/.. && pwd)
-PREFIX=/usr/local/stumpwm
+PREFIX=/usr/local
 SBCL_HOME=${SBCL_HOME:-/usr/lib/sbcl}
 
 sbcl() {
@@ -33,19 +33,6 @@ clean() {
     popd
 }
 
-config() {
-    echo "config stumpwm"
-    sudo tee /etc/profile.d/zz-stumpwm.sh <<EOF
-export PATH=$PREFIX/bin\${PATH:+:}\$PATH
-EOF
-}
-
-uninstall() {
-    echo "uinstall stumpwm"
-    sudo rm -f /etc/profile.d/zz-stumpwm.sh
-    sudo rm -rf $PREFIX
-}
-
 case $1 in
     sbcl )
         sbcl
@@ -56,14 +43,8 @@ case $1 in
     clean )
         clean
         ;;
-    config )
-        config
-        ;;
-    uninstall )
-        uninstall
-        ;;
     * )
-        echo "Usage: $(basename $0) {sbcl|clisp|clean|config|uninstall}"
+        echo "Usage: $(basename $0) {sbcl|clisp|clean}"
         ;;
 esac
 
