@@ -1,6 +1,6 @@
 ;;;; .sbclrc
 
-;;; Setup asdf
+;; Setup asdf
 #-asdf
 (require :asdf)
 (asdf:initialize-source-registry
@@ -8,7 +8,7 @@
    (:tree (:home "common-lisp"))
    :inherit-configuration))
 
-;;; The following lines added by ql:add-to-init-file:
+;; The following lines added by ql:add-to-init-file:
 #-quicklisp
 (let ((quicklisp-init (merge-pathnames "quicklisp/setup.lisp"
                                        (user-homedir-pathname))))
