@@ -16,7 +16,6 @@
 #-ttf-fonts
 (require 'ttf-fonts)
 
-
 ;;ttf font
 (ignore-errors
  (and
