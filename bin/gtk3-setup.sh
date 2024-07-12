@@ -11,15 +11,17 @@ install_dep() {
 
 install_user() {
     echo "Install gtk3 config to user"
-    local target=~/.config/gtk-3.0/settings.ini
-    ln -sfvT $ZZSTUMPWM_ROOT/misc/.config/gtk-3.0/settings.ini $target
+    local target=~/.config/gtk-3.0
+    mkdir -p $target
+    ln -sfvT $ZZSTUMPWM_ROOT/misc/.config/gtk-3.0/settings.ini $target/settings.ini
 }
 
 install_sys() {
-    local target=/etc/gtk-3.0/settings.ini
+    local target=/etc/gtk-3.0
     echo "Install gtk3 config to $target"
-    sudo sed -i 's/gtk-theme-name.*/gtk-theme-name = Yaru/' $target
-    sudo sed -i 's/gtk-icon-theme-name.*/gtk-icon-theme-name = Yaru/' $target
+    mkdir -p $target
+    sudo sed -i 's/gtk-theme-name.*/gtk-theme-name = Yaru/' $target/settings.ini
+    sudo sed -i 's/gtk-icon-theme-name.*/gtk-icon-theme-name = Yaru/' $target/settings.ini
 }
 
 install_cursor() {
