@@ -58,10 +58,10 @@
   (kbd "r")                 "remmina"
   (kbd "C-r")               "exec remmina"
   (kbd "t")                 "teams"
-  (kbd "C-t")               (urxvt-command "tmux")
+  (kbd "C-t")               (st-command "tmux")
   (kbd "M-t")               "tmux"
   (kbd "s-t")               "teams-force"
-  (kbd "s")                 "st-ssh"
+  (kbd "s")                 "ssh"
   (kbd "C-s")               "stumpish"
   (kbd "M-s")               "exec stacer"
   (kbd "u")                 "code"

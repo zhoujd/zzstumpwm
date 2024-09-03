@@ -30,6 +30,10 @@
   "Start a urxvt with an command session"
   (format nil "exec urxvt -name ~a -e ~a" name name))
 
+(defun st-command (name)
+  "Start a st term with an command session"
+  (format nil "exec st -f \"SF Mono:size=13\" -n ~a -e ~a" name name))
+
 (defun run-or-raise-terminal (name)
   "run or raise terminal command"
   (run-or-raise (urxvt-command name) `(:instance ,name)))
