@@ -2,10 +2,12 @@
 set nocompatible
 
 " OS(unix/win32) setting
-if has("win32") && has("gui_running")
-  source $VIMRUNTIME/vimrc_example.vim
-  source $VIMRUNTIME/mswin.vim
-  behave mswin
+if has("win32")
+  if has("gui_running")
+    source $VIMRUNTIME/vimrc_example.vim
+    source $VIMRUNTIME/mswin.vim
+    behave mswin
+  endif
 endif
 
 " coding system
@@ -82,9 +84,11 @@ if !has("gui_running")
   set noeb
 endif
 
-if has("win32") && has("gui_running")
-  set number
-  set lines=27 columns=108
+if has("win32")
+  if has("gui_running")
+    set number
+    set lines=27 columns=108
+  endif
 endif
 
 set history=1000
