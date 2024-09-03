@@ -107,9 +107,9 @@ set statusline+=\ (%l,%c)
 set statusline+=\ %p%%
 set statusline+=%=
 if has("win32")
-  set statusline+=%{strftime(\"%a\ %b\ %d\ %H:%M\")}
+  set statusline+=%{strftime(\"%b\ %d\ %a\ %H:%M\")}
 else
-  set statusline+=%{strftime(\"%a\ %b\ %d\ %l:%M\ %p\")}
+  set statusline+=%{strftime(\"%b\ %d\ %a\ %l:%M\ %p\")}
 endif
 set statusline+=\ %=
 
