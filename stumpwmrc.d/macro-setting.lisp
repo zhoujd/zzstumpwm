@@ -35,5 +35,5 @@
     `(defcommand ,cmd () ()
        "run or raise urxvt command"
        (let* ((name ,cmd-str)
-              (line (format nil "st -f \"SF Mono:size=13\" -n ~a -e ~a" name name)))
+              (line (format nil "xterm -name ~a -e ~a" name name)))
          (run-or-raise line `(:instance ,name))))))
