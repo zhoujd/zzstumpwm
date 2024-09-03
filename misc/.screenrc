@@ -16,6 +16,3 @@ startup_message off
 hardstatus on
 hardstatus alwayslastline
 hardstatus string "%{.bW}%-w%{.rW}%n %t%{-}%+w %=%{..G} %{..Y} %m/%d %C %A "
-termcapinfo rxvt 'hs:ts=\E]2;:fs=\007:ds=\E]2;screen\007'
-termcapinfo xterm ti@:te@
-termcapinfo xterm 'hs:ts=\E]2;:fs=\007:ds=\E]2;screen\007'
