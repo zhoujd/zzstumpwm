@@ -162,7 +162,7 @@
   "ssh shell"
   (let ((cmd (read-one-line (current-screen) "ssh: " :initial-input initial)))
     (when cmd
-      (stumpwm::eval-command (format nil "exec xterm -e ssh ~a"
+      (stumpwm::eval-command (format nil "exec st -f \"SF Mono:size=13\" -e ssh ~a"
                             cmd)
                     t))))
 

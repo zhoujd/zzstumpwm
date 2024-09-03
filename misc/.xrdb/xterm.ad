@@ -28,7 +28,7 @@ XTerm*SaveLines: 4096
 
 !! For Alt keypress
 Xterm*eightBitInput: false
-XTerm*metaSendsEscape: true
+Xterm*altSendsEscape: true
 
 !! Copy and paste
 XTerm*selectToClipboard: true

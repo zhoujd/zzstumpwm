@@ -59,11 +59,11 @@
   (kbd "C-r")               "exec remmina"
   (kbd "t")                 "teams"
   (kbd "C-t")               "tmux"
-  (kbd "M-t")               (xterm-command "tmux")
+  (kbd "M-t")               (st-command "tmux")
   (kbd "s-t")               "teams-force"
   (kbd "s")                 "ssh"
   (kbd "C-s")               "screen"
-  (kbd "M-s")               (xterm-command "screen")
+  (kbd "M-s")               (st-command "screen")
   (kbd "s-s")               "exec stacer"
   (kbd "u")                 "code"
   (kbd "C-u")               "exec code"
