@@ -1,5 +1,8 @@
 !!!! common.ad
 
+!! dpi
+Xft.dpi: 96
+
 !! Xft set
 Xft.antialias: 1
 Xft.hinting: 1
