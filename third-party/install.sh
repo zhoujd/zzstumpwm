@@ -6,7 +6,6 @@ target=$1
 
 ## tool list
 tool_list=(
-    dmenu
     xtrlock
     slock
     speedpad
