@@ -32,6 +32,7 @@
 (def-run-or-raise-command slingscold           '(:Class "Slingscold"))
 (def-run-or-raise-command thunar               '(:class "Thunar"))
 (def-run-or-raise-command urxvt                '(:class "URxvt"))
+(def-run-or-raise-command st                   '(:class "st-256color"))
 (def-run-or-raise-command vlc                  '(:class "Vlc"))
 (def-run-or-raise-command wireshark            '(:class "Wireshark"))
 (def-run-or-raise-command pavucontrol          '(:class "Pavucontrol"))
