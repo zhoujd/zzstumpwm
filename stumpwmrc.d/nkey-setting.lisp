@@ -64,8 +64,8 @@
  (list
   (kbd "1")                 "group-print"
   (kbd "M-1")               "group-move"
-  (kbd "2")                 "exec dmenu_run"
-  (kbd "M-2")               "exec slingscold"
+  (kbd "2")                 "ulauncher"
+  (kbd "M-2")               "slingscold"
   (kbd "3")                 "window-other"
   (kbd "M-3")               "gother"
   (kbd "4")                 "window-kill"
