@@ -3,7 +3,7 @@
 ## https://ulauncher.io/
 ## Press Alt+Enter to access an alt menu
 
-version=5.15.4
+version=5.15.7
 Install_ulauncher() {
     echo "Install ulauncher"
     local tmp=~/.tmp
@@ -25,7 +25,15 @@ Install_theme() {
     popd
 }
 
+Install_ext() {
+    cat <<EOF
+Open Ulauncher and go in the extensions page
+Click on '+ add extension' and paste https://github.com/IkorJefocur/ulauncher-commandrunner
+EOF
+}
+
 Install_ulauncher
 Install_theme
+Install_ext
 
 echo "Install ulauncher Done ..."
