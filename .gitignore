@@ -1,10 +1,10 @@
+## .gitignore
+
 .metadata_available
 .ssh-agent
 
 .hg/
-lisp/*.asd
 quicklisp/cache
 quicklisp/retired
 quicklisp/tmp
 quicklisp/config
-

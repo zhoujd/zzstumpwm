@@ -7,6 +7,7 @@
 (asdf:initialize-source-registry
  `(:source-registry
    (:tree (:home "common-lisp"))
+   (:tree (:home "lisp"))
    :inherit-configuration))
 
 ;; The following lines added by ql:add-to-init-file:
