@@ -30,3 +30,17 @@ quicklisp package system
     (ql:available-dist-versions "quicklisp")
     (ql:client-url)
     (ql:available-client-versions)
+
+
+## Add custom local project
+
+    ;; add config file
+    $ cat  ~/.config/common-lisp/source-registry.conf.d/projects.conf <<EOF
+    (:tree (:home "lisp/"))
+    EOF
+
+    or
+
+    ;; startup file like ~/.sbclrc
+    (pushnew (truename "~/path-to-project/root/") ql:*local-project-directories*)
+    (ql:register-local-projects)
