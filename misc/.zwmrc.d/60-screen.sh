@@ -14,4 +14,22 @@ screen() {
     fi
 }
 
-screen
+vm() {
+    local disp=Virtual1
+    local size=1920x1080
+    xrandr --output $disp  --mode $size
+}
+
+main() {
+    local disp=Virtual1
+    local ext_flag=$(xrandr | grep "^$disp" | awk '{print $2}')
+    if [ "$ext_flag" = "connected" ]; then
+        echo "[screen] setup VM display"
+        vm
+    else
+        echo "[screen] setup laptop display"
+        screen
+    fi
+}
+
+main
