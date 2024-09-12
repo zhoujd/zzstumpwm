@@ -37,7 +37,7 @@
   (kbd "C-h")               "exec thunar"
   (kbd "M-h")               "exec thunar -B"
   (kbd "i")                 "iptux"
-  (kbd "k")                 (urxvt-command "gtypist")
+  (kbd "k")                 (st-command "gtypist")
   (kbd "C-k")               "klavaro"
   (kbd "l")                 "libreoffice"
   (kbd "C-l")               "exec libreoffice"
@@ -46,11 +46,11 @@
   (kbd "M-m")               "outlook"
   (kbd "s-m")               "evolution-force"
   (kbd "n")                 "nnn"
-  (kbd "C-n")               (urxvt-command "nnn")
+  (kbd "C-n")               (st-command "nnn")
   (kbd "o")                 "onlyoffice"
   (kbd "C-o")               "ocenaudio"
   (kbd "M-o")               "openshot"
-  (kbd "p")                 (urxvt-command "bpython")
+  (kbd "p")                 (st-command "bpython")
   (kbd "C-p")               "pavucontrol"
   (kbd "M-p")               "exec p4merge"
   (kbd "q")                 "slingscold"
@@ -58,18 +58,18 @@
   (kbd "r")                 "remmina"
   (kbd "C-r")               "exec remmina"
   (kbd "t")                 "teams"
-  (kbd "C-t")               "tmux"
-  (kbd "M-t")               (st-command "tmux")
+  (kbd "C-t")               (st-command "tmux")
+  (kbd "M-t")               "tmux"
   (kbd "s-t")               "teams-force"
   (kbd "s")                 "ssh"
-  (kbd "C-s")               "screen"
-  (kbd "M-s")               (st-command "screen")
+  (kbd "C-s")               (st-command "screen")
+  (kbd "M-s")               "screen"
   (kbd "s-s")               "exec stacer"
   (kbd "u")                 "code"
   (kbd "C-u")               "exec code"
   (kbd "v")                 "gvim"
   (kbd "C-v")               "exec gvim"
-  (kbd "M-v")               (urxvt-command "vim")
+  (kbd "M-v")               (st-command "vim")
   (kbd "w")                 "wireshark"
   (kbd "z")                 "vmware-view"
   ))
