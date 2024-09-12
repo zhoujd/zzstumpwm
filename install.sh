@@ -63,6 +63,9 @@ ln -sfvT $ZWM_ROOT/misc/.xsession ~/.xsession
 ## Install .keynavrc
 ln -sfvT $ZWM_ROOT/misc/.keynavrc ~/.keynavrc
 
+## Install .tigrc
+ln -sfvT $ZWM_ROOT/misc/.tigrc ~/.tigrc
+
 ## Install .Xmodmap.d
 ln -sfvT $ZWM_ROOT/misc/.Xmodmap.d ~/.Xmodmap.d
 

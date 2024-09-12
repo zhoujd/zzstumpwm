@@ -1,0 +1,3 @@
+### .tigrc
+
+set vertical-split = true ## true for vertical, false for horizontal
