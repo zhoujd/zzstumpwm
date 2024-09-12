@@ -4,7 +4,7 @@
 (in-package :zwm)
 
 (defcommand gnew1 (&optional (initial "")) (:rest)
-  "colon1"
+  "gnew1"
   (let ((name (read-one-line (current-screen) "Group Name: " :initial-input initial)))
     (unless name
       (throw 'error :abort))
@@ -12,7 +12,7 @@
       (run-commands (concat "gnew " name)))))
 
 (defcommand gnew-float1 (&optional (initial "")) (:rest)
-  "colon1"
+  "gnew-float1"
   (let ((name (read-one-line (current-screen) "Group Name: " :initial-input initial)))
     (unless name
       (throw 'error :abort))
