@@ -5,11 +5,13 @@
 
 (defcommand colon1 (&optional (initial "")) (:rest)
   "colon1"
-  (let ((cmd (completing-read (current-screen) ": " (stumpwm::all-commands) :initial-input initial)))
-    (unless cmd
+  (let* ((screen (current-screen))
+         (prompt (stumpwm::all-commands))
+         (input (completing-read screen ": " prompt :initial-input initial)))
+    (unless input
       (throw 'error :abort))
-    (when (plusp (length cmd))
-      (stumpwm::eval-command cmd t))))
+    (when (plusp (length input))
+      (stumpwm::eval-command input t))))
 
 (defcommand eval1 (&optional (initial "")) (:rest)
   "eval1"
