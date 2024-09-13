@@ -14,10 +14,10 @@
   (kbd "6")                 "exec libreoffice --writer"
   (kbd "7")                 "exec libreoffice --calc"
   (kbd "8")                 "exec libreoffice --impress"
-  (kbd "9")                 "trans-shell"
-  (kbd "0")                 "trans-cmd"
-  (kbd "-")                 "eval-cmd"
-  (kbd "=")                 "eval-shell"
+  (kbd "9")                 "urxvt"
+  (kbd "0")                 "code"
+  (kbd "-")                 "tmux"
+  (kbd "=")                 "screen"
   ))
 
 (apply-keys-to-map
