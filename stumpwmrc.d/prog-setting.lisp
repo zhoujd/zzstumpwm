@@ -5,7 +5,7 @@
 
 (defcommand colon1 (&optional (initial "")) (:rest)
   "colon1"
-  (let ((cmd (read-one-line (current-screen) "run: " :initial-input initial)))
+  (let ((cmd (read-one-line (current-screen) ": " :initial-input initial)))
     (unless cmd
       (throw 'error :abort))
     (when (plusp (length cmd))
@@ -13,7 +13,7 @@
 
 (defcommand eval1 (&optional (initial "")) (:rest)
   "eval1"
-  (let ((line (read-one-line (current-screen) "eval: " :initial-input initial)))
+  (let ((line (read-one-line (current-screen) "> " :initial-input initial)))
     (unless line
       (throw 'error :abort))
     (when (plusp (length line))

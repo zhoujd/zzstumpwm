@@ -132,7 +132,7 @@
 
 (defcommand eval-shell (&optional (initial "")) (:rest)
   "shell interactive command, done to keep"
-  (let ((cmd (read-one-line (current-screen) "shell: " :initial-input initial)))
+  (let ((cmd (read-one-line (current-screen) "$ " :initial-input initial)))
     (when cmd
       (stumpwm::eval-command (format nil "exec urxvt -e bash -c '~a; bash -l'"
                             cmd)
@@ -140,7 +140,7 @@
 
 (defcommand eval-cmd (&optional (initial "")) (:rest)
   "shell interactive command, done to exit"
-  (let ((cmd (read-one-line (current-screen) "cmd: " :initial-input initial)))
+  (let ((cmd (read-one-line (current-screen) "$ " :initial-input initial)))
     (when cmd
       (stumpwm::eval-command (format nil "exec urxvt -e bash -c '~a; read'"
                             cmd)
@@ -148,7 +148,7 @@
 
 (defcommand trans-cmd (&optional (initial "")) (:rest)
   "shell interactive command, done to exit"
-  (let ((cmd (read-one-line (current-screen) "trans: " :initial-input initial)))
+  (let ((cmd (read-one-line (current-screen) "Trans: " :initial-input initial)))
     (when cmd
       (stumpwm::eval-command
        (format nil "exec urxvt -title 'trans' -e bash -c 'trans -no-warn ~a; read'"
@@ -161,7 +161,7 @@
 
 (defcommand ssh (&optional (initial "")) (:rest)
   "ssh shell"
-  (let ((cmd (read-one-line (current-screen) "ssh: " :initial-input initial)))
+  (let ((cmd (read-one-line (current-screen) "Host: " :initial-input initial)))
     (when cmd
       (stumpwm::eval-command (format nil "exec st -f \"SF Mono:size=13\" -e ssh ~a"
                             cmd)
