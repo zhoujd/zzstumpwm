@@ -3,17 +3,17 @@
 
 (in-package :zwm)
 
-(defcommand colon1 (&optional (initial)) (:rest)
+(defcommand colon1 (&optional (initial "")) (:rest)
   "colon1"
-  (let ((cmd (completing-read (current-screen) ": " (stumpwm::all-commands) :initial-input (or initial ""))))
+  (let ((cmd (completing-read (current-screen) ": " (stumpwm::all-commands) :initial-input initial)))
     (unless cmd
       (throw 'error :abort))
     (when (plusp (length cmd))
       (stumpwm::eval-command cmd t))))
 
-(defcommand eval1 (&optional (initial)) (:rest)
+(defcommand eval1 (&optional (initial "")) (:rest)
   "eval1"
-  (let ((line (read-one-line (current-screen) "> " :initial-input (or initial ""))))
+  (let ((line (read-one-line (current-screen) "> " :initial-input initial)))
     (unless line
       (throw 'error :abort))
     (when (plusp (length line))
