@@ -1,7 +1,7 @@
 # .screenrc should in $HOME
 
 # Enable 256 color term
-term xterm-256color
+term screen-256color
 
 # screen buffer
 defscrollback 4096
