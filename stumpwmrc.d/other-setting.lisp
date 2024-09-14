@@ -137,7 +137,7 @@ on run-or-raise"
 (defvar *ssh-config-path* #p"~/.ssh/config")
 (defvar *host-regex* "^Host[ \t]+")
 (defun collect-hosts (&optional (ssh-config *ssh-config-path*))
-  (with-open-file (stream ssh-config :direction :input)
+  (with-open-file (stream ssh-config :direction :input :if-does-not-exist nil)
     (loop for line = (read-line stream nil)
           while line
           when (cl-ppcre:scan *host-regex* line)
