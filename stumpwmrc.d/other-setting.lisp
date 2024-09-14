@@ -134,9 +134,10 @@ on run-or-raise"
       (when win
         (stumpwm::pull-window win frame)))))
 
-(defvar *ssh-config-path* #p"~/.ssh/config")
-(defvar *host-regex* "^Host[ \t]+")
+(defvar *ssh-config-path* #p"~/.ssh/config" "ssh config file")
+(defvar *host-regex* "^Host[ \t]+" "ssh host parse regex")
 (defun collect-hosts (&optional (ssh-config *ssh-config-path*))
+  "Collect hosts via parse ssh config file"
   (with-open-file (stream ssh-config :direction :input :if-does-not-exist nil)
     (loop for line = (read-line stream nil)
           while line
