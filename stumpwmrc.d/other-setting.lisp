@@ -133,3 +133,12 @@ on run-or-raise"
                              (stumpwm::frame-window frame))
       (when win
         (stumpwm::pull-window win frame)))))
+
+(defvar *ssh-config-path* #p"~/.ssh/config")
+(defvar *host-regex* "^Host[ \t]+")
+(defun collect-hosts (&optional (ssh-config *ssh-config-path*))
+  (with-open-file (stream ssh-config :direction :input)
+    (loop for line = (read-line stream nil)
+          while line
+          when (cl-ppcre:scan *host-regex* line)
+            collect (cl-ppcre:regex-replace-all *host-regex* line ""))))

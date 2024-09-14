@@ -161,7 +161,7 @@
 
 (defcommand ssh (&optional (initial "")) (:rest)
   "ssh shell"
-  (let ((cmd (read-one-line (current-screen) "Host: " :initial-input initial)))
+  (let ((cmd (completing-read (current-screen) "Host: " (collect-hosts) :initial-input initial)))
     (when cmd
       (stumpwm::eval-command (format nil "exec st -f \"SF Mono:size=13\" -e ssh ~a"
                             cmd)
