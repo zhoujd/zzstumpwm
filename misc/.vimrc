@@ -94,23 +94,16 @@ set gdefault
 
 " Status line setting
 set statusline=
-set statusline+=%f%m%r
-set statusline+=\ %y
-set statusline+=\ (%{&fileformat})
-set statusline+=\ (ascii=\%b,hex=\%B)
-set statusline+=\ (%l,%c)
-set statusline+=\ %p%%
-set statusline+=%=
-if has("win32")
-  set statusline+=%{strftime(\"%b\ %d\ %a\ %H:%M\")}
-else
-  set statusline+=%{strftime(\"%b\ %d\ %a\ %l:%M\ %p\")}
-endif
-set statusline+=\ %=
+set statusline+=\[%n]                                  "buffernr
+set statusline+=\ %<%F\                                "File+path
+set statusline+=\ %=\ %{''.(&fenc!=''?&fenc:&enc).''}\ "Encoding
+set statusline+=\ %{(&bomb?\",BOM\":\"\")}\            "Encoding2
+set statusline+=\ %{&ff}\                              "FileFormat (dos/unix..)
+set statusline+=\ row:%l/%L\ col:%c\ (%p%%)\           "Rownumber/total (%)
+set statusline+=\ \ %m%r%w\ %P\ \                      "Modified? Readonly? Top/bot
 
+" Default the statusline when entering Vim
 set laststatus=2
 set cmdheight=1
 set ruler
-
-" Default the statusline when entering Vim
 hi statusline ctermfg=green guibg=grey
