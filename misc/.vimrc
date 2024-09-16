@@ -10,7 +10,7 @@ if has("win32")
   endif
 endif
 
-" coding system
+" coding for system
 set encoding=utf-8
 set fileencodings=utf-8-bom,ucs-bom,utf-8,cp936,gb18030,ucs,big5
 
@@ -100,7 +100,7 @@ set statusline+=\ %=\ %{''.(&fenc!=''?&fenc:&enc).''}\ "Encoding
 set statusline+=\ %{(&bomb?\",BOM\":\"\")}\            "Encoding2
 set statusline+=\ %{&ff}\                              "FileFormat (dos/unix..)
 set statusline+=\ row:%l/%L\ col:%c\ (%p%%)\           "Rownumber/total (%)
-set statusline+=\ \ %m%r%w\ %P\ \                      "Modified? Readonly? Top/bot
+set statusline+=\ \ %m%r%w\ %P\                        "Modified? Readonly? Top/bot
 
 " Default the statusline when entering Vim
 set laststatus=2
