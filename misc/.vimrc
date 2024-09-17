@@ -1,6 +1,14 @@
 "" .vimrc
 set nocompatible
 
+" Language
+if !has("gui_running")
+  language en_US.utf8
+else
+  set langmenu=en_US
+  let $LANG='en_US'
+endif
+
 " OS(unix/win32) setting
 if has("win32")
   if has("gui_running")
@@ -94,16 +102,18 @@ set gdefault
 
 " Status line setting
 set statusline=
-set statusline+=\[%n]                                  "buffernr
-set statusline+=\ %<%F\                                "File+path
-set statusline+=\ %=\ %{''.(&fenc!=''?&fenc:&enc).''}\ "Encoding
-set statusline+=\ %{(&bomb?\",BOM\":\"\")}\            "Encoding2
-set statusline+=\ %{&ff}\                              "FileFormat (dos/unix..)
-set statusline+=\ row:%l/%L\ col:%c\ (%p%%)\           "Rownumber/total (%)
-set statusline+=\ \ %m%r%w\ %P\                        "Modified? Readonly? Top/bot
+set statusline+=\[%n]                                   "buffernr
+set statusline+=\ %<%F\                                 "File+path
+set statusline+=\ %=\ %{''.(&fenc!=''?&fenc:&enc).''}\  "Encoding
+set statusline+=\ %{(&bomb?\",BOM\":\"\")}\             "Encoding2
+set statusline+=\ %{&ff}\                               "FileFormat (dos/unix..)
+set statusline+=\ row:%l/%L\ col:%c\ (%p%%)\            "Rownumber/total (%)
+set statusline+=\ %m%r%w\ %P\                           "Modified? Readonly? Top/bot
 
 " Default the statusline when entering Vim
 set laststatus=2
 set cmdheight=1
 set ruler
-hi statusline ctermfg=green guibg=grey
+
+" Default the statusline when entering Vim
+"hi statusline ctermfg=green guibg=grey
