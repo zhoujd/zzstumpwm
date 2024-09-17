@@ -102,13 +102,13 @@ set gdefault
 
 " Status line setting
 set statusline=
-set statusline+=\[%n]                                   "buffernr
+set statusline+=\[%n]                                   "Buffernr
 set statusline+=\ %<%F\                                 "File+path
 set statusline+=\ %=\ %{''.(&fenc!=''?&fenc:&enc).''}\  "Encoding
 set statusline+=\ %{(&bomb?\",BOM\":\"\")}\             "Encoding2
 set statusline+=\ %{&ff}\                               "FileFormat (dos/unix..)
 set statusline+=\ row:%l/%L\ col:%c\ (%p%%)\            "Rownumber/total (%)
-set statusline+=\ %m%r%w\ %P\                           "Modified? Readonly? Top/bot
+set statusline+=\ %m%r%w\ %P\                           "Modified? Readonly? Top/Bot/All
 
 " Default the statusline when entering Vim
 set laststatus=2
