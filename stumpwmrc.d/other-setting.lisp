@@ -143,7 +143,6 @@ on run-or-raise"
           while line
           when (cl-ppcre:scan *host-regex* line)
             collect (cl-ppcre:regex-replace-all *host-regex* line ""))))
-
 (defun filter-hosts ()
   "filter ssh hosts"
   (remove "*" (collect-hosts) :test #'equal))
