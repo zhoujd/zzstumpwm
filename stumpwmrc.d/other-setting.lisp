@@ -144,5 +144,5 @@ on run-or-raise"
           when (cl-ppcre:scan *host-regex* line)
             collect (cl-ppcre:regex-replace-all *host-regex* line ""))))
 (defun filter-hosts ()
-  "filter ssh hosts"
+  "Filter ssh hosts"
   (remove "*" (collect-hosts) :test #'equal))

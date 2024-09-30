@@ -155,16 +155,15 @@
       (message "No support in float group.")))
 
 ;; save & restore group
-(progn
-  (defvar *zz-group-file* "~/.stumpwm-group" "group layout file name")
-  (defcommand dump-group-file () ()
-    "dump group"
-    (dump-group-to-file *zz-group-file*))
-  (defcommand restore-group-file () ()
-    "restore group"
-    (if (probe-file *zz-group-file*)
-        (stumpwm::restore-from-file *zz-group-file*)
-        (message "This no is ~a." *zz-group-file*))))
+(defvar *zz-group-file* "~/.stumpwm-group" "group layout file name")
+(defcommand dump-group-file () ()
+  "dump group"
+  (dump-group-to-file *zz-group-file*))
+(defcommand restore-group-file () ()
+  "restore group"
+  (if (probe-file *zz-group-file*)
+      (stumpwm::restore-from-file *zz-group-file*)
+      (message "This no is ~a." *zz-group-file*)))
 
 (defcommand window-info () ()
   "Shows the properties of the current window. These properties can be

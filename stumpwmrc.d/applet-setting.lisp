@@ -64,24 +64,23 @@
   "run skippy-xd"
   (run-shell-command "skippy-xd"))
 
-(progn
-  (defvar *win-cls* "jiandon-win" "rdp window classs")
-  (defcommand jiandon-nuc () ()
-    "run remote jiandon-nuc"
-    (let* ((prefix "xfreerdp ~/.jiandon-nuc.rdp")
-           (cls *win-cls*)
-           (cmd (format nil "~a -grab-keyboard /wm-class:~a"
-                        prefix
-                        cls)))
-      (run-shell-command cmd)))
-  (defcommand jiandon-win () ()
-    "run remote jiandon-win"
-    (let* ((prefix "xfreerdp ~/.jiandon-nuc.rdp")
-           (cls *win-cls*)
-           (cmd (format nil "~a -grab-keyboard /wm-class:~a"
-                        prefix
-                        cls)))
-      (run-or-raise cmd `(:class ,cls)))))
+(defvar *win-cls* "zach-win" "rdp window classs")
+(defcommand zach-nuc () ()
+  "run remote zach-nuc"
+  (let* ((prefix "xfreerdp ~/.zach-nuc.rdp")
+         (cls *win-cls*)
+         (cmd (format nil "~a -grab-keyboard /wm-class:~a"
+                      prefix
+                      cls)))
+    (run-shell-command cmd)))
+(defcommand zach-win () ()
+  "run remote zach-win"
+  (let* ((prefix "xfreerdp ~/.zach-nuc.rdp")
+         (cls *win-cls*)
+         (cmd (format nil "~a -grab-keyboard /wm-class:~a"
+                      prefix
+                      cls)))
+    (run-or-raise cmd `(:class ,cls))))
 
 (defcommand onlyoffice () ()
   "run onlyoffice"
@@ -167,9 +166,9 @@
                             cmd)
                     t))))
 
-(defcommand manpage (command) ((:rest "manpage: "))
+(defcommand manpage (command) ((:rest "Man: "))
   "manpage reader. needs filename completion, etc.."
-  (run-shell-command (format nil "urxvt -e man ~a" command)))
+  (run-shell-command (format nil "st -f \"SF Mono:size=13\" -e man ~a" command)))
 
 (defcommand scrot-full () ()
   "screenshot full"
