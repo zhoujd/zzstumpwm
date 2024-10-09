@@ -23,5 +23,5 @@
   (set-font (make-instance 'xft:font
                           :family "SF Mono SC"
                           :subfamily "Regular"
-                          :size 12
+                          :size 11
                           :antialias t))))
