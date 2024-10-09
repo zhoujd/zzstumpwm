@@ -38,8 +38,8 @@ URxvt.urgentOnBell: false
 URxvt.visualBell: false
 
 !! urxvt fonts
-URxvt.font: xft:SF Mono:size=12:hinting=true, \
-            xft:SF Mono SC:size=12:hinting=true
+URxvt.font: xft:SF Mono:size=14:hinting=true, \
+            xft:SF Mono SC:size=14:hinting=true
 
 !! urxvt icon
 URxvt.iconFile: /usr/share/pixmaps/urxvt_48x48.svg
