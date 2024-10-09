@@ -21,7 +21,7 @@
  (and
   (xft:cache-fonts)
   (set-font (make-instance 'xft:font
-                          :family "WenQuanYi Micro Hei Mono"
+                          :family "SF Mono SC"
                           :subfamily "Regular"
                           :size 12
                           :antialias t))))

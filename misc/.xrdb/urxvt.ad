@@ -38,8 +38,8 @@ URxvt.urgentOnBell: false
 URxvt.visualBell: false
 
 !! urxvt fonts
-URxvt.font: xft:JetBrains Mono NL:size=13:hinting=true, \
-            xft:Droid Sans Fallback:size=13:hinting=true
+URxvt.font: xft:SF Mono:size=12:hinting=true, \
+            xft:SF Mono SC:size=12:hinting=true
 
 !! urxvt icon
 URxvt.iconFile: /usr/share/pixmaps/urxvt_48x48.svg
