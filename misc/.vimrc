@@ -28,8 +28,8 @@ let &termencoding=&encoding
 " Font setting
 if has("gui_running")
   if has("gui_gtk")
-    set guifont=IBM\ Plex\ Mono\ 12
-    set guifontwide=Droid\ Sans\ Fallback\ 14
+    set guifont=SF\ Mono\ 13
+    set guifontwide=SF\ Mono\ SC\ 13
   elseif has("gui_macvim")
     set guifont=SF\ Mono:h12
   elseif has("gui_win32")
