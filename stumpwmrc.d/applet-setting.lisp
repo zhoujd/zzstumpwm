@@ -156,18 +156,18 @@
 
 (defcommand trans-shell () ()
   "trans shell"
-  (run-shell-command "exec urxvt -title 'trans' -e bash -c 'trans -I'"))
+  (run-shell-command "urxvt -title 'trans' -e bash -c 'trans -I'"))
 
 (defcommand ssh (&optional (initial "")) (:rest)
   "ssh shell"
   (let ((host (completing-read (current-screen) "Host: " (filter-hosts) :initial-input initial)))
     (when host
-      (stumpwm::eval-command (st-exec "ssh" host)
+      (stumpwm::eval-command (st-command "ssh" host)
                              t))))
 
-(defcommand manpage (command) ((:rest "Man: "))
+(defcommand manpage (command) ((:rest "Manual: "))
   "manpage reader. needs filename completion, etc.."
-  (run-shell-command (st-exec "man" command)))
+  (stumpwm::eval-command (st-command "man" command)))
 
 (defcommand scrot-full () ()
   "screenshot full"
