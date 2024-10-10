@@ -35,5 +35,5 @@
     `(defcommand ,cmd () ()
        "run or raise term command"
        (let* ((name ,cmd-str)
-              (line (st-run name name)))
+              (line (format nil "st -f \"SF Mono:size=13\" -n ~a -e ~a" name name)))
          (run-or-raise line `(:instance ,name))))))
