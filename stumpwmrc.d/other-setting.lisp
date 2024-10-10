@@ -36,7 +36,7 @@
 
 (defun st-exec (cmd &rest args)
   "ST term exec"
-  (format nil "st -e ~a ~{~A~^ ~}" cmd args))
+  (format nil "exec st -e ~a ~{~A~^ ~}" cmd args))
 
 (defun run-or-raise-terminal (name)
   "run or raise terminal command"
