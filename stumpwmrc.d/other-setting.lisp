@@ -22,21 +22,21 @@
   (let ((cmd (format nil "kill -9 `lsof -i:~a | grep LISTEN | awk '{print $2}'`" port)))
     (run-shell-command cmd)))
 
-(defun xterm-command (name)
+(defun xterm-command (name &rest args)
   "Start a xterm with an command session"
-  (format nil "exec xterm -name ~a -e ~a" name name))
+  (format nil "exec xterm -name ~a -e ~a ~{~A~^ ~}" name name args))
 
-(defun urxvt-command (name)
+(defun urxvt-command (name &rest args)
   "Start a urxvt with an command session"
-  (format nil "exec urxvt -name ~a -e ~a" name name))
+  (format nil "exec urxvt -name ~a -e ~a ~{~A~^ ~}" name name args))
 
-(defun st-command (name &rest argv)
+(defun st-command (name &rest args)
   "Start a st term with an command session"
-  (format nil "exec st -f \"SF Mono:size=13\" -n ~a -e ~a ~{~A~^ ~}" name name argv))
+  (format nil "exec st -n ~a -e ~a ~{~A~^ ~}" name name args))
 
-(defun st-exec (cmd &rest argv)
+(defun st-exec (cmd &rest args)
   "ST term exec"
-  (format nil "st -f \"SF Mono:size=13\" -e ~a ~{~A~^ ~}" cmd argv))
+  (format nil "st -e ~a ~{~A~^ ~}" cmd args))
 
 (defun run-or-raise-terminal (name)
   "run or raise terminal command"
