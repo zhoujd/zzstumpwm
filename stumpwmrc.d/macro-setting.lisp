@@ -33,7 +33,7 @@
 (defmacro def-run-or-raise-terminal (cmd)
   (let ((cmd-str (string-downcase (symbol-name cmd))))
     `(defcommand ,cmd () ()
-       "run or raise urxvt command"
+       "run or raise term command"
        (let* ((name ,cmd-str)
-              (line (format nil "st -f \"SF Mono:size=13\" -n ~a -e ~a" name name)))
+              (line (st-run name name)))
          (run-or-raise line `(:instance ,name))))))

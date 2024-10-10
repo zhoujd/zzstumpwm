@@ -160,15 +160,14 @@
 
 (defcommand ssh (&optional (initial "")) (:rest)
   "ssh shell"
-  (let ((cmd (completing-read (current-screen) "Host: " (filter-hosts) :initial-input initial)))
-    (when cmd
-      (stumpwm::eval-command (format nil "exec st -f \"SF Mono:size=13\" -e ssh ~a"
-                            cmd)
-                    t))))
+  (let ((host (completing-read (current-screen) "Host: " (filter-hosts) :initial-input initial)))
+    (when host
+      (stumpwm::eval-command (st-exec "ssh" host)
+                             t))))
 
 (defcommand manpage (command) ((:rest "Man: "))
   "manpage reader. needs filename completion, etc.."
-  (run-shell-command (format nil "st -f \"SF Mono:size=13\" -e man ~a" command)))
+  (run-shell-command (st-exec "man" command)))
 
 (defcommand scrot-full () ()
   "screenshot full"

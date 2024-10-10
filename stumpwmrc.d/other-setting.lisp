@@ -30,9 +30,19 @@
   "Start a urxvt with an command session"
   (format nil "exec urxvt -name ~a -e ~a" name name))
 
+(defun st-run (title cmd &rest argv)
+  "ST term exec"
+  (format nil "st -f \"SF Mono:size=13\" -n ~a -e ~a ~{~A~^ ~}"
+          title cmd argv))
+
+(defun st-exec (cmd &rest argv)
+  "ST term exec"
+  (format nil "st -f \"SF Mono:size=13\" -e ~a ~{~A~^ ~}"
+          cmd argv))
+
 (defun st-command (name)
   "Start a st term with an command session"
-  (format nil "exec st -f \"SF Mono:size=13\" -n ~a -e ~a" name name))
+  (st-run name name))
 
 (defun run-or-raise-terminal (name)
   "run or raise terminal command"
