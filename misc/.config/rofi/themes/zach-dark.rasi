@@ -13,7 +13,7 @@ configuration {
 }
 
 * {
-    font:             "SF Mono SC:antialias=true:size=13:minspace=true";
+    font:             "SF Mono SC 11";
     transparent:      rgba(0,0,0,0.7);
 
     foreground:       #ffeedd;
