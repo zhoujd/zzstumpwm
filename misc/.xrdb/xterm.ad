@@ -8,8 +8,8 @@ XTerm*utf8Title: true
 XTerm*cjkWidth: true
 
 XTerm*fontMenu*fontdefault*Label: Default
-XTerm*faceName: JetBrains Mono NL:antialias=true:size=13:minspace=true
-XTerm*faceNameDoublesize: Droid Sans Fallback:antialias=true:size=13:minspace=true
+XTerm*faceName: SF Mono:antialias=true:size=13:minspace=true
+XTerm*faceNameDoublesize: SF Mono SC:antialias=true:size=13:minspace=true
 XTerm*faceSize: 12
 XTerm*faceSize1: 12
 XTerm*faceSize2: 12
