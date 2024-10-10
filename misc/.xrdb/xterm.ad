@@ -10,13 +10,6 @@ XTerm*cjkWidth: true
 XTerm*fontMenu*fontdefault*Label: Default
 XTerm*faceName: SF Mono:antialias=true:size=13:minspace=true
 XTerm*faceNameDoublesize: SF Mono SC:antialias=true:size=13:minspace=true
-XTerm*faceSize: 12
-XTerm*faceSize1: 12
-XTerm*faceSize2: 12
-XTerm*faceSize3: 12
-XTerm*faceSize4: 12
-XTerm*faceSize5: 12
-XTerm*faceSize6: 12
 
 XTerm*background: black
 XTerm*foreground: white
