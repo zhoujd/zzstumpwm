@@ -134,25 +134,24 @@
   (let ((cmd (read-one-line (current-screen) "$ " :initial-input initial)))
     (when cmd
       (stumpwm::eval-command (format nil "exec urxvt -e bash -c '~a; bash -l'"
-                            cmd)
-                    t))))
+                                     cmd)
+                             t))))
 
 (defcommand eval-cmd (&optional (initial "")) (:rest)
   "shell interactive command, done to exit"
   (let ((cmd (read-one-line (current-screen) "$ " :initial-input initial)))
     (when cmd
       (stumpwm::eval-command (format nil "exec urxvt -e bash -c '~a; read'"
-                            cmd)
-                    t))))
+                                     cmd)
+                             t))))
 
 (defcommand trans-cmd (&optional (initial "")) (:rest)
   "shell interactive command, done to exit"
   (let ((cmd (read-one-line (current-screen) "Trans: " :initial-input initial)))
     (when cmd
-      (stumpwm::eval-command
-       (format nil "exec urxvt -title 'trans' -e bash -c 'trans -no-warn ~a; read'"
-               cmd)
-       t))))
+      (stumpwm::eval-command (format nil "exec urxvt -title 'trans' -e bash -c 'trans -no-warn ~a; read'"
+                                     cmd)
+                             t))))
 
 (defcommand trans-shell () ()
   "trans shell"
@@ -162,8 +161,7 @@
   "ssh shell"
   (let ((host (completing-read (current-screen) "Host: " (filter-hosts) :initial-input initial)))
     (when host
-      (stumpwm::eval-command (st-command "ssh" host)
-                             t))))
+      (stumpwm::eval-command (st-command "ssh" host)))))
 
 (defcommand manpage (command) ((:rest "Manual: "))
   "manpage reader. needs filename completion, etc.."
