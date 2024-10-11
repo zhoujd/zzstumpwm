@@ -7,7 +7,7 @@ set -o pipefail
 readonly PROGNAME=$(basename "$0")
 readonly ARGS=("$@")
 
-readonly FONT="DejaVu Sans Mono 8"
+readonly FONT="SF Mono SC 11"
 readonly POSITION=3
 readonly WIDTH=-30
 
