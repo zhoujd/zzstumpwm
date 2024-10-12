@@ -31,9 +31,9 @@ if has("gui_running")
     set guifont=SF\ Mono\ 13
     set guifontwide=SF\ Mono\ SC\ 13
   elseif has("gui_macvim")
-    set guifont=SF\ Mono:h12
+    set guifont=SF\ Mono\ SC:h11
   elseif has("gui_win32")
-    set guifont=Microsoft\ YaHei\ Mono:h12
+    set guifont=SF\ Mono\ SC:h11
   endif
 endif
 
@@ -89,8 +89,7 @@ endif
 
 if has("win32")
   if has("gui_running")
-    set number
-    set lines=27 columns=108
+    set lines=27 columns=100
   endif
 endif
 
