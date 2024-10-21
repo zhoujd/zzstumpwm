@@ -11,8 +11,3 @@ vbell off
 
 # no start message
 startup_message off
-
-# status setting
-hardstatus on
-hardstatus alwayslastline
-hardstatus string "%{.bW}%-w%{.rW}%n %t%{-}%+w %=%{..G} %{..Y} %m/%d %C %A "
