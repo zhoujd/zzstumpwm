@@ -24,6 +24,9 @@ bind q
 bind ^S
 bind s
 
+# shell title
+shelltitle ''
+
 # hardstatus
-hardstatus string "%{= g}%{= w}%-w%{=r}%n* %t%{-}"
+hardstatus string "%{= g} %{= Lw}%-w%{=r}%n%t%{-}"
 hardstatus alwaysfirstline
