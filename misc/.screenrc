@@ -15,6 +15,9 @@ vbell off
 # no start message
 startup_message off
 
+# disable freezes
+bind s
+
 # status setting
 hardstatus on
 hardstatus alwayslastline
