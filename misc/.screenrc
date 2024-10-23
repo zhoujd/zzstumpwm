@@ -25,8 +25,8 @@ bind ^S
 bind s
 
 # hardstatus
-#hardstatus string "%{= g}%{= Lw}%-w%{=r}%n%t%{-} %-= %H"
+hardstatus alwaysfirstline
 hardstatus string "%{.bW}%-w%{.rW}%n %t%{-}%+w %=%{..G} %{..Y} %H"
 
-hardstatus alwaysfirstline
+# windowlist
 windowlist string "%4n %h%=%f"
