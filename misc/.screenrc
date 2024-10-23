@@ -22,5 +22,26 @@ defflow off
 bind ^S
 bind s
 
-# hardstatus line
-hardstatus alwaysfirstline "%{.bW}%-w%{.rW}%n %t%{-}%+w %=%{..G} %{..Y} %H "
+# The following flags can be applied in hardstatus and caption declarations.
+# %t = title of the current window
+# %h = hard status of the current window
+# %H = hostname
+# %X = executed command without args
+# %x = executed command with args
+# %l = system Load
+# %n = window number
+# %f = window flags
+# %u = (other) users of this window
+# %s = window size
+
+# hardstatus
+hardstatus string "%{.bW}%-w%{.rW}%n %t%{-}%+w %=%{..G} %{..Y} %H "
+hardstatus alwaysfirstline
+
+# caption
+caption string "%{d dd}%?%F%{+bu .M}%:%{+ .m}%?%n%{-} %?%F%{+bu .G}%:%{+ .g}%?%t%{-} %= %{+ .C}%h%{-}"
+caption top splitonly
+
+# window list
+windowlist title "%{.k.}%{+b .y}Num%{-} %{+b .b}Flags%{-} %{+b .g}Title%{-} %= %{+b .y}Hardstatus%{-}%{-.K.}"
+windowlist string "%{.dk}%{+ .y}%3n%{-}%{-bs} %3= %{+ .B}%f%{- .B} %?%F%{+ .w}>%{- .w}%: %? %{+ .g}%t%{- .w} %{ddd} %= %{+ .y}%h%{- .y}"
