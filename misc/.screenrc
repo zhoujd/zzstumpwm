@@ -28,5 +28,5 @@ bind s
 shelltitle ''
 
 # hardstatus
-hardstatus string "%{= g} %{= Lw}%-w%{=r}%n%t%{-}"
+hardstatus string "%{= g} %{= Lw}%-w%{=r}%n%t%{-} %-= %H "
 hardstatus alwaysfirstline
