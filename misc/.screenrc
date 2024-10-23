@@ -1,5 +1,8 @@
 ### .screenrc
 
+# Hopefully this changes the hot key from the default of Ctrl-a to `
+escape ``
+
 # Enable 256 color term
 term screen-256color
 
