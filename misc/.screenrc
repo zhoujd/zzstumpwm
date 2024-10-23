@@ -19,4 +19,4 @@ startup_message off
 bind s
 
 # hardstatus line
-hardstatus alwayslastline "%{.bW}%-w%{.rW}%n %t%{-}%+w %=%{..G} %{..Y} %m/%d %C %A "
+hardstatus alwaysfirstline "%{.bW}%-w%{.rW}%n %t%{-}%+w %=%{..G} %{..Y} %m/%d %C %A "
