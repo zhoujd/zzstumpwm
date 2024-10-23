@@ -25,5 +25,5 @@ bind ^S
 bind s
 
 # hardstatus
-hardstatus string "%{.bW}%-w%{.rW}%n %t%{-}%+w %=%{..G} %{..Y} %H "
+hardstatus string '%{= Kd} %{= Kd}%-w%{= Kr}[%{= KW}%n %t%{= Kr}]%{= Kd}%+w %-= %{KG} %H%{KW} '
 hardstatus alwaysfirstline
