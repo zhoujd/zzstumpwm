@@ -1,9 +1,9 @@
 ### .screenrc
 
-# Hopefully this changes the hot key from the default of Ctrl-a to `
+# remap Ctrl-a to backtick
 escape ``
 
-# Enable 256 color term
+# enable 256 color term
 term screen-256color
 
 # screen buffer
