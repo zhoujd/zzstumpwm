@@ -3,7 +3,7 @@
 # remap Ctrl-a to backtick
 escape ``
 
-# enable 256 color term
+# 256 color term
 term screen-256color
 
 # screen buffer
@@ -15,8 +15,12 @@ vbell off
 # no start message
 startup_message off
 
+# stop screen from catching C-S and C-Q, XON and XOFF
+defflow off
+
 # disable freezes
+bind ^S
 bind s
 
 # hardstatus line
-hardstatus alwaysfirstline "%{.bW}%-w%{.rW}%n %t%{-}%+w %=%{..G} %{..Y} %m/%d %C %A "
+hardstatus alwaysfirstline "%{.bW}%-w%{.rW}%n %t%{-}%+w %=%{..G} %{..Y} %H "
