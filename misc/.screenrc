@@ -1,4 +1,4 @@
-# .screenrc should in $HOME
+### .screenrc
 
 # Enable 256 color term
 term screen-256color
