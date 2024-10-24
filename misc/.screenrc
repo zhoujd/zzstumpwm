@@ -28,7 +28,7 @@ bind s
 
 # hardstatus
 hardstatus alwaysfirstline
-hardstatus string "[S] %w | %h%? %= %H"
+hardstatus string "%{= g}[S] %w | %h%? %= %H"
 
 # windowlist
 windowlist string "%4n %h%=%f"
