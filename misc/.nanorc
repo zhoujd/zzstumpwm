@@ -1,28 +1,25 @@
 ### .nanorc
 
-##tab set
+## tab set
 set tabsize 4
 set tabstospaces
 set autoindent
 
-##don't wrap at end of line
+## don't wrap at end of line
 set nowrap
 
-##remove the blank line below the title bar
+## remove the blank line below the title bar
 #set morespace
 #set nohelp
 
-##enable mouse
+## enable mouse
 set mouse
 
-##scroll smooth
-set smooth
-
-##case sensitive search
+## case sensitive search
 set casesensitive
 
-##spell checker
+## spell checker
 set speller "aspell -x -c"
 
-##enable read in another buffer
+## enable read in another buffer
 set multibuffer
