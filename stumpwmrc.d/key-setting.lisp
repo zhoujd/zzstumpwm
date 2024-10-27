@@ -71,6 +71,9 @@
   (kbd "C-v")               "exec gvim"
   (kbd "M-v")               (st-command "vim")
   (kbd "w")                 "wireshark"
+  (kbd "C-w")               "exec wireshark"
+  (kbd "x")                 "st"
+  (kbd "C-x")               "exec st"
   (kbd "z")                 "vmware-view"
   ))
 
@@ -204,6 +207,7 @@
   (kbd "s-M-n")             "nnn"
   (kbd "s-M-t")             "teams"
   (kbd "s-M-u")             "code"
+  (kbd "s-M-x")             "st"
   (kbd "s-M-z")             "vmware-view"
   ))
 
