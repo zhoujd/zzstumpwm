@@ -97,6 +97,14 @@
   "pull urxvt"
   (run-or-pull-prefer-group "urxvt" "URxvt"))
 
+(defcommand runst () ()
+  "run st"
+  (run-or-raise-prefer-group "st" "st-256color"))
+
+(defcommand pullst () ()
+  "pull st"
+  (run-or-pull-prefer-group "st" "st-256color"))
+
 (defcommand nnn () ()
   "run or raise nnn"
   (let* ((name "nnn")
