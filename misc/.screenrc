@@ -18,6 +18,9 @@ startup_message off
 # stop screen from catching C-S and C-Q, XON and XOFF
 defflow off
 
+# scroll
+termcapinfo st* ti@:te@
+
 # Evil evil keybindings. Do Not Want!
 bind ^h
 bind h
