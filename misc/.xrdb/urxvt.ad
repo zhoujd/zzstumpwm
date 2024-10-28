@@ -38,7 +38,7 @@ URxvt.urgentOnBell: false
 URxvt.visualBell: false
 
 !! urxvt fonts
-URxvt.font: xft:SF Mono:size=13:hinting=true, \
+URxvt.font: xft:SF Mono:size=13:hinting=true,\
             xft:SF Mono SC:size=13:hinting=true
 
 !! urxvt icon
