@@ -9,7 +9,7 @@ else
   let $LANG='en_US'
 endif
 
-" OS(unix/win32) setting
+" OS setting
 if has("win32")
   if has("gui_running")
     source $VIMRUNTIME/vimrc_example.vim
@@ -18,13 +18,10 @@ if has("win32")
   endif
 endif
 
-" coding for system
+" Coding setting
 set encoding=utf-8
 set fileencodings=utf-8-bom,ucs-bom,utf-8,cp936,gb18030,ucs,big5
 set termencoding=utf-8
-
-" coding for term
-let &termencoding=&encoding
 
 " Font setting
 if has("gui_running")
@@ -61,6 +58,7 @@ endif
 " Set Vim-specific sequences for RGB colors
 let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
+
 " Color scheme setting
 colorscheme desert
 
@@ -71,7 +69,7 @@ set noswapfile
 
 syntax on
 
-" Other setting"
+" Other settings
 set novisualbell
 set confirm
 set autoindent
@@ -81,8 +79,13 @@ set softtabstop=4
 set shiftwidth=4
 set expandtab
 set smarttab
+set history=1000
+set ignorecase
+set hlsearch
+set incsearch
+set gdefault
 
-" no sound
+" No sound
 if !has("gui_running")
   set vb t_vb=
   set noeb
@@ -93,12 +96,6 @@ if has("win32")
     set lines=27 columns=100
   endif
 endif
-
-set history=1000
-set ignorecase
-set hlsearch
-set incsearch
-set gdefault
 
 " Default the statusline when entering Vim
 set laststatus=2
