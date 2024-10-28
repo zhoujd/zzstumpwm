@@ -114,3 +114,6 @@ set statusline+=\ %m%r%w\ %P\                           "Modified? Readonly? Top
 set laststatus=2
 set cmdheight=1
 set ruler
+
+" Defaut statusline to green when entering Vim
+hi statusline guibg=DarkGrey ctermfg=8 guifg=White ctermbg=15
