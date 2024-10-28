@@ -100,8 +100,13 @@ set hlsearch
 set incsearch
 set gdefault
 
-" Status line setting
-set statusline=
+" Default the statusline when entering Vim
+set laststatus=2
+set cmdheight=1
+set ruler
+
+" Default statusline
+set statusline+=%1*
 set statusline+=\[%n]                                   "Buffernr
 set statusline+=\ %<%F\                                 "File+path
 set statusline+=\ %=\ %{''.(&fenc!=''?&fenc:&enc).''}\  "Encoding
@@ -110,7 +115,5 @@ set statusline+=\ %{&ff}\                               "FileFormat (dos/unix..)
 set statusline+=\ row:%l/%L\ col:%c\ (%p%%)\            "Rownumber/total (%)
 set statusline+=\ %m%r%w\ %P\                           "Modified? Readonly? Top/Bot/All
 
-" Default the statusline when entering Vim
-set laststatus=2
-set cmdheight=1
-set ruler
+" Default statusline color
+hi User1 ctermbg=darkgreen ctermfg=black guibg=darkgrey guifg=black
