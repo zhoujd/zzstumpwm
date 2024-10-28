@@ -21,6 +21,7 @@ endif
 " coding for system
 set encoding=utf-8
 set fileencodings=utf-8-bom,ucs-bom,utf-8,cp936,gb18030,ucs,big5
+set termencoding=utf-8
 
 " coding for term
 let &termencoding=&encoding
