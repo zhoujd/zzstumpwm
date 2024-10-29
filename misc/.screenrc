@@ -28,6 +28,8 @@ bind ^Q
 bind q
 bind ^S
 bind s
+bind ^X
+bind x
 bind ^Z
 bind z
 
