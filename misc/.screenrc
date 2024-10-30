@@ -1,27 +1,27 @@
 ### .screenrc
 
-# remap Ctrl-a to backtick
+## remap Ctrl-a to backtick
 escape ``
 
-# enable 256 color term
+## enable 256 color term
 term screen-256color
 
-# screen buffer
+## screen buffer
 defscrollback 4096
 
-# no flash
+## no flash
 vbell off
 
-# no start message
+## no start message
 startup_message off
 
-# stop screen from catching C-S and C-Q, XON and XOFF
+## stop screen from catching C-S and C-Q, XON and XOFF
 defflow off
 
-# scroll
+## scroll
 termcapinfo st* ti@:te@
 
-# Evil evil keybindings. Do Not Want!
+## Evil evil keybindings. Do Not Want!
 bind ^h
 bind h
 bind ^Q
@@ -33,18 +33,18 @@ bind x
 bind ^Z
 bind z
 
-# Get rid of screen 0
+## Get rid of screen 0
 bind c screen 1
 bind ^c screen 1
 bind 0 select 10
 screen 1
 
-# Fix for residual editor text
+## Fix for residual editor text
 altscreen on
 
-# hardstatus alwaysfirstline/ignore/alwayslastline
+## hardstatus alwaysfirstline/ignore/alwayslastline
 hardstatus ignore
 hardstatus string "%{.g}%w %="
 
-# windowlist
+## windowlist
 windowlist string "%4n %h%=%f"
