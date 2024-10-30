@@ -44,7 +44,7 @@ altscreen on
 
 # hardstatus
 hardstatus alwaysfirstline
-hardstatus string "%{.g}%w | %h"
+hardstatus string "%{.g}%w %= %h"
 
 # windowlist
 windowlist string "%4n %h%=%f"
