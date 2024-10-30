@@ -42,8 +42,8 @@ screen 1
 # Fix for residual editor text
 altscreen on
 
-# hardstatus
-hardstatus alwaysfirstline
+# hardstatus alwaysfirstline/ignore/alwayslastline
+hardstatus ignore
 hardstatus string "%{.g}%w %="
 
 # windowlist
