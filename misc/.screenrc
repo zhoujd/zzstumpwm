@@ -43,10 +43,8 @@ screen 1
 altscreen on
 
 ## hardstatus
-#hardstatus alwaysignore
-#hardstatus string "%{.g}%w %="
-hardstatus alwaysfirstline
-hardstatus string "%{.g}[screen %n%?: %t%?] %h"
+hardstatus alwaysignore
+hardstatus string "%{.g}%w %="
 
 ## windowlist
 windowlist string "%4n %h%=%f"
