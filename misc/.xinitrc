@@ -17,6 +17,9 @@ case $WM in
     xfce )
         exec startxfce4
         ;;
+    dwm )
+        exec dwm
+        ;;
     * )
         exec zwm-session
         ;;

@@ -5,13 +5,15 @@ WM_SELECT=${1:-}
 
 # Usage
 usage() {
-    echo "Usage: $(basename $0) {stumpwm|clfswm|zwm|sawfish|xfce}
-Please run under Console."
+    cat <<EOF
+Usage: $(basename $0) {stumpwm|clfswm|zwm|sawfish|xfce|dwm}
+Please run under console.
+EOF
 }
 
 # Start window manager
 case $WM_SELECT in
-    stumpwm|clfswm|zwm|sawfish|xfce )
+    stumpwm|clfswm|zwm|sawfish|xfce|dwm )
         if [ -z "$DISPLAY" ]; then
             WM=$WM_SELECT startx
         else
