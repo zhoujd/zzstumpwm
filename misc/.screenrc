@@ -43,8 +43,8 @@ screen 1
 altscreen on
 
 ## hardstatus
-hardstatus alwaysignore
-hardstatus string "%{.g}%w %="
+hardstatus alwayslastline
+hardstatus string "%{.g}%w %= %H"
 
 ## windowlist
 windowlist string "%4n %h%=%f"
