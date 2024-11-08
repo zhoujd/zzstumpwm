@@ -85,6 +85,10 @@ set hlsearch
 set incsearch
 set gdefault
 
+" Configure title to look like: Vim /path/to/file
+"set title
+"set titlestring=VIM:\ %-25.55F\ %a%r%m titlelen=70
+
 " No sound
 if !has("gui_running")
   set vb t_vb=
