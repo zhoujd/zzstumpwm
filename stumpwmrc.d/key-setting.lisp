@@ -164,7 +164,7 @@
   (kbd "s-M-w")             "exec rofi -show window"
   (kbd "s-M-r")             "exec rofi -show run"
   (kbd "s-M-s")             "exec rofi -show ssh"
-  (kbd "s-M-d")             "exec rofi -show drun"
+  (kbd "s-M-p")             "exec rofi -show drun"
   (kbd "s-M-v")             "exec rofi -show windowcd"
   (kbd "s-M-?")             "exec rofi -show keys"
 
