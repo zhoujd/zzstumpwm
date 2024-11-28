@@ -50,9 +50,12 @@ Ubunut 18.04 Server
     $ sudo apt install alsa-base pulseaudio
     $ sudo alsa force-reload
 
-    $ amixer set Master unmute
-    $ amixer set Master mute
-    $ amixer set Master toggle
+    $ amixer -D pulse sset Master 5%+
+    # amixer -D pulse sset Master 5%-
+    $ amixer -D pulse sset Master 50%
+    $ amixer -D pulse set Master unmute
+    $ amixer -D pulse set Master mute
+    $ amixer -D pulse set Master toggle
 
 ## Disable apt daily
 
