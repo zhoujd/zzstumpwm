@@ -14,11 +14,10 @@
   (kbd "M-b")               "wikipedia"
   (kbd "B")                 "bcompare"
   (kbd "C-B")               "exec bcompare"
-  (kbd "c")                 "runurxvt"
-  (kbd "C")                 "pullurxvt"
-  (kbd "C-c")               "exec urxvt"
-  (kbd "M-c")               "urxvtclient"
-  (kbd "s-c")               "urxvt"
+  (kbd "c")                 "runst"
+  (kbd "C")                 "pullst"
+  (kbd "C-c")               "exec st"
+  (kbd "s-c")               "st"
   (kbd "d")                 "deadbeef"
   (kbd "C-d")               "meld"
   (kbd "M-d")               "drawio"
@@ -71,9 +70,11 @@
   (kbd "C-v")               "exec gvim"
   (kbd "M-v")               (st-command "vim")
   (kbd "w")                 "wireshark"
-  (kbd "x")                 "runst"
-  (kbd "X")                 "pullst"
-  (kbd "C-x")               "exec st"
+  (kbd "x")                 "runurxvt"
+  (kbd "X")                 "pullurxvt"
+  (kbd "C-x")               "exec urxvt"
+  (kbd "M-x")               "urxvtclient"
+  (kbd "s-x")               "urxvt"
   (kbd "z")                 "vmware-view"
   ))
 
@@ -196,26 +197,26 @@
   (kbd "s-q")               "window-kill"
   (kbd "s-M-q")             "group-kill"
 
-  (kbd "s-C")               "urxvt"
+  (kbd "s-C")               "st"
   (kbd "s-E")               "emacs"
   (kbd "s-G")               "google-chrome"
 
-  (kbd "s-M-c")             "runurxvt"
+  (kbd "s-M-c")             "runst"
   (kbd "s-M-e")             "runemacs"
   (kbd "s-M-g")             "rungc"
   (kbd "s-M-m")             "evolution"
   (kbd "s-M-n")             "nnn"
   (kbd "s-M-t")             "teams"
   (kbd "s-M-u")             "code"
-  (kbd "s-M-x")             "st"
+  (kbd "s-M-x")             "urxvt"
   (kbd "s-M-z")             "vmware-view"
   ))
 
 (apply-keys-to-map
  *root-map*
  (list
-  (kbd "c")                 "urxvt"
-  (kbd "C-c")               "urxvt"
+  (kbd "c")                 "st"
+  (kbd "C-c")               "st"
   ))
 
 (apply-keys-to-map
