@@ -17,6 +17,7 @@
 (def-run-or-raise-command claws-mail           '(:Class "Claws-mail"))
 (def-run-or-raise-command deadbeef             '(:Class "Deadbeef"))
 (def-run-or-raise-command drawio               '(:class "draw.io"))
+(def-run-or-raise-command dia                  '(:class "Dia"))
 (def-run-or-raise-command evolution            '(:class "Evolution"))
 (def-run-or-raise-command firefox              '(:class "firefox"))
 (def-run-or-raise-command google-chrome        '(:class "Google-chrome"))
