@@ -78,11 +78,8 @@ ln -sfvT $ZWM_ROOT/misc/.config/rofi ~/.config/rofi
 ln -sfvT $ZWM_ROOT/misc/.config/skippy-xd ~/.config/skippy-xd
 ## Install xsettingsd
 ln -sfvT $ZWM_ROOT/misc/.config/xsettingsd ~/.config/xsettingsd
-
-## Install ibus-rime
-$ZWM_ROOT/bin/rime-setup.sh
-## Init ZWM
-$ZWM_ROOT/bin/zwminit-setup.sh
+## Install fontconfig
+ln -sfvT $ZWM_ROOT/misc/.config/fontconfig ~/.config/fontconfig
 
 
 echo "Install stumpwm end ..."
