@@ -1,5 +1,6 @@
 ;-!- erf -!-
 "autosv" = "300"
+"backup" = "0"
 "company" = ""
 "dos" {
  "blink" = "13107800"
@@ -180,7 +181,7 @@
  "autosave" = "0"
  "autospell" = "1"
 }
-"system" = "1110016"
+"system" = "61440"
 "tab" = "1"
 "user-name" = "MicroEmacs User"
 "windows" {
