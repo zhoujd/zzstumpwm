@@ -45,7 +45,7 @@ http://lxlinux.com/index.html
 http://lxlinux.com/uxlta.html
 
 ```
-##Arandr can set-up placement, orientation and resolution for each monitor
+## Arandr can set-up placement, orientation and resolution for each monitor
 $ sudo apt install arandr
 ```
 
@@ -61,4 +61,11 @@ $ winfuncs 'cascade'
 $ winfuncs 'tiletwo'
 $ winfuncs 'showdesktop'
 
+```
+
+## Number of connection monitors
+
+```
+## >2 for having external connected
+xrandr --listactivemonitors | awk '/Monitors:/ {print $2}'
 ```
