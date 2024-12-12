@@ -7,7 +7,6 @@ WM_SELECT=${1:-}
 usage() {
     cat <<EOF
 Usage: $(basename $0) {stumpwm|clfswm|zwm|sawfish|xfce|dwm}
-Please run under console.
 EOF
 }
 
@@ -17,7 +16,7 @@ case $WM_SELECT in
         if [ -z "$DISPLAY" ]; then
             WM=$WM_SELECT startx
         else
-            usage
+            echo "Please run in console."
         fi
         ;;
     *)
