@@ -11,5 +11,3 @@ if [ $KEEP ]; then
 else
     bash -c "$*; read"
 fi    
-
-echo "urxvt-prompt done"
