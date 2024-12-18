@@ -30,4 +30,5 @@ set-variable %tag-option "rcemsv"
     translate-key "\x7f" "backspace"
     translate-key "C-[ [ 2 ; 5 ~" "C-backspace"
   !endif
+  translate-key "C-h" "backspace"
 !endif
