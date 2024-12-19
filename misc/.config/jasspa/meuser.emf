@@ -29,6 +29,8 @@ set-variable %tag-option "rcemsv"
     ; Not using X
     translate-key "\x7f" "backspace"
     translate-key "C-[ [ 2 ; 5 ~" "C-backspace"
+  !else
+    global-bind-key undo "C-/"
   !endif
   translate-key "C-h" "backspace"
 !endif
