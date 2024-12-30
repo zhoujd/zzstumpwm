@@ -59,11 +59,11 @@ RUN wget https://github.com/vinceliuice/WhiteSur-icon-theme/archive/refs/heads/m
         && unzip master.zip \
         && ./WhiteSur-icon-theme-master/install.sh -d ~/.icons \
         && rm -rf WhiteSur-icon-theme-master master.zip
-RUN wget https://github.com/vinceliuice/McMojave-cursors/archive/refs/heads/master.zip \
+RUN wget https://github.com/vinceliuice/WhiteSur-cursors/archive/refs/heads/master.zip \
         && unzip master.zip \
-        && rm -rf ~/.icons/McMojave-cursors \
-        && cp -pr McMojave-cursors-master/dist ~/.icons/McMojave-cursors \
-        && rm -rf McMojave-cursors-master master.zip
+        && rm -rf ~/.icons/WhiteSur-cursors \
+        && cp -pr WhiteSur-cursors-master/dist ~/.icons/WhiteSur-cursors \
+        && rm -rf WhiteSur-cursors-master master.zip
 
 COPY entrypoint.sh /app
 ENTRYPOINT ["/app/entrypoint.sh"]
