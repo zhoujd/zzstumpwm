@@ -1,3 +1,8 @@
 ### .tigrc
 
-set vertical-split = false ## true for vertical, false for horizontal
+# split
+set vertical-split = false 
+
+# keys
+bind status P !?git push
+bind status F !?git fetch
