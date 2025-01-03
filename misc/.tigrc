@@ -6,4 +6,4 @@ set vertical-split = false
 # Keys
 bind status A ?git commit --amend
 bind status F ?git fetch %(remote)
-bind status P ?git push -u %(remote) %(repo:head)
+bind status P ?git push %(remote) %(repo:head)
