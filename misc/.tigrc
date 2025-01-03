@@ -1,8 +1,8 @@
 ### .tigrc
 
-# split
-set vertical-split = false 
+# Misc
+set vertical-split = false
 
-# keys
+# Keys
 bind status P !?git push
 bind status F !?git fetch
