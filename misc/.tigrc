@@ -4,5 +4,5 @@
 set vertical-split = false
 
 # Keys
-bind status P !?git push %(remote) %(branch)
-bind status F !?git fetch
+bind generic P ?git push -u %(remote) %(repo:head)
+bind generic F ?git fetch %(remote)
