@@ -4,5 +4,5 @@
 set vertical-split = false
 
 # Keys
-bind status P !?git push
+bind status P !?git push %(remote) %(branch)
 bind status F !?git fetch
