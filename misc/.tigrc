@@ -7,5 +7,3 @@ set vertical-split = false
 bind status A ?git commit --amend
 bind status F ?git fetch %(remote)
 bind status P ?git push %(remote) %(repo:head)
-
-
