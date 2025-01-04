@@ -26,3 +26,21 @@ $ cd screen-4.8.0
 $ ./configure
 $ make LDFLAGS="-static"
 ```
+
+## BusyBox
+
+```
+## https://www.busybox.net/
+## https://wiki.alpinelinux.org/wiki/BusyBox
+## https://github.com/ladyrick/static-tools/releases/download/v1.2/busybox.amd64
+
+```
+
+## Toybox
+
+```
+## https://landley.net/toybox/bin/
+## https://landley.net/toybox/bin/toybox-x86_64
+## https://github.com/landley/toybox
+## https://landley.net/toybox/downloads/binaries/toolchains/latest/
+```
