@@ -5,6 +5,8 @@ static build
 
 ```
 ## https://github.com/toolleeo/awesome-cli-apps-in-a-csv
+## https://github.com/frontaid/git-cli-tools
+## https://terminaltrove.com/list/
 ```
 
 ## Tmux static build
