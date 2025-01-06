@@ -1,6 +1,12 @@
 static build
 ============
 
+## Awesome CLI
+
+```
+## https://github.com/toolleeo/awesome-cli-apps-in-a-csv
+```
+
 ## Tmux static build
 
 ```
