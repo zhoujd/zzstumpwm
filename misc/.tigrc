@@ -1,9 +1,5 @@
 ### .tigrc
 
-# Misc
-set vertical-split = false
-
-# Keys
-bind status A ?git commit --amend
-bind status F ?git fetch %(remote)
-bind status P ?git push %(remote) %(repo:head)
+source ~/.tigrc.d/common.tigrc
+source ~/.tigrc.d/color.tigrc
+source ~/.tigrc.d/key.tigrc

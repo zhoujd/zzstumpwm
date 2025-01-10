@@ -71,8 +71,6 @@ mkdir -p ~/.config
 
 ## Install rofi
 ln -sfvT $ZWM_ROOT/misc/.config/rofi ~/.config/rofi
-## Install tig
-ln -sfvT $ZWM_ROOT/misc/.config/tig ~/.config/tig
 ## Install skippy-xd
 ln -sfvT $ZWM_ROOT/misc/.config/skippy-xd ~/.config/skippy-xd
 ## Install xsettingsd

@@ -1,5 +1,0 @@
-### config
-
-source ~/.config/tig/common.tigrc
-source ~/.config/tig/color.tigrc
-source ~/.config/tig/key.tigrc
