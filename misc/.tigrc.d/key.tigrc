@@ -1,5 +1,5 @@
 ### key.tigrc
 
-bind status A ?git commit --amend
+bind status A ?git commit --amend --no-edit
 bind status F ?git fetch %(remote)
 bind status P ?git push %(remote) %(repo:head)

@@ -1,4 +1,5 @@
 ### common.tigrc
 
 set vertical-split = false
-set main-view = line-number:no id:yes date:no author:no commit-title:yes,graph,refs,overflow=no
+set main-view = line-number:no id:yes,color author:no date:no commit-title:yes,graph,refs,overflow=no
+set blame-view = id:yes,color author:full date:relative-compact line-number:yes,interval=1 text
