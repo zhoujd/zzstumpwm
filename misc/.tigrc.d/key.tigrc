@@ -1,93 +1,103 @@
 ### key.tigrc
 
-## g move, view-grep
-bind generic g      move-first-line
-bind generic E      view-grep
+## generic move
+bind generic V        view-pager
+bind generic <Ctrl-s> find-next
+bind generic <Ctrl-r> find-prev
+bind generic <Ctrl-v> move-page-down
+bind generic <Esc>v   move-page-up
+bind generic <Ctrl-f> scroll-right
+bind generic <Ctrl-b> scroll-left
+bind generic <Ctrl-g> refresh
 
-## G move to tail (default: :toggle commit-title-graph)
-bind generic G      move-last-line
-bind main    G      move-last-line
+## g move, view-grep
+bind generic g        move-first-line
+bind generic E        view-grep
+
+## G move to tail (default: toggle commit-title-graph)
+bind generic G        move-last-line
+bind main    G        move-last-line
 
 ## Alt-g :toggle commit-title-graph
-bind main    <Esc>g :toggle commit-title-graph
+bind main    <Esc>g   :toggle commit-title-graph
 
 ## C commit
-bind generic C      !git commit
-bind refs    C      !git commit
-bind main    C      !git commit
-bind generic <Esc>c !git commit --allow-empty
-bind generic +      !git commit --amend --allow-empty
-bind status  A      ?git commit --amend --no-edit
+bind generic C        !git commit
+bind refs    C        !git commit
+bind main    C        !git commit
+bind generic <Esc>c   !git commit --allow-empty
+bind generic +        !git commit --amend --allow-empty
+bind status  A        ?git commit --amend --no-edit
 
 ## F fech
-bind generic F      ?git fetch %(remote)
-bind main    F      ?git fetch %(remote)
-bind status  F      ?git fetch %(remote)
+bind generic F        ?git fetch %(remote)
+bind main    F        ?git fetch %(remote)
+bind status  F        ?git fetch %(remote)
 
 ## U pull
-bind generic U      ?git pull %(remote)
+bind generic U        ?git pull %(remote)
 
 ## P push
-bind status  P      ?git push %(remote) %(repo:head)
+bind status  P        ?git push %(remote) %(repo:head)
 
 ## H reset --hard
-bind main    H      ?git reset --hard %(commit)
-bind diff    H      ?git reset --hard %(commit)
-bind refs    H      ?git reset --hard %(branch)
-bind status  H      ?git reset --hard HEAD
+bind main    H        ?git reset --hard %(commit)
+bind diff    H        ?git reset --hard %(commit)
+bind refs    H        ?git reset --hard %(branch)
+bind status  H        ?git reset --hard HEAD
 
 ## D delete/rm/drop
-bind refs    D      ?git branch -d %(branch)
-bind status  D      ?git clean -d -f -- %(file)
-bind stash   D      ?git stash drop %(stash)
-bind tree    D      ?git rm %(file)
+bind refs    D        ?git branch -d %(branch)
+bind status  D        ?git clean -d -f -- %(file)
+bind stash   D        ?git stash drop %(stash)
+bind tree    D        ?git rm %(file)
 
 ## x clean
-bind main    x      ?git clean -d -f
-bind status  x      ?git clean -d -f
+bind main    x        ?git clean -d -f
+bind status  x        ?git clean -d -f
 
 ## ! revert
-bind main    !      ?git revert %(commit)
+bind main    !        ?git revert %(commit)
 
 ## K cherry-pick (default: 'C')
-bind main    K      ?git cherry-pick %(commit)
-bind diff    K      ?git cherry-pick %(commit)
+bind main    K        ?git cherry-pick %(commit)
+bind diff    K        ?git cherry-pick %(commit)
 
 ## Alt-k checkout -n (--no-commit)
-bind main    <Esc>k ?git cherry-pick -n %(commit)
-bind diff    <Esc>k ?git cherry-pick -n %(commit)
+bind main    <Esc>k   ?git cherry-pick -n %(commit)
+bind diff    <Esc>k   ?git cherry-pick -n %(commit)
 
 ## = checkout
-bind main    =      ?git checkout %(branch)
-bind refs    =      ?git checkout %(branch)
-bind main    <Esc>= ?git checkout %(commit)
+bind main    =        ?git checkout %(branch)
+bind refs    =        ?git checkout %(branch)
+bind main    <Esc>=   ?git checkout %(commit)
 
 ## T tag
-bind main    T      ?git tag "%(prompt Enter tag name: )" %(commit)
-bind refs    T      ?git tag "%(prompt Enter tag name: )" %(branch)
+bind main    T        ?git tag "%(prompt Enter tag name: )" %(commit)
+bind refs    T        ?git tag "%(prompt Enter tag name: )" %(branch)
 
 ## B checkout -b
-bind main    B      ?git checkout -b "%(prompt Enter branch name: )" %(branch)
-bind refs    B      ?git checkout -b "%(prompt Enter branch name: )" %(branch)
-bind main    <Esc>b ?git checkout -b "%(prompt Enter branch name: )" %(commit)
+bind main    B        ?git checkout -b "%(prompt Enter branch name: )" %(branch)
+bind refs    B        ?git checkout -b "%(prompt Enter branch name: )" %(branch)
+bind main    <Esc>b   ?git checkout -b "%(prompt Enter branch name: )" %(commit)
 
 ## M merge
-bind main    M      ?git merge %(branch)
-bind diff    M      ?git merge %(branch)
-bind refs    M      ?git merge %(branch)
-bind main    <Esc>m ?git merge %(commit)
-bind diff    <Esc>m ?git merge %(commit)
+bind main    M        ?git merge %(branch)
+bind diff    M        ?git merge %(branch)
+bind refs    M        ?git merge %(branch)
+bind main    <Esc>m   ?git merge %(commit)
+bind diff    <Esc>m   ?git merge %(commit)
 
 ## R rebase
-bind main    R      ?git rebase %(branch)
-bind diff    R      ?git rebase %(branch)
-bind refs    R      ?git rebase %(branch)
-bind main    <Esc>r ?git rebase %(commit)
-bind diff    <Esc>r ?git rebase %(commit)
+bind main    R        ?git rebase %(branch)
+bind diff    R        ?git rebase %(branch)
+bind refs    R        ?git rebase %(branch)
+bind main    <Esc>r   ?git rebase %(commit)
+bind diff    <Esc>r   ?git rebase %(commit)
 
 ## I rebase -I
-bind main    I      ?git rebase -i %(branch)
-bind diff    I      ?git rebase -i %(branch)
-bind refs    I      ?git rebase -i %(branch)
-bind main    <Esc>i ?git rebase -i %(commit)
-bind diff    <Esc>i ?git rebase -i %(commit)
+bind main    I        ?git rebase -i %(branch)
+bind diff    I        ?git rebase -i %(branch)
+bind refs    I        ?git rebase -i %(branch)
+bind main    <Esc>i   ?git rebase -i %(commit)
+bind diff    <Esc>i   ?git rebase -i %(commit)
