@@ -15,6 +15,14 @@ static build
 ## https://github.com/mjakob-gh/build-static-tmux
 ## https://github.com/mjakob-gh/build-static-tmux/blob/master/build-static-tmux.sh
 ```
+
+## Download and run CLI tools on Linux and Mac
+
+```
+## https://1bin.org/
+## https://github.com/nikvdp/1bin
+```
+
 ## Linux static tool
 
 ```
