@@ -1,5 +1,5 @@
-static build
-============
+README
+======
 
 ## Awesome CLI
 
@@ -63,4 +63,12 @@ $ make LDFLAGS="-static"
 ## https://landley.net/toybox/bin/toybox-x86_64
 ## https://github.com/landley/toybox
 ## https://landley.net/toybox/downloads/binaries/toolchains/latest/
+```
+
+## miniserve - a CLI tool to serve files and dirs over HTTP
+
+```
+## https://lib.rs/crates/miniserve
+## https://github.com/svenstaro/miniserve
+## https://github.com/svenstaro/miniserve/releases
 ```

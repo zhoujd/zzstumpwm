@@ -9,6 +9,7 @@ TARGET=~/.local/bin
 mkdir -p $TARGET
 
 APPS=(
+    miniserve
     busybox
     toybox
     screen
