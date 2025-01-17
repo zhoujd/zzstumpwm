@@ -20,6 +20,10 @@ static build
 ```
 ## https://github.com/ladyrick/static-tools
 ## https://github.com/ladyrick/static-tools/releases
+## https://github.com/andrew-d/static-binaries
+## https://github.com/andrew-d/static-binaries/tree/master/binaries/linux/x86_64
+## https://github.com/ryanwoodsmall/static-binaries
+## https://github.com/ryanwoodsmall/static-binaries/tree/master/x86_64
 ```
 
 ## Screen static build

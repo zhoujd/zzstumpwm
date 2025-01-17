@@ -13,6 +13,7 @@ APPS=(
     screen
     tmux
     tig
+    ag
 )
 for app in ${APPS[@]}; do
     cp -vf $SCRIPT_ROOT/$app $TARGET
