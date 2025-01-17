@@ -1,5 +1,5 @@
-README
-======
+Static Build
+============
 
 ## Awesome CLI
 
