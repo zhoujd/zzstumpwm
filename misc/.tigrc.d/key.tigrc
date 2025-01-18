@@ -10,9 +10,10 @@ bind generic <Ctrl-f> scroll-right
 bind generic <Ctrl-b> scroll-left
 bind generic <Ctrl-g> refresh
 
-## g move, view-grep
+## g move, view-grep view-help
 bind generic g        move-first-line
 bind generic E        view-grep
+bind generic ?        view-help
 
 ## G move to tail (default: toggle commit-title-graph)
 bind generic G        move-last-line
@@ -20,6 +21,11 @@ bind main    G        move-last-line
 
 ## Alt-g :toggle commit-title-graph
 bind main    <Esc>g   :toggle commit-title-graph
+
+## vertical-split
+bind main    <Esc>s   :toggle vertical-split
+bind refs    <Esc>s   :toggle vertical-split
+bind diff    <Esc>s   :toggle vertical-split
 
 ## C commit
 bind generic C        !git commit
