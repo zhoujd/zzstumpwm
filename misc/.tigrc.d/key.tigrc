@@ -46,6 +46,12 @@ bind generic U        ?git pull %(remote)
 ## P push
 bind status  P        ?git push %(remote) %(repo:head)
 
+## ^ reset --soft
+bind main    ^        ?git reset --soft %(commit)
+bind diff    ^        ?git reset --soft %(commit)
+bind refs    ^        ?git reset --soft %(branch)
+bind status  ^        ?git reset --soft HEAD
+
 ## H reset --hard
 bind main    H        ?git reset --hard %(commit)
 bind diff    H        ?git reset --hard %(commit)
