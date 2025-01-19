@@ -62,11 +62,11 @@ bind diff    H        ?git reset --hard %(commit)
 bind refs    H        ?git reset --hard %(branch)
 bind status  H        ?git reset --hard HEAD
 
-## D delete/rm/drop
-bind refs    D        ?git branch -d %(branch)
-bind status  D        ?git clean -d -f -- %(file)
-bind stash   D        ?git stash drop %(stash)
-bind tree    D        ?git rm %(file)
+## Alt-d delete/rm/drop
+bind refs    <Esc>d   ?git branch -d %(branch)
+bind status  <Esc>d   ?git clean -d -f -- %(file)
+bind stash   <Esc>d   ?git stash drop %(stash)
+bind tree    <Esc>d   ?git rm %(file)
 
 ## x clean
 bind main    x        ?git clean -d -f
