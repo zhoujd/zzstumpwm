@@ -42,8 +42,12 @@ bind status  F        ?git fetch %(remote)
 
 ## U pull
 bind generic U        ?git pull %(remote)
+bind main    U        ?git pull %(remote)
+bind status  U        ?git pull %(remote)
 
 ## P push
+bind generic P        ?git push %(remote) %(repo:head)
+bind main    P        ?git push %(remote) %(repo:head)
 bind status  P        ?git push %(remote) %(repo:head)
 
 ## ^ reset --soft
