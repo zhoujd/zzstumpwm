@@ -47,11 +47,11 @@ $ ./configure --with-sys-screenrc=~/.screenrc
 $ make LDFLAGS="-static"
 
 ## Custom SCREENDIR (optional)
-cat > /etc/profile.d/zz-screen.sh <<EOF
+sudo tee /etc/profile.d/zz-screen.sh <<EOF
 #!/bin/bash
-mkdir -p $HOME/.local/run/screen
-chmod 700 $HOME/.local/run/screen
-export SCREENDIR=$HOME/.local/run/screen
+mkdir -p \$HOME/.local/run/screen
+chmod 700 \$HOME/.local/run/screen
+export SCREENDIR=\$HOME/.local/run/screen
 EOF
 ```
 
