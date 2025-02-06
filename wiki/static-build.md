@@ -33,6 +33,23 @@ Static Build
 ## https://github.com/ryanwoodsmall/static-binaries
 ## https://github.com/ryanwoodsmall/static-binaries/tree/master/x86_64
 ```
+## Screen on st terminal
+
+```https://savannah.gnu.org/bugs/?63619
+diff --git a/os.h b/os.h
+index 2a1c2ca..40402ae 100644
+--- a/os.h
++++ b/os.h
+@@ -507,7 +507,7 @@ typedef struct fd_set { int fds_bits[1]; } fd_set;
+  */
+
+ #ifndef TERMCAP_BUFSIZE
+-# define TERMCAP_BUFSIZE 1023
++# define TERMCAP_BUFSIZE 1111
+ #endif
+
+ #ifndef MAXPATHLEN
+```
 
 ## Screen static build
 
