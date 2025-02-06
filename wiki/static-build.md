@@ -43,8 +43,16 @@ $ VER=4.8.0
 $ wget http://ftp.gnu.org/gnu/screen/screen-${VER}.tar.gz
 $ tar -xvzf screen-${VER}.tar.gz
 $ cd screen-${VER}
-$ ./configure
+$ ./configure --with-sys-screenrc=~/.screenrc
 $ make LDFLAGS="-static"
+
+## Custom SCREENDIR (optional)
+cat > /etc/profile.d/zz-screen.sh <<EOF
+#!/bin/bash
+mkdir -p $HOME/.local/run/screen
+chmod 700 $HOME/.local/run/screen
+export SCREENDIR=$HOME/.local/run/screen
+EOF
 ```
 
 ## BusyBox
