@@ -49,6 +49,10 @@ index 2a1c2ca..40402ae 100644
  #endif
 
  #ifndef MAXPATHLEN
+
++/* Change for Ubuntu */
++#undef UTMPFILE
++#define UTMPFILE "/var/run/utmp"
 ```
 
 ## Screen static build
