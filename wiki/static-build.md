@@ -60,10 +60,14 @@ $ VER=4.8.0
 $ wget http://ftp.gnu.org/gnu/screen/screen-${VER}.tar.gz
 $ tar -xvzf screen-${VER}.tar.gz
 $ cd screen-${VER}
-$ ./configure --with-sys-screenrc=~/.screenrc
+$ ./configure
 $ make LDFLAGS="-static"
+```
 
-## Custom SCREENDIR (optional)
+## Screen ENV
+
+```
+## Custom SCREENDIR (Optional)
 sudo tee /etc/profile.d/zz-screen.sh <<EOF
 #!/bin/bash
 mkdir -p \$HOME/.local/run/screen
