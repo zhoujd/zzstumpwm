@@ -33,14 +33,25 @@ Static Build
 ## https://github.com/ryanwoodsmall/static-binaries
 ## https://github.com/ryanwoodsmall/static-binaries/tree/master/x86_64
 ```
-## Screen on st terminal
+## Patch screen on st terminal
 
 ```https://savannah.gnu.org/bugs/?63619
 diff --git a/os.h b/os.h
-index 2a1c2ca..40402ae 100644
+index 2a1c2ca..090e8a6 100644
 --- a/os.h
 +++ b/os.h
-@@ -507,7 +507,7 @@ typedef struct fd_set { int fds_bits[1]; } fd_set;
+@@ -288,6 +288,10 @@ extern int errno;
+
+ #endif /* UTMPOK || BUGGYGETLOGIN */
+
++/* Force on Ubuntu */
++#undef UTMPFILE
++#define UTMPFILE "/var/run/utmp"
++
+ #if !defined(UTMPOK) && defined(USRLIMIT)
+ # undef USRLIMIT
+ #endif
+@@ -507,7 +511,7 @@ typedef struct fd_set { int fds_bits[1]; } fd_set;
   */
 
  #ifndef TERMCAP_BUFSIZE
@@ -49,10 +60,6 @@ index 2a1c2ca..40402ae 100644
  #endif
 
  #ifndef MAXPATHLEN
-
-+/* Change for Ubuntu */
-+#undef UTMPFILE
-+#define UTMPFILE "/var/run/utmp"
 ```
 
 ## Screen static build
