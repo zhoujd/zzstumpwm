@@ -78,13 +78,16 @@ $ make LDFLAGS="-static"
 ## Screen ENV
 
 ```
-## Custom SCREENDIR (Optional)
+## Custom SCREENDIR
 sudo tee /etc/profile.d/zz-screen.sh <<EOF
 #!/bin/bash
 mkdir -p \$HOME/.local/run/screen
 chmod 700 \$HOME/.local/run/screen
 export SCREENDIR=\$HOME/.local/run/screen
 EOF
+
+## Custom SCREENRC
+export SCREENRC="~/.screenrc"
 ```
 
 ## BusyBox
