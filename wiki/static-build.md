@@ -115,3 +115,9 @@ export SCREENRC="~/.screenrc"
 ## https://github.com/svenstaro/miniserve
 ## https://github.com/svenstaro/miniserve/releases
 ```
+
+## rsync static
+
+```
+## https://github.com/jbruechert/rsync-static
+```

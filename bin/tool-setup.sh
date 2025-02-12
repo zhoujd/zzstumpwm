@@ -14,6 +14,7 @@ APPS=(
     toybox
     screen
     hexyl
+    rsync
     tmux
     less
     tig
