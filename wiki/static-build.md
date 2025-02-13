@@ -94,9 +94,11 @@ export SCREENRC="~/.screenrc"
 
 ```
 ## https://www.busybox.net/
+## https://busybox.net/downloads/binaries/
 ## https://wiki.alpinelinux.org/wiki/BusyBox
 ## https://github.com/ladyrick/static-tools/releases/download/v1.2/busybox.amd64
-
+## https://github.com/EXALAB/Busybox-static
+## https://github.com/shutingrz/busybox-static-binaries-fat
 ```
 
 ## Toybox
