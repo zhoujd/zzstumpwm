@@ -32,6 +32,7 @@ Static Build
 ## https://github.com/andrew-d/static-binaries/tree/master/binaries/linux/x86_64
 ## https://github.com/ryanwoodsmall/static-binaries
 ## https://github.com/ryanwoodsmall/static-binaries/tree/master/x86_64
+## https://github.com/static-linux/static-binaries-i386
 ```
 ## Patch screen on st terminal
 
@@ -128,4 +129,12 @@ export SCREENRC="~/.screenrc"
 
 ```
 ## https://github.com/therealsaumil/static-arm-bins
+```
+
+## minicom/picocom
+
+```
+## https://github.com/static-linux/static-binaries-i386/blob/master/minicom-2.7.tar.gz
+## https://github.com/static-linux/static-binaries-i386/blob/master/picocom-1.7.tar.gz
+## https://github.com/npat-efault/picocom
 ```
