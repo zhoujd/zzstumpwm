@@ -5,7 +5,6 @@ zzstumpwm
 
     * <http://stumpwm.org>
     * <https://stumpwm.github.io/download.html>
-
     * <http://www.clisp.org>
     * <http://www.xsteve.at/prg/stumpwm/>
     * <https://www.emacswiki.org/emacs/StumpWM>
