@@ -21,6 +21,6 @@ case $WM in
         exec startdwm
         ;;
     * )
-        exec zwm-session
+        exec startdwm
         ;;
 esac
