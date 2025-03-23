@@ -13,6 +13,7 @@ echo "Setup stumpwm-session"
 ln -sfvT $SCRIPT_ROOT/stumpwm-session $TARGET/stumpwm-session
 
 echo "Setup stumpwm desktop"
+mkdir -p /usr/share/xsessions
 tee /usr/share/xsessions/stumpwm.desktop <<EOF
 [Desktop Entry]
 Name=Stumpwm

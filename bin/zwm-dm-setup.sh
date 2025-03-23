@@ -11,12 +11,13 @@ if [ $EUID -ne 0 ]; then
 fi
 
 echo "Setup zwm desktop"
+sudo mkdir -p /usr/share/xsessions
 tee /usr/share/xsessions/zwm.desktop <<EOF
 [Desktop Entry]
 Encoding=UTF-8
 Name=ZWM Session
 Comment=Runs the Zach Window Manager
-Exec=/etc/X11/Xsession
+Exec=zwm-session
 Icon=
 Type=Application
 DesktopNames=ZWM
