@@ -14,7 +14,8 @@ EOF
 case $WM_SELECT in
     stumpwm|clfswm|zwm|sawfish|xfce|dwm )
         if [ -z "$DISPLAY" ]; then
-            WM=$WM_SELECT startx
+            export WM=$WM_SELECT
+            exec startx
         else
             echo "Please run in console."
         fi
