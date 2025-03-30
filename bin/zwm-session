@@ -3,6 +3,9 @@
 # Select window manager
 echo "You can also run: $(basename $0) {stumpwm|clfswm}"
 
+export SBCL_HOME=/usr/local/sbcl/lib/sbcl
+export SBCL_PATH=/usr/local/sbcl/bin/sbcl
+
 # Stumpwm as default
 WM_SELECT=${1:-stumpwm}
 
@@ -12,11 +15,11 @@ WM_SELECT=${1:-stumpwm}
 # Start window manager
 case $WM_SELECT in
     stumpwm )
-        exec sbcl --eval '(ql:quickload :stumpwm)' \
-                  --eval '(stumpwm:stumpwm)'
+        exec $SBCL_PATH --eval '(ql:quickload :stumpwm)' \
+                        --eval '(stumpwm:stumpwm)'
         ;;
     clfswm )
-        exec sbcl --eval '(ql:quickload :clfswm)' \
-                  --eval '(clfswm:main)'
+        exec $SBCL_PATH --eval '(ql:quickload :clfswm)' \
+                        --eval '(clfswm:main)'
         ;;
 esac

@@ -11,16 +11,13 @@ case $WM in
     zwm )
         exec zwm-session
         ;;
-    sawfish )
-        exec sawfish
-        ;;
-    xfce )
-        exec startxfce4
-        ;;
     dwm )
-        exec startdwm
+        exec dwm-session
+        ;;
+    cwm )
+        exec cwm-session
         ;;
     * )
-        exec startdwm
+        exec dwm-session
         ;;
 esac
