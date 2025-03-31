@@ -5,6 +5,7 @@
 SBCL_VERSION="2.0.1"
 SBCL_PKG="sbcl-$SBCL_VERSION-x86-64-linux-binary.tar.bz2"
 SBCL_PREFIX=/usr/local/sbcl
+SBCL_CONFIG=/etc/profile.d/zz-sbcl.sh
 
 ## make sure the download folder exist
 mkdir -p ~/Downloads
@@ -45,12 +46,12 @@ install() {
 uninstall() {
     echo "Uninstall SBCL"
     sudo rm -rf $SBCL_PREFIX
-    sudo rm /etc/profile.d/zz-sbcl.sh
+    sudo rm -vf $SBCL_CONFIG
 }
 
 config() {
     echo "Install config"
-    sudo tee /etc/profile.d/zz-sbcl.sh <<EOF
+    sudo tee $SBCL_CONFIG <<EOF
 export SBCL_HOME=$SBCL_PREFIX/lib/sbcl
 export PATH=$SBCL_PREFIX/bin\${PATH:+:}\$PATH
 EOF
