@@ -3,6 +3,7 @@
 # Select window manager
 echo "You can also run: $(basename $0) {stumpwm|clfswm}"
 
+# SBCL config
 PREFIX=/usr/local/sbcl
 export SBCL_HOME=$PREFIX/lib/sbcl
 export SBCL_PATH=$PREFIX/bin/sbcl
