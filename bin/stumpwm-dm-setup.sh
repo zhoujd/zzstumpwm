@@ -1,7 +1,7 @@
 #!/bin/bash
 
 SCRIPT_ROOT=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
-TARGET=/usr/bin
+TARGET=/usr/local/bin
 
 ## Please run as root
 if [ $EUID -ne 0 ]; then
@@ -19,7 +19,7 @@ tee /usr/share/xsessions/stumpwm.desktop <<EOF
 Name=Stumpwm
 Comment=Stumpwm window manager
 Exec=stumpwm-session
-Icon=
+Icon=stumpwm
 Type=Application
 DesktopNames=STUMPWM
 EOF

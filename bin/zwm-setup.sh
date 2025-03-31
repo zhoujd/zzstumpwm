@@ -1,5 +1,4 @@
 #!/bin/bash
-#set -x -v
 
 SCRIPT_ROOT=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
 TARGET=/usr/local/bin
