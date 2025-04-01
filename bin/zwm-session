@@ -1,27 +1,41 @@
 #!/bin/sh
 
-# Select window manager
-echo "You can also run: $(basename $0) {stumpwm|clfswm}"
-
-# SBCL config
 PREFIX=/usr/local/sbcl
 export SBCL_HOME=$PREFIX/lib/sbcl
 export PATH=$PREFIX/bin:$PATH
 
-# Stumpwm as default
-WM_SELECT=${1:-stumpwm}
+SELECT=${1:-stumpwm}
 
-# Source zwmrc
-[ -f ~/.zwmrc ] && . ~/.zwmrc
+usage() {
+    cat <<EOF
+$(basename $0) {stumpwm|clfswm}
+stumpwm   -- default
+clfswm    -- option
+EOF
+}
 
-# Start window manager
-case $WM_SELECT in
+stumpwm() {
+    [ -f ~/.zwmrc ] && . ~/.zwmrc
+    exec sbcl \
+         --eval '(ql:quickload :stumpwm)' \
+         --eval '(stumpwm:stumpwm)'
+}
+
+clfswm() {
+    [ -f ~/.zwmrc ] && . ~/.zwmrc
+    exec sbcl \
+         --eval '(ql:quickload :clfswm)' \
+         --eval '(clfswm:main)'
+}
+
+case $SELECT in
     stumpwm )
-        exec sbcl --eval '(ql:quickload :stumpwm)' \
-                  --eval '(stumpwm:stumpwm)'
+        stumpwm
         ;;
     clfswm )
-        exec sbcl --eval '(ql:quickload :clfswm)' \
-                  --eval '(clfswm:main)'
+        clfswm
+        ;;
+    --help|-h )
+        usage
         ;;
 esac
