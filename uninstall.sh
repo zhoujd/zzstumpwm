@@ -4,7 +4,7 @@ SCRIPT_ROOT=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
 ZWM_ROOT=$(cd $SCRIPT_ROOT && pwd)
 ZWM_TOP=$(cd $ZWM_ROOT/.. && pwd)
 
-echo "Uninstall stumpwm start ..."
+echo "Uninstall zwm start ..."
 
 ## Remove configure file and quicklisp
 rm -f ~/.stumpwmrc
@@ -49,6 +49,9 @@ rm -f ~/.urxvt
 rm -f ~/.xrdb
 ## Remove .keynavrc
 rm -f ~/.keynavrc
+## Remove .tigrc
+rm -f ~/.tigrc
+## Remove .tigrc.d
+rm -rf ~/.tigrc.d
 
-
-echo "Uninstall stumpwm end ..."
+echo "Uninstall zwm end ..."
