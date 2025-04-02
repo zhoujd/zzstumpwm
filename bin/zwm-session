@@ -9,7 +9,7 @@ LOG=$HOME/.zwm-errors
 
 usage() {
     cat <<EOF
-$(basename $0) {stumpwm|clfswm}
+Usage: $(basename $0) {stumpwm|clfswm}
 stumpwm   -- default
 clfswm    -- option
 EOF
