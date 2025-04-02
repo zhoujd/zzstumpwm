@@ -1,7 +1,14 @@
 #!/bin/bash
-#set -x
 
-# run script
+spawn() {
+    local cmd=$1
+    if [ -x "$cmd" ]; then
+        echo "$(date) zwmrc: spawn $cmd."
+        $cmd >/dev/null 2>&1 || true
+    fi
+}
+
+# Run script
 for i in ~/.zwmrc.d/*.sh ; do
-    [ -x "$i" ] && "$i"
+    spawn "$i" &
 done

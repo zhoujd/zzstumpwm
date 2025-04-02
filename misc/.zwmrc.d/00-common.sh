@@ -1,7 +1,9 @@
 #!/bin/bash
 
-echo "[common] load X resource"
-[ -f ~/.Xresources ] && xrdb -load ~/.Xresources
+common() {
+    echo "$(date) [common] load X resource"
+    [ -f ~/.Xresources ] && xrdb -load ~/.Xresources
 
-echo "[common] load X modmap"
-[ -f ~/.Xmodmap ] && xmodmap ~/.Xmodmap
+    echo "$(date) [common] load X modmap"
+    [ -f ~/.Xmodmap ] && xmodmap ~/.Xmodmap
+}

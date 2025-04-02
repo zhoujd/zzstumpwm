@@ -1,9 +1,9 @@
 #!/bin/bash
 
 keys() {
-    echo "[keys] nocaps"
+    echo "$(date) [keys] nocaps"
     setxkbmap -option 'ctrl:nocaps'
 
-    echo "[keys] map 'Caps Lock' as both 'Shift' at same time"
+    echo "$(date) [keys] map 'Caps Lock' as both 'Shift' at same time"
     setxkbmap -option "shift:both_capslock"
 }

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 im_fcitx() {
-    echo "[lang] fcitx as input method"
+    echo "$(date) [lang] fcitx as input method"
     export LANG=en_US.UTF-8    
     export GTK_IM_MODULE="fcitx"
     export QT_IM_MODULE="fcitx"
@@ -11,7 +11,7 @@ im_fcitx() {
 }
 
 im_ibus() {
-    echo "[lang] ibus as input method"
+    echo "$(date) [lang] ibus as input method"
     export LANG=en_US.UTF-8
     export GTK_IM_MODULE=ibus
     export QT_IM_MODULE=ibus
@@ -20,4 +20,6 @@ im_ibus() {
     ibus-daemon -drx
 }
 
-im_ibus
+lang() {
+    im_ibus
+}
