@@ -5,6 +5,7 @@ export SBCL_HOME=$PREFIX/lib/sbcl
 export PATH=$PREFIX/bin:$PATH
 
 SELECT=${1:-stumpwm}
+LOG=$HOME/.zwm-errors
 
 usage() {
     cat <<EOF
@@ -15,14 +16,18 @@ EOF
 }
 
 stumpwm() {
-    [ -f ~/.zwmrc ] && . ~/.zwmrc
+    echo "$(date) zwm: start stumpwm." >$LOG
+    if [ -f $HOME/.zwmrc ]; then
+        echo "$(date) zwm: source $HOME/.zwmrc." >>$LOG
+        . $HOME/.zwmrc
+    fi
     exec sbcl \
          --eval '(ql:quickload :stumpwm)' \
          --eval '(stumpwm:stumpwm)'
 }
 
 clfswm() {
-    [ -f ~/.zwmrc ] && . ~/.zwmrc
+    echo "$(date) zwm: start clfswm." >$LOG
     exec sbcl \
          --eval '(ql:quickload :clfswm)' \
          --eval '(clfswm:main)'
