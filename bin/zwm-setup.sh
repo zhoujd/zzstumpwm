@@ -5,13 +5,11 @@ TARGET=/usr/local/bin
 
 install() {
     echo "install zwm"
-    sudo cp -fv $SCRIPT_ROOT/zwm-session $TARGET/zwm-session
     sudo cp -fv $SCRIPT_ROOT/startwm $TARGET/startwm
 }
 
 uninstall() {
     echo "uninstall zwm"
-    sudo rm -vf $TARGET/zwm-session
     sudo rm -vf $TARGET/startwm
 }
 

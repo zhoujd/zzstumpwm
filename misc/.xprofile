@@ -1,0 +1,3 @@
+## .xprofile
+
+[ -f "$HOME/.profile" ] && . "$HOME/.profile"

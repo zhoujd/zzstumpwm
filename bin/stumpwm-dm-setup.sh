@@ -3,14 +3,14 @@
 SCRIPT_ROOT=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
 TARGET=/usr/local/bin
 
-## Please run as root
+## Run as root
 if [ $EUID -ne 0 ]; then
     echo "You must be a root user" 2>&1
     exit 1
 fi
 
 echo "Setup stumpwm-session"
-ln -sfvT $SCRIPT_ROOT/stumpwm-session $TARGET/stumpwm-session
+cp -fv $SCRIPT_ROOT/stumpwm-session $TARGET/stumpwm-session
 
 echo "Setup stumpwm desktop"
 mkdir -p /usr/share/xsessions

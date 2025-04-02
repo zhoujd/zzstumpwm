@@ -31,6 +31,8 @@ rm -f ~/.cshrc
 rm -f ~/.xinitrc
 ## Remove .xsession
 rm -f ~/.xsession
+## Remove .xprofile
+rm -f ~/.xprofile
 ## Remove .tmux.conf
 rm -f ~/.tmux.conf
 ## Remove .screenrc
