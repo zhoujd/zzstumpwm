@@ -69,6 +69,10 @@ ln -sfvT $ZWM_ROOT/misc/.keynavrc ~/.keynavrc
 ## Install .Xmodmap.d
 ln -sfvT $ZWM_ROOT/misc/.Xmodmap.d ~/.Xmodmap.d
 
+## Install .tigrc and .tigrc.d
+ln -sfvT $ZWM_ROOT/misc/.tigrc ~/.tigrc
+ln -sfvT $ZWM_ROOT/misc/.tigrc.d ~/.tigrc.d
+
 ## Make sure the folder ~/.config exist
 mkdir -p ~/.config
 
