@@ -4,13 +4,15 @@ SCRIPT_ROOT=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
 TARGET=/usr/local/bin
 
 install() {
-    echo "install zwm"
+    echo "install wm tool"
     sudo cp -fv $SCRIPT_ROOT/startwm $TARGET/startwm
+    sudo cp -fv $SCRIPT_ROOT/killwm $TARGET/killwm
 }
 
 uninstall() {
-    echo "uninstall zwm"
+    echo "uninstall wm tool"
     sudo rm -vf $TARGET/startwm
+    sudo rm -vf $TARGET/killwm
 }
 
 case $1 in
@@ -25,4 +27,4 @@ case $1 in
         ;;
 esac
 
-echo "zwm setup done"
+echo "wmtool setup done"
