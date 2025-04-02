@@ -36,7 +36,6 @@ inputbar {
     font:       inherit;
     padding:    12px;
     spacing:    12px;
-    children:   [ icon-search, entry ];
 }
 
 icon-search {
