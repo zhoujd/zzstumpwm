@@ -1,0 +1,31 @@
+#!/bin/sh
+
+# Select window manager
+WM_SELECT=${1:-}
+
+kill_wm() {
+    wm=$1
+    pid=`ps -ef | grep $wm | grep -v grep | awk '{print $2}'`
+    if [ ! "" = "$pid" ]; then
+        kill -9 $pid
+        echo "killed $wm pid: $pid"
+    fi 
+}
+
+usage() {
+    cat <<EOF
+Usage: $(basename $0) {stumpwm|clfswm|zwm|dwm|cwm}
+EOF
+}
+
+case $WM_SELECT in
+    stumpwm|clfswm|dwm|cwm )
+        kill_wm $WM_SELECT
+        ;;
+    zwm )
+        kill_wm stumpwm
+        ;;
+    *)
+        usage
+        ;;
+esac
