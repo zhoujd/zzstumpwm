@@ -589,15 +589,19 @@ and bottom_end_x."
 
 (defun window-width-inc (window)
   "Find out what is the correct step to change window width"
-  (or
-    (xlib:wm-size-hints-width-inc (window-normal-hints window))
-    1))
+  (if *window-resizehints*
+      (or
+       (xlib:wm-size-hints-width-inc (window-normal-hints window))
+       1)
+      1))
 
 (defun window-height-inc (window)
   "Find out what is the correct step to change window height"
-  (or
-    (xlib:wm-size-hints-height-inc (window-normal-hints window))
-    1))
+  (if *window-resizehints*
+      (or
+       (xlib:wm-size-hints-height-inc (window-normal-hints window))
+       1)
+      1))
 
 (defun set-window-geometry (win &key x y width height border-width)
   (macrolet ((update (xfn wfn v)

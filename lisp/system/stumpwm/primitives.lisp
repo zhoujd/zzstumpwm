@@ -419,6 +419,10 @@ Include only those we are ready to support.")
 
   "The events to listen for on managed windows' parents.")
 
+;; Window resizehints
+(defvar *window-resizehints* nil
+  "This variable means respect size hints in resizals.")
+
 ;; Message window variables
 (defvar *message-window-padding* 5
   "The number of pixels that pad the text in the message window.")
