@@ -23,7 +23,6 @@
 (def-run-or-raise-command google-chrome        '(:class "Google-chrome"))
 (def-run-or-raise-command gvim                 '(:class "Gvim"))
 (def-run-or-raise-command iptux                '(:class "Iptux"))
-(def-run-or-raise-command intel-unite-client   '(:class "Intel Unite"))
 (def-run-or-raise-command klavaro              '(:class "Klavaro"))
 (def-run-or-raise-command mpv                  '(:class "mpv"))
 (def-run-or-raise-command meld                 '(:class "Meld"))
@@ -38,7 +37,6 @@
 (def-run-or-raise-command vlc                  '(:class "Vlc"))
 (def-run-or-raise-command wireshark            '(:class "Wireshark"))
 (def-run-or-raise-command pavucontrol          '(:class "Pavucontrol"))
-(def-run-or-raise-command vmware-view          '(:class "Vmware-view"))
 
 ;; run-or-raise via instance
 (def-run-or-raise-command libreoffice          '(:instance "libreoffice"))

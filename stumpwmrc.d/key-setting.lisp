@@ -75,7 +75,7 @@
   (kbd "C-x")               "exec urxvt"
   (kbd "M-x")               "urxvtclient"
   (kbd "s-x")               "urxvt"
-  (kbd "z")                 "vmware-view"
+  (kbd "z")                 "slock"
   ))
 
 ;; *zz-x-map*
@@ -209,7 +209,7 @@
   (kbd "s-M-t")             "teams"
   (kbd "s-M-u")             "code"
   (kbd "s-M-x")             "urxvt"
-  (kbd "s-M-z")             "vmware-view"
+  (kbd "s-M-z")             "slock"
   ))
 
 (apply-keys-to-map
@@ -233,9 +233,7 @@
   (kbd "j")                 "snext"
   (kbd "o")                 "sother"
 
-  (kbd "l")                 "exec slock"
-  (kbd "C-l")               "exec zlock"
-  (kbd "M-l")               "exec xtrlock"
+  (kbd "l")                 "slock"
 
   (kbd "r")                 "record-toggle"
   (kbd "C-r")               "record-full"

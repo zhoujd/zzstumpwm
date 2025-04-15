@@ -41,7 +41,7 @@
   (kbd "6")                 "touchpad-toggle"
   (kbd "7")                 "wifi-toggle"
   (kbd "8")                 "cheese"
-  (kbd "9")                 "exec zlock"
+  (kbd "9")                 "slock"
   (kbd "0")                 "screen-menu"
   (kbd "-")                 "bright-down"
   (kbd "=")                 "bright-up"
