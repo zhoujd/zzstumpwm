@@ -42,9 +42,10 @@ CMN_PARAM=(
     -v /etc/sysctl.conf:/etc/sysctl.conf
     -v /etc/timezone:/etc/timezone:ro
     -v /etc/localtime:/etc/localtime:ro
+    -v /data/work:$CTN_HOME/work
+    -v $HOME/.ssh:$CTN_HOME/.ssh
     -v $ZWM_ROOT:$CTN_HOME/zzstumpwm
     -v $ZWM_TOP/zzemacs:$CTN_HOME/zzemacs
-    -v /opt/zach/lab:$CTN_HOME/lab
     -v /opt/zach/zwm/.ssh:$CTN_HOME/.ssh
     -v /opt/zach/zwm/.local:$CTN_HOME/.local
     -v /opt/zach/zwm/.config:$CTN_HOME/.config

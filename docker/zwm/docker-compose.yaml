@@ -1,4 +1,4 @@
-version: "3"
+## zzstumpwm zwm
 
 services:
   zwm:
@@ -32,9 +32,10 @@ services:
       - /etc/sysctl.conf:/etc/sysctl.conf
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
+      - /data/work/:/home/${USER}/work
+      - ${HOME}/.ssh:/home/${USER}/.ssh
       - ${ZWM_ROOT}:/home/${USER}/zzstumpwm
       - ${ZWM_TOP}/zzemacs:/home/${USER}/zzemacs
-      - /opt/zach/lab:/home/${USER}/lab
       - /opt/zach/zwm/.ssh:/home/${USER}/.ssh
       - /opt/zach/zwm/.local:/home/${USER}/.local
       - /opt/zach/zwm/.config:/home/${USER}/.config
