@@ -8,7 +8,7 @@ ZWM_DSP_NUM=${ZWM_DSP_NUM:-100}
 ZWM_DSP=:$ZWM_DSP_NUM
 ZWM_REZ=${ZWM_REZ:-1920x1080}
 
-VER=22.04
+VER=${VER:-22.04}
 IMG=${IMG:-zhoujd/ubuntu-${VER}-zwm}
 TAG=${TAG:-dev}
 CTN_PREFIX=${CTN_PREFIX:-zwm}
