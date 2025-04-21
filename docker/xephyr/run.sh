@@ -1,7 +1,7 @@
 #!/bin/bash
 #set -x
 
-IMG=${IMG:-zhoujd/ubuntu-20.04-xephyr}
+IMG=${IMG:-zhoujd/ubuntu-22.04-xephyr}
 TAG=${TAG:-dev}
 CTN_PREFIX=${CTN_PREFIX:-xephyr}
 CTN_NAME=${CTN_NAME:-$CTN_PREFIX-$TAG}

@@ -22,7 +22,7 @@ clean:
 help:
 	@echo "Usage:"
 	@echo "$$ make"
-	@echo "$$ make VARIANT=20.04"
+	@echo "$$ make VARIANT=22.04"
 	@echo "$$ make clean"
 	@echo "$$ make help"
 	@echo "$$ make ubuntu-dev"

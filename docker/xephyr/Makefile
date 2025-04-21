@@ -3,7 +3,7 @@
 .PHONY: all clean help
 all: xephyr-dev
 
-VARIANT ?= 20.04
+VARIANT ?= 22.04
 IMG_NS ?= zhoujd
 
 BUILD_ARG += ## --rm --no-cache
@@ -20,7 +20,7 @@ clean:
 help:
 	@echo "Usage:"
 	@echo "$$ make"
-	@echo "$$ make VARIANT=20.04"
+	@echo "$$ make VARIANT=22.04"
 	@echo "$$ make clean"
 	@echo "$$ make help"
 	@echo "$$ make xephyr-dev"

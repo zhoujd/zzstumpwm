@@ -6,9 +6,9 @@ services:
       context: ../dockerfiles
       dockerfile: ubuntu-dev.dockerfile
       args:
-        VARIANT: 20.04
-    image: zhoujd/ubuntu-20.04-zwm:dev
-    hostname: ubuntu-2004-zwm
+        VARIANT: 22.04
+    image: zhoujd/ubuntu-22.04-zwm:dev
+    hostname: ubuntu-2204-zwm
     container_name: zwm-dev
     environment:
       DISPLAY:
