@@ -52,14 +52,14 @@ USER ${USER}
 
 # Install icon and theme
 RUN mkdir -p ~/.themes ~/.icons
-RUN wget https://github.com/vinceliuice/WhiteSur-gtk-theme/raw/master/release/WhiteSur-Dark.tar.xz \
+RUN wget https://github.com/zhoujd/WhiteSur-gtk-theme/raw/master/release/WhiteSur-Dark.tar.xz \
         && tar xf WhiteSur-Dark.tar.xz -C ~/.themes \
         && rm -f WhiteSur-Dark.tar.xz
-RUN wget https://github.com/vinceliuice/WhiteSur-icon-theme/archive/refs/heads/master.zip \
+RUN wget https://github.com/zhoujd/WhiteSur-icon-theme/archive/refs/heads/master.zip \
         && unzip master.zip \
         && ./WhiteSur-icon-theme-master/install.sh -d ~/.icons \
         && rm -rf WhiteSur-icon-theme-master master.zip
-RUN wget https://github.com/vinceliuice/WhiteSur-cursors/archive/refs/heads/master.zip \
+RUN wget https://github.com/zhoujd/WhiteSur-cursors/archive/refs/heads/master.zip \
         && unzip master.zip \
         && rm -rf ~/.icons/WhiteSur-cursors \
         && cp -pr WhiteSur-cursors-master/dist ~/.icons/WhiteSur-cursors \
