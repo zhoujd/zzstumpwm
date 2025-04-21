@@ -3,7 +3,7 @@
 .PHONY: all
 all: ubuntu-dev
 
-VARIANT ?= 20.04
+VARIANT ?= 22.04
 IMG_NS ?= zhoujd
 
 BUILD_ARG += ## --rm --no-cache
