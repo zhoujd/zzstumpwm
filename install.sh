@@ -80,8 +80,6 @@ mkdir -p ~/.config
 ln -sfvT $ZWM_ROOT/misc/.config/rofi ~/.config/rofi
 ## Install skippy-xd
 ln -sfvT $ZWM_ROOT/misc/.config/skippy-xd ~/.config/skippy-xd
-## Install xsettingsd
-ln -sfvT $ZWM_ROOT/misc/.config/xsettingsd ~/.config/xsettingsd
 ## Install fontconfig
 ln -sfvT $ZWM_ROOT/misc/.config/fontconfig ~/.config/fontconfig
 

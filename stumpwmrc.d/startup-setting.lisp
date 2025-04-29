@@ -20,11 +20,9 @@
  (list
   (list "xset" :options "b off")
   (list "xsetroot" :options "-cursor_name left_ptr")
-  (list "xsettingsd")
   (list "blackwalls")
   (list "ulauncher" :options "--hide-window --no-window-shadow")
   (list "nitrogen" :options "--restore")
-  (list "urxvtd" :options "-q -f -o")
   (list "xbanish")
   (list "compton")
   (list "keynav")

@@ -1,9 +1,13 @@
 #!/bin/bash
 
+log() {
+    echo "[$$.$(date +%N)]$@"
+}
+
 spawn() {
     local cmd=$1
     if [ -x "$cmd" ]; then
-        echo "$(date) zwmrc: spawn $cmd."
+        log "[zwmrc] spawn $cmd."
         $cmd >/dev/null 2>&1 || true
     fi
 }
