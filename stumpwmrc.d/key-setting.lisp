@@ -198,7 +198,7 @@
   (kbd "s-M-q")             "group-kill"
 
   (kbd "s-C")               "st"
-  (kbd "s-E")               "emacs"
+  (kbd "s-E")               "emacsclient"
   (kbd "s-G")               "google-chrome"
 
   (kbd "s-M-c")             "runst"
