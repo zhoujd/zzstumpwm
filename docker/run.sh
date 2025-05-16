@@ -8,12 +8,13 @@ ZWM_DSP_NUM=${ZWM_DSP_NUM:-100}
 ZWM_DSP=:$ZWM_DSP_NUM
 ZWM_REZ=${ZWM_REZ:-1920x1080}
 
+DISTRO=${DISTRO:-ubuntu}
 VER=${VER:-22.04}
-IMG=${IMG:-zhoujd/ubuntu-${VER}-zwm}
+IMG=${IMG:-zhoujd/$DISTRO-$VER-zwm}
 TAG=${TAG:-dev}
 CTN_PREFIX=${CTN_PREFIX:-zwm}
 CTN_NAME=${CTN_NAME:-$CTN_PREFIX-$TAG}
-CTN_HOST=${CTN_HOST:-ubuntu-2204-zwm}
+CTN_HOST=${CTN_HOST:-$DISTRO-zwm}
 CTN_USER=${CTN_USER:-$USER}
 CTN_HOME=${CTN_HOME:-/home/$CTN_USER}
 SSH_HOST=${SSH_HOST:-localhost}
@@ -23,9 +24,9 @@ HOST_NAME=${HOST_NAME:-dockerhost}
 HOST_IP=${HOST_IP:-host-gateway}
 
 CMN_PARAM=(
+    --rm
     --detach
     --name=$CTN_NAME
-    --restart=always
     --privileged=true
     --cap-add=ALL
     --group-add video
