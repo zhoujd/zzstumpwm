@@ -1,5 +1,5 @@
-ARG VARIANT=22.04
-FROM zhoujd/ubuntu-${VARIANT}-zzemacs:dev
+ARG VARIANT=12
+FROM zhoujd/debian-${VARIANT}-zzemacs:dev
 
 USER root
 
@@ -19,7 +19,7 @@ ENV LANG=en_US.UTF-8 \
 RUN apt-get update \
         && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
         rofi xserver-xephyr keynav maim slop xclip acpi rlwrap wmctrl unzip \
-        pulseaudio-utils xinput gnome-keyring suckless-tools xdotool \
+        pulseaudio-utils xinput gnome-keyring xdotool \
         nitrogen x11-xserver-utils x11-utils ffmpeg mpv \
         evolution evolution-ews sassc libxml2-utils
 
@@ -39,7 +39,7 @@ RUN apt-get update \
 # Setup audio
 RUN apt-get update \
         && DEBIAN_FRONTEND=noninteractive apt-get -y install --no-install-recommends \
-        alsa-base \
+        alsa-tools \
         alsa-utils \
         libsndfile1-dev \
         pulseaudio

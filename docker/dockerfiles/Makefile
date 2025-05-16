@@ -1,28 +1,21 @@
-### Emacs in Docker
+## Makefile
 
-.PHONY: all
-all: ubuntu-dev
+.PHONY: ubuntu-dev debian-dev help
 
-VARIANT ?= 22.04
-IMG_NS ?= zhoujd
+all: ubuntu debian
+ubuntu: ubuntu-dev
+debian: debian-dev
 
-BUILD_ARG += ## --rm --no-cache
-BUILD_ARG += --build-arg VARIANT=$(VARIANT)
+ubuntu-dev:
+	make -C ubuntu-dev
 
-Ubuntu_DEV_TAG := $(IMG_NS)/ubuntu-$(VARIANT)-zwm:dev
+debian-dev:
+	make -C debian-dev
 
-ubuntu-dev: ubuntu-dev.dockerfile
-	docker build $(BUILD_ARG) -t $(Ubuntu_DEV_TAG) -f $< .
-
-.PHONY: clean
-clean:
-	docker rmi $(Ubuntu_DEV_TAG)
-
-.PHONY: help
 help:
 	@echo "Usage:"
 	@echo "$$ make"
-	@echo "$$ make VARIANT=22.04"
-	@echo "$$ make clean"
+	@echo "$$ make all"
 	@echo "$$ make help"
-	@echo "$$ make ubuntu-dev"
+	@echo "$$ make ubuntu"
+	@echo "$$ make debian"

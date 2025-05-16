@@ -26,14 +26,6 @@ setup_dbus() {
     fi
 }
 
-setup_libvirtd() {
-    local libvirtd_cmd=/usr/sbin/libvirtd
-    if [ -x $libvirtd_cmd ]; then
-        echo "Setup libvirtd ..."
-        sudo $libvirtd_cmd -d
-    fi
-}
-
 setup_ssh() {
     local ssh_cmd=/etc/init.d/ssh
     if [ -x $ssh_cmd ]; then
@@ -74,7 +66,6 @@ case "$CMD" in
         setup_common
         setup_zzemacs
         setup_dbus
-        setup_libvirtd
         setup_ssh
         setup_zwm
         ;;
@@ -82,7 +73,6 @@ case "$CMD" in
         setup_common
         setup_zzemacs
         setup_dbus
-        setup_libvirtd
         setup_ssh
         setup_xephyr
         ;;
@@ -90,7 +80,6 @@ case "$CMD" in
         setup_common
         setup_zzemacs
         setup_dbus
-        setup_libvirtd
         setup_ssh
         setup_sleep
         ;;
