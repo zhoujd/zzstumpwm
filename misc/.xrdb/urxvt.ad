@@ -99,7 +99,6 @@ URxvt.tabbed.tabbar-bg: 0
 URxvt.tabbed.tab-fg: 3
 URxvt.tabbed.tab-bg: 0
 URxvt.tabbed.autohide: yes
-URxvt.tabbed.new-button: yes
 URxvt.tabbed.title: yes
 URxvt.tabbed.no-tabbedex-keys: yes
 URxvt.keysym.C-t: perl:tabbedex:new_tab
