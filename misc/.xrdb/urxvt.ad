@@ -88,7 +88,7 @@ URxvt.keysym.M-q: perl:keyboard-select:activate
 !! searchable-scrollback (enabled by default)
 !! <Meta><S> incremental scrollback search
 !! Up/Down/Return (upwards/downwards/stay)
-URxvt.keysym.C-s: searchable-scrollback:start
+URxvt.keysym.M-s: searchable-scrollback:start
 
 !! tabbedex 'ctrl+d' to close tab
 URxvt.tabbed.tabbar-fg: 2
