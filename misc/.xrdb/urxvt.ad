@@ -12,7 +12,10 @@ URxvt.background: [90]#000000
 URxvt.depth: 32
 
 !! mouse scroll or Shift+Page Up
-URxvt.scrollBar: false
+URxvt.scrollBar: off
+URxvt.secondaryScroll: off
+
+!! cursor
 URxvt.cursorColor: white
 
 URxvt.termName: rxvt-256color
