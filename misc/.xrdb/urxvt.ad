@@ -12,8 +12,9 @@ URxvt.background: [90]#000000
 URxvt.depth: 32
 
 !! mouse scroll or Shift+Page Up
-URxvt.scrollBar: off
-URxvt.secondaryScroll: off
+URxvt.scrollBar: false
+URxvt.scrollstyle: plain
+URxvt.secondaryScroll: true
 
 !! cursor
 URxvt.cursorColor: white
@@ -21,7 +22,7 @@ URxvt.cursorColor: white
 URxvt.termName: rxvt-256color
 URxvt.geometry: 94x24
 URxvt.loginShell: true
-URxvt.saveLines: 4096
+URxvt.saveLines: 8192
 
 !! border
 URxvt.borderWidth: 0
@@ -41,8 +42,8 @@ URxvt.urgentOnBell: false
 URxvt.visualBell: false
 
 !! urxvt fonts
-URxvt.font: xft:SF Mono:size=13:hinting=true,\
-            xft:SF Mono SC:size=13:hinting=true
+URxvt.font: xft:SF Mono:size=13:autohint=true,\
+            xft:SF Mono SC:size=13:autohint=true
 
 !! urxvt icon
 URxvt.iconFile: /usr/share/pixmaps/urxvt_48x48.svg
