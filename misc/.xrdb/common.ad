@@ -9,7 +9,7 @@ Xft.rgba: rgb
 
 !! Gruvbox Dark
 *.foreground:  #e6d4a3
-*.background:  #1e1e1e
+*.background:  #000000
 *.cursorColor: #bbbbbb
 
 ! Black
