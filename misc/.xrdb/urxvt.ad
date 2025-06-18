@@ -8,8 +8,8 @@
 URxvt.intensityStyles: false
 
 !! real transparency
-urxvt.background: rgba:0000/0000/0000/cccc
 urxvt.depth: 32
+URxvt.background: [90]#000000
 
 !! mouse scroll or Shift+Page Up
 URxvt.scrollBar: false
