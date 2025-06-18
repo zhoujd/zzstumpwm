@@ -7,40 +7,40 @@ Xft.hinting: 1
 Xft.hintstyple: hintfull
 Xft.rgba: rgb
 
-!! color theme
+!! Colorscheme
 ! special
-*.foreground:   #f8f8f2
-*.background:   #272822
-*.cursorColor:  #f8f8f2
+*.foreground: #93a1a1
+*.background: #141c21
+*.cursorColor: #afbfbf
 
 ! black
-*.color0:       #272822
-*.color8:       #75715e
+*.color0: #263640
+*.color8: #4a697d
 
 ! red
-*.color1:       #f92672
-*.color9:       #f92672
+*.color1: #d12f2c
+*.color9: #fa3935
 
 ! green
-*.color2:       #a6e22e
-*.color10:      #a6e22e
+*.color2: #819400
+*.color10: #a4bd00
 
 ! yellow
-*.color3:       #f4bf75
-*.color11:      #f4bf75
+*.color3: #b08500
+*.color11: #d9a400
 
 ! blue
-*.color4:       #66d9ef
-*.color12:      #66d9ef
+*.color4: #2587cc
+*.color12: #2ca2f5
 
 ! magenta
-*.color5:       #ae81ff
-*.color13:      #ae81ff
+*.color5: #696ebf
+*.color13: #8086e8
 
 ! cyan
-*.color6:       #a1efe4
-*.color14:      #a1efe4
+*.color6: #289c93
+*.color14: #33c5ba
 
 ! white
-*.color7:       #f8f8f2
-*.color15:      #f9f8f5
+*.color7: #bfbaac
+*.color15: #fdf6e3
