@@ -7,40 +7,44 @@ Xft.hinting: 1
 Xft.hintstyple: hintfull
 Xft.rgba: rgb
 
-!! Colorscheme
-! special
-*.foreground:   #ababab
-*.background:   #000000
-*.cursorColor:  #ababab
+!! Gruvbox Dark
+*.foreground:  #e6d4a3
+*.background:  #1e1e1e
+*.cursorColor: #bbbbbb
 
-! black
-*.color0:       #000000
-*.color8:       #343434
+! Black
+*.color0:      #161819
+*.color8:      #7f7061
 
-! red
-*.color1:       #e92f2f
-*.color9:       #e92f2f
+! Red
+*.color1:      #f73028
+*.color9:      #be0f17
 
-! green
-*.color2:       #0ed839
-*.color10:      #0ed839
+! Green
+*.color2:      #aab01e
+*.color10:     #868715
 
-! yellow
-*.color3:       #dddd13
-*.color11:      #dddd13
+! Yellow
+*.color3:      #f7b125
+*.color11:     #cc881a
 
-! blue
-*.color4:       #3b48e3
-*.color12:      #3b48e3
+! Blue
+*.color4:      #719586
+*.color12:     #377375
 
-! magenta
-*.color5:       #f996e2
-*.color13:      #f996e2
+! Magenta
+*.color5:      #c77089
+*.color13:     #a04b73
 
-! cyan
-*.color6:       #23edda
-*.color14:      #23edda
+! Cyan
+*.color6:      #7db669
+*.color14:     #578e57
 
-! white
-*.color7:       #ababab
-*.color15:      #f9f9f9
+! White
+*.color7:      #faefbb
+*.color15:     #e6d4a3
+
+! Bold, Italic, Underline
+*.colorBD:     #978771
+!*.colorIT:
+!*.colorUL:
