@@ -16,9 +16,6 @@ URxvt.scrollBar: false
 URxvt.scrollstyle: plain
 URxvt.secondaryScroll: true
 
-!! cursor
-URxvt.cursorColor: white
-
 URxvt.termName: rxvt-256color
 URxvt.geometry: 94x24
 URxvt.loginShell: true
