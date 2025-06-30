@@ -1,4 +1,5 @@
 ### color.tigrc
+## color area fgcolor bgcolor [attributes]
 
 # General colors
 color default                       default     default         normal
