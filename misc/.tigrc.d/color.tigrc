@@ -1,7 +1,7 @@
 ### color.tigrc
 
 # General colors
-color default                       253         233
+color default                       default     default         normal
 color cursor                        default     237
 color status                        250         235
 color title-focus                   default     238
@@ -75,4 +75,3 @@ color diff-del-highlight            9           52
 # Signature colors
 color "gpg: "                       23          default
 color "Primary key fingerprint: "   23          default
-
