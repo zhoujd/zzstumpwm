@@ -120,4 +120,8 @@ set statusline+=\ %m%r%w\ %P                            "Modified? Readonly? Top
 
 " Default statusline color
 set termguicolors
-hi User1 ctermbg=darkgreen ctermfg=black
+if exists('$DISPLAY')
+  hi User1 ctermbg=green ctermfg=black
+else
+  hi User1 ctermbg=green ctermfg=white
+endif
