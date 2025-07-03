@@ -26,6 +26,7 @@ ln -sfvT $ZWM_ROOT/misc/.clisprc ~/.clisprc
 
 ## Set Vim configure
 ln -sfvT $ZWM_ROOT/misc/.vimrc ~/.vimrc
+ln -sfvT $ZWM_ROOT/misc/.vim ~/.vim
 
 ## Set Nano configure
 ln -sfvT $ZWM_ROOT/misc/.nanorc ~/.nanorc
