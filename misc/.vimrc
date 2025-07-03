@@ -119,9 +119,15 @@ set statusline+=\ row:%l/%L\ col:%c\ (%p%%)\            "Rownumber/total (%)
 set statusline+=\ %m%r%w\ %P                            "Modified? Readonly? Top/Bot/All
 
 " Default statusline color
+" 0: Black        │   8: Bright Black (dark gray)
+" 1: Red          │   9: Bright Red
+" 2: Green        │  10: Bright Green
+" 3: Yellow       │  11: Bright Yellow
+" 4: Blue         │  12: Bright Blue
+" 5: Magenta      │  13: Bright Magenta
+" 6: Cyan         │  14: Bright Cyan
+" 7: White (gray) │  15: Bright White
+let g:colors_name = 'ansi'
 set termguicolors
-if exists('$DISPLAY')
-  hi User1 ctermbg=green ctermfg=black
-else
-  hi User1 ctermbg=green ctermfg=white
-endif
+hi clear
+hi User1 ctermfg=0 ctermbg=2 cterm=NONE
