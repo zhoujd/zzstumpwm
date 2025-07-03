@@ -129,5 +129,4 @@ set statusline+=\ %m%r%w\ %P                            "Modified? Readonly? Top
 " 7: White (gray) │  15: Bright White
 let g:colors_name = 'ansi'
 set termguicolors
-hi clear
 hi User1 ctermfg=0 ctermbg=2 cterm=NONE
