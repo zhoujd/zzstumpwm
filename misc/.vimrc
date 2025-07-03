@@ -60,7 +60,7 @@ let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
 
 " Color scheme setting
-let g:gruvbox_contrast_dark='hard'
+let g:gruvbox_contrast_dark='black'
 set background=dark
 colorscheme gruvbox
 
@@ -119,4 +119,5 @@ set statusline+=\ row:%l/%L\ col:%c\ (%p%%)\            "Rownumber/total (%)
 set statusline+=\ %m%r%w\ %P                            "Modified? Readonly? Top/Bot/All
 
 " Default statusline color
-hi User1 ctermbg=darkgreen ctermfg=black guibg=darkgrey guifg=black
+set termguicolors
+hi User1 ctermbg=darkgreen ctermfg=black
