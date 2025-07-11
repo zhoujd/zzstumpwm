@@ -96,7 +96,7 @@
   (kbd "C-7")               "deadbeef"
   (kbd "C-8")               "screen"
   (kbd "C-9")               "st"
-  (kbd "C-0")               "thunar"
+  (kbd "C-0")               "pcmanfm"
   (kbd "C--")               "pactl-test"
   (kbd "C-=")               "pactl-mic-test"
 

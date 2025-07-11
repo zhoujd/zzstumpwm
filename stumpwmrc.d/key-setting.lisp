@@ -32,9 +32,8 @@
   (kbd "G")                 "pullgc"
   (kbd "M-g")               "exec google-chrome"
   (kbd "s-g")               "google-chrome"
-  (kbd "h")                 "thunar"
-  (kbd "C-h")               "exec thunar"
-  (kbd "M-h")               "exec thunar -B"
+  (kbd "h")                 "pcmanfm"
+  (kbd "C-h")               "exec pcmanfm"
   (kbd "i")                 "iptux"
   (kbd "k")                 (st-command "gtypist")
   (kbd "C-k")               "klavaro"
