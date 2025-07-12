@@ -1,4 +1,7 @@
 ### .xinitrc
+## startx ~/.xinitrc <WM>
+
+WM=${1:-dwm}
 
 # WM=stumpwm startx
 case $WM in
@@ -18,6 +21,6 @@ case $WM in
         exec cwm-session
         ;;
     * )
-        exec dwm-session
+        exec $1
         ;;
 esac
