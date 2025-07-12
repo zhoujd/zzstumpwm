@@ -1,21 +1,20 @@
 #!/bin/sh
 
 # Select window manager
-WM_SELECT=${1:-}
+WM=${1:-zwm}
 
 # Usage
 usage() {
     cat <<EOF
-Usage: $(basename $0) {stumpwm|clfswm|zwm|dwm|cwm}
+Usage: $(basename $0) {stumpwm|zwm|dwm|cwm}
 EOF
 }
 
 # Start window manager
-case $WM_SELECT in
-    stumpwm|clfswm|zwm|dwm|cwm )
+case $WM in
+    stumpwm|zwm|dwm|cwm )
         if [ -z "$DISPLAY" ]; then
-            export WM=$WM_SELECT
-            exec startx
+            exec startx ~/.xinitrc $WM
         else
             echo "Please run in console."
         fi
