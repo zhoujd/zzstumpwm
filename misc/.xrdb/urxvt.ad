@@ -40,7 +40,7 @@ URxvt.visualBell: false
 
 !! urxvt fonts
 URxvt.font: \
-  xft:SF Mono:size=13:autohint=true, \
+  xft:SF Mono Nerd:size=13:autohint=true, \
   xft:SF Mono SC:size=13:autohint=true
 
 !! urxvt icon
