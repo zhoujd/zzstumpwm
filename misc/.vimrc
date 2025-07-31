@@ -103,6 +103,9 @@ if has("win32")
   endif
 endif
 
+" Disable netrw save no history or bookmarks
+let g:netrw_dirhistmax = 0
+
 " Default the statusline when entering Vim
 set laststatus=2
 set cmdheight=1
