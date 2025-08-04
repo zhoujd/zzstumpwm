@@ -103,6 +103,11 @@ if has("win32")
   endif
 endif
 
+" Auto copy to system clipboard, press 'p' to paste
+if has("clipboard")
+  set clipboard=unnamedplus
+endif
+
 " Disable netrw save no history or bookmarks
 let g:netrw_dirhistmax = 0
 
