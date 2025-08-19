@@ -24,3 +24,8 @@ Stumpwm Error
     junk in string ""
 
     $ rm ~/.Xauthority
+
+## Set SBCL_HOME manually
+
+    $ find / | grep sbcl.core
+    $ export SBCL_HOME=/usr/lib/sbcl
