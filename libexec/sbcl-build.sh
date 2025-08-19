@@ -6,7 +6,7 @@
 
 SBCL_PKG=~/Downloads/sbcl
 SBCL_PREFIX=/usr/local/sbcl
-SBCL_VERSION=2.1.11
+SBCL_VERSION=2.0.1
 SBCL_ENV=/etc/profile.d/zz-sbcl.sh
 
 ## make sure the download folder exist
