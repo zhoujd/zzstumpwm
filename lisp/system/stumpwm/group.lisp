@@ -265,11 +265,10 @@ Groups are known as \"virtual desktops\" in the NETWM standard."
     (xlib:change-property root :_NET_NUMBER_OF_DESKTOPS
                           (list (length (screen-groups screen)))
                           :cardinal 32)
-    (unless *initializing*
-      ;; _NET_CURRENT_DESKTOP
-      (xlib:change-property root :_NET_CURRENT_DESKTOP
-                            (list (netwm-group-id (screen-current-group screen)))
-                            :cardinal 32))
+    ;; _NET_CURRENT_DESKTOP
+    (xlib:change-property root :_NET_CURRENT_DESKTOP
+                          (list (netwm-group-id (screen-current-group screen)))
+                          :cardinal 32)
     ;; _NET_DESKTOP_NAMES
     (xlib:change-property root :_NET_DESKTOP_NAMES
                           (let ((names (mapcan
