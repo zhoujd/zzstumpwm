@@ -29,12 +29,13 @@ remove() {
     rm -f $SBCL_ENV
 }
 
-install() {
+build() {
+    local builder=${1:-clisp}  ## clisp or sbcl etc.
     echo "Install SBCL"
     if [ -d $SBCL_PKG ]; then
         pushd $SBCL_PKG
         export -n SBCL_HOME
-        sh make.sh --fancy --prefix=$SBCL_PREFIX
+        sh make.sh $builder --fancy --prefix=$SBCL_PREFIX
         sudo sh install.sh --prefix=$SBCL_PREFIX
         popd
     else
@@ -52,9 +53,10 @@ EOF
 }
 
 case $1 in
-    install )
+    build|-b )
+        shift
         download
-        install
+        build $@
         ;;
     download )
         download
@@ -66,7 +68,7 @@ case $1 in
         env
         ;;
     * )
-        echo "Usage: $(basename $0) {install|download|remove|env}"
+        echo "Usage: $(basename $0) {build|-b|download|remove|env}"
         ;;
 esac
 
