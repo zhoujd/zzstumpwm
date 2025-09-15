@@ -26,6 +26,7 @@ Static Build
 ## Linux static tool
 
 ```
+## https://github.com/topics/static-binaries
 ## https://github.com/ladyrick/static-tools
 ## https://github.com/ladyrick/static-tools/releases
 ## https://github.com/andrew-d/static-binaries
