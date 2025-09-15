@@ -69,7 +69,10 @@ set noundofile
 set nobackup
 set noswapfile
 
-syntax on
+" Enable syntax highlighting if available
+if has("syntax")
+  syntax on
+endif
 
 " Other settings
 set novisualbell
@@ -105,7 +108,11 @@ endif
 
 " Auto copy to system clipboard, press 'p' to paste
 if has("clipboard")
-  set clipboard=unnamedplus
+  if has("macunix") || has("win32")
+    set clipboard=unnamed
+  else
+    set clipboard=unnamedplus
+  endif
 endif
 
 " Disable netrw save no history or bookmarks
