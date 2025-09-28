@@ -19,6 +19,7 @@ APPS=(
     less
     tig
     ag
+    fd
 )
 for app in ${APPS[@]}; do
     cp -vf $TOOL_ROOT/$app $TARGET
