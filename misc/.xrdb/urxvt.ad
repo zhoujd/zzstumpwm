@@ -82,7 +82,6 @@ URxvt.keysym.C-Tab: perl:tabbedex:next_tab
 URxvt.keysym.Control-ISO_Left_Tab: perl:tabbedex:prev_tab
 URxvt.keysym.Control-Shift-Left: perl:tabbedex:move_tab_left
 URxvt.keysym.Control-Shift-Right: perl:tabbedex:move_tab_right
-URxvt.keysym.Control-Shift-R: perl:tabbedex:rename_tab
 URxvt.keysym.C-1: perl:tabbedex:goto_tab_1
 URxvt.keysym.C-2: perl:tabbedex:goto_tab_2
 URxvt.keysym.C-3: perl:tabbedex:goto_tab_3
