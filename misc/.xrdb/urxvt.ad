@@ -42,7 +42,7 @@ URxvt.visualBell: false
 URxvt.font: \
   xft:SF Mono:size=13:autohint=true,\
   xft:PingFang SC:size=13:autohint=true,\
-  xft:Symbols Nerd Font:size=13:autohint=true
+  xft:Symbols Nerd Font Mono:size=13:autohint=true
 
 !! urxvt icon
 URxvt.iconFile: /usr/share/pixmaps/urxvt_48x48.svg
@@ -71,7 +71,6 @@ URxvt.keysym.Control-Shift-S: searchable-scrollback:start
 !! Press 'ctrl+d' to close tab
 URxvt.tabbedex.new-button: false
 URxvt.tabbedex.autohide: true
-URxvt.tabbedex.title: yes
 URxvt.tabbed.tabbar-fg: 2
 URxvt.tabbed.tabbar-bg: 0
 URxvt.tabbed.tab-fg: 3
