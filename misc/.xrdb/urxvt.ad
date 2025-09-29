@@ -67,8 +67,8 @@ URxvt.keysym.Control-Shift-Q: perl:keyboard-select:activate
 !! Up/Down/Return (upwards/downwards/stay)
 URxvt.keysym.Control-Shift-S: searchable-scrollback:start
 
-!! URXVT TABS
-!! 'ctrl+d' to close tab
+!! TABS
+!! Press 'ctrl+d' to close tab
 URxvt.tabbedex.new-button: false
 URxvt.tabbedex.autohide: true
 URxvt.tabbedex.title: yes
