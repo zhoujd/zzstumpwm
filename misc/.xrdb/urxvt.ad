@@ -51,13 +51,7 @@ URxvt.iconFile: /usr/share/pixmaps/urxvt_48x48.svg
 URxvt.inputMethod: ibus
 
 !! Extensions
-URxvt.perl-ext-common: default,url-select,fullscreen,eval,keyboard-select,tabbedex,selection-to-clipboard,font-size
-URxvt.colorUL: #4682B4
-
-!! url-select
-URxvt.url-select.launcher: google-chrome
-URxvt.url-select.underline: true
-URxvt.keysym.Control-Shift-U: perl:url-select:select_next
+URxvt.perl-ext-common: default,fullscreen,eval,keyboard-select,tabbedex,selection-to-clipboard,font-size
 
 !! fullscreen
 URxvt.keysym.Control-Shift-F: perl:fullscreen:switch
