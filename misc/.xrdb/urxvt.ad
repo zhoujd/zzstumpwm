@@ -50,39 +50,21 @@ URxvt.iconFile: /usr/share/pixmaps/urxvt_48x48.svg
 !! input method
 URxvt.inputMethod: ibus
 
-!! ctrl/alt + arrow
-URxvt.keysym.M-Up:      \033[1;3A
-URxvt.keysym.M-Down:    \033[1;3B
-URxvt.keysym.M-Right:   \033[1;3C
-URxvt.keysym.M-Left:    \033[1;3D
-URxvt.keysym.M-Prior:   \033[5;3~
-URxvt.keysym.M-Next:    \033[6;3~
-URxvt.keysym.M-End:     \033[1;3F
-URxvt.keysym.M-Home:    \033[1;3H
-
-URxvt.keysym.C-Up:      \033[1;5A
-URxvt.keysym.C-Down:    \033[1;5B
-URxvt.keysym.C-Right:   \033[1;5C
-URxvt.keysym.C-Left:    \033[1;5D
-URxvt.keysym.C-Prior:   \033[5;5~
-URxvt.keysym.C-Next:    \033[6;5~
-URxvt.keysym.C-End:     \033[1;5F
-URxvt.keysym.C-Home:    \033[1;5H
-
 !! Extensions
-URxvt.perl-ext-common: default,eval,url-select,keyboard-select,tabbedex,selection-to-clipboard,font-size,fullscreen
+URxvt.perl-ext-common: default,url-select,fullscreen,eval,keyboard-select,tabbedex,selection-to-clipboard,font-size
 URxvt.colorUL: #4682B4
+
+!! url-select
+URxvt.url-select.launcher: google-chrome
+URxvt.url-select.underline: true
+URxvt.keysym.M-Up: perl:url-select:select_next
+URxvt.keysym.M-Down: perl:url-select:select_next
 
 !! fullscreen
 URxvt.keysym.F11: perl:fullscreen:switch
 
 !! eval
 URxvt.keysym.Shift-Control-V: eval:paste_clipboard
-
-!! url-select
-URxvt.url-select.launcher: google-chrome
-URxvt.url-select.underline: true
-URxvt.keysym.M-u: perl:url-select:select_next
 
 !! keyboard-select ctrl+alt+[c|v]
 URxvt.keysym.M-Escape: perl:keyboard-select:activate
@@ -102,14 +84,10 @@ URxvt.tabbed.autohide: yes
 URxvt.tabbed.title: yes
 URxvt.tabbed.no-tabbedex-keys: yes
 URxvt.keysym.C-t: perl:tabbedex:new_tab
-URxvt.keysym.S-Left: perl:tabbedex:prev_tab
-URxvt.keysym.S-Right: perl:tabbedex:next_tab
 URxvt.keysym.M-p: perl:tabbedex:prev_tab
 URxvt.keysym.M-n: perl:tabbedex:next_tab
 URxvt.keysym.M-b: perl:tabbedex:move_tab_left
 URxvt.keysym.M-f: perl:tabbedex:move_tab_right
-URxvt.keysym.S-Up: perl:tabbedex:rename_tab
-URxvt.keysym.S-Down: perl:tabbedex:new_tab
 URxvt.keysym.C-1: perl:tabbedex:goto_tab_1
 URxvt.keysym.C-2: perl:tabbedex:goto_tab_2
 URxvt.keysym.C-3: perl:tabbedex:goto_tab_3
@@ -125,10 +103,3 @@ URxvt.keysym.C-0:        font-size:reset
 URxvt.keysym.C-minus:    font-size:decrease
 URxvt.keysym.C-equal:    font-size:increase
 URxvt.keysym.C-question: font-size:show
-
-!! alt + F1-F12
-URxvt.keysym.M-F1: perl:url-select:select_next
-URxvt.keysym.M-F2: perl:keyboard-select:activate
-URxvt.keysym.M-F3: perl:keyboard-select:search
-URxvt.keysym.M-F4: eval:paste_clipboard
-URxvt.keysym.M-F5: perl:tabbedex:new_tab
