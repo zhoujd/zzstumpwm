@@ -64,25 +64,26 @@ URxvt.keysym.M-Down: perl:url-select:select_next
 URxvt.keysym.F11: perl:fullscreen:switch
 
 !! eval
-URxvt.keysym.Shift-Control-V: eval:paste_clipboard
+URxvt.keysym.Control-Shift-V: eval:paste_clipboard
 
 !! keyboard-select ctrl+alt+[c|v]
-URxvt.keysym.M-Escape: perl:keyboard-select:activate
-URxvt.keysym.M-q: perl:keyboard-select:activate
+URxvt.keysym.Control-Shift-Q: perl:keyboard-select:activate
 
 !! searchable-scrollback (enabled by default)
 !! <Meta><S> incremental scrollback search
 !! Up/Down/Return (upwards/downwards/stay)
-URxvt.keysym.M-s: searchable-scrollback:start
+URxvt.keysym.Control-Shift-S: searchable-scrollback:start
 
-!! tabbedex 'ctrl+d' to close tab
+!! URXVT TABS
+!! 'ctrl+d' to close tab
+URxvt.tabbedex.new-button: false
+URxvt.tabbedex.autohide: true
+URxvt.tabbedex.title: yes
 URxvt.tabbed.tabbar-fg: 2
 URxvt.tabbed.tabbar-bg: 0
 URxvt.tabbed.tab-fg: 3
 URxvt.tabbed.tab-bg: 0
-URxvt.tabbedex.autohide: true
-URxvt.tabbedex.title: yes
-URxvt.tabbedex.new-button: false
+URxvt.tabbed.no-tabbedex-keys: true
 URxvt.keysym.Control-Shift-T: perl:tabbedex:new_tab
 URxvt.keysym.C-Tab: perl:tabbedex:next_tab
 URxvt.keysym.Control-ISO_Left_Tab: perl:tabbedex:prev_tab
