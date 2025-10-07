@@ -86,9 +86,13 @@ set expandtab
 set smarttab
 set history=1000
 set ignorecase
-set hlsearch
 set incsearch
 set gdefault
+
+" Highlight all matched terms
+set hlsearch
+" Pressing return clears highlighted search
+:nnoremap <CR> :nohlsearch<CR>/<BS>
 
 " Configure title to look like: Vim /path/to/file
 "set title
