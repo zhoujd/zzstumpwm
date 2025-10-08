@@ -52,7 +52,7 @@ URxvt.inputMethod: ibus
 
 !! Extensions
 !! default path: /usr/local/lib/urxvt/perl:~/.urxvt/ext
-URxvt.perl-ext-common: default,fullscreen,eval,keyboard-select,tabbedex,selection-to-clipboard,font-size
+URxvt.perl-ext-common: default,fullscreen,eval,keyboard-select,tabbedex,selection-to-clipboard,font-size,newterm
 
 !! fullscreen
 URxvt.keysym.Control-Shift-F: perl:fullscreen:switch
@@ -97,3 +97,6 @@ URxvt.keysym.C-0: font-size:reset
 URxvt.keysym.C-minus: font-size:decrease
 URxvt.keysym.C-equal: font-size:increase
 URxvt.keysym.C-question: font-size:show
+
+!! newterm
+URxvt.keysym.C-S-Return: perl:newterm
