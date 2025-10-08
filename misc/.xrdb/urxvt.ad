@@ -51,6 +51,7 @@ URxvt.iconFile: /usr/share/pixmaps/urxvt_48x48.svg
 URxvt.inputMethod: ibus
 
 !! Extensions
+!! default path: /usr/local/lib/urxvt/perl:~/.urxvt/ext
 URxvt.perl-ext-common: default,fullscreen,eval,keyboard-select,tabbedex,selection-to-clipboard,font-size
 
 !! fullscreen
