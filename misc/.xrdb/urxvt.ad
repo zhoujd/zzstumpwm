@@ -53,7 +53,7 @@ URxvt.inputMethod: ibus
 
 !! Extensions
 !! default path: /usr/local/lib/urxvt/perl:~/.urxvt/ext
-URxvt.perl-ext-common: default,fullscreen,eval,keyboard-select,selection-to-clipboard,font-size,newterm
+URxvt.perl-ext-common: default,fullscreen,eval,keyboard-select,selection-to-clipboard,tabbedex,font-size,newterm
 
 !! fullscreen
 URxvt.keysym.C-S-F: perl:fullscreen:switch
@@ -68,6 +68,30 @@ URxvt.keysym.C-S-Q: perl:keyboard-select:activate
 !! <Meta><S> incremental scrollback search
 !! Up/Down/Return (upwards/downwards/stay)
 URxvt.keysym.C-S-S: searchable-scrollback:start
+
+!! multiple tabs
+!! press 'ctrl+d' to close tab
+URxvt.tabbedex.new-button: false
+URxvt.tabbedex.autohide: true
+URxvt.tabbed.tabbar-fg: 2
+URxvt.tabbed.tabbar-bg: 0
+URxvt.tabbed.tab-fg: 3
+URxvt.tabbed.tab-bg: 0
+URxvt.tabbed.no-tabbedex-keys: true
+URxvt.keysym.Control-Shift-T: perl:tabbedex:new_tab
+URxvt.keysym.C-Tab: perl:tabbedex:next_tab
+URxvt.keysym.Control-ISO_Left_Tab: perl:tabbedex:prev_tab
+URxvt.keysym.Control-Shift-Left: perl:tabbedex:move_tab_left
+URxvt.keysym.Control-Shift-Right: perl:tabbedex:move_tab_right
+URxvt.keysym.C-1: perl:tabbedex:goto_tab_1
+URxvt.keysym.C-2: perl:tabbedex:goto_tab_2
+URxvt.keysym.C-3: perl:tabbedex:goto_tab_3
+URxvt.keysym.C-4: perl:tabbedex:goto_tab_4
+URxvt.keysym.C-5: perl:tabbedex:goto_tab_5
+URxvt.keysym.C-6: perl:tabbedex:goto_tab_6
+URxvt.keysym.C-7: perl:tabbedex:goto_tab_7
+URxvt.keysym.C-8: perl:tabbedex:goto_tab_8
+URxvt.keysym.C-9: perl:tabbedex:goto_tab_9
 
 !! font-size
 URxvt.keysym.C-S-D: font-size:decrease
