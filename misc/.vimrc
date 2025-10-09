@@ -146,5 +146,7 @@ set statusline+=\ %P                                    "Top/Bot/All
 " 6: Cyan         │  14: Bright Cyan
 " 7: White (gray) │  15: Bright White
 let g:colors_name = 'ansi'
-set notermguicolors
-hi User1 ctermfg=0 ctermbg=2 cterm=None
+if has("gui_running")
+  set termguicolors
+endif
+hi User1 ctermfg=0 ctermbg=2 guifg=#d0d0d0 guibg=#444444
