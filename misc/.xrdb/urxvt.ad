@@ -39,10 +39,13 @@ URxvt.urgentOnBell: false
 URxvt.visualBell: false
 
 !! urxvt fonts
+URxvt.allow_bold: false
 URxvt.font: \
   xft:SF Mono:size=13:autohint=true,\
-  xft:PingFang SC:size=13:autohint=true,\
-  xft:Symbols Nerd Font Mono:size=13:autohint=true
+  xft:PingFang SC:size=13:autohint=true
+URxvt.boldFont: \
+  xft:SF Mono:size=13:autohint=true,\
+  xft:PingFang SC:size=13:autohint=true
 
 !! urxvt icon
 URxvt.iconFile: /usr/share/pixmaps/urxvt_48x48.svg
