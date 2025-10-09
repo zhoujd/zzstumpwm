@@ -55,13 +55,11 @@ if !has("win32")
   set guioptions-=T
 endif
 
-" Set Vim-specific sequences for RGB colors
-let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
-let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
+" Background
+set background=dark
 
 " Color scheme setting
 let g:gruvbox_contrast_dark='black'
-set background=dark
 colorscheme gruvbox
 
 " No temp files
@@ -147,5 +145,5 @@ set statusline+=\ %m%r%w\ %P                            "Modified? Readonly? Top
 " 6: Cyan         │  14: Bright Cyan
 " 7: White (gray) │  15: Bright White
 let g:colors_name = 'ansi'
-set termguicolors
+set notermguicolors
 hi User1 ctermfg=0 ctermbg=2 cterm=None
