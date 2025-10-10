@@ -142,10 +142,11 @@ hi User1 ctermfg=0 ctermbg=2 guifg=#d0d0d0 guibg=#444444
 " Default statusline
 set statusline=%1*
 set statusline+=[%n]                                   "BufferNumber
-set statusline+=\ %<%F                                 "FilePath
+set statusline+=\ %<%f                                 "FilePath
+set statusline+=\ %m%r%w                               "Modified? Readonly?
+set statusline+=\ [%{getcwd()}]                        "Current dir
 set statusline+=\ %=\ %{''.(&fenc!=''?&fenc:&enc).''}  "Encoding1
 set statusline+=\ %{(&bomb?\",BOM\":\"\")}             "Encoding2
 set statusline+=\ %{&ff}                               "FileFormat (dos/unix..)
-set statusline+=\ row:%l/%L\ col:%c\ (%p%%)            "Rownumber/total (%)
-set statusline+=\ %m%r%w                               "Modified? Readonly?
+set statusline+=\ %p%%\ row:%l/%L\ col:%c              "Rownumber/total (%)
 set statusline+=\ %P                                   "Top/Bot/All
