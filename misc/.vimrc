@@ -144,11 +144,11 @@ endif
 
 " Default statusline
 set statusline=%1*
-set statusline+=\[%n]                                   "Buffernr
-set statusline+=\ %<%F\                                 "File+path
-set statusline+=\ %=\ %{''.(&fenc!=''?&fenc:&enc).''}\  "Encoding
-set statusline+=\ %{(&bomb?\",BOM\":\"\")}\             "Encoding2
-set statusline+=\ %{&ff}\                               "FileFormat (dos/unix..)
-set statusline+=\ row:%l/%L\ col:%c\ (%p%%)\            "Rownumber/total (%)
-set statusline+=\ %m%r%w\                               "Modified? Readonly?
-set statusline+=\ %P                                    "Top/Bot/All
+set statusline+=[%n]                                   "BufferNumber
+set statusline+=\ %<%F                                 "File+Path
+set statusline+=\ %=\ %{''.(&fenc!=''?&fenc:&enc).''}  "Encoding1
+set statusline+=\ %{(&bomb?\",BOM\":\"\")}             "Encoding2
+set statusline+=\ %{&ff}                               "FileFormat (dos/unix..)
+set statusline+=\ row:%l/%L\ col:%c\ (%p%%)            "Rownumber/total (%)
+set statusline+=\ %m%r%w                               "Modified? Readonly?
+set statusline+=\ %P                                   "Top/Bot/All
