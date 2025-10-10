@@ -2,11 +2,11 @@
 set nocompatible
 
 " Language
-if !has("gui_running")
-  language en_US.utf8
-else
+if has("gui_running")
   set langmenu=en_US
   let $LANG='en_US'
+else
+  language en_US.utf8
 endif
 
 " OS setting
@@ -143,7 +143,7 @@ else
 endif
 
 " Default statusline
-set statusline+=%1*
+set statusline=%1*
 set statusline+=\[%n]                                   "Buffernr
 set statusline+=\ %<%F\                                 "File+path
 set statusline+=\ %=\ %{''.(&fenc!=''?&fenc:&enc).''}\  "Encoding
