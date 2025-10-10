@@ -118,7 +118,7 @@ if has("clipboard")
 endif
 
 " Disable netrw save no history or bookmarks
-let g:netrw_dirhistmax = 0
+let g:netrw_dirhistmax=0
 
 " Default the statusline when entering Vim
 set laststatus=2
