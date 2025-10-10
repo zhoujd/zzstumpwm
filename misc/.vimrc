@@ -136,16 +136,13 @@ set ruler
 " 7: White (gray) │  15: Bright White
 if has("gui_running")
   set termguicolors
-  hi User1 guifg=#d0d0d0 guibg=#444444
-else
-  set notermguicolors
-  hi User1 ctermfg=0 ctermbg=2
 endif
+hi User1 ctermfg=0 ctermbg=2 guifg=#d0d0d0 guibg=#444444
 
 " Default statusline
 set statusline=%1*
 set statusline+=[%n]                                   "BufferNumber
-set statusline+=\ %<%F                                 "File+Path
+set statusline+=\ %<%F                                 "FilePath
 set statusline+=\ %=\ %{''.(&fenc!=''?&fenc:&enc).''}  "Encoding1
 set statusline+=\ %{(&bomb?\",BOM\":\"\")}             "Encoding2
 set statusline+=\ %{&ff}                               "FileFormat (dos/unix..)
