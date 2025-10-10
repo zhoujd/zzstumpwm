@@ -4,10 +4,7 @@
 !! <Ctrl><S> stops transfer towards a terminal (the "freeze")
 !! <Ctrl><Q> resumes the transfer
 
-!! general
-URxvt.intensityStyles: false
-
-!! real transparency
+!! transparency
 urxvt.depth: 32
 URxvt.background: [90]#000000
 
@@ -39,13 +36,10 @@ URxvt.urgentOnBell: false
 URxvt.visualBell: false
 
 !! urxvt fonts
+URxvt.intensityStyles: false
 URxvt.allow_bold: false
-URxvt.font: \
-  xft:SF Mono:size=13:autohint=true,\
-  xft:PingFang SC:size=13:autohint=true
-URxvt.boldFont: \
-  xft:SF Mono:size=13:autohint=true,\
-  xft:PingFang SC:size=13:autohint=true
+URxvt.font: xft:SF Mono:size=13:autohint=true,xft:PingFang SC:size=13:autohint=true
+URxvt.boldFont: xft:SF Mono:size=13:autohint=true,xft:PingFang SC:size=13:autohint=true
 
 !! urxvt icon
 URxvt.iconFile: /usr/share/pixmaps/urxvt_48x48.svg
