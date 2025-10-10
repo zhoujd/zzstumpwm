@@ -125,17 +125,6 @@ set laststatus=2
 set cmdheight=1
 set ruler
 
-" Default statusline
-set statusline+=%1*
-set statusline+=\[%n]                                   "Buffernr
-set statusline+=\ %<%F\                                 "File+path
-set statusline+=\ %=\ %{''.(&fenc!=''?&fenc:&enc).''}\  "Encoding
-set statusline+=\ %{(&bomb?\",BOM\":\"\")}\             "Encoding2
-set statusline+=\ %{&ff}\                               "FileFormat (dos/unix..)
-set statusline+=\ row:%l/%L\ col:%c\ (%p%%)\            "Rownumber/total (%)
-set statusline+=\ %m%r%w\                               "Modified? Readonly?
-set statusline+=\ %P                                    "Top/Bot/All
-
 " Default statusline color
 " 0: Black        │   8: Bright Black (dark gray)
 " 1: Red          │   9: Bright Red
@@ -152,3 +141,14 @@ else
   set notermguicolors
   hi User1 ctermfg=0 ctermbg=2
 endif
+
+" Default statusline
+set statusline+=%1*
+set statusline+=\[%n]                                   "Buffernr
+set statusline+=\ %<%F\                                 "File+path
+set statusline+=\ %=\ %{''.(&fenc!=''?&fenc:&enc).''}\  "Encoding
+set statusline+=\ %{(&bomb?\",BOM\":\"\")}\             "Encoding2
+set statusline+=\ %{&ff}\                               "FileFormat (dos/unix..)
+set statusline+=\ row:%l/%L\ col:%c\ (%p%%)\            "Rownumber/total (%)
+set statusline+=\ %m%r%w\                               "Modified? Readonly?
+set statusline+=\ %P                                    "Top/Bot/All
