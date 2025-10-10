@@ -141,8 +141,7 @@ hi User1 ctermfg=0 ctermbg=2 guifg=#d0d0d0 guibg=#444444
 
 " Default statusline
 set statusline=%1*
-set statusline+=[%n]                                   "BufferNumber
-set statusline+=\ %<%f                                 "FilePath
+set statusline+=%<%f                                   "FilePath
 set statusline+=\ %m%r%w                               "Modified? Readonly?
 set statusline+=\ [%{getcwd()}]                        "Current dir
 set statusline+=\ %=\ %{''.(&fenc!=''?&fenc:&enc).''}  "Encoding1
