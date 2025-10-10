@@ -101,6 +101,7 @@ export SCREENRC="~/.screenrc"
 ## https://github.com/ladyrick/static-tools/releases/download/v1.2/busybox.amd64
 ## https://github.com/EXALAB/Busybox-static
 ## https://github.com/shutingrz/busybox-static-binaries-fat
+## https://github.com/heywoodlh/vim-builds/releases
 ```
 
 ## Toybox
@@ -138,4 +139,15 @@ export SCREENRC="~/.screenrc"
 ## https://github.com/static-linux/static-binaries-i386/blob/master/minicom-2.7.tar.gz
 ## https://github.com/static-linux/static-binaries-i386/blob/master/picocom-1.7.tar.gz
 ## https://github.com/npat-efault/picocom
+```
+
+## build in alpine
+
+```
+docker run -i --rm -v "$PWD":/out -w /root alpine /bin/sh <<EOF
+apk add gcc make musl-dev ncurses-static
+cp -r /usr/local/* /out/vim
+strip /out/bin/vim
+chown -R $(id -u):$(id -g) /out/vim
+EOF
 ```
