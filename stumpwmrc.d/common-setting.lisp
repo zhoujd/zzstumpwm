@@ -38,8 +38,8 @@
       *window-border-style*         :thin)
 
 ;; time string
-(setf *time-modeline-string*       "%a %b %d %l:%M %P"
-      *time-format-string-default* "%a %b %d %l:%M %P")
+(setf *time-modeline-string*       "%a %e %b %l:%M %P"
+      *time-format-string-default* "%a %e %b %l:%M %P")
 
 ;; mode line
 (setf *mode-line-background-color*  "black"
