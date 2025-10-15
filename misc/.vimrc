@@ -55,12 +55,9 @@ if !has("win32")
   set guioptions-=T
 endif
 
-" Background
-set background=dark
-
 " Color scheme setting
-let g:gruvbox_contrast_dark='black'
-colorscheme gruvbox
+set background=dark
+colorscheme desert
 
 " No temp files
 set noundofile
