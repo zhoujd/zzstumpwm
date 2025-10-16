@@ -16,6 +16,7 @@ APPS=(
     hexyl
     rsync
     tmux
+    peco
     less
     tig
     ag
