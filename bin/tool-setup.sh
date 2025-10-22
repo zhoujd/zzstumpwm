@@ -21,6 +21,7 @@ APPS=(
     tig
     ag
     fd
+    ff
 )
 for app in ${APPS[@]}; do
     cp -vf $TOOL_ROOT/$app $TARGET
