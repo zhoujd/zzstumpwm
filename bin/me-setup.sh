@@ -7,11 +7,6 @@ TOOL_ROOT=$ZWM_ROOT/third-party/MicroEMACS
 ## Install mec/mew
 TARGET=~/.local/bin
 mkdir -p $TARGET
-cp -vf $TOOL_ROOT/mec $TARGET
-cp -vf $TOOL_ROOT/mew $TARGET
-
-## Install mec/mew configure
-rm -rf ~/.config/jasspa
-cp -rv $ZWM_ROOT/misc/.config/jasspa ~/.config
+cp -vf $TOOL_ROOT/{em,me,mg} $TARGET
 
 echo "Setup MicroEMACS done"
