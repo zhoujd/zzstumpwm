@@ -18,6 +18,12 @@ startup_message off
 ## stop screen from catching C-S and C-Q, XON and XOFF
 defflow off
 
+## the dash makes it a login shell
+defshell -bash
+
+## disable utmp logging
+deflogin off
+
 ## scroll
 termcapinfo st* ti@:te@
 
