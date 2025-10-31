@@ -1,33 +1,51 @@
 ### .screenrc
 
-## remap Ctrl-a to backtick
+# remap Ctrl-a to backtick
 escape ``
 
-## enable 256 color term
-term screen-256color
-
-## screen buffer
-defscrollback 4096
-
-## no flash
-vbell off
-
-## no start message
+# no start message
 startup_message off
 
-## stop screen from catching C-S and C-Q, XON and XOFF
-defflow off
+# no flash
+vbell off
 
-## the dash makes it a login shell
-defshell -bash
+# enable alternative screen
+altscreen on
 
-## disable utmp logging
+# ignore case on searches in copy-mode
+ignorecase on
+
+# no delay after pressing escape key inside screen
+maptimeout 0
+
+# wait up to three seconds before hiding last message (default is 5 seconds)
+msgwait 3
+
+# disable utmp logging
 deflogin off
 
-## scroll
+# stop screen from catching C-S and C-Q, XON and XOFF
+defflow off
+
+# the dash makes it a login shell
+defshell -bash
+
+# assume UTF-8 encoding
+defutf8 on
+
+# erase background with current bg color
+defbce on
+
+# screen buffer
+defscrollback 5000
+
+# enable 256 color term
+term screen-256color
+
+# scroll
 termcapinfo st* ti@:te@
 
-## Evil evil keybindings. Do Not Want!
+# remove evil keybindings. Do Not Want!
 bind ^h
 bind h
 bind ^Q
@@ -39,18 +57,15 @@ bind x
 bind ^Z
 bind z
 
-## Window numbering starts at 1, not 0.
+# window numbering starts at 1, not 0.
 bind c screen 1
 bind ^c screen 1
 bind 0 select 10                                                            
 screen 1
 
-## Fix for residual editor text
-altscreen on
-
-## hardstatus
+# hardstatus
 hardstatus alwayslastline
 hardstatus string "%{.g}%w %= %H"
 
-## windowlist
+# windowlist
 windowlist string "%4n %h%=%f"
