@@ -13,6 +13,7 @@ APPS=(
     busybox
     toybox
     screen
+    delta
     hexyl
     rsync
     tmux
