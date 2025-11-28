@@ -3,8 +3,8 @@
 !! theme
 #include "themes/gruvbox.ad"
 
-!! font
-#include "bases/font.ad"
+!! common
+#include "bases/common.ad"
 
 !! urxvt
 #include "bases/urxvt.ad"
