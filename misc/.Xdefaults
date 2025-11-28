@@ -1,3 +1,5 @@
 !!!! .Xdefaults
+!!xrdb -load .Xresources
+!!xrdb -merge .Xresources
 
 #include ".xrdb/autoload.ad"
