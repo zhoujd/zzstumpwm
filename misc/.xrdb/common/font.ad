@@ -1,11 +1,7 @@
-!!!! common.ad
-!! https://terminal.sexy
+!!!! font.ad
 
 !! Xft font
 Xft.antialias: 1
 Xft.hinting: 1
 Xft.hintstyple: hintfull
 Xft.rgba: rgb
-
-!! theme
-#include "themes/gruvbox.ad"

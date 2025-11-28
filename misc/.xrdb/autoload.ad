@@ -1,0 +1,14 @@
+!!!! autoload.ad
+!! https://terminal.sexy
+
+!! theme
+#include "themes/gruvbox.ad"
+
+!! font
+#include "common/font.ad"
+
+!! urxvt
+#include "common/urxvt.ad"
+
+!! xterm
+#include "common/xterm.ad"
