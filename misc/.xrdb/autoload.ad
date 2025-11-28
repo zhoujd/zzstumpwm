@@ -1,14 +1,13 @@
-!!!! autoload.ad
-!! https://terminal.sexy
+!!! autoload.ad
 
 !! theme
 #include "themes/gruvbox.ad"
 
 !! font
-#include "common/font.ad"
+#include "bases/font.ad"
 
 !! urxvt
-#include "common/urxvt.ad"
+#include "bases/urxvt.ad"
 
 !! xterm
-#include "common/xterm.ad"
+#include "bases/xterm.ad"
