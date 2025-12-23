@@ -47,9 +47,9 @@ sub on_start{
 
 
 sub on_action {
-    my ($self, $action) = @_;
+        my ($self, $action) = @_;
 
-    on_user_command($self, "keyboard-select:" . $action);
+        on_user_command($self, "keyboard-select:" . $action);
 }
 
 
@@ -603,4 +603,4 @@ sub calc_span {
         }
 
         return ($br, $bc, $er, $ec);
-    }
+}
