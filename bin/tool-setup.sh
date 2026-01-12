@@ -18,7 +18,6 @@ APPS=(
     rsync
     tmux
     peco
-    less
     tig
     ag
     fd
