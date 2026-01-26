@@ -16,6 +16,7 @@ APPS=(
     delta
     hexyl
     rsync
+    ctags
     tmux
     peco
     tig
