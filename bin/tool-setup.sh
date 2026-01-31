@@ -11,7 +11,6 @@ mkdir -p $TARGET
 APPS=(
     miniserve
     toybox
-    screen
     delta
     hexyl
     rsync
