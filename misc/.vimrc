@@ -55,12 +55,23 @@ if !has("win32")
   set guioptions-=T
 endif
 
-" Background
+" Important!!
+if has('termguicolors')
+set termguicolors
+endif
+
+" For dark version.
 set background=dark
 
-" Color scheme setting
-let g:gruvbox_contrast_dark='black'
-colorscheme gruvbox
+" Set contrast.
+" This configuration option should be placed before `colorscheme gruvbox-material`.
+" Available values: 'hard', 'medium'(default), 'soft'
+let g:gruvbox_material_background = 'hard'
+
+" For better performance
+let g:gruvbox_material_better_performance = 1
+
+colorscheme gruvbox-material
 
 " No temp files
 set noundofile
