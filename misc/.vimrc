@@ -137,7 +137,11 @@ set ruler
 " 5: Magenta      │  13: Bright Magenta
 " 6: Cyan         │  14: Bright Cyan
 " 7: White (gray) │  15: Bright White
-hi User1 ctermfg=0 ctermbg=2 guifg=#d0d0d0 guibg=#444444
+if has("gui_running")
+  hi User1 guifg=Black guibg=LightGreen
+else
+  hi User1 ctermfg=Black ctermbg=Green
+endif
 
 " Default statusline
 set statusline=%1*
