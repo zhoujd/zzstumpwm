@@ -145,9 +145,6 @@ set ruler
 " 5: Magenta      │  13: Bright Magenta
 " 6: Cyan         │  14: Bright Cyan
 " 7: White (gray) │  15: Bright White
-if has("gui_running")
-  set termguicolors
-endif
 hi User1 ctermfg=0 ctermbg=2 guifg=#d0d0d0 guibg=#444444
 
 " Default statusline
