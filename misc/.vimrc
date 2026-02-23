@@ -55,6 +55,11 @@ if !has("win32")
   set guioptions-=T
 endif
 
+" Enable syntax highlighting if available
+if has("syntax")
+  syntax on
+endif
+
 " Important!!
 if has('termguicolors')
   set termguicolors
@@ -69,11 +74,6 @@ colorscheme gruvbox
 set noundofile
 set nobackup
 set noswapfile
-
-" Enable syntax highlighting if available
-if has("syntax")
-  syntax on
-endif
 
 " Other settings
 set novisualbell
