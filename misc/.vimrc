@@ -145,11 +145,10 @@ endif
 
 " Default statusline
 set statusline=%1*
-set statusline+=%<%f                                   "FilePath
-set statusline+=\ [%{getcwd()}]                        "Current dir
-set statusline+=%=%m%r%w                               "Modified? Readonly?
-set statusline+=\ %{''.(&fenc!=''?&fenc:&enc).''}      "Encoding1
-set statusline+=\ %{(&bomb?\",BOM\":\"\")}             "Encoding2
-set statusline+=\ %{&ff}                               "FileFormat (dos/unix..)
-set statusline+=\ %p%%\ row:%l/%L\ col:%c              "Rownumber/total (%)
-set statusline+=\ %P                                   "Top/Bot/All
+set statusline+=%<%f                                   " FilePath
+set statusline+=\ [%{getcwd()}]                        " Current dir
+set statusline+=%=%m%r%w                               " Modified? Readonly?
+set statusline+=\ %{''.(&fenc!=''?&fenc:&enc).''}      " Encoding
+set statusline+=\ %{&ff}                               " FileFormat (dos/unix..)
+set statusline+=\ row:%l/%L\ col:%c/%v                 " Row number/total
+set statusline+=\ %P                                   " Top/Bot/All
