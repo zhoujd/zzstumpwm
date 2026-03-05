@@ -12,9 +12,7 @@ APPS=(
     miniserve
     toybox
     delta
-    hexyl
     rsync
-    ctags
     tmux
     peco
     tig
