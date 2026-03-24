@@ -1,8 +1,17 @@
 #!/bin/bash
+set -euo pipefail
 
 SCRIPT_ROOT=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
 ZWM_ROOT=$(cd $SCRIPT_ROOT && pwd)
 ZWM_TOP=$(cd $ZWM_ROOT/.. && pwd)
+
+echo "Do you want to uninstall? (y/N)"
+read answer
+case "$answer" in
+    "N" | "n" | '')
+        exit 0;
+        ;;
+esac
 
 echo "Uninstall zwm start ..."
 
