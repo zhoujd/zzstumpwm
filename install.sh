@@ -5,7 +5,7 @@ SCRIPT_ROOT=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
 ZWM_ROOT=$(cd $SCRIPT_ROOT && pwd)
 ZWM_TOP=$(cd $ZWM_ROOT/.. && pwd)
 
-echo "Do you want to install? (y/N)"
+echo -n "Do you want to install? (y/N)"
 read answer
 case "$answer" in
     "N" | "n" | '')
