@@ -33,7 +33,7 @@ bind refs    C        !git commit
 bind main    C        !git commit
 bind generic <Esc>c   !git commit --allow-empty
 bind generic +        !git commit --amend --allow-empty
-bind status  A        ?git commit --amend --no-edit
+bind status  A        ?git commit --amend --no-edit --reset-author
 
 ## F fech
 bind generic F        ?git fetch %(remote)
