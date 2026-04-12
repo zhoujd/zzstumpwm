@@ -7,7 +7,6 @@ set ignore-case = true
 set mouse = false
 
 # View settings
-
 set main-view = line-number:no,interval=5 author:no date:no id:yes commit-title:yes,graph,refs,overflow=no
 set tree-view = line-number:no,interval=5 mode file-size:units author:no date:relative id:no file-name
 set refs-view = line-number:no,interval=5 date:no author:no ref id:yes commit-title
