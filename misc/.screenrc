@@ -49,7 +49,9 @@ term screen-256color
 termcapinfo st* ti@:te@
 
 # remove evil keybindings. Do Not Want!
-bind ^h
+bind ^G
+bind g
+bind ^H
 bind h
 bind ^Q
 bind q
