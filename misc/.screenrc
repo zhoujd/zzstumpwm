@@ -63,7 +63,8 @@ bind z
 # window numbering starts at 1, not 0.
 bind c screen 1
 bind ^c screen 1
-bind 0 select 10                                                            
+bind 0 select 10
+bind ^0 select 10
 screen 1
 
 # hardstatus
