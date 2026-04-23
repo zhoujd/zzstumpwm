@@ -21,6 +21,13 @@ maptimeout 0
 # wait up to three seconds before hiding last message (default is 5 seconds)
 msgwait 3
 
+# no delay when entering copy mode
+msgminwait 0
+
+# Don't block command output if the terminal stops responding
+# (like if the ssh connection times out for example).
+nonblock on
+
 # disable utmp logging
 deflogin off
 
