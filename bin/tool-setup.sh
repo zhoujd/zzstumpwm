@@ -16,7 +16,6 @@ APPS=(
     tmux
     peco
     tig
-    ag
     fd
 )
 for app in ${APPS[@]}; do
