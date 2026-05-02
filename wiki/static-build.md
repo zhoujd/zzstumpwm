@@ -35,6 +35,7 @@ Static Build
 ## https://github.com/ryanwoodsmall/static-binaries/tree/master/x86_64
 ## https://github.com/static-linux/static-binaries-i386
 ```
+
 ## Patch screen on st terminal
 
 ```https://savannah.gnu.org/bugs/?63619
