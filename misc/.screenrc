@@ -35,7 +35,7 @@ deflogin off
 defflow off
 
 # the dash makes it a login shell
-defshell -bash
+defshell -$SHELL
 
 # assume UTF-8 encoding
 defutf8 on
@@ -53,7 +53,7 @@ defdynamictitle on
 term screen-256color
 
 # scroll
-termcapinfo st* ti@:te@
+termcapinfo st*|rxvt* ti@:te@
 
 # remove evil keybindings. Do Not Want!
 bind ^G
