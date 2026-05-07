@@ -60,11 +60,6 @@ if has("syntax")
   syntax on
 endif
 
-" Important!!
-if has('termguicolors')
-  set termguicolors
-endif
-
 " Theme
 let g:gruvbox_contrast_dark='hard'
 set background=dark
@@ -138,9 +133,13 @@ set ruler
 " 6: Cyan         │  14: Bright Cyan
 " 7: White (gray) │  15: Bright White
 if has("gui_running")
-  hi User1 guifg=Black guibg=LightGreen
+  hi User1 guifg=#003300 guibg=#99ff99 gui=NONE
 else
-  hi User1 ctermfg=Black ctermbg=Green
+  if &t_Co >= 256
+    hi User1 ctermfg=22 ctermbg=120 cterm=NONE
+  else
+    hi User1 ctermfg=black ctermbg=green cterm=NONE
+  endif
 endif
 
 " Default statusline
