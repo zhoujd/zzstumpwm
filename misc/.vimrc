@@ -61,8 +61,9 @@ if has("syntax")
 endif
 
 " Theme
-let g:gruvbox_contrast_dark='hard'
 set background=dark
+let g:gruvbox_contrast_dark='hard'
+let g:gruvbox_transparent_bg=1
 colorscheme gruvbox
 
 " No temp files
@@ -135,6 +136,7 @@ set ruler
 if has("gui_running")
   hi User1 guifg=#000000 guibg=#5faf5f gui=NONE
 else
+  hi Normal ctermbg=NONE
   if &t_Co >= 256
     hi User1 ctermfg=15 ctermbg=22 cterm=NONE
   else
