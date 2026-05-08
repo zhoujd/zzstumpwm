@@ -133,12 +133,12 @@ set ruler
 " 6: Cyan         │  14: Bright Cyan
 " 7: White (gray) │  15: Bright White
 if has("gui_running")
-  hi User1 guifg=#003300 guibg=#99ff99 gui=NONE
+  hi User1 guifg=#000000 guibg=#5faf5f gui=NONE
 else
   if &t_Co >= 256
-    hi User1 ctermfg=22 ctermbg=120 cterm=NONE
+    hi User1 ctermfg=15 ctermbg=22 cterm=NONE
   else
-    hi User1 ctermfg=black ctermbg=green cterm=NONE
+    hi User1 ctermfg=0 ctermbg=2 cterm=NONE
   endif
 endif
 
