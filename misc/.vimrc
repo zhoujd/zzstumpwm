@@ -60,11 +60,17 @@ if has("syntax")
   syntax on
 endif
 
-" Theme
+" Color theme
 set background=dark
 let g:gruvbox_contrast_dark='hard'
 let g:gruvbox_transparent_bg=1
 colorscheme gruvbox
+" Pure black background overrides
+highlight Normal       ctermbg=NONE guibg=#000000
+highlight NonText      ctermbg=NONE guibg=#000000
+highlight LineNr       ctermbg=NONE guibg=#000000
+highlight SignColumn   ctermbg=NONE guibg=#000000
+highlight EndOfBuffer  ctermbg=NONE guibg=#000000
 
 " No temp files
 set noundofile
@@ -136,7 +142,6 @@ set ruler
 if has("gui_running")
   hi User1 guifg=#000000 guibg=#5faf5f gui=NONE
 else
-  hi Normal ctermbg=NONE
   if &t_Co >= 256
     hi User1 ctermfg=15 ctermbg=22 cterm=NONE
   else
