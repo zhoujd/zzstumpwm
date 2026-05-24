@@ -28,8 +28,6 @@ rm -f ~/.clisprc
 
 ## Remove configure files
 rm -f ~/.vimrc
-rm -f ~/.nanorc
-rm -f ~/.cshrc
 rm -f ~/.xinitrc
 rm -f ~/.xsession
 rm -f ~/.xprofile
@@ -40,7 +38,6 @@ rm -f ~/.Xdefaults
 rm -f ~/.inputrc
 rm -f ~/.urxvt
 rm -f ~/.xrdb
-rm -f ~/.keynavrc
 rm -f ~/.tigrc
 rm -f ~/.tigrc.d
 

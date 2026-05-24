@@ -38,17 +38,11 @@ ln -sfvT $ZWM_ROOT/misc/.clisprc ~/.clisprc
 ln -sfvT $ZWM_ROOT/misc/.vimrc ~/.vimrc
 ln -sfvT $ZWM_ROOT/misc/.vim ~/.vim
 
-## Set Nano configure
-ln -sfvT $ZWM_ROOT/misc/.nanorc ~/.nanorc
-
 ## Set tmux configure
 ln -sfvT $ZWM_ROOT/misc/.tmux.conf ~/.tmux.conf
 
 ## Set screen configure
 ln -sfvT $ZWM_ROOT/misc/.screenrc ~/.screenrc
-
-## Set csh configure
-ln -sfvT $ZWM_ROOT/misc/.cshrc ~/.cshrc
 
 ## Install .Xresources
 ln -sfvT $ZWM_ROOT/misc/.Xresources ~/.Xresources
