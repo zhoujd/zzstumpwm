@@ -74,9 +74,6 @@ ln -sfvT $ZWM_ROOT/misc/.xsession ~/.xsession
 ## Install .xprofile
 ln -sfvT $ZWM_ROOT/misc/.xprofile ~/.xprofile
 
-## Install .keynavrc
-ln -sfvT $ZWM_ROOT/misc/.keynavrc ~/.keynavrc
-
 ## Install .Xmodmap.d
 ln -sfvT $ZWM_ROOT/misc/.Xmodmap.d ~/.Xmodmap.d
 
