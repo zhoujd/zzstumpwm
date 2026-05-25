@@ -1,18 +1,17 @@
 ## ~/.keynavrc
 
 super+semicolon start
-ctrl+g end
 ctrl+r restart
+ctrl+g end
 
-# Enabling double-click and right-click
 i warp,doubleclick 1,end
 o warp,click 3,end
-1 click 1
-2 click 2
-3 click 3
+
+1 warp,click 1
+2 warp,click 2
+3 warp,click 3
 4 warp,click 4
 5 warp,click 5
 
-w warp
-t windowzoom
+w windowzoom
 c cursorzoom 200 200
