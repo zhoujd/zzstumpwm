@@ -57,9 +57,11 @@ URxvt.keysym.C-S-F: perl:fullscreen:switch
 
 !! eval
 URxvt.keysym.C-S-V: eval:paste_clipboard
+URxvt.keysym.C-S-Y: eval:paste_primary
 
 !! keyboard-select ctrl+alt+[c|v]
 URxvt.keysym.C-S-Escape: perl:keyboard-select:activate
+URxvt.keysym.C-S-Q: perl:keyboard-select:activate
 URxvt.keyboard-select.clipboard: true
 
 !! searchable-scrollback (enabled by default)
