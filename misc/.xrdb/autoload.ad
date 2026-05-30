@@ -1,7 +1,7 @@
 !!!! autoload.ad
 
 !! theme
-#include "themes/gruvbox.ad"
+#include "themes/mocha.ad"
 
 !! common
 #include "bases/common.ad"
