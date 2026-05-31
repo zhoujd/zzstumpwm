@@ -9,7 +9,7 @@ ZWM_TOP=$(cd $ZWM_ROOT/.. && pwd)
 echo -n "Do you want to install? (y/N)"
 read answer
 case "$answer" in
-    "N" | "n" | '')
+    "N" | "n" | '' )
         exit 0;
         ;;
 esac

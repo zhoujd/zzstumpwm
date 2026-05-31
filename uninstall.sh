@@ -9,7 +9,7 @@ ZWM_TOP=$(cd $ZWM_ROOT/.. && pwd)
 echo "Do you want to uninstall? (y/N)"
 read answer
 case "$answer" in
-    "N" | "n" | '')
+    "N" | "n" | '' )
         exit 0;
         ;;
 esac
