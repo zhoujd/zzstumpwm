@@ -16,6 +16,6 @@
 *.color13: #b48ead
 *.color14: #8fbcbb
 *.color15: #eceff4
-*.foreground: #ebdbb2
+*.foreground: #d8dee9
 *.background: #000000
 *.cursorColor: #cccccc
