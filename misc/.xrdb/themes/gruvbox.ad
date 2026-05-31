@@ -1,6 +1,6 @@
 !!!! gruvbox.ad
 
-*.color0: #1d2021
+*.color0: #282828
 *.color1: #cc241d
 *.color2: #98971a
 *.color3: #d79921
@@ -16,6 +16,6 @@
 *.color13: #d3869b
 *.color14: #8ec07c
 *.color15: #ebdbb2
-*.foreground: #e6d4a3
+*.foreground: #ebdbb2
 *.background: #000000
-*.cursorColor: #bbbbbb
+*.cursorColor: #cccccc
