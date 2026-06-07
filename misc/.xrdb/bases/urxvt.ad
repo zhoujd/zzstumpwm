@@ -70,10 +70,5 @@ URxvt.keyboard-select.clipboard: true
 !! Up/Down/Return (upwards/downwards/stay)
 URxvt.keysym.C-S-S: searchable-scrollback:start
 
-!! font-size
-URxvt.keysym.C-S-D: font-size:decrease
-URxvt.keysym.C-S-I: font-size:increase
-URxvt.keysym.C-S-O: font-size:reset
-
 !! newterm
 URxvt.keysym.C-S-Return: perl:newterm
