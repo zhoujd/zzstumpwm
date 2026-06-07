@@ -11,7 +11,10 @@ URxvt.background: [90]#000000
 !! mouse scroll or Shift+Page Up
 URxvt.scrollBar: false
 URxvt.scrollstyle: plain
-URxvt.secondaryScroll: false
+
+!! scrollin the alternate screen
+URxvt.secondaryScreen: true
+URxvt.secondaryScroll: true
 
 URxvt.termName: rxvt-256color
 URxvt.geometry: 94x24
