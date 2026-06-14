@@ -18,4 +18,4 @@
 *.color15: #ebdbb2
 *.foreground: #ebdbb2
 *.background: #000000
-*.cursorColor: #cccccc
+*.cursorColor: #ebdbb2
