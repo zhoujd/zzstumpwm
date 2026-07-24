@@ -55,8 +55,8 @@ if !has("win32")
   set guioptions-=T
 endif
 
-
-" Runtime location
+" Locate core runtime paths
+"$ vim --clean
 "$ vim --cmd 'echo $VIMRUNTIME|q'
 "$ find /usr/share/ -name "syntax.vim" 2>/dev/null
 "let $VIMRUNTIME = "/usr/share/vim/vim90"
