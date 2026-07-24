@@ -55,9 +55,16 @@ if !has("win32")
   set guioptions-=T
 endif
 
+
+" Runtime location
+"$ vim --cmd 'echo $VIMRUNTIME|q'
+"$ find /usr/share/ -name "syntax.vim" 2>/dev/null
+"let $VIMRUNTIME = "/usr/share/vim/vim90"
+
 " Enable syntax highlighting if available
-if has("syntax")
+if filereadable($VIMRUNTIME . "/syntax/syntax.vim")
   syntax on
+  filetype plugin indent on
 endif
 
 " Color theme
