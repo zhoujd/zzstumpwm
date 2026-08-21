@@ -8,8 +8,8 @@ XTerm*utf8Title: true
 XTerm*cjkWidth: true
 
 XTerm*fontMenu*fontdefault*Label: Default
-XTerm*faceName: SF Mono:antialias=true:size=13:minspace=true
-XTerm*faceNameDoublesize: SF Mono SC:antialias=true:size=13:minspace=true
+XTerm*faceName: SF Mono:size=13:antialias=true:minspace=true
+XTerm*faceNameDoublesize: PingFang SC:size=13:antialias=true
 
 XTerm*background: black
 XTerm*foreground: white
