@@ -13,7 +13,6 @@ APPS=(
     toybox
     delta
     rsync
-    tmux
     peco
     tig
     fd

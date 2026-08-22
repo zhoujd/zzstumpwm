@@ -7,6 +7,6 @@ TOOL_ROOT=$ZWM_ROOT/third-party/MicroEMACS
 ## Install mec/mew
 TARGET=~/.local/bin
 mkdir -p $TARGET
-cp -vf $TOOL_ROOT/{em,me,mg} $TARGET
+cp -vf $TOOL_ROOT/{em,mg} $TARGET
 
 echo "Setup MicroEMACS done"
