@@ -152,3 +152,14 @@ strip /out/bin/vim
 chown -R $(id -u):$(id -g) /out/vim
 EOF
 ```
+
+## Google search "static tools" or "static binaries"
+
+```
+https://github.com/ryanwoodsmall/static-binaries
+https://github.com/mosajjal/binary-tools
+https://github.com/ernw/static-toolbox
+https://github.com/Xhoenix/static-bins
+https://github.com/andrew-d/static-binaries
+https://github.com/pkgforge-dev/util-linux-static
+```
